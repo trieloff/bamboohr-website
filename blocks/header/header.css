@@ -1,25 +1,34 @@
 /* header and nav layout */
+
+header {
+  --background-color: 255, 255, 255;
+  --secondary-background-color: 192, 192, 192;
+}
+
 header .nav {
   display: grid;
-  grid-template:
-    "hamburger brand" 64px
-    "sections sections" 1fr / 50px 1fr;
+  grid-template-areas: 'brand hamburger' 'sections sections' 'buttons buttons';
+  grid-template-columns: calc(100% - 22px) 22px;
+  grid-template-rows: 64px 1fr;
   align-items: center;
   padding: 0 2rem;
   position: fixed;
   z-index: 1;
-  background-color: var(--background-color);
+  background-color: white;
   width: 100vw;
-  height: 64px;
+  height: 70px;
+  border-bottom: 3px solid #ebeae7;
   box-sizing: border-box;
+  overflow: scroll;
 }
 
 /* hamburger */
+
 header .nav-hamburger {
   grid-area: hamburger;
   height: 22px;
   padding-top: 3px;
-  cursor: pointer;
+  color: #ddd;
 }
 
 header .nav[aria-expanded='false'] .nav-hamburger-icon,
@@ -32,16 +41,14 @@ header .nav[aria-expanded='false'] .nav-hamburger-icon::before {
   width: 20px;
   height: 2px;
   border-radius: 3px;
-  background: currentcolor;
+  background: currentColor;
 }
-
 header .nav[aria-expanded='false'] .nav-hamburger-icon::after,
 header .nav[aria-expanded='false'] .nav-hamburger-icon::before {
   content: "";
   position: absolute;
   top: -6px;
 }
-
 header .nav[aria-expanded='false'] .nav-hamburger-icon::after {
   top: 6px;
 }
@@ -56,7 +63,6 @@ header .nav[aria-expanded='true'] .nav-hamburger-icon {
   border-radius: 5px;
   transform: translate(-3px, -2px);
 }
-
 header .nav[aria-expanded='true'] .nav-hamburger-icon::after,
 header .nav[aria-expanded='true'] .nav-hamburger-icon::before {
   content: "";
@@ -65,36 +71,48 @@ header .nav[aria-expanded='true'] .nav-hamburger-icon::before {
   position: absolute;
   width: 22px;
   height: 2px;
-  background: currentcolor;
+  background: currentColor;
   transform: rotate(45deg);
   border-radius: 5px;
   top: 8px;
   left: 1px
 }
-
 header .nav[aria-expanded='true'] .nav-hamburger-icon::after {
   transform: rotate(-45deg)
 }
 
 /* brand */
+
 header .nav-brand {
   grid-area: brand;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 400;
   line-height: 1em;
+  text-transform: uppercase;
+  color: var(--color-info-accent);
 }
 
 header .nav-brand p {
   margin: 0;
 }
 
+header .nav-brand p img {
+  display: inline-block;
+  margin-bottom: -3px;
+  margin-right: 9px;
+  padding-right: 9px;
+  height: 18px;
+  border-right: 1px solid var(--color-info-accent);
+}
+
 /* sections */
+
 header .nav-sections {
   grid-area: sections;
+  display: flex;
   flex-direction: column;
   display: none;
-  background-color: rgba(var(--background-color) / 92%);
-  width: 100vw;
+  background-color: rgba(var(--background-color),.92);
 }
 
 header .nav-sections h2 {
@@ -120,12 +138,95 @@ header .nav[aria-expanded='true'] {
   min-height: 100vh;
 }
 
+header .nav-sections h2 {
+  font-size: 16px;
+  color: #999;
+}
+
+header .nav-section ul a:any-link{
+  text-decoration: none;
+  color: #666;
+}
+
+header .nav-section li {
+  font-size: 14px;
+}
+
+
+/* nav buttons */
+
+header .nav-buttons {
+  grid-area: buttons;
+  display: none;
+  width: 100vw;
+}
+
+header .nav[aria-expanded='true'] .nav-buttons {
+  display: block;
+  align-self: flex-start;
+}
+
+header .nav-buttons .button {
+  padding: 5px 20px;
+  min-width: 60px;
+  margin: 0 5px;
+}
+
+header .nav-section.nav-section-subscribe {
+  font-size: 14px;
+  color: #777;
+}
+
+header .nav-section.nav-section-subscribe h3 {
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-style: italic;
+  color: #777;
+}
+
+header .nav-section.nav-section-subscribe input {
+  width: 100%;
+  height: 50px;
+  background-color: #f5f4f1;
+  border-radius: 30px;
+  border: none;
+  padding: 0 30px;
+  box-sizing: border-box;
+  font-family: var(--body-font-family);
+}
+
+header .nav-section.nav-section-subscribe button {
+  position: absolute;
+  right: 0;
+  background-color: var(--color-info-accent);
+  border: none;
+  height: 50px;
+  border-radius: 0 30px 30px 0;
+  padding: 0 20px;
+  font-weight: 800;
+  color: white;
+  font-family: var(--body-font-family);
+}
+
+header .nav-section.nav-section-subscribe form {
+  position: relative;
+}
+
+
 /* desktop nav styles */
-@media (min-width: 900px) {
+
+@media (min-width: 1000px) {
   header .nav {
-    grid-template-areas: 'brand sections';
-    grid-template-columns: 200px 1fr;
+    overflow: unset;
+    grid-template-areas: 'brand sections buttons';
+    grid-template-columns: 300px 1fr 250px;
   }
+
+  header .nav-brand p img {
+    height: 23px;
+    padding-left: 22px
+  }
+  
 
   header .nav-hamburger {
     display: none;
@@ -144,30 +245,107 @@ header .nav[aria-expanded='true'] {
   }
 
   header .nav-section {
-    padding: 0 16px;
+    padding: 0 22px;
     position: relative;
+    border-width: 3px 0 0 0;
+    border-style: solid;
+    border-color: transparent;
+  }
+
+  header .nav-section:hover {
+    border-top-color: var(--color-info-accent);
+  }
+
+  header .nav-section:hover h2 {
+    color: var(--color-info-accent);
   }
 
   header .nav-sections h2 {
-    font-size: 18px;
+    font-size: 14px;
     margin: 0;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 60px;
   }
 
-  header .nav-section ul {
-    display: none;
+  header .nav-section ul, header .nav-section .nav-section-wrapper {
+    opacity: 0;
+    padding-bottom: 30px;
+    padding-top: 18px;
+    max-height: 0;
+    position: absolute;
+    display: block;
+    background-color: rgba(var(--background-color));
+    width: 300px;
+    left: -22px;
+    top: 63px;
+    margin-top: 0;
+    border-radius: 0 0 20px 20px;
+    box-sizing: border-box;
+    color: #666;
+    transform: translate(0, -1000px);
   }
 
   header .nav-section li {
-    font-size: 18px;
-    padding: 16px;
+    font-size: 14px;
+    padding: 8px 44px;
+    cursor: pointer;
   }
 
-  header .nav-section[aria-expanded='true'] ul {
+  header .nav-section[aria-expanded='true'] > ul, header .nav-section[aria-expanded='true'] > .nav-section-wrapper {
+    opacity: 1;
+    max-height: 100vh;
     display: block;
-    position: absolute;
-    background-color: var(--background-color);
-    width: 300px;
-    left: 0;
+    transition: max-height 0.4s linear;
+    transform: unset;
   } 
+
+  header .nav-section > ul > *, header .nav-section > .nav-section-wrapper > * {
+    opacity: 0;
+    transition: opacity 0.6s linear;
+  }
+
+  header .nav-section[aria-expanded='true'] > ul > *, header .nav-section[aria-expanded='true'] > .nav-section-wrapper > * {
+    opacity: 1;
+  }
+
+  header .nav-section li > ul {
+    background-color: #ebeae7;
+    width: 300px;
+    left: 20px;
+    top: 0;
+    border-radius: 0 0 20px 0;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 12px;  
+    max-height: unset;
+  }
+
+  header .nav-section[aria-expanded='true'] li[aria-expanded='true'] > ul {
+    opacity: 1;
+    left: 280px;
+    transition: left 0.1s linear;
+    z-index: -1;
+    transform: unset;
+  }
+
+  header .nav-section[aria-expanded='true'] li[aria-expanded='true'] {
+    color: var(--color-info-accent);
+  }
+
+  header .nav-section[aria-expanded='true'] li[aria-expanded='true']::after {
+    content: '❯';
+    float: right;
+  }
+
+  header .nav-buttons {
+    margin-top: 4px;
+    display: flex;
+  }
+
+  header .nav-section.nav-section-subscribe .nav-section-wrapper {
+    padding: 42px;
+    width: 500px;
+  }
 }

@@ -599,15 +599,169 @@ document.addEventListener('click', () => sampleRUM('click'));
 
 loadPage(document);
 
-function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
-    main.prepend(section);
+export function formatDate(dateString) {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const [year, month, day] = dateString.split('-').map((n) => +n);
+  return `${months[month - 1]} ${day}, ${year}`;
+}
+
+export function decorateButtons(block = document) {
+  const noButtonBlocks = [];
+  block.querySelectorAll(':scope a').forEach(($a) => {
+    $a.title = $a.title || $a.textContent;
+    const $block = $a.closest('div.section > div > div');
+    let blockName;
+    if ($block) {
+      blockName = $block.className;
+    }
+    if (!noButtonBlocks.includes(blockName)
+      && $a.href !== $a.textContent) {
+      const $up = $a.parentElement;
+      const $twoup = $a.parentElement.parentElement;
+      if (!$a.querySelector('img')) {
+        if ($up.childNodes.length === 1 && ($up.tagName === 'P' || $up.tagName === 'DIV')) {
+          $a.className = 'button accent'; // default
+          $up.classList.add('button-container');
+        }
+        if ($up.childNodes.length === 1 && $up.tagName === 'STRONG'
+            && $twoup.childNodes.length === 1 && $twoup.tagName === 'P') {
+          $a.className = 'button accent';
+          $twoup.classList.add('button-container');
+        }
+        if ($up.childNodes.length === 1 && $up.tagName === 'EM'
+            && $twoup.childNodes.length === 1 && $twoup.tagName === 'P') {
+          $a.className = 'button accent light';
+          $twoup.classList.add('button-container');
+        }
+      }
+    }
+  });
+}
+
+function setCategory() {
+  let category = getMetadata('category');
+  if (!category && window.location.pathname.includes('/category/')) {
+    // eslint-disable-next-line prefer-destructuring
+    category = window.location.pathname.split('/category/')[1];
   }
+  document.body.classList.add(`category-${toClassName(category)}`);
+}
+
+/**
+ * Build figcaption element
+ * @param {Element} pEl The original element to be placed in figcaption.
+ * @returns figCaptionEl Generated figcaption
+ */
+
+export function buildCaption(pEl) {
+  const figCaptionEl = document.createElement('figcaption');
+  pEl.classList.add('caption');
+  figCaptionEl.append(pEl);
+  return figCaptionEl;
+}
+
+/**
+ * Build figure element
+ * @param {Element} blockEl The original element to be placed in figure.
+ * @returns figEl Generated figure
+ */
+export function buildFigure(blockEl) {
+  const figEl = document.createElement('figure');
+  figEl.classList.add('figure');
+  // content is picture only, no caption or link
+  if (blockEl.firstChild) {
+    if (blockEl.firstChild.nodeName === 'PICTURE' || blockEl.firstChild.nodeName === 'VIDEO') {
+      figEl.append(blockEl.firstChild);
+    } else if (blockEl.firstChild.nodeName === 'P') {
+      const pEls = Array.from(blockEl.children);
+      pEls.forEach((pEl) => {
+        if (pEl.firstChild) {
+          if (pEl.firstChild.nodeName === 'PICTURE' || pEl.firstChild.nodeName === 'VIDEO') {
+            figEl.append(pEl.firstChild);
+          } else if (pEl.firstChild.nodeName === 'EM') {
+            const figCapEl = buildCaption(pEl);
+            figEl.append(figCapEl);
+          } else if (pEl.firstChild.nodeName === 'A') {
+            const picEl = figEl.querySelector('picture');
+            if (picEl) {
+              pEl.firstChild.textContent = '';
+              pEl.firstChild.append(picEl);
+            }
+            figEl.prepend(pEl.firstChild);
+          }
+        }
+      });
+    // catch link-only figures (like embed blocks);
+    } else if (blockEl.firstChild.nodeName === 'A') {
+      figEl.append(blockEl.firstChild);
+    }
+  }
+  return figEl;
+}
+
+function buildArticleHeader(main) {
+  try {
+    const author = getMetadata('author');
+    const publicationDate = getMetadata('publication-date');
+    const readtime = getMetadata('read-time');
+    const category = getMetadata('category');
+    const h1 = document.querySelector('h1');
+    const picture = document.querySelector('h1 + p > picture');
+    if (author && publicationDate) {
+      document.body.classList.add('blog-post');
+      const section = document.createElement('div');
+      section.append(buildBlock('article-header', [
+        [picture],
+        [`<p>${category}</p><p>${readtime}</p>`],
+        [h1],
+        [`<p>${author}</p><p>${publicationDate}</p>`],
+      ]));
+      main.prepend(section);
+      return (true);
+    }
+  } catch (e) {
+    // something went wrong
+  }
+  return (false);
+}
+
+function buildAuthorContainer(main) {
+  try {
+    if (window.location.pathname.includes('/author/')) {
+      document.body.classList.add('author-page');
+      const container = buildBlock('author-container', []);
+      main.prepend(container);
+      return true;
+    }
+  } catch (e) {
+    // something went wrong
+  }
+  return false;
+}
+
+function buildImagesBlocks(main) {
+  main.querySelectorAll(':scope > div > p > picture').forEach((picture) => {
+    const p = picture.parentElement;
+    const div = p.parentElement;
+    const nextSib = p.nextElementSibling;
+    if ([...p.children].length === 1) {
+      div.insertBefore(buildBlock('images', { elems: [p] }), nextSib);
+    }
+  });
+}
+
+export async function lookupArticles(pathnames) {
+  if (!window.pageIndex) {
+    const resp = await fetch('/blog-query-index.json');
+    const json = await resp.json();
+    const lookup = {};
+    json.data.forEach((row) => {
+      lookup[row.path] = row;
+    });
+    window.pageIndex = { data: json.data, lookup };
+  }
+  const result = pathnames.map((path) => window.pageIndex.lookup[path]).filter((e) => e);
+  return (result);
 }
 
 function loadHeader(header) {
@@ -628,9 +782,36 @@ function loadFooter(footer) {
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
+// eslint-disable-next-line no-unused-vars
 function buildAutoBlocks(main) {
   try {
-    buildHeroBlock(main);
+    const isBlog = buildArticleHeader(main);
+    if (isBlog) {
+      buildImagesBlocks(main);
+      const related = main.querySelector('.related-posts');
+      if (related) related.parentElement.insertBefore(buildBlock('author', [['']]), related);
+    }
+    const isAuthor = buildAuthorContainer(main);
+    if (isAuthor) {
+      const h1 = document.querySelector('h1');
+      const position = h1.nextElementSibling;
+      position.remove();
+      const pic = document.querySelector('picture')
+        ? document.querySelector('picture').parentElement : null;
+      let bio;
+      if (pic) {
+        bio = pic.nextElementSibling;
+        pic.remove();
+      }
+      const body = bio ? [[h1], [bio]] : [[h1]];
+      document.querySelector('.author-container').append(
+        buildBlock('author-header', body),
+        // buildBlock('featured-articles', 'oy'),
+        buildBlock('article-feed', [
+          ['author', h1.textContent],
+        ]),
+      );
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -649,6 +830,8 @@ export function decorateMain(main) {
 
   decorateIcons(main);
   buildAutoBlocks(main);
+  setCategory();
+  decorateButtons(main);
   decorateSections(main);
   decorateBlocks(main);
 }

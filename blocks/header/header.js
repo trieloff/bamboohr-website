@@ -1,13 +1,26 @@
-import { readBlockConfig, decorateIcons } from '../../scripts/scripts.js';
+import { toClassName } from '../../scripts/scripts.js';
 
 /**
  * collapses all open nav sections
  * @param {Element} sections The container element
  */
 
-function collapseAllNavSections(sections) {
-  sections.querySelectorAll('.nav-section').forEach((section) => {
+function collapseAll(elems) {
+  elems.forEach((section) => {
     section.setAttribute('aria-expanded', 'false');
+  });
+}
+
+function insertNewsletterForm(elem) {
+  elem.querySelectorAll('a[href="https://www.bamboohr.com/ajax/blog-newsletter-form.php"]').forEach((a) => {
+    const formDiv = document.createElement('div');
+    formDiv.innerHTML = `
+    <form class="nav-form" action="https://www.bamboohr.com/ajax/blog-newsletter-form.php" method="post" __bizdiag="96619420" __biza="WJ__">
+      <input type="email" name="email" placeholder="Email Address" aria-label="email" autocomplete="off">
+      <button type="submit" class="">${a.textContent}</button>
+    </form>
+    `;
+    a.replaceWith(formDiv);
   });
 }
 
@@ -17,18 +30,19 @@ function collapseAllNavSections(sections) {
  */
 
 export default async function decorate(block) {
-  const cfg = readBlockConfig(block);
   block.textContent = '';
 
   // fetch nav content
-  const navPath = cfg.nav || '/nav';
-  const resp = await fetch(`${navPath}.plain.html`);
-  const html = await resp.text();
+  const resp = await fetch('/nav.plain.html');
+  let html = await resp.text();
+
+  // forward compatibility
+  html = html.replaceAll('<ol>', '<ul>');
+  html = html.replaceAll('</ol>', '</ul>');
 
   // decorate nav DOM
   const nav = document.createElement('div');
   nav.classList.add('nav');
-  nav.setAttribute('aria-role', 'navigation');
   const navSections = document.createElement('div');
   navSections.classList.add('nav-sections');
   nav.innerHTML = html;
@@ -37,21 +51,47 @@ export default async function decorate(block) {
       // first section is the brand section
       const brand = navSection;
       brand.classList.add('nav-brand');
+      nav.insertBefore(navSections, brand.nextElementSibling);
     } else {
       // all other sections
-      navSections.append(navSection);
-      navSection.classList.add('nav-section');
       const h2 = navSection.querySelector('h2');
       if (h2) {
+        const ul = navSection.querySelector('ul');
+        if (!ul) {
+          navSection.classList.add(`nav-section-${toClassName(h2.textContent)}`);
+          const wrapper = document.createElement('div');
+          wrapper.className = 'nav-section-wrapper';
+          while (h2.nextElementSibling) wrapper.append(h2.nextElementSibling);
+          navSection.append(wrapper);
+        }
+        navSections.append(navSection);
+        navSection.classList.add('nav-section');
         h2.addEventListener('click', () => {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          collapseAllNavSections(navSections);
+          collapseAll([...navSections.children]);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        });
+        navSection.querySelectorAll(':scope > ul > li').forEach((li) => {
+          if (!li.querySelector(':scope > a')) {
+            li.addEventListener('click', () => {
+              const expanded = li.getAttribute('aria-expanded') === 'true';
+              collapseAll([...nav.querySelectorAll('li[aria-expanded="true"]')]);
+              li.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            });
+          }
+        });
+      } else {
+        const buttons = navSection;
+        buttons.className = 'nav-buttons';
+        buttons.querySelectorAll('a').forEach((a) => {
+          a.classList.add('button', 'small');
+          if (a.parentElement.tagName === 'EM') {
+            a.classList.add('light');
+          }
         });
       }
     }
   });
-  nav.append(navSections);
 
   // hamburger for mobile
   const hamburger = document.createElement('div');
@@ -64,6 +104,7 @@ export default async function decorate(block) {
   });
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
-  decorateIcons(nav);
+
   block.append(nav);
+  insertNewsletterForm(block);
 }
