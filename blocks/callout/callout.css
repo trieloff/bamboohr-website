@@ -15,8 +15,46 @@ main .callout a.button {
 
 main .callout h3 {
   font-size: 36px;
+  color: var(--category-color);
   font-family: var(--heading-font-family);
   font-style: italic;
+}
+
+@media (min-width: 900px) {
+  main .callout.right, main .callout.left {
+    background-image: radial-gradient(100% 157.48% at 100% 0%, var(--category-bg-color) 0%, var(--category-darker-bg-color) 100%);
+    width: 300px;
+    box-sizing: border-box;
+    border-radius: 0;
+    padding: 40px 30px;
+  }
+
+  main .callout.right {
+    float: right;
+    margin-left: 50px;
+    margin-right: -60px;
+    border-top-left-radius: 60px;
+    border-bottom-right-radius: 140px;
+    text-align: left;
+  }
+
+  main .callout.left {
+    float: left;
+    margin-right: 50px;
+    margin-left: -60px;
+    border-top-right-radius: 60px;
+    border-bottom-left-radius: 140px;
+    text-align: right;
+  }
+
+  main .callout.right h3, main .callout.left h3 {
+      font-size: 20px;
+  }
+
+  main .callout.right a.button, main .callout.left a.button {
+    font-size: 14px;
+  }
+  
 }
 
 @media (min-width: 1200px) {
