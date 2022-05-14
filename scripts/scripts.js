@@ -644,7 +644,10 @@ function setCategory() {
     // eslint-disable-next-line prefer-destructuring
     category = window.location.pathname.split('/category/')[1];
   }
-  document.body.classList.add(`category-${toClassName(category)}`);
+
+  let categoryName = toClassName(category);
+  while (categoryName.includes('--')) categoryName = categoryName.replace('--', '-');
+  document.body.classList.add(`category-${categoryName}`);
 }
 
 /**
@@ -740,12 +743,16 @@ function buildAuthorContainer(main) {
 }
 
 function buildImagesBlocks(main) {
-  main.querySelectorAll(':scope > div > p > picture').forEach((picture) => {
-    const p = picture.parentElement;
+  main.querySelectorAll(':scope > div > p > picture, :scope > div > p > a > picture').forEach((picture, i) => {
+    const up = picture.parentElement;
+    const p = picture.closest('p');
     const div = p.parentElement;
     const nextSib = p.nextElementSibling;
-    if ([...p.children].length === 1) {
-      div.insertBefore(buildBlock('images', { elems: [p] }), nextSib);
+    if ([...up.children].length === 1) {
+      const imgBlock = buildBlock('images', { elems: [up] });
+      imgBlock.classList.add(i % 2 ? 'left' : 'right');
+      if (up.tagName === 'A') div.insertBefore(imgBlock, p);
+      else div.insertBefore(imgBlock, nextSib);
     }
   });
 }
@@ -818,6 +825,17 @@ function buildAutoBlocks(main) {
   }
 }
 
+function linkImages(main) {
+  main.querySelectorAll(':scope > div > p > picture').forEach((picture) => {
+    const p = picture.parentElement;
+    const a = p.querySelector('a');
+    if (a && a.textContent.includes('://')) {
+      a.textContent = '';
+      a.append(picture);
+    }
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -827,6 +845,7 @@ export function decorateMain(main) {
   decoratePictures(main);
   // forward compatible link rewriting
   makeLinksRelative(main);
+  linkImages(main);
 
   decorateIcons(main);
   buildAutoBlocks(main);

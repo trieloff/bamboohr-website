@@ -1,12 +1,12 @@
 main .callout {
-  background-image: url(/styles/teal-cta.svg);
+  background-image: url('/styles/teal-cta.svg');
   background-size: cover;
   margin: 40px 0;
   padding: 40px 30px;
   text-align: center;
   color: var(--category-color);
   border-radius: 20px;
-  box-shadow: 0px 30px 60px -40px rgb(52 185 172 / 50%);
+  box-shadow: 0 30px 60px -40px rgb(52 185 172 / 50%);
 }
 
 main .callout a.button {
@@ -32,7 +32,7 @@ main .callout h3 {
   main .callout.right {
     float: right;
     margin-left: 50px;
-    margin-right: -60px;
+    margin-right: -20px;
     border-top-left-radius: 60px;
     border-bottom-right-radius: 140px;
     text-align: left;
@@ -41,7 +41,7 @@ main .callout h3 {
   main .callout.left {
     float: left;
     margin-right: 50px;
-    margin-left: -60px;
+    margin-left: -20px;
     border-top-right-radius: 60px;
     border-bottom-left-radius: 140px;
     text-align: right;
