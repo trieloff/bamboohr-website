@@ -43,7 +43,7 @@ async function displaySearchResults(terms, results) {
 export default async function decorate(block) {
   block.innerHTML = `<div class="search-box"><input id="search-box" type="text" placeholder="${block.textContent}"></div>
     <div class="search-results"></div>`;
-  const searchBox = document.getElementById('search-box');
+  const searchBox = block.querySelector('#search-box');
   const results = block.querySelector('.search-results');
   searchBox.addEventListener('input', () => {
     displaySearchResults(searchBox.value, results);

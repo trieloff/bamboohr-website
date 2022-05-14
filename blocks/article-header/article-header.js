@@ -1,16 +1,9 @@
-import { formatDate, toClassName } from '../../scripts/scripts.js';
+import { formatDate, loadFragment, toClassName } from '../../scripts/scripts.js';
 
 function applyClasses(styles, elements, prefix) {
   [...elements].forEach((row, i) => {
     row.classList.add(`${prefix}-${styles[i] || 'extra'}`);
   });
-}
-
-function createSearch() {
-  const div = document.createElement('div');
-  div.className = 'article-header-search';
-  div.innerHTML = '<a href="/tools/search"><img src="/icons/search.svg" class="icon icon-search"></a>';
-  return (div);
 }
 
 function createSharing() {
@@ -55,7 +48,4 @@ export default async function decorateArticleHeader($block, blockName) {
 
   // sharing
   $block.append(createSharing());
-
-  // sharing
-  $block.append(createSearch());
 }

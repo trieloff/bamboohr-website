@@ -127,42 +127,6 @@ main .article-header-share a:hover {
   background-color: #444;
 }
 
-main .article-header-search img {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-}
-
-main .article-header-search {
-  position: fixed;
-  right: 0;
-  top: 86px;
-  display: flex;
-  flex-direction: column;
-}
-
-main .article-header-search > a {
-  width: 54px;
-  height: 54px;
-  line-height: 54px;
-  -webkit-box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
-  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
-  background-color: #fff;
-  margin: 10px;
-  padding: 9px;
-  border-radius: 27px;
-  box-sizing: border-box;
-}
-
-main .article-header-search img {
-  display: inline-block;
-  padding: 9px
-}
-
-main .article-header-search a:hover {
-  background-color: #eee;
-}
-
 @media (min-width: 900px) {
   main .article-header-eyebrow {
     font-size: 18px;

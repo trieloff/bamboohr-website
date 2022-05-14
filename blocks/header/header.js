@@ -1,4 +1,4 @@
-import { toClassName } from '../../scripts/scripts.js';
+import { makeLinksRelative, loadFragment, toClassName } from '../../scripts/scripts.js';
 
 /**
  * collapses all open nav sections
@@ -46,6 +46,7 @@ export default async function decorate(block) {
   const navSections = document.createElement('div');
   navSections.classList.add('nav-sections');
   nav.innerHTML = html;
+  makeLinksRelative(nav);
   nav.querySelectorAll(':scope > div').forEach((navSection, i) => {
     if (!i) {
       // first section is the brand section
@@ -105,6 +106,33 @@ export default async function decorate(block) {
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
 
+  const createSearch = () => {
+    const div = document.createElement('div');
+    div.className = 'header-search';
+    div.innerHTML = '<a data-modal="/tools/search"><img src="/icons/search.svg" class="icon icon-search"></a>';
+    div.addEventListener('click', async () => {
+      const elem = document.getElementById('header-search-modal');
+      if (!elem) {
+        const modal = document.createElement('div');
+        modal.className = 'header-search-modal';
+        modal.id = 'header-search-modal';
+        modal.innerHTML = '<div class="header-search-close"></div>';
+        const fragment = await loadFragment('/tools/search');
+        modal.append(fragment);
+        block.append(modal);
+        modal.classList.add('visible');
+        const close = modal.querySelector('.header-search-close');
+        close.addEventListener('click', () => {
+          modal.classList.remove('visible');
+        });
+      } else {
+        elem.classList.add('visible');
+      }
+    });
+    return (div);
+  };
+
   block.append(nav);
   insertNewsletterForm(block);
+  block.append(createSearch());
 }

@@ -871,3 +871,32 @@ function loadDelayed() {
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
 }
+
+export async function loadFragment(path) {
+  const resp = await fetch(`${path}.plain.html`);
+  const main = document.createElement('main');
+  if (resp.ok) {
+    main.innerHTML = await resp.text();
+    decorateMain(main);
+    await loadBlocks(main);
+  }
+  return (main);
+}
+
+export function lockBody() {
+  const bs = document.body.style;
+  bs.position = 'fixed';
+  bs.top = `-${window.scrollY}px`;
+  bs.left = 0;
+  bs.right = 0;
+}
+
+export function unlockBody() {
+  const bs = document.body.style;
+  const scrollY = bs.top;
+  bs.position = '';
+  bs.top = '';
+  bs.left = '';
+  bs.right = '';
+  window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+}
