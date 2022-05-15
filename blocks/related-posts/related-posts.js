@@ -1,4 +1,5 @@
-import { lookupArticles } from '../../scripts/scripts.js';
+import { getMetadata, lookupArticles } from '../../scripts/scripts.js';
+import { filterArticles } from '../article-feed/article-feed.js';
 import { createCard } from '../featured-articles/featured-articles.js';
 
 export default async function decorate(block) {
@@ -8,7 +9,12 @@ export default async function decorate(block) {
     return pathname;
   });
   block.textContent = '';
-  const articles = await lookupArticles(pathnames);
+  let articles = await lookupArticles(pathnames);
+  if (!articles.length) {
+    const feed = { data: [], complete: false, cursor: 0 };
+    await filterArticles({ category: getMetadata('category') }, feed, 4, 0);
+    articles = feed.data.slice(0, 4);
+  }
   articles.forEach((article) => {
     block.append(createCard(article, 'related-posts'));
   });

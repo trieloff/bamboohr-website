@@ -7,11 +7,12 @@ import { createCard } from '../featured-articles/featured-articles.js';
 
 function isCardOnPage(article) {
   const path = article.path.split('.')[0];
+  if (path === window.location.pathname) return true;
   /* using recommended and featured articles */
   return !!document.querySelector(`a[href="${path}"]`);
 }
 
-async function filterArticles(config, feed, limit, offset) {
+export async function filterArticles(config, feed, limit, offset) {
   const result = [];
 
   /* filter posts by category, tag and author */
@@ -52,8 +53,12 @@ async function filterArticles(config, feed, limit, offset) {
   }
 }
 
-async function decorateArticleFeed(articleFeedEl, config, offset = 0,
-  feed = { data: [], complete: false, cursor: 0 }) {
+async function decorateArticleFeed(
+  articleFeedEl,
+  config,
+  offset = 0,
+  feed = { data: [], complete: false, cursor: 0 },
+) {
   let articleCards = articleFeedEl.querySelector('.article-feed-cards');
   if (!articleCards) {
     articleCards = document.createElement('div');

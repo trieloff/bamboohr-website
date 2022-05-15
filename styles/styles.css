@@ -358,6 +358,7 @@ main {
   --category-color: #ce4537;
   --category-darker-bg-color: #ffc9b5;
   --category-bg-color: #fff5e5;
+  --category-callout-bg: url('./bg/red-cta.svg');
 }
 
 .category-product-announcements main, 
@@ -365,6 +366,7 @@ div.category-color-product-announcements {
   --category-color: #1d9336;
   --category-darker-bg-color: #d5fe81;
   --category-bg-color: #edffc8;
+  --category-callout-bg: url('./bg/green-cta.svg');
 }
 
 .category-hiring main, 
@@ -372,6 +374,7 @@ div.category-color-hiring {
   --category-color: #b6800b;
   --category-darker-bg-color: #fff58f;
   --category-bg-color: #ffffe5;
+  --category-callout-bg: url('./bg/yellow-cta.svg');
 }
 
 .category-performance-culture main, 
@@ -387,7 +390,7 @@ div.category-benefits-comp {
   --category-color: #cc4373;
   --category-darker-bg-color: #ffbdc8;
   --category-bg-color: #ffe9e5;
-  --category-callout-bg: url('./bg/purple-cta.svg');
+  --category-callout-bg: url('./bg/red-cta.svg');
 }
 
 .category-onboarding main, 
@@ -395,6 +398,7 @@ div.category-onboarding {
   --category-color: #d26914;
   --category-darker-bg-color: #ffd9a3;
   --category-bg-color: #fffae5;
+  --category-callout-bg: url('./bg/pink-cta.svg');
 }
 
 .category-people-data-analytics main, 

@@ -8,7 +8,8 @@ export function createCard(article, classPrefix, eager = false) {
   const pictureString = createOptimizedPicture(
     image,
     article.imageAlt,
-    eager, [{ width: 750 }],
+    eager,
+    [{ width: 750 }],
   ).outerHTML;
   card.innerHTML = `<div class="${classPrefix}-card-header category-color-${toClassName(article.category)}">
     <span class="${classPrefix}-card-category">${article.category}</span> 
