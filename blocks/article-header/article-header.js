@@ -1,4 +1,4 @@
-import { formatDate, loadFragment, toClassName } from '../../scripts/scripts.js';
+import { formatDate, toClassName } from '../../scripts/scripts.js';
 
 function applyClasses(styles, elements, prefix) {
   [...elements].forEach((row, i) => {
@@ -31,7 +31,7 @@ function createSharing() {
 export default async function decorateArticleHeader($block, blockName) {
   applyClasses(['image', 'eyebrow', 'title', 'author-pub'], $block.children, blockName);
   applyClasses(['category', 'read-time'], $block.querySelector('.article-header-eyebrow').firstChild.children, blockName);
-  applyClasses(['author', 'publication-date'], $block.querySelector('.article-header-author-pub').firstChild.children, blockName);
+  applyClasses(['author', 'publication-date', 'updated-date'], $block.querySelector('.article-header-author-pub').firstChild.children, blockName);
 
   // link author
   const $author = $block.querySelector(`.${blockName}-author`);
@@ -42,9 +42,12 @@ export default async function decorateArticleHeader($block, blockName) {
   $author.textContent = '';
   $author.append(a);
 
-  // format date
+  // format dates
   const $pubdate = $block.querySelector(`.${blockName}-publication-date`);
   $pubdate.textContent = formatDate($pubdate.textContent);
+
+  const $update = $block.querySelector(`.${blockName}-updated-date`);
+  if ($update.textContent) $update.textContent = formatDate($update.textContent);
 
   // sharing
   $block.append(createSharing());

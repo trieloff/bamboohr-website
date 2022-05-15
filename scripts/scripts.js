@@ -706,6 +706,7 @@ function buildArticleHeader(main) {
   try {
     const author = getMetadata('author');
     const publicationDate = getMetadata('publication-date');
+    const updatedDate = getMetadata('updated-date') || '';
     const readtime = getMetadata('read-time');
     const category = getMetadata('category');
     const h1 = document.querySelector('h1');
@@ -717,7 +718,7 @@ function buildArticleHeader(main) {
         [picture],
         [`<p>${category}</p><p>${readtime}</p>`],
         [h1],
-        [`<p>${author}</p><p>${publicationDate}</p>`],
+        [`<p>${author}</p><p>${publicationDate}</p><p>${updatedDate}</p>`],
       ]));
       main.prepend(section);
       return (true);
