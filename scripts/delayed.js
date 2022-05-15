@@ -11,7 +11,7 @@
  * governing permissions and limitations under the License.
  */
 
-/* globals */
+// eslint-disable-next-line import/no-cycle
 import { sampleRUM } from './scripts.js';
 
 sampleRUM('cwv');

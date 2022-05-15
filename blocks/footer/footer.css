@@ -1,6 +1,5 @@
 footer {
-  margin-top: 2rem;
-  padding: 2rem 2rem;
+  padding: 2rem;
   background-color: #464e3d;
   font-size: 13px;
   color: #b4baab;
@@ -8,6 +7,9 @@ footer {
 
 footer .footer {
   grid-template-areas: 'company' 'support' 'blog' 'social' 'links' 'brand' 'legal';
+  max-width: 768px;
+  margin: auto;
+  display: grid;
 }
 
 
@@ -68,13 +70,6 @@ footer .footer .legal {
 
 footer .footer .blog {
   grid-area: blog;
-}
-
-
-footer .footer {
-  max-width: 768px;
-  margin: auto;
-  display: grid;
 }
 
 footer .footer p {
