@@ -25,6 +25,10 @@ main .images-list {
   flex-direction: column;
 }
 
+main .images.shadow {
+  box-shadow: 0 30px 60px -40px rgb(31 38 23 / 50%);
+}
+
 @media (min-width: 600px) {
   main .images-list {
     flex-direction: row;

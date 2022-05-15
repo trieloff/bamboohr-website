@@ -743,16 +743,19 @@ function buildAuthorContainer(main) {
 }
 
 function buildImagesBlocks(main) {
-  main.querySelectorAll(':scope > div > p > picture, :scope > div > p > a > picture').forEach((picture, i) => {
+  let floatCounter = 0;
+  main.querySelectorAll(':scope > div > p > picture, :scope > div > p > a > picture').forEach((picture) => {
     const up = picture.parentElement;
     const p = picture.closest('p');
     const div = p.parentElement;
     const nextSib = p.nextElementSibling;
     if ([...up.children].length === 1) {
       const imgBlock = buildBlock('images', { elems: [up] });
-      imgBlock.classList.add(i % 2 ? 'left' : 'right');
-      if (up.tagName === 'A') div.insertBefore(imgBlock, p);
-      else div.insertBefore(imgBlock, nextSib);
+      if (up.tagName === 'A') {
+        div.insertBefore(imgBlock, p);
+        imgBlock.classList.add(floatCounter % 2 ? 'left' : 'right');
+        floatCounter += 1;
+      } else div.insertBefore(imgBlock, nextSib);
     }
   });
 }

@@ -1,5 +1,5 @@
 main .callout {
-  background-image: url('/styles/teal-cta.svg');
+  background-image: var(--category-callout-bg);
   background-size: cover;
   margin: 40px 0;
   padding: 40px 30px;
@@ -53,6 +53,7 @@ main .callout h3 {
 
   main .callout.right a.button, main .callout.left a.button {
     font-size: 14px;
+    white-space: unset;
   }
   
 }

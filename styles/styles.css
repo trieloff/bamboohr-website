@@ -30,7 +30,7 @@
   /* body */
   --body-background-color: var(--color-white);
   --body-alt-background-color: var(--color-gray-600);
-  --body-font-family: 'Lato', Arial, Helvetica, sans-serif;
+  --body-font-family: 'Lato', arial, helvetica, sans-serif;
   --body-font-weight: 400;
   --body-color: #74767a;
   --body-line-height: 1.5;
@@ -49,7 +49,7 @@
   --heading-font-size-xxxl: 5rem; /* 80px */
   --heading-font-size-xxl: 2.75rem; /* 44px */
   --heading-font-size-xl: 2.25rem; /* 36px */
-  --heading-font-size-l: 1.75rem; /* 28px */
+  --heading-font-size-l: 30px;
   --heading-font-size-m: 1.5rem; /* 24px */
   --heading-font-size-s: 1.25rem; /* 20px */
   --heading-font-size-xs: 1.125rem; /* 18px */
@@ -104,9 +104,11 @@ a.button:any-link {
   border-radius: 2rem;
   border: 2px solid transparent;
   padding: 17px 25px;
+
   /* outline: none; (keep outline for a11n) */
   text-align: center;
   font-size: var(--body-font-size-m);
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: 'Fira Sans';
   font-style: normal; 
   font-weight: 600;
@@ -195,13 +197,13 @@ a.button > svg {
   width: 20px;
   height: 20px;
   margin: 8px 8px 8px 0;
-  fill: currentColor;
-  color: currentColor;
+  fill: currentcolor;
+  color: currentcolor;
 }
 
 a.button > svg > use {
-  fill: currentColor;
-  color: currentColor;
+  fill: currentcolor;
+  color: currentcolor;
 }
 
 /* headings and body */
@@ -211,6 +213,12 @@ main {
   line-height: var(--body-line-height);
   margin: 0;
   font-weight: var(--body-font-weight);
+}
+
+
+p, dl, ol, ul, pre, blockquote {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 main p:not(:last-of-type) {
@@ -225,6 +233,7 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
   font-style: italic;
   margin-top: 48px;
   margin-bottom: 16px;
+  scroll-margin: 80px;
 }
 
 main h1 {
@@ -253,20 +262,6 @@ main h1.hidden {
   display: none;
 }
 
-@media (min-width:600px) {
-  main h2 {
-    font-size: var(--heading-font-size-l);
-  }
-
-  main h3 {
-    font-size: var(--heading-font-size-l);
-  }
-
-  main h4 {
-    font-size: var(--heading-font-size-m);
-  }
-}
-
 /* links */
 
 main a:any-link {
@@ -280,7 +275,7 @@ main a.cta-link {
   text-decoration: none;
 }
 
-main a.cta-link:after {
+main a.cta-link::after {
   content: " >";
 }
 
@@ -311,9 +306,6 @@ main .section:first-of-type {
 
 main .section:last-of-type {
   margin-bottom: 0;
-}
-
-main .section:first-of-type {
   padding: 0;
 }
 
@@ -323,13 +315,13 @@ main .section:first-of-type {
   }
 }
 
-main .section > div:empty {
-  padding: 0;
-}
-
 main .section > div {
   margin: auto;
   padding: 0 2rem;
+}
+
+main .section > div:empty {
+  padding: 0;
 }
 
 @media (min-width: 700px) {
@@ -351,16 +343,14 @@ main .section p.button-container {
   margin-bottom: 0;
 }
 
-p, dl, ol, ul, pre, blockquote {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
 /* category colors */
+
+/* stylelint-disable-next-line no-duplicate-selectors */
 main {
   --category-color: #1b7b7e; 
   --category-darker-bg-color: #b1f8df;
   --category-bg-color: #e5fdff;
+  --category-callout-bg: url('./bg/teal-cta.svg');
 }
 
 .category-voices-in-leadership main,
@@ -410,12 +400,13 @@ div.category-people-data-analytics {
   --category-color: #794fcd;
   --category-darker-bg-color: #e0beff;
   --category-bg-color: #fde5ff;
+  --category-callout-bg: url('./bg/purple-cta.svg');
 }
 
 
 main .default-content-wrapper p a:any-link {
   color: var(--category-color);
-  background: linear-gradient(rgba(255, 0, 0, 0) 50%, var(--category-bg-color) 50.1%);
+  background: linear-gradient(#f000 50%, var(--category-bg-color) 50.1%);
   text-decoration: none;
 }
 
