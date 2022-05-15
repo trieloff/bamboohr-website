@@ -379,6 +379,7 @@ div.category-performance-culture {
   --category-color: #1087cc;
   --category-darker-bg-color: #a2e3ff;
   --category-bg-color: #e5fdff;
+  --category-callout-bg: url('./bg/blue-cta.svg');
 }
 
 .category-benefits-comp main, 
@@ -386,6 +387,7 @@ div.category-benefits-comp {
   --category-color: #cc4373;
   --category-darker-bg-color: #ffbdc8;
   --category-bg-color: #ffe9e5;
+  --category-callout-bg: url('./bg/purple-cta.svg');
 }
 
 .category-onboarding main, 

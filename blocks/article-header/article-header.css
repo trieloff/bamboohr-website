@@ -181,6 +181,26 @@ main .article-header-share a:hover {
 
   main .article-header-share a:hover {
     background-color: #eee;
-  }
-  
+  } 
+}
+
+.article-header progress {
+  position: fixed;
+  left: 0;
+  top: 70px;
+  width: 100%;
+  height: 4px;
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  color: var(--color-info-accent);
+  z-index: 1;
+}
+
+.article-header progress::-webkit-progress-bar {
+  background-color: transparent;
+}
+
+.article-header progress::-webkit-progress-value {
+  background-color: var(--color-info-accent);
 }

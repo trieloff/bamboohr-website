@@ -6,6 +6,13 @@ function applyClasses(styles, elements, prefix) {
   });
 }
 
+function createProgress() {
+  const progress = document.createElement('progress');
+  progress.setAttribute('value', 0);
+  progress.setAttribute('max', 100);
+  return progress;
+}
+
 function createSharing() {
   const { title } = document;
   const url = window.location.href;
@@ -49,6 +56,13 @@ export default async function decorateArticleHeader($block, blockName) {
   const $update = $block.querySelector(`.${blockName}-updated-date`);
   if ($update.textContent) $update.textContent = formatDate($update.textContent);
 
-  // sharing
+  // sharing + progress
   $block.append(createSharing());
+  const progress = createProgress();
+  $block.append(progress);
+
+  document.addEventListener('scroll', () => {
+    progress.setAttribute('value', window.scrollY);
+    progress.setAttribute('max', document.querySelector('main').clientHeight - window.innerHeight);
+  });
 }
