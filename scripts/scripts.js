@@ -878,6 +878,10 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadBlocks(main);
 
+  const { hash } = window.location;
+  const element = hash ? main.querySelector(hash) : false;
+  if (hash && element) element.scrollIntoView();
+
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
 
