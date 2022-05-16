@@ -49,6 +49,12 @@ const createMetadata = (main, document, html) => {
     meta['Publication Date'] = date.content.substring(0, date.content.indexOf('T'));
   }
 
+  const updated = main.querySelector('.blogPostContent__metaModifiedDate');
+  if (updated && updated.textContent) {
+    const d = updated.textContent.replace('Updated ', '');
+    meta['Updated Date'] = new Date(d).toISOString().substring(0, 10);
+  }
+
   const author = main.querySelector('[rel="author"]');
   if (author) {
     meta.Author = author;
