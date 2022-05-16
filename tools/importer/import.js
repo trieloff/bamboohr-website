@@ -149,6 +149,43 @@ const createCallouts = (main, document) => {
   });
 };
 
+const createImageBlocks = (main, document) => {
+  main.querySelectorAll('img.alignleft, img.alignright').forEach((img) => {
+    const rows = [];
+    let blockName = 'Image';
+
+    if (img.classList.contains('alignright')) {
+      blockName += ' (right)';
+    } else if (img.classList.contains('alignleft')) {
+      blockName += ' (left)';
+    }
+
+    rows.push([blockName]);
+    rows.push([img]);
+
+    img.parentNode.replaceWith(WebImporter.DOMUtils.createTable(rows, document));
+  });
+
+  main.querySelectorAll('.blogPostContent__imgContainer').forEach((div) => {
+    const img = div.querySelector('img');
+    if (img) {
+      const rows = [];
+      let blockName = 'Image';
+
+      if (div.classList.contains('blogPostContent__imgContainer--right')) {
+        blockName += ' (right)';
+      } else if (div.classList.contains('blogPostContent__imgContainer--left')) {
+        blockName += ' (left)';
+      }
+
+      rows.push([blockName]);
+      rows.push([img]);
+
+      div.replaceWith(WebImporter.DOMUtils.createTable(rows, document));
+    }
+  });
+};
+
 const createTOC = (main, document) => {
   const toc = main.querySelector('.blogPostContentToc');
   if (toc) {
@@ -245,6 +282,7 @@ export default {
     createRelatedPostsBlock(main, document);
     createEmbeds(main, document);
     createCallouts(main, document);
+    createImageBlocks(main, document);
     createTOC(main, document);
     createMetadata(main, document, html);
     makeAbsoluteLinks(main);
