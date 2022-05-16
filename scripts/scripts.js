@@ -801,6 +801,11 @@ function buildAutoBlocks(main) {
       buildImagesBlocks(main);
       const related = main.querySelector('.related-posts');
       if (related) related.parentElement.insertBefore(buildBlock('author', [['']]), related);
+      if (!related.nextElementSibling && !related.parentElement.nextElementSibling) {
+        const section = document.createElement('div');
+        section.append(related);
+        main.append(section);
+      }
     }
     const isAuthor = buildAuthorContainer(main);
     if (isAuthor) {
