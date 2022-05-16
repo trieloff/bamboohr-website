@@ -105,13 +105,13 @@ const createEmbeds = (main, document) => {
 };
 
 const createCallouts = (main, document) => {
-  main.querySelectorAll('.blogPostContent__ctaContainer').forEach((callout) => {
+  main.querySelectorAll('.blogPostContent__ctaContainer, .blogPostContent__quoteContainer').forEach((callout) => {
     const rows = [];
     let blockName = 'Callout';
 
-    if (callout.classList.contains('blogPostContent__ctaContainer--right')) {
+    if (callout.classList.contains('blogPostContent__ctaContainer--right') || callout.classList.contains('blogPostContent__quoteContainer--right')) {
       blockName += ' (right)';
-    } else if (callout.classList.contains('blogPostContent__ctaContainer--left')) {
+    } else if (callout.classList.contains('blogPostContent__ctaContainer--left') || callout.classList.contains('blogPostContent__quoteContainer--left')) {
       blockName += ' (left)';
     }
 
@@ -126,7 +126,7 @@ const createCallouts = (main, document) => {
       container.append(h);
     }
 
-    const sub = callout.querySelector('.blogPostContent__ctaSubheading');
+    const sub = callout.querySelector('.blogPostContent__ctaSubheading') || callout.querySelector('.blogPostContent__quote');
     if (sub) {
       const p = document.createElement('p');
       p.innerHTML = sub.innerHTML;
