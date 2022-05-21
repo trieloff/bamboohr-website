@@ -1,86 +1,121 @@
 footer {
-  padding: 2rem;
-  background-color: #464e3d;
-  font-size: 13px;
-  color: #b4baab;
+	background-color: #55575A;
+    text-align: left;
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.5);
+    position: relative;
+    padding: 80px 30px 30px;
 }
-
 footer .footer {
   grid-template-areas: 'company' 'support' 'blog' 'social' 'links' 'brand' 'legal';
-  max-width: 768px;
-  margin: auto;
+  margin: 0 auto;
+  max-width: 290px;
   display: grid;
 }
-
-
-footer .footer ul {
-  list-style: none;
-  padding: 0;
-} 
-
-footer .footer li {
-  margin: 0;
-  padding: 3px 0;
-} 
-
-
-footer a:any-link {
-  color: #b4baab;
-  text-decoration: none;
+footer .footer h3 {
+	color: var(--color-white);
+    font-size: 20px;
+    line-height: 29px;
+    font-weight: 600;
+    font-family: var(--heading-font-family);
+    margin: 0 0 30px 0;
 }
-
+footer .footer ul {
+	list-style: none;
+	padding: 0;
+	column-count: 2;
+	column-gap: 40px;
+}
+footer .footer li {
+	margin: 0 0 10px 0;
+}
+footer a:any-link {
+	font-size: 14px;
+	line-height: 18px;
+	color: var(--color-gray-6);
+	text-decoration: none;
+	transition: 0.3s;
+}
+footer a:hover {
+	color: var(--color-white);
+}
 footer .footer .company {
   grid-area: company;
 }
-
 footer .footer .support {
   grid-area: support;
 }
-
 footer .footer .links {
-  grid-area: links;
+	grid-area: links;
 }
-
-footer .footer .links ul {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-footer .footer .links li {
-  padding: 3px 5px;
-}
-
 footer .footer .social {
   grid-area: social;
   display: flex;
   align-items: center;
+  margin-left: -20px;
+  margin-right: -20px;
 }
-
+footer .footer .social p {
+	padding: 0 10px;
+}
 footer .footer .social .icon {
   padding: 4px;
 }
-
 footer .footer .brand {
   grid-area: brand;
 }
-
+footer .footer .brand p {
+	font-size: 14px;
+	line-height: 18px;
+	color: var(--color-gray-6);
+}
+footer .footer .brand p:last-child {
+	font-style: italic;
+}
 footer .footer .legal {
   grid-area: legal;
 }
-
 footer .footer .blog {
-  grid-area: blog;
+	grid-area: blog;
+	margin-bottom: 30px;
 }
-
 footer .footer p {
   margin: 0;
 }
 
-@media (min-width: 900px) {
-  footer .footer {
-    grid-template-areas: 'company support blog' 'links links social' 'brand brand brand' 'legal legal legal';
-  }
+@media (min-width: 450px) {
+	footer {
+		padding: 82px 30px;
+	}
 }
-
-
-
+@media (min-width: 600px) {
+	footer .footer {
+		max-width: 640px;
+	}
+}
+@media (min-width: 900px) {
+	footer .footer {
+		grid-template-areas: 'company support blog' 'links links social' 'brand brand brand' 'legal legal legal';
+	}
+}
+@media (min-width: 1025px) {
+	footer {
+		padding: 120px 30px 60px;
+	}
+	footer .footer {
+		max-width: 1200px;
+	}
+	footer .footer ul {
+		column-gap: 64px;
+	}
+	footer .footer li {
+	  margin-bottom: 20px;
+	}
+}
+@media (min-width: 1800px) {
+	footer {
+		padding: 140px 30px 70px;
+	}
+	footer .footer {
+		max-width: 1500px;
+	}
+}
