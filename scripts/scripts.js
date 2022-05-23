@@ -743,7 +743,7 @@ function buildAuthorContainer(main) {
   return false;
 }
 
-function buildImagesBlocks(main) {
+function buildImageBlocks(main) {
   let floatCounter = 0;
   main.querySelectorAll(':scope > div > p > picture, :scope > div > p > a > picture').forEach((picture) => {
     const up = picture.parentElement;
@@ -751,7 +751,7 @@ function buildImagesBlocks(main) {
     const div = p.parentElement;
     const nextSib = p.nextElementSibling;
     if ([...up.children].length === 1) {
-      const imgBlock = buildBlock('images', { elems: [up] });
+      const imgBlock = buildBlock('image', { elems: [up] });
       if (up.tagName === 'A') {
         div.insertBefore(imgBlock, p);
         imgBlock.classList.add(floatCounter % 2 ? 'left' : 'right');
@@ -798,7 +798,7 @@ function buildAutoBlocks(main) {
   try {
     const isBlog = buildArticleHeader(main);
     if (isBlog) {
-      buildImagesBlocks(main);
+      buildImageBlocks(main);
       const related = main.querySelector('.related-posts');
       if (related) related.parentElement.insertBefore(buildBlock('author', [['']]), related);
       if (!related.nextElementSibling && !related.parentElement.nextElementSibling) {
