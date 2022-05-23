@@ -7,7 +7,7 @@ main .section > .related-posts-wrapper {
     background-size: contain;
     padding: 150px 0;
     margin-top: 100px;
-  }  
+  }
 
 main  .section > .related-posts-wrapper:before {
     content: 'You might also like...';
@@ -17,6 +17,7 @@ main  .section > .related-posts-wrapper:before {
     max-width: 1200px;
     margin: auto;
     font-size: 48px;
+	color: var(--heading-color);
 }
 
 main .related-posts {
@@ -25,7 +26,7 @@ main .related-posts {
       max-width: 1200px;
       margin: auto;
   }
-  
+
   main .related-posts-card {
       width: 100%;
       box-sizing: border-box;
@@ -33,19 +34,19 @@ main .related-posts {
       color: #444;
       font-size: 15px;
   }
-  
+
   main .related-posts-card img {
     width: 100%;
     box-shadow: 0px 30px 60px -40px rgb(31 38 23 / 50%);
     border-radius: 15px;
   }
-  
+
   main .related-posts-card h3 {
     font-family: var(--heading-font-family);
     font-size: 18px;
     font-weight: 600;
   }
-  
+
   main .related-posts-card .related-posts-card-readtime::before {
     content: '•';
     display: inline-block;
@@ -53,11 +54,11 @@ main .related-posts {
     font-size: 10px;
     vertical-align: top;
   }
-  
+
   main .related-posts-card .related-posts-card-readtime:empty:before {
     display: none;
   }
-  
+
   main .related-posts-card-body a:any-link{
     font-weight: 700;
     text-decoration: none;
@@ -65,12 +66,12 @@ main .related-posts {
     font-family: var(--heading-font-family);
     font-size: 20px;
   }
-  
+
   main .related-posts-card-body a:any-link::after {
     content: '❯';
     padding-left: 10px;
   }
-  
+
   main .related-posts-card-header {
     font-size: 16px;
     font-weight: 900;
@@ -81,7 +82,7 @@ main .related-posts {
     margin-bottom: 25px;
     font-size: 12px;
   }
-  
+
   @media (min-width: 600px) {
     main .related-posts-card {
         width: 50%;
