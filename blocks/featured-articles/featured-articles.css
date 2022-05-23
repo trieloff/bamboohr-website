@@ -40,7 +40,7 @@ main .featured-articles-hero .featured-articles-card .featured-articles-card-rea
   margin: 3px 8px 0 4px;
 }
 
-main .featured-articles-card .featured-articles-card-readtime:empty:before {
+main .featured-articles-card .featured-articles-card-readtime:empty::before {
   display: none;
 }
 
@@ -58,7 +58,6 @@ main .featured-articles-card-body a:any-link::after {
 }
 
 main .featured-articles-card-header {
-  font-size: 16px;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -106,7 +105,6 @@ main .featured-articles-hero .featured-articles-card h3 {
 }
 
 @media (min-width: 1200px) {
-
   main .featured-articles-row {
     display: flex;
   }
