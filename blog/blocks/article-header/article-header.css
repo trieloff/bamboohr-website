@@ -22,7 +22,7 @@ main .article-header .article-header-image {
   max-width: unset;
   position: relative;
   height: 450px;
-  background-image: url('/styles/single-post-leaf.png');
+  background-image: url('../../styles/single-post-leaf.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
