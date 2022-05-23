@@ -3,5 +3,5 @@ version: 1
 sitemaps:
   blog:
     origin: https://www.bamboohr.com
-    source: /blog-query-index.json
+    source: /blog/fixtures/query-index.json
     destination: /blog/sitemap.xml
