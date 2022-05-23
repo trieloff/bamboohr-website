@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    if: github.repository_owner == 'adobe' # replace 'adobe' with repo owner
+    if: github.repository_owner == 'hlxsites'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
