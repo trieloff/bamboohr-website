@@ -7,10 +7,10 @@ function buildColumns(rowEl, count) {
     columnEl.remove();
     rowEl.append(figEl);
   });
-  rowEl.classList.add('images-list', `images-list-${count}`);
+  rowEl.classList.add('image-list', `image-list-${count}`);
 }
 
-export default function decorateImages(blockEl) {
+export default function decorateImage(blockEl) {
   const blockCount = blockEl.firstChild.childElementCount;
   if (blockCount > 1) {
     buildColumns(blockEl.firstChild, blockCount);
