@@ -68,7 +68,7 @@ main .featured-articles-card-header {
 }
 
 main .featured-articles-container {
-  background-image: url('/styles/header-leaf.svg'), linear-gradient(var(--category-bg-color), var(--category-bg-color) calc(600px + (100vw * 0.2)), white calc(100vw * 0.2));
+  background-image: url('../../styles/header-leaf.svg'), linear-gradient(var(--category-bg-color), var(--category-bg-color) calc(600px + (100vw * 0.2)), white calc(100vw * 0.2));
   background-position: 0 600px, top;
   background-repeat: no-repeat, no-repeat;
   background-size: contain, contain;
