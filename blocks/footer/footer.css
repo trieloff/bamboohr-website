@@ -107,8 +107,23 @@ footer .footer p {
 	footer .footer ul {
 		column-gap: 64px;
 	}
+	footer .footer .links ul {
+		column-count: unset;
+		column-gap: 0;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		align-items: stretch;
+		align-content: stretch;
+		margin-left: -12px;
+		margin-right: -12px;
+	}
 	footer .footer li {
-	  margin-bottom: 20px;
+		margin-bottom: 20px;
+	}
+	footer .footer .links ul li {
+		padding: 0 12px;
 	}
 }
 @media (min-width: 1800px) {
