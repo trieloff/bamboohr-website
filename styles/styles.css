@@ -353,7 +353,7 @@ main {
   --category-bg-color: #e5fdff;
   --category-callout-bg: url('./bg/teal-cta.svg');
   --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #1B7B7E 0%, #1087CC 100%);
-  --category-box-shadow-color: rgba(52, 185, 172, 0.5);
+  --category-box-shadow-color: rgba(52 185 172 / 50%);
 }
 
 .category-voices-in-leadership main,
@@ -363,7 +363,7 @@ main {
   --category-bg-color: #fff5e5;
   --category-callout-bg: url('./bg/red-cta.svg');
   --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #CE4537 0%, #CC4373 100%);
-  --category-box-shadow-color: rgba(206, 69, 55, 0.5);
+  --category-box-shadow-color: rgba(206 69 55 / 50%);
 }
 
 .category-product-announcements main,
@@ -373,7 +373,7 @@ div.category-color-product-announcements {
   --category-bg-color: #edffc8;
   --category-callout-bg: url('./bg/green-cta.svg');
   --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #1D9336 0%, #1B7B7E 100%);
-  --category-box-shadow-color: rgba(29, 147, 54, 0.5);
+  --category-box-shadow-color: rgba(29 147 54 / 50%);
 }
 
 .category-hiring main,
@@ -383,7 +383,7 @@ div.category-color-hiring {
   --category-bg-color: #ffffe5;
   --category-callout-bg: url('./bg/yellow-cta.svg');
   --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #AA410C 0%, #B6800B 100%);
-  --category-box-shadow-color: rgba(219, 180, 18, 0.5);
+  --category-box-shadow-color: rgba(219 180 18 / 50%);
 }
 
 .category-performance-culture main,
@@ -393,7 +393,7 @@ div.category-performance-culture {
   --category-bg-color: #e5fdff;
   --category-callout-bg: url('./bg/blue-cta.svg');
   --category-quote-bg: radial-gradient(100% 416.67% at 0% 100%, #794FCD 0%, #1087CC 100%);
-  --category-box-shadow-color: rgba(16, 135, 204, 0.5);
+  --category-box-shadow-color: rgba(16 135 204 / 50%);
 }
 
 .category-benefits-comp main,
@@ -403,7 +403,7 @@ div.category-benefits-comp {
   --category-bg-color: #ffe9e5;
   --category-callout-bg: url('./bg/red-cta.svg');
   --category-quote-bg: radial-gradient(100% 416.67% at 0% 100%, #794FCD 0%, #CC4373 100%);
-  --category-box-shadow-color: rgba(204, 67, 115, 0.5);
+  --category-box-shadow-color: rgba(204 67 115 / 50%);
 }
 
 .category-onboarding main,
@@ -413,7 +413,7 @@ div.category-onboarding {
   --category-bg-color: #fffae5;
   --category-callout-bg: url('./bg/pink-cta.svg');
   --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #D26914 0%, #CE4537 100%);
-  --category-box-shadow-color: rgba(179, 81, 0, 0.5);
+  --category-box-shadow-color: rgba(179 81 0 / 50%);
 }
 
 .category-people-data-analytics main,
@@ -423,7 +423,7 @@ div.category-people-data-analytics {
   --category-bg-color: #fde5ff;
   --category-callout-bg: url('./bg/purple-cta.svg');
   --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #794FCD 0%, #CC4373 100%);
-  --category-box-shadow-color: rgba(121, 79, 205, 0.5);
+  --category-box-shadow-color: rgba(121 79 205 / 50%);
 }
 
 

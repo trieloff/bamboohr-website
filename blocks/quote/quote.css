@@ -2,8 +2,6 @@ main .quote {
 	font-family: var(--heading-font-family);
 	background: var(--category-quote-bg);
   	background-clip: text;
-	-webkit-background-clip: text;
-	-moz-background-clip: text;
 	-moz-text-fill-color: transparent;
 	-webkit-text-fill-color: transparent;
 	margin-top: 35px;
@@ -20,6 +18,7 @@ main .quote {
 	main .quote {
 		width: 250px;
 	}
+	
 	main .quote.left {
 		border-right: 2px solid var(--category-color);
 		border-left: none;
@@ -27,6 +26,7 @@ main .quote {
 		float: left;
 		margin-right: 50px;
 	}
+
 	main .quote.right {
 		float: right;
 		margin-left: 50px;
@@ -36,9 +36,11 @@ main .quote {
 	main .quote {
 		width: 400px;
 	}
+	
 	main .quote.left {
 		margin-left: -200px;
 	}
+
 	main .quote.right {
 		margin-right: -200px;
 	}
