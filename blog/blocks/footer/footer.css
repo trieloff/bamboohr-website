@@ -1,86 +1,195 @@
 footer {
-  padding: 2rem;
-  background-color: #464e3d;
-  font-size: 13px;
-  color: #b4baab;
+	background-color: #55575A;
+    text-align: left;
+    box-shadow: 0 5px 5px rgba(0 0 0 / 50%);
+    position: relative;
+    padding: 80px 30px 30px;
 }
 
 footer .footer {
-  grid-template-areas: 'company' 'support' 'blog' 'social' 'links' 'brand' 'legal';
-  max-width: 768px;
-  margin: auto;
+  grid-template-areas: 'blog' 'company' 'support' 'links' 'social' 'brand' 'legal';
+  margin: 0 auto;
+  max-width: 290px;
   display: grid;
 }
 
-
-footer .footer ul {
-  list-style: none;
-  padding: 0;
-} 
-
-footer .footer li {
-  margin: 0;
-  padding: 3px 0;
-} 
-
-
-footer a:any-link {
-  color: #b4baab;
-  text-decoration: none;
-}
-
-footer .footer .company {
-  grid-area: company;
-}
-
-footer .footer .support {
-  grid-area: support;
-}
-
-footer .footer .links {
-  grid-area: links;
-}
-
-footer .footer .links ul {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-footer .footer .links li {
-  padding: 3px 5px;
-}
-
-footer .footer .social {
-  grid-area: social;
-  display: flex;
-  align-items: center;
-}
-
-footer .footer .social .icon {
-  padding: 4px;
-}
-
-footer .footer .brand {
-  grid-area: brand;
-}
-
-footer .footer .legal {
-  grid-area: legal;
-}
-
-footer .footer .blog {
-  grid-area: blog;
+footer .footer h3 {
+	color: var(--color-white);
+    font-size: 20px;
+    line-height: 29px;
+    font-weight: 600;
+    font-family: var(--heading-font-family);
+    margin: 0 0 20px;
 }
 
 footer .footer p {
-  margin: 0;
+	margin: 0;
+	font-size: 14px;
+	line-height: 18px;
+	color: var(--color-gray-6);
 }
 
+footer .footer ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	column-count: 2;
+	column-gap: 40px;
+}
+
+footer .footer li {
+	margin: 0 0 10px;
+}
+
+footer a:any-link {
+	font-size: 14px;
+	line-height: 18px;
+	color: var(--color-gray-6);
+	text-decoration: none;
+	transition: 0.3s;
+}
+
+footer a:hover {
+	color: var(--color-white);
+}
+
+footer .footer .blog,
+footer .footer .company,
+footer .footer .support,
+footer .footer .links {
+	margin-bottom: 30px;
+}
+
+footer .footer .company {
+	grid-area: company;
+}
+
+footer .footer .support {
+	grid-area: support;
+}
+
+footer .footer .links {
+	grid-area: links;
+}
+
+footer .footer .social {
+	grid-area: social;
+	display: flex;
+	align-items: center;
+	margin: 0 -10px 10px;
+}
+
+footer .footer .social p {
+	padding: 0 10px;
+}
+
+footer .footer .social .icon {
+	padding: 4px;
+}
+
+footer .footer .brand {
+	grid-area: brand;
+}
+
+footer .footer .legal {
+	grid-area: legal;
+	margin-top: 40px;
+}
+
+footer .footer .blog {
+	grid-area: blog;
+}
+
+
+@media (min-width: 450px) {
+	footer {
+		padding: 82px 30px;
+	}
+}
+@media (min-width: 600px) {
+	footer .footer {
+		max-width: 640px;
+	}
+	
+	footer .footer .blog,
+	footer .footer .company,
+	footer .footer .support,
+	footer .footer .links {
+		margin-bottom: 50px;
+	}
+}
 @media (min-width: 900px) {
-  footer .footer {
-    grid-template-areas: 'company support blog' 'links links social' 'brand brand brand' 'legal legal legal';
-  }
+	footer .footer {
+		grid-template-areas: 'company support blog' 'links links social' 'links links brand' 'legal legal legal';
+	}
 }
+@media (min-width: 1025px) {
+	footer {
+		padding: 120px 30px 60px;
+	}
 
+	footer .footer {
+		max-width: 1200px;
+	}
+	
+	footer .footer .blog,
+	footer .footer .company,
+	footer .footer .support,
+	footer .footer .links {
+		margin-bottom: 0;
+	}
+	
+	footer .footer .company,
+	footer .footer .support {
+		margin-right: 98px;
+	}
+	
+	footer .footer ul {
+		column-gap: 64px;
+	}
 
+	footer .footer .links {
+		display: flex;
+		height: 100%;
+		align-items: flex-end;
+	}
+	
+	footer .footer .links ul {
+		column-count: unset;
+		column-gap: 0;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+		align-items: stretch;
+		align-content: stretch;
+		margin-left: -12px;
+		margin-right: -12px;
+	}
 
+	footer .footer li {
+		margin-bottom: 20px;
+	}
+
+	footer .footer .links li {
+		margin-bottom: 0;
+	}
+
+	footer .footer .links ul li {
+		padding: 0 12px;
+		
+	}
+}
+@media (min-width: 1800px) {
+	footer {
+		padding: 140px 30px 70px;
+	}
+
+	footer .footer {
+		max-width: 1500px;
+	}
+	
+	footer .footer .company,
+	footer .footer .support {
+		margin-right: 220px;
+	}
+}
