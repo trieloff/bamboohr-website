@@ -42,7 +42,6 @@ export default async function decorate(block) {
       const articles = await lookupArticles([pathname]);
       if (articles.length) {
         const [article] = articles;
-        console.log(i, toCategory(article.category));
         if (i === 0) block.closest('.section').classList.add(`category-color-${toCategory(article.category)}`);
         if (category) article.category = category;
         const card = createCard(article, 'featured-articles', i === 0);
