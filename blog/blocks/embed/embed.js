@@ -113,6 +113,10 @@ const EMBEDS_CONFIG = {
     type: 'youtube',
     embed: embedYoutube,
   },
+  wistia: {
+    type: 'wistia',
+    embed: getDefaultEmbed,
+  },
   'adobe-tv': {
     type: 'adobe-tv',
     embed: getDefaultEmbed,

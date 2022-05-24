@@ -4,7 +4,7 @@ indices:
   blog:
     include:
       - '/blog/**'
-    target: /blog-query-index
+    target: /blog/fixtures/query-index
     properties:
       author:
         select: head > meta[name="author"]

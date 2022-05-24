@@ -1,4 +1,9 @@
-import { makeLinksRelative, loadFragment, toClassName } from '../../scripts/scripts.js';
+import {
+  makeLinksRelative,
+  loadFragment,
+  toClassName,
+  decorateIcons,
+} from '../../scripts/scripts.js';
 
 /**
  * collapses all open nav sections
@@ -33,7 +38,7 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // fetch nav content
-  const resp = await fetch('/nav.plain.html');
+  const resp = await fetch('/blog/fixtures/nav.plain.html');
   let html = await resp.text();
 
   // forward compatibility
@@ -46,6 +51,7 @@ export default async function decorate(block) {
   const navSections = document.createElement('div');
   navSections.classList.add('nav-sections');
   nav.innerHTML = html;
+  decorateIcons(nav);
   makeLinksRelative(nav);
   nav.querySelectorAll(':scope > div').forEach((navSection, i) => {
     if (!i) {
@@ -109,7 +115,7 @@ export default async function decorate(block) {
   const createSearch = () => {
     const div = document.createElement('div');
     div.className = 'header-search';
-    div.innerHTML = '<a data-modal="/tools/search"><img src="/icons/search.svg" class="icon icon-search"></a>';
+    div.innerHTML = `<a data-modal="/tools/search"><img src="${window.hlx.codeBasePath}/icons/search.svg" class="icon icon-search"></a>`;
     div.addEventListener('click', async () => {
       const elem = document.getElementById('header-search-modal');
       if (!elem) {

@@ -29,7 +29,7 @@ function createSharing() {
     const a = document.createElement('a');
     a.href = button.url;
     a.target = '_blank';
-    a.innerHTML = `<img src="/icons/${button.icon}.svg" class="icon icon-${button.icon}">`;
+    a.innerHTML = `<img src="${window.hlx.codeBasePath}/icons/${button.icon}.svg" class="icon icon-${button.icon}">`;
     div.append(a);
   });
   return (div);

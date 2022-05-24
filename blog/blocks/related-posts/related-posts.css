@@ -9,7 +9,7 @@ main .section > .related-posts-wrapper {
     margin-top: 100px;
   }
 
-main  .section > .related-posts-wrapper:before {
+main  .section > .related-posts-wrapper::before {
     content: 'You might also like...';
     display: block;
     font-family: var(--heading-font-family);
@@ -37,7 +37,7 @@ main .related-posts {
 
   main .related-posts-card img {
     width: 100%;
-    box-shadow: 0px 30px 60px -40px rgb(31 38 23 / 50%);
+    box-shadow: 0 30px 60px -40px rgb(31 38 23 / 50%);
     border-radius: 15px;
   }
 
@@ -55,7 +55,7 @@ main .related-posts {
     vertical-align: top;
   }
 
-  main .related-posts-card .related-posts-card-readtime:empty:before {
+  main .related-posts-card .related-posts-card-readtime:empty::before {
     display: none;
   }
 
@@ -73,7 +73,6 @@ main .related-posts {
   }
 
   main .related-posts-card-header {
-    font-size: 16px;
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 3px;
