@@ -1,4 +1,9 @@
-import { lookupArticles, createOptimizedPicture, toClassName } from '../../scripts/scripts.js';
+import {
+  lookupArticles,
+  createOptimizedPicture,
+  toClassName,
+  toCategory,
+} from '../../scripts/scripts.js';
 
 export function createCard(article, classPrefix, eager = false) {
   const title = article.title.split(' - ')[0];
@@ -37,6 +42,8 @@ export default async function decorate(block) {
       const articles = await lookupArticles([pathname]);
       if (articles.length) {
         const [article] = articles;
+        console.log(i, toCategory(article.category));
+        if (i === 0) block.closest('.section').classList.add(`category-color-${toCategory(article.category)}`);
         if (category) article.category = category;
         const card = createCard(article, 'featured-articles', i === 0);
         contents.push(card.outerHTML);
@@ -45,6 +52,7 @@ export default async function decorate(block) {
       contents.push(`<div class="featured-articles-card">${content.outerHTML}</div>`);
     }
   }
+
   // pad array with empty strings
   for (let i = contents.length; i < 10; i += 1) {
     contents[i] = '';

@@ -638,6 +638,12 @@ export function decorateButtons(block = document) {
   });
 }
 
+export function toCategory(category) {
+  let categoryName = toClassName(category);
+  while (categoryName.includes('--')) categoryName = categoryName.replace('--', '-');
+  return categoryName;
+}
+
 function setCategory() {
   let category = getMetadata('category');
   if (!category && window.location.pathname.includes('/category/')) {
@@ -645,8 +651,7 @@ function setCategory() {
     category = window.location.pathname.split('/category/')[1];
   }
 
-  let categoryName = toClassName(category);
-  while (categoryName.includes('--')) categoryName = categoryName.replace('--', '-');
+  const categoryName = toCategory(category);
   document.body.classList.add(`category-${categoryName}`);
 }
 
