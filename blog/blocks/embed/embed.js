@@ -153,7 +153,6 @@ const loadEmbed = (block) => {
   }
 
   const a = block.querySelector('a');
-  console.log(a);
   const figure = buildFigure(block.firstChild.firstChild);
 
   if (a) {
