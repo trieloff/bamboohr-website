@@ -1,0 +1,47 @@
+main .quote {
+	font-family: var(--heading-font-family);
+	background: var(--category-quote-bg);
+  	background-clip: text;
+	-moz-text-fill-color: transparent;
+	-webkit-text-fill-color: transparent;
+	margin-top: 35px;
+	margin-bottom: 35px;
+	padding: 10px 0 10px 32px;
+	border-left: 2px solid var(--category-color);
+	font-size: 20px;
+	line-height: 28px;
+	font-weight: 600;
+	font-style: italic;
+}
+
+@media (min-width: 600px) {
+	main .quote {
+		width: 250px;
+	}
+	
+	main .quote.left {
+		border-right: 2px solid var(--category-color);
+		border-left: none;
+		padding: 10px 32px 10px 0;
+		float: left;
+		margin-right: 50px;
+	}
+
+	main .quote.right {
+		float: right;
+		margin-left: 50px;
+	}
+}
+@media (min-width: 1025px) {
+	main .quote {
+		width: 400px;
+	}
+	
+	main .quote.left {
+		margin-left: -200px;
+	}
+
+	main .quote.right {
+		margin-right: -200px;
+	}
+}
