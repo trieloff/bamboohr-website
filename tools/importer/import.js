@@ -110,10 +110,14 @@ const createEmbeds = (main, document) => {
   });
 };
 
-const createCallouts = (main, document) => {
+const createCalloutAndQuoteBlocks = (main, document) => {
   main.querySelectorAll('.blogPostContent__ctaContainer, .blogPostContent__quoteContainer').forEach((callout) => {
     const rows = [];
     let blockName = 'Callout';
+
+    if (callout.classList.contains('blogPostContent__quoteContainer')) {
+      blockName = 'Quote';
+    }
 
     if (callout.classList.contains('blogPostContent__ctaContainer--right') || callout.classList.contains('blogPostContent__quoteContainer--right')) {
       blockName += ' (right)';
@@ -281,7 +285,7 @@ export default {
 
     createRelatedPostsBlock(main, document);
     createEmbeds(main, document);
-    createCallouts(main, document);
+    createCalloutAndQuoteBlocks(main, document);
     createImageBlocks(main, document);
     createTOC(main, document);
     createMetadata(main, document, html);

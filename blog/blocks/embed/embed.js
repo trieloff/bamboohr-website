@@ -189,29 +189,11 @@ const loadEmbed = (block) => {
   }
 };
 
-const intersectHandler = (entries) => {
-  const entry = entries[0];
-  if (entry.isIntersecting) {
-    if (entry.intersectionRatio >= 0.25) {
-      const block = entry.target;
+export default function decorate(block) {
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
       loadEmbed(block);
     }
-  } else {
-    // if ((entry.intersectionRatio === 0.0) && (adBox.dataset.totalViewTime >= 60000)) {
-    // Error handler placeholder
-    // }
-  }
-};
-
-export default function decorate(block) {
-  window.addEventListener('load', () => {
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: [0.0, 0.25],
-    };
-
-    const observer = new IntersectionObserver(intersectHandler, options);
-    observer.observe(block);
   });
+  observer.observe(block);
 }
