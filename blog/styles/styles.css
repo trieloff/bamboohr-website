@@ -346,7 +346,8 @@ main .section p.button-container {
 /* category colors */
 
 /* stylelint-disable-next-line no-duplicate-selectors */
-main {
+main, .category-hr-insights main,
+.category-color-hr-insights {
   --category-color: #1b7b7e;
   --category-darker-bg-color: #b1f8df;
   --category-bg-color: #e5fdff;
@@ -386,7 +387,7 @@ div.category-color-hiring {
 }
 
 .category-performance-culture main,
-div.category-performance-culture {
+div.category-color-performance-culture {
   --category-color: #1087cc;
   --category-darker-bg-color: #a2e3ff;
   --category-bg-color: #e5fdff;
@@ -396,7 +397,7 @@ div.category-performance-culture {
 }
 
 .category-benefits-comp main,
-div.category-benefits-comp {
+div.category-color-benefits-comp {
   --category-color: #cc4373;
   --category-darker-bg-color: #ffbdc8;
   --category-bg-color: #ffe9e5;
@@ -406,7 +407,7 @@ div.category-benefits-comp {
 }
 
 .category-onboarding main,
-div.category-onboarding {
+div.category-color-onboarding {
   --category-color: #d26914;
   --category-darker-bg-color: #ffd9a3;
   --category-bg-color: #fffae5;
@@ -416,7 +417,7 @@ div.category-onboarding {
 }
 
 .category-people-data-analytics main,
-div.category-people-data-analytics {
+div.category-color-people-data-analytics {
   --category-color: #794fcd;
   --category-darker-bg-color: #e0beff;
   --category-bg-color: #fde5ff;
