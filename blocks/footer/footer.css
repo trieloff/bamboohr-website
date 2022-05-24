@@ -1,7 +1,7 @@
 footer {
 	background-color: #55575A;
     text-align: left;
-    box-shadow: 0px 5px 5px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 5px rgba(0 0 0 / 50%);
     position: relative;
     padding: 80px 30px 30px;
 }
@@ -17,7 +17,7 @@ footer .footer h3 {
     line-height: 29px;
     font-weight: 600;
     font-family: var(--heading-font-family);
-    margin: 0 0 30px 0;
+    margin: 0 0 30px;
 }
 footer .footer ul {
 	list-style: none;
@@ -26,7 +26,7 @@ footer .footer ul {
 	column-gap: 40px;
 }
 footer .footer li {
-	margin: 0 0 10px 0;
+	margin: 0 0 10px;
 }
 footer a:any-link {
 	font-size: 14px;
@@ -104,6 +104,10 @@ footer .footer p {
 	footer .footer {
 		max-width: 1200px;
 	}
+	footer .footer .company,
+	footer .footer .support {
+		margin-right: 130px;
+	}
 	footer .footer ul {
 		column-gap: 64px;
 	}
@@ -132,5 +136,9 @@ footer .footer p {
 	}
 	footer .footer {
 		max-width: 1500px;
+	}
+	footer .footer .company,
+	footer .footer .support {
+		margin-right: 220px;
 	}
 }
