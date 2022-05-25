@@ -1,7 +1,6 @@
 import {
   lookupArticles,
   createOptimizedPicture,
-  toClassName,
   toCategory,
 } from '../../scripts/scripts.js';
 
@@ -16,8 +15,10 @@ export function createCard(article, classPrefix, eager = false) {
     eager,
     [{ width: 750 }],
   ).outerHTML;
-  card.innerHTML = `<div class="${classPrefix}-card-header category-color-${toClassName(article.category)}">
-    <span class="${classPrefix}-card-category">${article.category}</span> 
+  const category = toCategory(article.category);
+  const categoryHref = article.noCategoryLink ? '#' : `href="/blog/category/${category}"`;
+  card.innerHTML = `<div class="${classPrefix}-card-header category-color-${category}">
+    <span class="${classPrefix}-card-category"><a ${categoryHref}>${article.category}</a></span> 
     <span class="${classPrefix}-card-readtime">${article.readTime || ''}</span>
     </div>
     <div class="${classPrefix}-card-picture"><a href="${article.path}">${pictureString}</a></div>
@@ -43,7 +44,10 @@ export default async function decorate(block) {
       if (articles.length) {
         const [article] = articles;
         if (i === 0) document.body.classList.add(`category-${toCategory(article.category)}`);
-        if (category) article.category = category;
+        if (category) {
+          article.noCategoryLink = true;
+          article.category = category;
+        }
         const card = createCard(article, 'featured-articles', i === 0);
         contents.push(card.outerHTML);
       }

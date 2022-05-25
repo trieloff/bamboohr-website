@@ -1,4 +1,4 @@
-import { formatDate, toClassName } from '../../scripts/scripts.js';
+import { formatDate, toCategory, toClassName } from '../../scripts/scripts.js';
 
 function applyClasses(styles, elements, prefix) {
   [...elements].forEach((row, i) => {
@@ -48,6 +48,9 @@ export default async function decorateArticleHeader($block, blockName) {
   a.textContent = author;
   $author.textContent = '';
   $author.append(a);
+
+  const category = $block.querySelector('.article-header-category');
+  category.innerHTML = `<a href="/blog/category/${toCategory(category.textContent)}">${category.textContent}</a>`;
 
   // format dates
   const $pubdate = $block.querySelector(`.${blockName}-publication-date`);
