@@ -776,6 +776,12 @@ export async function lookupArticles(pathnames) {
     });
     window.pageIndex = { data: json.data, lookup };
   }
+
+  /* guard for legacy URLs */
+  pathnames.forEach((path, i) => {
+    if (path.endsWith('/')) pathnames[i] = path.substr(0, path.length - 1);
+  });
+
   const result = pathnames.map((path) => window.pageIndex.lookup[path]).filter((e) => e);
   return (result);
 }
