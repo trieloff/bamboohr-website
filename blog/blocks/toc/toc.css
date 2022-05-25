@@ -8,7 +8,7 @@ main .toc {
 }
 
 main .toc a:any-link{
-    color: var(--category-color);
+    color: var(--category-darker-color);
     background-color: var(--category-bg-color);
     text-decoration: none;
 }

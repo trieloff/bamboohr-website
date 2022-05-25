@@ -95,6 +95,8 @@ main .article-header-publication-date::before {
 main p.article-header-updated-date {
   display: block;
   font-style: italic;
+  color: var(--color-gray-7);
+  margin-top: 5px;
 }
 
 main p.article-header-updated-date:empty {

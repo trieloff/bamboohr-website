@@ -21,6 +21,7 @@
   --color-gray-700: #444;
   --color-gray-800: #242424;
   --color-gray-6: #BABAB9;
+  --color-gray-7: #BABAB9;
   --color-black: #000;
   --color-brand-title: #000B1D;
   --color-info-accent: #73c41d;
@@ -310,22 +311,23 @@ main .section:last-of-type {
   padding: 0;
 }
 
-@media (min-width:600px) {
-  main .section > div {
-    max-width: unset;
-  }
-}
-
 main .section > div {
   margin: auto;
-  padding: 0 2rem;
+  padding: 0 30px;
 }
 
 main .section > div:empty {
   padding: 0;
 }
 
-@media (min-width: 700px) {
+@media (min-width:600px) {
+  main .section > div {
+    max-width: unset;
+    padding: 0 54px;
+  }
+}
+
+@media (min-width: 1025px) {
   main .section > div {
     max-width: 800px;
     margin-left: auto;
@@ -350,8 +352,9 @@ main .section p.button-container {
 main, .category-hr-insights main,
 .category-color-hr-insights {
   --category-color: #1b7b7e;
+  --category-darker-color: #003a4c;
   --category-darker-bg-color: #b1f8df;
-  --category-bg-color: #e5fdff;
+  --category-bg-color: #e5ffe6;
   --category-callout-bg: url('./bg/teal-cta.svg');
   --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #1B7B7E 0%, #1087CC 100%);
   --category-box-shadow-color: rgba(52 185 172 / 50%);
@@ -360,6 +363,7 @@ main, .category-hr-insights main,
 .category-voices-in-leadership main,
 .category-color-voices-in-leadership {
   --category-color: #ce4537;
+  --category-darker-color: #99292e;
   --category-darker-bg-color: #ffc9b5;
   --category-bg-color: #fff5e5;
   --category-callout-bg: url('./bg/red-cta.svg');
@@ -370,6 +374,7 @@ main, .category-hr-insights main,
 .category-product-announcements main,
 div.category-color-product-announcements {
   --category-color: #1d9336;
+  --category-darker-color: #00673b;
   --category-darker-bg-color: #d5fe81;
   --category-bg-color: #edffc8;
   --category-callout-bg: url('./bg/green-cta.svg');
@@ -380,6 +385,7 @@ div.category-color-product-announcements {
 .category-hiring main,
 div.category-color-hiring {
   --category-color: #b6800b;
+  --category-darker-color: #7c3000;
   --category-darker-bg-color: #fff58f;
   --category-bg-color: #ffffe5;
   --category-callout-bg: url('./bg/yellow-cta.svg');
@@ -390,6 +396,7 @@ div.category-color-hiring {
 .category-performance-culture main,
 div.category-color-performance-culture {
   --category-color: #1087cc;
+  --category-darker-color: #095c8f;
   --category-darker-bg-color: #a2e3ff;
   --category-bg-color: #e5fdff;
   --category-callout-bg: url('./bg/blue-cta.svg');
@@ -400,6 +407,7 @@ div.category-color-performance-culture {
 .category-benefits-comp main,
 div.category-color-benefits-comp {
   --category-color: #cc4373;
+  --category-darker-color: #96275d;
   --category-darker-bg-color: #ffbdc8;
   --category-bg-color: #ffe9e5;
   --category-callout-bg: url('./bg/red-cta.svg');
@@ -410,6 +418,7 @@ div.category-color-benefits-comp {
 .category-onboarding main,
 div.category-color-onboarding {
   --category-color: #d26914;
+  --category-darker-color: #aa410c;
   --category-darker-bg-color: #ffd9a3;
   --category-bg-color: #fffae5;
   --category-callout-bg: url('./bg/pink-cta.svg');
@@ -420,6 +429,7 @@ div.category-color-onboarding {
 .category-people-data-analytics main,
 div.category-color-people-data-analytics {
   --category-color: #794fcd;
+  --category-darker-color: #4c3293;
   --category-darker-bg-color: #e0beff;
   --category-bg-color: #fde5ff;
   --category-callout-bg: url('./bg/purple-cta.svg');
