@@ -1,5 +1,4 @@
 import {
-  makeLinksRelative,
   loadFragment,
   toClassName,
   decorateIcons,
@@ -52,7 +51,6 @@ export default async function decorate(block) {
   navSections.classList.add('nav-sections');
   nav.innerHTML = html;
   decorateIcons(nav);
-  makeLinksRelative(nav);
   nav.querySelectorAll(':scope > div').forEach((navSection, i) => {
     if (!i) {
       // first section is the brand section
