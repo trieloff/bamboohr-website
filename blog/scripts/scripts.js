@@ -768,7 +768,7 @@ function buildImageBlocks(main) {
 
 export async function lookupArticles(pathnames) {
   if (!window.pageIndex) {
-    const resp = await fetch('/blog-query-index.json');
+    const resp = await fetch('/blog/fixtures/blog-query-index.json');
     const json = await resp.json();
     const lookup = {};
     json.data.forEach((row) => {
