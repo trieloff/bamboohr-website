@@ -45,12 +45,13 @@ main .article-header img {
   height: 100%;
 }
 
-main .article-header-eyebrow {
+main .article-header-eyebrow, main .article-header-eyebrow:any-link {
   color: var(--category-color);
   font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 3px;
+  text-decoration: none;
 }
 
 main .article-header-read-time::before {
