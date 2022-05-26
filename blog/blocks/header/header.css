@@ -193,6 +193,11 @@ header .nav-brand {
   color: var(--color-info-accent);
 }
 
+header .nav-brand a:any-link{
+  color: inherit;
+  text-decoration: inherit;
+}
+
 header .nav-brand p {
   margin: 0;
 }
