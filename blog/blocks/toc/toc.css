@@ -8,7 +8,7 @@ main .toc {
 }
 
 main .toc a:any-link{
-    color: var(--category-darker-color);
+    color: var(--category-color);
     background-color: var(--category-bg-color);
     text-decoration: none;
 }
@@ -28,10 +28,9 @@ main .toc ol {
 main .toc li {
     margin-left: 0;
     font-size: 15px;
-    line-height: var(--body-line-height-l);
+    line-height: 26px;
     position: relative;
     padding-left: 30px;
-    margin-bottom: 16px;
 }
 
 main .toc > ol > li {
@@ -48,7 +47,7 @@ main .toc > ol > li::before {
     font-family: var(--font-heading-family);
 }
 
-@media (min-width: 600px) {
+@media (min-width: 900px) {
     main .toc .toc-title {
       font-size: 18px;
     }
@@ -59,6 +58,7 @@ main .toc > ol > li::before {
 
     main .toc li {
         font-size: 17px;
+        line-height: 28px;
     }
 
     main .toc > ol > ol {
