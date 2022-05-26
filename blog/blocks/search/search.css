@@ -43,6 +43,11 @@ main .search-card .search-card-readtime::before {
   vertical-align: top;
 }
 
+main .search-card-header a:any-link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 main .search-card .search-card-readtime:empty::before {
   display: none;
 }
