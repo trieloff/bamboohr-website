@@ -340,14 +340,14 @@ main .section > div:empty {
   padding: 0;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   main .section > div {
     max-width: unset;
     padding: 0 54px;
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 700px) {
   main .section > div {
     max-width: 800px;
     margin-left: auto;
