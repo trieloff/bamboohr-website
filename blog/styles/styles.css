@@ -21,6 +21,7 @@
   --color-gray-700: #444;
   --color-gray-800: #242424;
   --color-gray-1: #F5F4F1;
+  --color-gray-3: #DFDEDC;
   --color-gray-6: #BABAB9;
   --color-gray-7: #BABAB9;
   --color-black: #000;
@@ -457,7 +458,7 @@ div.category-color-people-data-analytics {
 }
 
 
-main .default-content-wrapper p a:any-link {
+main .default-content-wrapper a:any-link {
   color: var(--category-color);
   background: linear-gradient(#f000 50%, var(--category-bg-color) 50.1%);
   text-decoration: none;

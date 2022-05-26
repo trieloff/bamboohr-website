@@ -71,12 +71,11 @@ main .article-header h1 {
   font-style: italic;
   font-size: 28px;
   margin: 17px 0;
-  color: #444;
 }
 
 main .article-header .article-header-author-pub {
   margin-top: 45px;
-  color: #777;
+  color: var(--body-color);
   font-size: 15px;
   font-weight: 400;
 }
@@ -112,7 +111,7 @@ main .article-header .article-header-author-pub::after {
   content: ' ';
   width: 30px;
   height: 2px;
-  background-color: #DFDEDC;
+  background-color: var(--color-gray-3);
   display: block;
   margin-top: 24px;
 }
@@ -137,10 +136,6 @@ main .article-header-share img {
   width: 18px;
   height: 18px;
   object-fit: contain;
-}
-
-main .article-header-share a:hover {
-  background-color: #444;
 }
 
 @media (min-width: 900px) {
@@ -171,7 +166,7 @@ main .article-header-share a:hover {
     height: 54px;
     line-height: 54px;
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
-    background-color: #fff;
+    background-color: var(--color-white);
     margin: 10px;
     border-radius: 27px;
     box-sizing: border-box;

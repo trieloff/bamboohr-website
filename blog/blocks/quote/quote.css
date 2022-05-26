@@ -5,8 +5,9 @@ main .quote {
 	/* stylelint-disable-next-line property-no-vendor-prefix */
 	-webkit-background-clip: text;
 	/* stylelint-disable-next-line property-no-vendor-prefix */
-	-moz-background-clip: text;	margin-top: 35px;
-	margin-bottom: 35px;
+	-moz-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	margin: 35px 0;
 	padding: 10px 0 10px 32px;
 	border-left: 2px solid var(--category-color);
 	font-size: 20px;
