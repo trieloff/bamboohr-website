@@ -17,7 +17,7 @@ main .callout a.button {
   background-color: var(--category-color);
   margin: 40px 0 0;
   font-size: 15px;
-  line-height: 20px;
+  line-height: var(--heading-line-height-m);
   font-weight: 700;
   padding: 10px 30px;
 }
@@ -29,7 +29,7 @@ main .callout.right a.button{
 
 main .callout h3 {
   font-size: 30px;
-  line-height: 34px;
+  line-height: var(--heading-line-height);
   font-weight: 700;
   margin-bottom: 20px;
   color: var(--category-color);
@@ -39,7 +39,7 @@ main .callout h3 {
 main .callout.left h3,
 main .callout.right h3 {
   font-size: 20px;
-  line-height: 28px;
+  line-height: var(--heading-line-height-m);
   font-weight: 600;
   font-style: italic;
   margin: 0 0 30px;
@@ -82,7 +82,6 @@ main .callout p {
 
   main .callout h3 {
     font-size: 36px;
-    line-height: 44px;
   }
 
 }

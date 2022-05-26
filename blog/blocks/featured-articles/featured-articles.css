@@ -1,6 +1,6 @@
 main .featured-articles-container > div {
   max-width: 1200px;
-  padding: 0 20px;
+  padding: 0 30px;
 }
 
 main .featured-articles-card {
@@ -111,6 +111,10 @@ main .featured-articles-hero .featured-articles-card .featured-articles-card-bod
 }
 
 @media (min-width: 600px) {
+  main .featured-articles-container > div {
+    padding: 0 54px;
+  }
+
   main .featured-articles-row {
     margin: 0 -20px;
   }
@@ -134,23 +138,19 @@ main .featured-articles-hero .featured-articles-card .featured-articles-card-bod
   main .featured-articles-hero .featured-articles-card h3 {
     font-size: 36px;
   }
-
-  main .featured-articles-card .featured-articles-card-picture {
-    margin-bottom: 36px;
-  }
 }
 
 @media (min-width: 1025px) {
+  main .featured-articles-container > div {
+    padding: 0;
+  }
+
   main .featured-articles-row {
     display: flex;
   }
 
   main .featured-articles-col {
     width: 50%;
-  }
-
-  main .featured-articles-card .featured-articles-card-picture {
-    margin-bottom: 0;
   }
 
   main .featured-articles-hero .featured-articles-card {
@@ -169,7 +169,6 @@ main .featured-articles-hero .featured-articles-card .featured-articles-card-bod
   main .featured-articles-hero .featured-articles-card h3 {
     margin-top: 0;
     font-size: 48px;
-    line-height: 60px;
   }
 }
 

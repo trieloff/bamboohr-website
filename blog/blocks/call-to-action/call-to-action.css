@@ -19,7 +19,7 @@ main .call-to-action h2, main .call-to-action h3, main .call-to-action h4 {
 main .call-to-action h2 {
     font-family: var(--heading-font-family);
     font-size: 36px;
-    line-height: 44px;
+    line-height: var(--heading-line-height);
     font-weight: 800;
     font-style: italic;
     margin-bottom: 20px;
@@ -27,7 +27,7 @@ main .call-to-action h2 {
 
 main .call-to-action p {
     font-size: 22px;
-    line-height: 30px;
+    line-height: var(--body-line-height);
     margin-bottom: 44px;
 }
 
@@ -43,7 +43,6 @@ main .call-to-action a.button {
     
     main .call-to-action h2 {
         font-size: 48px;
-        line-height: 60px;
         font-weight: 700;
     }
 }
