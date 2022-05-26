@@ -232,11 +232,6 @@ p, dl, ol, ul, pre, blockquote {
   margin-bottom: 1em;
 }
 
-ol li, ul li {
-  margin-bottom: 16px;
-  margin-left: 30px;
-}
-
 main p:not(:last-of-type) {
   margin-bottom: 32px;
 }
@@ -468,6 +463,12 @@ main .default-content-wrapper p a.button:any-link {
   color: var(--color-white);
   background: unset;
   background-color: var(--category-color);
+}
+
+main .default-content-wrapper ol li,
+main .default-content-wrapper ul li {
+  margin-bottom: 16px;
+  margin-left: 30px;
 }
 
 
