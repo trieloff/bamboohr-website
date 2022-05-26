@@ -92,6 +92,10 @@ main .featured-articles-container {
   background-size: contain, contain;
 }
 
+main .featured-articles-hero {
+  padding-top: 40px;
+}
+
 main .featured-articles-hero .featured-articles-card-header {
   font-size: 16px;
   margin-top: 30px;
@@ -119,6 +123,10 @@ main .featured-articles-hero .featured-articles-card .featured-articles-card-bod
     margin: 0 -20px;
   }
 
+  main .featured-articles-hero {
+    margin: 0;
+  }
+
   main .featured-articles-col {
     box-sizing: border-box;
     width: 100%;
@@ -131,6 +139,10 @@ main .featured-articles-hero .featured-articles-card .featured-articles-card-bod
     padding: 20px;
   }
 
+  main .featured-articles-hero .featured-articles-card {
+    padding: 0;
+  }
+
   main .featured-articles-hero .featured-articles-card, main .featured-articles-large .featured-articles-card  {
     width: 100%;
   }
@@ -140,8 +152,8 @@ main .featured-articles-hero .featured-articles-card .featured-articles-card-bod
   }
 }
 
-@media (min-width: 1025px) {
-  main .featured-articles-container > div {
+@media (min-width: 1200px) {
+ main .featured-articles-container > div {
     padding: 0;
   }
 
@@ -151,6 +163,10 @@ main .featured-articles-hero .featured-articles-card .featured-articles-card-bod
 
   main .featured-articles-col {
     width: 50%;
+  }
+
+  main .featured-articles-hero {
+    padding-top: 80px;
   }
 
   main .featured-articles-hero .featured-articles-card {

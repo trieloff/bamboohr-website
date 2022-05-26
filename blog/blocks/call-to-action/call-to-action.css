@@ -46,7 +46,7 @@ main .call-to-action a.button {
         font-weight: 700;
     }
 }
-@media (min-width: 1025px) {
+@media (min-width: 1200px) {
     main .call-to-action {
         padding: 270px 0 145px;
     }

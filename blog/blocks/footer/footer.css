@@ -123,7 +123,7 @@ footer .footer .blog {
 		grid-template-areas: 'company support blog' 'links links social' 'links links brand' 'legal legal legal';
 	}
 }
-@media (min-width: 1025px) {
+@media (min-width: 1200px) {
 	footer {
 		padding: 120px 30px 60px;
 	}

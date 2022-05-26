@@ -36,7 +36,7 @@ main .quote {
 		margin-left: 50px;
 	}
 }
-@media (min-width: 1025px) {
+@media (min-width: 1200px) {
 	main .quote {
 		width: 400px;
 	}

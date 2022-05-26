@@ -340,7 +340,7 @@ main .section > div:empty {
   }
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 700px) {
   main .section > div {
     max-width: 800px;
     margin-left: auto;

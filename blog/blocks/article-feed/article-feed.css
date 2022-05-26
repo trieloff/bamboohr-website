@@ -147,7 +147,7 @@ main .article-feed-large .article-feed-card-body p:first-of-type {
   }
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1200px) {
   main .article-feed-card-grid {
     display: flex;
   }
