@@ -8,12 +8,27 @@ main .call-to-action-container {
 
 main .call-to-action {
     text-align: center;
-    color: white;
-    padding: 128px 0;
+    color: var(--color-white);
+    padding: 66px 0 30px;
 }
 
 main .call-to-action h2, main .call-to-action h3, main .call-to-action h4 {
-    color: white;
+    color: var(--color-white);
+}
+
+main .call-to-action h2 {
+    font-family: var(--heading-font-family);
+    font-size: 36px;
+    line-height: var(--heading-line-height);
+    font-weight: 800;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+main .call-to-action p {
+    font-size: 22px;
+    line-height: var(--body-line-height);
+    margin-bottom: 44px;
 }
 
 main .call-to-action a.button {
@@ -29,6 +44,12 @@ main .call-to-action a.button {
     main .call-to-action h2 {
         font-size: 48px;
         font-weight: 700;
+    }
+}
+
+@media (min-width: 1200px) {
+    main .call-to-action {
+        padding: 270px 0 145px;
     }
 }
 

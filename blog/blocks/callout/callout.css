@@ -1,26 +1,59 @@
 main .callout {
   background-image: var(--category-callout-bg);
   background-size: cover;
-  margin: 40px 0;
+  margin: 35px -30px;
   padding: 40px 30px;
   text-align: center;
   color: var(--category-color);
-  border-radius: 20px;
   box-shadow: 0 30px 60px -40px var(--category-box-shadow-color);
+}
+
+main .callout.left,
+main .callout.right {
+  text-align: left;
 }
 
 main .callout a.button {
   background-color: var(--category-color);
+  margin: 40px 0 0;
+  font-size: 15px;
+  line-height: var(--heading-line-height-m);
+  font-weight: 700;
+  padding: 10px 30px;
+}
+
+main .callout.left a.button,
+main .callout.right a.button{
+  margin: 0;
 }
 
 main .callout h3 {
-  font-size: 36px;
+  font-size: 30px;
+  line-height: var(--heading-line-height);
+  font-weight: 700;
+  margin-bottom: 20px;
   color: var(--category-color);
   font-family: var(--heading-font-family);
-  font-style: italic;
 }
 
-@media (min-width: 900px) {
+main .callout.left h3,
+main .callout.right h3 {
+  font-size: 20px;
+  line-height: var(--heading-line-height-m);
+  font-weight: 600;
+  font-style: italic;
+  margin: 0 0 30px;
+}
+
+main .callout p {
+  color: var(--category-darker-color);
+}
+
+@media (min-width: 600px) {
+  main .callout {
+    border-radius: 15px;
+  }
+  
   main .callout.right, main .callout.left {
     background-image: radial-gradient(100% 157.48% at 100% 0%, var(--category-bg-color) 0%, var(--category-darker-bg-color) 100%);
     width: 400px;
@@ -32,7 +65,7 @@ main .callout h3 {
   main .callout.right {
     float: right;
     margin-left: 50px;
-    margin-right: -20px;
+    margin-right: -54px;
     border-top-left-radius: 60px;
     border-bottom-right-radius: 140px;
     text-align: left;
@@ -41,25 +74,29 @@ main .callout h3 {
   main .callout.left {
     float: left;
     margin-right: 50px;
-    margin-left: -20px;
+    margin-left: -54px;
     border-top-right-radius: 60px;
     border-bottom-left-radius: 140px;
     text-align: right;
   }
 
-  main .callout.right h3, main .callout.left h3 {
-      font-size: 20px;
+  main .callout h3 {
+    font-size: 36px;
   }
-
-  main .callout.right a.button, main .callout.left a.button {
-    font-size: 14px;
-    white-space: unset;
-  }
-
 }
 
 @media (min-width: 1200px) {
   main .section > .callout-wrapper {
     max-width: 1200px;
   }
+  
+  main .callout {
+    padding: 50px;
+  }
+
+  main .callout.left,
+  main .callout.right {
+    width: 400px;
+  }
+  
 }

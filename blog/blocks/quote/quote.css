@@ -2,14 +2,16 @@ main .quote {
 	font-family: var(--heading-font-family);
 	background: var(--category-quote-bg);
   	background-clip: text;
-	-moz-text-fill-color: transparent;
+	/* stylelint-disable-next-line property-no-vendor-prefix */
+	-webkit-background-clip: text;
+	/* stylelint-disable-next-line property-no-vendor-prefix */
+	-moz-background-clip: text;
 	-webkit-text-fill-color: transparent;
-	margin-top: 35px;
-	margin-bottom: 35px;
+	margin: 35px 0;
 	padding: 10px 0 10px 32px;
 	border-left: 2px solid var(--category-color);
 	font-size: 20px;
-	line-height: 28px;
+	line-height: var(--body-line-height-s);
 	font-weight: 600;
 	font-style: italic;
 }
@@ -32,7 +34,7 @@ main .quote {
 		margin-left: 50px;
 	}
 }
-@media (min-width: 1025px) {
+@media (min-width: 1200px) {
 	main .quote {
 		width: 400px;
 	}
