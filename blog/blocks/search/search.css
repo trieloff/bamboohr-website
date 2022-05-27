@@ -19,8 +19,11 @@ main .search-card {
     width: 100%;
     box-sizing: border-box;
     padding: 10px;
-    color: #444;
     font-size: 15px;
+}
+
+main .search-card .search-card-picture {
+  margin-bottom: 25px;
 }
 
 main .search-card img {
@@ -33,6 +36,8 @@ main .search-card h3 {
   font-family: var(--heading-font-family);
   font-size: 18px;
   font-weight: 600;
+  font-style: normal;
+  margin: 0 0 20px;
 }
 
 main .search-card .search-card-readtime::before {
@@ -43,21 +48,34 @@ main .search-card .search-card-readtime::before {
   vertical-align: top;
 }
 
+main .search-card-header a:any-link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 main .search-card .search-card-readtime:empty::before {
   display: none;
 }
 
 main .search-card-body a:any-link{
+  position: relative;
   font-weight: 700;
   text-decoration: none;
-  color: #444;
+  color: var(--heading-color);
   font-family: var(--heading-font-family);
-  font-size: 20px;
+  font-size: 15px;
 }
 
 main .search-card-body a:any-link::after {
-  content: '❯';
-  padding-left: 10px;
+  content: "";
+  border: solid var(--heading-color);
+  border-width: 0 2.5px 2.5px 0;
+  display: inline-block;
+  padding: 2.5px;
+  transform: rotate(-45deg) translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: -20px;
 }
 
 main .search-card-header {

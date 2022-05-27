@@ -186,15 +186,26 @@ header .nav[aria-expanded='true'] .nav-hamburger-icon::after {
 
 header .nav-brand {
   grid-area: brand;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 400;
   line-height: 1em;
   text-transform: uppercase;
   color: var(--color-info-accent);
 }
 
+header .nav-brand a:any-link{
+  color: inherit;
+  text-decoration: inherit;
+}
+
 header .nav-brand p {
   margin: 0;
+}
+
+header .nav-brand .icon::after {
+  content: '|';
+  color: var(--color-info-accent);
+  margin: 0 10px;
 }
 
 header .nav-brand p img {

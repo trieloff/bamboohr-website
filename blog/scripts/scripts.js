@@ -729,7 +729,7 @@ function buildImageBlocks(main) {
 
 export async function lookupArticles(pathnames) {
   if (!window.pageIndex) {
-    const resp = await fetch('/blog-query-index.json');
+    const resp = await fetch('/blog/fixtures/blog-query-index.json');
     const json = await resp.json();
     const lookup = {};
     json.data.forEach((row) => {
@@ -899,4 +899,39 @@ export function unlockBody() {
   bs.left = '';
   bs.right = '';
   window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+}
+
+export function newsletterSubscribe(email) {
+  const action = 'https://www.bamboohr.com/ajax/blog-newsletter-form.php';
+  const body = `email=${encodeURIComponent(email)}`;
+  fetch(action, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    },
+    body,
+  });
+}
+
+export function insertNewsletterForm(elem, submitCallback) {
+  const action = 'https://www.bamboohr.com/ajax/blog-newsletter-form.php';
+  const relative = new URL(action).pathname;
+  elem.querySelectorAll(`a[href="${action}"], a[href="${relative}"]`).forEach((a) => {
+    const formDiv = document.createElement('div');
+    formDiv.innerHTML = `
+    <form class="nav-form" __bizdiag="96619420" __biza="WJ__">
+      <input type="email" name="email" placeholder="Email Address" aria-label="email" autocomplete="off">
+      <button class="">${a.textContent}</button>
+    </form>
+    `;
+    const button = formDiv.querySelector('button');
+    const input = formDiv.querySelector('input');
+    button.addEventListener('click', (e) => {
+      newsletterSubscribe(input.value);
+      e.preventDefault();
+      submitCallback();
+    });
+    a.replaceWith(formDiv);
+  });
 }

@@ -2,6 +2,7 @@ import {
   loadFragment,
   toClassName,
   decorateIcons,
+  insertNewsletterForm,
 } from '../../scripts/scripts.js';
 
 /**
@@ -12,19 +13,6 @@ import {
 function collapseAll(elems) {
   elems.forEach((section) => {
     section.setAttribute('aria-expanded', 'false');
-  });
-}
-
-function insertNewsletterForm(elem) {
-  elem.querySelectorAll('a[href="https://www.bamboohr.com/ajax/blog-newsletter-form.php"]').forEach((a) => {
-    const formDiv = document.createElement('div');
-    formDiv.innerHTML = `
-    <form class="nav-form" action="https://www.bamboohr.com/ajax/blog-newsletter-form.php" method="post" __bizdiag="96619420" __biza="WJ__">
-      <input type="email" name="email" placeholder="Email Address" aria-label="email" autocomplete="off">
-      <button type="submit" class="">${a.textContent}</button>
-    </form>
-    `;
-    a.replaceWith(formDiv);
   });
 }
 
@@ -137,6 +125,10 @@ export default async function decorate(block) {
   };
 
   block.append(nav);
-  insertNewsletterForm(block);
+
+  insertNewsletterForm(block, () => {
+    collapseAll([...nav.querySelectorAll('[aria-expanded="true"]')]);
+  });
+
   block.append(createSearch());
 }
