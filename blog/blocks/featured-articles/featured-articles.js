@@ -31,6 +31,10 @@ export function createCard(article, classPrefix, eager = false) {
 }
 
 export default async function decorate(block) {
+  // cleanup eager image
+  const eager = block.querySelector('img[loading="eager"]');
+  if (eager) eager.setAttribute('loading', 'lazy');
+
   const rows = [...block.children];
   const contents = [];
   for (let i = 0; i < rows.length; i += 1) {
