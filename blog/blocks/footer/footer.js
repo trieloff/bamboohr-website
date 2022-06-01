@@ -16,7 +16,7 @@ export default async function decorate(block) {
   });
 
   block.querySelectorAll('a').forEach((a) => {
-    if (a.innerText == 'Cookie Preferences') {
+    if (a.innerText === 'Cookie Preferences') {
       const $teconsent = document.createElement('div');
       $teconsent.id = 'teconsent';
       a.replaceWith($teconsent);
