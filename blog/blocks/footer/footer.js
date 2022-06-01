@@ -14,4 +14,16 @@ export default async function decorate(block) {
   styles.forEach((style, i) => {
     if (block.children[i]) block.children[i].classList.add(style);
   });
+
+  block.querySelectorAll('a').forEach((a) => {
+    if (a.innerText == 'Cookie Preferences') {
+      const $teconsent = document.createElement('div');
+      $teconsent.id = 'teconsent';
+      a.replaceWith($teconsent);
+    }
+  });
+
+  const $consent = document.createElement('div');
+  $consent.id = 'consent-banner';
+  block.after($consent);
 }
