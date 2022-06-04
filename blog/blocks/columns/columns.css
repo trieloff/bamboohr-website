@@ -1,0 +1,61 @@
+.columns > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.columns img {
+    width: 100%;
+}
+
+.columns.columns-3-cols p, .columns.columns-4-cols p {
+    margin: 0;
+}
+
+.columns-3-cols a.button:any-link, .columns-4-cols a.button:any-link {
+    background-color: unset;
+    white-space: unset;
+    color: var(--link-color);
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.columns-3-cols p.button-container {
+    display: inline-block;
+    text-align: left;
+}
+
+.columns-4-cols img {
+    width: 100px;
+}
+
+.columns-3-cols img {
+    width: 50px;
+}
+
+.columns.columns-4-cols {
+    text-align: center;
+}
+
+
+@media (min-width: 900px) {
+    .columns > div {
+        display: flex;
+        align-items: center;
+        flex-direction: unset;
+    }
+
+    .columns-3-cols > div, .columns-4-cols > div {
+        align-items: flex-start;
+    }
+
+    .columns > div > div {
+        flex: 1;
+        margin-left: 32px;
+    }
+
+    .columns > div > div:first-of-type {
+        margin-left: unset;
+    }
+    
+}
