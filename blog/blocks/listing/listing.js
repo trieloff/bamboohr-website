@@ -5,9 +5,9 @@ function createResultCard(result, prefix, ph) {
   const card = document.createElement('div');
   card.className = `${prefix}-card`;
   card.innerHTML = /* html */`
-    <a><img src="${result.image}" alt="${result.name}" width="150" height="150"/></a>
+    <a><img src="${result.image}" alt="${result.title}" width="150" height="150"/></a>
      <div class="${prefix}-card-body">
-      <h4><a href="${result.path}">${result.name}</a></h4>
+      <h4><a href="${result.path}">${result.title}</a></h4>
     </div>`;
   return (card);
 }
@@ -236,37 +236,47 @@ export default async function decorate(block) {
     facetKeys.forEach((facetKey) => {
       const filter = filters[facetKey];
       const filterValues = filter ? filter.split(',').map((t) => t.trim()) : [];
-      const div = document.createElement('div');
-      div.className = 'listing-facet';
-      const h3 = document.createElement('h3');
-      h3.innerHTML = ph[facetKey];
-      div.append(h3);
       const facetValues = Object.keys(facets[facetKey]);
-      facetValues.forEach((facetValue) => {
-        const input = document.createElement('input');
-        input.type = 'checkbox';
-        input.value = facetValue;
-        input.checked = filterValues.includes(facetValue);
-        input.id = `listing-filter-${facetValue}`;
-        input.name = facetKey;
-        const label = document.createElement('label');
-        label.setAttribute('for', input.id);
-        label.textContent = `${facetValue} (${facets[facetKey][facetValue]})`;
-        div.append(input, label);
-        input.addEventListener('change', () => {
-          const filterConfig = createFilterConfig();
-          // eslint-disable-next-line no-use-before-define
-          runSearch(filterConfig);
+      if (facetValues.length) {
+        const div = document.createElement('div');
+        div.className = 'listing-facet';
+        const h3 = document.createElement('h3');
+        h3.innerHTML = ph[facetKey];
+        div.append(h3);
+        facetValues.forEach((facetValue) => {
+          const input = document.createElement('input');
+          input.type = 'checkbox';
+          input.value = facetValue;
+          input.checked = filterValues.includes(facetValue);
+          input.id = `listing-filter-${facetValue}`;
+          input.name = facetKey;
+          const label = document.createElement('label');
+          label.setAttribute('for', input.id);
+          label.textContent = `${facetValue} (${facets[facetKey][facetValue]})`;
+          div.append(input, label);
+          input.addEventListener('change', () => {
+            const filterConfig = createFilterConfig();
+            // eslint-disable-next-line no-use-before-define
+            runSearch(filterConfig);
+          });
         });
-      });
-      facetsList.append(div);
+        facetsList.append(div);
+      }
     });
   };
 
   const getPrice = (string) => +string.substr(1);
 
   const runSearch = async (filterConfig = config) => {
-    const facets = { colors: {}, sizes: {} };
+    const facets = {
+      category: {},
+      listingType: {},
+      discoverApps: {},
+      businessSize: {},
+      dataFlow: {},
+      industryServed: {},
+      locationRestrictions: {},
+    };
     const sorts = {
       name: (a, b) => a.title.localeCompare(b.title),
       'price-asc': (a, b) => getPrice(a.price) - getPrice(b.price),
