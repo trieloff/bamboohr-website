@@ -72,7 +72,7 @@ export async function filterResults(config, facets = {}) {
   });
 
   /* filter */
-  const results = window.pageIndex.data.filter((row) => {
+  const results = window.listingIndex.data.filter((row) => {
     const filterMatches = {};
     let matchedAll = keys.every((key) => {
       let matched = false;
@@ -88,9 +88,9 @@ export async function filterResults(config, facets = {}) {
       return matched;
     });
 
-    const isProduct = () => !!row.price;
+    const isListing = () => !!row.publisher;
 
-    if (!isProduct()) matchedAll = false;
+    if (!isListing()) matchedAll = false;
 
     /* facets */
     facetKeys.forEach((facetKey) => {
@@ -117,7 +117,7 @@ export async function filterResults(config, facets = {}) {
 }
 
 export default async function decorate(block) {
-  const ph = await fetchPlaceholders();
+  const ph = await fetchPlaceholders('/marketplace');
 
   const addEventListeners = (elements, event, callback) => {
     elements.forEach((e) => {
