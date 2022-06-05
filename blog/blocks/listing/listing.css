@@ -1,0 +1,303 @@
+main div.listing-container {
+    padding-top: 0;
+}
+
+main .listing-container h1 {
+    font-size: var(--body-font-size-l);
+    font-family: var(--body-font-family);
+}
+
+main .listing-wrapper {
+    max-width: unset;
+}
+
+main .listing-controls {
+    text-align: center;
+}
+
+main .listing-controls button {
+    display: inline-block;
+    width: unset;
+}
+
+main .listing-facets  {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    background-color: #0008;
+}
+
+main .listing-facets > div {
+    padding: 20px;
+    overflow-y: scroll;
+    width: 360px;
+    background-color: var(--background-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+main .listing-facets > div::after {
+    position: absolute;
+    background-image: url('./close.svg');
+    background-size: contain;
+    content: ' ';
+    right: 20px;
+    top: 20px;
+    width: 24px;
+    height: 24px;
+    display: block;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+main .listing-facets > div > * {
+    pointer-events: all;
+}
+
+
+main .listing-facets .listing-filters {
+    flex: 1;
+    overflow-y: scroll;
+}
+
+main .listing-facets .listing-apply-filters {
+    flex: 0;
+    height: 200px;
+    padding: 16px 0;
+    text-align: center;
+}
+
+main .listing-filters-selected span {
+    background-color: var(--medium-background-color);
+    padding: 10px 12px 10px 38px;
+    border-radius: 6px;
+    color: var(--background-color);
+    background-image: url('./close-white.svg');
+    background-size: 25px;
+    background-position: 8px;
+    background-repeat: no-repeat;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+main .listing-facet {
+    border-top: 2px solid #ccc;
+    padding-bottom: 14px;
+    margin: 20px 0;
+}
+
+main .listing-filters-selected:empty + p {
+    display: none;
+}
+
+main .listing-facets button {
+    font-size: var(--body-font-size-s);
+    width: unset;
+    margin: 0;
+}
+
+main .listing-facets h2 {
+    font-family: var(--body-font-family);
+    font-size: var(--body-font-size-l);
+    font-weight: 400;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+main .listing-facets h3 {
+    font-family: var(--body-font-family);
+    font-size: var(--body-font-size-m);
+    font-weight: 400;
+    margin: 17px 0;
+}
+
+main .listing-facets input[type="checkbox"] {
+    display: none;
+}
+
+main .listing-facets label {
+    display: block;
+    padding-left: 30px;
+    background-image: url('./checkbox.svg');
+    background-size: contain;
+    background-position: center left;
+    background-repeat: no-repeat;
+    margin: 16px 0;
+}
+
+main .listing-facets :checked + label {
+    background-image: url('./checked.svg');
+}
+
+main .listing-facets.visible {
+    display: block;
+}
+
+main .listing-sortby {
+    text-align: center;
+    font-size: var(--body-font-size-s);
+    position: relative;
+}
+
+main .listing-sortby ul {
+    display: none;
+    position: absolute;
+    top: -40px;
+    right: calc(50% - 105px);
+    z-index: 1;
+    background-color: var(--background-color);
+    border: 1px solid #ddd;
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    border-radius: 3px;
+    box-shadow: 0 2px 5px 0 var(--overlay-background-color);
+    font-size: var(--body-font-size-m);
+    min-width: 190px;
+}
+
+main .listing-sortby ul li {
+    padding: 5px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+main .listing-sortby ul li.selected {
+    background: url('./checkmark.svg') center right 10px no-repeat;
+}
+
+main .listing-sortby ul li:hover {
+    background-color: #eee;
+}
+
+main .listing-sortby ul.visible {
+    display: block;
+}
+
+
+main .listing-results {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: var(--body-font-size-m);
+}
+
+main .listing-results > div {
+    width: 50%;
+    position: relative;
+}
+
+main .listing-results a.button:any-link {
+    font-size: var(--body-font-size-s);
+    padding: 4px 15px;
+    text-transform: uppercase;
+}
+
+
+main .listing-results h4 {
+    font-size: var(--body-font-size-m);
+    font-family: var(--body-font-family);
+}
+
+main .listing-results .highlight {
+    background-color: var(--link-color);
+    color: var(--background-color);
+    padding: 0 2px;
+}
+
+@media (min-width: 900px) {
+    main .listing-facets > div::after {
+        display: none;
+    }
+
+    main .listing-facets .listing-apply-filters {
+        display: none;
+    }
+
+    main .listing-facets  {
+        z-index: unset;
+        height: unset;
+        background: unset;
+        grid-area: facets;
+        display: unset;
+        position: unset;
+        width: 360px;
+    }
+
+    main .listing-facets > div {
+        height: unset;
+    }
+
+    main .listing-facets .listing-filters {
+        overflow-y: unset;
+        height: unset;
+    }
+
+    main .listing-results {
+        grid-area: results;
+    }
+
+    main .listing-controls {
+        grid-area: controls;
+        text-align: left;
+    }
+
+    main .listing-controls button {
+        display: none;
+    }
+
+    main .listing {
+        display: grid;
+        grid-template-areas: '- controls sortby' 'facets results results';
+    }
+
+    main .listing-sortby {
+        display: unset;
+        grid-area: sortby;
+        text-align: right;
+    }
+
+    main .listing-sortby p {
+        display: inline-block;
+        border-radius: 5px;
+        border: 2px solid #888;
+        padding: 5px 45px 5px 15px;
+        font-size: var(--body-font-size-m);
+        background: url('./chevron-down.svg') center right 10px no-repeat;
+    }
+
+    main .listing-sortby ul {
+        top: 40px;
+        right: 0;
+        z-index: 1;
+        background-color: var(--background-color);
+        border: 1px solid #ddd;
+        text-align: left;
+        list-style: none;
+        padding: 0;
+        border-radius: 3px;
+        box-shadow: 0 2px 5px 0 var(--overlay-background-color);
+        font-size: var(--body-font-size-m);
+        min-width: 190px;
+    }    
+}
+
+main .listing-results img {
+    aspect-ratio: 400 / 496;
+    width: 100%;
+}
+
+@media (min-width: 1200px) {
+    main .listing-results > div {
+        width: calc(100% / 3);
+        }
+}
+
+
