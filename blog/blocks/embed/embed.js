@@ -153,7 +153,7 @@ const loadEmbed = (block) => {
   }
 
   const a = block.querySelector('a');
-  const figure = buildFigure(block.firstChild.firstChild);
+  // const figure = buildFigure(block.firstChild.firstChild);
 
   if (a) {
     const url = new URL(a.href.replace(/\/$/, ''));
@@ -184,7 +184,7 @@ const loadEmbed = (block) => {
       a.outerHTML = getDefaultEmbed(url);
       block.classList = `block embed embed-${simpleDomain}`;
     }
-    block.innerHTML = figure.outerHTML;
+    // block.innerHTML = figure.outerHTML;
     block.classList.add('is-loaded');
   }
 };
