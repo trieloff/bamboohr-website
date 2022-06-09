@@ -330,7 +330,7 @@ header .nav-buttons .button {
   width: 100%;
 }
 
-header .nav-buttons .button.light::hover {
+header .nav-buttons .button.light:hover {
   background-color: var(--color-white);
   color: var(--color-1);
 }
