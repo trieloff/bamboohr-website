@@ -109,7 +109,7 @@ async function decorateArticleFeed(
     const wrapper = document.createElement('div');
     wrapper.className = 'load-more-wrapper';
     const loadMore = document.createElement('a');
-    loadMore.className = 'load-more button small primary light';
+    loadMore.className = 'load-more button small light';
     loadMore.href = '#';
     loadMore.textContent = 'Load More';
     wrapper.append(loadMore);
