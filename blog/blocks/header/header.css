@@ -112,7 +112,7 @@ header .nav {
   align-items: center;
   padding: 0 2rem;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   background-color: rgb(255 255 255 / 95%);
   width: 100vw;
   height: 70px;
@@ -256,6 +256,16 @@ header .nav-sections h2 {
   border-bottom: 2px solid var(--color-gray-2);
 }
 
+header .nav-section ul,
+header .nav-section .nav-section-wrapper {
+  opacity: 0;
+  max-height: 0;
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+  transform: translate(0, -1000px);
+}
+
 header .nav-section ul a:any-link{
   text-decoration: none;
   color: var(--color-gray-8);
@@ -264,12 +274,37 @@ header .nav-section ul a:any-link{
 header .nav-section li {
   font-size: 14px;
   color: var(--color-gray-8);
+  padding: 10px 0;
 }
 
 header .nav-section li a:any-link {
   display: block;
-  padding: 10px 0;
   color: var(--color-gray-11);
+}
+
+header .nav-section[aria-expanded='true'] > ul,
+header .nav-section[aria-expanded='true'] > .nav-section-wrapper {
+  position: relative;
+  opacity: 1;
+  max-height: 100vh;
+  display: block;
+  transform: unset;
+} 
+
+header .nav-section > ul > *, header .nav-section > .nav-section-wrapper > * {
+  opacity: 0;
+}
+
+header .nav-section[aria-expanded='true'] > ul > *, header .nav-section[aria-expanded='true'] > .nav-section-wrapper > * {
+  opacity: 1;
+}
+
+header .nav-section[aria-expanded='true'] li[aria-expanded='true'] > ul {
+  position: relative;
+  opacity: 1;
+  max-height: 100vh;
+  display: block;
+  transform: unset;
 }
 
 
@@ -279,6 +314,7 @@ header .nav-buttons {
   grid-area: buttons;
   display: none;
   width: 100vw;
+  width: 100%;
 }
 
 header .nav[aria-expanded='true'] .nav-buttons {
@@ -290,6 +326,13 @@ header .nav-buttons .button {
   padding: 5px 20px;
   min-width: 60px;
   margin: 0 5px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+header .nav-buttons .button.light::hover {
+  background-color: var(--color-white);
+  color: var(--color-1);
 }
 
 header .nav-section.nav-section-subscribe {
@@ -435,6 +478,7 @@ header .nav-section.nav-section-subscribe form {
   }
 
   header .nav-section[aria-expanded='true'] > ul, header .nav-section[aria-expanded='true'] > .nav-section-wrapper {
+    position: absolute;
     opacity: 1;
     max-height: 100vh;
     display: block;
@@ -452,6 +496,7 @@ header .nav-section.nav-section-subscribe form {
   }
 
   header .nav-section[aria-expanded='true'] li[aria-expanded='true'] > ul {
+    position: absolute;
     opacity: 1;
     left: 280px;
     transition: left 0.1s linear;
@@ -471,6 +516,15 @@ header .nav-section.nav-section-subscribe form {
   header .nav-buttons {
     margin-top: 4px;
     display: flex;
+    width: 100vw;
+  }
+  
+  header .nav-buttons .button {
+    padding: 5px 20px;
+    min-width: 60px;
+    margin: 0 5px;
+    box-sizing: unset;
+    width: auto;
   }
 
   header .nav-section.nav-section-subscribe .nav-section-wrapper {
