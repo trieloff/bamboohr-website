@@ -63,7 +63,7 @@ main .article-feed-card-body a:any-link::after {
 }
 
 main .article-feed-card-header {
-  font-weight: 900;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 3px;
   color: var(--category-color);

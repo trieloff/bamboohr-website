@@ -11,6 +11,7 @@
  */
 
  :root {
+  --color-1: #73c41d;
   --color-white: #FFF;
   --color-gray-100: #F8F8F8;
   --color-gray-200: #E8E8E8;
@@ -21,9 +22,16 @@
   --color-gray-700: #444;
   --color-gray-800: #242424;
   --color-gray-1: #F5F4F1;
+  --color-gray-2: #EBEAE7;
   --color-gray-3: #DFDEDC;
+  --color-gray-4: #D5D4D2;
+  --color-gray-5: #C8C8C6;
   --color-gray-6: #BABAB9;
   --color-gray-7: #BABAB9;
+  --color-gray-8: #87888B;
+  --color-gray-9: #74767A;
+  --color-gray-10: #626467;
+  --color-gray-11: #55575A;
   --color-black: #000;
   --color-brand-title: #000B1D;
   --color-info-accent: #73c41d;
@@ -34,7 +42,7 @@
   /* body */
   --body-background-color: var(--color-white);
   --body-alt-background-color: var(--color-gray-600);
-  --body-font-family: 'Lato', arial, helvetica, sans-serif;
+  --body-font-family: 'Red Hat Text', sans-serif;
   --body-font-weight: 400;
   --body-color: #74767a;
   --body-line-height: 1.5;
