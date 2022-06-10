@@ -48,7 +48,7 @@ main .article-header img {
 main .article-header-eyebrow, main .article-header-eyebrow:any-link {
   color: var(--category-color);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 3px;
   text-decoration: none;
@@ -178,7 +178,7 @@ main .article-header-share img {
   }
 
   main .article-header-share a:hover {
-    background-color: #eee;
+    background-color: var(--color-gray-1);
   } 
 }
 

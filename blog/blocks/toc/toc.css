@@ -15,7 +15,7 @@ main .toc a:any-link{
 
 main .toc .toc-title {
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 3px;
 }
@@ -43,7 +43,7 @@ main .toc > ol > li::before {
     position: absolute;
     left: 0;
     top: 0;
-    font-weight: 900;
+    font-weight: 700;
     font-family: var(--font-heading-family);
 }
 

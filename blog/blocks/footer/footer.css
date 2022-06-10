@@ -41,7 +41,7 @@ footer .footer li {
 	margin: 0 0 10px;
 }
 
-footer a:any-link {
+footer a {
 	font-size: 14px;
 	line-height: var(--body-line-height-s);
 	color: var(--color-gray-6);
