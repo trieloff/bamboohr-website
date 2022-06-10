@@ -362,6 +362,10 @@ main .section > div:empty {
     margin-right: auto;
   }
 
+  .marketplace main .section > div {
+    max-width: 1200px;
+  }
+
   main .section > div > :not(div) {
     margin-left: auto;
     margin-right: auto;
