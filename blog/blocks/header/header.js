@@ -3,6 +3,7 @@ import {
   toClassName,
   decorateIcons,
   insertNewsletterForm,
+  getMetadata,
 } from '../../scripts/scripts.js';
 
 /**
@@ -25,7 +26,9 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // fetch nav content
-  const resp = await fetch('/blog/fixtures/nav.plain.html');
+  const navPath = getMetadata('nav') || '/blog/fixtures/nav';
+
+  const resp = await fetch(`${navPath}.plain.html`);
   let html = await resp.text();
 
   // forward compatibility
