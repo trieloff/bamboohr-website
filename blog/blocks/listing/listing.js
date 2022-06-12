@@ -60,7 +60,7 @@ export async function filterResults(config, facets = {}) {
   /* simple array lookup */
   if (Array.isArray(config)) {
     const pathnames = config;
-    return (pathnames.map((path) => window.pageIndex.lookup[path]).filter((e) => e));
+    return (pathnames.map((path) => window.listingIndex.lookup[path]).filter((e) => e));
   }
 
   /* setup config */

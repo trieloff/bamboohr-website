@@ -761,6 +761,16 @@ function loadFooter(footer) {
   loadBlock(footerBlock);
 }
 
+function buildCarousel(main) {
+  const pictures = [...main.querySelectorAll('picture')];
+  if (pictures[0]) {
+    const section = pictures[0].closest('div');
+    const blockStruct = pictures.map((picture) => [picture]);
+    const block = buildBlock('carousel', blockStruct);
+    section.prepend(block);
+  }
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -768,6 +778,11 @@ function loadFooter(footer) {
 // eslint-disable-next-line no-unused-vars
 function buildAutoBlocks(main) {
   try {
+    const template = getMetadata('template');
+    if (template === 'marketplace-listing') {
+      buildCarousel(main);
+    }
+
     const isBlog = buildArticleHeader(main);
     if (isBlog) {
       buildImageBlocks(main);

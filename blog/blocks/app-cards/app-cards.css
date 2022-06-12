@@ -1,0 +1,43 @@
+.app-cards > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 32px;
+}
+
+.app-cards > ul > li {
+    box-shadow: 0 26px 52px -35px rgb(31 38 23 / 50%);
+    background-color: white;
+    border-radius: 15px;
+}
+
+.app-cards .app-cards-card-body {
+    margin: 16px;
+}
+
+.app-cards .app-cards-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-cards .app-cards-card-header h4 {
+    margin: 0;
+}
+
+.app-cards .app-cards-card-image {
+    line-height: 0;
+}
+
+.app-cards .app-cards-card-body > *:first-child {
+    margin-top: 0;
+}
+
+.app-cards > ul > li .app-cards-card-image img {
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
