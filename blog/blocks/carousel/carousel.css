@@ -4,6 +4,7 @@ main .carousel-container {
 
 main .carousel-wrapper {
   padding-bottom: 128px;
+  max-width: unset;
 }
 
 main .carousel {
@@ -54,10 +55,6 @@ main .carousel div.carousel-text {
 
 main .carousel::-webkit-scrollbar {
     display: none;
-  }
-
-main .carousel-wrapper {
-  max-width: unset;
 }
 
 main .carousel-wrapper .carousel-buttons {

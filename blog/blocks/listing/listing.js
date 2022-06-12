@@ -163,7 +163,7 @@ export default async function decorate(block) {
   const highlightResults = (res) => {
     const fulltext = document.getElementById('fulltext').value;
     if (fulltext) {
-      res.querySelectorAll('h4').forEach((title) => {
+      res.querySelectorAll('h4 a').forEach((title) => {
         const content = title.textContent;
         const offset = content.toLowerCase().indexOf(fulltext.toLowerCase());
         if (offset >= 0) {
