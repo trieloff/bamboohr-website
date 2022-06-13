@@ -26,7 +26,9 @@ export default function decorate(block) {
       while (hLevel < olStack.length) olStack.pop();
       const ol = olStack[hLevel - 1];
       const li = document.createElement('li');
-      li.innerHTML = `<a href="#${h.id}">${h.textContent}</a>`;
+      const numbered = /^\d+\. /;
+      const heading = h.textContent.match(numbered) ? h.textContent.substring(h.textContent.indexOf(' ')) : h.textContent;
+      li.innerHTML = `<a href="#${h.id}">${heading}</a>`;
       ol.append(li);
       if (hLevel === 1) lastChapter = h.textContent.toLowerCase().trim();
     }
