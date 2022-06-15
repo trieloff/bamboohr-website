@@ -470,9 +470,9 @@ export function normalizeHeadings(el, allowedHeadings) {
  */
 function decorateTemplateAndTheme() {
   const template = getMetadata('template');
-  if (template) document.body.classList.add(template);
+  if (template) document.body.classList.add(toClassName(template));
   const theme = getMetadata('theme');
-  if (theme) document.body.classList.add(theme);
+  if (theme) document.body.classList.add(toClassName(theme));
 }
 
 /**
@@ -771,6 +771,12 @@ function buildCarousel(main) {
   }
 }
 
+async function buildHeader(main, type) {
+  const section = document.createElement('div');
+  section.append(buildBlock(`${type}-header`, []));
+  main.prepend(section);
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -781,6 +787,9 @@ function buildAutoBlocks(main) {
     const template = getMetadata('template');
     if (template === 'marketplace-listing') {
       buildCarousel(main);
+    }
+    if (template === 'HR Glossary') {
+      buildHeader(main, 'hr-glossary');
     }
 
     const isBlog = buildArticleHeader(main);
