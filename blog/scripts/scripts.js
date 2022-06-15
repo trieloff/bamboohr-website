@@ -771,9 +771,11 @@ function buildCarousel(main) {
   }
 }
 
-async function buildHeader(main, type) {
+async function buildPageHeader(main, type) {
   const section = document.createElement('div');
-  section.append(buildBlock(`${type}-header`, []));
+  const header = buildBlock('page-header', []);
+  header.setAttribute('data-header-location', toClassName(type));
+  section.append(header);
   main.prepend(section);
 }
 
@@ -788,8 +790,8 @@ function buildAutoBlocks(main) {
     if (template === 'marketplace-listing') {
       buildCarousel(main);
     }
-    if (template === 'HR Glossary') {
-      buildHeader(main, 'hr-glossary');
+    if (template === 'HR Glossary' || 'Job Description') {
+      buildPageHeader(main, template);
     }
 
     const isBlog = buildArticleHeader(main);

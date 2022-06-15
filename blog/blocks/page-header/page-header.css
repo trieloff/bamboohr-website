@@ -1,10 +1,10 @@
-main .hr-glossary-header-container > div {
+main .page-header-container > div {
   max-width: unset;
   margin: 0 auto;
   padding: 0;
 }
 
-main .hr-glossary-header {
+main .page-header {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,13 +13,13 @@ main .hr-glossary-header {
   height: 450px;
 }
 
-main .hr-glossary-header > div {
+main .page-header > div {
   max-width: 800px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-main .hr-glossary-header .hr-glossary-header-image {
+main .page-header .page-header-image {
   position: absolute;
   top: 0;
   width: 100%;
@@ -32,7 +32,7 @@ main .hr-glossary-header .hr-glossary-header-image {
   background-size: contain;
 }
 
-main .hr-glossary-header picture {
+main .page-header picture {
   box-sizing: border-box;
   position: absolute;
   z-index: -1;
@@ -43,26 +43,30 @@ main .hr-glossary-header picture {
   object-fit: cover;
 }
 
-main .hr-glossary-header img {
+main .page-header img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-main .hr-glossary-header .hr-glossary-header-title,
-main .hr-glossary-header .hr-glossary-header-subtitle {
+main .page-header .page-header-title,
+main .page-header .page-header-title h1,
+main .page-header .page-header-subtitle {
+  margin: 0 auto;
   color: var(--color-white);
+  font-style: unset;
   text-align: center;
 }
 
-main .hr-glossary-header .hr-glossary-header-title {
+main .page-header .page-header-title,
+main .page-header .page-header-title h1 {
   font-family: var(--heading-font-family);
   font-size: 40px;
   font-weight: 900;
   line-height: 48px;
 }
 
-main .hr-glossary-header .hr-glossary-header-subtitle {
+main .page-header .page-header-subtitle {
   margin-top: 20px;
   font-size: 18px;
   font-weight: 700;
@@ -70,23 +74,24 @@ main .hr-glossary-header .hr-glossary-header-subtitle {
 }
 
 @media (min-width: 900px) {
-  main .hr-glossary-header  {
+  main .page-header  {
     box-sizing: border-box;
     justify-content: flex-start;
     height: 430px;
-    padding-top: 100px;
+    padding-top: 106px;
   }
 
-  main .hr-glossary-header .hr-glossary-header-image {
+  main .page-header .page-header-image {
     background-size: 100% 105px;
   }
 
-  main .hr-glossary-header .hr-glossary-header-title {
+  main .page-header .page-header-title,
+  main .page-header .page-header-title h1 {
     font-size: 54px;
     line-height: 60px;
   }
 
-  main .hr-glossary-header .hr-glossary-header-subtitle {
+  main .page-header .page-header-subtitle {
     margin-top: 30px;
     font-size: 21px;
     line-height: 28px;
@@ -94,11 +99,12 @@ main .hr-glossary-header .hr-glossary-header-subtitle {
 }
 
 @media (min-width: 1200px) {
-  main .hr-glossary-header > div {
+  main .page-header > div {
     max-width: 1200px;
   }
 
-  main .hr-glossary-header .hr-glossary-header-title {
+  main .page-header .page-header-title,
+  main .page-header .page-header-title h1 {
     font-size: 70px;
     line-height: 80px;
   }
