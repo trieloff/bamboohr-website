@@ -11,6 +11,7 @@ main .carousel {
   display: flex;
   scroll-snap-type: x mandatory;
   overflow-x: scroll;
+  overflow-y: hidden;
   scroll-behavior: smooth;
   box-shadow: 0 30px 60px -40px rgb(31 38 23 / 50%);
   margin: 64px 0;
@@ -19,7 +20,6 @@ main .carousel {
 
 main .carousel picture {
   position: absolute;
-  z-index: -1;
   top: 0;
   left: 0;
   bottom: 0;
@@ -39,7 +39,8 @@ main .carousel > div {
   flex-shrink: 0;
   scroll-snap-align: start;
   position: relative;
-  height: 580px;
+  height: 55vw;
+  max-height: 950px;
   align-items: flex-end;
   display: flex;
   background-image: linear-gradient(#0000, #0008);
@@ -51,7 +52,6 @@ main .carousel div.carousel-text {
   width: 500px;
   margin: 0 auto;
 }
-  
 
 main .carousel::-webkit-scrollbar {
     display: none;
@@ -59,7 +59,7 @@ main .carousel::-webkit-scrollbar {
 
 main .carousel-wrapper .carousel-buttons {
   text-align: center;
-  margin-top: -40px;
+  margin-top: -48px;
   position: absolute;
   display: flex;
   right: 0;
@@ -76,6 +76,7 @@ main .carousel-buttons button {
   border-radius: 7px;
   border: none;
   background-color: var(--color-gray-300);
+  cursor: pointer;
 }
 
 main .carousel-buttons button.selected {
