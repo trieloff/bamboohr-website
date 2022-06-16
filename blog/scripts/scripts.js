@@ -771,6 +771,20 @@ function buildCarousel(main) {
   }
 }
 
+function buildHighlightsGrid(main) {
+  const integration = getMetadata('integration-type');
+  const direction = getMetadata('direction-of-data-flow');
+  const trigger = getMetadata('sync-trigger');
+  const frequency = getMetadata('sync-frequency');
+  const grid = buildBlock('grid', [
+    [`<img src="/blog/styles/integration-type.svg" /><h4>Integration Type</h4><p>${integration}</p>`],
+    [`<img src="/blog/styles/data-flow-direction.svg" /><h4>Direction of Data Flow</h4><p>${direction}</p>`],
+    [`<img src="/blog/styles/sync-trigger.svg" /><h4>Sync Trigger</h4><p>${trigger}</p>`],
+    [`<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`],
+  ]);
+  main.querySelector('.carousel')?.after(grid);
+}
+
 function buildPageHeader(main, type) {
   const section = document.createElement('div');
   const header = buildBlock('page-header', []);
@@ -807,6 +821,7 @@ function buildAutoBlocks(main) {
     if (template === 'marketplace-listing') {
       buildListingHeader(main);
       buildCarousel(main);
+      buildHighlightsGrid(main);
     }
     if (template === 'HR Glossary' || template === 'Job Description') {
       buildPageHeader(main, template);
