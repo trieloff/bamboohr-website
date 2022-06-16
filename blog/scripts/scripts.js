@@ -771,11 +771,28 @@ function buildCarousel(main) {
   }
 }
 
-async function buildPageHeader(main, type) {
+function buildPageHeader(main, type) {
   const section = document.createElement('div');
   const header = buildBlock('page-header', []);
   header.setAttribute('data-header-location', toClassName(type));
   section.append(header);
+  main.prepend(section);
+}
+
+function buildListingHeader(main) {
+  const section = document.createElement('div');
+  const h1 = main.querySelector('h1');
+  const category = getMetadata('category');
+  const subcategory = getMetadata('sub-category');
+  section.append(buildBlock('listing-header', [
+    [h1],
+    [`<ul>
+    <li><a href="/marketplace">Home</a></li>
+    <li><a href="/marketplace/listing-category/${toClassName(category)}">${category}</a>, 
+    <a href="/marketplace/listing-category/${toClassName(subcategory)}">${subcategory}</a></li>
+    <li>${h1.textContent}</li>
+    </ul>`],
+  ]));
   main.prepend(section);
 }
 
@@ -788,9 +805,10 @@ function buildAutoBlocks(main) {
   try {
     const template = getMetadata('template');
     if (template === 'marketplace-listing') {
+      buildListingHeader(main);
       buildCarousel(main);
     }
-    if (template === 'HR Glossary' || 'Job Description') {
+    if (template === 'HR Glossary' || template === 'Job Description') {
       buildPageHeader(main, template);
     }
 

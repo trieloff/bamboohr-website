@@ -1,0 +1,35 @@
+main .listing-header-container > div {
+  max-width: 1200px;
+  padding: 0 30px;
+  text-align: center;
+}
+
+main .listing-header a:any-link {
+  text-decoration: none;
+}
+
+main .listing-header ul {
+  padding: 0;
+  list-style: none;
+}
+
+main .listing-header ul li {
+  display: inline-block;
+}
+
+main .listing-header ul li:not(:last-of-type)::after {
+  content: '/';
+  padding-left: 6px;
+}
+
+@media (min-width: 600px) {
+  main .listing-header-container > div {
+    padding: 0 54px;
+  }
+}
+
+@media (min-width: 1200px) {
+ main .listing-header-container > div {
+    padding: 0;
+  }
+}
