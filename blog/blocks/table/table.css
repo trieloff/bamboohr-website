@@ -17,6 +17,10 @@
   width: 100%;
 }
 
+.table table thead th {
+  font-weight: bold;
+}
+
 .table table tbody tr:nth-child(odd) {
   background: var(--color-gray-100);
 }
