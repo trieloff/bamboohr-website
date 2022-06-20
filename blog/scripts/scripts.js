@@ -764,10 +764,11 @@ function loadFooter(footer) {
 function buildCarousel(main) {
   const pictures = [...main.querySelectorAll('picture')];
   if (pictures[0]) {
-    const section = pictures[0].closest('div');
+    const section = document.createElement('div');
     const blockStruct = pictures.map((picture) => [picture]);
     const block = buildBlock('carousel', blockStruct);
     section.prepend(block);
+    main.prepend(section);
   }
 }
 
@@ -783,6 +784,25 @@ function buildHighlightsGrid(main) {
     [`<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`],
   ]);
   main.querySelector('.carousel')?.after(grid);
+}
+
+function populateListingDetails(main) {
+  const details = main.querySelector('.details-container');
+  if (details) {
+    const logo = getMetadata('logo');
+    const logoImg = document.createElement('img');
+    logoImg.classList.add('details-logo');
+    logoImg.alt = `${main.querySelector('h1').textContent} logo`;
+    logoImg.src = logo;
+    details.prepend(logoImg);
+    const level = getMetadata('level');
+    if (level) {
+      const levelBtn = document.createElement('a');
+      levelBtn.id = 'marketplace-details-tier';
+      levelBtn.innerHTML = `<img class="details-badge" title="${level} badge" src="/blog/styles/${level.toLowerCase()}-badge.svg" />`;
+      logoImg.after(levelBtn);
+    }
+  }
 }
 
 function buildPageHeader(main, type) {
@@ -819,9 +839,23 @@ function buildAutoBlocks(main) {
   try {
     const template = getMetadata('template');
     if (template === 'marketplace-listing') {
-      buildListingHeader(main);
       buildCarousel(main);
+      buildListingHeader(main);
       buildHighlightsGrid(main);
+      // build request information button
+      const requestInfo = document.createElement('p');
+      requestInfo.innerHTML = '<a href="#" id="marketplace-request-info">Request Information</a>';
+      const sections = [...main.children].slice(2);
+      if (sections.length < 3) {
+        // if missing, add listing details section
+        const section = document.createElement('div');
+        main.insertBefore(section, sections[0]);
+        sections.unshift(section);
+      } 
+      sections[0].append(requestInfo);
+      const classes = ['links', 'tabs', 'details']
+      sections.forEach((section, i) => section.classList.add(`${classes[i]}-container`));
+      populateListingDetails(main);
     }
     if (template === 'HR Glossary' || template === 'Job Description') {
       buildPageHeader(main, template);
