@@ -105,6 +105,7 @@
 
 .marketplace-listing .tabs-container h2 {
   position: relative;
+  cursor: pointer;
 }
 
 .marketplace-listing .tabs-container h2::after {
@@ -118,6 +119,15 @@
   padding: 3px;
   content: '';
   transition: all .2s ease-in-out;
+}
+
+.marketplace-listing .tabs-container h2[aria-selected=true]::after {
+  transform: rotate(45deg) translateY(-50%);
+}
+
+.marketplace-listing .tabs-container [aria-hidden=true] {
+  display: none;
+  visibility: hidden;
 }
 
 .marketplace-listing .details-container {
@@ -149,7 +159,21 @@
   cursor: pointer;
 }
 
+@media (min-width: 600px) {
+  .marketplace-listing .links-container a.button {
+    display: unset;
+  }
+
+  .marketplace-listing .links-container a.button {
+    display: block;
+  }
+}
+
 @media (min-width: 1000px) {
+  .marketplace-listing main p.button-container {
+    text-align: left;
+  }
+
   .marketplace-listing .carousel-container {
     margin-top: 0;
   }

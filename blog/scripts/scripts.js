@@ -765,7 +765,10 @@ function buildCarousel(main) {
   const pictures = [...main.querySelectorAll('picture')];
   if (pictures[0]) {
     const section = document.createElement('div');
-    const blockStruct = pictures.map((picture) => [picture]);
+    const blockStruct = pictures.map((picture) => {
+      picture.parentElement.remove();
+      return [picture];
+    });
     const block = buildBlock('carousel', blockStruct);
     section.prepend(block);
     main.prepend(section);
@@ -784,6 +787,30 @@ function buildHighlightsGrid(main) {
     [`<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`],
   ]);
   main.querySelector('.carousel')?.after(grid);
+}
+
+function setupListingTabs(main) {
+  const container = main.querySelector('.tabs-container');
+  if (container) {
+    const tabs = container.querySelectorAll('h2');
+    tabs.forEach((tab) => {
+      tab.setAttribute('aria-selected', false);
+      tab.addEventListener('click', (e) => {
+        const { target } = e;
+        target.setAttribute('aria-selected', target.getAttribute('aria-selected') === 'false');
+        const content = container.querySelectorAll(`[aria-labelledby="${target.id}"]`);
+        content.forEach((c) => {
+          c.setAttribute('aria-hidden', c.getAttribute('aria-hidden') === 'false');
+        });
+      });
+      let sibling = tab.nextElementSibling;
+      while (sibling && ![...tabs].includes(sibling)) {
+        sibling.setAttribute('aria-labelledby', tab.id);
+        sibling.setAttribute('aria-hidden', true);
+        sibling = sibling.nextElementSibling;
+      }
+    })
+  }
 }
 
 function populateListingDetails(main) {
@@ -855,8 +882,10 @@ function buildAutoBlocks(main) {
       sections[0].append(requestInfo);
       const classes = ['links', 'tabs', 'details']
       sections.forEach((section, i) => section.classList.add(`${classes[i]}-container`));
+      setupListingTabs(main);
       populateListingDetails(main);
     }
+
     if (template === 'HR Glossary' || template === 'Job Description') {
       buildPageHeader(main, template);
     }
