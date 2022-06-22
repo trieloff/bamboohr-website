@@ -161,10 +161,6 @@
 
 @media (min-width: 600px) {
   .marketplace-listing .links-container a.button {
-    display: unset;
-  }
-
-  .marketplace-listing .links-container a.button {
     display: block;
   }
 }
