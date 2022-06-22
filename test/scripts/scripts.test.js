@@ -133,7 +133,7 @@ describe('Sections and blocks', () => {
 
   it('Decorates blocks', async () => {
     scripts.decorateBlocks(document.querySelector('main'));
-    expect(document.querySelectorAll('main .block').length).to.equal(1);
+    expect(document.querySelectorAll('main .block').length).to.equal(0);
   });
 
   it('Loads blocks', async () => {
@@ -141,20 +141,6 @@ describe('Sections and blocks', () => {
     document.querySelectorAll('main .block').forEach(($block) => {
       expect($block.dataset.blockStatus).to.equal('loaded');
     });
-  });
-
-  it('Updates section status', async () => {
-    scripts.updateSectionsStatus(document.querySelector('main'));
-    document.querySelectorAll('main .section').forEach(($section) => {
-      expect($section.dataset.sectionStatus).to.equal('loaded');
-    });
-
-    // test section with block still loading
-    const $section = document.querySelector('main .section');
-    delete $section.dataset.sectionStatus;
-    $section.querySelector(':scope .block').dataset.blockStatus = 'loading';
-    scripts.updateSectionsStatus(document.querySelector('main'));
-    expect($section.dataset.sectionStatus).to.equal('loading');
   });
 
   it('Reads block config', async () => {

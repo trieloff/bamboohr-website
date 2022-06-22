@@ -393,13 +393,14 @@ main .section p.button-container {
     margin: 0 auto;
     display: grid; 
     grid-template-columns: 368px calc(100% - 368px); 
-    grid-template-rows: repeat(3, auto) 1fr; 
+    grid-template-rows: repeat(3, auto) 1fr;
+    /* stylelint-disable-next-line */
     grid-template-areas: 
       'header header'
       'carousel carousel'
       'links tabs'
       'details tabs'; 
-  }
+    }
 
   .marketplace-listing .listing-header-container {
     grid-area: header;
