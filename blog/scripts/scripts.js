@@ -809,7 +809,7 @@ function setupListingTabs(main) {
         sibling.setAttribute('aria-hidden', true);
         sibling = sibling.nextElementSibling;
       }
-    })
+    });
   }
 }
 
@@ -878,9 +878,9 @@ function buildAutoBlocks(main) {
         const section = document.createElement('div');
         main.insertBefore(section, sections[0]);
         sections.unshift(section);
-      } 
+      }
       sections[0].append(requestInfo);
-      const classes = ['links', 'tabs', 'details']
+      const classes = ['links', 'tabs', 'details'];
       sections.forEach((section, i) => section.classList.add(`${classes[i]}-container`));
       setupListingTabs(main);
       populateListingDetails(main);
