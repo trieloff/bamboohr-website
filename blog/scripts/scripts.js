@@ -761,6 +761,102 @@ function loadFooter(footer) {
   loadBlock(footerBlock);
 }
 
+function buildCarousel(main) {
+  const pictures = [...main.querySelectorAll('picture')];
+  if (pictures[0]) {
+    const section = document.createElement('div');
+    const blockStruct = pictures.map((picture) => {
+      picture.parentElement.remove();
+      return [picture];
+    });
+    const block = buildBlock('carousel', blockStruct);
+    section.prepend(block);
+    main.prepend(section);
+  }
+}
+
+function buildHighlightsGrid(main) {
+  const integration = getMetadata('integration-type');
+  const direction = getMetadata('direction-of-data-flow');
+  const trigger = getMetadata('sync-trigger');
+  const frequency = getMetadata('sync-frequency');
+  const grid = buildBlock('grid', [
+    [`<img src="/blog/styles/integration-type.svg" /><h4>Integration Type</h4><p>${integration}</p>`],
+    [`<img src="/blog/styles/data-flow-direction.svg" /><h4>Direction of Data Flow</h4><p>${direction}</p>`],
+    [`<img src="/blog/styles/sync-trigger.svg" /><h4>Sync Trigger</h4><p>${trigger}</p>`],
+    [`<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`],
+  ]);
+  main.querySelector('.carousel')?.after(grid);
+}
+
+function setupListingTabs(main) {
+  const container = main.querySelector('.tabs-container');
+  if (container) {
+    const tabs = container.querySelectorAll('h2');
+    tabs.forEach((tab) => {
+      tab.setAttribute('aria-selected', false);
+      tab.addEventListener('click', (e) => {
+        const { target } = e;
+        target.setAttribute('aria-selected', target.getAttribute('aria-selected') === 'false');
+        const content = container.querySelectorAll(`[aria-labelledby="${target.id}"]`);
+        content.forEach((c) => {
+          c.setAttribute('aria-hidden', c.getAttribute('aria-hidden') === 'false');
+        });
+      });
+      let sibling = tab.nextElementSibling;
+      while (sibling && ![...tabs].includes(sibling)) {
+        sibling.setAttribute('aria-labelledby', tab.id);
+        sibling.setAttribute('aria-hidden', true);
+        sibling = sibling.nextElementSibling;
+      }
+    });
+  }
+}
+
+function populateListingDetails(main) {
+  const details = main.querySelector('.details-container');
+  if (details) {
+    const logo = getMetadata('logo');
+    const logoImg = document.createElement('img');
+    logoImg.classList.add('details-logo');
+    logoImg.alt = `${main.querySelector('h1').textContent} logo`;
+    logoImg.src = logo;
+    details.prepend(logoImg);
+    const level = getMetadata('level');
+    if (level) {
+      const levelBtn = document.createElement('a');
+      levelBtn.id = 'marketplace-details-tier';
+      levelBtn.innerHTML = `<img class="details-badge" title="${level} badge" src="/blog/styles/${level.toLowerCase()}-badge.svg" />`;
+      logoImg.after(levelBtn);
+    }
+  }
+}
+
+function buildPageHeader(main, type) {
+  const section = document.createElement('div');
+  const header = buildBlock('page-header', []);
+  header.setAttribute('data-header-location', toClassName(type));
+  section.append(header);
+  main.prepend(section);
+}
+
+function buildListingHeader(main) {
+  const section = document.createElement('div');
+  const h1 = main.querySelector('h1');
+  const category = getMetadata('category');
+  const subcategory = getMetadata('sub-category');
+  section.append(buildBlock('listing-header', [
+    [h1],
+    [`<ul>
+    <li><a href="/marketplace">Home</a></li>
+    <li><a href="/marketplace/listing-category/${toClassName(category)}">${category}</a>, 
+    <a href="/marketplace/listing-category/${toClassName(subcategory)}">${subcategory}</a></li>
+    <li>${h1.textContent}</li>
+    </ul>`],
+  ]));
+  main.prepend(section);
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
@@ -768,6 +864,32 @@ function loadFooter(footer) {
 // eslint-disable-next-line no-unused-vars
 function buildAutoBlocks(main) {
   try {
+    const template = getMetadata('template');
+    if (template === 'marketplace-listing') {
+      buildCarousel(main);
+      buildListingHeader(main);
+      buildHighlightsGrid(main);
+      // build request information button
+      const requestInfo = document.createElement('p');
+      requestInfo.innerHTML = '<a href="#" id="marketplace-request-info">Request Information</a>';
+      const sections = [...main.children].slice(2);
+      if (sections.length < 3) {
+        // if missing, add listing details section
+        const section = document.createElement('div');
+        main.insertBefore(section, sections[0]);
+        sections.unshift(section);
+      }
+      sections[0].append(requestInfo);
+      const classes = ['links', 'tabs', 'details'];
+      sections.forEach((section, i) => section.classList.add(`${classes[i]}-container`));
+      setupListingTabs(main);
+      populateListingDetails(main);
+    }
+
+    if (template === 'HR Glossary' || template === 'Job Description') {
+      buildPageHeader(main, template);
+    }
+
     const isBlog = buildArticleHeader(main);
     if (isBlog) {
       buildImageBlocks(main);

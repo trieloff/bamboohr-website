@@ -362,6 +362,10 @@ main .section > div:empty {
     margin-right: auto;
   }
 
+  .marketplace main .section > div {
+    max-width: 1200px;
+  }
+
   main .section > div > :not(div) {
     margin-left: auto;
     margin-right: auto;
@@ -372,6 +376,51 @@ main .section p.button-container {
   text-align: center;
   margin-top: 16px;
   margin-bottom: 0;
+}
+
+/* listing template styles */
+.marketplace-listing {
+  background-image: url('./header-leaf.svg'), linear-gradient(var(--color-gray-100), var(--color-gray-100) calc(400px + (100vw * 0.2)), white calc(100vw * 0.2));
+  background-position: 0 400px, top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+@media (min-width: 1000px) {
+  .marketplace-listing main {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: grid; 
+    grid-template-columns: 368px calc(100% - 368px); 
+    grid-template-rows: repeat(3, auto) 1fr;
+    /* stylelint-disable-next-line */
+    grid-template-areas: 
+      'header header'
+      'carousel carousel'
+      'links tabs'
+      'details tabs'; 
+    }
+
+  .marketplace-listing .listing-header-container {
+    grid-area: header;
+  }
+
+  .marketplace-listing .carousel-container {
+    grid-area: carousel;
+  }
+
+  .marketplace-listing .links-container {
+    grid-area: links;
+  }
+
+  .marketplace-listing .tabs-container {
+    grid-area: tabs;
+  }
+
+  .marketplace-listing .details-container {
+    grid-area: details;
+  }
 }
 
 /* category colors */
