@@ -11,7 +11,8 @@ export default async function decorate(block) {
       cell.innerHTML = col.innerHTML;
       tr.append(cell);
     });
-    i > 0 ? body.append(tr) : head.append(tr);
+    if (i > 0) body.append(tr);
+    else head.append(tr);
   });
   // populate table
   table.append(head, body);
