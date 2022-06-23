@@ -727,23 +727,29 @@ function buildImageBlocks(main) {
   });
 }
 
-export async function lookupArticles(pathnames) {
-  if (!window.pageIndex) {
-    const resp = await fetch('/blog/fixtures/blog-query-index.json');
+export async function lookupPages(pathnames, collection) {
+  const indexPaths = {
+    blog: '/blog/fixtures/blog-query-index.json',
+    marketplace: '/marketplace/query-index.json',
+  };
+  const indexPath = indexPaths[collection];
+  window.pageIndex = window.pageIndex || {};
+  if (!window.pageIndex[collection]) {
+    const resp = await fetch(indexPath);
     const json = await resp.json();
     const lookup = {};
     json.data.forEach((row) => {
       lookup[row.path] = row;
     });
-    window.pageIndex = { data: json.data, lookup };
+    window.pageIndex[collection] = { data: json.data, lookup };
   }
 
   /* guard for legacy URLs */
   pathnames.forEach((path, i) => {
     if (path.endsWith('/')) pathnames[i] = path.substr(0, path.length - 1);
   });
-
-  const result = pathnames.map((path) => window.pageIndex.lookup[path]).filter((e) => e);
+  const { lookup } = window.pageIndex[collection];
+  const result = pathnames.map((path) => lookup[path]).filter((e) => e);
   return (result);
 }
 

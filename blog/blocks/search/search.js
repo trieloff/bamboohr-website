@@ -1,5 +1,5 @@
-import { lookupArticles } from '../../scripts/scripts.js';
-import { createCard } from '../featured-articles/featured-articles.js';
+import { lookupPages } from '../../scripts/scripts.js';
+import { createBlogCard } from '../featured-articles/featured-articles.js';
 
 function highlightTextElements(terms, elements) {
   elements.forEach((e) => {
@@ -29,13 +29,13 @@ function highlightTextElements(terms, elements) {
 }
 
 async function displaySearchResults(terms, results) {
-  await lookupArticles([]);
-  const allPages = window.pageIndex.data;
+  await lookupPages([], 'blog');
+  const allPages = window.pageIndex.blog.data;
   results.textContent = '';
   const filtered = allPages.filter((e) => e.title.toLowerCase().includes(terms.toLowerCase())
     || e.description.toLowerCase().includes(terms.toLowerCase()));
   filtered.forEach((row) => {
-    results.append(createCard(row, 'search'));
+    results.append(createBlogCard(row, 'search'));
   });
   highlightTextElements(terms, results.querySelectorAll('h3, p:first-of-type'));
 }

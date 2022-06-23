@@ -1,10 +1,10 @@
 import {
-  lookupArticles,
+  lookupPages,
   createOptimizedPicture,
   toCategory,
 } from '../../scripts/scripts.js';
 
-export function createCard(article, classPrefix, eager = false) {
+export function createBlogCard(article, classPrefix, eager = false) {
   const title = article.title.split(' - ')[0];
   const card = document.createElement('div');
   card.className = `${classPrefix}-card`;
@@ -44,7 +44,7 @@ export default async function decorate(block) {
       // handle straight link
       const { pathname } = new URL(content.querySelector('a').href);
       // eslint-disable-next-line no-await-in-loop
-      const articles = await lookupArticles([pathname]);
+      const articles = await lookupPages([pathname], 'blog');
       if (articles.length) {
         const [article] = articles;
         if (i === 0) document.body.classList.add(`category-${toCategory(article.category)}`);
@@ -52,7 +52,7 @@ export default async function decorate(block) {
           article.noCategoryLink = true;
           article.category = category;
         }
-        const card = createCard(article, 'featured-articles', i === 0);
+        const card = createBlogCard(article, 'featured-articles', i === 0);
         contents.push(card.outerHTML);
       }
     } else {
