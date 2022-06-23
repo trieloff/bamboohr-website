@@ -5,3 +5,8 @@ sitemaps:
     origin: https://www.bamboohr.com
     source: /blog/fixtures/blog-query-index.json
     destination: /blog/sitemap.xml
+
+  marketplace:
+    origin: https://www.bamboohr.com
+    source: /marketplace/query-index.json
+    destination: /marketplace/sitemap.xml
