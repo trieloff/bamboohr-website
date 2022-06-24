@@ -1,5 +1,6 @@
-import { lookupPages } from '../../scripts/scripts.js';
+import { getMetadata, lookupPages } from '../../scripts/scripts.js';
 import { createBlogCard } from '../featured-articles/featured-articles.js';
+import { createAppCard } from '../app-cards/app-cards.js';
 
 function highlightTextElements(terms, elements) {
   elements.forEach((e) => {
@@ -23,21 +24,41 @@ function highlightTextElements(terms, elements) {
           markedUp += text.substring(hit.offset + hit.terms.length, matches[i + 1].offset);
         }
       });
+      if (e.closest('span') && terms) e.closest('span').classList.add('search-searchtag-highlighted');
       e.innerHTML = markedUp;
     }
   });
 }
 
 async function displaySearchResults(terms, results) {
-  await lookupPages([], 'blog');
-  const allPages = window.pageIndex.blog.data;
-  results.textContent = '';
+  let collection = 'blog';
+  if (getMetadata('theme') === 'marketplace') collection = 'marketplace';
+  await lookupPages([], collection);
+  const allPages = window.pageIndex[collection].data;
+  if (collection === 'marketplace') {
+    allPages.forEach((page) => {
+      page.searchTags = `${page.level}, ${page.listingType}, ${page.category}, ${page.subCategory}, ${page.discoverApps}`;
+    });
+  }
+  results.innerHTML = '<ul></ul>';
+  const ul = results.children[0];
   const filtered = allPages.filter((e) => e.title.toLowerCase().includes(terms.toLowerCase())
-    || e.description.toLowerCase().includes(terms.toLowerCase()));
+    || e.description.toLowerCase().includes(terms.toLowerCase())
+    || e.searchTags.toLowerCase().includes(terms.toLowerCase()));
   filtered.forEach((row) => {
-    results.append(createBlogCard(row, 'search'));
+    let card;
+    if (collection === 'blog') card = createBlogCard(row, 'search-blog');
+    if (collection === 'marketplace') card = createAppCard(row, 'search-app');
+    ul.append(card);
   });
-  highlightTextElements(terms, results.querySelectorAll('h3, p:first-of-type'));
+  highlightTextElements(terms, results.querySelectorAll('h3, p:first-of-type, span'));
+  results.querySelectorAll(('span.search-searchtag-highlighted')).forEach((span) => {
+    span.addEventListener('click', () => {
+      const searchBox = results.closest('.block').querySelector('#search-box');
+      searchBox.value = span.textContent;
+      displaySearchResults(searchBox.value.toLowerCase(), results);
+    });
+  });
 }
 
 export default async function decorate(block) {
@@ -46,6 +67,6 @@ export default async function decorate(block) {
   const searchBox = block.querySelector('#search-box');
   const results = block.querySelector('.search-results');
   searchBox.addEventListener('input', () => {
-    displaySearchResults(searchBox.value, results);
+    displaySearchResults(searchBox.value.toLowerCase(), results);
   });
 }
