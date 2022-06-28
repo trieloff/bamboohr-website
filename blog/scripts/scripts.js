@@ -784,7 +784,7 @@ function buildHighlightsColumns(main) {
     `<img src="/blog/styles/integration-type.svg" /><h4>Integration Type</h4><p>${integration}</p>`,
     `<img src="/blog/styles/data-flow-direction.svg" /><h4>Direction of Data Flow</h4><p>${direction}</p>`,
     `<img src="/blog/styles/sync-trigger.svg" /><h4>Sync Trigger</h4><p>${trigger}</p>`,
-    `<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`
+    `<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`,
   ]]);
   main.querySelector('.carousel')?.after(columns);
 }
