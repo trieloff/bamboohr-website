@@ -118,7 +118,7 @@ async function decorateAppsFeed(
 export default async function decorate(block, blockName) {
   if (block.querySelector('a')) {
     const pathnames = [...block.querySelectorAll('a')].map((a) => new URL(a.href).pathname);
-    const results = await lookupPages(pathnames);
+    const results = await lookupPages(pathnames, 'marketplace');
     block.textContent = '';
     const ul = document.createElement('ul');
     results.forEach((app) => {
