@@ -35,11 +35,16 @@ async function displaySearchResults(terms, results) {
   if (getMetadata('theme') === 'marketplace') collection = 'marketplace';
   await lookupPages([], collection);
   const allPages = window.pageIndex[collection].data;
-  if (collection === 'marketplace') {
-    allPages.forEach((page) => {
-      page.searchTags = `${page.level}, ${page.listingType}, ${page.category}, ${page.subCategory}, ${page.discoverApps}`;
-    });
-  }
+  allPages.forEach((page) => {
+    let searchTags = '';
+    if (collection === 'marketplace') {
+      searchTags = `${page.level}, ${page.listingType}, ${page.category}, ${page.subCategory}, ${page.discoverApps}`;
+    }
+    if (collection === 'blog') {
+      searchTags = `${page.tags}`;
+    }
+    page.searchTags = searchTags;
+  });
   results.innerHTML = '<ul></ul>';
   const ul = results.children[0];
   const filtered = allPages.filter((e) => e.title.toLowerCase().includes(terms.toLowerCase())

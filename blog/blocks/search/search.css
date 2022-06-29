@@ -25,14 +25,14 @@ main .search-results > ul {
   grid-gap: 32px;
 }
 
+
+/* app cards */
+
 main .search-results .search-app-card {
   box-shadow: 0 26px 52px -35px rgb(31 38 23 / 50%);
   background-color: white;
   border-radius: 15px;
 }
-
-
-/* app cards */
 
 .search-app-card-body {
   margin: 16px;
@@ -180,16 +180,3 @@ main .search .search-box {
     margin: auto;
     text-align: center;
 }
-
-@media (min-width: 600px) {
-  main .search-blog-card {
-      width: 50%;
-  }
-}
-
-@media (min-width: 900px) {
-  main .search-blog-card {
-      width: 25%;
-  }
-}
-
