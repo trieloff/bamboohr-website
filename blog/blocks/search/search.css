@@ -13,26 +13,102 @@ main .search-results {
     flex-wrap: wrap;
     max-width: 1200px;
     margin: auto;
+    padding-top: 32px;
 }
 
-main .search-card {
+main .search-results > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 32px;
+}
+
+
+/* app cards */
+
+main .search-results .search-app-card {
+  box-shadow: 0 26px 52px -35px rgb(31 38 23 / 50%);
+  background-color: white;
+  border-radius: 15px;
+}
+
+.search-app-card-body {
+  margin: 16px;
+}
+
+.search-app-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-app-card-image {
+  line-height: 0;
+}
+
+.search-app-card-image img {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  border-radius: 15px 15px 0 0;
+}
+
+.search-app-card-header h4 {
+  margin: 0;
+}
+
+.search-app-card-body > *:first-child {
+  margin-top: 0;
+}
+
+.search-app-card-search-tags span {
+  display: none;
+}
+
+.search-app-card-search-tags {
+  padding-top: 16px;
+}
+
+.search-app-card-search-tags span.search-searchtag-highlighted {
+  display: unset;
+  border: 2px solid var(--color-info-accent);
+  background-color: var(--color-info-accent);
+  margin-right: 4px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  color: white;
+  border-radius: 15px;
+  padding: 3px 8px;
+  font-size: var(--body-font-size-xs);
+  cursor: pointer;
+}
+
+.search-app-card-search-tags span.search-searchtag-highlighted .search-highlight {
+  font-weight: 600;
+  background-color: var(--color-info-accent-down);
+}
+
+/* blog cards */
+main .search-blog-card {
     width: 100%;
     box-sizing: border-box;
     padding: 10px;
     font-size: 15px;
 }
 
-main .search-card .search-card-picture {
+main .search-blog-card .search-blog-card-picture {
   margin-bottom: 25px;
 }
 
-main .search-card img {
+main .search-blog-card img {
   width: 100%;
   box-shadow: 0 30px 60px -40px rgb(31 38 23 / 50%);
   border-radius: 15px;
 }
 
-main .search-card h3 {
+main .search-blog-card h3 {
   font-family: var(--heading-font-family);
   font-size: 18px;
   font-weight: 600;
@@ -40,7 +116,7 @@ main .search-card h3 {
   margin: 0 0 20px;
 }
 
-main .search-card .search-card-readtime::before {
+main .search-blog-card .search-blog-card-readtime::before {
   content: '•';
   display: inline-block;
   margin: 1px 8px 0 4px;
@@ -48,16 +124,16 @@ main .search-card .search-card-readtime::before {
   vertical-align: top;
 }
 
-main .search-card-header a:any-link {
+main .search-blog-card-header a:any-link {
   color: inherit;
   text-decoration: inherit;
 }
 
-main .search-card .search-card-readtime:empty::before {
+main .search-blog-card .search-blog-card-readtime:empty::before {
   display: none;
 }
 
-main .search-card-body a:any-link{
+main .search-blog-card-body a:any-link{
   position: relative;
   font-weight: 700;
   text-decoration: none;
@@ -66,7 +142,7 @@ main .search-card-body a:any-link{
   font-size: 15px;
 }
 
-main .search-card-body a:any-link::after {
+main .search-blog-card-body a:any-link::after {
   content: "";
   border: solid var(--heading-color);
   border-width: 0 2.5px 2.5px 0;
@@ -78,7 +154,7 @@ main .search-card-body a:any-link::after {
   right: -20px;
 }
 
-main .search-card-header {
+main .search-blog-card-header {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -103,16 +179,4 @@ main .search input {
 main .search .search-box {
     margin: auto;
     text-align: center;
-}
-
-@media (min-width: 600px) {
-  main .search-card {
-      width: 50%;
-  }
-}
-
-@media (min-width: 900px) {
-  main .search-card {
-      width: 25%;
-  }
 }

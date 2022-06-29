@@ -1,9 +1,9 @@
 import {
-  lookupArticles,
+  lookupPages,
   readBlockConfig,
 } from '../../scripts/scripts.js';
 
-import { createCard } from '../featured-articles/featured-articles.js';
+import { createBlogCard } from '../featured-articles/featured-articles.js';
 
 function isCardOnPage(article) {
   const path = article.path.split('.')[0];
@@ -31,8 +31,8 @@ export async function filterArticles(config, feed, limit, offset) {
     }
   });
 
-  await lookupArticles([]);
-  const index = window.pageIndex;
+  await lookupPages([], 'blog');
+  const index = window.pageIndex.blog;
 
   while ((feed.data.length < limit + offset) && (!feed.complete)) {
     // eslint-disable-next-line no-await-in-loop
@@ -74,7 +74,7 @@ async function decorateArticleFeed(
   const max = pageEnd > articles.length ? articles.length : pageEnd;
   for (let i = offset; i < max; i += 1) {
     const article = articles[i];
-    cards.push(createCard(article, 'article-feed').outerHTML);
+    cards.push(createBlogCard(article, 'article-feed').outerHTML);
   }
 
   const cardGrid = document.createElement('div');
