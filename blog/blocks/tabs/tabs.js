@@ -19,14 +19,16 @@ export default function decorate(block) {
   [...block.children].forEach((tab) => {
     // setup tab title
     const title = tab.querySelector('h2');
+    const open = title.querySelector('strong') !== null;
     title.classList.add('tabs-title');
-    title.setAttribute('aria-selected', title.querySelector('strong') !== null); // bold title indicates auto-open tab
+    title.setAttribute('aria-selected', open); // bold title indicates auto-open tab
+    title.innerHTML = title.textContent;
     title.addEventListener('click', openTab);
     // setup tab content
     const content = tab.querySelector('div');
     content.classList.add('tabs-content');
     content.setAttribute('aria-labelledby', title.id);
-    content.setAttribute('aria-hidden', title.querySelector('strong') == null); // bold title indicates auto-open tab
+    content.setAttribute('aria-hidden', open); // bold title indicates auto-open tab
     // move tab and content to block root
     block.append(title, content);
     tab.remove();
