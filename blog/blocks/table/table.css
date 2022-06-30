@@ -25,10 +25,3 @@
   background: var(--color-gray-100);
 }
 
-@media (min-width: 900px) {
-  .table table, .table th, .table td {
-    padding: 16px 30px;
-    font-size: 17px;
-    line-height: 28px;
-  }
-}
