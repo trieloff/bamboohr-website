@@ -313,7 +313,7 @@ export function updateSectionsStatus(main) {
  */
 export function decorateBlocks(main) {
   main
-    .querySelectorAll('div.section > div > div')
+    .querySelectorAll('div.section div[class]:not(.default-content-wrapper)')
     .forEach((block) => decorateBlock(block));
 }
 
@@ -797,25 +797,21 @@ function buildHighlightsGrid(main) {
 
 function setupListingTabs(main) {
   const container = main.querySelector('.tabs-container');
+  const blockContent = [];
   if (container) {
     const tabs = container.querySelectorAll('h2');
     tabs.forEach((tab) => {
-      tab.setAttribute('aria-selected', false);
-      tab.addEventListener('click', (e) => {
-        const { target } = e;
-        target.setAttribute('aria-selected', target.getAttribute('aria-selected') === 'false');
-        const content = container.querySelectorAll(`[aria-labelledby="${target.id}"]`);
-        content.forEach((c) => {
-          c.setAttribute('aria-hidden', c.getAttribute('aria-hidden') === 'false');
-        });
-      });
+      const content = document.createElement('div');
       let sibling = tab.nextElementSibling;
       while (sibling && ![...tabs].includes(sibling)) {
-        sibling.setAttribute('aria-labelledby', tab.id);
-        sibling.setAttribute('aria-hidden', true);
+        content.append(sibling.cloneNode(true));
         sibling = sibling.nextElementSibling;
       }
+      content.prepend(tab);
+      if (content) blockContent.push([content.innerHTML]);
     });
+    const block = buildBlock('tabs', blockContent);
+    container.innerHTML = block.outerHTML;
   }
 }
 
@@ -850,13 +846,11 @@ function buildListingHeader(main) {
   const section = document.createElement('div');
   const h1 = main.querySelector('h1');
   const category = getMetadata('category');
-  const subcategory = getMetadata('sub-category');
   section.append(buildBlock('listing-header', [
     [h1],
     [`<ul>
     <li><a href="/marketplace">Home</a></li>
-    <li><a href="/marketplace/listing-category/${toClassName(category)}">${category}</a>, 
-    <a href="/marketplace/listing-category/${toClassName(subcategory)}">${subcategory}</a></li>
+    <li><a href="/marketplace/listing-category/${toClassName(category)}">${category}</a></li>
     <li>${h1.textContent}</li>
     </ul>`],
   ]));
