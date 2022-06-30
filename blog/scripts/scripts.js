@@ -825,10 +825,10 @@ function populateListingDetails(main) {
     logoImg.src = logo;
     details.prepend(logoImg);
     const level = getMetadata('level');
-    if (level) {
+    if (level && level !== 'BambooHR Product') {
       const levelBtn = document.createElement('a');
       levelBtn.id = 'marketplace-details-tier';
-      levelBtn.innerHTML = `<img class="details-badge" title="${level} badge" src="/blog/styles/${level.toLowerCase()}-badge.svg" />`;
+      levelBtn.innerHTML = `<img class="details-badge" title="${level} badge" src="/blog/icons/${toClassName(level)}-badge.svg" />`;
       logoImg.after(levelBtn);
     }
   }
