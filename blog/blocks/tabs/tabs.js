@@ -19,18 +19,23 @@ export default function decorate(block) {
   [...block.children].forEach((tab) => {
     // setup tab title
     const title = tab.querySelector('h2');
-    const open = title.querySelector('strong') !== null;
+    const open = title.querySelector('strong') !== null; // bold title indicates auto-open tab
     title.classList.add('tabs-title');
-    title.setAttribute('aria-selected', open); // bold title indicates auto-open tab
+    title.setAttribute('aria-selected', open);
     title.innerHTML = title.textContent;
     title.addEventListener('click', openTab);
     // setup tab content
     const content = tab.querySelector('div');
     content.classList.add('tabs-content');
     content.setAttribute('aria-labelledby', title.id);
-    content.setAttribute('aria-hidden', open); // bold title indicates auto-open tab
+    content.setAttribute('aria-hidden', open);
     // move tab and content to block root
     block.append(title, content);
     tab.remove();
   });
+  // if no tabs are open, open first tab by default
+  if (!block.querySelector('.tabs-title[aria-selected="true"]')) {
+    block.querySelector('.tabs-title').setAttribute('aria-selected', true);
+    block.querySelector('.tabs-title + .tabs-content').setAttribute('aria-hidden', false);
+  }
 }
