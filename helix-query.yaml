@@ -51,7 +51,6 @@ indices:
         value: |
           parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')
 
-
   marketplace:
     include:
       - '/marketplace/**'
@@ -81,10 +80,6 @@ indices:
         select: none
         value: |
           parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')
-      subCategory:
-        select: head > meta[name="sub-category"]
-        value: |
-          attribute(el, 'content')
       publisher:
         select: head > meta[name="publisher"]
         value: |
@@ -95,14 +90,6 @@ indices:
           attribute(el, 'content')
       level:
         select: head > meta[name="level"]
-        value: |
-          attribute(el, 'content')
-      listingType:
-        select: head > meta[name="listing-type"]
-        value: |
-          attribute(el, 'content')
-      discoverApps:
-        select: head > meta[name="discover-apps"]
         value: |
           attribute(el, 'content')
       businessSize:
@@ -119,5 +106,9 @@ indices:
           attribute(el, 'content')
       locationRestrictions:
         select: head > meta[name="location-restrictions"]
+        value: |
+          attribute(el, 'content')
+      tag:
+        select: head > meta[name="tag"]
         value: |
           attribute(el, 'content')
