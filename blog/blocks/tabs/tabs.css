@@ -65,6 +65,10 @@ main .tabs .tabs-content[aria-hidden=true] {
 }
 
 @media (min-width: 1000px) {
+  main .tabs {
+    justify-content: unset;
+  }
+
   main .tabs .tabs-title:not(:last-child) {
     margin-right: 40px;
   }
