@@ -108,7 +108,7 @@ indices:
         select: head > meta[name="location-restrictions"]
         value: |
           attribute(el, 'content')
-      discountPackaging:
-        select: body h2#discount-packaging + *
+      tag:
+        select: head > meta[name="tag"]
         value: |
-          textContent(el)
+          attribute(el, 'content')
