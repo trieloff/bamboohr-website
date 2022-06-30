@@ -1,0 +1,71 @@
+main .tabs {
+  max-width: 100%;
+}
+
+main .tabs .tabs-title {
+  position: relative;
+}
+
+main .tabs .tabs-title[aria-selected=false] {
+  cursor: pointer;
+}
+
+main .tabs .tabs-title::after {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: rotate(-45deg) translateY(-50%);
+  margin-left: 15px;
+  border: solid var(--heading-color);
+  border-width: 0 3px 3px 0;
+  padding: 3px;
+  content: '';
+  transition: all .2s ease-in-out;
+}
+
+main .tabs .tabs-title[aria-selected=true]::after {
+  transform: rotate(45deg) translateY(-50%);
+}
+
+main .tabs .tabs-content[aria-hidden=true] {
+  display: none;
+  visibility: hidden;
+}
+
+@media (min-width: 600px) {
+  main .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  main .tabs .tabs-title {
+    order: 1;
+    margin: 0;
+    border-bottom: 4px solid transparent;
+    padding-bottom: 20px;
+  }
+
+  main .tabs .tabs-title[aria-selected=false] {
+    color: var(--color-gray-5);
+  }
+
+  main .tabs .tabs-title[aria-selected=true] {
+    border-color: var(--color-info-accent);
+  }
+
+  main .tabs .tabs-title::after {
+    border: 0;
+  }
+
+  main .tabs .tabs-content {
+    order: 2;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1000px) {
+  main .tabs .tabs-title:not(:last-child) {
+    margin-right: 40px;
+  }
+}
