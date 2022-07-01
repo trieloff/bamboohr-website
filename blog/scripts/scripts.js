@@ -781,18 +781,18 @@ function buildCarousel(main) {
   }
 }
 
-function buildHighlightsGrid(main) {
+function buildHighlightsColumns(main) {
   const integration = getMetadata('integration-type');
   const direction = getMetadata('direction-of-data-flow');
   const trigger = getMetadata('sync-trigger');
   const frequency = getMetadata('sync-frequency');
-  const grid = buildBlock('grid', [
-    [`<img src="/blog/styles/integration-type.svg" /><h4>Integration Type</h4><p>${integration}</p>`],
-    [`<img src="/blog/styles/data-flow-direction.svg" /><h4>Direction of Data Flow</h4><p>${direction}</p>`],
-    [`<img src="/blog/styles/sync-trigger.svg" /><h4>Sync Trigger</h4><p>${trigger}</p>`],
-    [`<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`],
-  ]);
-  main.querySelector('.carousel')?.after(grid);
+  const columns = buildBlock('columns', [[
+    `<img src="/blog/styles/integration-type.svg" /><h4>Integration Type</h4><p>${integration}</p>`,
+    `<img src="/blog/styles/data-flow-direction.svg" /><h4>Direction of Data Flow</h4><p>${direction}</p>`,
+    `<img src="/blog/styles/sync-trigger.svg" /><h4>Sync Trigger</h4><p>${trigger}</p>`,
+    `<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`,
+  ]]);
+  main.querySelector('.carousel')?.after(columns);
 }
 
 function setupListingTabs(main) {
@@ -874,7 +874,7 @@ function buildAutoBlocks(main) {
     if (template === 'marketplace-listing') {
       buildCarousel(main);
       buildListingHeader(main);
-      buildHighlightsGrid(main);
+      buildHighlightsColumns(main);
       // build request information button
       const requestInfo = document.createElement('p');
       requestInfo.innerHTML = '<a href="#" id="marketplace-request-info">Request Information</a>';
