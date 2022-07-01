@@ -23,13 +23,28 @@ export function createAppCard(app, prefix) {
   return (card);
 }
 
+function compareFilterVal(filter, filterVal, appVal) {
+  let matchedFilter = false;
+  if (appVal) {
+    if (filterVal === '*') {
+      matchedFilter = true;
+    } else if (filter === 'tag') {
+      const vals = appVal.split(',');
+      matchedFilter = vals.some((v) => (v && v.toLowerCase().trim() === filterVal));
+    } else if (appVal.toLowerCase().includes(filterVal)) {
+      matchedFilter = true;
+    }
+  }
+  return matchedFilter;
+}
+
 export async function filterApps(config, feed, limit, offset) {
   const result = [];
 
-  /* filter apps by discoverApps, level etc. */
+  /* filter apps by level, tag etc. */
   const filters = {};
   Object.keys(config).forEach((key) => {
-    const filterNames = ['discoverApps', 'level'];
+    const filterNames = ['level', 'tag'];
     if (filterNames.includes(key)) {
       const vals = config[key];
       if (vals) {
@@ -44,10 +59,13 @@ export async function filterApps(config, feed, limit, offset) {
 
   /* sort options */
   config.sortBy = toCamelCase(config.sortBy);
-  const levels = ['pro', 'elite', 'bamboohr'];
+  const levels = ['pro', 'elite', 'bamboohr-product'];
   const sorts = {
     name: (a, b) => a.title.localeCompare(b.title),
-    level: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level)),
+    level: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level))
+                      || a.title.localeCompare(b.title),
+    updatedDate: (a, b) => b.updatedDate.localeCompare(a.updatedDate)
+                            || a.title.localeCompare(b.title),
   };
 
   await lookupPages([], 'marketplace');
@@ -62,7 +80,7 @@ export async function filterApps(config, feed, limit, offset) {
     const feedChunk = indexChunk.filter((app) => {
       const matchedAll = Object.keys(filters).every((key) => {
         const matchedFilter = filters[key].some((val) => (app[key]
-          && app[key].toLowerCase().includes(val)));
+          && compareFilterVal(key, val, app[key])));
         return matchedFilter;
       });
       return (matchedAll && !result.includes(app));
