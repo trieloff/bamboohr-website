@@ -313,7 +313,7 @@ export function updateSectionsStatus(main) {
  */
 export function decorateBlocks(main) {
   main
-    .querySelectorAll('div.section > div > div')
+    .querySelectorAll('div.section div[class]:not(.default-content-wrapper)')
     .forEach((block) => decorateBlock(block));
 }
 
@@ -781,41 +781,37 @@ function buildCarousel(main) {
   }
 }
 
-function buildHighlightsGrid(main) {
+function buildHighlightsColumns(main) {
   const integration = getMetadata('integration-type');
   const direction = getMetadata('direction-of-data-flow');
   const trigger = getMetadata('sync-trigger');
   const frequency = getMetadata('sync-frequency');
-  const grid = buildBlock('grid', [
-    [`<img src="/blog/styles/integration-type.svg" /><h4>Integration Type</h4><p>${integration}</p>`],
-    [`<img src="/blog/styles/data-flow-direction.svg" /><h4>Direction of Data Flow</h4><p>${direction}</p>`],
-    [`<img src="/blog/styles/sync-trigger.svg" /><h4>Sync Trigger</h4><p>${trigger}</p>`],
-    [`<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`],
-  ]);
-  main.querySelector('.carousel')?.after(grid);
+  const columns = buildBlock('columns', [[
+    `<img src="/blog/styles/integration-type.svg" /><h4>Integration Type</h4><p>${integration}</p>`,
+    `<img src="/blog/styles/data-flow-direction.svg" /><h4>Direction of Data Flow</h4><p>${direction}</p>`,
+    `<img src="/blog/styles/sync-trigger.svg" /><h4>Sync Trigger</h4><p>${trigger}</p>`,
+    `<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`,
+  ]]);
+  main.querySelector('.carousel')?.after(columns);
 }
 
 function setupListingTabs(main) {
   const container = main.querySelector('.tabs-container');
+  const blockContent = [];
   if (container) {
     const tabs = container.querySelectorAll('h2');
     tabs.forEach((tab) => {
-      tab.setAttribute('aria-selected', false);
-      tab.addEventListener('click', (e) => {
-        const { target } = e;
-        target.setAttribute('aria-selected', target.getAttribute('aria-selected') === 'false');
-        const content = container.querySelectorAll(`[aria-labelledby="${target.id}"]`);
-        content.forEach((c) => {
-          c.setAttribute('aria-hidden', c.getAttribute('aria-hidden') === 'false');
-        });
-      });
+      const content = document.createElement('div');
       let sibling = tab.nextElementSibling;
       while (sibling && ![...tabs].includes(sibling)) {
-        sibling.setAttribute('aria-labelledby', tab.id);
-        sibling.setAttribute('aria-hidden', true);
+        content.append(sibling.cloneNode(true));
         sibling = sibling.nextElementSibling;
       }
+      content.prepend(tab);
+      if (content) blockContent.push([content.innerHTML]);
     });
+    const block = buildBlock('tabs', blockContent);
+    container.innerHTML = block.outerHTML;
   }
 }
 
@@ -829,10 +825,10 @@ function populateListingDetails(main) {
     logoImg.src = logo;
     details.prepend(logoImg);
     const level = getMetadata('level');
-    if (level) {
+    if (level && level !== 'BambooHR Product') {
       const levelBtn = document.createElement('a');
       levelBtn.id = 'marketplace-details-tier';
-      levelBtn.innerHTML = `<img class="details-badge" title="${level} badge" src="/blog/styles/${level.toLowerCase()}-badge.svg" />`;
+      levelBtn.innerHTML = `<img class="details-badge" title="${level} badge" src="/blog/icons/${toClassName(level)}-badge.svg" />`;
       logoImg.after(levelBtn);
     }
   }
@@ -850,13 +846,11 @@ function buildListingHeader(main) {
   const section = document.createElement('div');
   const h1 = main.querySelector('h1');
   const category = getMetadata('category');
-  const subcategory = getMetadata('sub-category');
   section.append(buildBlock('listing-header', [
     [h1],
     [`<ul>
     <li><a href="/marketplace">Home</a></li>
-    <li><a href="/marketplace/listing-category/${toClassName(category)}">${category}</a>, 
-    <a href="/marketplace/listing-category/${toClassName(subcategory)}">${subcategory}</a></li>
+    <li><a href="/marketplace/listing-category/${toClassName(category)}">${category}</a></li>
     <li>${h1.textContent}</li>
     </ul>`],
   ]));
@@ -874,7 +868,7 @@ function buildAutoBlocks(main) {
     if (template === 'marketplace-listing') {
       buildCarousel(main);
       buildListingHeader(main);
-      buildHighlightsGrid(main);
+      buildHighlightsColumns(main);
       // build request information button
       const requestInfo = document.createElement('p');
       requestInfo.innerHTML = '<a href="#" id="marketplace-request-info">Request Information</a>';
