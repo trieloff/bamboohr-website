@@ -62,8 +62,10 @@ export async function filterApps(config, feed, limit, offset) {
   const levels = ['pro', 'elite', 'bamboohr-product'];
   const sorts = {
     name: (a, b) => a.title.localeCompare(b.title),
-    level: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level)) || a.title.localeCompare(b.title),
-    updatedDate: (a, b) => b.updatedDate.localeCompare(a.updatedDate) || a.title.localeCompare(b.title),
+    level: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level))
+                      || a.title.localeCompare(b.title),
+    updatedDate: (a, b) => b.updatedDate.localeCompare(a.updatedDate)
+                            || a.title.localeCompare(b.title),
   };
 
   await lookupPages([], 'marketplace');
