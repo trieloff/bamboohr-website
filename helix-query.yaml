@@ -112,7 +112,7 @@ indices:
         select: head > meta[name="tag"]
         value: |
           attribute(el, 'content')
-      updatedDate:
-        select: head > meta[name="updated-date"]
+      publicationDate:
+        select: head > meta[name="publication-date"]
         value: |
           attribute(el, 'content')

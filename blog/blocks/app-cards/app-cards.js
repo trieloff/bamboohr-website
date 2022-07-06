@@ -65,8 +65,8 @@ export async function filterApps(config, feed, limit, offset) {
     name: (a, b) => a.title.localeCompare(b.title),
     level: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level))
                       || a.title.localeCompare(b.title),
-    updatedDate: (a, b) => b.updatedDate.localeCompare(a.updatedDate)
-                            || a.title.localeCompare(b.title),
+    publicationDate: (a, b) => b.publicationDate.localeCompare(a.publicationDate)
+                                || a.title.localeCompare(b.title),
   };
 
   await lookupPages([], 'marketplace');
@@ -117,7 +117,7 @@ async function decorateAppsFeed(
   }
 
   /* add load more if needed */
-  if (apps.length > pageEnd || !feed.complete) {
+  if ((apps.length > pageEnd && config.maxLimit?.toLowerCase() !== 'yes') || !feed.complete) {
     const wrapper = document.createElement('div');
     wrapper.className = 'load-more-wrapper';
     const loadMore = document.createElement('a');
