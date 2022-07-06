@@ -20,15 +20,15 @@
 .app-cards .app-cards-card.app-cards-card-sponsored::before,
 .app-cards .app-cards-card.app-cards-card-discount.app-cards-card-sponsored::after {
     font-size: 8px;
-	line-height: 9px;
-	font-weight: 700;
-	letter-spacing: 0.2px;
-	padding: 7px 20px;
-	position: absolute;
+    line-height: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    padding: 7px 20px;
+    position: absolute;
     transform: rotate(45deg);
-	text-align: center;
+    text-align: center;
     min-width: 108px;
-	top: 20px;
+    top: 20px;
     right: -46px;
 }
 
@@ -42,13 +42,13 @@
 .app-cards .app-cards-card.app-cards-card-sponsored::before,
 .app-cards .app-cards-card.app-cards-card-discount.app-cards-card-sponsored::before {
     content: 'SPONSORED';
-	color: #00673B;
-	background-color: #EDFFC8;
+    color: #00673B;
+    background-color: #EDFFC8;
 }
 
 .app-cards .app-cards-card.app-cards-card-discount.app-cards-card-sponsored::after {
     min-width: 175px;
-	top: 35px;
+    top: 35px;
     right: -58px;
 }
 
