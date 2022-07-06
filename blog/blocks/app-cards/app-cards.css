@@ -73,6 +73,11 @@
     margin-left: 8px;
 }
 
+.marketplace main .app-cards-card-detail a:any-link {
+    color: var(--color-1-shade-5);
+    text-decoration: none;
+  }
+
 @media (min-width: 600px) {
     .app-cards > ul {
         display: grid;

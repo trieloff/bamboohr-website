@@ -93,6 +93,11 @@ main .featured-articles-container {
   background-size: contain, contain;
 }
 
+main .featured-articles-container > div.default-content-wrapper {
+  padding: 64px;
+  text-align: center;
+}
+
 main .featured-articles-hero {
   padding-top: 40px;
 }

@@ -313,11 +313,6 @@ main a.cta-link:focus {
   color: var(--color-info-accent-down);
 }
 
-.marketplace main a:any-link {
-  color: var(--color-1-shade-5);
-  text-decoration: none;
-}
-
 main img,
 main video {
   max-width: 100%;
@@ -385,7 +380,7 @@ main .section p.button-container {
 }
 
 /* listing template styles */
-.marketplace-listing {
+.marketplace {
   background-image: url('./header-leaf.svg'), linear-gradient(var(--color-gray-100), var(--color-gray-100) calc(400px + (100vw * 0.2)), white calc(100vw * 0.2));
   background-position: 0 400px, top;
   background-repeat: no-repeat;
@@ -545,8 +540,3 @@ main .default-content-wrapper ul li {
 main .section[data-section-status='loading'], main .section[data-section-status='initialized'] {
     display: none;
   }
-
-main .featured-articles-container > div.default-content-wrapper {
-  padding: 64px;
-  text-align: center;
-}
