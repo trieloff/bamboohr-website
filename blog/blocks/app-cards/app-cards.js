@@ -9,6 +9,13 @@ import {
 export function createAppCard(app, prefix) {
   const card = document.createElement('li');
   card.className = `${prefix}-card`;
+
+  if (app.tag) {
+    const tags = app.tag.split(', ');
+    const tag = tags.map(v => toCamelCase(v)).join('-');
+    card.classList.add(`${prefix}-card-${tag}`);
+  }
+  
   const title = app.title.split(' - ')[0];
   const level = app.level ? `<img src="/blog/icons/${toClassName(app.level)}-badge.svg">` : '';
   const picture = createOptimizedPicture(app.image, title, false, [{ width: 750 }]).outerHTML;
