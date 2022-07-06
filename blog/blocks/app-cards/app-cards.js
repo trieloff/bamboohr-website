@@ -14,7 +14,7 @@ export function createAppCard(app, prefix) {
     const tags = app.tag.split(', ');
     tags.map((v) => card.classList.add(`${prefix}-card-${toCamelCase(v)}`));
   }
-  
+
   const title = app.title.split(' - ')[0];
   const level = app.level ? `<img src="/blog/icons/${toClassName(app.level)}-badge.svg">` : '';
   const picture = createOptimizedPicture(app.image, title, false, [{ width: 750 }]).outerHTML;
