@@ -11,6 +11,47 @@
     margin-bottom: 30px;
 }
 
+.app-cards .app-cards-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.app-cards .app-cards-card.app-cards-card-discount::before,
+.app-cards .app-cards-card.app-cards-card-sponsored::before,
+.app-cards .app-cards-card.app-cards-card-discount.app-cards-card-sponsored::after {
+    font-size: 8px;
+	line-height: 9px;
+	font-weight: 700;
+	letter-spacing: 0.2px;
+	padding: 7px 20px;
+	position: absolute;
+    transform: rotate(45deg);
+	text-align: center;
+    min-width: 108px;
+	top: 20px;
+    right: -46px;
+}
+
+.app-cards .app-cards-card.app-cards-card-discount::before,
+.app-cards .app-cards-card.app-cards-card-discount.app-cards-card-sponsored::after{
+    content: 'SPECIAL OFFER';
+    color: #7C3000;
+    background-color: #FFF58F;
+}
+
+.app-cards .app-cards-card.app-cards-card-sponsored::before,
+.app-cards .app-cards-card.app-cards-card-discount.app-cards-card-sponsored::before {
+    content: 'SPONSORED';
+	color: #00673B;
+	background-color: #EDFFC8;
+}
+
+.app-cards .app-cards-card.app-cards-card-discount.app-cards-card-sponsored::after {
+    min-width: 175px;
+	top: 35px;
+    right: -58px;
+}
+
 .app-cards .app-cards-card-body {
     padding: 0 25px 30px;
 }
@@ -59,6 +100,8 @@
     font-weight: 700;
     line-height: var(--body-line-height);
     display: inline-block;
+    color: var(--color-1-shade-5);
+    text-decoration: none;
 }
 
 .app-cards .app-cards-card-detail a::after {
@@ -72,11 +115,6 @@
     top: 50%;
     margin-left: 8px;
 }
-
-.marketplace main .app-cards-card-detail a:any-link {
-    color: var(--color-1-shade-5);
-    text-decoration: none;
-  }
 
 @media (min-width: 600px) {
     .app-cards > ul {
@@ -123,6 +161,7 @@
         transition: all .3s ease-in-out;
         display: flex;
         flex-direction: column;
+        z-index: 1;
     }
 
     .app-cards .app-cards-card:hover .app-cards-card-body {

@@ -12,8 +12,7 @@ export function createAppCard(app, prefix) {
 
   if (app.tag) {
     const tags = app.tag.split(', ');
-    const tag = tags.map(v => toCamelCase(v)).join('-');
-    card.classList.add(`${prefix}-card-${tag}`);
+    tags.map(v => card.classList.add(`${prefix}-card-${toCamelCase(v)}`));
   }
   
   const title = app.title.split(' - ')[0];
