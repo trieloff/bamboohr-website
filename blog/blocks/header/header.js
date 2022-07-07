@@ -62,20 +62,22 @@ export default async function decorate(block) {
         }
         navSections.append(navSection);
         navSection.classList.add('nav-section');
-        h2.addEventListener('click', () => {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          collapseAll([...navSections.children]);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        });
-        navSection.querySelectorAll(':scope > ul > li').forEach((li) => {
-          if (!li.querySelector(':scope > a')) {
-            li.addEventListener('click', () => {
-              const expanded = li.getAttribute('aria-expanded') === 'true';
-              collapseAll([...nav.querySelectorAll('li[aria-expanded="true"]')]);
-              li.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-            });
-          }
-        });
+        if (!h2.querySelector('a')) {
+          h2.addEventListener('click', () => {
+            const expanded = navSection.getAttribute('aria-expanded') === 'true';
+            collapseAll([...navSections.children]);
+            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          });
+          navSection.querySelectorAll(':scope > ul > li').forEach((li) => {
+            if (!li.querySelector(':scope > a')) {
+              li.addEventListener('click', () => {
+                const expanded = li.getAttribute('aria-expanded') === 'true';
+                collapseAll([...nav.querySelectorAll('li[aria-expanded="true"]')]);
+                li.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+              });
+            }
+          });
+        }
       } else {
         const buttons = navSection;
         buttons.className = 'nav-buttons';
