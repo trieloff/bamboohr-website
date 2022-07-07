@@ -53,7 +53,8 @@ export default async function decorate(block) {
       const h2 = navSection.querySelector('h2');
       if (h2) {
         const ul = navSection.querySelector('ul');
-        if (!ul) {
+
+        if (!ul && !h2.querySelector('a')) {
           navSection.classList.add(`nav-section-${toClassName(h2.textContent)}`);
           const wrapper = document.createElement('div');
           wrapper.className = 'nav-section-wrapper';

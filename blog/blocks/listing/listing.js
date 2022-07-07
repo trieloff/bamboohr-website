@@ -270,8 +270,6 @@ export default async function decorate(block) {
   const runSearch = async (filterConfig = config) => {
     const facets = {
       category: {},
-      listingType: {},
-      discoverApps: {},
       businessSize: {},
       dataFlow: {},
       industryServed: {},

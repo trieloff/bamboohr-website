@@ -38,7 +38,7 @@ async function displaySearchResults(terms, results) {
   allPages.forEach((page) => {
     let searchTags = '';
     if (collection === 'marketplace') {
-      searchTags = `${page.level}, ${page.listingType}, ${page.category}, ${page.subCategory}, ${page.discoverApps}`;
+      searchTags = `${page.level}, ${page.tag}, ${page.category}`;
     }
     if (collection === 'blog') {
       searchTags = `${page.tags}`;
