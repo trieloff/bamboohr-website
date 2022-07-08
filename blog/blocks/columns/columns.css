@@ -23,15 +23,11 @@
     line-height: 28px;
 }
 
-.home-more .columns p,
-.home-more .columns a.button:any-link {
+.home-more .columns p {
     color: var(--heading-color);
     font-family: var(--body-font-family);
     font-size: var(--heading-font-size-xs);
     line-height: 27px;
-}
-
-.home-more .columns p {
     font-weight: 400;
 }
 
@@ -49,6 +45,13 @@
     margin: 0;
     padding: 0;
     border: 0;
+}
+
+.home-more .columns a.button:any-link {
+    color: var(--heading-color);
+    font-family: var(--body-font-family);
+    font-size: var(--heading-font-size-xs);
+    line-height: 27px;
 }
 
 .home-featured-cat .columns a.button:any-link {
@@ -86,14 +89,15 @@
     margin-top: 30px;
 }
 
+.columns-3-cols img,
 .columns-4-cols img,
-.home-featured-cat .columns img {
+.home-featured-cat .columns img,
+.home-more .columns img {
     width: auto;
 }
 
 .columns-3-cols img,
 .home-more .columns img {
-    width: auto;
     margin-bottom: 24px;
 }
 
@@ -109,13 +113,16 @@
         flex-direction: unset;
     }
 
+    .columns-3-cols > div,
+    .columns-4-cols > div {
+        align-items: flex-start;
+    }
+
     .columns > div > div {
         flex: 1;
         margin-left: 32px;
     }
 
-    .columns-3-cols > div,
-    .columns-4-cols > div,
     .home-featured-cat .columns > div,
     .home-more .columns > div {
         align-items: flex-start;

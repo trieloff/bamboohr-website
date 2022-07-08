@@ -1,7 +1,6 @@
 .app-cards-header .app-cards-header-row {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 30px;
