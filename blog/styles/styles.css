@@ -39,6 +39,7 @@
   --color-info-accent-hover: #73c41d;
   --color-info-accent-down: #80d32c;
   --color-info-accent-light: #DEDEF9;
+  --color-5: #16ACFF;
 
   /* body */
   --body-background-color: var(--color-white);
@@ -386,6 +387,15 @@ main .section p.button-container {
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.marketplace-listing .links-container :not(:last-child).button-container .button {
+    background-color: var(--color-1-shade-5);
+}
+
+.marketplace-listing .links-container .button-container .button {
+    background-color: var(--color-5);
+}
+
 
 @media (min-width: 1000px) {
   .marketplace-listing main {
