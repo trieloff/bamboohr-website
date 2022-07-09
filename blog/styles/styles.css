@@ -394,7 +394,7 @@ main .section.app-cards-container {
 /* listing template styles */
 .marketplace-home {
   background-image: url('./leaf-top-1.svg'), linear-gradient(var(--color-gray-3), var(--color-gray-3) calc(400px + (100vw * 0.2)), white calc(100vw * 0.2));
-  background-position: 0 520px, top;
+  background-position: 0 524px, top;
   background-repeat: no-repeat;
   background-size: contain;
 }
