@@ -14,11 +14,6 @@ main .callout {
   box-shadow: none;
 }
 
-.marketplace  main .callout-container > div.default-content-wrapper {
-  padding: 64px;
-  text-align: center;
-}
-
 main .callout.left,
 main .callout.right {
   text-align: left;
