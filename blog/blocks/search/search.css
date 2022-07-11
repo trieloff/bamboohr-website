@@ -3,6 +3,10 @@ main .section > div.search-wrapper {
     max-width: unset;
 }
 
+.marketplace-home main .section > div.search-wrapper {
+  min-height: 250px;
+}
+
 main .search .search-highlight {
     background: var(--color-info-accent);
     color: unset;

@@ -85,6 +85,7 @@ export async function filterApps(config, feed, limit, offset) {
 
     /* filter and ignore if already in result */
     const feedChunk = indexChunk.filter((app) => {
+      if (app.robots === 'noindex') return false;
       const matchedAll = Object.keys(filters).every((key) => {
         const matchedFilter = filters[key].some((val) => (app[key]
           && compareFilterVal(key, val, app[key])));
