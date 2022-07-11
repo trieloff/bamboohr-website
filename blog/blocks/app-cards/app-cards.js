@@ -51,7 +51,7 @@ export async function filterApps(config, feed, limit, offset) {
   /* filter apps by level, tag etc. */
   const filters = {};
   Object.keys(config).forEach((key) => {
-    const filterNames = ['level', 'tag'];
+    const filterNames = ['category', 'level', 'tag'];
     if (filterNames.includes(key)) {
       const vals = config[key];
       if (vals) {
@@ -159,5 +159,6 @@ export default async function decorate(block, blockName) {
 
     block.innerHTML = '';
     await decorateAppsFeed(block, config);
+    console.log(block);
   }
 }
