@@ -1,16 +1,17 @@
 import { fetchPlaceholders, readBlockConfig } from '../../scripts/scripts.js';
+import { createAppCard } from '../app-cards/app-cards.js';
 
 // eslint-disable-next-line no-unused-vars
-function createResultCard(result, prefix, ph) {
-  const card = document.createElement('div');
-  card.className = `${prefix}-card`;
-  card.innerHTML = /* html */`
-    <a><img src="${result.image}" alt="${result.title}" width="150" height="150"/></a>
-     <div class="${prefix}-card-body">
-      <h4><a href="${result.path}">${result.title}</a></h4>
-    </div>`;
-  return (card);
-}
+// function createResultCard(result, prefix, ph) {
+//   const card = document.createElement('div');
+//   card.className = `${prefix}-card`;
+//   card.innerHTML = /* html */`
+//     <a><img src="${result.image}" alt="${result.title}" width="150" height="150"/></a>
+//      <div class="${prefix}-card-body">
+//       <h4><a href="${result.path}">${result.title}</a></h4>
+//     </div>`;
+//   return (card);
+// }
 
 function getBlockHTML(ph) {
   return /* html */`
@@ -29,8 +30,8 @@ function getBlockHTML(ph) {
     </ul>
   </div>
   </div>
-  <div class="listing-results">
-  </div>`;
+  <ul class="listing-results">
+  </ul>`;
 }
 
 function getFacetHTML(ph) {
@@ -176,7 +177,7 @@ export default async function decorate(block) {
   const displayResults = async (results) => {
     resultsElement.innerHTML = '';
     results.forEach((product) => {
-      resultsElement.append(createResultCard(product, 'listing', ph));
+      resultsElement.append(createAppCard(product, 'listing', ph));
     });
     highlightResults(resultsElement);
   };
