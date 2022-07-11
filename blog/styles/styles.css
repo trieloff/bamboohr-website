@@ -417,7 +417,7 @@ main .section.app-cards-container {
 }
 
 .marketplace-home main .search-container > div.default-content-wrapper {
-  padding: 32px 64px 14px 64px;
+  padding: 32px 64px 14px;
   text-align: center;
 }
 
