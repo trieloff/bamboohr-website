@@ -137,7 +137,7 @@ a.button:any-link {
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: 'Fira Sans';
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   color: var(--color-white);
   background-color: var(--color-info-accent);
