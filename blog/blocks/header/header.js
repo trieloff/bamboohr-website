@@ -136,5 +136,8 @@ export default async function decorate(block) {
     collapseAll([...nav.querySelectorAll('[aria-expanded="true"]')]);
   });
 
-  block.append(createSearch());
+  let collection = 'blog';
+  if (getMetadata('theme') === 'marketplace') collection = 'marketplace';
+
+  if (collection === 'blog') block.append(createSearch());
 }

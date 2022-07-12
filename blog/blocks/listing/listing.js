@@ -294,9 +294,5 @@ export default async function decorate(block, blockName) {
     runSearch(createFilterConfig());
   });
 
-  if (!Object.keys(config).includes('fulltext')) {
-    fulltextElement.style.display = 'none';
-  }
-
   runSearch(config);
 }
