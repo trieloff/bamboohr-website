@@ -1,17 +1,10 @@
-import { fetchPlaceholders, readBlockConfig } from '../../scripts/scripts.js';
+import {
+  fetchPlaceholders,
+  readBlockConfig,
+  toClassName,
+  toCamelCase,
+} from '../../scripts/scripts.js';
 import { createAppCard } from '../app-cards/app-cards.js';
-
-// eslint-disable-next-line no-unused-vars
-// function createResultCard(result, prefix, ph) {
-//   const card = document.createElement('div');
-//   card.className = `${prefix}-card`;
-//   card.innerHTML = /* html */`
-//     <a><img src="${result.image}" alt="${result.title}" width="150" height="150"/></a>
-//      <div class="${prefix}-card-body">
-//       <h4><a href="${result.path}">${result.title}</a></h4>
-//     </div>`;
-//   return (card);
-// }
 
 function getBlockHTML(ph) {
   return /* html */`
@@ -23,10 +16,11 @@ function getBlockHTML(ph) {
   <div class="listing-facets">
   </div>
   <div class="listing-sortby">
-    <p>${ph.sortBy} <span data-sort="best" id="listing-sortby">${ph.bestMatch}</span></p>
+    <p>${ph.sortBy} <span data-sort="default" id="listing-sortby">${ph.default}</span></p>
     <ul>
-      <li data-sort="best">${ph.bestMatch}</li>
+      <li data-sort="default">${ph.default}</li>
       <li data-sort="name">${ph.name}</li>
+      <li data-sort="newest">${ph.newest}</li>
     </ul>
   </div>
   </div>
@@ -126,8 +120,12 @@ export default async function decorate(block) {
     });
   };
 
-  let config = [...document.querySelectorAll('a')].map((a) => new URL(a.href).pathname);
-  if (!config.length) config = readBlockConfig(block);
+  let blockConfig = [...document.querySelectorAll('a')].map((a) => new URL(a.href).pathname);
+  if (!blockConfig.length) blockConfig = readBlockConfig(block);
+
+  /* camelCase config */
+  const config = {};
+  Object.keys(blockConfig).forEach((key) => { config[toCamelCase(key)] = blockConfig[key]; });
 
   block.innerHTML = getBlockHTML(ph);
 
@@ -164,11 +162,11 @@ export default async function decorate(block) {
   const highlightResults = (res) => {
     const fulltext = document.getElementById('fulltext').value;
     if (fulltext) {
-      res.querySelectorAll('h4 a').forEach((title) => {
+      res.querySelectorAll('h4 a, p:first-of-type').forEach((title) => {
         const content = title.textContent;
         const offset = content.toLowerCase().indexOf(fulltext.toLowerCase());
         if (offset >= 0) {
-          title.innerHTML = `${content.substr(0, offset)}<span class="highlight">${content.substr(offset, fulltext.length)}</span>${content.substr(offset + fulltext.length)}`;
+          title.innerHTML = `${content.substr(0, offset)}<mark class="listing-search-highlight">${content.substr(offset, fulltext.length)}</mark>${content.substr(offset + fulltext.length)}`;
         }
       });
     }
@@ -177,7 +175,7 @@ export default async function decorate(block) {
   const displayResults = async (results) => {
     resultsElement.innerHTML = '';
     results.forEach((product) => {
-      resultsElement.append(createAppCard(product, 'listing', ph));
+      resultsElement.append(createAppCard(product, 'listing'));
     });
     highlightResults(resultsElement);
   };
@@ -266,8 +264,6 @@ export default async function decorate(block) {
     });
   };
 
-  const getPrice = (string) => +string.substr(1);
-
   const runSearch = async (filterConfig = config) => {
     const facets = {
       category: {},
@@ -276,13 +272,18 @@ export default async function decorate(block) {
       industryServed: {},
       locationRestrictions: {},
     };
+
+    /* sort options */
+    const levels = ['pro', 'elite', 'bamboohr-product'];
     const sorts = {
       name: (a, b) => a.title.localeCompare(b.title),
-      'price-asc': (a, b) => getPrice(a.price) - getPrice(b.price),
-      'price-desc': (a, b) => getPrice(b.price) - getPrice(a.price),
+      default: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level))
+                      || a.title.localeCompare(b.title),
+      newest: (a, b) => b.publicationDate.localeCompare(a.publicationDate)
+                                || a.title.localeCompare(b.title),
     };
     const results = await filterResults(filterConfig, facets);
-    const sortBy = document.getElementById('listing-sortby') ? document.getElementById('listing-sortby').dataset.sort : 'best';
+    const sortBy = document.getElementById('listing-sortby') ? document.getElementById('listing-sortby').dataset.sort : 'default';
     if (sortBy && sorts[sortBy]) results.sort(sorts[sortBy]);
     block.querySelector('#listing-results-count').textContent = results.length;
     displayResults(results, null);

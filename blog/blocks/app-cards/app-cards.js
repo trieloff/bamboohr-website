@@ -21,7 +21,7 @@ export function createAppCard(app, prefix) {
   const searchTags = app.searchTags ? `<div class="${prefix}-card-search-tags"><span>${app.searchTags.split(',').join('</span><span>')}</span></div>` : '';
   card.innerHTML = `<div class="${prefix}-card-image">${picture}</div>
   <div class="${prefix}-card-body">
-  <div class="${prefix}-card-header"><h4>${title}</h4>${level}</div>
+  <div class="${prefix}-card-header"><h4><a href="${app.path}">${title}</a></h4>${level}</div>
   <div class="${prefix}-card-cat">${app.category}</div>
   <div class="${prefix}-card-detail"><p>${app.description}</p>
   <a href="${app.path}">Learn More</a></div>
@@ -160,6 +160,5 @@ export default async function decorate(block, blockName) {
 
     block.innerHTML = '';
     await decorateAppsFeed(block, config);
-    console.log(block);
   }
 }

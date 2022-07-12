@@ -2,7 +2,7 @@ import { getMetadata, lookupPages } from '../../scripts/scripts.js';
 import { createBlogCard } from '../featured-articles/featured-articles.js';
 import { createAppCard } from '../app-cards/app-cards.js';
 
-function highlightTextElements(terms, elements) {
+export function highlightTextElements(terms, elements) {
   elements.forEach((e) => {
     const matches = [];
     const text = e.textContent;
@@ -56,7 +56,8 @@ async function displaySearchResults(terms, results) {
     if (collection === 'marketplace') card = createAppCard(row, 'search-app');
     ul.append(card);
   });
-  highlightTextElements(terms, results.querySelectorAll('h3, p:first-of-type, span'));
+  console.log(results.querySelectorAll('h3, p:first-of-type, span'));
+  highlightTextElements(terms, results.querySelectorAll('h4 a, p:first-of-type, span'));
   results.querySelectorAll(('span.search-searchtag-highlighted')).forEach((span) => {
     span.addEventListener('click', () => {
       const searchBox = results.closest('.block').querySelector('#search-box');
