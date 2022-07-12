@@ -8,12 +8,6 @@ main .callout {
   box-shadow: 0 30px 60px -40px var(--category-box-shadow-color);
 }
 
-.marketplace main .app-cards-container .callout {
-  background: unset;
-  margin: 125px 0;
-  box-shadow: none;
-}
-
 main .callout.left,
 main .callout.right {
   text-align: left;
@@ -26,10 +20,6 @@ main .callout a.button {
   line-height: var(--heading-line-height-m);
   font-weight: 700;
   padding: 10px 30px;
-}
-
-.marketplace main .callout a.button {
-  background-color: var(--color-1-shade-5);
 }
 
 main .callout.left a.button,
@@ -46,10 +36,6 @@ main .callout h3 {
   font-family: var(--heading-font-family);
 }
 
-.marketplace main .callout h3 {
-  color: var(--heading-color);
-}
-
 main .callout.left h3,
 main .callout.right h3 {
   font-size: 20px;
@@ -63,8 +49,22 @@ main .callout p {
   color: var(--category-darker-color);
 }
 
-.marketplace main .callout p {
+.marketplace.app-list main .callout {
+  background: unset;
+  margin: 125px 0;
+  box-shadow: none;
+}
+
+.marketplace.app-list main .callout h3 {
+  color: var(--heading-color);
+}
+
+.marketplace.app-list main .callout p {
   color: var(--color-gray-9);
+}
+
+.marketplace.app-list main .callout a.button {
+  background-color: var(--color-1-shade-5);
 }
 
 @media (min-width: 600px) {
