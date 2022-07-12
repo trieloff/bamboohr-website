@@ -111,7 +111,7 @@ export async function filterResults(config, facets = {}) {
   return results;
 }
 
-export default async function decorate(block) {
+export default async function decorate(block, blockName) {
   const ph = await fetchPlaceholders('/marketplace');
 
   const addEventListeners = (elements, event, callback) => {
@@ -120,8 +120,7 @@ export default async function decorate(block) {
     });
   };
 
-  let blockConfig = [...document.querySelectorAll('a')].map((a) => new URL(a.href).pathname);
-  if (!blockConfig.length) blockConfig = readBlockConfig(block);
+  const blockConfig = readBlockConfig(block);
 
   /* camelCase config */
   const config = {};
@@ -175,7 +174,7 @@ export default async function decorate(block) {
   const displayResults = async (results) => {
     resultsElement.innerHTML = '';
     results.forEach((product) => {
-      resultsElement.append(createAppCard(product, 'listing'));
+      resultsElement.append(createAppCard(product, blockName));
     });
     highlightResults(resultsElement);
   };
