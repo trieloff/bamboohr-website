@@ -38,7 +38,7 @@ async function displaySearchResults(terms, results) {
   allPages.forEach((page) => {
     let searchTags = '';
     if (collection === 'marketplace') {
-      searchTags = `${page.level}, ${page.listingType}, ${page.category}, ${page.subCategory}, ${page.discoverApps}`;
+      searchTags = `${page.level}, ${page.tag}, ${page.category}`;
     }
     if (collection === 'blog') {
       searchTags = `${page.tags}`;
@@ -56,6 +56,7 @@ async function displaySearchResults(terms, results) {
     if (collection === 'marketplace') card = createAppCard(row, 'search-app');
     ul.append(card);
   });
+
   highlightTextElements(terms, results.querySelectorAll('h3, p:first-of-type, span'));
   results.querySelectorAll(('span.search-searchtag-highlighted')).forEach((span) => {
     span.addEventListener('click', () => {
