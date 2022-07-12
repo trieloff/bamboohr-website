@@ -408,8 +408,8 @@ main .section.app-cards-container {
 
 /* listing template styles */
 .marketplace-home {
-  background-image: url('./leaf-top-1.svg'), linear-gradient(var(--color-gray-3), var(--color-gray-3) calc(400px + (100vw * 0.2)), white calc(100vw * 0.2));
-  background-position: 0 524px, top;
+  background-image: url('./leaf-top-1.svg'), linear-gradient(var(--color-gray-3), var(--color-gray-3) calc(527px + (100vw * 0.124)), white calc(100vw * 0.124));
+  background-position: 0 527px, top;
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -422,9 +422,17 @@ main .section.app-cards-container {
   background-size: contain;
 }
 
-.app-list main div.default-content-wrapper,
-.marketplace-home main .search-container > div.default-content-wrapper {
+.marketplace-home main .search-container {
+  margin-bottom: 200px;
+}
+
+.app-list main div.default-content-wrapper {
   padding: 64px;
+  text-align: center;
+}
+
+.marketplace-home main .search-container > div.default-content-wrapper {
+  padding: 32px 64px 14px;
   text-align: center;
 }
 
