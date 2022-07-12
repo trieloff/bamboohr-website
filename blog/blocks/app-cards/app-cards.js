@@ -21,7 +21,7 @@ export function createAppCard(app, prefix) {
   const searchTags = app.searchTags ? `<div class="${prefix}-card-search-tags"><span>${app.searchTags.split(',').join('</span><span>')}</span></div>` : '';
   card.innerHTML = `<div class="${prefix}-card-image">${picture}</div>
   <div class="${prefix}-card-body">
-  <div class="${prefix}-card-header"><h4>${title}</h4>${level}</div>
+  <div class="${prefix}-card-header"><h4><a href="${app.path}">${title}</a></h4>${level}</div>
   <div class="${prefix}-card-cat">${app.category}</div>
   <div class="${prefix}-card-detail"><p>${app.description}</p>
   <a href="${app.path}">Learn More</a></div>
@@ -51,7 +51,7 @@ export async function filterApps(config, feed, limit, offset) {
   /* filter apps by level, tag etc. */
   const filters = {};
   Object.keys(config).forEach((key) => {
-    const filterNames = ['level', 'tag'];
+    const filterNames = ['category', 'level', 'tag'];
     if (filterNames.includes(key)) {
       const vals = config[key];
       if (vals) {
@@ -85,6 +85,7 @@ export async function filterApps(config, feed, limit, offset) {
 
     /* filter and ignore if already in result */
     const feedChunk = indexChunk.filter((app) => {
+      if (app.robots === 'noindex') return false;
       const matchedAll = Object.keys(filters).every((key) => {
         const matchedFilter = filters[key].some((val) => (app[key]
           && compareFilterVal(key, val, app[key])));
