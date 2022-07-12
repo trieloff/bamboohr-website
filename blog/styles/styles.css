@@ -33,6 +33,8 @@
   --color-gray-9: #74767A;
   --color-gray-10: #626467;
   --color-gray-11: #55575A;
+  --color-gray-12: #404347;
+  --color-gray-13: #313335;
   --color-black: #000;
   --color-brand-title: #000B1D;
   --color-info-accent: #73c41d;
@@ -287,11 +289,24 @@ main h1.hidden {
   display: none;
 }
 
+.marketplace main h1 {
+  font-size: 36px;
+  line-height: var(--heading-line-height);
+  font-weight: 800;
+}
+
+@media (min-width:600px) {
+  .marketplace main h1 {
+    font-size: 48px;
+  }
+}
+
 /* links */
 
 main a:any-link {
   color: var(--body-color);
   line-height: var(--body-line-height);
+  text-decoration: none;
 }
 
 main a.cta-link {

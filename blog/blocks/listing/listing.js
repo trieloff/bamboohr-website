@@ -30,7 +30,7 @@ function getBlockHTML(ph) {
 
 function getFacetHTML(ph) {
   return /* html */`
-  <div><div class="listing-filters"><h2>${ph.filters}</h2>
+  <div><div class="listing-filters">
     <div class="listing-filters-selected"></div>
     <p><button class="listing-filters-clear secondary">${ph.clearAll}</button></p>
     <div class="listing-filters-facetlist"></div>
