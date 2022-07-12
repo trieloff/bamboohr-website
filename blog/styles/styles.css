@@ -408,12 +408,13 @@ main .section.app-cards-container {
 }
 
 /* listing template styles */
-.marketplace-listing .links-container :not(:last-child).button-container .button {
-  background-color: var(--color-1-shade-5);
-}
 
 .marketplace-listing .links-container .button-container .button {
-  background-color: var(--color-5);
+	background-color: var(--color-5);
+  }
+
+  .marketplace-listing .links-container :not(:last-child).button-container .button {
+  background-color: var(--color-1-shade-5);
 }
 
 .marketplace-home {
