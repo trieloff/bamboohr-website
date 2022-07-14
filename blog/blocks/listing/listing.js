@@ -1,4 +1,6 @@
 import {
+  lookupPages,
+  getMetadata,
   fetchPlaceholders,
   readBlockConfig,
   toClassName,
@@ -42,20 +44,15 @@ function getFacetHTML(ph) {
 
 export async function filterResults(config, facets = {}) {
   /* load index */
-  if (!window.listingIndex) {
-    const resp = await fetch('/marketplace/query-index.json');
-    const json = await resp.json();
-    const lookup = {};
-    json.data.forEach((row) => {
-      lookup[row.path] = row;
-    });
-    window.listingIndex = { data: json.data, lookup };
-  }
+  let collection = 'blog';
+  if (getMetadata('theme') === 'marketplace') collection = 'marketplace';
+  await lookupPages([], collection);
+  const listings = window.pageIndex[collection];
 
   /* simple array lookup */
   if (Array.isArray(config)) {
     const pathnames = config;
-    return (pathnames.map((path) => window.listingIndex.lookup[path]).filter((e) => e));
+    return (pathnames.map((path) => listings.lookup[path]).filter((e) => e));
   }
 
   /* setup config */
@@ -67,7 +64,7 @@ export async function filterResults(config, facets = {}) {
   });
 
   /* filter */
-  const results = window.listingIndex.data.filter((row) => {
+  const results = listings.data.filter((row) => {
     const filterMatches = {};
     let matchedAll = keys.every((key) => {
       let matched = false;
