@@ -375,6 +375,8 @@ main .listing-results .listing-card-detail a::after {
 @media (min-width: 1200px) {
     main .listing-facets > div {
         border-radius: 15px;
+        height: unset;
+        overflow-y: unset;
     }
 
     main .listing-facets > div::after {
@@ -394,11 +396,6 @@ main .listing-results .listing-card-detail a::after {
         position: unset;
         width: 320px;
         margin: 0 40px 0 -40px;
-    }
-
-    main .listing-facets > div {
-        height: unset;
-        overflow-y: unset;
     }
 
     main .listing-facets .listing-filters {
