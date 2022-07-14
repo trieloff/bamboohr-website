@@ -32,7 +32,7 @@ main .search-results > ul {
 
 main .search-results .search-app-card {
   box-shadow: 0 26px 52px -35px rgb(31 38 23 / 50%);
-  background-color: white;
+  background-color: var(--color-white);
   border-radius: 15px;
 }
 
@@ -92,7 +92,7 @@ main .search-results .search-app-card {
   margin-right: 4px;
   margin-bottom: 4px;
   white-space: nowrap;
-  color: white;
+  color: var(--color-white);
   border-radius: 15px;
   padding: 3px 8px;
   font-size: var(--body-font-size-xs);

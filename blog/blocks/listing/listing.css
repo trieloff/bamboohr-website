@@ -19,7 +19,6 @@ main .listing-facets  {
     height: 100vh;
     width: 100vw;
     z-index: 1;
-    background-color: #0008;
 }
 
 main .listing-facets > div {
@@ -32,7 +31,6 @@ main .listing-facets > div {
     position: relative;
     box-sizing: border-box;
     pointer-events: none;
-    border-radius: 15px;
 }
 
 main .listing-facets > div::after {
@@ -375,6 +373,10 @@ main .listing-results .listing-card-detail a::after {
 }
 
 @media (min-width: 1200px) {
+    main .listing-facets > div {
+        border-radius: 15px;
+    }
+
     main .listing-facets > div::after {
         display: none;
     }
