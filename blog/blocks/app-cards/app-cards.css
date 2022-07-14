@@ -69,6 +69,10 @@
     font-style: normal;
 }
 
+.app-cards .app-cards-card-header h4 a {
+    color: var(--color-gray-12);
+}
+
 .app-cards .app-cards-card-cat {
     font-size: 14px;
     line-height: var(--body-line-height);

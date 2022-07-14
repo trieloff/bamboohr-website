@@ -240,7 +240,7 @@ main .listing-results a.button:any-link {
 
 main .listing-results h4 {
     font-size: var(--body-font-size-m);
-    font-family: var(--body-font-family);
+    font-family: var(--heading-font-family);
 }
 
 main .listing-results .highlight {
@@ -309,6 +309,10 @@ main .listing-results .listing-card-header h4 {
     margin: 0;
     font-size: 18px;
     font-style: normal;
+}
+
+main .listing-results .listing-card-header h4 a {
+    color: var(--color-gray-12);
 }
 
 main .listing-results .listing-card-cat {

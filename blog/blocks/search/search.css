@@ -59,6 +59,18 @@ main .search-results .search-app-card {
 
 .search-app-card-header h4 {
   margin: 0;
+  font-size: 18px;
+  font-style: normal;
+}
+
+.search-app-card-header h4 a {
+  color: var(--color-gray-12);
+}
+
+.search-app-card-cat {
+  font-size: 14px;
+  line-height: var(--body-line-height);
+  color: var(--color-gray-6);
 }
 
 .search-app-card-body > *:first-child {
