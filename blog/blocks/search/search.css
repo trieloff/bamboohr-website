@@ -13,8 +13,6 @@ main .search .search-highlight {
 }
 
 main .search-results {
-    display: flex;
-    flex-wrap: wrap;
     max-width: 1200px;
     margin: auto;
     padding-top: 32px;
@@ -34,12 +32,12 @@ main .search-results > ul {
 
 main .search-results .search-app-card {
   box-shadow: 0 26px 52px -35px rgb(31 38 23 / 50%);
-  background-color: white;
+  background-color: var(--color-white);
   border-radius: 15px;
 }
 
 .search-app-card-body {
-  margin: 16px;
+  padding: 0 25px 30px;
 }
 
 .search-app-card-header {
@@ -61,6 +59,18 @@ main .search-results .search-app-card {
 
 .search-app-card-header h4 {
   margin: 0;
+  font-size: 18px;
+  font-style: normal;
+}
+
+.search-app-card-header h4 a {
+  color: var(--color-gray-12);
+}
+
+.search-app-card-cat {
+  font-size: 14px;
+  line-height: var(--body-line-height);
+  color: var(--color-gray-6);
 }
 
 .search-app-card-body > *:first-child {
@@ -82,7 +92,7 @@ main .search-results .search-app-card {
   margin-right: 4px;
   margin-bottom: 4px;
   white-space: nowrap;
-  color: white;
+  color: var(--color-white);
   border-radius: 15px;
   padding: 3px 8px;
   font-size: var(--body-font-size-xs);
@@ -137,25 +147,26 @@ main .search-blog-card .search-blog-card-readtime:empty::before {
   display: none;
 }
 
-main .search-blog-card-body a:any-link{
+main .search-app-card-detail a:any-link {
   position: relative;
-  font-weight: 700;
-  text-decoration: none;
-  color: var(--heading-color);
-  font-family: var(--heading-font-family);
   font-size: 15px;
+  font-weight: 700;
+  line-height: var(--body-line-height);
+  display: inline-block;
+  color: var(--color-1-shade-5);
+  text-decoration: none;
 }
 
-main .search-blog-card-body a:any-link::after {
+main .search-app-card-detail a::after {
   content: "";
-  border: solid var(--heading-color);
-  border-width: 0 2.5px 2.5px 0;
+  border: solid var(--color-1-shade-5);
+  border-width: 0 2px 2px 0;
   display: inline-block;
-  padding: 2.5px;
+  padding: 3px;
   transform: rotate(-45deg) translateY(-50%);
   position: absolute;
   top: 50%;
-  right: -20px;
+  margin-left: 8px;
 }
 
 main .search-blog-card-header {
@@ -185,4 +196,71 @@ main .search input {
 main .search .search-box {
     margin: auto;
     text-align: center;
+}
+
+@media (min-width: 1200px) {
+  .search-results .search-app-card {
+      position: relative;
+      padding-bottom: 60px;
+      overflow: hidden;
+  }
+
+  .search-results > ul > li .search-app-card-image img {
+      min-height: 230px;
+  }
+
+  .search-results .search-app-card-header {
+      min-height: 60px;
+      padding: 0;
+  }
+
+  .search-results .search-app-card-body {
+      position: absolute;
+      top: calc(100% - 60px);
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: var(--color-white);
+      transition: all .3s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+  }
+
+  .search-results .search-app-card:hover .search-app-card-body {
+      top: 0;
+  }
+
+  .search-results .search-app-card .search-app-card-cat {
+      transition: all .25s ease-in .25s;
+  }
+
+  .search-results .search-app-card .search-app-card-detail {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+  }
+
+  .search-results .search-app-card .search-app-card-detail p {
+      transition: all .25s ease-in .4s;
+  }
+
+  .search-results .search-app-card .search-app-card-detail a:any-link {
+      transition: all .25s ease-in .5s;
+  }
+
+  .search-results .search-app-card .search-app-card-cat,
+  .search-results .search-app-card .search-app-card-detail p,
+  .search-results .search-app-card .search-app-card-detail a:any-link {
+      opacity: 0;
+      transform: translateX(25px);
+  }
+
+  .search-results .search-app-card:hover .search-app-card-cat,
+  .search-results .search-app-card:hover .search-app-card-detail p,
+  .search-results .search-app-card:hover .search-app-card-detail a:any-link {
+      opacity: 1;
+      transform: translateX(0);
+  }
 }
