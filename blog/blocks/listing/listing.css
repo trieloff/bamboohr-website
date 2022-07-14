@@ -189,8 +189,8 @@ main .listing-sortby ul {
     top: -40px;
     right: calc(50% - 105px);
     z-index: 1;
-    background-color: var(--background-color);
-    border: 1px solid #ddd;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-1);
     text-align: left;
     list-style: none;
     padding: 0;
@@ -202,7 +202,7 @@ main .listing-sortby ul {
 
 main .listing-sortby ul li {
     padding: 5px 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--color-gray-1);
 }
 
 main .listing-sortby ul li.selected {
@@ -210,7 +210,7 @@ main .listing-sortby ul li.selected {
 }
 
 main .listing-sortby ul li:hover {
-    background-color: #eee;
+    background-color: var(--color-gray-2);
 }
 
 main .listing-sortby ul.visible {
@@ -258,7 +258,7 @@ main .listing-results .highlight {
     margin-bottom: 30px;
 }
 
-main .listing-results .listing-card.listing-cards-card-discount::before,
+main .listing-results .listing-card.listing-card-discount::before,
 main .listing-results .listing-card.listing-card-sponsored::before,
 main .listing-results .listing-card.listing-card-discount.listing-card-sponsored::after {
     font-size: 8px;
@@ -370,89 +370,6 @@ main .listing-results .listing-card-detail a::after {
     }
 }
 
-/* @media (min-width: 900px) {
-    main .listing-facets > div::after {
-        display: none;
-    }
-
-    main .listing-facets .listing-apply-filters {
-        display: none;
-    }
-
-    main .listing-facets  {
-        z-index: unset;
-        height: unset;
-        background: unset;
-        grid-area: facets;
-        display: unset;
-        position: unset;
-        width: 320px;
-        margin-left: -70px;
-        margin-right: 40px;
-    }
-
-    main .listing-facets > div {
-        height: unset;
-        overflow-y: unset;
-    }
-
-    main .listing-facets .listing-filters {
-        overflow-y: unset;
-        height: unset;
-    }
-
-    main .listing-results {
-        grid-area: results;
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    main .listing-controls {
-        grid-area: controls;
-        text-align: left;
-    }
-
-    main .listing-controls button {
-        display: none;
-    }
-
-    main .listing {
-        display: grid;
-        grid-template-areas: '- controls sortby' 'facets results results';
-    }
-
-    main .listing-sortby {
-        display: unset;
-        grid-area: sortby;
-        text-align: right;
-        white-space: nowrap;
-    }
-
-    main .listing-sortby p {
-        display: inline-block;
-        border-radius: 5px;
-        border: 2px solid #888;
-        padding: 5px 45px 5px 15px;
-        font-size: var(--body-font-size-m);
-        background: url('./chevron-down.svg') center right 10px no-repeat;
-    }
-
-    main .listing-sortby ul {
-        top: 40px;
-        right: 0;
-        z-index: 1;
-        background-color: var(--background-color);
-        border: 1px solid #ddd;
-        text-align: left;
-        list-style: none;
-        padding: 0;
-        border-radius: 3px;
-        box-shadow: 0 2px 5px 0 var(--overlay-background-color);
-        font-size: var(--body-font-size-m);
-        min-width: 190px;
-    }
-
-} */
-
 @media (min-width: 1200px) {
     main .listing-facets > div::after {
         display: none;
@@ -500,6 +417,7 @@ main .listing-results .listing-card-detail a::after {
     main .listing {
         display: grid;
         grid-template-areas: '- controls sortby' 'facets results results';
+        align-items: flex-start;
     }
 
     main .listing-sortby {
@@ -522,7 +440,6 @@ main .listing-results .listing-card-detail a::after {
         top: 40px;
         right: 0;
         z-index: 1;
-        background-color: var(--background-color);
         border: 1px solid #ddd;
         text-align: left;
         list-style: none;
@@ -582,6 +499,8 @@ main .listing-results .listing-card-detail a::after {
 
     main .listing-results .listing-card .listing-card-detail p {
         transition: all .25s ease-in .4s;
+        max-height: 80px;
+        overflow: hidden;
     }
 
     main .listing-results .listing-card .listing-card-detail a:any-link {

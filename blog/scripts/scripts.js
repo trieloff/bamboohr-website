@@ -799,7 +799,7 @@ function buildImageBlocks(main) {
 export async function lookupPages(pathnames, collection) {
   const indexPaths = {
     blog: '/blog/fixtures/blog-query-index.json',
-    marketplace: '/marketplace/query-index.json',
+    marketplace: '/marketplace/query-index.json?sheet=listings',
   };
   const indexPath = indexPaths[collection];
   window.pageIndex = window.pageIndex || {};
