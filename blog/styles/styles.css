@@ -131,7 +131,7 @@ a.button:any-link {
   text-decoration: none;
   border-radius: 2rem;
   border: 2px solid transparent;
-  padding: 17px 25px;
+  padding: 14.25px 25px;
 
   /* outline: none; (keep outline for a11n) */
   text-align: center;
@@ -350,12 +350,6 @@ main .section:last-of-type {
   padding: 0;
 }
 
-@media (min-width:600px) {
-  main .section > div {
-    max-width: unset;
-  }
-}
-
 main .section > div {
   margin: auto;
   padding: 0 30px;
@@ -415,6 +409,18 @@ main .section.app-cards-container {
 
 .marketplace-listing .links-container :not(:last-child).button-container .button {
   background-color: var(--color-1-shade-5);
+}
+
+.marketplace-listing .details-container .default-content-wrapper h4 {
+	font-style: normal;
+}
+
+/* .marketplace-listing .tabs-content > p {
+	margin: 0 0 30px;
+} */
+
+.marketplace-listing .tabs-content > p:not(:last-of-type) {
+	margin-bottom: 30px;
 }
 
 .marketplace-home {
