@@ -416,7 +416,7 @@ main .section.app-cards-container {
 
 .marketplace-listing,
 .app-list {
-  background-image: url('./header-leaf.svg'), linear-gradient(var(--color-gray-100), var(--color-gray-100) calc(400px + (100vw * 0.2)), white calc(100vw * 0.2));
+  background-image: url('./header-leaf.svg'), linear-gradient(var(--color-gray-1), var(--color-gray-1) calc(400px + (100vw * 0.2)), white calc(100vw * 0.2));
   background-position: 0 400px, top;
   background-repeat: no-repeat;
   background-size: contain;
@@ -437,6 +437,13 @@ main .section.app-cards-container {
   font-size: 30px;
   line-height: var(--heading-line-height);
   margin: 0;
+}
+
+.marketplace-form {
+  background-image: url('./leaf-top-3.svg'), linear-gradient(var(--color-white), var(--color-white) calc(250px + (100vw * 0.2)), var(--color-white) calc(100vw * 0.2));
+  background-position: 0 250px, top;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 @media (min-width: 1000px) {
@@ -583,6 +590,11 @@ main .default-content-wrapper a:any-link {
   color: var(--category-color);
   background: linear-gradient(#f000 50%, var(--category-bg-color) 50.1%);
   text-decoration: none;
+}
+
+.marketplace main .default-content-wrapper a:any-link {
+  color: var(--color-1-shade-5);
+  background: unset;
 }
 
 main .default-content-wrapper p a.button:any-link {
