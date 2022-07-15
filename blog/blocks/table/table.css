@@ -11,16 +11,16 @@
   width: 100%;
 }
 
-.table table thead th {
-  font-weight: bold;
-}
-
 .table table, .table th, .table td {
   padding: 14px;
   font-size: 12px;
   line-height: 16px;
   text-align: left;
   vertical-align: middle;
+}
+
+.table table thead th {
+  font-weight: bold;
 }
 
 .table.data-sync table, .table.data-sync th, .table.data-sync td {
