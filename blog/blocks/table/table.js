@@ -54,7 +54,7 @@ function buildMobileTables(block, tableData, colCnt, isComparisonTable) {
         // Save the header for markup later based on level found in row 3
         if (i === 0) tables[j - 1].header = cell;
         // Add data col to each table
-        tables[j-1].currentRow.append(cell);
+        tables[j - 1].currentRow.append(cell);
       }
     });
 
