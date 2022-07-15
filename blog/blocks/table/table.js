@@ -25,12 +25,13 @@ function buildMobileTables(block, tableData, colCnt, isComparisonTable) {
 
   // Create a two column table for each col outside the first.
   // Each table includes col 0 (comparison labels) + a data column
-  for (let i = 0; i < colCnt-1; i += 1) {
-    tables.push({table: document.createElement('table'),
+  for (let i = 0; i < colCnt - 1; i += 1) {
+    tables.push({
+      table: document.createElement('table'),
       head: document.createElement('thead'),
       body: document.createElement('tbody'),
       currentRow: null,
-      header: null
+      header: null,
     });
     tables[i].table.classList.add('table-mobile');
   }
@@ -38,10 +39,12 @@ function buildMobileTables(block, tableData, colCnt, isComparisonTable) {
   // build rows
   tableData.forEach((row, i) => {
     // Create a new row in each table.
-    tables.forEach((t) => t.currentRow = document.createElement('tr'));
+    tables.forEach((t) => {
+      t.currentRow = document.createElement('tr');
+    });
     // build cells
     row.querySelectorAll('div').forEach((col, j) => {
-      const header = (j > 0) ? tables[j-1].header : null;
+      const header = (j > 0) ? tables[j - 1].header : null;
       const cell = buildTableCell(col, i, header, isComparisonTable);
 
       if (j === 0) {
@@ -49,7 +52,7 @@ function buildMobileTables(block, tableData, colCnt, isComparisonTable) {
         tables.forEach((t, z) => t.currentRow.append(z > 0 ? cell.cloneNode(true) : cell));
       } else {
         // Save the header for markup later based on level found in row 3
-        if (i === 0) tables[j-1].header = cell;
+        if (i === 0) tables[j - 1].header = cell;
         // Add data col to each table
         tables[j-1].currentRow.append(cell);
       }
