@@ -408,8 +408,8 @@ main .section.app-cards-container {
 
 /* listing template styles */
 .marketplace-home {
-  background-image: url('./leaf-top-1.svg'), linear-gradient(var(--color-gray-3), var(--color-gray-3) calc(527px + (100vw * 0.124)), white calc(100vw * 0.124));
-  background-position: 0 527px, top;
+  background-image: url('./leaf-top-1.svg'), linear-gradient(var(--color-gray-3), var(--color-gray-3) calc(450px + (100vw * 0.124)), white calc(100vw * 0.124));
+  background-position: 0 450px, top;
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -422,45 +422,28 @@ main .section.app-cards-container {
   background-size: contain;
 }
 
-.marketplace-home main .search-container {
-  margin-bottom: 200px;
-}
-
 .app-list main div.default-content-wrapper {
   padding: 64px;
   text-align: center;
 }
 
-.marketplace-home main .search-container > div.default-content-wrapper {
-  padding: 32px 64px 14px;
-  text-align: center;
-}
-
-.marketplace-home main .home-featured-cat > div.default-content-wrapper {
+.marketplace-home main .home-featured-cat div.default-content-wrapper {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.marketplace-home main .search-container > div.default-content-wrapper > h1 {
-  font-size: 48px;
-  line-height: 60px;
-  font-weight: 700;
-}
-
-.marketplace-home main .search-container > div.default-content-wrapper > p {
-  font-size: var(--heading-font-size-xs);
-  line-height: 27px;
-  font-weight: 400;
-}
-
-.marketplace-home main .home-featured-cat > div.default-content-wrapper > h2 {
+.marketplace-home main .home-featured-cat div.default-content-wrapper h2 {
   font-style: italic;
-  font-size: var(--heading-font-size-xl);
-  line-height: 44px;
+  font-size: 30px;
+  line-height: var(--heading-line-height);
   margin: 0;
 }
 
 @media (min-width: 1000px) {
+  .marketplace-home main .home-featured-cat div.default-content-wrapper h2 {
+    font-size: 36px;
+  }
+
   .marketplace-listing main {
     width: 1200px;
     max-width: 100%;
@@ -494,6 +477,13 @@ main .section.app-cards-container {
 
   .marketplace-listing .details-container {
     grid-area: details;
+  }
+}
+
+@media (min-width: 1200px) {
+  .marketplace-home {
+    background-image: url('./leaf-top-1.svg'), linear-gradient(var(--color-gray-3), var(--color-gray-3) calc(470px + (100vw * 0.124)), white calc(100vw * 0.124));
+    background-position: 0 470px, top;
   }
 }
 

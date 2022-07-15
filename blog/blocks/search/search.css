@@ -4,7 +4,7 @@ main .section > div.search-wrapper {
 }
 
 .marketplace-home main .section > div.search-wrapper {
-  min-height: 250px;
+  min-height: 220px;
 }
 
 main .search .search-highlight {
@@ -198,23 +198,49 @@ main .search .search-box {
     text-align: center;
 }
 
+/* marketplace home search */
+.marketplace-home main .search-container {
+  margin-top: 30px;
+}
+
+.marketplace-home main .search-container div.default-content-wrapper {
+  text-align: center;
+}
+
+.marketplace-home main .search-container h1 {
+  font-size: 36px;
+  line-height: var(--heading-line-height);
+  font-weight: 700;
+}
+
+@media (min-width: 900px) {
+  .marketplace-home main .section > div.search-wrapper {
+    min-height: 350px;
+  }
+
+  .marketplace-home main .search-container h1 {
+    font-size: 48px;
+  }
+  
+}
+
 @media (min-width: 1200px) {
-  .search-results .search-app-card {
+  .marketplace .search-results .search-app-card {
       position: relative;
       padding-bottom: 60px;
       overflow: hidden;
   }
 
-  .search-results > ul > li .search-app-card-image img {
+  .marketplace .search-results > ul > li .search-app-card-image img {
       min-height: 230px;
   }
 
-  .search-results .search-app-card-header {
+  .marketplace .search-results .search-app-card-header {
       min-height: 60px;
       padding: 0;
   }
 
-  .search-results .search-app-card-body {
+  .marketplace .search-results .search-app-card-body {
       position: absolute;
       top: calc(100% - 60px);
       right: 0;
@@ -227,39 +253,39 @@ main .search .search-box {
       z-index: 1;
   }
 
-  .search-results .search-app-card:hover .search-app-card-body {
+  .marketplace .search-results .search-app-card:hover .search-app-card-body {
       top: 0;
   }
 
-  .search-results .search-app-card .search-app-card-cat {
+  .marketplace .search-results .search-app-card .search-app-card-cat {
       transition: all .25s ease-in .25s;
   }
 
-  .search-results .search-app-card .search-app-card-detail {
+  .marketplace .search-results .search-app-card .search-app-card-detail {
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
   }
 
-  .search-results .search-app-card .search-app-card-detail p {
+  .marketplace .search-results .search-app-card .search-app-card-detail p {
       transition: all .25s ease-in .4s;
   }
 
-  .search-results .search-app-card .search-app-card-detail a:any-link {
+  .marketplace .search-results .search-app-card .search-app-card-detail a:any-link {
       transition: all .25s ease-in .5s;
   }
 
-  .search-results .search-app-card .search-app-card-cat,
-  .search-results .search-app-card .search-app-card-detail p,
-  .search-results .search-app-card .search-app-card-detail a:any-link {
+  .marketplace .search-results .search-app-card .search-app-card-cat,
+  .marketplace .search-results .search-app-card .search-app-card-detail p,
+  .marketplace .search-results .search-app-card .search-app-card-detail a:any-link {
       opacity: 0;
       transform: translateX(25px);
   }
 
-  .search-results .search-app-card:hover .search-app-card-cat,
-  .search-results .search-app-card:hover .search-app-card-detail p,
-  .search-results .search-app-card:hover .search-app-card-detail a:any-link {
+  .marketplace .search-results .search-app-card:hover .search-app-card-cat,
+  .marketplace .search-results .search-app-card:hover .search-app-card-detail p,
+  .marketplace .search-results .search-app-card:hover .search-app-card-detail a:any-link {
       opacity: 1;
       transform: translateX(0);
   }
