@@ -7,6 +7,14 @@
   overflow-x: auto;
 }
 
+.table table {
+  width: 100%;
+}
+
+.table table thead th {
+  font-weight: bold;
+}
+
 .table table, .table th, .table td {
   padding: 14px;
   font-size: 12px;
@@ -24,10 +32,6 @@
   position: relative;
 }
 
-.table table {
-  width: 100%;
-}
-
 .table.data-sync table {
   border-collapse: collapse;
 }
@@ -36,10 +40,6 @@
   border-spacing: 10px 0;
   padding: 0;
   table-layout: fixed;
-}
-
-.table table thead th {
-  font-weight: bold;
 }
 
 .table.data-sync table tbody tr:nth-child(odd) {
