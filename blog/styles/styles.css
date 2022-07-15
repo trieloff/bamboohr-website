@@ -41,6 +41,8 @@
   --color-info-accent-hover: #73c41d;
   --color-info-accent-down: #80d32c;
   --color-info-accent-light: #DEDEF9;
+  --color-elite-ribbon: #FDD436;
+  --color-pro-ribbon: #D6D9D0;
 
   /* body */
   --body-background-color: var(--color-white);
@@ -422,12 +424,25 @@ main .section.app-cards-container {
   background-size: contain;
 }
 
+.comparison-matrix {
+  background-image: url('./leaf-top-3.svg'), linear-gradient(white, white calc(486px + (100vw * 0.11)), var(--color-gray-1) calc(100vw * 0.11));
+  background-position: 0 486px, top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .marketplace-home main .search-container {
   margin-bottom: 200px;
 }
 
 .app-list main div.default-content-wrapper {
   padding: 64px;
+  text-align: center;
+}
+
+.comparison-matrix main .table-container > div.default-content-wrapper {
+  margin-top: 100px;
+  margin-bottom: 195px;
   text-align: center;
 }
 
