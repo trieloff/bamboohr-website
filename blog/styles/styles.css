@@ -84,6 +84,12 @@
   --detail-font-size-l: 1.25rem; /* 20px */
   --detail-font-size-m: 1rem; /* 16px */
   --detail-font-size-s: 0.75rem; /* 12px */
+
+  /* box-shadow */
+  --box-shadow-1: 0 2px 5px 0 rgb(0 0 0 / 20%);
+  --box-shadow-2: 0 30px 60px -40px rgb(31 38 23 / 50%);
+  --box-shadow-3: 0 30px 60px -40px rgb(31 38 23 / 50%), 0 70px 100px -60px rgb(31 38 23 / 25%);
+  --box-shadow-4: 0 68px 62px -35px rgb(54 63 58 / 50%);
 }
 
 
