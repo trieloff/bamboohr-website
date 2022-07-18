@@ -16,12 +16,12 @@ main .form-container label {
 }
 
 main .form-container .required {
-  color: #790000;
+  color: var(--color-2);
   margin-left: 4px;
 }
 
 main .form-container span.error {
-  color: #790000;
+  color: var(--color-2);
 }
 
 main .form-container form > div {
@@ -56,6 +56,12 @@ main .form-container option {
   padding: 2px;
   display: block;
   box-sizing: border-box;
+}
+
+main .form-container .error select,
+main .form-container .error textarea, 
+main .form-container .error input {
+  border-color: var(--color-2);
 }
 
 main .form-container .form-button-wrapper .button {
