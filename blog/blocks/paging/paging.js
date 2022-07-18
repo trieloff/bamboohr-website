@@ -3,7 +3,7 @@ import {
   toCamelCase,
 } from '../../scripts/scripts.js';
 
-function createPagingControl(config) {
+function createPagingLine(config) {
   const pagingLine = document.createElement('div');
   const prevLink = config.previousPage
   ? `<span><a class="paging-link" href="${config.previousPage}">‹‹ Previous page</a></span>` : '';
@@ -31,5 +31,5 @@ export default async function decorate(block) {
   Object.keys(blockConfig).forEach((key) => { config[toCamelCase(key)] = blockConfig[key]; });
 
   block.innerHTML = '';
-  block.append(createPagingControl(config));
+  block.append(createPagingLine(config));
 }
