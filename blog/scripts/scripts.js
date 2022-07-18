@@ -1018,9 +1018,9 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   setCategory();
-  decorateButtons(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateButtons(main);
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   window.setTimeout(() => sampleRUM.observe(main.querySelectorAll('picture > img')), 1000);
 }
