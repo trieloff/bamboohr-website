@@ -432,13 +432,6 @@ main .section.app-cards-container {
   background-size: contain;
 }
 
-.comparison-matrix {
-  background-image: url('./leaf-top-3.svg'), linear-gradient(var(--color-white), var(--color-white) calc(486px + (100vw * 0.11)), var(--color-gray-1) calc(100vw * 0.11));
-  background-position: 0 486px, top;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
 .marketplace-home main .search-container {
   margin-bottom: 200px;
 }
@@ -448,8 +441,7 @@ main .section.app-cards-container {
   text-align: center;
 }
 
-.marketplace-home main .home-featured-cat div.default-content-wrapper,
-.comparison-matrix main .table-container > div.default-content-wrapper {
+.marketplace-home main .home-featured-cat div.default-content-wrapper {
   margin-top: 100px;
   margin-bottom: 195px;
   text-align: center;
