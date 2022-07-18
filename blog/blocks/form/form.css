@@ -1,10 +1,10 @@
 main .form-container {
-  font-size: 15px;
-  line-height: 24px;
-  font-weight: 700;
-  color: #87888B;
   max-width: 800px;
   margin: 0 auto;
+  color: #87888B;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 24px;
 }
 
 main .form-container h1 {
@@ -16,8 +16,8 @@ main .form-container label {
 }
 
 main .form-container .required {
-  color: var(--color-2);
   margin-left: 4px;
+  color: var(--color-2);
 }
 
 main .form-container span.error {
@@ -31,16 +31,31 @@ main .form-container form > div {
 main .form-container select,
 main .form-container textarea, 
 main .form-container input {
-  margin-left: 1px;
+  box-sizing: border-box;
   width: 100%;
-  border-radius: 3px;
+  height: 60px;
+  margin-top: 8px;
+  margin-left: 1px;
+  padding: 5px 20px;
   border: 2px solid var(--color-gray-1);
+  border-radius: 3px;
+  font-family: inherit;
   font-size: 14px;
   line-height: 21px;
-  padding: 5px 20px;
-  margin-top: 8px;
-  height: 60px;
-  box-sizing: border-box;
+}
+
+main .form-container input[type=checkbox],
+main .form-container input[type=radio] {
+  margin-top: 0;
+  margin-right: 10px;
+  height: 13px;
+  width: 13px;
+}
+
+main .form-container .form-radio-option {
+  display: flex;
+  align-items: center;
+  margin: 4px 0;
 }
 
 main .form-container select {
@@ -53,9 +68,9 @@ main .form-container textarea {
 }
 
 main .form-container option {
-  padding: 2px;
-  display: block;
   box-sizing: border-box;
+  display: block;
+  padding: 2px;
 }
 
 main .form-container .error select,

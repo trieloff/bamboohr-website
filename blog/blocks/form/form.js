@@ -22,6 +22,38 @@ function createSelect(fd) {
   return select;
 }
 
+function getURLParam(param) {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(param);
+}
+
+function createRadios(fd) {
+  const options = document.createElement('div');
+  options.classList.add('form-radio-options');
+  fd.Options.split(',').forEach((o) => {
+    const option = document.createElement('div');
+    option.classList.add('form-radio-option');
+    const label = document.createElement('label');
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = fd.Field;
+    // set radio data to url params if exists
+    const param = getURLParam(o.trim().toLowerCase());
+    if (param) {
+      label.setAttribute('for', param.trim());
+      label.textContent = param.trim();
+      input.value = param.trim();
+    } else {
+      label.setAttribute('for', o.trim());
+      label.textContent = o.trim();
+      input.value = o.trim();
+    }
+    option.append(input, label);
+    options.append(option);
+  });
+  return options;
+}
+
 async function addValidationError(el) {
   el.parentNode.classList.add('error');
 }
@@ -152,8 +184,12 @@ async function createForm(formURL) {
         fieldWrapper.append(createButton(fd));
         break;
       case 'checkbox':
-        fieldWrapper.append(createInput(fd));
         fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createInput(fd));
+        break;
+      case 'radio':
+        fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createRadios(fd));
         break;
       case 'textarea':
         fieldWrapper.append(createLabel(fd));
