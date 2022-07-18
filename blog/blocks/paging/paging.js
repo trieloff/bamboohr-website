@@ -6,10 +6,9 @@ import {
 function createPagingLine(config) {
   const pagingLine = document.createElement('div');
   const prevLink = config.previousPage
-  ? `<span><a class="paging-link" href="${config.previousPage}">‹‹ Previous page</a></span>` : '';
+    ? `<span><a class="paging-link" href="${config.previousPage}">‹‹ Previous page</a></span>` : '';
   const nextLink = config.nextPage
-  ? `<span><a class="paging-link" href="${config.nextPage}">Next page ››</a></span>` : '';
-  
+    ? `<span><a class="paging-link" href="${config.nextPage}">Next page ››</a></span>` : '';
   pagingLine.innerHTML = `
   <div class="paging-line">
     <span class="">${config.totalItems} items</span>
