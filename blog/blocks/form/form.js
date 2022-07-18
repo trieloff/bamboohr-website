@@ -23,9 +23,6 @@ function createSelect(fd) {
 }
 
 async function addValidationError(el) {
-  if (!el.parentNode.querySelector('span.error')) {
-    el.insertAdjacentHTML('afterend', '<span class="error">Required</span>');
-  }
   el.parentNode.classList.add('error');
 }
 
