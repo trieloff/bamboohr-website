@@ -32,6 +32,15 @@ main .tabs .tabs-content[aria-hidden=true] {
   visibility: hidden;
 }
 
+.marketplace-listing .tabs-content {
+	margin-top: 60px;
+}
+
+.marketplace-listing .table-wrapper.tabs-content h3,
+.marketplace-listing .table-wrapper.tabs-content p {
+    margin: 0 0 30px;
+}
+
 @media (min-width: 600px) {
   main .tabs {
     display: flex;
@@ -52,6 +61,10 @@ main .tabs .tabs-content[aria-hidden=true] {
 
   main .tabs .tabs-title[aria-selected=true] {
     border-color: var(--color-info-accent);
+  }
+
+  .marketplace-listing .tabs .tabs-title[aria-selected=true] {
+    border-color: var(--color-1-shade-5);
   }
 
   main .tabs .tabs-title::after {
