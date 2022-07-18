@@ -1,15 +1,3 @@
-.comparison-matrix main .matrix-title-simple > div.default-content-wrapper {
-  margin-top: 100px;
-  margin-bottom: 195px;
-  text-align: center;
-}
-
-.comparison-matrix main .matrix-title > div.default-content-wrapper
- {
-  padding: 100px;
-  text-align: center;
-}
-
 .comparison-matrix .section.table-container {
   background-image: url('../../styles/leaf-top-3.svg'), linear-gradient(var(--color-white), var(--color-white) calc(61px + (100vw * 0.11)), var(--color-gray-1) calc(100vw * 0.11));
   background-position: 0 61px, top;

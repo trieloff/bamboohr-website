@@ -441,9 +441,16 @@ main .section.app-cards-container {
   text-align: center;
 }
 
-.marketplace-home main .home-featured-cat div.default-content-wrapper {
+.marketplace-home main .home-featured-cat div.default-content-wrapper,
+.comparison-matrix main .matrix-title-simple > div.default-content-wrapper {
   margin-top: 100px;
   margin-bottom: 195px;
+  text-align: center;
+}
+
+.comparison-matrix main .matrix-title > div.default-content-wrapper
+ {
+  padding: 100px;
   text-align: center;
 }
 
