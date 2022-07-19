@@ -44,6 +44,7 @@
   --color-info-accent-light: #DEDEF9;
   --color-elite-ribbon: #FDD436;
   --color-pro-ribbon: #D6D9D0;
+  --color-5: #16ACFF;
 
   /* body */
   --body-background-color: var(--color-white);
@@ -127,7 +128,7 @@ body {
   padding: 0;
   display: none;
   -webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body.appear {
@@ -140,7 +141,7 @@ a.button:any-link {
   text-decoration: none;
   border-radius: 2rem;
   border: 2px solid transparent;
-  padding: 17px 25px;
+  padding: 14.25px 25px;
 
   /* outline: none; (keep outline for a11n) */
   text-align: center;
@@ -148,7 +149,7 @@ a.button:any-link {
   /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
   font-family: 'Fira Sans';
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   color: var(--color-white);
   background-color: var(--color-info-accent);
@@ -359,12 +360,6 @@ main .section:last-of-type {
   padding: 0;
 }
 
-@media (min-width:600px) {
-  main .section > div {
-    max-width: unset;
-  }
-}
-
 main .section > div {
   margin: auto;
   padding: 0 30px;
@@ -417,6 +412,27 @@ main .section.app-cards-container {
 }
 
 /* listing template styles */
+
+.marketplace-listing .links-container .button-container .button {
+  background-color: var(--color-5);
+}
+
+.marketplace-listing .links-container :not(:last-child).button-container .button {
+  background-color: var(--color-1-shade-5);
+}
+
+.marketplace-listing .details-container .default-content-wrapper h4 {
+	font-style: normal;
+}
+
+/* .marketplace-listing .tabs-content > p {
+	margin: 0 0 30px;
+} */
+
+.marketplace-listing .tabs-content > p:not(:last-of-type) {
+	margin-bottom: 30px;
+}
+
 .marketplace-home {
   background-image: url('./leaf-top-1.svg'), linear-gradient(var(--color-gray-3), var(--color-gray-3) calc(450px + (100vw * 0.124)), white calc(100vw * 0.124));
   background-position: 0 450px, top;
@@ -625,6 +641,30 @@ main .default-content-wrapper a:any-link {
   text-decoration: none;
 }
 
+.marketplace-listing .details-container ul li a {
+	font-family: var(--heading-font-family);
+	font-size: 15px;
+	line-height: 20px;
+	font-weight: 700;
+	position: relative;
+	display: inline-block;
+	padding-right: 15px;
+	color: var(--color-1-shade-5);
+	background: none;
+}
+
+.marketplace-listing .details-container ul li a::after {
+	content: "";
+	border: solid var(--color-1-shade-5);
+	border-width: 0 2.5px 2.5px 0;
+	display: inline-block;
+	padding: 3px;
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 6px;
+	right: 0;
+}
+
 .marketplace main .default-content-wrapper a:any-link {
   color: var(--color-1-shade-5);
   background: unset;
@@ -651,6 +691,13 @@ main .default-content-wrapper ul li {
   margin-left: 30px;
 }
 
+.marketplace-listing .details-container ul {
+	margin-top: 60px;
+}
+
+.marketplace-listing .details-container ul li {
+	margin-bottom: 30px;
+}
 
 /* above the fold CSS goes here to squash CLS */
 
