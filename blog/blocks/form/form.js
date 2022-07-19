@@ -58,6 +58,18 @@ async function addValidationError(el) {
   el.parentNode.classList.add('error');
 }
 
+function constructPayload(form) {
+  const payload = {};
+  [...form.elements].forEach((fe) => {
+    if (fe.type === 'checkbox') {
+      if (fe.checked) payload[fe.id] = fe.value;
+    } else if (fe.id) {
+      payload[fe.id] = fe.value;
+    }
+  });
+  return payload;
+}
+
 async function submitForm(form) {
   let isError = false;
   const payload = {};
@@ -161,7 +173,11 @@ function createTextarea(fd) {
 function createLabel(fd) {
   const label = document.createElement('label');
   label.setAttribute('for', fd.Field);
-  label.textContent = fd.Label;
+  if (fd.Extra) {
+    label.innerHTML = `<a href="${fd.Extra}">${fd.Label}</a>`;
+  } else {
+    label.textContent = fd.Label;
+  }
 
   if (fd.Mandatory === 'x') {
     label.insertAdjacentHTML('beforeend', '<span class="required">*</span>');
@@ -169,11 +185,29 @@ function createLabel(fd) {
   return label;
 }
 
+function applyRules(form, rules) {
+  const payload = constructPayload(form);
+  rules.forEach((field) => {
+    const { type, condition: { key, operator, value } } = field.rule;
+    if (type === 'visible') {
+      if (operator === 'eq') {
+        if (payload[key] === value) {
+          form.querySelector(`.${field.fieldId}`).classList.remove('hidden');
+        } else {
+          form.querySelector(`.${field.fieldId}`).classList.add('hidden');
+        }
+      }
+    }
+  });
+}
+
 async function createForm(formURL) {
   const { pathname } = new URL(formURL);
   const resp = await fetch(pathname);
   const json = await resp.json();
   const form = document.createElement('form');
+  const rules = [];
+
   // eslint-disable-next-line prefer-destructuring
   form.dataset.action = pathname.split('.json')[0];
   json.data.forEach((fd) => {
@@ -181,6 +215,8 @@ async function createForm(formURL) {
     const fieldWrapper = document.createElement('div');
     const style = fd.Style ? ` form-${fd.Style}` : '';
     fieldWrapper.className = `form-${fd.Type}-wrapper${style}`;
+    const fieldId = `form-${fd.Field}-wrapper${style}`;
+    fieldWrapper.className = fieldId;
     switch (fd.Type) {
       case 'select':
         fieldWrapper.append(createLabel(fd));
@@ -206,7 +242,20 @@ async function createForm(formURL) {
         fieldWrapper.append(createInput(fd));
     }
     form.append(fieldWrapper);
+
+    if (fd.Rules) {
+      try {
+        rules.push({ fieldId, rule: JSON.parse(fd.Rules) });
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.warn(`Invalid Rule ${fd.Rules}: ${e}`);
+      }
+    }
   });
+
+  form.addEventListener('change', () => applyRules(form, rules));
+  applyRules(form, rules);
+
   return (form);
 }
 
