@@ -306,6 +306,10 @@ main h1.hidden {
   font-weight: 800;
 }
 
+.comparison-matrix main h1 {
+  margin: 0;
+}
+
 @media (min-width:600px) {
   .marketplace main h1 {
     font-size: 48px;
@@ -448,13 +452,6 @@ main .section.app-cards-container {
   background-size: contain;
 }
 
-.comparison-matrix {
-  background-image: url('./leaf-top-3.svg'), linear-gradient(var(--color-white), var(--color-white) calc(486px + (100vw * 0.11)), var(--color-gray-1) calc(100vw * 0.11));
-  background-position: 0 486px, top;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
 .marketplace-home main .search-container {
   margin-bottom: 200px;
 }
@@ -464,8 +461,18 @@ main .section.app-cards-container {
   text-align: center;
 }
 
-.marketplace-home main .home-featured-cat div.default-content-wrapper,
-.comparison-matrix main .table-container > div.default-content-wrapper {
+.comparison-matrix main .section {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.comparison-matrix main .section div.default-content-wrapper {
+  text-align: left;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.marketplace-home main .home-featured-cat div.default-content-wrapper {
   margin-top: 100px;
   margin-bottom: 195px;
   text-align: center;
@@ -481,11 +488,23 @@ main .section.app-cards-container {
   margin-bottom: 40px;
 }
 
+.comparison-matrix main .section:first-of-type div.default-content-wrapper {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  text-align: center;
+}
+
 .marketplace-home main .home-featured-cat div.default-content-wrapper h2 {
   font-style: italic;
   font-size: 30px;
   line-height: var(--heading-line-height);
   margin: 0;
+}
+
+.comparison-matrix main .section div.default-content-wrapper h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-style: normal;
 }
 
 .marketplace-form {
@@ -633,7 +652,6 @@ div.category-color-people-data-analytics {
   --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #794FCD 0%, #CC4373 100%);
   --category-box-shadow-color: rgba(121 79 205 / 50%);
 }
-
 
 main .default-content-wrapper a:any-link {
   color: var(--category-color);

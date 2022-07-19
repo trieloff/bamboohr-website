@@ -1,5 +1,33 @@
+.comparison-matrix .section.table-container {
+  background-image: url('../../styles/leaf-top-3.svg'), linear-gradient(var(--color-white), var(--color-white) calc(61px + (100vw * 0.11)), var(--color-gray-1) calc(100vw * 0.11));
+  background-position: 0 61px, top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.comparison-matrix main .section.table-container {
+  margin-top: 64px;
+}
+
 .comparison-matrix .table-container .table-wrapper {
   padding-bottom: 240px;
+}
+
+.table.comparison table h4 {
+  margin: 0;
+}
+
+.table.comparison table a {
+  text-decoration: none;
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size);
+  line-height: var(--heading-line-height);
+  font-weight: 700;
+  color: var(--color-1-shade-5);
+  background: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
 }
 
 .table {
@@ -69,23 +97,6 @@
   border-radius: 0 0 10px 10px;
 }
 
-.table.comparison table h4 {
-  margin: 0;
-}
-
-.table.comparison table a {
-  text-decoration: none;
-  font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size);
-  line-height: var(--heading-line-height);
-  font-weight: 700;
-  color: var(--color-1-shade-5);
-  background: none;
-  padding: 0;
-  margin: 0;
-  border-radius: 0;
-}
-
 .icon.icon-checkmark::after {
   content: "";
   position: absolute;
@@ -133,7 +144,7 @@
   margin-bottom: 40px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .table-mobile-container {
     display: unset;
   }
