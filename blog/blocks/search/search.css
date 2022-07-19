@@ -8,7 +8,7 @@ main .section > div.search-wrapper {
 }
 
 main .search .search-highlight {
-    background: var(--color-teal-tint-10);
+    background: var(--color-8-tint-10);
     color: unset;
 }
 
@@ -87,8 +87,8 @@ main .search-results .search-app-card {
 
 .search-app-card-search-tags span.search-searchtag-highlighted {
   display: unset;
-  border: 2px solid var(--color-green-shade-5);
-  background-color: var(--color-green-shade-5);
+  border: 2px solid var(--color-1-shade-5);
+  background-color: var(--color-1-shade-5);
   margin-right: 4px;
   margin-bottom: 4px;
   white-space: nowrap;
