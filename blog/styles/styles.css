@@ -641,6 +641,30 @@ main .default-content-wrapper a:any-link {
   text-decoration: none;
 }
 
+.marketplace-listing .details-container ul li a {
+	font-family: var(--heading-font-family);
+	font-size: 15px;
+	line-height: 20px;
+	font-weight: 700;
+	position: relative;
+	display: inline-block;
+	padding-right: 15px;
+	color: var(--color-1-shade-5);
+	background: none;
+}
+
+.marketplace-listing .details-container ul li a::after {
+	content: "";
+	border: solid var(--color-1-shade-5);
+	border-width: 0 2.5px 2.5px 0;
+	display: inline-block;
+	padding: 3px;
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 6px;
+	right: 0;
+}
+
 .marketplace main .default-content-wrapper a:any-link {
   color: var(--color-1-shade-5);
   background: unset;
@@ -674,31 +698,6 @@ main .default-content-wrapper ul li {
 .marketplace-listing .details-container ul li {
 	margin-bottom: 30px;
 }
-
-.marketplace-listing .details-container ul li a {
-	font-family: var(--heading-font-family);
-	font-size: 15px;
-	line-height: 20px;
-	font-weight: 700;
-	position: relative;
-	display: inline-block;
-	padding-right: 15px;
-	color: var(--color-1-shade-5);
-	background: none;
-}
-
-.marketplace-listing .details-container ul li a::after {
-	content: "";
-	border: solid var(--color-1-shade-5);
-	border-width: 0 2.5px 2.5px 0;
-	display: inline-block;
-	padding: 3px;
-	transform: rotate(-45deg);
-	position: absolute;
-	top: 6px;
-	right: 0;
-}
-
 
 /* above the fold CSS goes here to squash CLS */
 
