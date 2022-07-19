@@ -1,3 +1,7 @@
+.comparison-matrix main .section.paging-container div.default-content-wrapper > p:last-child {
+    margin-bottom: 30px;
+  }
+
 .paging-line {
     text-align: right;
     font-size: var(--heading-font-size-xxs);

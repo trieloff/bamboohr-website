@@ -450,10 +450,6 @@ main .section.app-cards-container {
   margin-bottom: 0;
 }
 
-.comparison-matrix main .section.table-container {
-  margin-top: 64px;
-}
-
 .comparison-matrix main .section div.default-content-wrapper {
   text-align: left;
   padding-top: 0;
@@ -640,7 +636,6 @@ div.category-color-people-data-analytics {
   --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #794FCD 0%, #CC4373 100%);
   --category-box-shadow-color: rgba(121 79 205 / 50%);
 }
-
 
 main .default-content-wrapper a:any-link {
   color: var(--category-color);

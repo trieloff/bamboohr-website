@@ -5,6 +5,10 @@
   background-size: contain;
 }
 
+.comparison-matrix main .section.table-container {
+  margin-top: 64px;
+}
+
 .comparison-matrix .table-container .table-wrapper {
   padding-bottom: 240px;
 }
@@ -24,16 +28,6 @@
   padding: 0;
   margin: 0;
   border-radius: 0;
-}
-
-.comparison-matrix main .section.paging-container div.default-content-wrapper > p:last-child {
-  margin-bottom: 30px;
-}
-
-.comparison-matrix main .default-content-wrapper a:any-link {
-  color: var(--color-1-shade-5);
-  background: unset;
-  text-decoration: none;
 }
 
 .table {
