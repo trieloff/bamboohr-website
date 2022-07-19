@@ -445,20 +445,31 @@ main .section.app-cards-container {
   text-align: center;
 }
 
-.comparison-matrix main div.default-content-wrapper {
-  padding: 100px 0;
+.comparison-matrix main .section {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.comparison-matrix main .section.table-container {
+  margin-top: 64px;
+}
+
+.comparison-matrix main .section:first-of-type div.default-content-wrapper {
+  padding-top: 100px;
+  padding-bottom: 100px;
   text-align: center;
+}
+
+.comparison-matrix main .section div.default-content-wrapper {
+  text-align: left;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .marketplace-home main .home-featured-cat div.default-content-wrapper {
   margin-top: 100px;
   margin-bottom: 195px;
   text-align: center;
-}
-
-.comparison-matrix main .extra-info > div.default-content-wrapper {
-  text-align: left;
-  padding: 0;
 }
 
 .marketplace-home main .search-container > div.default-content-wrapper {
@@ -476,6 +487,12 @@ main .section.app-cards-container {
   font-size: 30px;
   line-height: var(--heading-line-height);
   margin: 0;
+}
+
+.comparison-matrix main .section div.default-content-wrapper h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-style: normal;
 }
 
 .marketplace-form {

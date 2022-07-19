@@ -9,10 +9,6 @@
   padding-bottom: 240px;
 }
 
-.comparison-matrix main .section.extra-info {
-  margin: 0;
-}
-
 .table.comparison table h4 {
   margin: 0;
 }
@@ -30,14 +26,7 @@
   border-radius: 0;
 }
 
-.comparison-matrix main .section.extra-info div.default-content-wrapper > h4 {
-  font-size: var(--heading-font-size-xs);
-  font-style: normal;
-  line-height: var(--heading-line-height-m);
-  margin: 0;
-}
-
-.comparison-matrix main .section.extra-info div.default-content-wrapper > p:last-child {
+.comparison-matrix main .section.paging-container div.default-content-wrapper > p:last-child {
   margin-bottom: 30px;
 }
 
