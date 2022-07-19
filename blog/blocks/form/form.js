@@ -115,6 +115,12 @@ function createInput(fd) {
   const input = document.createElement('input');
   input.type = fd.Type;
   input.id = fd.Field;
+
+  const param = getURLParam(input.id);
+  if (param) {
+    input.value = param;
+  }
+
   input.setAttribute('placeholder', fd.Placeholder);
 
   if (fd.Mandatory === 'x') {

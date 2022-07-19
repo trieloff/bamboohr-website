@@ -940,7 +940,8 @@ function buildAutoBlocks(main) {
       buildHighlightsColumns(main);
       // build request information button
       const requestInfo = document.createElement('p');
-      requestInfo.innerHTML = '<a href="#" id="marketplace-request-info">Request Information</a>';
+      const appName = window.location.pathname.split('/').pop();
+      requestInfo.innerHTML = `<a href="/marketplace/request-information?appName=${appName}" id="marketplace-request-info">Request Information</a>`;
       const sections = [...main.children].slice(2);
       if (sections.length < 3) {
         // if missing, add listing details section
