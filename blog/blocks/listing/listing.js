@@ -10,7 +10,7 @@ import { createAppCard } from '../app-cards/app-cards.js';
 
 function getBlockHTML(ph) {
   return /* html */`
-  <div class="listing-controls"><input id="fulltext" placeholder="${ph.typeToSearch}">
+  <div class="listing-controls">
     <p class="listing-results-count"><span id="listing-results-count"></span> ${ph.results}</p>
     <button class="listing-filter-button secondary">${ph.filter}</button>
     <button class="listing-sort-button secondary">${ph.sort}</button>
@@ -71,10 +71,6 @@ export async function filterResults(config, facets = {}) {
       if (row[key]) {
         const rowValues = row[key].split(',').map((t) => t.trim());
         matched = tokens[key].some((t) => rowValues.includes(t));
-      }
-      if (key === 'fulltext') {
-        const fulltext = row.title.toLowerCase();
-        matched = fulltext.includes(config.fulltext.toLowerCase());
       }
       filterMatches[key] = matched;
       return matched;
@@ -155,25 +151,12 @@ export default async function decorate(block, blockName) {
     selectSort(event.target);
   });
 
-  const highlightResults = (res) => {
-    const fulltext = document.getElementById('fulltext').value;
-    if (fulltext) {
-      res.querySelectorAll('h4 a, p:first-of-type').forEach((title) => {
-        const content = title.textContent;
-        const offset = content.toLowerCase().indexOf(fulltext.toLowerCase());
-        if (offset >= 0) {
-          title.innerHTML = `${content.substr(0, offset)}<mark class="listing-search-highlight">${content.substr(offset, fulltext.length)}</mark>${content.substr(offset + fulltext.length)}`;
-        }
-      });
-    }
-  };
-
   const displayResults = async (results) => {
     resultsElement.innerHTML = '';
     results.forEach((product) => {
       resultsElement.append(createAppCard(product, blockName));
     });
-    highlightResults(resultsElement);
+    // highlightResults(resultsElement);
   };
 
   const getSelectedFilters = () => [...block.querySelectorAll('input[type="checkbox"]:checked')];
@@ -186,7 +169,6 @@ export default async function decorate(block, blockName) {
       if (filterConfig[facetKey]) filterConfig[facetKey] += `, ${facetValue}`;
       else filterConfig[facetKey] = facetValue;
     });
-    filterConfig.fulltext = document.getElementById('fulltext').value;
     return (filterConfig);
   };
 
@@ -285,11 +267,6 @@ export default async function decorate(block, blockName) {
     displayResults(results, null);
     displayFacets(facets, filterConfig);
   };
-
-  const fulltextElement = block.querySelector('#fulltext');
-  fulltextElement.addEventListener('input', () => {
-    runSearch(createFilterConfig());
-  });
 
   runSearch(config);
 }
