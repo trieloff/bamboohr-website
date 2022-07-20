@@ -14,7 +14,7 @@ main .listing-controls button {
 main .listing-facets  {
     display: none;
     position: fixed;
-    top: 0;
+    top: 70px;
     left: 0;
     height: 100vh;
     width: 100vw;
@@ -24,8 +24,8 @@ main .listing-facets  {
 main .listing-facets > div {
     padding: 20px;
     overflow-y: scroll;
-    background-color: var(--color-gray-1);
-    height: 100vh;
+    background-color: var(--color-white);
+    height: calc(100vh - 70px);
     display: flex;
     flex-direction: column;
     position: relative;
@@ -104,9 +104,16 @@ main .listing-filters-selected:empty + p {
 }
 
 main .listing-facets button {
-    font-size: var(--body-font-size-s);
+    color: var(--color-gray-9);
+    border: 2px solid var(--color-gray-8);
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 50px;
+    padding: 5px 15px;
     width: unset;
     margin: 0;
+    background-color: var(--color-white);
+    cursor: pointer;
 }
 
 main .listing-facets h2 {
@@ -179,13 +186,36 @@ main .listing-sortby {
     text-align: center;
     font-size: var(--body-font-size-s);
     position: relative;
+    margin-bottom: 54px;
+}
+
+main .listing-sortby .listing-filter-button,
+main .listing-sortby .listing-sort-button {
+    display: inline-block;
+    color: var(--color-gray-9);
+    border: 2px solid var(--color-gray-8);
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+main .listing-sortby .listing-filter-button {
+    padding: 5px 15px 5px 45px;
+    background: url('./filter.svg') center left 10px no-repeat;
+}
+
+main .listing-sortby .listing-sort-button {
+    display: inline-block;
+    padding: 5px 45px 5px 15px;
+    background: url('./chevron-down.svg') center right 10px no-repeat;
 }
 
 main .listing-sortby ul {
     display: none;
     position: absolute;
-    top: -40px;
-    right: calc(50% - 105px);
+    top: 35px;
+    right: 0;
     z-index: 1;
     background-color: var(--color-white);
     border: 1px solid var(--color-gray-1);
@@ -201,6 +231,7 @@ main .listing-sortby ul {
 main .listing-sortby ul li {
     padding: 5px 10px;
     border-bottom: 1px solid var(--color-gray-1);
+    cursor: pointer;
 }
 
 main .listing-sortby ul li.selected {
@@ -377,6 +408,7 @@ main .listing-results .listing-card-detail a::after {
         border-radius: 15px;
         height: unset;
         overflow-y: unset;
+        background-color: var(--color-gray-1);
     }
 
     main .listing-facets > div::after {
@@ -413,10 +445,6 @@ main .listing-results .listing-card-detail a::after {
         text-align: left;
     }
 
-    main .listing-controls button {
-        display: none;
-    }
-
     main .listing {
         display: grid;
         grid-template-areas: '- controls sortby' 'facets results results';
@@ -430,13 +458,8 @@ main .listing-results .listing-card-detail a::after {
         white-space: nowrap;
     }
 
-    main .listing-sortby p {
-        display: inline-block;
-        border-radius: 5px;
-        border: 2px solid #888;
-        padding: 5px 45px 5px 15px;
-        font-size: var(--body-font-size-m);
-        background: url('./chevron-down.svg') center right 10px no-repeat;
+    main .listing-sortby .listing-filter-button {
+        display: none;
     }
 
     main .listing-sortby ul {

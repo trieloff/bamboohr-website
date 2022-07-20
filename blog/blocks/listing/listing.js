@@ -16,7 +16,7 @@ function getBlockHTML(ph) {
   <div class="listing-facets">
   </div>
   <div class="listing-sortby">
-    <button class="listing-filter-button">${ph.filter}</button>
+    <div class="listing-filter-button">${ph.filter}</div>
     <p class="listing-sort-button">${ph.sortBy} <span data-sort="default" id="listing-sortby">${ph.default}</span></p>
     <ul>
       <li data-sort="default">${ph.default}</li>
