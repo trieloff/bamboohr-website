@@ -164,6 +164,11 @@ main .home-featured-cat {
     main .home-featured-cat {
         margin-top: 60px;
     }
+
+	.marketplace-listing .columns div:first-of-type {
+		flex-wrap: nowrap;
+	}
+
 }
 
 @media (min-width: 900px) {
