@@ -173,6 +173,10 @@ main .listing-facets.visible {
     display: block;
 }
 
+main .listing-results-count {
+    text-align: center;
+}
+
 main .listing-sortby {
     text-align: center;
     font-size: var(--body-font-size-s);
