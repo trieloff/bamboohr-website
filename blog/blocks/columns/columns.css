@@ -106,6 +106,35 @@
     text-align: center;
 }
 
+/* Listings */
+.marketplace-listing .columns-wrapper {
+	margin-top: 130px;
+}
+
+.marketplace-listing .columns div:first-of-type {
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.marketplace-listing .columns div:first-of-type > div {
+	width: 50%;
+	margin-bottom: 40px;
+}
+
+
+.marketplace-listing .columns h4 {
+	font-style: normal;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 20px;
+	margin: 20px 0 10px;
+}
+
+.marketplace-listing .columns p:first-of-type {
+	font-size: 12px;
+	line-height: 18px
+}
+
 @media (min-width: 900px) {
     .columns > div {
         display: flex;
@@ -137,4 +166,16 @@
         margin-left: unset;
     }
     
+}
+
+@media (min-width: 1025px) {
+	.marketplace-listing .columns h4 {
+		font-size: 20px;
+		line-height: 28px;
+	}
+
+	.marketplace-listing .columns p:first-of-type {
+		font-size: 17px;
+		line-height: 28px
+	}
 }
