@@ -3,10 +3,9 @@ import {
   getMetadata,
   fetchPlaceholders,
   readBlockConfig,
-  toClassName,
   toCamelCase,
 } from '../../scripts/scripts.js';
-import { createAppCard } from '../app-cards/app-cards.js';
+import { createAppCard, sortListing } from '../app-cards/app-cards.js';
 
 function getBlockHTML(ph) {
   return /* html */`
@@ -15,9 +14,9 @@ function getBlockHTML(ph) {
   </div>
   <div class="listing-sortby">
     <div class="listing-filter-button">${ph.filter}</div>
-    <p class="listing-sort-button">${ph.sortBy} <span data-sort="default" id="listing-sortby">${ph.default}</span></p>
+    <p class="listing-sort-button">${ph.sortBy} <span data-sort="level" id="listing-sortby">${ph.default}</span></p>
     <ul>
-      <li data-sort="default">${ph.default}</li>
+      <li data-sort="level">${ph.default}</li>
       <li data-sort="name">${ph.name}</li>
       <li data-sort="newest">${ph.newest}</li>
     </ul>
@@ -247,18 +246,10 @@ export default async function decorate(block, blockName) {
       locationRestrictions: {},
     };
 
-    /* sort options */
-    const levels = ['pro', 'elite', 'bamboohr-product'];
-    const sorts = {
-      name: (a, b) => a.title.localeCompare(b.title),
-      default: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level))
-                      || a.title.localeCompare(b.title),
-      newest: (a, b) => b.publicationDate.localeCompare(a.publicationDate)
-                                || a.title.localeCompare(b.title),
-    };
     const results = await filterResults(filterConfig, facets);
-    const sortBy = document.getElementById('listing-sortby') ? document.getElementById('listing-sortby').dataset.sort : 'default';
-    if (sortBy && sorts[sortBy]) results.sort(sorts[sortBy]);
+    const sortBy = document.getElementById('listing-sortby') ? document.getElementById('listing-sortby').dataset.sort : 'level';
+
+    if (sortBy && sortListing(sortBy)) results.sort(sortListing(sortBy));
     block.querySelector('#listing-results-count').textContent = results.length;
     displayResults(results, null);
     displayFacets(facets, filterConfig);

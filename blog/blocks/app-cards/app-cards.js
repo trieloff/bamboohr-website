@@ -45,6 +45,20 @@ function compareFilterVal(filter, filterVal, appVal) {
   return matchedFilter;
 }
 
+export function sortListing(sortBy) {
+  const levels = ['pro', 'elite', 'bamboohr-product'];
+
+  /* sort options */
+  const sortOptions = {
+    name: (a, b) => a.title.localeCompare(b.title),
+    level: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level))
+                      || a.title.localeCompare(b.title),
+    publicationDate: (a, b) => b.publicationDate.localeCompare(a.publicationDate)
+                                || a.title.localeCompare(b.title),
+  };
+  return sortOptions[sortBy];
+}
+
 export async function filterApps(config, feed, limit, offset) {
   const result = [];
 
@@ -64,20 +78,16 @@ export async function filterApps(config, feed, limit, offset) {
     }
   });
 
-  /* sort options */
   config.sortBy = toCamelCase(config.sortBy);
-  const levels = ['pro', 'elite', 'bamboohr-product'];
-  const sorts = {
-    name: (a, b) => a.title.localeCompare(b.title),
-    level: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level))
-                      || a.title.localeCompare(b.title),
-    publicationDate: (a, b) => b.publicationDate.localeCompare(a.publicationDate)
-                                || a.title.localeCompare(b.title),
-  };
 
   await lookupPages([], 'marketplace');
   const index = [...window.pageIndex.marketplace.data];
-  if (sorts[config.sortBy]) index.sort(sorts[config.sortBy]);
+
+  if (sortListing(config.sortBy)) {
+    index.sort(sortListing(config.sortBy));
+  } else {
+    index.sort(sortListing('level'));
+  }
 
   while ((feed.data.length < limit + offset) && (!feed.complete)) {
     // eslint-disable-next-line no-await-in-loop
