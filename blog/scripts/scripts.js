@@ -940,7 +940,8 @@ function buildAutoBlocks(main) {
       buildHighlightsColumns(main);
       // build request information button
       const requestInfo = document.createElement('p');
-      requestInfo.innerHTML = '<a href="#" id="marketplace-request-info">Request Information</a>';
+      const appName = window.location.pathname.split('/').pop();
+      requestInfo.innerHTML = `<a href="/marketplace/request-information?appName=${appName}" id="marketplace-request-info">Request Information</a>`;
       const sections = [...main.children].slice(2);
       if (sections.length < 3) {
         // if missing, add listing details section
@@ -1018,9 +1019,9 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   setCategory();
-  decorateButtons(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateButtons(main);
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   window.setTimeout(() => sampleRUM.observe(main.querySelectorAll('picture > img')), 1000);
 }

@@ -1,10 +1,45 @@
+.comparison-matrix .section.table-container {
+  background-image: url('../../styles/leaf-top-3.svg'), linear-gradient(var(--color-white), var(--color-white) calc(61px + (100vw * 0.11)), var(--color-gray-1) calc(100vw * 0.11));
+  background-position: 0 61px, top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.comparison-matrix main .section.table-container {
+  margin-top: 64px;
+}
+
+.comparison-matrix .table-container .table-wrapper {
+  padding-bottom: 240px;
+}
+
+.table.comparison table h4 {
+  margin: 0;
+}
+
+.table.comparison table a {
+  text-decoration: none;
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size);
+  line-height: var(--heading-line-height);
+  font-weight: 700;
+  color: var(--color-1-shade-5);
+  background: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
 .table {
   max-width: 100%;
   overflow-x: auto;
 }
 
+.table table {
+  width: 100%;
+}
+
 .table table, .table th, .table td {
-  border: 2px solid var(--color-gray-300);
   padding: 14px;
   font-size: 12px;
   line-height: 16px;
@@ -12,16 +47,109 @@
   vertical-align: middle;
 }
 
-.table table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
 .table table thead th {
   font-weight: bold;
 }
 
-.table table tbody tr:nth-child(odd) {
+.table.data-sync table, .table.data-sync th, .table.data-sync td {
+  border: 2px solid var(--color-gray-300);
+}  
+
+.table.comparison table, .table.comparison th, .table.comparison td {
+  text-align: center;
+  position: relative;
+}
+
+.table.data-sync table {
+  border-collapse: collapse;
+}
+
+.table.comparison table {
+  border-spacing: 10px 0;
+  padding: 0;
+  table-layout: fixed;
+}
+
+.table.data-sync table tbody tr:nth-child(odd) {
   background: var(--color-gray-100);
 }
 
+.table.comparison th, .table.comparison td {
+  background-color: white;
+  font-size: var(--body-font-size-xs);
+  line-height: var(--body-line-height);
+  color: var(--color-gray-9);
+  font-weight: 400;
+}
+
+.table.comparison th {
+  border-radius: 10px 10px 0 0;
+  padding-top: 75px;
+  padding-bottom: 40px;
+  overflow: hidden;
+}
+
+.table.comparison th:first-child {
+  width: 200px;
+}
+
+.table.comparison tr:last-child td {
+  border-radius: 0 0 10px 10px;
+}
+
+.icon.icon-checkmark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 33%;
+  width: 5px;
+  height: 10px;
+  border: solid var(--color-1);
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+}
+
+.table.comparison .elite-ribbon::after,
+.table.comparison .pro-ribbon::after {
+    font-size: 17px;
+    line-height: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    padding: 7px 20px;
+    position: absolute;
+    transform: rotate(-45deg);
+    text-align: center;
+    min-width: 112px;
+    top: 16px;
+    left: -46px;
+}
+
+.table.comparison .elite-ribbon::after {
+    content: 'ELITE';
+    color: var(--color-white);
+    background-color: var(--color-elite-ribbon);
+}
+
+.table.comparison .pro-ribbon::after {
+  content: 'PRO';
+  color: var(--color-white);
+  background-color: var(--color-pro-ribbon);
+}
+
+.table-mobile-container {
+  display: none;
+}
+
+.table-mobile:not(:last-child) {
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1000px) {
+  .table-mobile-container {
+    display: unset;
+  }
+
+  .table-desktop {
+    display: none;
+  }
+}

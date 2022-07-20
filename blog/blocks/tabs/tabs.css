@@ -37,7 +37,7 @@ main .tabs .tabs-content[aria-hidden=true] {
 	background: var(--color-gray-1);
 	padding: 30px;
 }
-
+	
 .marketplace-listing .tabs > h2 {
 	font-size: 27px;
 	line-height: 46px;
@@ -78,7 +78,6 @@ main .tabs .tabs-content[aria-hidden=true] {
 		margin: 40px 0;
 		background: none;
 		padding: 0;
-
 	}
 
   main .tabs .tabs-title::after {
