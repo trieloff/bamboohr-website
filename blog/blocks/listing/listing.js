@@ -12,13 +12,12 @@ function getBlockHTML(ph) {
   return /* html */`
   <div class="listing-controls">
     <p class="listing-results-count"><span id="listing-results-count"></span> ${ph.results}</p>
-    <button class="listing-filter-button secondary">${ph.filter}</button>
-    <button class="listing-sort-button secondary">${ph.sort}</button>
   </div>
   <div class="listing-facets">
   </div>
   <div class="listing-sortby">
-    <p>${ph.sortBy} <span data-sort="default" id="listing-sortby">${ph.default}</span></p>
+    <button class="listing-filter-button">${ph.filter}</button>
+    <p class="listing-sort-button">${ph.sortBy} <span data-sort="default" id="listing-sortby">${ph.default}</span></p>
     <ul>
       <li data-sort="default">${ph.default}</li>
       <li data-sort="name">${ph.name}</li>
@@ -156,7 +155,6 @@ export default async function decorate(block, blockName) {
     results.forEach((product) => {
       resultsElement.append(createAppCard(product, blockName));
     });
-    // highlightResults(resultsElement);
   };
 
   const getSelectedFilters = () => [...block.querySelectorAll('input[type="checkbox"]:checked')];
