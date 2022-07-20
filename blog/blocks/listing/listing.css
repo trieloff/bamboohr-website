@@ -2,15 +2,6 @@ main .listing-wrapper {
     max-width: unset;
 }
 
-main .listing-controls {
-    text-align: center;
-}
-
-main .listing-controls button {
-    display: inline-block;
-    width: unset;
-}
-
 main .listing-facets  {
     display: none;
     position: fixed;
@@ -440,14 +431,14 @@ main .listing-results .listing-card-detail a::after {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    main .listing-controls {
-        grid-area: controls;
+    main .listing-results-count {
+        grid-area: count;
         text-align: left;
     }
 
     main .listing {
         display: grid;
-        grid-template-areas: '- controls sortby' 'facets results results';
+        grid-template-areas: '- count sortby' 'facets results results';
         align-items: flex-start;
     }
 

@@ -10,9 +10,7 @@ import { createAppCard } from '../app-cards/app-cards.js';
 
 function getBlockHTML(ph) {
   return /* html */`
-  <div class="listing-controls">
-    <p class="listing-results-count"><span id="listing-results-count"></span> ${ph.results}</p>
-  </div>
+  <p class="listing-results-count"><span id="listing-results-count"></span> ${ph.results}</p>
   <div class="listing-facets">
   </div>
   <div class="listing-sortby">
