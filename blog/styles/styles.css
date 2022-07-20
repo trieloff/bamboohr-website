@@ -43,9 +43,9 @@
   --color-info-accent-hover: #73c41d;
   --color-info-accent-down: #80d32c;
   --color-info-accent-light: #DEDEF9;
+  --color-5: #16ACFF;
   --color-elite-ribbon: #FDD436;
   --color-pro-ribbon: #D6D9D0;
-  --color-5: #16ACFF;
 
   /* body */
   --body-background-color: var(--color-white);
