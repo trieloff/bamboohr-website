@@ -106,14 +106,28 @@
     text-align: center;
 }
 
+.home-featured-cat .columns > div {
+    align-items: flex-start;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 0 -20px;
+}
+
+.home-featured-cat .columns > div > div {
+    flex: 0 0 auto;
+    width: 50%;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
 /* Listings */
 .marketplace-listing .columns-wrapper {
 	margin-top: 130px;
 }
 
 .marketplace-listing .columns div:first-of-type {
+    flex-flow: wrap;
 	flex-direction: row;
-	flex-wrap: wrap;
 }
 
 .marketplace-listing .columns div:first-of-type > div {
@@ -133,20 +147,6 @@
 .marketplace-listing .columns p:first-of-type {
 	font-size: 12px;
 	line-height: 18px
-}
-
-.home-featured-cat .columns > div {
-    align-items: flex-start;
-    flex-flow: row wrap;
-    justify-content: center;
-    margin: 0 -20px;
-}
-
-.home-featured-cat .columns > div > div {
-    flex: 0 0 auto;
-    width: 50%;
-    margin-bottom: 30px;
-    padding: 0 20px;
 }
 
 main .home-featured-cat {

@@ -416,21 +416,39 @@ main .section.app-cards-container {
   margin-bottom: 120px;
 }
 
+main .default-content-wrapper a:any-link {
+	color: var(--category-color);
+	background: linear-gradient(#f000 50%, var(--category-bg-color) 50.1%);
+	text-decoration: none;
+  }
+  
 /* listing template styles */
 
 .marketplace-listing .details-container {
 	margin-top: 30px;
-  }
+}
 
-  .marketplace-listing .details-container .details-logo {
+.marketplace-listing .details-container .details-logo {
 	margin-bottom: 55px;
-  }
+}
 
-  .marketplace-listing .details-container .button-container {
+.marketplace-listing .details-container .button-container {
 	  margin: 1em 0 -2px;
-  }
+}
 
-  .marketplace-listing .details-container .button-container a {
+.marketplace-listing .details-container ul li a {
+	font-family: var(--heading-font-family);
+	font-size: 15px;
+	line-height: 20px;
+	font-weight: 700;
+	position: relative;
+	display: inline-block;
+	padding-right: 15px;
+	color: var(--color-1-shade-5);
+	background: none;
+}
+
+.marketplace-listing .details-container .button-container a {
 	background: transparent !important;
 	color: var(--category-color) !important;
 	padding: 0;
@@ -440,11 +458,23 @@ main .section.app-cards-container {
     font-weight: 400;
 	font-style: normal;
 	font-family:  var(--body-font-family) !important;
-  }
+}
 
-  .marketplace-listing .links-container {
+.marketplace-listing .details-container ul li a::after {
+	content: "";
+	border: solid var(--color-1-shade-5);
+	border-width: 0 2.5px 2.5px 0;
+	display: inline-block;
+	padding: 3px;
+	transform: rotate(-45deg);
+	position: absolute;
+	top: 6px;
+	right: 0;
+}
+
+.marketplace-listing .links-container {
 	margin-top: 55px;
-  }
+}
 
 .marketplace-listing .links-container .default-content-wrapper {
 	max-width: 250px;
@@ -462,10 +492,6 @@ main .section.app-cards-container {
 .marketplace-listing .details-container .default-content-wrapper h4 {
 	font-style: normal;
 }
-
-/* .marketplace-listing .tabs-content > p {
-	margin: 0 0 30px;
-} */
 
 .marketplace-listing .tabs-content > p:not(:last-of-type) {
 	margin-bottom: 30px;
@@ -685,36 +711,6 @@ div.category-color-people-data-analytics {
   --category-callout-bg: url('./bg/purple-cta.svg');
   --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #794FCD 0%, #CC4373 100%);
   --category-box-shadow-color: rgba(121 79 205 / 50%);
-}
-
-main .default-content-wrapper a:any-link {
-  color: var(--category-color);
-  background: linear-gradient(#f000 50%, var(--category-bg-color) 50.1%);
-  text-decoration: none;
-}
-
-.marketplace-listing .details-container ul li a {
-	font-family: var(--heading-font-family);
-	font-size: 15px;
-	line-height: 20px;
-	font-weight: 700;
-	position: relative;
-	display: inline-block;
-	padding-right: 15px;
-	color: var(--color-1-shade-5);
-	background: none;
-}
-
-.marketplace-listing .details-container ul li a::after {
-	content: "";
-	border: solid var(--color-1-shade-5);
-	border-width: 0 2.5px 2.5px 0;
-	display: inline-block;
-	padding: 3px;
-	transform: rotate(-45deg);
-	position: absolute;
-	top: 6px;
-	right: 0;
 }
 
 .marketplace main .default-content-wrapper a:any-link {
