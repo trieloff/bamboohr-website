@@ -21,6 +21,5 @@ export default async function decorate(block) {
   <div class="author-description">
     <p>${fullname.textContent}</p>
     ${title ? title.outerHTML : ''}
-    ${dom.body.innerHTML}
   </div>`;
 }

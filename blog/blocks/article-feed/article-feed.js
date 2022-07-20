@@ -53,6 +53,27 @@ export async function filterArticles(config, feed, limit, offset) {
   }
 }
 
+function buildArticleFeedRow(cards, cardIndex, isLarge) {
+  let row = '';
+  if (cards[cardIndex]) {
+    if (isLarge) {
+      row = `<div class="article-feed-row article-feed-large">
+        ${cards[cardIndex]}
+      </div>`;
+    } else if (cards[cardIndex + 1]) {
+      row = `<div class="article-feed-row">
+        ${cards[cardIndex]}${cards[cardIndex + 1]}
+      </div>`;
+    } else {
+      row = `<div class="article-feed-row">
+        ${cards[cardIndex]}
+      </div>`;
+    }
+  }
+
+  return row;
+}
+
 async function decorateArticleFeed(
   articleFeedEl,
   config,
@@ -79,28 +100,22 @@ async function decorateArticleFeed(
 
   const cardGrid = document.createElement('div');
   cardGrid.className = 'article-feed-card-grid';
+  const row1 = buildArticleFeedRow(cards, 0, true);
+  const row2 = buildArticleFeedRow(cards, 1);
+  const row3 = buildArticleFeedRow(cards, 3);
+  const row4 = buildArticleFeedRow(cards, 5);
+  const row5 = buildArticleFeedRow(cards, 7);
+  const row6 = buildArticleFeedRow(cards, 9, true);
   cardGrid.innerHTML = `
     <div class="article-feed-col">
-      <div class="article-feed-row article-feed-large">
-        ${cards[0]}
-      </div>
-      <div class="article-feed-row">
-      ${cards[1]}${cards[2]}
-      </div>
-      <div class="article-feed-row">
-      ${cards[3]}${cards[4]}
-      </div>
+      ${row1}
+      ${row2}
+      ${row3}
     </div>
     <div class="article-feed-col">
-      <div class="article-feed-row">
-        ${cards[5]}${cards[6]}
-      </div>
-      <div class="article-feed-row">
-        ${cards[7]}${cards[8]}
-      </div>
-      <div class="article-feed-row article-feed-large">
-        ${cards[9]}
-      </div>
+      ${row4}
+      ${row5}
+      ${row6}
     </div>
   `;
   articleFeedEl.append(cardGrid);
