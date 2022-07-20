@@ -56,10 +56,74 @@ main .form input[type=radio] {
   width: 13px;
 }
 
-main .form .form-radio-option {
+main .form .form-radio-option,
+main .form .form-checkbox-option {
   display: flex;
-  align-items: center;
-  margin: 4px 0;
+  align-items: flex-start;
+  margin-top: 15px;
+}
+
+main .form .form-checkbox-option input,
+main .form .form-radio-option input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+main .form .form-checkbox-option label,
+main .form .form-radio-option label {
+  position: relative;
+  display: flex;
+}
+
+main .form .form-checkbox-option label {
+  padding-left: 42px;
+}
+
+main .form .form-checkbox-option label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  width: 24px;
+  background-color: var(--color-white);
+  border: 2px solid var(--color-gray-3);
+  border-radius: 3px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+main .form .form-checkbox-option input:checked + label::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  width: 8px;
+  height: 14px;
+  border: solid var(--color-1);
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+  box-sizing: border-box;
+}
+
+main .form .form-radio-option label::before {
+  content: "";
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  padding: 2px;
+  margin-right: 16px;
+  background-clip: content-box;
+  border: 2px solid var(--color-gray-3);
+  background-color: var(--color-white);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+main .form .form-radio-option input:checked + label::before {
+  background-color: var(--color-1);
 }
 
 main .form select {
@@ -85,8 +149,4 @@ main .form .error input {
 
 main .form .form-button-wrapper .button {
   padding: 18px 40px;
-}
-
-main .form label a:any-link:hover {
-  text-decoration: underline;
 }
