@@ -45,7 +45,7 @@ main .tabs .tabs-content[aria-hidden=true] {
 
 .marketplace-listing .table-wrapper.tabs-content h3,
 .marketplace-listing .table-wrapper.tabs-content p {
-    margin: 0 0 30px;
+  margin: 0 0 30px;
 }
 
 @media (min-width: 600px) {
