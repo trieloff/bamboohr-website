@@ -1,3 +1,14 @@
+main .form-container {
+  background-image: url('../../styles/leaf-top-3.svg'), linear-gradient(var(--color-white), var(--color-white) calc(290px + (100vw * 0.11)), var(--color-gray-1) calc(100vw * 0.11));
+  background-position: 0 290px, top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+main .form-container .default-content-wrapper {
+  text-align: center;
+}
+
 main .form {
   max-width: 800px;
   margin: 0 auto;
@@ -5,6 +16,7 @@ main .form {
   font-size: 15px;
   font-weight: 700;
   line-height: 24px;
+  padding: 150px 0;
 }
 
 main .form .hidden {
@@ -154,4 +166,10 @@ main .form .error input[type="checkbox"] + label::before {
 
 main .form .form-button-wrapper .button {
   padding: 18px 40px;
+}
+
+@media (min-width: 120px) {
+  main .form {
+    padding-top: 250px;
+  }
 }

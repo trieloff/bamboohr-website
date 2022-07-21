@@ -304,7 +304,6 @@ export default async function decorate(block) {
 
   if (formUrl) {
     const formEl = await createForm(formUrl);
-    block.classList.add('form-container');
     block.firstElementChild.replaceWith(formEl);
   }
 }
