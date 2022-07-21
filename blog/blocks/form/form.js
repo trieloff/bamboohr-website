@@ -85,6 +85,16 @@ function constructPayload(form) {
   return payload;
 }
 
+function sanitizeInput(input) {
+  const output = input.replace(/<script[^>]*?>.*?<\/script>/gi, '')
+    // eslint-disable-next-line no-useless-escape
+    .replace(/<[\/\!]*?[^<>]*?>/gi, '')
+    .replace(/<style[^>]*?>.*?<\/style>/gi, '')
+    .replace(/<![\s\S]*?--[ \t\n\r]*>/gi, '')
+    .replace(/&nbsp;/g, '');
+  return output;
+}
+
 async function submitForm(form) {
   let isError = false;
   const payload = {};
@@ -100,9 +110,9 @@ async function submitForm(form) {
           isError = true;
           addValidationError(fe);
         }
-        if (fe.checked) payload[fe.id] = fe.value;
+        if (fe.checked) payload[fe.id] = sanitizeInput(fe.value);
       } else if (fe.id) {
-        payload[fe.id] = fe.value;
+        payload[fe.id] = sanitizeInput(fe.value);
       }
     }
   });
@@ -159,7 +169,7 @@ function createInput(fd) {
   if (fd.Mandatory === 'x') {
     input.setAttribute('required', '');
 
-    input.addEventListener('change', () => {
+    input.addEventListener('change, blur', () => {
       if (input.value && input.parentNode.classList.contains('error')) {
         input.parentNode.classList.remove('error');
       } else {
