@@ -27,26 +27,36 @@ function getURLParam(param) {
   return params.get(param);
 }
 
-function createRadios(fd) {
+function createOptions(fd) {
   const options = document.createElement('div');
-  options.classList.add('form-radio-options');
-  fd.Options.split(',').forEach((o) => {
+  const optionType = fd.Type;
+  options.classList.add(`form-${optionType}-options`);
+  fd.Options.split('|').forEach((o, k) => {
     const option = document.createElement('div');
-    option.classList.add('form-radio-option');
+    option.classList.add(`form-${optionType}-option`);
     const label = document.createElement('label');
     const input = document.createElement('input');
-    input.type = 'radio';
+    input.type = optionType;
     input.name = fd.Field;
+    input.id = fd.Field;
+    input.required = !!fd.Mandatory;
+    label.setAttribute('for', fd.Field);
+    if (fd.Options.split('|').length > 1) {
+      input.id = fd.Field + k;
+      label.setAttribute('for', fd.Field + k);
+    }
     // set radio data to url params if exists
     const param = getURLParam(o.trim().toLowerCase());
     if (param) {
-      label.setAttribute('for', param.trim());
       label.textContent = param.trim();
       input.value = param.trim();
     } else {
-      label.setAttribute('for', o.trim());
-      label.textContent = o.trim();
       input.value = o.trim();
+      if (fd.Extra && fd.Options.split('|').length === 1) {
+        label.innerHTML = `<a href="${fd.Extra}">${o.trim()}</a>`;
+      } else {
+        label.textContent = o.trim();
+      }
     }
     option.append(input, label);
     options.append(option);
@@ -54,7 +64,11 @@ function createRadios(fd) {
   return options;
 }
 
-async function addValidationError(el) {
+function removeValidationError(el) {
+  el.parentNode.classList.remove('error');
+}
+
+function addValidationError(el) {
   el.parentNode.classList.add('error');
 }
 
@@ -70,21 +84,47 @@ function constructPayload(form) {
   return payload;
 }
 
+function sanitizeInput(input) {
+  const output = input.replace(/<script[^>]*?>.*?<\/script>/gi, '')
+    // eslint-disable-next-line no-useless-escape
+    .replace(/<[\/\!]*?[^<>]*?>/gi, '')
+    .replace(/<style[^>]*?>.*?<\/style>/gi, '')
+    .replace(/<![\s\S]*?--[ \t\n\r]*>/gi, '')
+    .replace(/&nbsp;/g, '');
+  return output;
+}
+
 async function submitForm(form) {
   let isError = false;
   const payload = {};
-  [...form.elements].forEach((fe) => {
-    if (fe.required && fe.value === '') {
-      isError = true;
-      addValidationError(fe);
-    }
-    if (fe.type === 'checkbox') {
-      if (fe.checked) payload[fe.id] = fe.value;
-    } else if (fe.id) {
-      payload[fe.id] = fe.value;
+  const formEl = [...form.elements];
+  let checkboxGroup = [];
+  formEl.forEach((fe, k) => {
+    removeValidationError(fe);
+    if (!fe.closest('.hidden')) {
+      if (fe.required && fe.value === '') {
+        isError = true;
+        addValidationError(fe);
+      }
+      if (fe.type === 'checkbox') {
+        if (fe.required && !form.querySelector(`input[name="${fe.name}"]:checked`)) {
+          isError = true;
+          addValidationError(fe);
+        }
+        if (fe.checked) {
+          if (formEl[k + 1] && formEl[k].name === formEl[k + 1].name) {
+            checkboxGroup.push(sanitizeInput(formEl[k].value));
+            payload[fe.name] = checkboxGroup.join(', ');
+          } else {
+            checkboxGroup = [];
+            payload[fe.id] = sanitizeInput(fe.value);
+          }
+        }
+      } else if (fe.id) {
+        payload[fe.id] = sanitizeInput(fe.value);
+      }
     }
   });
-
   return isError ? false : payload;
 }
 
@@ -137,15 +177,15 @@ function createInput(fd) {
 
   if (fd.Mandatory === 'x') {
     input.setAttribute('required', '');
-  }
 
-  input.addEventListener('change', () => {
-    const errorSpan = input.parentNode.querySelector('span.error');
-    if (errorSpan) {
-      input.parentNode.classList.remove('error');
-      errorSpan.remove();
-    }
-  });
+    input.addEventListener('change, blur', () => {
+      if (input.value && input.parentNode.classList.contains('error')) {
+        input.parentNode.classList.remove('error');
+      } else {
+        input.parentNode.classList.add('error');
+      }
+    });
+  }
 
   return input;
 }
@@ -157,15 +197,15 @@ function createTextarea(fd) {
 
   if (fd.Mandatory === 'x') {
     textarea.setAttribute('required', '');
-  }
 
-  textarea.addEventListener('change', () => {
-    const errorSpan = textarea.parentNode.querySelector('span.error');
-    if (errorSpan) {
-      textarea.parentNode.classList.remove('error');
-      errorSpan.remove();
-    }
-  });
+    textarea.addEventListener('change', () => {
+      if (textarea.value && textarea.parentNode.classList.contains('error')) {
+        textarea.parentNode.classList.remove('error');
+      } else {
+        textarea.parentNode.classList.add('error');
+      }
+    });
+  }
 
   return textarea;
 }
@@ -227,11 +267,11 @@ async function createForm(formURL) {
         break;
       case 'checkbox':
         fieldWrapper.append(createLabel(fd));
-        fieldWrapper.append(createInput(fd));
+        fieldWrapper.append(createOptions(fd));
         break;
       case 'radio':
         fieldWrapper.append(createLabel(fd));
-        fieldWrapper.append(createRadios(fd));
+        fieldWrapper.append(createOptions(fd));
         break;
       case 'textarea':
         fieldWrapper.append(createLabel(fd));
@@ -264,7 +304,6 @@ export default async function decorate(block) {
 
   if (formUrl) {
     const formEl = await createForm(formUrl);
-    block.classList.add('form-container');
     block.firstElementChild.replaceWith(formEl);
   }
 }
