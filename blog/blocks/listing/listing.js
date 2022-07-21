@@ -5,7 +5,7 @@ import {
   readBlockConfig,
   toCamelCase,
 } from '../../scripts/scripts.js';
-import { createAppCard, sortListing } from '../app-cards/app-cards.js';
+import { createAppCard, sortOptions } from '../app-cards/app-cards.js';
 
 function getBlockHTML(ph) {
   return /* html */`
@@ -249,7 +249,7 @@ export default async function decorate(block, blockName) {
     const results = await filterResults(filterConfig, facets);
     const sortBy = document.getElementById('listing-sortby') ? document.getElementById('listing-sortby').dataset.sort : 'level';
 
-    if (sortBy && sortListing(sortBy)) results.sort(sortListing(sortBy));
+    if (sortBy && sortOptions(sortBy)) results.sort(sortOptions(sortBy));
     block.querySelector('#listing-results-count').textContent = results.length;
     displayResults(results, null);
     displayFacets(facets, filterConfig);

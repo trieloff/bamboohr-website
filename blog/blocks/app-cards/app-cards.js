@@ -45,18 +45,18 @@ function compareFilterVal(filter, filterVal, appVal) {
   return matchedFilter;
 }
 
-export function sortListing(sortBy) {
+export function sortOptions(sortBy) {
   const levels = ['pro', 'elite', 'bamboohr-product'];
 
   /* sort options */
-  const sortOptions = {
+  const sorts = {
     name: (a, b) => a.title.localeCompare(b.title),
     level: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level))
                       || a.title.localeCompare(b.title),
     publicationDate: (a, b) => b.publicationDate.localeCompare(a.publicationDate)
                                 || a.title.localeCompare(b.title),
   };
-  return sortOptions[sortBy];
+  return sorts[sortBy];
 }
 
 export async function filterApps(config, feed, limit, offset) {
@@ -83,10 +83,10 @@ export async function filterApps(config, feed, limit, offset) {
   await lookupPages([], 'marketplace');
   const index = [...window.pageIndex.marketplace.data];
 
-  if (sortListing(config.sortBy)) {
-    index.sort(sortListing(config.sortBy));
+  if (sortOptions(config.sortBy)) {
+    index.sort(sortOptions(config.sortBy));
   } else {
-    index.sort(sortListing('level'));
+    index.sort(sortOptions('level'));
   }
 
   while ((feed.data.length < limit + offset) && (!feed.complete)) {
