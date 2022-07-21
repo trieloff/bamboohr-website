@@ -42,7 +42,6 @@ function createOptions(fd) {
     input.required = !!fd.Mandatory;
     label.setAttribute('for', fd.Field);
     if (fd.Options.split('|').length > 1) {
-      input.name = `${fd.Field}[]`;
       input.id = fd.Field + k;
       label.setAttribute('for', fd.Field + k);
     }
@@ -98,7 +97,9 @@ function sanitizeInput(input) {
 async function submitForm(form) {
   let isError = false;
   const payload = {};
-  [...form.elements].forEach((fe) => {
+  const formEl = [...form.elements];
+  let checkboxGroup = [];
+  formEl.forEach((fe, k) => {
     removeValidationError(fe);
     if (!fe.closest('.hidden')) {
       if (fe.required && fe.value === '') {
@@ -110,7 +111,15 @@ async function submitForm(form) {
           isError = true;
           addValidationError(fe);
         }
-        if (fe.checked) payload[fe.id] = sanitizeInput(fe.value);
+        if (fe.checked) {
+          if (formEl[k + 1] && formEl[k].name === formEl[k + 1].name) {
+            checkboxGroup.push(sanitizeInput(formEl[k].value));
+            payload[fe.name] = checkboxGroup.join(', ');
+          } else {
+            checkboxGroup = [];
+            payload[fe.id] = sanitizeInput(fe.value);
+          }
+        }
       } else if (fe.id) {
         payload[fe.id] = sanitizeInput(fe.value);
       }
