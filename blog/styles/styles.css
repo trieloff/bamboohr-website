@@ -450,7 +450,7 @@ main .default-content-wrapper a:any-link {
 
 .marketplace-listing .details-container .button-container a {
 	background: transparent !important;
-	color: var(--category-color) !important;
+	color: var(--color-1-shade-5) !important;
 	padding: 0;
 	margin: 0;
 	font-size: 17px;
