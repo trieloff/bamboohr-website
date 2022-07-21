@@ -147,6 +147,11 @@ main .form .error input {
   border-color: var(--color-2);
 }
 
+main .form .error input[type="checkbox"] + label::before {
+  border-color: var(--color-2);
+}
+
+
 main .form .form-button-wrapper .button {
   padding: 18px 40px;
 }

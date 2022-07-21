@@ -39,6 +39,7 @@ function createOptions(fd) {
     input.type = optionType;
     input.name = fd.Field;
     input.id = fd.Field;
+    input.required = !!fd.Mandatory;
     label.setAttribute('for', fd.Field);
     if (fd.Options.split('|').length > 1) {
       input.name = `${fd.Field}[]`;
@@ -64,7 +65,11 @@ function createOptions(fd) {
   return options;
 }
 
-async function addValidationError(el) {
+function removeValidationError(el) {
+  el.parentNode.classList.remove('error');
+}
+
+function addValidationError(el) {
   el.parentNode.classList.add('error');
 }
 
@@ -84,17 +89,23 @@ async function submitForm(form) {
   let isError = false;
   const payload = {};
   [...form.elements].forEach((fe) => {
-    if (fe.required && fe.value === '') {
-      isError = true;
-      addValidationError(fe);
-    }
-    if (fe.type === 'checkbox') {
-      if (fe.checked) payload[fe.id] = fe.value;
-    } else if (fe.id) {
-      payload[fe.id] = fe.value;
+    removeValidationError(fe);
+    if (!fe.closest('.hidden')) {
+      if (fe.required && fe.value === '') {
+        isError = true;
+        addValidationError(fe);
+      }
+      if (fe.type === 'checkbox') {
+        if (fe.required && !form.querySelector(`input[name="${fe.name}"]:checked`)) {
+          isError = true;
+          addValidationError(fe);
+        }
+        if (fe.checked) payload[fe.id] = fe.value;
+      } else if (fe.id) {
+        payload[fe.id] = fe.value;
+      }
     }
   });
-
   return isError ? false : payload;
 }
 
