@@ -422,6 +422,12 @@ main .default-content-wrapper a:any-link {
 	text-decoration: none;
   }
 
+main .default-content-wrapper p a.button:any-link {
+	color: var(--color-white);
+	background: unset;
+	background-color: var(--category-color);
+}
+
 /* listing template styles */
 
 .marketplace-listing .details-container {
@@ -716,12 +722,6 @@ div.category-color-people-data-analytics {
 .marketplace main .default-content-wrapper a:any-link {
   color: var(--color-1-shade-5);
   background: unset;
-}
-
-main .default-content-wrapper p a.button:any-link {
-  color: var(--color-white);
-  background: unset;
-  background-color: var(--category-color);
 }
 
 .marketplace-home main .default-content-wrapper p a.button:any-link {
