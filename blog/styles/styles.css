@@ -448,16 +448,16 @@ main .default-content-wrapper a:any-link {
 	background: none;
 }
 
-.marketplace-listing .details-container .button-container a {
-	background: transparent !important;
-	color: var(--color-1-shade-5) !important;
+.marketplace-listing .details-container .button-container a.button {
+	background: transparent;
+	color: var(--color-1-shade-5);
 	padding: 0;
 	margin: 0;
 	font-size: var(--body-font-size-m);
 	line-height: var(--body-line-height);
 	font-weight: var(--body-font-weight);
 	font-style: normal;
-	font-family:  var(--body-font-family) !important;
+	font-family:  var(--body-font-family);
 }
 
 .marketplace-listing .details-container ul li a::after {
