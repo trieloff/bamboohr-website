@@ -16,7 +16,7 @@ export function createAppCard(app, prefix) {
   }
 
   const title = app.title.split(' - ')[0];
-  const level = app.level ? `<img src="/blog/icons/${toClassName(app.level)}-badge.svg">` : '';
+  const level = app.level ? `<img src="/blog/icons/${toClassName(app.level)}-badge.svg" alt="${toClassName(app.level)} badge icon">` : '';
   const picture = createOptimizedPicture(app.image, title, false, [{ width: 750 }]).outerHTML;
   const searchTags = app.searchTags ? `<div class="${prefix}-card-search-tags"><span>${app.searchTags.split(',').join('</span><span>')}</span></div>` : '';
   card.innerHTML = `<div class="${prefix}-card-image">${picture}</div>
@@ -45,6 +45,20 @@ function compareFilterVal(filter, filterVal, appVal) {
   return matchedFilter;
 }
 
+export function sortOptions(sortBy) {
+  const levels = ['pro', 'elite', 'bamboohr-product'];
+
+  /* sort options */
+  const sorts = {
+    name: (a, b) => a.title.localeCompare(b.title),
+    level: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level))
+                      || a.title.localeCompare(b.title),
+    publicationDate: (a, b) => b.publicationDate.localeCompare(a.publicationDate)
+                                || a.title.localeCompare(b.title),
+  };
+  return sorts[sortBy];
+}
+
 export async function filterApps(config, feed, limit, offset) {
   const result = [];
 
@@ -64,20 +78,16 @@ export async function filterApps(config, feed, limit, offset) {
     }
   });
 
-  /* sort options */
   config.sortBy = toCamelCase(config.sortBy);
-  const levels = ['pro', 'elite', 'bamboohr-product'];
-  const sorts = {
-    name: (a, b) => a.title.localeCompare(b.title),
-    level: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level))
-                      || a.title.localeCompare(b.title),
-    publicationDate: (a, b) => b.publicationDate.localeCompare(a.publicationDate)
-                                || a.title.localeCompare(b.title),
-  };
 
   await lookupPages([], 'marketplace');
   const index = [...window.pageIndex.marketplace.data];
-  if (sorts[config.sortBy]) index.sort(sorts[config.sortBy]);
+
+  if (sortOptions(config.sortBy)) {
+    index.sort(sortOptions(config.sortBy));
+  } else {
+    index.sort(sortOptions('level'));
+  }
 
   while ((feed.data.length < limit + offset) && (!feed.complete)) {
     // eslint-disable-next-line no-await-in-loop
