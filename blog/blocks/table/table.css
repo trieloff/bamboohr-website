@@ -145,11 +145,11 @@
 }
 
 @media (max-width: 1000px) {
-  .table-mobile-container {
+  .table.comparison .table-mobile-container {
     display: unset;
   }
 
-  .table-desktop {
+  .table.comparison .table-desktop {
     display: none;
   }
 }

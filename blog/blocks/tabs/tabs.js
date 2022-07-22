@@ -12,6 +12,10 @@ function openTab(e) {
     target.setAttribute('aria-selected', true);
     const content = parent.querySelector(`[aria-labelledby="${target.id}"]`);
     content.setAttribute('aria-hidden', false);
+  } else if (window.innerWidth < 600) {
+    target.setAttribute('aria-selected', false);
+    const content = parent.querySelector(`[aria-labelledby="${target.id}"]`);
+    content.setAttribute('aria-hidden', true);
   }
 }
 
@@ -28,7 +32,7 @@ export default function decorate(block) {
     const content = tab.querySelector('div');
     content.classList.add('tabs-content');
     content.setAttribute('aria-labelledby', title.id);
-    content.setAttribute('aria-hidden', open);
+    content.setAttribute('aria-hidden', !open);
     // move tab and content to block root
     block.append(title, content);
     tab.remove();
