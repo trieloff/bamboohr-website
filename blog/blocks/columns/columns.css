@@ -120,6 +120,35 @@
     padding: 0 20px;
 }
 
+/* Listings */
+.marketplace-listing .columns-wrapper {
+	margin-top: 130px;
+}
+
+.marketplace-listing .columns div:first-of-type {
+	flex-flow: wrap;
+	flex-direction: row;
+}
+
+.marketplace-listing .columns div:first-of-type > div {
+	width: 50%;
+	margin-bottom: 40px;
+}
+
+
+.marketplace-listing .columns h4 {
+	font-style: normal;
+	font-weight: var(--heading-font-weight);
+	font-size: var(--heading-font-size-xxs);
+	line-height: var(--heading-line-height-l);
+	margin: 20px 0 10px;
+}
+
+.marketplace-listing .columns p:first-of-type {
+	font-size: var(--body-font-size-xxs);
+	line-height: var(--body-line-height);
+}
+
 main .home-featured-cat {
     margin-top: 0;
 }
@@ -135,7 +164,11 @@ main .home-featured-cat {
     main .home-featured-cat {
         margin-top: 60px;
     }
-    
+
+	.marketplace-listing .columns div:first-of-type {
+		flex-wrap: nowrap;
+	}
+
 }
 
 @media (min-width: 900px) {
@@ -162,5 +195,16 @@ main .home-featured-cat {
     .columns > div > div:first-of-type {
         margin-left: unset;
     }
-    
+
+	.marketplace-listing .columns h4 {
+		font-size: var(--heading-font-size-s);
+		line-height: var(--heading-line-height);
+	}
+
+	.marketplace-listing .columns p:first-of-type {
+		font-size: var(--body-font-size-m);
+		line-height: var(--body-line-height-m);
+	}
+
 }
+
