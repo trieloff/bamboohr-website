@@ -22,19 +22,18 @@ export default function decorate(block) {
       selectButton(block, button, row, [...buttons.children]);
     });
     buttons.append(button);
-    autoPlayList.push({row, button});
+    autoPlayList.push({ row, button });
   });
   block.parentElement.append(buttons);
 
   carouselInterval = window.setInterval(() => {
     autoPlayList.some((b, i) => {
-      if (b.button.classList.contains('selected')) {
+      const isSelected = b.button.classList.contains('selected');
+      if (isSelected) {
         const nextB = (i + 1 >= autoPlayList.length) ? autoPlayList[0] : autoPlayList[i + 1];
         selectButton(block, nextB.button, nextB.row, [b.button]);
-        
-        return true;
       }
+      return isSelected;
     });
-
   }, 5000);
 }
