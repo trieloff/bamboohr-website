@@ -6,10 +6,6 @@ main .tabs .tabs-title {
   position: relative;
 }
 
-main .tabs .tabs-title[aria-selected=false] {
-  cursor: pointer;
-}
-
 main .tabs .tabs-title::after {
   display: inline-block;
   position: absolute;
@@ -48,6 +44,12 @@ main .tabs .tabs-content[aria-hidden=true] {
   margin: 0 0 30px;
 }
 
+@media (max-width: 599px) {
+  main .tabs .tabs-title {
+    cursor: pointer;
+  }
+}
+
 @media (min-width: 600px) {
   main .tabs {
     display: flex;
@@ -64,6 +66,7 @@ main .tabs .tabs-content[aria-hidden=true] {
 
   main .tabs .tabs-title[aria-selected=false] {
     color: var(--color-gray-5);
+    cursor: pointer;
   }
 
   main .tabs .tabs-title[aria-selected=true] {
