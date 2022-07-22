@@ -39,8 +39,8 @@ main .tabs .tabs-content[aria-hidden=true] {
 }
 	
 .marketplace-listing .tabs > h2 {
-	font-size: 27px;
-	line-height: 46px;
+	font-size: var(--heading-font-size-l);
+	line-height: var(--heading-line-height-l);
 }
 
 .marketplace-listing .table-wrapper.tabs-content h3,
