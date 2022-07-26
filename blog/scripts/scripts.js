@@ -173,7 +173,7 @@ export function addPublishDependencies(url) {
  */
 export function toClassName(name) {
   return name && typeof name === 'string'
-    ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-').replace(/-+/g, '-')
+    ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
     : '';
 }
 
