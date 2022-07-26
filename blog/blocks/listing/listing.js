@@ -169,7 +169,7 @@ export default async function decorate(block, blockName) {
 
   const displayFacets = (facets, filters) => {
     const rawFilters = getSelectedFilters().map((check) => check.value);
-    const selected = config.category 
+    const selected = config.category
       ? rawFilters.filter((filter) => filter !== config.category) : rawFilters;
     facetsElement.innerHTML = getFacetHTML(ph);
 
