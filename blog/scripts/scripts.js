@@ -173,6 +173,17 @@ export function addPublishDependencies(url) {
  */
 export function toClassName(name) {
   return name && typeof name === 'string'
+    ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-')
+    : '';
+}
+
+/**
+ * Sanitizes a name for use as slug.
+ * @param {string} name The unsanitized name
+ * @returns {string} The slug
+ */
+export function toSlug(name) {
+  return name && typeof name === 'string'
     ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
     : '';
 }
@@ -919,7 +930,7 @@ function buildListingHeader(main) {
     [h1],
     [`<ul>
     <li><a href="/marketplace/">Home</a></li>
-    <li><a href="/marketplace/listing-category/${toClassName(category)}">${category}</a></li>
+    <li><a href="/marketplace/listing-category/${toSlug(category)}">${category}</a></li>
     <li>${h1.textContent}</li>
     </ul>`],
   ]));
