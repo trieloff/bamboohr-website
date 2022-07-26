@@ -136,13 +136,13 @@
 	flex-direction: row;
 }
 
-.marketplace-listing .columns.listing-highlights.columns-1-cols div > div {
-	width: 100%;
-}
-
 .marketplace-listing .columns div:first-of-type > div {
 	width: 50%;
 	margin-bottom: 40px;
+}
+
+.marketplace-listing .columns.listing-highlights.columns-1-cols div > div {
+	width: 100%;
 }
 
 .marketplace-listing .columns h4 {
