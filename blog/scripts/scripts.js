@@ -177,17 +177,6 @@ export function toClassName(name) {
     : '';
 }
 
-/**
- * Sanitizes a name for use as slug.
- * @param {string} name The unsanitized name
- * @returns {string} The slug
- */
-export function toSlug(name) {
-  return name && typeof name === 'string'
-    ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
-    : '';
-}
-
 /*
  * Sanitizes a name for use as a js property name.
  * @param {string} name The unsanitized name
@@ -639,6 +628,12 @@ document.addEventListener('click', (event) => {
 });
 
 loadPage(document);
+
+function toSlug(name) {
+  return name && typeof name === 'string'
+    ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
+    : '';
+}
 
 export function formatDate(dateString) {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
