@@ -301,15 +301,15 @@ main .listing-results .listing-card.listing-card-discount.listing-card-sponsored
 main .listing-results .listing-card.listing-card-discount::before,
 main .listing-results .listing-card.listing-card-discount.listing-card-sponsored::after{
     content: 'SPECIAL OFFER';
-    color: #7C3000;
-    background-color: #FFF58F;
+    color: var(--color-4-shade-15);
+    background-color: var(--color-4-tint-10);
 }
 
 main .listing-results .listing-card.listing-card-sponsored::before,
 main .listing-results .listing-card.listing-card-discount.listing-card-sponsored::before {
     content: 'SPONSORED';
-    color: #00673B;
-    background-color: #EDFFC8;
+    color: var(--color-1-shade-10);
+    background-color: var(--color-1-tint-15);
 }
 
 main .listing-results .listing-card.listing-card-discount.listing-card-sponsored::after {

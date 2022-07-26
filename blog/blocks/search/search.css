@@ -1,10 +1,6 @@
-main .section > div.search-wrapper {
+main .section .search-wrapper {
     min-height: 600px;
     max-width: unset;
-}
-
-.marketplace-home main .section > div.search-wrapper {
-  min-height: 220px;
 }
 
 main .search .search-highlight {
@@ -29,6 +25,10 @@ main .search-results > ul {
 
 
 /* app cards */
+.marketplace main .search-results > ul {
+  grid-template-columns: 1fr;
+  grid-gap: 40px;
+}
 
 main .search-results .search-app-card {
   box-shadow: 0 26px 52px -35px rgb(31 38 23 / 50%);
@@ -37,7 +37,7 @@ main .search-results .search-app-card {
 }
 
 .search-app-card-body {
-  padding: 0 25px 30px;
+  padding: 25px 25px 30px;
 }
 
 .search-app-card-header {
@@ -205,10 +205,15 @@ main .search .search-box {
 
 /* marketplace home search */
 .marketplace-home main .search-container {
-  margin-top: 30px;
+  margin-bottom: 80px;
 }
 
-.marketplace-home main .search-container div.default-content-wrapper {
+.marketplace-home main .section .search-wrapper {
+  min-height: 180px;
+}
+
+.marketplace-home main .search-container .default-content-wrapper {
+  padding: 32px 0 14px;
   text-align: center;
 }
 
@@ -218,9 +223,64 @@ main .search .search-box {
   font-weight: 700;
 }
 
+.marketplace-home main .search-results .search-app-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.marketplace-home main .search-results .search-app-card.search-app-card-discount::before,
+.marketplace-home main .search-results .search-app-card.search-app-card-sponsored::before,
+.marketplace-home main .search-results .search-app-card.search-app-card-discount.search-app-card-sponsored::after {
+    font-size: 8px;
+    line-height: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    padding: 7px 20px;
+    position: absolute;
+    transform: rotate(45deg);
+    text-align: center;
+    min-width: 108px;
+    top: 20px;
+    right: -46px;
+}
+
+.marketplace-home main .search-results .search-app-card.search-app-card-discount::before,
+.marketplace-home main .search-results .search-app-card.search-app-card-discount.search-app-card-sponsored::after{
+    content: 'SPECIAL OFFER';
+    color: var(--color-4-shade-15);
+    background-color: var(--color-4-tint-10);
+}
+
+.marketplace-home main .search-results .search-app-card.search-app-card-sponsored::before,
+.marketplace-home main .search-results .search-app-card.search-app-card-discount.search-app-card-sponsored::before {
+    content: 'SPONSORED';
+    color: var(--color-1-shade-10);
+    background-color: var(--color-1-tint-15);
+}
+
+.marketplace-home main .search-results .search-app-card.search-app-card-discount.search-app-card-sponsored::after {
+    min-width: 175px;
+    top: 35px;
+    right: -58px;
+}
+
+@media (min-width: 600px) {
+  .marketplace-home main .search-container {
+    margin-bottom: 120px;
+  }
+
+  .marketplace main .search-results > ul {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
 @media (min-width: 900px) {
-  .marketplace-home main .section > div.search-wrapper {
-    min-height: 350px;
+  .marketplace-home main .search-container {
+    margin-top: 30px;
+  }
+
+  .marketplace-home main .search-container .default-content-wrapper {
+    padding: 32px 64px 14px;
   }
 
   .marketplace-home main .search-container h1 {
@@ -230,6 +290,10 @@ main .search .search-box {
 }
 
 @media (min-width: 1200px) {
+  .marketplace-home main .section .search-wrapper {
+    min-height: 250px;
+  }
+
   .marketplace .search-results .search-app-card {
       position: relative;
       padding-bottom: 60px;
@@ -256,6 +320,7 @@ main .search .search-box {
       display: flex;
       flex-direction: column;
       z-index: 1;
+      padding-top: 0;
   }
 
   .marketplace .search-results .search-app-card:hover .search-app-card-body {

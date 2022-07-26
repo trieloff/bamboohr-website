@@ -629,6 +629,12 @@ document.addEventListener('click', (event) => {
 
 loadPage(document);
 
+function toSlug(name) {
+  return name && typeof name === 'string'
+    ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
+    : '';
+}
+
 export function formatDate(dateString) {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const [year, month, day] = dateString.split('-').map((n) => +n);
@@ -918,8 +924,8 @@ function buildListingHeader(main) {
   section.append(buildBlock('listing-header', [
     [h1],
     [`<ul>
-    <li><a href="/marketplace">Home</a></li>
-    <li><a href="/marketplace/listing-category/${toClassName(category)}">${category}</a></li>
+    <li><a href="/marketplace/">Home</a></li>
+    <li><a href="/marketplace/listing-category/${toSlug(category)}">${category}</a></li>
     <li>${h1.textContent}</li>
     </ul>`],
   ]));
