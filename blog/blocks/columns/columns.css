@@ -9,6 +9,7 @@
 
 .columns.columns-3-cols p,
 .columns.columns-4-cols p,
+.columns.listing-highlights p,
 .home-featured-cat .columns p,
 .home-more .columns p {
     margin: 0;
@@ -37,6 +38,7 @@
 
 .columns-3-cols a.button:any-link,
 .columns-4-cols a.button:any-link,
+.listing-highlights a.button:any-link,
 .home-featured-cat .columns a.button:any-link,
 .home-more .columns a.button:any-link {
     background-color: unset;
@@ -93,6 +95,7 @@
 
 .columns-3-cols img,
 .columns-4-cols img,
+.listing-highlights img,
 .home-featured-cat .columns img,
 .home-more .columns img {
     width: auto;
@@ -103,6 +106,7 @@
 }
 
 .columns.columns-4-cols,
+.columns.listing-highlights,
 .home-featured-cat .columns {
     text-align: center;
 }
@@ -137,6 +141,9 @@
 	margin-bottom: 40px;
 }
 
+.marketplace-listing .columns.listing-highlights.columns-1-cols div > div {
+	width: 100%;
+}
 
 .marketplace-listing .columns h4 {
 	font-style: normal;
@@ -174,7 +181,6 @@ main .home-featured-cat {
 	.marketplace-listing .columns div:first-of-type {
 		flex-wrap: nowrap;
 	}
-
 }
 
 @media (min-width: 900px) {
@@ -184,7 +190,8 @@ main .home-featured-cat {
     }
 
     .columns-3-cols > div,
-    .columns-4-cols > div {
+    .columns-4-cols > div,
+    .listing-highlights > div {
         align-items: flex-start;
     }
 
@@ -205,6 +212,5 @@ main .home-featured-cat {
 		font-size: var(--body-font-size-m);
 		line-height: var(--body-line-height-m);
 	}
-
 }
 

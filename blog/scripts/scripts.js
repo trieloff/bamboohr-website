@@ -861,13 +861,17 @@ function buildHighlightsColumns(main) {
   const direction = getMetadata('direction-of-data-flow');
   const trigger = getMetadata('sync-trigger');
   const frequency = getMetadata('sync-frequency');
-  const columns = buildBlock('columns', [[
-    `<img src="/blog/styles/integration-type.svg" /><h4>Integration Type</h4><p>${integration}</p>`,
-    `<img src="/blog/styles/data-flow-direction.svg" /><h4>Direction of Data Flow</h4><p>${direction}</p>`,
-    `<img src="/blog/styles/sync-trigger.svg" /><h4>Sync Trigger</h4><p>${trigger}</p>`,
-    `<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`,
-  ]]);
-  main.querySelector('.carousel')?.after(columns);
+  const columnData = [];
+  if (integration) columnData.push(`<img src="/blog/styles/integration-type.svg" /><h4>Integration Type</h4><p>${integration}</p>`);
+  if (direction) columnData.push(`<img src="/blog/styles/data-flow-direction.svg" /><h4>Direction of Data Flow</h4><p>${direction}</p>`);
+  if (trigger) columnData.push(`<img src="/blog/styles/sync-trigger.svg" /><h4>Sync Trigger</h4><p>${trigger}</p>`);
+  if (frequency) columnData.push(`<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`);
+
+  if (columnData.length > 0) {
+    const columns = buildBlock('columns', [columnData]);
+    columns?.classList?.add('listing-highlights');
+    main.querySelector('.carousel')?.after(columns);
+  }
 }
 
 function setupListingTabs(main) {
