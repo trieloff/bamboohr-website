@@ -918,7 +918,7 @@ function buildListingHeader(main) {
   section.append(buildBlock('listing-header', [
     [h1],
     [`<ul>
-    <li><a href="/marketplace">Home</a></li>
+    <li><a href="/marketplace/">Home</a></li>
     <li><a href="/marketplace/listing-category/${toClassName(category)}">${category}</a></li>
     <li>${h1.textContent}</li>
     </ul>`],
