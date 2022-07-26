@@ -433,6 +433,10 @@ main .default-content-wrapper p a.button:any-link {
 }
 
 /* listing template styles */
+.app-list main .default-content-wrapper {
+  padding: 64px;
+  text-align: center;
+}
 
 .marketplace-listing .details-container {
 	margin-top: 30px;
@@ -520,11 +524,6 @@ main .default-content-wrapper p a.button:any-link {
   background-position: 0 400px, top;
   background-repeat: no-repeat;
   background-size: contain;
-}
-
-.app-list main .default-content-wrapper {
-  padding: 64px;
-  text-align: center;
 }
 
 .comparison-matrix main .section {
