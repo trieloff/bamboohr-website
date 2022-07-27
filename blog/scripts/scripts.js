@@ -925,11 +925,18 @@ function buildListingHeader(main) {
   const section = document.createElement('div');
   const h1 = main.querySelector('h1');
   const category = getMetadata('category');
+  const categories = category.split(',');
+  const listingCategories = categories.reduce((l, cat, i) => {
+    if (i > 0) l = `${l}<a href="/marketplace/listing-category/${toSlug(cat.trim())}">,${cat}</a>`;
+    else l = `${l}<a href="/marketplace/listing-category/${toSlug(cat)}">${cat}</a>`;
+    
+    return l;
+  }, '');
   section.append(buildBlock('listing-header', [
     [h1],
     [`<ul>
     <li><a href="/marketplace/">Home</a></li>
-    <li><a href="/marketplace/listing-category/${toSlug(category)}">${category}</a></li>
+    <li>${listingCategories}</li>
     <li>${h1.textContent}</li>
     </ul>`],
   ]));
