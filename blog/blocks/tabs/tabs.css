@@ -44,6 +44,10 @@ main .tabs .tabs-content[aria-hidden=true] {
   margin: 0 0 30px;
 }
 
+.marketplace-listing .table-wrapper.bamboohr-field-wrapper.tabs-content h3:not(:first-of-type) {
+  margin-top: 48px;
+}
+
 @media (max-width: 599px) {
   main .tabs .tabs-title {
     cursor: pointer;
