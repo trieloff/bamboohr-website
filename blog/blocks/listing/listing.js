@@ -211,6 +211,7 @@ export default async function decorate(block, blockName) {
       const filter = filters[facetKey];
       const filterValues = filter ? filter.split(',').map((t) => t.trim()) : [];
       const facetValues = Object.keys(facets[facetKey]);
+      facetValues.sort();
       if (facetValues.length) {
         const div = document.createElement('div');
         div.className = 'listing-facet';
