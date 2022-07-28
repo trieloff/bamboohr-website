@@ -18,6 +18,10 @@ main .author-description > p {
     margin: 0;
 }
 
+main .author-description a:any-link {
+    color: var(--category-color);
+}
+
 @media (min-width: 900px) {
     main .author {
         flex-direction: unset;
