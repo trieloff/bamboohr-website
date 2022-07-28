@@ -927,14 +927,8 @@ function buildListingHeader(main) {
   const category = getMetadata('category');
   const categories = category.split(',');
   const listingCategories = categories.reduce((l, cat, i) => {
-    if (i > 0) {
-      // eslint-disable-next-line no-param-reassign
-      l = `${l}<a href="/marketplace/listing-category/${toSlug(cat.trim())}">,${cat}</a>`;
-    } else {
-      // eslint-disable-next-line no-param-reassign
-      l = `${l}<a href="/marketplace/listing-category/${toSlug(cat)}">${cat}</a>`;
-    }
-    return l;
+    const catVal = i > 0 ? `,${cat}` : cat;
+    return `${l}<a href="/marketplace/listing-category/${toSlug(cat.trim())}">${catVal}</a>`;
   }, '');
   section.append(buildBlock('listing-header', [
     [h1],

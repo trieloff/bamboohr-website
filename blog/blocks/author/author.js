@@ -19,7 +19,7 @@ export default async function decorate(block) {
   const picture = createOptimizedPicture(img.src, false, [{ width: '200' }]);
   block.innerHTML = `<div class="author-image">${picture.outerHTML}</div>
   <div class="author-description">
-    <p>${fullname.textContent}</p>
+    <a href="${authorPath}">${fullname.textContent}</a>
     ${title ? title.outerHTML : ''}
   </div>`;
 }
