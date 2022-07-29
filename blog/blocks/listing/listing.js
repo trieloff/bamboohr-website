@@ -18,7 +18,7 @@ function getBlockHTML(ph) {
     <ul>
       <li data-sort="level">${ph.default}</li>
       <li data-sort="name">${ph.name}</li>
-      <li data-sort="newest">${ph.newest}</li>
+      <li data-sort="publicationDate">${ph.newest}</li>
     </ul>
   </div>
   </div>
