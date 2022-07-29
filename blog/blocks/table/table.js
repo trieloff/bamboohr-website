@@ -6,7 +6,7 @@ function buildTableCell(col, rowIndex, header, isComparisonTable) {
   const levels = ['pro', 'elite', 'bamboohr-product'];
   const cell = rowIndex > 0 ? document.createElement('td') : document.createElement('th');
   if (isComparisonTable && rowIndex === 3) {
-    const levelClass = toClassName(col.innerHTML?.toLowerCase());
+    const levelClass = toClassName(col.textContent?.trim().toLowerCase());
     const levelIdx = levels.indexOf(levelClass);
     if (levelIdx >= 0) {
       cell.innerHTML = `<img src="/blog/icons/${levelClass}-badge.svg">`;
