@@ -126,6 +126,12 @@
     box-sizing: border-box;
 }
 
+.home-more .columns > div > div {
+    flex: 0 0 auto;
+    width: 50%;
+    padding: 0 20px;
+}
+
 /* Listings */
 .marketplace-listing .columns-wrapper {
 	margin-top: 130px;
