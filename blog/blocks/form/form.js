@@ -13,7 +13,7 @@ function createSelect(fd) {
     ph.value = '';
     select.append(ph);
   }
-  fd.Options.split(',').forEach((o) => {
+  fd.Options.split('|').forEach((o) => {
     const option = document.createElement('option');
     option.textContent = o.trim();
     option.value = o.trim();
