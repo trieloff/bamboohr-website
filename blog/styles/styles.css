@@ -654,7 +654,7 @@ main, .category-hr-insights main,
 .category-color-hr-insights {
   --category-color: var(--color-8-shade-10);
   --category-darker-color: var(--color-8-shade-15);
-  --category-darker-bg-color: var(--color-8-shade-10);
+  --category-darker-bg-color: var(--color-8-tint-10);
   --category-bg-color: var(--color-5-tint-15);
   --category-callout-bg: url('./bg/teal-cta.svg');
   --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, var(--color-8-shade-10) 0%, var(--color-5-shade-5) 100%);
