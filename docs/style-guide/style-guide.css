@@ -1,0 +1,7 @@
+/*
+* This should only contain styles for style guide pages
+* global styles needs to live in /blog/styles/styles.css
+*/
+.test {
+    background-color: yellow;
+}
