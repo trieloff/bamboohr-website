@@ -1,7 +1,16 @@
+@import "../../blog/styles/styles.css";
+
 /*
 * This should only contain styles for style guide pages
 * global styles needs to live in /blog/styles/styles.css
 */
+
 .test {
     background-color: yellow;
+}
+
+.test1 {
+    width: 100px;
+    height: 100px;
+    background-color: var(--color-1);
 }
