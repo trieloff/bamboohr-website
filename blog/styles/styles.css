@@ -12,6 +12,7 @@
 
  :root {
   --color-1-tint-15: #EDFFC8;
+  --color-1-tint-10: #D5FE81;
   --color-1: #73c41d;
   --color-1-shade-5: #1D9336;
   --color-1-shade-10: #00673B;
@@ -20,11 +21,18 @@
   --color-2: #FF5F3F;
   --color-2-shade-5: #CE4537;
   --color-2-shade-10: #99292E;
+  --color-3-shade-10: #AA410C;
+  --color-4-tint-15: #FFFFE5;
   --color-4-tint-10: #FFF58F;
+  --color-4-shade-10: #B6800B;
   --color-4-shade-15: #7C3000;
   --color-5-tint-15: #E5FDFF;
+  --color-5-tint-10: #A2E3FF;
   --color-5: #16ACFF;
   --color-5-shade-5: #1087CC;
+  --color-5-shade-10: #095C8F;
+  --color-6-shade-5: #794FCD;
+  --color-7-shade-5: #CC4373;
   --color-8-tint-10: #B1F8DF;
   --color-8-shade-10: #1B7B7E;
   --color-8-shade-15: #003A4C;
@@ -416,7 +424,7 @@ main .default-content-wrapper a:any-link {
 	color: var(--category-color);
 	background: linear-gradient(#f000 50%, var(--category-bg-color) 50.1%);
 	text-decoration: none;
-  }
+}
 
 main .default-content-wrapper p a.button:any-link {
 	color: var(--color-white);
@@ -629,73 +637,73 @@ main, .category-hr-insights main,
   --category-darker-bg-color: var(--color-2-tint-10);
   --category-bg-color: var(--color-2-tint-15);
   --category-callout-bg: url('./bg/red-cta.svg');
-  --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, var(--color-2-shade-5) 0%, #CC4373 100%);
+  --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, var(--color-2-shade-5) 0%, var(--color-7-shade-5) 100%);
   --category-box-shadow-color: rgba(206 69 55 / 50%);
 }
 
 .category-product-announcements main,
 div.category-color-product-announcements {
-  --category-color: #1d9336;
-  --category-darker-color: #00673b;
-  --category-darker-bg-color: #d5fe81;
-  --category-bg-color: #edffc8;
+  --category-color: var(--color-1-shade-5);
+  --category-darker-color: var(--color-1-shade-10);
+  --category-darker-bg-color: var(--color-1-tint-10);
+  --category-bg-color: var(--color-1-tint-15);
   --category-callout-bg: url('./bg/green-cta.svg');
-  --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #1D9336 0%, var(--color-8-shade-10) 100%);
+  --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, var(--color-1-shade-5) 0%, var(--color-8-shade-10) 100%);
   --category-box-shadow-color: rgba(29 147 54 / 50%);
 }
 
 .category-hiring main,
 div.category-color-hiring {
-  --category-color: #b6800b;
-  --category-darker-color: #7c3000;
-  --category-darker-bg-color: #fff58f;
-  --category-bg-color: #ffffe5;
+  --category-color: var(--color-4-shade-10);
+  --category-darker-color: var(--color-4-shade-15);
+  --category-darker-bg-color: var(--color-4-tint-10);
+  --category-bg-color: var(--color-4-tint-15);
   --category-callout-bg: url('./bg/yellow-cta.svg');
-  --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #AA410C 0%, #B6800B 100%);
+  --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, var(--color-3-shade-10) 0%, var(--color-4-shade-10) 100%);
   --category-box-shadow-color: rgba(219 180 18 / 50%);
 }
 
 .category-performance-culture main,
 div.category-color-performance-culture {
   --category-color: var(--color-5-shade-5);
-  --category-darker-color: #095c8f;
-  --category-darker-bg-color: #a2e3ff;
+  --category-darker-color: var(--color-5-shade-10);
+  --category-darker-bg-color: var(--color-5-tint-10);
   --category-bg-color: var(--color-5-tint-15);
   --category-callout-bg: url('./bg/blue-cta.svg');
-  --category-quote-bg: radial-gradient(100% 416.67% at 0% 100%, #794FCD 0%, var(--color-5-shade-5) 100%);
+  --category-quote-bg: radial-gradient(100% 416.67% at 0% 100%, var(--color-6-shade-5) 0%, var(--color-5-shade-5) 100%);
   --category-box-shadow-color: rgba(16 135 204 / 50%);
 }
 
 .category-benefits-comp main,
 div.category-color-benefits-comp {
-  --category-color: #cc4373;
-  --category-darker-color: #96275d;
-  --category-darker-bg-color: #ffbdc8;
-  --category-bg-color: #ffe9e5;
+  --category-color: var(--color-7-shade-5);
+  --category-darker-color: var(--color-7-shade-10);
+  --category-darker-bg-color: var(--color-7-tint-10);
+  --category-bg-color: var(--color-7-tint-15);
   --category-callout-bg: url('./bg/red-cta.svg');
-  --category-quote-bg: radial-gradient(100% 416.67% at 0% 100%, #794FCD 0%, #CC4373 100%);
+  --category-quote-bg: radial-gradient(100% 416.67% at 0% 100%, var(--color-6-shade-5) 0%, var(--color-7-shade-5) 100%);
   --category-box-shadow-color: rgba(204 67 115 / 50%);
 }
 
 .category-onboarding main,
 div.category-color-onboarding {
-  --category-color: #d26914;
-  --category-darker-color: #aa410c;
-  --category-darker-bg-color: #ffd9a3;
-  --category-bg-color: #fffae5;
+  --category-color: var(--color-3-shade-5);
+  --category-darker-color: var(--color-3-shade-10);
+  --category-darker-bg-color: var(--color-3-tint-10);
+  --category-bg-color: var(--color-3-tint-15);
   --category-callout-bg: url('./bg/pink-cta.svg');
-  --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #D26914 0%, var(--color-2-shade-5) 100%);
+  --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, var(--color-3-shade-5) 0%, var(--color-2-shade-5) 100%);
   --category-box-shadow-color: rgba(179 81 0 / 50%);
 }
 
 .category-people-data-analytics main,
 div.category-color-people-data-analytics {
-  --category-color: #794fcd;
-  --category-darker-color: #4c3293;
-  --category-darker-bg-color: #e0beff;
-  --category-bg-color: #fde5ff;
+  --category-color: var(--color-6-shade-5);
+  --category-darker-color: var(--color-6-shade-10);
+  --category-darker-bg-color: var(--color-6-tint-10);
+  --category-bg-color: var(--color-6-tint-15);
   --category-callout-bg: url('./bg/purple-cta.svg');
-  --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, #794FCD 0%, #CC4373 100%);
+  --category-quote-bg: radial-gradient(100% 416.67% at 0% 0%, var(--color-6-shade-5) 0%, var(--color-7-shade-5) 100%);
   --category-box-shadow-color: rgba(121 79 205 / 50%);
 }
 
