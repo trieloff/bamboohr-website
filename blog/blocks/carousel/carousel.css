@@ -13,7 +13,7 @@ main .carousel {
   overflow-x: scroll;
   overflow-y: hidden;
   scroll-behavior: smooth;
-  box-shadow: 0 30px 60px -40px rgb(31 38 23 / 50%);
+  box-shadow: var(--box-shadow-2);
   margin: 64px 0;
   border-radius: 20px;
   background-color: var(--color-white);

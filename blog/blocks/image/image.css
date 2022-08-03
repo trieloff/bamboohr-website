@@ -26,7 +26,7 @@ main .image-list {
 }
 
 main .image.shadow {
-  box-shadow: 0 30px 60px -40px rgb(31 38 23 / 50%);
+  box-shadow: var(--box-shadow-2);
 }
 
 @media (min-width: 600px) {
@@ -83,7 +83,7 @@ main .image.right, main .image.left {
 
 main .image.right img, main .image.left img {
   border-radius: 15px;
-  box-shadow: 0 30px 60px -40px rgb(31 38 23 / 50%);
+  box-shadow: var(--box-shadow-2);
   box-sizing: border-box;
   max-width: 400px;
 }

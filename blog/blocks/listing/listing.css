@@ -276,7 +276,7 @@ main .listing-results .highlight {
 .listing-results .listing-card {
     position: relative;
     overflow: hidden;
-    box-shadow: 0 26px 52px -35px rgb(31 38 23 / 50%);
+    box-shadow: var(--box-shadow-2);
     background-color: var(--color-white);
     border-radius: 15px;
     margin-bottom: 30px;
