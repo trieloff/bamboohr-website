@@ -78,7 +78,7 @@ main .tabs .tabs-content[aria-hidden=true] {
   }
 
   main .tabs .tabs-title[aria-selected=true] {
-    border-color: var(--color-info-accent);
+    border-color: var(--color-1);
   }
 
   .marketplace-listing .tabs .tabs-title[aria-selected=true] {

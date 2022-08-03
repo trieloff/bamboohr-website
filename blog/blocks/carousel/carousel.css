@@ -44,7 +44,7 @@ main .carousel > div {
   align-items: flex-end;
   display: flex;
   background-image: linear-gradient(#0000, #0008);
-  color: white;
+  color: var(--color-white);
 }
 
 main .carousel div.carousel-text {
@@ -75,7 +75,7 @@ main .carousel-buttons button {
   margin: 10px;
   border-radius: 7px;
   border: none;
-  background-color: var(--color-gray-300);
+  background-color: var(--color-gray-4);
   cursor: pointer;
 }
 
