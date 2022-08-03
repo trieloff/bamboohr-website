@@ -54,7 +54,7 @@
 }
 
 .table.data-sync table, .table.data-sync th, .table.data-sync td {
-  border: 2px solid var(--color-gray-300);
+  border: 2px solid var(--color-gray-4);
 }  
 
 .table.comparison table, .table.comparison th, .table.comparison td {
@@ -73,7 +73,7 @@
 }
 
 .table.data-sync table tbody tr:nth-child(odd) {
-  background: var(--color-gray-100);
+  background: var(--color-gray-1);
 }
 
 .table.comparison th, .table.comparison td {
@@ -129,13 +129,13 @@
 .table.comparison .elite-ribbon::after {
     content: 'ELITE';
     color: var(--color-white);
-    background-color: var(--color-elite-ribbon);
+    background-color: var(--color-4);
 }
 
 .table.comparison .pro-ribbon::after {
   content: 'PRO';
   color: var(--color-white);
-  background-color: var(--color-pro-ribbon);
+  background-color: var(--color-gray-3);
 }
 
 .table-mobile-container {
