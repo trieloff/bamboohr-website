@@ -191,7 +191,7 @@ main .article-header-share img {
   appearance: none;
   border: none;
   background-color: transparent;
-  color: var(--color-info-accent);
+  color: var(--color-1);
   z-index: 1;
 }
 
@@ -200,5 +200,5 @@ main .article-header-share img {
 }
 
 .article-header progress::-webkit-progress-value {
-  background-color: var(--color-info-accent);
+  background-color: var(--color-1);
 }
