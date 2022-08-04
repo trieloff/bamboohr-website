@@ -97,9 +97,10 @@ main .listing-filters-selected:empty + p {
 main .listing-facets button {
     color: var(--color-gray-9);
     border: 2px solid var(--color-gray-8);
-    font-size: 15px;
+    font-family: var(--body-font-family);
+    font-size: var(--body-font-size-15);
     font-weight: 600;
-    border-radius: 50px;
+    border-radius: 100px;
     padding: 5px 15px;
     width: unset;
     margin: 0;
@@ -189,9 +190,9 @@ main .listing-sortby .listing-sort-button {
     display: inline-block;
     color: var(--color-gray-9);
     border: 2px solid var(--color-gray-8);
-    font-size: 15px;
+    font-size: var(--body-font-size-15);
     font-weight: 600;
-    border-radius: 50px;
+    border-radius: 100px;
     cursor: pointer;
 }
 

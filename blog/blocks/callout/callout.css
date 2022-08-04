@@ -16,10 +16,6 @@ main .callout.right {
 main .callout a.button {
   background-color: var(--category-color);
   margin: 40px 0 0;
-  font-size: 15px;
-  line-height: var(--heading-line-height-m);
-  font-weight: 700;
-  padding: 10px 30px;
 }
 
 main .callout.left a.button,
