@@ -14,3 +14,40 @@
     height: 100px;
     background-color: var(--color-1);
 }
+
+.sg-wrapper {
+    margin: 0 auto;
+    max-width: 1380px;
+    padding: 75px 40px 0;
+    text-align: left;
+}
+
+.sg-section-header {
+    width: 100%;
+}
+
+.sg-section {
+    background: #f0f0f0;
+    border: 1px solid #e7e7e7;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 15px 0;
+    padding: 15px;
+    color: #666;
+    border-radius: 5px;
+    width: 100%;
+    text-align: left;
+}
+
+.sg-flex {
+    margin: 0 auto 20px;
+    max-width: 90%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.sg-buttons-form {
+    width: 400px;
+}
