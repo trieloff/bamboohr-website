@@ -165,7 +165,7 @@ main .article-header-share img {
     width: 54px;
     height: 54px;
     line-height: 54px;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
+    box-shadow: var(--box-shadow-1);
     background-color: var(--color-white);
     margin: 10px;
     border-radius: 27px;
