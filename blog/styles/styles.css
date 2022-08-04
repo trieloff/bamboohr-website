@@ -758,9 +758,8 @@ div.category-color-people-data-analytics {
   font-size: var(--heading-font-size-15);
   line-height: var(--heading-line-height-m);
   padding: 10px 30px;
-}
 
-.marketplace-home main .default-content-wrapper p a.button:any-link {
+  /* below not part of small button style */
   background-color: var(--color-1-shade-5);
 }
 
