@@ -104,7 +104,7 @@ main .call-to-action a.button {
     width: 54px;
     height: 54px;
     line-height: 54px;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
+    box-shadow: var(--box-shadow-1);
     background-color: #ccc;
     margin: 10px;
     padding: 9px;
