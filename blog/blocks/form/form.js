@@ -99,6 +99,7 @@ async function submitForm(form) {
   const payload = {};
   const formEl = [...form.elements];
   let checkboxGroup = [];
+  payload.entryDate = new Date().toLocaleDateString();
   formEl.forEach((fe, k) => {
     removeValidationError(fe);
     if (!fe.closest('.hidden')) {
