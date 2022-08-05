@@ -52,7 +52,7 @@
     width: 400px;
 }
 
-.bhrColors {
+.bhrcolors {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -63,7 +63,7 @@
   max-width: 1160px;
 }
 
-.bhrColors__color {
+.bhrcolors__color {
   height: 175px;
   margin: 0 18px 60px;
   position: relative;
@@ -71,7 +71,7 @@
   flex: 0 0 auto;
 }
 
-.bhrColors__color-desc {
+.bhrcolors__color-desc {
   color: #fff;
   bottom: 5px;
   left: 5px;
@@ -80,11 +80,11 @@
   position: absolute;
 }
 
-.bhrColors__color-desc--dark {
+.bhrcolors__color-desc--dark {
   color: #000;
 }
 
-.bhrColors__color-name {
+.bhrcolors__color-name {
   color: #3a3a3a;
   bottom: -70px;
   height: 32px;
