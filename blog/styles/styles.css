@@ -81,6 +81,7 @@
   --color-gray-12: #404347;
   --color-gray-13: #313335;
   --color-white: #FFF;
+  --color-black: #000;
 
   /* body */
   --body-background-color: var(--color-white);
