@@ -376,3 +376,146 @@
 .bhrcolor-gray-13-background {
 	background-color: var(--color-gray-13);
 }
+
+.bhrBoxShadows {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+	margin: 10px auto 0;
+}
+
+.bhrBoxShadows__blockContainer {
+	width: 21%;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 80px;
+}
+
+.bhrBoxShadows__block {
+	height: 250px;
+    position: relative;
+}
+
+.bhrBoxShadows__block-desc {
+	bottom: 5px;
+	left: 5px;
+	line-height: 20px;
+	margin: 0;
+	position: absolute;
+	color: var(--color-gray-13);
+}
+
+.bhrboxshadow-shadow1 {
+	box-shadow: var(--box-shadow-1);
+}
+
+.bhrboxshadow-shadow2 {
+	box-shadow: var(--box-shadow-2);
+}
+
+.bhrboxshadow-shadow3 {
+	box-shadow: var(--box-shadow-3);
+}
+
+.bhrboxshadow-shadow4 {
+	box-shadow: var(--box-shadow-4);
+}
+
+.bhrboxshadow-shadow1-color1-shade10 {
+	box-shadow: var(--box-shadow-1-color1-shade10);
+}
+
+.bhrboxshadow-shadow12-color1-shade10 {
+	box-shadow: var(--box-shadow-2-color1-shade10);
+}
+
+.bhrboxshadow-shadow3-color1-shade10 {
+	box-shadow: var(--box-shadow-3-color1-shade10);
+}
+
+.bhrboxshadow-shadow4-color1-shade10 {
+	box-shadow: var(--box-shadow-4-color1-shade10);
+}
+
+.bhrboxshadow-shadow1-color2-shade10 {
+	box-shadow: var(--box-shadow-1-color2-shade10);
+}
+
+.bhrboxshadow-shadow2-color2-shade10 {
+	box-shadow: var(--box-shadow-2-color2-shade10);
+}
+
+.bhrboxshadow-shadow3-color2-shade10 {
+	box-shadow: var(--box-shadow-3-color2-shade10);
+}
+
+.bhrboxshadow-shadow4-color2-shade10 {
+	box-shadow: var(--box-shadow-4-color2-shade10);
+}
+
+.bhrboxshadow-shadow1-color3-shade10 {
+	box-shadow: var(--box-shadow-1-color3-shade10);
+}
+
+.bhrboxshadow-shadow2-color3-shade10 {
+	box-shadow: var(--box-shadow-2-color3-shade10);
+}
+
+.bhrboxshadow-shadow3-color3-shade10 {
+	box-shadow: var(--box-shadow-3-color3-shade10);
+}
+
+.bhrboxshadow-shadow4-color3-shade10 {
+	box-shadow: var(--box-shadow-4-color3-shade10);
+}
+
+.bhrboxshadow-shadow1-color4-shade10 {
+	box-shadow: var(--box-shadow-1-color4-shade10);
+}
+
+.bhrboxshadow-shadow2-color3-shade10 {
+	box-shadow: var(--box-shadow-2-color4-shade10);
+}
+
+.bhrboxshadow-shadow3-color4-shade10 {
+	box-shadow: var(--box-shadow-3-color4-shade10);
+}
+
+.bhrboxshadow-shadow4-color4-shade10 {
+	box-shadow: var(--box-shadow-4-color4-shade10);
+}
+
+.bhrboxshadow-shadow1-color5-shade10 {
+	box-shadow: var(--box-shadow-1-color5-shade10);
+}
+
+.bhrboxshadow-shadow2-color5-shade10 {
+	box-shadow: var(--box-shadow-2-color5-shade10);
+}
+
+.bhrboxshadow-shadow3-color5-shade10 {
+	box-shadow: var(--box-shadow-3-color5-shade10);
+}
+
+.bhrboxshadow-shadow4-color5-shade10 {
+	box-shadow: var(--box-shadow-4-color5-shade10);
+}
+
+.bhrboxshadow-shadow1-color6-shade10 {
+	box-shadow: var(--box-shadow-1-color6-shade10);
+}
+
+.bhrboxshadow-shadow2-color6-shade10 {
+	box-shadow: var(--box-shadow-2-color6-shade10);
+}
+
+.bhrboxshadow-shadow3-color6-shade10 {
+	box-shadow: var(--box-shadow-3-color6-shade10);
+}
+
+.bhrboxshadow-shadow4-color6-shade10 {
+	box-shadow: var(--box-shadow-4-color6-shade10);
+}
