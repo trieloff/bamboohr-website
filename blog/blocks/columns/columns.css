@@ -18,16 +18,12 @@
 .home-more .columns p strong {
     color: var(--heading-color);
     font-style: italic;
-    font-family: var(--heading-font-family);
-    font-size: var(--heading-font-size-s);
-    font-weight: 600;
-    line-height: 28px;
 }
 
 .home-more .columns p {
     color: var(--heading-color);
     font-family: var(--body-font-family);
-    font-size: var(--heading-font-size-xs);
+    font-size: 18px;
     line-height: 27px;
     font-weight: 400;
 }

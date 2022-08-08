@@ -58,14 +58,6 @@ main .page-header .page-header-subtitle {
   text-align: center;
 }
 
-main .page-header .page-header-title,
-main .page-header .page-header-title h1 {
-  font-family: var(--heading-font-family);
-  font-size: 40px;
-  font-weight: 900;
-  line-height: 48px;
-}
-
 main .page-header .page-header-subtitle {
   margin-top: 20px;
   font-size: 18px;
@@ -85,12 +77,6 @@ main .page-header .page-header-subtitle {
     background-size: 100% 105px;
   }
 
-  main .page-header .page-header-title,
-  main .page-header .page-header-title h1 {
-    font-size: 54px;
-    line-height: 60px;
-  }
-
   main .page-header .page-header-subtitle {
     margin-top: 30px;
     font-size: 21px;
@@ -101,11 +87,5 @@ main .page-header .page-header-subtitle {
 @media (min-width: 1200px) {
   main .page-header > div {
     max-width: 1200px;
-  }
-
-  main .page-header .page-header-title,
-  main .page-header .page-header-title h1 {
-    font-size: 70px;
-    line-height: 80px;
   }
 }

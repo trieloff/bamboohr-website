@@ -9,7 +9,7 @@ function createAppCardHeader(config) {
   const moreLink = 'app-cards-more-link';
   const viewAll = config.viewAll
     ? `<a class="${moreLink}" href="${config.viewAll}">View all</a>` : '';
-  cardHeader.innerHTML = `<div class="app-cards-header-title">${config.title}</div>${viewAll}`;
+  cardHeader.innerHTML = `<div class="app-cards-header-title typ-title1">${config.title}</div>${viewAll}`;
   return (cardHeader);
 }
 

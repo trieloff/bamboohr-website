@@ -217,12 +217,6 @@ main .search .search-box {
   text-align: center;
 }
 
-.marketplace-home main .search-container h1 {
-  font-size: 36px;
-  line-height: var(--heading-line-height);
-  font-weight: 700;
-}
-
 .marketplace-home main .search-results .search-app-card {
   position: relative;
   overflow: hidden;
@@ -282,11 +276,6 @@ main .search .search-box {
   .marketplace-home main .search-container .default-content-wrapper {
     padding: 32px 64px 14px;
   }
-
-  .marketplace-home main .search-container h1 {
-    font-size: 48px;
-  }
-  
 }
 
 @media (min-width: 1200px) {
