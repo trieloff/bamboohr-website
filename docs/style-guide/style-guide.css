@@ -15,11 +15,38 @@
     background-color: var(--color-1);
 }
 
+.sg-nav {
+    max-width: 1380px;
+    margin: 0 auto;
+}
+
+.sg-nav-items {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.sg-nav-link {
+    padding: 8px 12px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
 .sg-wrapper {
     margin: 0 auto;
     max-width: 1380px;
     padding: 75px 40px 0;
     text-align: left;
+}
+
+.sg-wrapper--top {
+    padding: 10px 40px 0 40px;
 }
 
 .sg-section-header {
@@ -64,6 +91,24 @@
 
 .sg-outline {
     outline: 1px dotted #16acff;
+}
+
+.sg-list {
+    line-height: 30px;
+    padding-left: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+nav ul li a:hover, nav ul li.active a{
+    background-color: #C8C7C6;
+    color: #666;
+}
+
+nav ul li {
+    margin-right: 3px;
 }
 
 .divider {
