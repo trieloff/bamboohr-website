@@ -67,9 +67,7 @@ main .article-header-read-time:empty::before {
 }
 
 main .article-header h1 {
-  font-family: var(--heading-font-family);
   font-style: italic;
-  font-size: 28px;
   margin: 17px 0;
 }
 
@@ -147,10 +145,6 @@ main .article-header-share img {
     content: '•';
     margin: 5px 10px 0;
     font-size: 10px;
-  }
-
-  main .article-header h1 {
-    font-size: 48px;
   }
 
   main .article-header-share {
