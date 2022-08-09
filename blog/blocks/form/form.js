@@ -228,11 +228,12 @@ function createLabel(fd) {
 
 function applyRules(form, rules) {
   const payload = constructPayload(form);
+  const usp = new URLSearchParams(window.location.search);
   rules.forEach((field) => {
     const { type, condition: { key, operator, value } } = field.rule;
     if (type === 'visible') {
       if (operator === 'eq') {
-        if (payload[key] === value) {
+        if (payload[key] === value || [...usp.getAll(key)].includes(value)) {
           form.querySelector(`.${field.fieldId}`).classList.remove('hidden');
         } else {
           form.querySelector(`.${field.fieldId}`).classList.add('hidden');
