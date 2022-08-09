@@ -829,7 +829,7 @@ export async function lookupPages(pathnames, collection) {
 }
 
 function loadHeader(header) {
-  const headerBlock = buildBlock('header', '');
+  const headerBlock = buildBlock('meganav', '');
   header.append(headerBlock);
   decorateBlock(headerBlock);
   loadBlock(headerBlock);
