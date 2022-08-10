@@ -970,14 +970,6 @@ main .default-content-wrapper ul li {
   border-collapse: collapse;
 }
 
-.table-header-group {
-  background-color: var(--color-1);
-}
-
-.table-header-group .table-th {
-  border-color: var(--color-1);
-}
-
 .table-th {
   color: var(--color-white);
   font-weight: 800;
@@ -989,17 +981,25 @@ main .default-content-wrapper ul li {
   border: 2px solid var(--color-gray-3);
 }
 
+.table-td {
+  color: var(--color-gray-9);
+  vertical-align: top;
+}
+
+.table-header-group {
+  background-color: var(--color-1);
+}
+
+.table-header-group .table-th {
+  border-color: var(--color-1);
+}
+
 .table-body-group tr:nth-child(odd) {
   background-color: var(--color-white);
 }
 
 .table-body-group tr:nth-child(2n) {
   background-color: var(--color-gray-1);
-}
-
-.table-td {
-  color: var(--color-gray-9);
-  vertical-align: top;
 }
 
 .bhrcolor-gray8-background {
