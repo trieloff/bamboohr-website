@@ -147,7 +147,7 @@ export async function run() {
   endTime = new Date();
   document.getElementById('results').textContent = '';
 
-  await loadSitemap('/blog/sitemap.xml');
+  await loadSitemap('/sitemap-index.xml');
   const resultDisplay = document.body;
   const sitemap = sitemapURLs;
   let pattern = document.getElementById('input').value;
