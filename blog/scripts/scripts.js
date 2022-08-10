@@ -884,7 +884,7 @@ export async function loadFragment(path) {
   const main = document.createElement('main');
   if (resp.ok) {
     main.innerHTML = await resp.text();
-    decorateMain(main);
+    await decorateMain(main);
     await loadBlocks(main);
   }
   return (main);
