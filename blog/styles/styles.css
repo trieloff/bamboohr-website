@@ -489,7 +489,9 @@ main .page-header .page-header-title h1 {
   text-transform: uppercase;
 }
 
-.typ-table-body {
+.typ-table-body,
+.Table__th,
+.Table__td {
   font-family: var(--body-font-family);
   font-size: 15px;
   line-height: 22px;
@@ -959,6 +961,49 @@ main .default-content-wrapper ul li {
 
 .marketplace-listing .details-container ul li {
 	margin-bottom: 30px;
+}
+
+/* Tables */
+
+.Table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.Table__headerGroup {
+  background-color: var(--color-1);
+}
+
+.Table__headerGroup .Table__th {
+  border-color: var(--color-1);
+}
+
+.Table__th {
+  color: var(--color-white);
+  font-weight: 800;
+}
+
+.Table__th,
+.Table__td {
+  padding: 20px;
+  border: 2px solid var(--color-gray-3);
+}
+
+.Table__bodyGroup tr:nth-child(odd) {
+  background-color: var(--color-white);
+}
+
+.Table__bodyGroup tr:nth-child(2n) {
+  background-color: var(--color-gray-1);
+}
+
+.Table__td {
+  color: var(--color-gray-9);
+  vertical-align: top;
+}
+
+.bhrcolor-gray8-background {
+  background-color: var(--color-gray-8);
 }
 
 /* above the fold CSS goes here to squash CLS */
