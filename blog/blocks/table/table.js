@@ -101,11 +101,11 @@ export default async function decorate(block) {
       const cell = buildTableCell(col, i, headers[j], isComparisonTable);
       if (i === 0) {
         headers.push(cell);
-        if (!isComparisonTable && !isDataSync) cell.classList.add('Table__th');
+        if (!isComparisonTable && !isDataSync) cell.classList.add('table__th');
       } else if (!isComparisonTable && !isDataSync) {
         if (j === 0 && isXY) {
-          cell.classList.add('Table__th', 'bhrcolor-gray8-background');
-        } else cell.classList.add('Table__td');
+          cell.classList.add('table__th', 'bhrcolor-gray8-background');
+        } else cell.classList.add('table__td');
       }
       tr.append(cell);
     });

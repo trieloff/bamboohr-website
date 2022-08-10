@@ -490,8 +490,8 @@ main .page-header .page-header-title h1 {
 }
 
 .typ-table-body,
-.Table__th,
-.Table__td {
+.table__th,
+.table__td {
   font-family: var(--body-font-family);
   font-size: 15px;
   line-height: 22px;
@@ -978,13 +978,13 @@ main .default-content-wrapper ul li {
   border-color: var(--color-1);
 }
 
-.Table__th {
+.table__th {
   color: var(--color-white);
   font-weight: 800;
 }
 
-.Table__th,
-.Table__td {
+.table__th,
+.table__td {
   padding: 20px;
   border: 2px solid var(--color-gray-3);
 }
@@ -997,7 +997,7 @@ main .default-content-wrapper ul li {
   background-color: var(--color-gray-1);
 }
 
-.Table__td {
+.table__td {
   color: var(--color-gray-9);
   vertical-align: top;
 }
