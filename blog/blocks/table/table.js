@@ -87,9 +87,9 @@ export default async function decorate(block) {
 
   table.classList.add('table-desktop');
   if (!isComparisonTable && !isDataSync) {
-    table.classList.add('Table');
-    head.classList.add('Table__headerGroup');
-    body.classList.add('Table__bodyGroup');
+    table.classList.add('sg-table');
+    head.classList.add('table-header-group');
+    body.classList.add('table-body-group');
   }
   // build rows
   tableData.forEach((row, i) => {
@@ -101,11 +101,11 @@ export default async function decorate(block) {
       const cell = buildTableCell(col, i, headers[j], isComparisonTable);
       if (i === 0) {
         headers.push(cell);
-        if (!isComparisonTable && !isDataSync) cell.classList.add('table__th');
+        if (!isComparisonTable && !isDataSync) cell.classList.add('table-th');
       } else if (!isComparisonTable && !isDataSync) {
         if (j === 0 && isXY) {
-          cell.classList.add('table__th', 'bhrcolor-gray8-background');
-        } else cell.classList.add('table__td');
+          cell.classList.add('table-th', 'bhrcolor-gray8-background');
+        } else cell.classList.add('table-td');
       }
       tr.append(cell);
     });

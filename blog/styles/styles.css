@@ -490,8 +490,8 @@ main .page-header .page-header-title h1 {
 }
 
 .typ-table-body,
-.table__th,
-.table__td {
+.table-th,
+.table-td {
   font-family: var(--body-font-family);
   font-size: 15px;
   line-height: 22px;
@@ -965,39 +965,39 @@ main .default-content-wrapper ul li {
 
 /* Tables */
 
-.Table {
+.sg-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.Table__headerGroup {
+.table-header-group {
   background-color: var(--color-1);
 }
 
-.Table__headerGroup .Table__th {
+.table-header-group .table-th {
   border-color: var(--color-1);
 }
 
-.table__th {
+.table-th {
   color: var(--color-white);
   font-weight: 800;
 }
 
-.table__th,
-.table__td {
+.table-th,
+.table-td {
   padding: 20px;
   border: 2px solid var(--color-gray-3);
 }
 
-.Table__bodyGroup tr:nth-child(odd) {
+.table-body-group tr:nth-child(odd) {
   background-color: var(--color-white);
 }
 
-.Table__bodyGroup tr:nth-child(2n) {
+.table-body-group tr:nth-child(2n) {
   background-color: var(--color-gray-1);
 }
 
-.table__td {
+.table-td {
   color: var(--color-gray-9);
   vertical-align: top;
 }
