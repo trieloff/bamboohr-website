@@ -82,15 +82,11 @@ export default async function decorate(block) {
   const tableData = block.querySelectorAll(':scope > div');
   let colCnt = -1;
   const isComparisonTable = block.classList.contains('comparison');
-  const isDataSync = block.classList.contains('comparison');
+  const isDataSync = block.classList.contains('data-sync');
   const isXY = block.classList.contains('xy');
+  const isStandardTable = !isComparisonTable && !isDataSync;
 
   table.classList.add('table-desktop');
-  if (!isComparisonTable && !isDataSync) {
-    table.classList.add('sg-table');
-    head.classList.add('table-header-group');
-    body.classList.add('table-body-group');
-  }
   // build rows
   tableData.forEach((row, i) => {
     const tr = document.createElement('tr');
@@ -101,11 +97,8 @@ export default async function decorate(block) {
       const cell = buildTableCell(col, i, headers[j], isComparisonTable);
       if (i === 0) {
         headers.push(cell);
-        if (!isComparisonTable && !isDataSync) cell.classList.add('table-th');
-      } else if (!isComparisonTable && !isDataSync) {
-        if (j === 0 && isXY) {
-          cell.classList.add('table-th', 'bhrcolor-gray8-background');
-        } else cell.classList.add('table-td');
+      } else if (isStandardTable && j === 0 && isXY) {
+        cell.classList.add('table-row-header');
       }
       tr.append(cell);
     });

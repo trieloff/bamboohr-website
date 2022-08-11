@@ -490,8 +490,8 @@ main .page-header .page-header-title h1 {
 }
 
 .typ-table-body,
-.table-th,
-.table-td {
+table th,
+table td {
   font-family: var(--body-font-family);
   font-size: 15px;
   line-height: 22px;
@@ -965,44 +965,46 @@ main .default-content-wrapper ul li {
 
 /* Tables */
 
-.sg-table {
+.table-desktop {
   width: 100%;
   border-collapse: collapse;
 }
 
-.table-th {
+table th,
+.table-row-header {
   color: var(--color-white);
   font-weight: 800;
 }
 
-.table-th,
-.table-td {
+table th,
+table td {
   padding: 20px;
   border: 2px solid var(--color-gray-3);
+  text-align: left;
+  vertical-align: middle;
 }
 
-.table-td {
+table td {
   color: var(--color-gray-9);
-  vertical-align: top;
 }
 
-.table-header-group {
+table thead {
   background-color: var(--color-1);
 }
 
-.table-header-group .table-th {
+table thead th {
   border-color: var(--color-1);
 }
 
-.table-body-group tr:nth-child(odd) {
+table tbody tr:nth-child(odd) {
   background-color: var(--color-white);
 }
 
-.table-body-group tr:nth-child(2n) {
+table tbody tr:nth-child(2n) {
   background-color: var(--color-gray-1);
 }
 
-.bhrcolor-gray8-background {
+.table-row-header {
   background-color: var(--color-gray-8);
 }
 
