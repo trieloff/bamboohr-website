@@ -2,9 +2,9 @@ import {
   toClassName,
 } from '../../scripts/scripts.js';
 
-function buildTableCell(col, rowIndex, header, isComparisonTable) {
+function buildTableCell(col, rowIndex, header, isComparisonTable, isRowHeader) {
   const levels = ['pro', 'elite', 'bamboohr-product'];
-  const cell = rowIndex > 0 ? document.createElement('td') : document.createElement('th');
+  const cell = rowIndex > 0 && !isRowHeader ? document.createElement('td') : document.createElement('th');
   if (isComparisonTable && rowIndex === 3) {
     const levelClass = toClassName(col.textContent?.trim().toLowerCase());
     const levelIdx = levels.indexOf(levelClass);
@@ -86,7 +86,6 @@ export default async function decorate(block) {
   const isXY = block.classList.contains('xy');
   const isStandardTable = !isComparisonTable && !isDataSync;
 
-  table.classList.add('table-desktop');
   // build rows
   tableData.forEach((row, i) => {
     const tr = document.createElement('tr');
@@ -94,12 +93,9 @@ export default async function decorate(block) {
     if (colCnt === -1) colCnt = colData.length;
     // build cells
     colData.forEach((col, j) => {
-      const cell = buildTableCell(col, i, headers[j], isComparisonTable);
-      if (i === 0) {
-        headers.push(cell);
-      } else if (isStandardTable && j === 0 && isXY) {
-        cell.classList.add('table-row-header');
-      }
+      const isRowHeader = (isStandardTable && j === 0 && isXY);
+      const cell = buildTableCell(col, i, headers[j], isComparisonTable, isRowHeader);
+      if (i === 0) headers.push(cell); 
       tr.append(cell);
     });
     if (i > 0) body.append(tr);

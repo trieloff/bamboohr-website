@@ -965,13 +965,13 @@ main .default-content-wrapper ul li {
 
 /* Tables */
 
-.table-desktop {
+table {
   width: 100%;
   border-collapse: collapse;
 }
 
 table th,
-.table-row-header {
+table tbody th {
   color: var(--color-white);
   font-weight: 800;
 }
@@ -996,16 +996,16 @@ table thead th {
   border-color: var(--color-1);
 }
 
+table tbody th {
+  background-color: var(--color-gray-8);
+}
+
 table tbody tr:nth-child(odd) {
   background-color: var(--color-white);
 }
 
 table tbody tr:nth-child(2n) {
   background-color: var(--color-gray-1);
-}
-
-.table-row-header {
-  background-color: var(--color-gray-8);
 }
 
 /* above the fold CSS goes here to squash CLS */

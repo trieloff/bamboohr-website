@@ -37,10 +37,6 @@
   overflow-x: auto;
 }
 
-.table table {
-  width: 100%;
-}
-
 .table table thead th {
   font-weight: bold;
 }
@@ -52,10 +48,6 @@
 .table.comparison table, .table.comparison th, .table.comparison td {
   text-align: center;
   position: relative;
-}
-
-.table.data-sync table {
-  border-collapse: collapse;
 }
 
 .table.comparison table thead,
@@ -152,7 +144,7 @@
     display: unset;
   }
 
-  .table.comparison .table-desktop {
+  .table.comparison table:not(table.table-mobile) {
     display: none;
   }
 }
