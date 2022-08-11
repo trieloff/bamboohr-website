@@ -971,17 +971,17 @@ table {
 }
 
 table th,
-table tbody th {
-  color: var(--color-white);
-  font-weight: 800;
-}
-
-table th,
 table td {
   padding: 20px;
   border: 2px solid var(--color-gray-3);
   text-align: left;
   vertical-align: middle;
+}
+
+table th,
+table tbody th {
+  color: var(--color-white);
+  font-weight: 800;
 }
 
 table td {
