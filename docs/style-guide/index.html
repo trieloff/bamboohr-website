@@ -10,7 +10,6 @@
         <li><a href="/docs/style-guide/typography.html" class="sg-nav-link">Typography</a></li>
         <li><a href="/docs/style-guide/colors.html" class="sg-nav-link">Colors</a></li>
         <li><a href="/docs/style-guide/box-shadow.html" class="sg-nav-link">Box Shadows</a></li>
-        <li><a href="/docs/style-guide/bem-modules.html" class="sg-nav-link">Bem Modules</a></li>
       </ul>
     </nav>
     <main class="sg-wrapper sg-wrapper--top">
@@ -25,6 +24,239 @@
           <li><strong>Big Desktop:</strong> 1800px - ⇧</li>
         </ul>
       </div>
+      <h2>.button Styles</h2>
+        <div class="sg-section">
+          <p>Button colors can be changed using color helper variables</p>
+          <div class="sg-flex">
+            <p class="sg-section-header">.button</p>
+            <a href="http://google.com" class="button">Start Link Here</a>
+          </div>
+          <div class="sg-flex">
+            <p class="sg-section-header">.button.small</p>
+            <a href="http://google.com" class="button small">Start Link Here</a>
+          </div>
+          <div class="sg-flex">
+            <p class="sg-section-header">.button.stroke</p>
+            <a href="http://google.com" class="button stroke">Start Link Here</a>
+          </div>
+          <div class="sg-flex">
+            <p class="sg-section-header">.button.stroke.small</p>
+            <a href="http://google.com" class="button stroke small">Start Link Here</a>
+          </div>
+          <div class="sg-flex">
+            <p class="sg-section-header">.button.secondary</p>
+            <a href="http://google.com" class="button secondary">Start Link Here</a>
+          </div>
+          <div class="sg-flex">
+            <p class="sg-section-header">.button.secondary.small</p>
+            <a href="http://google.com" class="button secondary small">Start Link Here</a>
+          </div>
+          <div class="sg-flex">
+            <p class="sg-section-header">.button.secondary.stroke</p>
+            <a href="http://google.com" class="button secondary stroke">Start Link Here</a>
+          </div>
+          <div class="sg-flex">
+            <p class="sg-section-header">.button.secondary.stroke.small</p>
+            <a href="http://google.com" class="button secondary stroke small">Start Link Here</a>
+          </div>
+          <div class="sg-flex">
+            <p class="sg-section-header">.button.form</p>
+            <div class="sg-buttons-form">
+              <a href="http://google.com" class="button form">Start Link Here</a>
+            </div>
+          </div>
+          <div class="sg-flex">
+            <p class="sg-section-header">.button.form.stroke</p>
+            <div class="sg-buttons-form">
+              <a href="http://google.com" class="button form stroke">Start Link Here</a>
+            </div>
+          </div>
+        </div>
+        <h2>Table</h2>
+        <div class="sg-section">
+          <p>X Table</p>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Column 1</th>
+                  <th>Column 2</th>
+                  <th>Column 3</th>
+                  <th>Column 4</th>
+                  <th>Column 5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Data 1</td>
+                  <td>Data 2</td>
+                  <td>Data 3</td>
+                  <td>Data 4</td>
+                  <td>Data 5</td>
+                </tr>
+                <tr>
+                  <td>Data 1</td>
+                  <td>Data 2</td>
+                  <td>Data 3</td>
+                  <td>Data 4</td>
+                  <td>Data 5</td>
+                </tr>
+                <tr>
+                  <td>Data 1</td>
+                  <td>Data 2</td>
+                  <td>Data 3</td>
+                  <td>Data 4</td>
+                  <td>Data 5</td>
+                </tr>
+                <tr>
+                  <td>Data 1</td>
+                  <td>Data 2</td>
+                  <td>Data 3</td>
+                  <td>Data 4</td>
+                  <td>Data 5</td>
+                </tr>
+                <tr>
+                  <td>Data 1</td>
+                  <td>Data 2</td>
+                  <td>Data 3</td>
+                  <td>Data 4</td>
+                  <td>Data 5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pre>
+            <code data-language="html">
+              <span><</span><span>table</span><span>></span>
+                <span><</span><span>thead</span><span>></span>
+                  <span><</span><span>tr</span><span>></span>
+                    <span><</span><span>th</span><span>></span><span>Column 1</span><span><</span><span>/th</span><span>></span>
+                    <span><</span><span>th</span><span>></span><span>Column 2</span><span><</span><span>/th</span><span>></span>
+                  <span><</span><span>/tr</span><span>></span>
+                <span><</span><span>/thead</span><span>></span>
+                <span><</span><span>tbody</span><span>></span>
+                  <span><</span><span>tr</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 1</span><span><</span><span>/td</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 2</span><span><</span><span>/td</span><span>></span>
+                  <span><</span><span>/tr</span><span>></span>
+                  <span><</span><span>tr</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 1</span><span><</span><span>/td</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 2</span><span><</span><span>/td</span><span>></span>
+                  <span><</span><span>/tr</span><span>></span>
+                  <span><</span><span>tr</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 1</span><span><</span><span>/td</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 2</span><span><</span><span>/td</span><span>></span>
+                  <span><</span><span>/tr</span><span>></span>
+                  <span><</span><span>tr</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 1</span><span><</span><span>/td</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 2</span><span><</span><span>/td</span><span>></span>
+                  <span><</span><span>/tr</span><span>></span>
+                  <span><</span><span>tr</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 1</span><span><</span><span>/td</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 2</span><span><</span><span>/td</span><span>></span>
+                  <span><</span><span>/tr</span><span>></span>
+                <span><</span><span>/tbody</span><span>></span>
+              <span><</span><span>/table</span><span>></span>
+            </code>
+          </pre>
+          <p>XY Table</p>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Column 1</th>
+                  <th>Column 2</th>
+                  <th>Column 3</th>
+                  <th>Column 4</th>
+                  <th>Column 5</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Row 1</th>
+                  <td>Data 1</td>
+                  <td>Data 2</td>
+                  <td>Data 3</td>
+                  <td>Data 4</td>
+                  <td>Data 5</td>
+                </tr>
+                <tr>
+                  <th>Row 2</th>
+                  <td>Data 1</td>
+                  <td>Data 2</td>
+                  <td>Data 3</td>
+                  <td>Data 4</td>
+                  <td>Data 5</td>
+                </tr>
+                <tr>
+                  <th>Row 3</th>
+                  <td>Data 1</td>
+                  <td>Data 2</td>
+                  <td>Data 3</td>
+                  <td>Data 4</td>
+                  <td>Data 5</td>
+                </tr>
+                <tr>
+                  <th>Row 4</th>
+                  <td>Data 1</td>
+                  <td>Data 2</td>
+                  <td>Data 3</td>
+                  <td>Data 4</td>
+                  <td>Data 5</td>
+                </tr>
+                <tr>
+                  <th>Row 5</th>
+                  <td>Data 1</td>
+                  <td>Data 2</td>
+                  <td>Data 3</td>
+                  <td>Data 4</td>
+                  <td>Data 5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pre>
+            <code data-language="html">
+              <span><</span><span>table</span><span>></span>
+                <span><</span><span>thead</span><span>></span>
+                  <span><</span><span>tr</span><span>></span>
+                    <span><</span><span>th</span><span>></span><span><</span><span>/th</span><span>></span>
+                    <span><</span><span>th</span><span>></span><span>Column 1</span><span><</span><span>/th</span><span>></span>
+                    <span><</span><span>th</span><span>></span><span>Column 2</span><span><</span><span>/th</span><span>></span>
+                  <span><</span><span>/tr</span><span>></span>
+                <span><</span><span>/thead</span><span>></span>
+                <span><</span><span>tbody</span><span>></span>
+                  <span><</span><span>tr</span><span>></span>
+                    <span><</span><span>th</span><span>></span><span>Row 1</span><span><</span><span>/th</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 1</span><span><</span><span>/td</span><span>></span>
+                    <span><</span><span>td"</span><span>></span><span>Data 2</span><span><</span><span>/td</span><span>></span>
+                  <span><</span><span>/tr</span><span>></span>
+                  <span><</span><span>tr</span><span>></span>
+                    <span><</span><span>th</span><span>></span><span>Row 2</span><span><</span><span>/th</span><span>></span>
+                    <span><</span><span>td"</span><span>></span><span>Data 1</span><span><</span><span>/td</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 2</span><span><</span><span>/td</span><span>></span>
+                  <span><</span><span>/tr</span><span>></span>
+                  <span><</span><span>tr</span><span>></span>
+                    <span><</span><span>th</span><span>></span><span>Row 3</span><span><</span><span>/th</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 1</span><span><</span><span>/td</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 2</span><span><</span><span>/td</span><span>></span>
+                  <span><</span><span>/tr</span><span>></span>
+                  <span><</span><span>tr</span><span>></span>
+                    <span><</span><span>th</span><span>></span><span>Row 4</span><span><</span><span>/th</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 1</span><span><</span><span>/td</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 2</span><span><</span><span>/td</span><span>></span>
+                  <span><</span><span>/tr</span><span>></span>
+                  <span><</span><span>tr</span><span>></span>
+                    <span><</span><span>th</span><span>></span><span>Row 5</span><span><</span><span>/th</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 1</span><span><</span><span>/td</span><span>></span>
+                    <span><</span><span>td</span><span>></span><span>Data 2</span><span><</span><span>/td</span><span>></span>
+                  <span><</span><span>/tr</span><span>></span>
+                <span><</span><span>/tbody</span><span>></span>
+              <span><</span><span>/table</span><span>></span>
+            </code>
+          </pre>
+        </div>
     </main>
     <footer></footer>
   </body>
