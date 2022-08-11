@@ -95,7 +95,7 @@ export default async function decorate(block) {
     colData.forEach((col, j) => {
       const isRowHeader = (isStandardTable && j === 0 && isXY);
       const cell = buildTableCell(col, i, headers[j], isComparisonTable, isRowHeader);
-      if (i === 0) headers.push(cell); 
+      if (i === 0) headers.push(cell);
       tr.append(cell);
     });
     if (i > 0) body.append(tr);
