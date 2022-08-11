@@ -63,11 +63,6 @@
   background-color: unset;
 }
 
-.table.data-sync table thead th {
-  border-color: var(--color-gray-3);
-  background: var(--color-gray-1);
-}
-
 .table.comparison table {
   border-spacing: 10px 0;
   padding: 0;
@@ -90,6 +85,11 @@
   padding-top: 75px;
   padding-bottom: 40px;
   overflow: hidden;
+}
+
+.table.data-sync table thead th {
+  border-color: var(--color-gray-3);
+  background: var(--color-gray-1);
 }
 
 .table.comparison th:first-child {
