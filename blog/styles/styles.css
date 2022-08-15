@@ -378,7 +378,8 @@ main h1.hidden {
 
 .typ-section-header,
 .marketplace main h1,
-main .article-header h1 {
+main .article-header h1,
+.call-to-action-modal main h3 {
   font-family: var(--heading-font-family);
   font-size: 36px;
   font-weight: 700;
@@ -524,7 +525,8 @@ table td {
 @media (min-width: 1200px) {
   .typ-section-header,
   .marketplace main h1,
-  main .article-header h1 {
+  main .article-header h1,
+  .call-to-action-modal main h3 {
     font-size: 48px;
     line-height: 60px;
   }

@@ -69,6 +69,11 @@ main .call-to-action a.button {
     opacity: 0;
 }
 
+.call-to-action-modal-wrapper.visible {
+    opacity: 1;
+    z-index: 1;
+}
+
 .call-to-action-modal main .section > div {
     padding: 0;
 }
@@ -82,11 +87,6 @@ main .call-to-action a.button {
     background-color: var(--body-background-color);
     border-radius: 20px;
     position: relative;
-  }
-  
-  .call-to-action-modal-wrapper.visible {
-    opacity: 1;
-    z-index: 1;
   }
   
   .call-to-action-modal main {
@@ -110,6 +110,7 @@ main .call-to-action a.button {
     padding: 9px;
     border-radius: 27px;
     box-sizing: border-box;
+    cursor: pointer;
   }
   
   .call-to-action-modal-close::before, .call-to-action-modal-close::after {
@@ -134,18 +135,18 @@ main .call-to-action a.button {
 .call-to-action-modal main .section > div p {
     color: var(--body-color);
     margin: 32px 20px;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: left;
 }
 
 .call-to-action-modal main .section p:first-of-type {
     margin: 0;
 }
 
-
 .call-to-action-modal main h3 {
-    font-family: var(--heading-font-family);
-    font-size: 20px;
-    font-style: italic;
-    color: #777;
+    font-style: normal;
+    color: var(--color-black);
   }
   
   .call-to-action-modal input {
