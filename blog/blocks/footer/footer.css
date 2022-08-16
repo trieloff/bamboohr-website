@@ -16,7 +16,7 @@ footer .footer {
 footer .footer h3 {
 	color: var(--color-white);
     font-size: 20px;
-    line-height: var(--heading-line-height-l);
+    line-height: 28px;
 	font-weight: 600;
     font-family: var(--heading-font-family);
     margin: 0 0 20px;
@@ -25,7 +25,7 @@ footer .footer h3 {
 footer .footer p {
 	margin: 0;
 	font-size: 14px;
-	line-height: var(--body-line-height-s);
+	line-height: 24px;
 	color: var(--color-gray-6);
 }
 
@@ -43,7 +43,7 @@ footer .footer li {
 
 footer a {
 	font-size: 14px;
-	line-height: var(--body-line-height-s);
+	line-height: 24px;
 	color: var(--color-gray-6);
 	text-decoration: none;
 	transition: 0.3s;

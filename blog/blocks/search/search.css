@@ -69,7 +69,7 @@ main .search-results .search-app-card {
 
 .search-app-card-cat {
   font-size: 14px;
-  line-height: var(--body-line-height);
+  line-height: 24px;
   color: var(--color-gray-6);
 }
 
@@ -152,7 +152,7 @@ main .search-app-card-detail a:any-link {
   position: relative;
   font-size: 15px;
   font-weight: 700;
-  line-height: var(--body-line-height);
+  line-height: 22px;
   display: inline-block;
   color: var(--color-1-shade-5);
   text-decoration: none;
