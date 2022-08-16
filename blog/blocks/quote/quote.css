@@ -11,7 +11,7 @@ main .quote {
 	padding: 10px 0 10px 32px;
 	border-left: 2px solid var(--category-color);
 	font-size: 20px;
-	line-height: var(--body-line-height-s);
+	line-height: 28px;
 	font-weight: 600;
 	font-style: italic;
 }
