@@ -121,11 +121,11 @@ async function submitForm(form) {
             payload[fe.name] = checkboxGroup.join(', ');
           } else {
             checkboxGroup = [];
-            payload[fe.id] = sanitizeInput(fe.value);
+            payload[fe.name] = sanitizeInput(fe.value);
           }
         }
       } else if (fe.type === 'select-multiple') {
-        const selected = [...fe.selectedOptions].map((option) => option.value);
+        const selected = [...fe.selectedOptions].map((option) => sanitizeInput(option.value));
         payload[fe.id] = selected.join(', ');
       } else if (fe.id) {
         payload[fe.id] = sanitizeInput(fe.value);
