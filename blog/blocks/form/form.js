@@ -1,5 +1,8 @@
-function createSelect(fd) {
+function createSelect(fd, multiSelect = false) {
   const select = document.createElement('select');
+  if (multiSelect === true) {
+    select.setAttribute('multiple', true);
+  }
   select.id = fd.Field;
   if (fd.Mandatory === 'x') {
     select.setAttribute('required', '');
@@ -121,6 +124,9 @@ async function submitForm(form) {
             payload[fe.id] = sanitizeInput(fe.value);
           }
         }
+      } else if (fe.type === 'select-multiple') {
+        const selected = [...fe.selectedOptions].map((option) => option.value);
+        payload[fe.id] = selected.join(', ');
       } else if (fe.id) {
         payload[fe.id] = sanitizeInput(fe.value);
       }
@@ -226,6 +232,12 @@ function createLabel(fd) {
   return label;
 }
 
+function createDescription(fd) {
+  const desc = document.createElement('p');
+  desc.textContent = fd.Description;
+  return desc;
+}
+
 function applyRules(form, rules) {
   const payload = constructPayload(form);
   rules.forEach((field) => {
@@ -261,25 +273,35 @@ async function createForm(formURL) {
     switch (fd.Type) {
       case 'select':
         fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createDescription(fd));
         fieldWrapper.append(createSelect(fd));
+        break;
+      case 'multiselect':
+        fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createDescription(fd));
+        fieldWrapper.append(createSelect(fd, true));
         break;
       case 'button':
         fieldWrapper.append(createButton(fd));
         break;
       case 'checkbox':
         fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createDescription(fd));
         fieldWrapper.append(createOptions(fd));
         break;
       case 'radio':
         fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createDescription(fd));
         fieldWrapper.append(createOptions(fd));
         break;
       case 'textarea':
         fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createDescription(fd));
         fieldWrapper.append(createTextarea(fd));
         break;
       default:
         fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createDescription(fd));
         fieldWrapper.append(createInput(fd));
     }
     form.append(fieldWrapper);
