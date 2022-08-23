@@ -124,6 +124,35 @@
   --box-shadow-2-color6-shade10: 0 30px 60px -40px rgb(76 50 147 / 20%);
   --box-shadow-3-color6-shade10: 0 30px 60px -40px rgb(76 50 147 / 20%), 0 70px 100px -60px rgb(76 50 147 / 20%);
   --box-shadow-4-color6-shade10: 0 68px 62px -35px rgb(76 50 147 / 20%);
+
+  /* custom bullet svgs */
+  --bullet-level1-gray: url('/blog/icons/bullets/level1-gray.svg');
+  --bullet-level2-gray: url('/blog/icons/bullets/level2-gray.svg');
+  --bullet-level3-gray: url('/blog/icons/bullets/level3-gray.svg');
+  --bullet-level1-green: url('/blog/icons/bullets/level1-green.svg');
+  --bullet-level2-green: url('/blog/icons/bullets/level2-green.svg');
+  --bullet-level3-green: url('/blog/icons/bullets/level3-green.svg');
+  --bullet-level1-red: url('/blog/icons/bullets/level1-red.svg');
+  --bullet-level2-red: url('/blog/icons/bullets/level2-red.svg');
+  --bullet-level3-red: url('/blog/icons/bullets/level3-red.svg');
+  --bullet-level1-orange: url('/blog/icons/bullets/level1-orange.svg');
+  --bullet-level2-orange: url('/blog/icons/bullets/level2-orange.svg');
+  --bullet-level3-orange: url('/blog/icons/bullets/level3-orange.svg');
+  --bullet-level1-yellow: url('/blog/icons/bullets/level1-yellow.svg');
+  --bullet-level2-yellow: url('/blog/icons/bullets/level2-yellow.svg');
+  --bullet-level3-yellow: url('/blog/icons/bullets/level3-yellow.svg');
+  --bullet-level1-blue: url('/blog/icons/bullets/level1-blue.svg');
+  --bullet-level2-blue: url('/blog/icons/bullets/level2-blue.svg');
+  --bullet-level3-blue: url('/blog/icons/bullets/level3-blue.svg');
+  --bullet-level1-purple: url('/blog/icons/bullets/level1-purple.svg');
+  --bullet-level2-purple: url('/blog/icons/bullets/level2-purple.svg');
+  --bullet-level3-purple: url('/blog/icons/bullets/level3-purple.svg');
+  --bullet-level1-pink: url('/blog/icons/bullets/level1-pink.svg');
+  --bullet-level2-pink: url('/blog/icons/bullets/level2-pink.svg');
+  --bullet-level3-pink: url('/blog/icons/bullets/level3-pink.svg');
+  --bullet-level1-teal: url('/blog/icons/bullets/level1-teal.svg');
+  --bullet-level2-teal: url('/blog/icons/bullets/level2-teal.svg');
+  --bullet-level3-teal: url('/blog/icons/bullets/level3-teal.svg');
 }
 
 header {
@@ -138,9 +167,9 @@ img {
 body {
   background-color: var(--body-background-color);
   font-family: var(--body-font-family);
-  font-size: 17px;
-  line-height: 24px;
-  color: var(--body-color);
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--color-gray-9);
   margin: 0;
   padding: 0;
   display: none;
@@ -270,17 +299,150 @@ a.button > svg > use {
 
 /* headings and body */
 
-main {
-  font-size: 17px;
-  line-height: 24px;
-  margin: 0;
+main,
+main ul li,
+main ol li {
+  font-size: 18px;
+  line-height: 27px;
   font-weight: var(--body-font-weight);
+  color: var(--color-gray-9);
 }
 
+main {
+  margin: 0;
+}
 
 p, dl, ol, ul, pre, blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+main .default-content-wrapper ul {
+  padding-inline-start: 20px;
+  list-style-type: none;
+}
+
+main .default-content-wrapper ol li,
+main .default-content-wrapper ul li {
+  position: relative;
+  margin-bottom: 16px;
+  padding-left: 30px;
+}
+
+main .default-content-wrapper ul li::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 0;
+  background-image: var(--bullet-level1-gray);
+  background-repeat: no-repeat; 
+  background-position: center;
+  width: 16px;
+  height: 18px;
+}
+
+main .default-content-wrapper ul li ul li::before {
+  background-image: var(--bullet-level2-gray);
+}
+
+main .default-content-wrapper ul li ul li ul li::before {
+  background-image: var(--bullet-level3-gray);
+}
+
+.color-theme-green main .default-content-wrapper ul li::before {
+  background-image: var(--bullet-level1-green);
+}
+
+.color-theme-red main .default-content-wrapper ul li::before {
+  background-image: var(--bullet-level1-red);
+}
+
+.color-theme-orange main .default-content-wrapper ul li::before {
+  background-image: var(--bullet-level1-orange);
+}
+
+.color-theme-yellow main .default-content-wrapper ul li::before {
+  background-image: var(--bullet-level1-yellow);
+}
+
+.color-theme-blue main .default-content-wrapper ul li::before {
+  background-image: var(--bullet-level1-blue);
+}
+
+.color-theme-purple main .default-content-wrapper ul li::before {
+  background-image: var(--bullet-level1-purple);
+}
+
+.color-theme-pink main .default-content-wrapper ul li::before {
+  background-image: var(--bullet-level1-pink);
+}
+
+.color-theme-teal main .default-content-wrapper ul li::before {
+  background-image: var(--bullet-level1-teal);
+}
+
+.color-theme-green main .default-content-wrapper ul li ul li::before {
+  background-image: var(--bullet-level2-green);
+}
+
+.color-theme-red main .default-content-wrapper ul li ul li::before {
+  background-image: var(--bullet-level2-red);
+}
+
+.color-theme-orange main .default-content-wrapper ul li ul li::before {
+  background-image: var(--bullet-level2-orange);
+}
+
+.color-theme-yellow main .default-content-wrapper ul li ul li::before {
+  background-image: var(--bullet-level2-yellow);
+}
+
+.color-theme-blue main .default-content-wrapper ul li ul li::before {
+  background-image: var(--bullet-level2-blue);
+}
+
+.color-theme-purple main .default-content-wrapper ul li ul li::before {
+  background-image: var(--bullet-level2-purple);
+}
+
+.color-theme-pink main .default-content-wrapper ul li ul li::before {
+  background-image: var(--bullet-level2-pink);
+}
+
+.color-theme-teal main .default-content-wrapper ul li ul li::before {
+  background-image: var(--bullet-level2-teal);
+}
+
+.color-theme-green main .default-content-wrapper ul li ul li ul li::before {
+  background-image: var(--bullet-level3-green);
+}
+
+.color-theme-red main .default-content-wrapper ul li ul li ul li::before {
+  background-image: var(--bullet-level3-red);
+}
+
+.color-theme-orange main .default-content-wrapper ul li ul li ul li::before {
+  background-image: var(--bullet-level3-orange);
+}
+
+.color-theme-yellow main .default-content-wrapper ul li ul li ul li::before {
+  background-image: var(--bullet-level3-yellow);
+}
+
+.color-theme-blue main .default-content-wrapper ul li ul li ul li::before {
+  background-image: var(--bullet-level3-blue);
+}
+
+.color-theme-purple main .default-content-wrapper ul li ul li ul li::before {
+  background-image: var(--bullet-level3-purple);
+}
+
+.color-theme-pink main .default-content-wrapper ul li ul li ul li::before {
+  background-image: var(--bullet-level3-pink);
+}
+
+.color-theme-teal main .default-content-wrapper ul li ul li ul li::before {
+  background-image: var(--bullet-level3-teal);
 }
 
 main p:not(:last-of-type) {
@@ -515,7 +677,7 @@ table td {
 /* links */
 
 main a:any-link {
-  color: var(--body-color);
+  color: var(--color-gray-9);
   line-height: 1.5;
   text-decoration: none;
 }
@@ -905,12 +1067,6 @@ div.category-color-people-data-analytics {
 
   /* below not part of small button style */
   background-color: var(--color-1-shade-5);
-}
-
-main .default-content-wrapper ol li,
-main .default-content-wrapper ul li {
-  margin-bottom: 16px;
-  margin-left: 30px;
 }
 
 .marketplace-listing .details-container ul {
