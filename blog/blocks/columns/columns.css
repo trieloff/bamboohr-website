@@ -232,8 +232,7 @@ main .home-featured-cat {
 /* Column containers */
 div .column-flex-container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
     align-content: stretch;
@@ -241,9 +240,8 @@ div .column-flex-container {
 
 div .column-small-icons-container {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
     flex-flow: row wrap;
+    align-items: flex-start;
     justify-content: center;
     margin: 0 -20px;
 }
