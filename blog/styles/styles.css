@@ -305,11 +305,11 @@ main ol li {
   font-size: 18px;
   line-height: 27px;
   font-weight: var(--body-font-weight);
-  color: var(--color-gray-9);
 }
 
 main {
   margin: 0;
+  color: var(--color-gray-9);
 }
 
 p, dl, ol, ul, pre, blockquote {
@@ -324,6 +324,7 @@ main .default-content-wrapper ol {
 main .default-content-wrapper ul li,
 main .default-content-wrapper ol li {
   margin-bottom: 16px;
+  color: var(--color-gray-9);
 }
 
 main .default-content-wrapper ol li {
