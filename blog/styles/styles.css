@@ -317,19 +317,27 @@ p, dl, ol, ul, pre, blockquote {
   margin-bottom: 1em;
 }
 
-main .default-content-wrapper ul {
+main .default-content-wrapper ul,
+main .tabs ul,
+main .columns ul {
   padding-inline-start: 20px;
   list-style-type: none;
 }
 
 main .default-content-wrapper ol li,
-main .default-content-wrapper ul li {
+main .default-content-wrapper ul li,
+main .tabs ol li,
+main .tabs ul li,
+main .columns ol li,
+main .columns ul li {
   position: relative;
   margin-bottom: 16px;
   padding-left: 30px;
 }
 
-main .default-content-wrapper ul li::before {
+main .default-content-wrapper ul li::before,
+main .tabs ul li::before,
+main .columns ul li::before {
   content: '';
   position: absolute;
   top: 5px;
@@ -341,107 +349,163 @@ main .default-content-wrapper ul li::before {
   height: 18px;
 }
 
-main .default-content-wrapper ul li ul li::before {
+main .default-content-wrapper ul li ul li::before,
+main .tabs ul li ul li::before,
+main .columns ul li ul li::before {
   background-image: var(--bullet-level2-gray);
 }
 
-main .default-content-wrapper ul li ul li ul li::before {
+main .default-content-wrapper ul li ul li ul li::before,
+main .tabs ul li ul li ul li::before,
+main .columns ul li ul li ul li::before {
   background-image: var(--bullet-level3-gray);
 }
 
-.color-theme-green main .default-content-wrapper ul li::before {
+.marketplace-listing main .details-container ul li::before {
+  content: none;
+}
+
+.color-theme-green main .default-content-wrapper ul li::before,
+.color-theme-green main .tabs ul li::before,
+.color-theme-green main .columns ul li::before {
   background-image: var(--bullet-level1-green);
 }
 
-.color-theme-red main .default-content-wrapper ul li::before {
+.color-theme-red main .default-content-wrapper ul li::before,
+.color-theme-red main .tabs ul li::before,
+.color-theme-red main .columns ul li::before {
   background-image: var(--bullet-level1-red);
 }
 
-.color-theme-orange main .default-content-wrapper ul li::before {
+.color-theme-orange main .default-content-wrapper ul li::before,
+.color-theme-orange main .tabs ul li::before,
+.color-theme-orange main .columns ul li::before {
   background-image: var(--bullet-level1-orange);
 }
 
-.color-theme-yellow main .default-content-wrapper ul li::before {
+.color-theme-yellow main .default-content-wrapper ul li::before,
+.color-theme-yellow main .tabs ul li::before,
+.color-theme-yellow main .columns ul li::before {
   background-image: var(--bullet-level1-yellow);
 }
 
-.color-theme-blue main .default-content-wrapper ul li::before {
+.color-theme-blue main .default-content-wrapper ul li::before,
+.color-theme-blue main .tabs ul li::before,
+.color-theme-blue main .columns ul li::before {
   background-image: var(--bullet-level1-blue);
 }
 
-.color-theme-purple main .default-content-wrapper ul li::before {
+.color-theme-purple main .default-content-wrapper ul li::before,
+.color-theme-purple main .tabs ul li::before,
+.color-theme-purple main .columns ul li::before {
   background-image: var(--bullet-level1-purple);
 }
 
-.color-theme-pink main .default-content-wrapper ul li::before {
+.color-theme-pink main .default-content-wrapper ul li::before,
+.color-theme-pink main .tabs ul li::before,
+.color-theme-pink main .columns ul li::before {
   background-image: var(--bullet-level1-pink);
 }
 
-.color-theme-teal main .default-content-wrapper ul li::before {
+.color-theme-teal main .default-content-wrapper ul li::before,
+.color-theme-teal main .tabs ul li::before,
+.color-theme-teal main .columns ul li::before {
   background-image: var(--bullet-level1-teal);
 }
 
-.color-theme-green main .default-content-wrapper ul li ul li::before {
+.color-theme-green main .default-content-wrapper ul li ul li::before,
+.color-theme-green main .tabs ul li ul li::before,
+.color-theme-green main .columns ul li ul li::before {
   background-image: var(--bullet-level2-green);
 }
 
-.color-theme-red main .default-content-wrapper ul li ul li::before {
+.color-theme-red main .default-content-wrapper ul li ul li::before,
+.color-theme-red main .tabs ul li ul li::before,
+.color-theme-red main .columns ul li ul li::before {
   background-image: var(--bullet-level2-red);
 }
 
-.color-theme-orange main .default-content-wrapper ul li ul li::before {
+.color-theme-orange main .default-content-wrapper ul li ul li::before,
+.color-theme-orange main .tabs ul li ul li::before,
+.color-theme-orange main .columns ul li ul li::before {
   background-image: var(--bullet-level2-orange);
 }
 
-.color-theme-yellow main .default-content-wrapper ul li ul li::before {
+.color-theme-yellow main .default-content-wrapper ul li ul li::before,
+.color-theme-yellow main .tabs ul li ul li::before,
+.color-theme-yellow main .columns ul li ul li::before {
   background-image: var(--bullet-level2-yellow);
 }
 
-.color-theme-blue main .default-content-wrapper ul li ul li::before {
+.color-theme-blue main .default-content-wrapper ul li ul li::before,
+.color-theme-blue main .tabs ul li ul li::before,
+.color-theme-blue main .columns ul li ul li::before {
   background-image: var(--bullet-level2-blue);
 }
 
-.color-theme-purple main .default-content-wrapper ul li ul li::before {
+.color-theme-purple main .default-content-wrapper ul li ul li::before,
+.color-theme-purple main .tabs ul li ul li::before,
+.color-theme-purple main .columns ul li ul li::before {
   background-image: var(--bullet-level2-purple);
 }
 
-.color-theme-pink main .default-content-wrapper ul li ul li::before {
+.color-theme-pink main .default-content-wrapper ul li ul li::before,
+.color-theme-pink main .tabs ul li ul li::before,
+.color-theme-pink main .columns ul li ul li::before {
   background-image: var(--bullet-level2-pink);
 }
 
-.color-theme-teal main .default-content-wrapper ul li ul li::before {
+.color-theme-teal main .default-content-wrapper ul li ul li::before,
+.color-theme-teal main .tabs ul li ul li::before,
+.color-theme-teal main .columns ul li ul li::before {
   background-image: var(--bullet-level2-teal);
 }
 
-.color-theme-green main .default-content-wrapper ul li ul li ul li::before {
+.color-theme-green main .default-content-wrapper ul li ul li ul li::before,
+.color-theme-green main .tabs ul li ul li ul li::before,
+.color-theme-green main .columns ul li ul li ul li::before {
   background-image: var(--bullet-level3-green);
 }
 
-.color-theme-red main .default-content-wrapper ul li ul li ul li::before {
+.color-theme-red main .default-content-wrapper ul li ul li ul li::before,
+.color-theme-red main .tabs ul li ul li ul li::before,
+.color-theme-red main .columns ul li ul li ul li::before {
   background-image: var(--bullet-level3-red);
 }
 
-.color-theme-orange main .default-content-wrapper ul li ul li ul li::before {
+.color-theme-orange main .default-content-wrapper ul li ul li ul li::before,
+.color-theme-orange main .tabs ul li ul li ul li::before,
+.color-theme-orange main .columns ul li ul li ul li::before {
   background-image: var(--bullet-level3-orange);
 }
 
-.color-theme-yellow main .default-content-wrapper ul li ul li ul li::before {
+.color-theme-yellow main .default-content-wrapper ul li ul li ul li::before,
+.color-theme-yellow main .tabs ul li ul li ul li::before,
+.color-theme-yellow main .columns ul li ul li ul li::before {
   background-image: var(--bullet-level3-yellow);
 }
 
-.color-theme-blue main .default-content-wrapper ul li ul li ul li::before {
+.color-theme-blue main .default-content-wrapper ul li ul li ul li::before,
+.color-theme-blue main .tabs ul li ul li ul li::before,
+.color-theme-blue main .columns ul li ul li ul li::before {
   background-image: var(--bullet-level3-blue);
 }
 
-.color-theme-purple main .default-content-wrapper ul li ul li ul li::before {
+.color-theme-purple main .default-content-wrapper ul li ul li ul li::before,
+.color-theme-purple main .tabs ul li ul li ul li::before,
+.color-theme-purple main .columns ul li ul li ul li::before {
   background-image: var(--bullet-level3-purple);
 }
 
-.color-theme-pink main .default-content-wrapper ul li ul li ul li::before {
+.color-theme-pink main .default-content-wrapper ul li ul li ul li::before,
+.color-theme-pink main .tabs ul li ul li ul li::before,
+.color-theme-pink main .columns ul li ul li ul li::before {
   background-image: var(--bullet-level3-pink);
 }
 
-.color-theme-teal main .default-content-wrapper ul li ul li ul li::before {
+.color-theme-teal main .default-content-wrapper ul li ul li ul li::before,
+.color-theme-teal main .tabs ul li ul li ul li::before,
+.color-theme-teal main .columns ul li ul li ul li::before {
   background-image: var(--bullet-level3-teal);
 }
 
