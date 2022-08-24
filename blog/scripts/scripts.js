@@ -682,7 +682,17 @@ function setCategory() {
   }
 
   const categoryName = toCategory(category);
-  document.body.classList.add(`category-${categoryName}`);
+  if (category) {
+    document.body.classList.add(`category-${categoryName}`);
+  }
+}
+
+function setColorTheme() {
+  if (getMetadata('color-theme')) {
+    const theme = getMetadata('color-theme');
+    const themeName = toClassName(theme);
+    document.body.classList.add(`color-theme-${themeName}`);
+  }
 }
 
 /**
@@ -832,6 +842,7 @@ export async function decorateMain(main) {
   decorateIcons(main);
   await buildAutoBlocks(main);
   setCategory();
+  setColorTheme();
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
