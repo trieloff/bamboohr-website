@@ -98,10 +98,6 @@ a {
     padding-left: 0;
 }
 
-.sg-list li::before {
-    content: none;
-}
-
 ul {
     list-style: none;
 }
