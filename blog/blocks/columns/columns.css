@@ -301,7 +301,7 @@ div .column-small-icons-container {
     width: calc(91.67% - 20px);
 }
 
-@media (max-width: 599px) {
+@media (max-width: 899px) {
     div .column-flex-container {
         flex-flow: column;
     }
