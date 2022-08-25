@@ -246,6 +246,11 @@ div .column-small-icons-container {
     margin: 0 -20px;
 }
 
+.column1 {
+    flex: 0 0 auto;
+    width: calc(8.33% - 20px);
+}
+
 .column2 {
     flex: 0 0 auto;
     width: calc(16.67% - 20px);
@@ -289,4 +294,26 @@ div .column-small-icons-container {
 .column10 {
     flex: 0 0 auto;
     width: calc(83.33% - 20px);
+}
+
+.column11 {
+    flex: 0 0 auto;
+    width: calc(91.67% - 20px);
+}
+
+@media (max-width: 599px) {
+    div .column-flex-container {
+        flex-flow: column;
+    }
+
+    .img-col {
+        order: 1;
+        width: unset;
+        max-width: 200px;
+    }
+
+    .non-img-col {
+        order: 2;
+        width: unset;
+    }
 }
