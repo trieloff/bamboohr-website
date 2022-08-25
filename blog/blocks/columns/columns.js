@@ -26,7 +26,10 @@ export default function decorate(block) {
     cols.forEach((col) => col.classList.add(`icon-${cols.length}-cols`));
   } else if (cols.length === 2) {
     let splitVals = null;
-    [...block.classList].some((c) => splitVals = findSplitSubType(c));
+    [...block.classList].some((c) => {
+      splitVals = findSplitSubType(c);
+      return splitVals;
+    });
 
     if (splitVals) {
       const extraSplits = splitVals.length > 2 ? 1 : 0;
@@ -34,7 +37,7 @@ export default function decorate(block) {
 
       colParent.classList.add('column-flex-container');
       cols.forEach((col, i) => {
-        col.classList.add(`column${splitVals[i+extraSplits]}`);
+        col.classList.add(`column${splitVals[i + extraSplits]}`);
         if (col.querySelector('img')) col.classList.add('img-col');
         else col.classList.add('non-img-col');
       });
