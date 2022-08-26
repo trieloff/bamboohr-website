@@ -1223,31 +1223,27 @@ main .section.cs-gradient-4 > div:last-of-type {
 }
 
 .cs-gradient-1 {
-	background: linear-gradient(207.16deg, var(--color-white)  16.51%, var(--color-5-tint-15) 82.6%);
-  background: -webkit-linear-gradient(242.84deg, var(--color-white) 16.51%, var(--color-5-tint-15) 82.6%);
+	background: linear-gradient(207.16deg, var(--color-white) 16.51%, var(--color-5-tint-15) 82.6%);
 }
 
 .cs-gradient-2 {
   background: linear-gradient(207.16deg, var(--color-white) 44.04%, #FEF2FF 82.6%);
-  background: -webkit-linear-gradient(242.84deg, var(--color-white) 44.04%, #FEF2FF 82.6%);
 }
 
 .cs-gradient-3 {
-	background: linear-gradient(207.16deg, var(--color-white) 29.59%, var(--color-5-tint-15) 82.6%);
-  background: -webkit-linear-gradient(242.84deg, var(--color-white) 29.59%, var(--color-5-tint-15) 82.6%);
+	background: linear-gradient(207.16deg, var(--color-white) 29.59%, var(--color-5-tint-15) 82.6%);
   position: relative;
 }
 
 .cs-gradient-4 {
-	background: linear-gradient(207.16deg, var(--color-white) 16.51%, var(--color-6-tint-15) 82.6%);
-  background: -webkit-linear-gradient(242.84deg, var(--color-white) 16.51%, var(--color-6-tint-15) 82.6%);
+	background: linear-gradient(207.16deg, var(--color-white) 16.51%, var(--color-6-tint-15) 82.6%);
   position: relative;
 }
 
-.resources-guides .toc-wrapper,
-.resources-guides .default-content-wrapper,
-.resources-guides .quote-wrapper,
-.resources-guides .columns-wrapper {
+.resources-guides main .toc-wrapper,
+.resources-guides main .default-content-wrapper,
+.resources-guides main .quote-wrapper,
+.resources-guides main .columns-wrapper {
   position: relative;
   z-index: 1;
 }
