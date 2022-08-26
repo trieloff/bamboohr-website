@@ -290,3 +290,7 @@ div .column-small-icons-container {
     flex: 0 0 auto;
     width: calc(83.33% - 20px);
 }
+
+.column-flex-container > div > picture {
+    display: block;
+}

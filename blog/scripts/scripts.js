@@ -953,3 +953,33 @@ export function insertNewsletterForm(elem, submitCallback) {
     a.replaceWith(formDiv);
   });
 }
+
+/**
+ * Return whether or not this element has a class that starts with the given string
+ * @param {HtmlElement} elem 
+ * @param {string} classNameStart 
+ * @returns {boolean}
+ */
+export function hasClassStartsWith(elem, classNameStart) {
+  const classNames = elem.classList.values();
+
+  for (const className of classNames) {
+    if (className.startsWith(classNameStart)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+/**
+ * Gets array of parameterized values given a class that starts with a name
+ * @param {string} className
+ * @param {string} classNameStart 
+ * @return {string[]} Array of remaining items split on the hyphen (-)
+ */
+export function getValuesFromClassName(className, classNameStart) {
+    const params = className.substring(classNameStart.length);
+
+    return params.split('-');
+}
