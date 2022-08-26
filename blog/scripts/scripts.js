@@ -717,7 +717,7 @@ export function buildFigure(blockEl) {
   const figEl = document.createElement('figure');
   figEl.classList.add('figure');
   // content is picture only, no caption or link
-  if (blockEl.firstElementChild) {
+  if (blockEl?.firstElementChild) {
     if (blockEl.firstElementChild.nodeName === 'PICTURE' || blockEl.firstElementChild.nodeName === 'VIDEO') {
       figEl.append(blockEl.firstElementChild);
     } else if (blockEl.firstElementChild.nodeName === 'P') {
