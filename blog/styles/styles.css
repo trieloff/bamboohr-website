@@ -865,6 +865,14 @@ main .default-content-wrapper p a.button:any-link {
 }
 
 /* listing template styles */
+.resources-guides main .toc-wrapper,
+.resources-guides main .default-content-wrapper,
+.resources-guides main .quote-wrapper,
+.resources-guides main .columns-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
 .app-list main .default-content-wrapper {
   padding: 64px;
   text-align: center;
@@ -1238,14 +1246,6 @@ main .section.cs-gradient-4 > div:last-of-type {
 .cs-gradient-4 {
 	background: linear-gradient(207.16deg, var(--color-white) 16.51%, var(--color-6-tint-15) 82.6%);
   position: relative;
-}
-
-.resources-guides main .toc-wrapper,
-.resources-guides main .default-content-wrapper,
-.resources-guides main .quote-wrapper,
-.resources-guides main .columns-wrapper {
-  position: relative;
-  z-index: 1;
 }
 
 .bg-hex-1 img {
