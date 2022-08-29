@@ -335,8 +335,11 @@ export function decorateSections($main) {
       const meta = readBlockConfig(sectionMeta);
       const keys = Object.keys(meta);
       keys.forEach((key) => {
-        if (key === 'style') section.classList.add(toClassName(meta.style));
-        else section.dataset[key] = meta[key];
+        const styleValues = meta.style.split(',').map((t) => t.trim());
+        styleValues.forEach((style) => {
+          if (key === 'style') section.classList.add(toClassName(style));
+          else section.dataset[key] = meta[key];
+        });
       });
       sectionMeta.remove();
     }
@@ -682,7 +685,17 @@ function setCategory() {
   }
 
   const categoryName = toCategory(category);
-  document.body.classList.add(`category-${categoryName}`);
+  if (category) {
+    document.body.classList.add(`category-${categoryName}`);
+  }
+}
+
+function setColorTheme() {
+  if (getMetadata('color-theme')) {
+    const theme = getMetadata('color-theme');
+    const themeName = toClassName(theme);
+    document.body.classList.add(`color-theme-${themeName}`);
+  }
 }
 
 /**
@@ -707,7 +720,7 @@ export function buildFigure(blockEl) {
   const figEl = document.createElement('figure');
   figEl.classList.add('figure');
   // content is picture only, no caption or link
-  if (blockEl.firstElementChild) {
+  if (blockEl?.firstElementChild) {
     if (blockEl.firstElementChild.nodeName === 'PICTURE' || blockEl.firstElementChild.nodeName === 'VIDEO') {
       figEl.append(blockEl.firstElementChild);
     } else if (blockEl.firstElementChild.nodeName === 'P') {
@@ -832,6 +845,7 @@ export async function decorateMain(main) {
   decorateIcons(main);
   await buildAutoBlocks(main);
   setCategory();
+  setColorTheme();
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
