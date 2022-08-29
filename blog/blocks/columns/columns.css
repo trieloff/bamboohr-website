@@ -162,6 +162,27 @@ main .home-featured-cat {
     margin-top: 0;
 }
 
+.columns.step .step-wrap {
+	align-items: flex-start;
+	flex-direction: row;
+	max-width: 840px;
+	margin: 0 auto;
+}
+
+.columns.step .step-left {
+	width: 100%;
+	max-width: 78px;
+	padding-right: 7px;
+	white-space: nowrap;
+	text-align: right;
+	text-transform: uppercase;
+}
+
+.columns.step .step-right {
+	padding-left: 18px;
+	border-left: 2px solid var(--color-6-tint-10);
+}
+
 @media (min-width: 600px) {
     .home-more .columns > div {
         align-items: flex-start;

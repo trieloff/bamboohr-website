@@ -5,6 +5,10 @@ export default function decorate(block) {
   if (block.classList.contains('small-icons')) {
     cols[0].parentElement.classList.add('column-small-icons-container');
     cols.forEach((col) => col.classList.add(`icon-${cols.length}-cols`));
+  } else if (block.classList.contains('step')) {
+    cols[0].parentElement.classList.add('step-wrap');
+    cols[0].parentElement.children[0].classList.add('step-left');
+    cols[0].parentElement.children[1].classList.add('step-right');
   } else if (cols.length === 2) {
     // Looking for sub types like: 8-4, 6-6, 3-9 or 2-10
     const columnSubType = [...block.classList].find((c) => c.length < 6 && c.includes('-'));
