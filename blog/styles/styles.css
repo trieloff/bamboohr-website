@@ -9,6 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+ /* stylelint-disable no-descending-specificity */
 
  :root {
   --color-1-tint-15: #EDFFC8;
@@ -571,6 +572,7 @@ main h1.hidden {
 
 .typ-section-header,
 .marketplace main h1,
+.resources-guides main h2,
 main .article-header h1,
 .call-to-action-modal main h3 {
   font-family: var(--heading-font-family);
@@ -581,6 +583,7 @@ main .article-header h1,
 
 .typ-hero-header,
 .typ-display1,
+.resources-guides main h1,
 main .page-header .page-header-title,
 main .page-header .page-header-title h1 {
   font-family: var(--heading-font-family);
@@ -620,7 +623,8 @@ main .page-header .page-header-title h1 {
   line-height: 32px;
 }
 
-.typ-title1 {
+.typ-title1,
+.resources-guides main h3 {
   font-family: var(--heading-font-family);
   font-weight: 700;
   font-size: 26px;
@@ -665,7 +669,8 @@ main .page-header .page-header-title h1 {
   margin: 30px 0 0;
 }
 
-.typ-medium-info {
+.typ-medium-info,
+.resoureces-guides main h4 {
   font-family: var(--body-font-family);
   font-size: 16px;
   font-weight: 700;
@@ -708,6 +713,7 @@ table td {
 @media (min-width: 900px) {
   .typ-hero-header,
   .typ-display1,
+  .resources-guides main h1,
   main .page-header .page-header-title,
   main .page-header .page-header-title h1 {
     font-size: 54px;
@@ -718,6 +724,7 @@ table td {
 @media (min-width: 1200px) {
   .typ-section-header,
   .marketplace main h1,
+  .resources-guides main h2,
   main .article-header h1,
   .call-to-action-modal main h3 {
     font-size: 48px;
@@ -726,6 +733,7 @@ table td {
 
   .typ-hero-header,
   .typ-display1,
+  .resources-guides main h1,
   main .page-header .page-header-title,
   main .page-header .page-header-title h1 {
     font-size: 70px;
@@ -747,6 +755,21 @@ table td {
     font-size: 14px;
     line-height: 24px;
   }
+}
+
+.resources-guides.color-theme-purple main h1,
+.resources-guides.color-theme-purple main h2,
+.resources-guides.color-theme-purple main h4 {
+  color: var(--color-6-shade-5);
+}
+
+.resources-guides main h1,
+.resources-guides main h2 {
+  text-align: center;
+}
+
+.resources-guides main h3 {
+  color: var(--color-gray-9);
 }
 
 /* links */
