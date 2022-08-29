@@ -654,7 +654,8 @@ main .page-header .page-header-title h1 {
   margin: 10px 0 0;
 }
 
-.typ-quote {
+.typ-quote,
+.resources-guides main h5 {
   font-family: var(--body-font-family);
   font-size: 20px;
   font-weight: 500;
@@ -764,12 +765,21 @@ table td {
 }
 
 .resources-guides main h1,
-.resources-guides main h2 {
+.resources-guides main h2,
+.resources-guides main h5 {
   text-align: center;
 }
 
 .resources-guides main h3 {
   color: var(--color-gray-9);
+}
+
+.resources-guides main h5 {
+  font-style: normal;
+}
+
+.resources-guides.secondary-color-theme-blue main h5 {
+  color: var(--color-5-shade-5);
 }
 
 /* links */

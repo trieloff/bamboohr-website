@@ -696,6 +696,11 @@ function setColorTheme() {
     const themeName = toClassName(theme);
     document.body.classList.add(`color-theme-${themeName}`);
   }
+  if (getMetadata('secondary-color-theme')) {
+    const secondaryTheme = getMetadata('secondary-color-theme');
+    const secondaryThemeName = toClassName(secondaryTheme);
+    document.body.classList.add(`secondary-color-theme-${secondaryThemeName}`);
+  }
 }
 
 /**
