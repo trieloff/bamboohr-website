@@ -14,7 +14,7 @@ export default function decorateImage(blockEl) {
   const blockCount = blockEl.firstChild.childElementCount;
   if (blockCount > 1) {
     buildColumns(blockEl.firstChild, blockCount);
-  } else {
+  } else if (blockEl?.firstChild?.firstChild) {
     const figEl = buildFigure(blockEl.firstChild.firstChild);
     blockEl.innerHTML = '';
     blockEl.append(figEl);
