@@ -189,6 +189,7 @@ main .home-featured-cat {
 
 .columns.step .step-right h4 {
   margin-bottom: -10px;
+  text-transform: uppercase;
 }
 
 .columns.step .step-right ul:last-child,
