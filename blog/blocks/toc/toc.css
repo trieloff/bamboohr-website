@@ -65,5 +65,8 @@ main .toc > ol > li::before {
         margin-top: 0;
     }
 
+    .resources-guides main .toc > ol > ol {
+        padding-left: 40px;
+    }
 }  
   

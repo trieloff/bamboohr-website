@@ -37,8 +37,10 @@ export default function decorate(block) {
       cardBorder.classList.add('cards-border');
       cardWrapper.appendChild(cardBorder);
     });
-    
-
+  } else if (block.classList.contains('step')) {
+    cols[0].parentElement.classList.add('step-wrap');
+    cols[0].classList.add('step-left');
+    cols[1].classList.add('step-right');
   } else if (cols.length === 2) {
     let splitVals = null;
     [...block.classList].some((c) => {
