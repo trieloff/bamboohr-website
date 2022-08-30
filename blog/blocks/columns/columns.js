@@ -1,3 +1,5 @@
+import { hasClassStartsWith, getValuesFromClassName } from '../../scripts/scripts.js';
+
 function buildSplit(splitVal) {
   const newCol = document.createElement('div');
   newCol.classList.add(`column${splitVal}`);
@@ -52,5 +54,48 @@ export default function decorate(block) {
         if (splitVals[3] && splitVals[3] !== '0') colParent.appendChild(buildSplit(splitVals[3]));
       }
     }
+  }
+
+  if (hasClassStartsWith(block, 'margin-')) {
+    // Default to target any picture element directly under a column
+    let pictureSelector = '.column-flex-container > div > picture';
+
+    const classNames = [...block.classList];
+
+    classNames.forEach((className) => {
+      // Handle margins on images
+      if (className.startsWith('margin-') && !className.startsWith('margin-on-col')) {
+        const marginParams = getValuesFromClassName(className, 'margin-');
+        let sideParamIdx = 0;
+        let columnParamIdx = 2;
+
+        let marginValue = 0;
+
+        if (marginParams[0] === 'negative') {
+          sideParamIdx = 1;
+          columnParamIdx = 3;
+
+          if (marginParams.length > 2) {
+            marginValue = marginParams[2] * -1;
+          }
+        } else if (marginParams.length > 1) {
+          [, marginValue] = marginParams;
+        }
+
+        // If the class includes an `on` param, then we can specify which column to target
+        if (marginParams[columnParamIdx] != null && marginParams[columnParamIdx] === 'on') {
+          const columnIdx = marginParams[columnParamIdx + 1];
+          pictureSelector = `.column-flex-container > div:nth-child(${columnIdx}) > picture`;
+        }
+
+        const pictureElem = block.querySelector(pictureSelector);
+
+        if (marginParams[sideParamIdx] === 'top') {
+          pictureElem.style.marginTop = `${marginValue}px`;
+        } else if (marginParams[sideParamIdx] === 'bottom') {
+          pictureElem.style.marginBottom = `${marginValue}px`;
+        }
+      }
+    });
   }
 }

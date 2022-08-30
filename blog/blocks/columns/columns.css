@@ -351,3 +351,7 @@ div .column-small-icons-container {
         width: unset;
     }
 }
+
+.column-flex-container > div > picture {
+    display: block;
+}
