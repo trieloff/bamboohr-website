@@ -167,9 +167,11 @@ main .section > .card-wrapper {
 }
 
 .cards-wrapper {
-    max-width: 350px;
+    max-width: 100%;
+    width: 100%;
     position: relative;
-    margin: 0 0 20px 50px;
+    margin: 0 0 50px 50px;
+    display: flex;;
 }
 
 .cards-col {
@@ -182,14 +184,26 @@ main .section > .card-wrapper {
     height: 100%;
     display: flex;
     flex-wrap: wrap;
+    height: initial;
 }
 
 .cards-col a.button:any-link {
     color: #1087cc;
+    font-family: Red Hat Text,Arial,Helvetica,sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
 .cards-col .button-container {
     margin-top: 30px;
+}
+
+.cards-col .button-container:after {
+    margin-left: 10px;
+    content: url('https://www.bamboohr.com/images/icons/color5-shade5-right-arrow.svg');
 }
 
 .cards-col h4 {
@@ -240,6 +254,12 @@ main .section > .card-wrapper {
   margin-bottom: 0;
 }
 
+.columns > .column-cards-container {
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-left: -50px;
+}
+
 @media (min-width: 600px) {
     .home-more .columns > div {
         align-items: flex-start;
@@ -266,6 +286,9 @@ main .section > .card-wrapper {
 	.marketplace-listing .columns div:first-of-type {
 		flex-wrap: nowrap;
 	}
+    .cards-wrapper {
+        width: calc(50% - 50px);
+    }
 }
 
 @media (min-width: 900px) {
@@ -278,6 +301,10 @@ main .section > .card-wrapper {
     .columns-4-cols > div,
     .listing-highlights > div {
         align-items: flex-start;
+    }
+
+    .columns > .column-cards-container {
+        align-items: stretch;
     }
 
     .icon-5-cols {
@@ -309,6 +336,17 @@ main .section > .card-wrapper {
 		font-size: 17px;
 		line-height: 24px;
 	}
+
+    .columns > .column-cards-container {
+        margin-left: 0;
+        justify-content: space-between;
+    }
+
+    .cards-wrapper {
+        max-width: 350px;
+        margin-bottom: 20px;
+        width: calc(33.33% - 50px);
+    }
 }
 
 /* Column containers */
