@@ -175,6 +175,10 @@ function createInput(fd) {
   input.type = fd.Type;
   input.id = fd.Field;
 
+  if (fd.Value) {
+    input.value = fd.Value;
+  }
+
   const param = getURLParam(input.id);
   if (param) {
     input.value = param;
