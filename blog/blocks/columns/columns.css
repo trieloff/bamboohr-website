@@ -32,6 +32,16 @@
     margin-bottom: 5px;
 }
 
+.cards-col a.button:any-link {
+    color: #1087cc;
+    font-family: "Red Hat Text",Arial,Helvetica,sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
 .columns-3-cols a.button:any-link,
 .columns-4-cols a.button:any-link,
 .listing-highlights a.button:any-link,
@@ -145,6 +155,10 @@
 	width: 100%;
 }
 
+.cards-col h4 {
+    margin: 0 auto 20px;
+}
+
 .marketplace-listing .columns h4 {
 	font-style: normal;
 	font-weight: var(--heading-font-weight);
@@ -181,33 +195,18 @@ main .section > .card-wrapper {
     border-radius: 15px;
     position: relative;
     z-index: 1;
-    height: 100%;
     display: flex;
     flex-wrap: wrap;
     height: initial;
-}
-
-.cards-col a.button:any-link {
-    color: #1087cc;
-    font-family: Red Hat Text,Arial,Helvetica,sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 15px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
 }
 
 .cards-col .button-container {
     margin-top: 30px;
 }
 
-.cards-col .button-container:after {
+.cards-col .button-container::after {
     margin-left: 10px;
     content: url('https://www.bamboohr.com/images/icons/color5-shade5-right-arrow.svg');
-}
-
-.cards-col h4 {
-    margin: 0 auto 20px;
 }
 
 .cards-border {
@@ -255,8 +254,7 @@ main .section > .card-wrapper {
 }
 
 .columns > .column-cards-container {
-    flex-wrap: wrap;
-    flex-direction: row;
+    flex-flow: row wrap;
     margin-left: -50px;
 }
 
@@ -286,6 +284,7 @@ main .section > .card-wrapper {
 	.marketplace-listing .columns div:first-of-type {
 		flex-wrap: nowrap;
 	}
+
     .cards-wrapper {
         width: calc(50% - 50px);
     }
@@ -305,6 +304,8 @@ main .section > .card-wrapper {
 
     .columns > .column-cards-container {
         align-items: stretch;
+        margin-left: 0;
+        justify-content: space-between;
     }
 
     .icon-5-cols {
@@ -336,11 +337,6 @@ main .section > .card-wrapper {
 		font-size: 17px;
 		line-height: 24px;
 	}
-
-    .columns > .column-cards-container {
-        margin-left: 0;
-        justify-content: space-between;
-    }
 
     .cards-wrapper {
         max-width: 350px;
