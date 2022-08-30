@@ -162,6 +162,52 @@ main .home-featured-cat {
     margin-top: 0;
 }
 
+main .section > .columns-wrapper {
+    max-width: 1200px;
+}
+
+.cards-wrapper {
+    max-width: 350px;
+    position: relative;
+    margin: 0 0 20px 50px;
+}
+
+.cards-col {
+    border: 2px solid #16acff;
+    background-color: #fff;
+    padding: 25px 25px 30px;
+    border-radius: 15px;
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cards-col a.button:any-link {
+    color: #1087cc;
+}
+
+.cards-col .button-container {
+    /* position: absolute;
+    bottom: 30px; */
+    margin-top: 30px;
+}
+
+.cards-col h4 {
+    margin: 0 auto 20px;
+}
+
+.cards-border {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 15px;
+    left: -10px;
+    background: linear-gradient(120deg,#5cc8ff 13.4%,#a168ff 86.6%);
+    border-radius: 15px;
+}
+
 @media (min-width: 600px) {
     .home-more .columns > div {
         align-items: flex-start;
@@ -202,6 +248,10 @@ main .home-featured-cat {
         align-items: flex-start;
     }
 
+    /* .columns > .column-cards-container {
+        align-items: stretch;
+    } */
+
     .icon-5-cols {
         width: 20%;
     }
@@ -216,6 +266,10 @@ main .home-featured-cat {
 
     .columns > div > div:first-of-type {
         margin-left: unset;
+    }
+
+    .columns > div > div:last-of-type {
+        margin-right: unset;
     }
 
 	.marketplace-listing .columns h4 {

@@ -24,6 +24,21 @@ export default function decorate(block) {
   if (block.classList.contains('small-icons')) {
     cols[0].parentElement.classList.add('column-small-icons-container');
     cols.forEach((col) => col.classList.add(`icon-${cols.length}-cols`));
+  } else if (block.classList.contains('cards')) {
+    const cardsContainer = cols[0].parentElement;
+    cardsContainer.classList.add('column-cards-container');
+    cols.forEach(col => {
+      col.classList.add(`cards-col`);
+      const cardWrapper = document.createElement('div');
+      cardWrapper.classList.add(`cards-wrapper`);
+      col.parentElement.appendChild(cardWrapper);
+      cardWrapper.appendChild(col);
+      const cardBorder = document.createElement('div');
+      cardBorder.classList.add('cards-border');
+      cardWrapper.appendChild(cardBorder);
+    });
+    
+
   } else if (cols.length === 2) {
     let splitVals = null;
     [...block.classList].some((c) => {
