@@ -162,7 +162,7 @@ main .home-featured-cat {
     margin-top: 0;
 }
 
-main .section > .columns-wrapper {
+main .section > .card-wrapper {
     max-width: 1200px;
 }
 

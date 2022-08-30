@@ -27,10 +27,10 @@ export default function decorate(block) {
   } else if (block.classList.contains('cards')) {
     const cardsContainer = cols[0].parentElement;
     cardsContainer.classList.add('column-cards-container');
-    cols.forEach(col => {
-      col.classList.add(`cards-col`);
+    cols.forEach((col) => {
+      col.classList.add('cards-col');
       const cardWrapper = document.createElement('div');
-      cardWrapper.classList.add(`cards-wrapper`);
+      cardWrapper.classList.add('cards-wrapper');
       col.parentElement.appendChild(cardWrapper);
       cardWrapper.appendChild(col);
       const cardBorder = document.createElement('div');
