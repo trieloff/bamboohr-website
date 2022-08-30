@@ -56,9 +56,9 @@ export default function decorate(block) {
     // Default to target any picture element directly under a column
     let pictureSelector = '.column-flex-container > div > picture';
 
-    const classNames = block.classList.values();
+    const classNames = [...block.classList];
 
-    for (const className of classNames) {
+    classNames.forEach((className) => {
       // Handle margins on images
       if (className.startsWith('margin-') && !className.startsWith('margin-on-col')) {
         const marginParams = getValuesFromClassName(className, 'margin-');
@@ -74,10 +74,8 @@ export default function decorate(block) {
           if (marginParams.length > 2) {
             marginValue = marginParams[2] * -1;
           }
-        } else {
-          if (marginParams.length > 1) {
-            marginValue = marginParams[1];
-          }
+        } else if (marginParams.length > 1) {
+          [, marginValue] = marginParams;
         }
 
         // If the class includes an `on` param, then we can specify which column to target
@@ -90,12 +88,10 @@ export default function decorate(block) {
 
         if (marginParams[sideParamIdx] === 'top') {
           pictureElem.style.marginTop = `${marginValue}px`;
-
         } else if (marginParams[sideParamIdx] === 'bottom') {
           pictureElem.style.marginBottom = `${marginValue}px`;
         }
       }
-    }
+    });
   }
-
 }
