@@ -9,6 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+ /* stylelint-disable no-descending-specificity */
 
  :root {
   --color-1-tint-15: #EDFFC8;
@@ -574,6 +575,7 @@ main h1.hidden {
 
 .typ-section-header,
 .marketplace main h1,
+.resources-guides main h2,
 main .article-header h1,
 .call-to-action-modal main h3 {
   font-family: var(--heading-font-family);
@@ -584,6 +586,7 @@ main .article-header h1,
 
 .typ-hero-header,
 .typ-display1,
+.resources-guides main h1,
 main .page-header .page-header-title,
 main .page-header .page-header-title h1 {
   font-family: var(--heading-font-family);
@@ -623,7 +626,8 @@ main .page-header .page-header-title h1 {
   line-height: 32px;
 }
 
-.typ-title1 {
+.typ-title1,
+.resources-guides main h3 {
   font-family: var(--heading-font-family);
   font-weight: 700;
   font-size: 26px;
@@ -668,7 +672,8 @@ main .page-header .page-header-title h1 {
   margin: 30px 0 0;
 }
 
-.typ-medium-info {
+.typ-medium-info,
+.resoureces-guides main h4 {
   font-family: var(--body-font-family);
   font-size: 16px;
   font-weight: 700;
@@ -711,6 +716,7 @@ table td {
 @media (min-width: 900px) {
   .typ-hero-header,
   .typ-display1,
+  .resources-guides main h1,
   main .page-header .page-header-title,
   main .page-header .page-header-title h1 {
     font-size: 54px;
@@ -721,6 +727,7 @@ table td {
 @media (min-width: 1200px) {
   .typ-section-header,
   .marketplace main h1,
+  .resources-guides main h2,
   main .article-header h1,
   .call-to-action-modal main h3 {
     font-size: 48px;
@@ -729,6 +736,7 @@ table td {
 
   .typ-hero-header,
   .typ-display1,
+  .resources-guides main h1,
   main .page-header .page-header-title,
   main .page-header .page-header-title h1 {
     font-size: 70px;
@@ -750,6 +758,21 @@ table td {
     font-size: 14px;
     line-height: 24px;
   }
+}
+
+.resources-guides.color-theme-purple main h1,
+.resources-guides.color-theme-purple main h2,
+.resources-guides.color-theme-purple main h4 {
+  color: var(--color-6-shade-5);
+}
+
+.resources-guides main h1,
+.resources-guides main h2 {
+  text-align: center;
+}
+
+.resources-guides main h3 {
+  color: var(--color-gray-9);
 }
 
 /* links */
@@ -827,7 +850,7 @@ main .section > div:empty {
     max-width: 1200px;
   }
 
-  .ebooks-expanded main .section > div {
+  .resources-guides main .section > div {
     max-width: 1160px;
   }
 
@@ -868,6 +891,14 @@ main .default-content-wrapper p a.button:any-link {
 }
 
 /* listing template styles */
+.resources-guides main .toc-wrapper,
+.resources-guides main .default-content-wrapper,
+.resources-guides main .quote-wrapper,
+.resources-guides main .columns-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
 .app-list main .default-content-wrapper {
   padding: 64px;
   text-align: center;
@@ -1202,6 +1233,160 @@ table tbody tr:nth-child(odd) {
 
 table tbody tr:nth-child(2n) {
   background-color: var(--color-gray-1);
+}
+
+/* Background styles */
+.resources-guides .section:last-of-type {
+  margin-top: 0;
+}
+
+.gradient-section-1 .image-wrapper:nth-last-of-type(2),
+.gradient-section-2 .image-wrapper:nth-last-of-type(2),
+.gradient-section-3 .image-wrapper:nth-last-of-type(2) {
+  margin: 0;
+  padding: 0;
+  max-width: unset;
+}
+
+.gradient-section-4 .image-wrapper .image {
+  margin: 0;
+}
+
+main .section.gradient-section-4 > div:last-of-type {
+  padding-bottom: 50px;
+}
+
+.purple-1 {
+	background: linear-gradient(207.16deg, var(--color-white) 16.51%, var(--color-5-tint-15) 82.6%);
+}
+
+.purple-2 {
+  background: linear-gradient(207.16deg, var(--color-white) 44.04%, #FEF2FF 82.6%);
+}
+
+.purple-3 {
+	background: linear-gradient(207.16deg, var(--color-white) 29.59%, var(--color-5-tint-15) 82.6%);
+  position: relative;
+}
+
+.purple-4 {
+	background: linear-gradient(207.16deg, var(--color-white) 16.51%, var(--color-6-tint-15) 82.6%);
+}
+
+.gradient-section-4 {
+  position: relative;
+}
+
+.bg-hex-1 img {
+  min-width: 116px;
+  max-width: 478px;
+  width: 34%;
+  top: 13%;
+  left: 0;
+  position: absolute;
+}
+
+.bg-hex-2 img {
+  min-width: 113px;
+  max-width: 469px;
+  right: 7%;
+  top: 170%;
+  width: 49%;
+  position: absolute;
+}
+
+.bg-hex-3 img {
+  min-width: 100px;
+  max-width: 433px;
+  left: 6%;
+  top: 29%;
+  width: 31%;
+  position: absolute;
+}
+
+.bg-hex-4 img {
+  max-width: 621px;
+  left: 0;
+  bottom: 59%;
+  width: 44%;
+  position: absolute;
+}
+
+.bg-hex-5 img {
+  max-width: 280px;
+  right: 3%;
+  bottom: 53%;
+  width: 20%;
+  position: absolute;
+}
+
+.bg-hex-6 img {
+  max-width: 792px;
+  right: 0;
+  bottom: 0;
+  width: 55%;
+  position: absolute;
+}
+
+.bg-section-bottom-1 img {
+  margin-top: 20px;
+  width: 100%;
+  margin-bottom: -8px;
+}
+
+.bg-section-bottom-2 img {
+  transform: scaleX(-1);
+  width: 100%;
+  margin-bottom: -8px;
+}
+
+.bg-section-bottom-3 img {
+  width: 100%;
+  margin-bottom: -8px;
+}
+
+@media screen and (min-width: 600px) {
+  .bg-hex-1 img {
+    top: 11%;
+  }
+
+  .bg-hex-2 img {
+    top: 132%;
+  }
+
+  .bg-hex-3 img {
+    top: 31%;
+  }
+
+  .bg-hex-4 img {
+    bottom: 57%;
+  }
+
+  .bg-hex-5 img {
+    bottom: 47%;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .bg-hex-1 img {
+    top: 20%;
+  }
+
+  .bg-hex-2 img {
+    top: 139%;
+  }
+
+  .bg-hex-3 img {
+    top: 21%;
+  }
+
+  .bg-hex-4 img {
+    bottom: 35%;
+  }
+
+  .bg-hex-5 img {
+    bottom: 35%;
+  }
 }
 
 /* above the fold CSS goes here to squash CLS */
