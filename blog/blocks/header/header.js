@@ -139,7 +139,9 @@ export default async function decorate(block) {
   });
 
   let collection = 'blog';
-  if (getMetadata('theme') === 'marketplace') collection = 'marketplace';
+  const theme = getMetadata('theme');
+  if (theme === 'marketplace') collection = 'marketplace';
+  else if (theme === 'ebooks-expanded') collection = 'ebooks-expanded';
 
   if (collection === 'blog') block.append(createSearch());
 }
