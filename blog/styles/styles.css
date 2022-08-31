@@ -1381,6 +1381,7 @@ div.category-color-people-data-analytics {
 
 .marketplace-listing .details-container ul li {
 	margin-bottom: 30px;
+  list-style-image: none;
 }
 
 /* Tables */
