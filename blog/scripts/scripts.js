@@ -691,10 +691,15 @@ function setCategory() {
 }
 
 function setColorTheme() {
-  if (getMetadata('color-theme')) {
-    const theme = getMetadata('color-theme');
+  const theme = getMetadata('color-theme');
+  const secondaryTheme = getMetadata('secondary-color-theme');
+  if (theme) {
     const themeName = toClassName(theme);
-    document.body.classList.add(`color-theme-${themeName}`);
+    document.body.classList.add(`theme-${themeName}`);
+  }
+  if (secondaryTheme) {
+    const secondaryThemeName = toClassName(secondaryTheme);
+    document.body.classList.add(`secondary-theme-${secondaryThemeName}`);
   }
 }
 
