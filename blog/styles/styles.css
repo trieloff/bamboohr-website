@@ -137,6 +137,13 @@
   --theme-shade5: var(--color-1-shade-5);
   --theme-shade10: var(--color-1-shade-10);
   --theme-shade15: var(--color-1-shade-15);
+  --secondary-theme-base: var(--color-1);
+  --secondary-theme-tint5: var(--color-1-tint-5);
+  --secondary-theme-tint10: var(--color-1-tint-10);
+  --secondary-theme-tint15: var(--color-1-tint-15);
+  --secondary-theme-shade5: var(--color-1-shade-5);
+  --secondary-theme-shade10: var(--color-1-shade-10);
+  --secondary-theme-shade15: var(--color-1-shade-15);
 
   /* custom bullet svgs */
   --bullet-level1-gray: url('/blog/icons/bullets/level1-gray.svg');
@@ -255,6 +262,94 @@ div.theme-teal {
   --theme-shade5: var(--color-8-shade-5);
   --theme-shade10: var(--color-8-shade-10);
   --theme-shade15: var(--color-8-shade-15);
+}
+
+.secondary-theme-green main,
+div.secondary-theme-green {
+  --secondary-theme-base: var(--color-1);
+  --secondary-theme-tint5: var(--color-1-tint-5);
+  --secondary-theme-tint10: var(--color-1-tint-10);
+  --secondary-theme-tint15: var(--color-1-tint-15);
+  --secondary-theme-shade5: var(--color-1-shade-5);
+  --secondary-theme-shade10: var(--color-1-shade-10);
+  --secondary-theme-shade15: var(--color-1-shade-15);
+}
+
+.secondary-theme-red main,
+div.secondary-theme-red {
+  --secondary-theme-base: var(--color-2);
+  --secondary-theme-tint5: var(--color-2-tint-5);
+  --secondary-theme-tint10: var(--color-2-tint-10);
+  --secondary-theme-tint15: var(--color-2-tint-15);
+  --secondary-theme-shade5: var(--color-2-shade-5);
+  --secondary-theme-shade10: var(--color-2-shade-10);
+  --secondary-theme-shade15: var(--color-2-shade-15);
+}
+
+.secondary-theme-orange main,
+div.secondary-theme-orange {
+  --secondary-theme-base: var(--color-3);
+  --secondary-theme-tint5: var(--color-3-tint-5);
+  --secondary-theme-tint10: var(--color-3-tint-10);
+  --secondary-theme-tint15: var(--color-3-tint-15);
+  --secondary-theme-shade5: var(--color-3-shade-5);
+  --secondary-theme-shade10: var(--color-3-shade-10);
+  --secondary-theme-shade15: var(--color-3-shade-15);
+}
+
+.secondary-theme-yellow main,
+div.secondary-theme-yellow {
+  --secondary-theme-base: var(--color-4);
+  --secondary-theme-tint5: var(--color-4-tint-5);
+  --secondary-theme-tint10: var(--color-4-tint-10);
+  --secondary-theme-tint15: var(--color-4-tint-15);
+  --secondary-theme-shade5: var(--color-4-shade-5);
+  --secondary-theme-shade10: var(--color-4-shade-10);
+  --secondary-theme-shade15: var(--color-4-shade-15);
+}
+
+.secondary-theme-blue main,
+div.secondary-theme-blue {
+  --secondary-theme-base: var(--color-5);
+  --secondary-theme-tint5: var(--color-5-tint-5);
+  --secondary-theme-tint10: var(--color-5-tint-10);
+  --secondary-theme-tint15: var(--color-5-tint-15);
+  --secondary-theme-shade5: var(--color-5-shade-5);
+  --secondary-theme-shade10: var(--color-5-shade-10);
+  --secondary-theme-shade15: var(--color-5-shade-15);
+}
+
+.secondary-theme-purple main,
+div.secondary-theme-purple {
+  --secondary-theme-base: var(--color-6);
+  --secondary-theme-tint5: var(--color-6-tint-5);
+  --secondary-theme-tint10: var(--color-6-tint-10);
+  --secondary-theme-tint15: var(--color-6-tint-15);
+  --secondary-theme-shade5: var(--color-6-shade-5);
+  --secondary-theme-shade10: var(--color-6-shade-10);
+  --secondary-theme-shade15: var(--color-6-shade-15);
+}
+
+.secondary-theme-pink main,
+div.secondary-theme-pink {
+  --secondary-theme-base: var(--color-7);
+  --secondary-theme-tint5: var(--color-7-tint-5);
+  --secondary-theme-tint10: var(--color-7-tint-10);
+  --secondary-theme-tint15: var(--color-7-tint-15);
+  --secondary-theme-shade5: var(--color-7-shade-5);
+  --secondary-theme-shade10: var(--color-7-shade-10);
+  --secondary-theme-shade15: var(--color-7-shade-15);
+}
+
+.secondary-theme-teal main,
+div.secondary-theme-teal {
+  --secondary-theme-base: var(--color-8);
+  --secondary-theme-tint5: var(--color-8-tint-5);
+  --secondary-theme-tint10: var(--color-8-tint-10);
+  --secondary-theme-tint15: var(--color-8-tint-15);
+  --secondary-theme-shade5: var(--color-8-shade-5);
+  --secondary-theme-shade10: var(--color-8-shade-10);
+  --secondary-theme-shade15: var(--color-8-shade-15);
 }
 
 header {
@@ -859,10 +954,10 @@ table td {
   }
 }
 
-.resources-guides.theme-purple main h1,
-.resources-guides.theme-purple main h2,
-.resources-guides.theme-purple main h4 {
-  color: var(--color-6-shade-5);
+.resources-guides main h1,
+.resources-guides main h2,
+.resources-guides main h4 {
+  color: var(--theme-shade5);
 }
 
 .resources-guides main h1,
@@ -881,6 +976,13 @@ table td {
 
 .resources-guides main h5 {
   font-style: normal;
+  color: var(--secondary-theme-shade5);
+}
+
+.resources-guides main .default-content-wrapper a:any-link {
+  font-weight: 700;
+  color: var(--secondary-theme-shade5);
+  background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
 }
 
 /* links */
