@@ -661,7 +661,7 @@ main .columns ul li ul li ul li {
 .theme-red main .default-content-wrapper ul li ul li ul li,
 .theme-red main .tabs ul li ul li ul li,
 .theme-red main .columns ul li ul li ul li {
-  blist-style-image: var(--bullet-level3-red);
+  list-style-image: var(--bullet-level3-red);
 }
 
 .theme-orange main .default-content-wrapper ul li ul li ul li,
