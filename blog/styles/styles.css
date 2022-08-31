@@ -137,6 +137,13 @@
   --theme-shade5: var(--color-1-shade-5);
   --theme-shade10: var(--color-1-shade-10);
   --theme-shade15: var(--color-1-shade-15);
+  --secondary-theme-base: var(--color-1);
+  --secondary-theme-tint5: var(--color-1-tint-5);
+  --secondary-theme-tint10: var(--color-1-tint-10);
+  --secondary-theme-tint15: var(--color-1-tint-15);
+  --secondary-theme-shade5: var(--color-1-shade-5);
+  --secondary-theme-shade10: var(--color-1-shade-10);
+  --secondary-theme-shade15: var(--color-1-shade-15);
 
   /* custom bullet svgs */
   --bullet-level1-gray: url('/blog/icons/bullets/level1-gray.svg');
@@ -255,6 +262,94 @@ div.theme-teal {
   --theme-shade5: var(--color-8-shade-5);
   --theme-shade10: var(--color-8-shade-10);
   --theme-shade15: var(--color-8-shade-15);
+}
+
+.secondary-theme-green main,
+div.secondary-theme-green {
+  --secondary-theme-base: var(--color-1);
+  --secondary-theme-tint5: var(--color-1-tint-5);
+  --secondary-theme-tint10: var(--color-1-tint-10);
+  --secondary-theme-tint15: var(--color-1-tint-15);
+  --secondary-theme-shade5: var(--color-1-shade-5);
+  --secondary-theme-shade10: var(--color-1-shade-10);
+  --secondary-theme-shade15: var(--color-1-shade-15);
+}
+
+.secondary-theme-red main,
+div.secondary-theme-red {
+  --secondary-theme-base: var(--color-2);
+  --secondary-theme-tint5: var(--color-2-tint-5);
+  --secondary-theme-tint10: var(--color-2-tint-10);
+  --secondary-theme-tint15: var(--color-2-tint-15);
+  --secondary-theme-shade5: var(--color-2-shade-5);
+  --secondary-theme-shade10: var(--color-2-shade-10);
+  --secondary-theme-shade15: var(--color-2-shade-15);
+}
+
+.secondary-theme-orange main,
+div.secondary-theme-orange {
+  --secondary-theme-base: var(--color-3);
+  --secondary-theme-tint5: var(--color-3-tint-5);
+  --secondary-theme-tint10: var(--color-3-tint-10);
+  --secondary-theme-tint15: var(--color-3-tint-15);
+  --secondary-theme-shade5: var(--color-3-shade-5);
+  --secondary-theme-shade10: var(--color-3-shade-10);
+  --secondary-theme-shade15: var(--color-3-shade-15);
+}
+
+.secondary-theme-yellow main,
+div.secondary-theme-yellow {
+  --secondary-theme-base: var(--color-4);
+  --secondary-theme-tint5: var(--color-4-tint-5);
+  --secondary-theme-tint10: var(--color-4-tint-10);
+  --secondary-theme-tint15: var(--color-4-tint-15);
+  --secondary-theme-shade5: var(--color-4-shade-5);
+  --secondary-theme-shade10: var(--color-4-shade-10);
+  --secondary-theme-shade15: var(--color-4-shade-15);
+}
+
+.secondary-theme-blue main,
+div.secondary-theme-blue {
+  --secondary-theme-base: var(--color-5);
+  --secondary-theme-tint5: var(--color-5-tint-5);
+  --secondary-theme-tint10: var(--color-5-tint-10);
+  --secondary-theme-tint15: var(--color-5-tint-15);
+  --secondary-theme-shade5: var(--color-5-shade-5);
+  --secondary-theme-shade10: var(--color-5-shade-10);
+  --secondary-theme-shade15: var(--color-5-shade-15);
+}
+
+.secondary-theme-purple main,
+div.secondary-theme-purple {
+  --secondary-theme-base: var(--color-6);
+  --secondary-theme-tint5: var(--color-6-tint-5);
+  --secondary-theme-tint10: var(--color-6-tint-10);
+  --secondary-theme-tint15: var(--color-6-tint-15);
+  --secondary-theme-shade5: var(--color-6-shade-5);
+  --secondary-theme-shade10: var(--color-6-shade-10);
+  --secondary-theme-shade15: var(--color-6-shade-15);
+}
+
+.secondary-theme-pink main,
+div.secondary-theme-pink {
+  --secondary-theme-base: var(--color-7);
+  --secondary-theme-tint5: var(--color-7-tint-5);
+  --secondary-theme-tint10: var(--color-7-tint-10);
+  --secondary-theme-tint15: var(--color-7-tint-15);
+  --secondary-theme-shade5: var(--color-7-shade-5);
+  --secondary-theme-shade10: var(--color-7-shade-10);
+  --secondary-theme-shade15: var(--color-7-shade-15);
+}
+
+.secondary-theme-teal main,
+div.secondary-theme-teal {
+  --secondary-theme-base: var(--color-8);
+  --secondary-theme-tint5: var(--color-8-tint-5);
+  --secondary-theme-tint10: var(--color-8-tint-10);
+  --secondary-theme-tint15: var(--color-8-tint-15);
+  --secondary-theme-shade5: var(--color-8-shade-5);
+  --secondary-theme-shade10: var(--color-8-shade-10);
+  --secondary-theme-shade15: var(--color-8-shade-15);
 }
 
 header {
@@ -436,7 +531,7 @@ main .default-content-wrapper ol li {
 main .default-content-wrapper ul,
 main .tabs ul,
 main .columns ul {
-  padding-inline-start: 20px;
+  padding-inline-start: 40px;
   list-style-type: none;
 }
 
@@ -445,181 +540,164 @@ main .tabs ul li,
 main .columns ul li {
   position: relative;
   margin-bottom: 16px;
-  padding-left: 30px;
+  list-style-image: var(--bullet-level1-gray);
+  padding-inline-start: 10px;
 }
 
-main .default-content-wrapper ul li::before,
-main .tabs ul li::before,
-main .columns ul li::before {
-  content: '';
-  position: absolute;
-  top: 5px;
-  left: 0;
-  background-image: var(--bullet-level1-gray);
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 16px;
-  height: 18px;
+main .default-content-wrapper ul li ul li,
+main .tabs ul li ul li,
+main .columns ul li ul li {
+  list-style-image: var(--bullet-level2-gray);
 }
 
-main .default-content-wrapper ul li ul li::before,
-main .tabs ul li ul li::before,
-main .columns ul li ul li::before {
-  background-image: var(--bullet-level2-gray);
+main .default-content-wrapper ul li ul li ul li,
+main .tabs ul li ul li ul li,
+main .columns ul li ul li ul li {
+  list-style-image: var(--bullet-level3-gray);
 }
 
-main .default-content-wrapper ul li ul li ul li::before,
-main .tabs ul li ul li ul li::before,
-main .columns ul li ul li ul li::before {
-  background-image: var(--bullet-level3-gray);
+.theme-green main .default-content-wrapper ul li,
+.theme-green main .tabs ul li,
+.theme-green main .columns ul li {
+  list-style-image: var(--bullet-level1-green);
 }
 
-.marketplace-listing main .details-container ul li::before {
-  content: none;
+.theme-red main .default-content-wrapper ul li,
+.theme-red main .tabs ul li,
+.theme-red main .columns ul li {
+  list-style-image: var(--bullet-level1-red);
 }
 
-.theme-green main .default-content-wrapper ul li::before,
-.theme-green main .tabs ul li::before,
-.theme-green main .columns ul li::before {
-  background-image: var(--bullet-level1-green);
+.theme-orange main .default-content-wrapper ul li,
+.theme-orange main .tabs ul li,
+.theme-orange main .columns ul li {
+  list-style-image: var(--bullet-level1-orange);
 }
 
-.theme-red main .default-content-wrapper ul li::before,
-.theme-red main .tabs ul li::before,
-.theme-red main .columns ul li::before {
-  background-image: var(--bullet-level1-red);
+.theme-yellow main .default-content-wrapper ul li,
+.theme-yellow main .tabs ul li,
+.theme-yellow main .columns ul li {
+  list-style-image: var(--bullet-level1-yellow);
 }
 
-.theme-orange main .default-content-wrapper ul li::before,
-.theme-orange main .tabs ul li::before,
-.theme-orange main .columns ul li::before {
-  background-image: var(--bullet-level1-orange);
+.theme-blue main .default-content-wrapper ul li,
+.theme-blue main .tabs ul li,
+.theme-blue main .columns ul li {
+  list-style-image: var(--bullet-level1-blue);
 }
 
-.theme-yellow main .default-content-wrapper ul li::before,
-.theme-yellow main .tabs ul li::before,
-.theme-yellow main .columns ul li::before {
-  background-image: var(--bullet-level1-yellow);
+.theme-purple main .default-content-wrapper ul li,
+.theme-purple main .tabs ul li,
+.theme-purple main .columns ul li {
+  list-style-image: var(--bullet-level1-purple);
 }
 
-.theme-blue main .default-content-wrapper ul li::before,
-.theme-blue main .tabs ul li::before,
-.theme-blue main .columns ul li::before {
-  background-image: var(--bullet-level1-blue);
+.theme-pink main .default-content-wrapper ul li,
+.theme-pink main .tabs ul li,
+.theme-pink main .columns ul li {
+  list-style-image: var(--bullet-level1-pink);
 }
 
-.theme-purple main .default-content-wrapper ul li::before,
-.theme-purple main .tabs ul li::before,
-.theme-purple main .columns ul li::before {
-  background-image: var(--bullet-level1-purple);
+.theme-teal main .default-content-wrapper ul li,
+.theme-teal main .tabs ul li,
+.theme-teal main .columns ul li {
+  list-style-image: var(--bullet-level1-teal);
 }
 
-.theme-pink main .default-content-wrapper ul li::before,
-.theme-pink main .tabs ul li::before,
-.theme-pink main .columns ul li::before {
-  background-image: var(--bullet-level1-pink);
+.theme-green main .default-content-wrapper ul li ul li,
+.theme-green main .tabs ul li ul li,
+.theme-green main .columns ul li ul li {
+  list-style-image: var(--bullet-level2-green);
 }
 
-.theme-teal main .default-content-wrapper ul li::before,
-.theme-teal main .tabs ul li::before,
-.theme-teal main .columns ul li::before {
-  background-image: var(--bullet-level1-teal);
+.theme-red main .default-content-wrapper ul li ul li,
+.theme-red main .tabs ul li ul li,
+.theme-red main .columns ul li ul li {
+  list-style-image: var(--bullet-level2-red);
 }
 
-.theme-green main .default-content-wrapper ul li ul li::before,
-.theme-green main .tabs ul li ul li::before,
-.theme-green main .columns ul li ul li::before {
-  background-image: var(--bullet-level2-green);
+.theme-orange main .default-content-wrapper ul li ul li,
+.theme-orange main .tabs ul li ul li,
+.theme-orange main .columns ul li ul li {
+  list-style-image: var(--bullet-level2-orange);
 }
 
-.theme-red main .default-content-wrapper ul li ul li::before,
-.theme-red main .tabs ul li ul li::before,
-.theme-red main .columns ul li ul li::before {
-  background-image: var(--bullet-level2-red);
+.theme-yellow main .default-content-wrapper ul li ul li,
+.theme-yellow main .tabs ul li ul li,
+.theme-yellow main .columns ul li ul li {
+  list-style-image: var(--bullet-level2-yellow);
 }
 
-.theme-orange main .default-content-wrapper ul li ul li::before,
-.theme-orange main .tabs ul li ul li::before,
-.theme-orange main .columns ul li ul li::before {
-  background-image: var(--bullet-level2-orange);
+.theme-blue main .default-content-wrapper ul li ul li
+.theme-blue main .tabs ul li ul li,
+.theme-blue main .columns ul li ul li {
+  list-style-image: var(--bullet-level2-blue);
 }
 
-.theme-yellow main .default-content-wrapper ul li ul li::before,
-.theme-yellow main .tabs ul li ul li::before,
-.theme-yellow main .columns ul li ul li::before {
-  background-image: var(--bullet-level2-yellow);
+.theme-purple main .default-content-wrapper ul li ul li,
+.theme-purple main .tabs ul li ul li,
+.theme-purple main .columns ul li ul li {
+  list-style-image: var(--bullet-level2-purple);
 }
 
-.theme-blue main .default-content-wrapper ul li ul li::before,
-.theme-blue main .tabs ul li ul li::before,
-.theme-blue main .columns ul li ul li::before {
-  background-image: var(--bullet-level2-blue);
+.theme-pink main .default-content-wrapper ul li ul li
+.theme-pink main .tabs ul li ul li,
+.theme-pink main .columns ul li ul li {
+  list-style-image: var(--bullet-level2-pink);
 }
 
-.theme-purple main .default-content-wrapper ul li ul li::before,
-.theme-purple main .tabs ul li ul li::before,
-.theme-purple main .columns ul li ul li::before {
-  background-image: var(--bullet-level2-purple);
+.theme-teal main .default-content-wrapper ul li ul li,
+.theme-teal main .tabs ul li ul li,
+.theme-teal main .columns ul li ul li {
+  list-style-image: var(--bullet-level2-teal);
 }
 
-.theme-pink main .default-content-wrapper ul li ul li::before,
-.theme-pink main .tabs ul li ul li::before,
-.theme-pink main .columns ul li ul li::before {
-  background-image: var(--bullet-level2-pink);
+.theme-green main .default-content-wrapper ul li ul li ul li,
+.theme-green main .tabs ul li ul li ul li,
+.theme-green main .columns ul li ul li ul li {
+  list-style-image: var(--bullet-level3-green);
 }
 
-.theme-teal main .default-content-wrapper ul li ul li::before,
-.theme-teal main .tabs ul li ul li::before,
-.theme-teal main .columns ul li ul li::before {
-  background-image: var(--bullet-level2-teal);
+.theme-red main .default-content-wrapper ul li ul li ul li,
+.theme-red main .tabs ul li ul li ul li,
+.theme-red main .columns ul li ul li ul li {
+  list-style-image: var(--bullet-level3-red);
 }
 
-.theme-green main .default-content-wrapper ul li ul li ul li::before,
-.theme-green main .tabs ul li ul li ul li::before,
-.theme-green main .columns ul li ul li ul li::before {
-  background-image: var(--bullet-level3-green);
+.theme-orange main .default-content-wrapper ul li ul li ul li,
+.theme-orange main .tabs ul li ul li ul li,
+.theme-orange main .columns ul li ul li ul li {
+  list-style-image: var(--bullet-level3-orange);
 }
 
-.theme-red main .default-content-wrapper ul li ul li ul li::before,
-.theme-red main .tabs ul li ul li ul li::before,
-.theme-red main .columns ul li ul li ul li::before {
-  background-image: var(--bullet-level3-red);
+.theme-yellow main .default-content-wrapper ul li ul li ul li,
+.theme-yellow main .tabs ul li ul li ul li,
+.theme-yellow main .columns ul li ul li ul li {
+  list-style-image: var(--bullet-level3-yellow);
 }
 
-.theme-orange main .default-content-wrapper ul li ul li ul li::before,
-.theme-orange main .tabs ul li ul li ul li::before,
-.theme-orange main .columns ul li ul li ul li::before {
-  background-image: var(--bullet-level3-orange);
+.theme-blue main .default-content-wrapper ul li ul li ul li,
+.theme-blue main .tabs ul li ul li ul li,
+.theme-blue main .columns ul li ul li ul li {
+  list-style-image: var(--bullet-level3-blue);
 }
 
-.theme-yellow main .default-content-wrapper ul li ul li ul li::before,
-.theme-yellow main .tabs ul li ul li ul li::before,
-.theme-yellow main .columns ul li ul li ul li::before {
-  background-image: var(--bullet-level3-yellow);
+.theme-purple main .default-content-wrapper ul li ul li ul li,
+.theme-purple main .tabs ul li ul li ul li,
+.theme-purple main .columns ul li ul li ul li {
+  list-style-image: var(--bullet-level3-purple);
 }
 
-.theme-blue main .default-content-wrapper ul li ul li ul li::before,
-.theme-blue main .tabs ul li ul li ul li::before,
-.theme-blue main .columns ul li ul li ul li::before {
-  background-image: var(--bullet-level3-blue);
+.theme-pink main .default-content-wrapper ul li ul li ul li,
+.theme-pink main .tabs ul li ul li ul li,
+.theme-pink main .columns ul li ul li ul li {
+  list-style-image: var(--bullet-level3-pink);
 }
 
-.theme-purple main .default-content-wrapper ul li ul li ul li::before,
-.theme-purple main .tabs ul li ul li ul li::before,
-.theme-purple main .columns ul li ul li ul li::before {
-  background-image: var(--bullet-level3-purple);
-}
-
-.theme-pink main .default-content-wrapper ul li ul li ul li::before,
-.theme-pink main .tabs ul li ul li ul li::before,
-.theme-pink main .columns ul li ul li ul li::before {
-  background-image: var(--bullet-level3-pink);
-}
-
-.theme-teal main .default-content-wrapper ul li ul li ul li::before,
-.theme-teal main .tabs ul li ul li ul li::before,
-.theme-teal main .columns ul li ul li ul li::before {
-  background-image: var(--bullet-level3-teal);
+.theme-teal main .default-content-wrapper ul li ul li ul li,
+.theme-teal main .tabs ul li ul li ul li,
+.theme-teal main .columns ul li ul li ul li {
+  list-style-image: var(--bullet-level3-teal);
 }
 
 main p:not(:last-of-type) {
@@ -859,10 +937,10 @@ table td {
   }
 }
 
-.resources-guides.theme-purple main h1,
-.resources-guides.theme-purple main h2,
-.resources-guides.theme-purple main h4 {
-  color: var(--color-6-shade-5);
+.resources-guides main h1,
+.resources-guides main h2,
+.resources-guides main h4 {
+  color: var(--theme-shade5);
 }
 
 .resources-guides main h1,
@@ -881,6 +959,13 @@ table td {
 
 .resources-guides main h5 {
   font-style: normal;
+  color: var(--secondary-theme-shade5);
+}
+
+.resources-guides main .default-content-wrapper a:any-link {
+  font-weight: 700;
+  color: var(--secondary-theme-shade5);
+  background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
 }
 
 /* links */
@@ -1296,6 +1381,7 @@ div.category-color-people-data-analytics {
 
 .marketplace-listing .details-container ul li {
 	margin-bottom: 30px;
+  list-style-image: none;
 }
 
 /* Tables */
