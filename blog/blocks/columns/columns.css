@@ -183,7 +183,7 @@ main .home-featured-cat {
 
 .columns.step .step-right {
   padding-left: 18px;
-  border-left: 2px solid var(--color-6-tint-10);
+  border-left: 2px solid var(--theme-tint10);
 }
 
 .columns.step .step-right h4 {
