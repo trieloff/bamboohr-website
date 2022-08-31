@@ -140,8 +140,9 @@ export default async function decorate(block) {
 
   let collection = 'blog';
   const theme = getMetadata('theme');
+  const template = toClassName(getMetadata('template'));
   if (theme === 'marketplace') collection = 'marketplace';
-  else if (theme === 'ebooks-expanded') collection = 'ebooks-expanded';
+  else if (template === 'resources-guides') collection = 'resources-guides';
 
   if (collection === 'blog') block.append(createSearch());
 }

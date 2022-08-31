@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/scripts.js';
+import { getMetadata, toClassName } from '../../scripts/scripts.js';
 
 function createDiv(name, type, content) {
   const div = document.createElement('div');
@@ -30,7 +30,7 @@ export function createSharing(shareClass = 'page-header-share') {
 }
 
 export default async function decoratePageHeader(block, blockName) {
-  if (getMetadata('theme') === 'ebooks-expanded') {
+  if (toClassName(getMetadata('template')) === 'resources-guides') {
     block.append(createSharing());
   } else {
     const location = block.getAttribute('data-header-location');
