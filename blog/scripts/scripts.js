@@ -815,7 +815,8 @@ async function buildAutoBlocks(main) {
       }
     }
 
-    if (template === 'hr-glossary' || template === 'job-description') {
+    if (template === 'hr-glossary' || template === 'job-description'
+      || template === 'resources-guides') {
       buildPageHeader(main, template);
     }
   } catch (error) {
