@@ -692,14 +692,14 @@ function setCategory() {
 
 function setColorTheme() {
   const theme = getMetadata('color-theme');
+  const secondaryTheme = getMetadata('secondary-color-theme');
   if (theme) {
     const themeName = toClassName(theme);
     document.body.classList.add(`theme-${themeName}`);
   }
-  if (getMetadata('secondary-color-theme')) {
-    const secondaryTheme = getMetadata('secondary-color-theme');
+  if (secondaryTheme) {
     const secondaryThemeName = toClassName(secondaryTheme);
-    document.body.classList.add(`secondary-color-theme-${secondaryThemeName}`);
+    document.body.classList.add(`secondary-theme-${secondaryThemeName}`);
   }
 }
 
