@@ -111,6 +111,7 @@ main .quote.full {
 	text-align: center;
 	-webkit-text-fill-color: revert;
 	width: auto;
+	color: var(--theme-shade5)
 }
 
 @media (min-width: 600px) {
@@ -139,6 +140,8 @@ main .quote.full [data-align="center"] picture {
 main .quote.full a:not(.button),
 main .quote.full strong {
 	font-weight: var(--heading-font-weight);
+	color: var(--theme-shade5);
+	background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--theme-tint10) 0);
 }
 
 main .quote.full .byline {
@@ -148,6 +151,7 @@ main .quote.full .byline {
 	letter-spacing: .125rem;
 	line-height: 1.5;
 	text-transform: uppercase;
+	color: var(--color-gray-10);
 }
 
 @media (min-width: 1025px) {
@@ -167,44 +171,7 @@ main .quote.full .button {
 	margin: 0;
 	padding: .625rem 1.875rem;
 	white-space: revert;
-}
-
-/* Blue */
-main .quote.blue {
-	color: var(--color-5-shade-5);/* TODO: needs theme replacement */
-}
-
-main .quote.blue a:not(.button),
-main .quote.blue strong {
-	background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--color-5-tint-10) 0);/* TODO: needs theme replacement */
-	color: var(--color-5-shade-5);/* TODO: needs theme replacement */
-}
-
-main .quote.blue .byline {
-	color: var(--color-gray-12);/* TODO: needs theme replacement */
-}
-
-main .quote.blue .button {
-	background-image: linear-gradient(90deg, var(--color-5-shade-5) 0%, var(--color-5-shade-10) 100%);/* TODO: needs theme replacement */
-}
-
-/* Green */
-main .quote.green {
-	color: var(--color-1-shade-5);/* TODO: needs theme replacement */
-}
-
-main .quote.green a:not(.button),
-main .quote.green strong {
-	background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--color-1-tint-10) 0);/* TODO: needs theme replacement */
-	color: var(--color-1-shade-5);/* TODO: needs theme replacement */
-}
-
-main .quote.green .byline {
-	color: var(--color-gray-10);/* TODO: needs theme replacement */
-}
-
-main .quote.green .button {
-	background-image: linear-gradient(90deg, var(--color-1-shade-5) 0%, var(--color-1-shade-10) 100%);/* TODO: needs theme replacement */
+	background-image: linear-gradient(90deg, var(--theme-shade5) 0%, var(--theme-shade10) 100%);
 }
 
 /* Hero */
@@ -239,6 +206,6 @@ main .quote.hero .byline {
 }
 
 /* TODO: just to show update */
-.temp-bg-green {
-	background-image: linear-gradient(90deg, var(--color-1-shade-5) 0%, var(--color-1-shade-10) 100%);/* TODO: needs theme replacement? */
+.temp-bg {
+	background-image: linear-gradient(90deg, var(--theme-shade5) 0%, var(--theme-shade10) 100%);
 }
