@@ -11,14 +11,13 @@ export default function decorate(block) {
 
   // The rest should be: mobile-XX, tablet-XX, laptop-XX, or desktop-XX OR a single number.
   const values = {
-    mobile: '', tablet: '', laptop: '', desktop: ''
+    mobile: '', tablet: '', laptop: '', desktop: '',
   };
   let simpleVal = '';
   options.forEach((o) => {
     const val = o.split('-');
-    if (val.length === 2) {
-      [, values[val[0]]] = val;
-    } else [simpleVal] = val;
+    if (val.length === 2) [, values[val[0]]] = val;
+    else [simpleVal] = val;
   });
 
   if (simpleVal) {
@@ -44,7 +43,7 @@ export default function decorate(block) {
           // Fill in from next adjacent first, if not there fill in from previous adjacent.
           let nextKey = i + 1;
           while (nextKey < keys.length && !values[keys[nextKey]]) nextKey += 1;
-          
+
           let fillInKey = -1;
           if (nextKey < keys.length) {
             fillInKey = nextKey;
