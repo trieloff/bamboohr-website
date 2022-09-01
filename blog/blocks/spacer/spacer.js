@@ -8,15 +8,17 @@ function createSpacer(spacerVal, block) {
 export default function decorate(block) {
   // Remove 'spacer' and 'block' classes
   const options = [...block.classList].filter((c) => c !== 'spacer' && c !== 'block');
-  
+
   // The rest should be: mobile-XX, tablet-XX, laptop-XX, or desktop-XX OR a single number.
-  const values = {mobile: '', tablet: '', laptop: '', desktop: ''};
+  const values = {
+    mobile: '', tablet: '', laptop: '', desktop: ''
+  };
   let simpleVal = '';
   options.forEach((o) => {
     const val = o.split('-');
     if (val.length === 2) {
-      values[val[0]] = val[1];
-    } else simpleVal = val[0];
+      [, values[val[0]]] = val;
+    } else [simpleVal] = val;
   });
 
   if (simpleVal) {
@@ -26,11 +28,8 @@ export default function decorate(block) {
 
     // Count the input values. Remember last val in case there's only 1.
     const valueCnt = keys.reduce((cnt, key) => {
-      if (values[key]) {
-        cnt++;
-        simpleVal = values[key];
-      }
-      return cnt;
+      simpleVal = values[key];
+      return values[key] ? cnt + 1 : cnt;
     }, 0);
 
     if (valueCnt === 1) createSpacer(simpleVal, block);
@@ -44,15 +43,14 @@ export default function decorate(block) {
         } else {
           // Fill in from next adjacent first, if not there fill in from previous adjacent.
           let nextKey = i + 1;
-          while (nextKey < keys.length && !values[keys[nextKey]]) nextKey++;
+          while (nextKey < keys.length && !values[keys[nextKey]]) nextKey += 1;
           
           let fillInKey = -1;
           if (nextKey < keys.length) {
             fillInKey = nextKey;
           } else {
             let prevKey = i - 1;
-            while (prevKey >= 0 && !values[keys[prevKey]]) prevKey--;
-            
+            while (prevKey >= 0 && !values[keys[prevKey]]) prevKey -= 1;
             fillInKey = prevKey;
           }
 
