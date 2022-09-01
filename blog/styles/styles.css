@@ -129,22 +129,6 @@
   --box-shadow-3-color6-shade10: 0 30px 60px -40px rgb(76 50 147 / 20%), 0 70px 100px -60px rgb(76 50 147 / 20%);
   --box-shadow-4-color6-shade10: 0 68px 62px -35px rgb(76 50 147 / 20%);
 
-  /* Theme variables */
-  --theme-base: var(--color-1);
-  --theme-tint5: var(--color-1-tint-5);
-  --theme-tint10: var(--color-1-tint-10);
-  --theme-tint15: var(--color-1-tint-15);
-  --theme-shade5: var(--color-1-shade-5);
-  --theme-shade10: var(--color-1-shade-10);
-  --theme-shade15: var(--color-1-shade-15);
-  --secondary-theme-base: var(--color-1);
-  --secondary-theme-tint5: var(--color-1-tint-5);
-  --secondary-theme-tint10: var(--color-1-tint-10);
-  --secondary-theme-tint15: var(--color-1-tint-15);
-  --secondary-theme-shade5: var(--color-1-shade-5);
-  --secondary-theme-shade10: var(--color-1-shade-10);
-  --secondary-theme-shade15: var(--color-1-shade-15);
-
   /* custom bullet svgs */
   --bullet-level1-gray: url('/blog/icons/bullets/level1-gray.svg');
   --bullet-level2-gray: url('/blog/icons/bullets/level2-gray.svg');
@@ -173,11 +157,8 @@
   --bullet-level1-teal: url('/blog/icons/bullets/level1-teal.svg');
   --bullet-level2-teal: url('/blog/icons/bullets/level2-teal.svg');
   --bullet-level3-teal: url('/blog/icons/bullets/level3-teal.svg');
-}
 
-/* Theme Settings */
-.theme-green main,
-div.theme-green {
+  /* Theme variables */
   --theme-base: var(--color-1);
   --theme-tint5: var(--color-1-tint-5);
   --theme-tint10: var(--color-1-tint-10);
@@ -185,87 +166,9 @@ div.theme-green {
   --theme-shade5: var(--color-1-shade-5);
   --theme-shade10: var(--color-1-shade-10);
   --theme-shade15: var(--color-1-shade-15);
-}
-
-.theme-red main,
-div.theme-red {
-  --theme-base: var(--color-2);
-  --theme-tint5: var(--color-2-tint-5);
-  --theme-tint10: var(--color-2-tint-10);
-  --theme-tint15: var(--color-2-tint-15);
-  --theme-shade5: var(--color-2-shade-5);
-  --theme-shade10: var(--color-2-shade-10);
-  --theme-shade15: var(--color-2-shade-15);
-}
-
-.theme-orange main,
-div.theme-orange {
-  --theme-base: var(--color-3);
-  --theme-tint5: var(--color-3-tint-5);
-  --theme-tint10: var(--color-3-tint-10);
-  --theme-tint15: var(--color-3-tint-15);
-  --theme-shade5: var(--color-3-shade-5);
-  --theme-shade10: var(--color-3-shade-10);
-  --theme-shade15: var(--color-3-shade-15);
-}
-
-.theme-yellow main,
-div.theme-yellow {
-  --theme-base: var(--color-4);
-  --theme-tint5: var(--color-4-tint-5);
-  --theme-tint10: var(--color-4-tint-10);
-  --theme-tint15: var(--color-4-tint-15);
-  --theme-shade5: var(--color-4-shade-5);
-  --theme-shade10: var(--color-4-shade-10);
-  --theme-shade15: var(--color-4-shade-15);
-}
-
-.theme-blue main,
-div.theme-blue {
-  --theme-base: var(--color-5);
-  --theme-tint5: var(--color-5-tint-5);
-  --theme-tint10: var(--color-5-tint-10);
-  --theme-tint15: var(--color-5-tint-15);
-  --theme-shade5: var(--color-5-shade-5);
-  --theme-shade10: var(--color-5-shade-10);
-  --theme-shade15: var(--color-5-shade-15);
-}
-
-.theme-purple main,
-div.theme-purple {
-  --theme-base: var(--color-6);
-  --theme-tint5: var(--color-6-tint-5);
-  --theme-tint10: var(--color-6-tint-10);
-  --theme-tint15: var(--color-6-tint-15);
-  --theme-shade5: var(--color-6-shade-5);
-  --theme-shade10: var(--color-6-shade-10);
-  --theme-shade15: var(--color-6-shade-15);
-}
-
-.theme-pink main,
-div.theme-pink {
-  --theme-base: var(--color-7);
-  --theme-tint5: var(--color-7-tint-5);
-  --theme-tint10: var(--color-7-tint-10);
-  --theme-tint15: var(--color-7-tint-15);
-  --theme-shade5: var(--color-7-shade-5);
-  --theme-shade10: var(--color-7-shade-10);
-  --theme-shade15: var(--color-7-shade-15);
-}
-
-.theme-teal main,
-div.theme-teal {
-  --theme-base: var(--color-8);
-  --theme-tint5: var(--color-8-tint-5);
-  --theme-tint10: var(--color-8-tint-10);
-  --theme-tint15: var(--color-8-tint-15);
-  --theme-shade5: var(--color-8-shade-5);
-  --theme-shade10: var(--color-8-shade-10);
-  --theme-shade15: var(--color-8-shade-15);
-}
-
-.secondary-theme-green main,
-div.secondary-theme-green {
+  --theme-bullet-level1: var(--bullet-level1-gray);
+  --theme-bullet-level2: var(--bullet-level2-gray);
+  --theme-bullet-level3: var(--bullet-level3-gray);
   --secondary-theme-base: var(--color-1);
   --secondary-theme-tint5: var(--color-1-tint-5);
   --secondary-theme-tint10: var(--color-1-tint-10);
@@ -275,8 +178,132 @@ div.secondary-theme-green {
   --secondary-theme-shade15: var(--color-1-shade-15);
 }
 
-.secondary-theme-red main,
-div.secondary-theme-red {
+/* Theme Settings */
+.green main,
+div.green {
+  --theme-base: var(--color-1);
+  --theme-tint5: var(--color-1-tint-5);
+  --theme-tint10: var(--color-1-tint-10);
+  --theme-tint15: var(--color-1-tint-15);
+  --theme-shade5: var(--color-1-shade-5);
+  --theme-shade10: var(--color-1-shade-10);
+  --theme-shade15: var(--color-1-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-green);
+  --theme-bullet-level2: var(--bullet-level2-green);
+  --theme-bullet-level3: var(--bullet-level3-green);
+}
+
+.red main,
+div.red {
+  --theme-base: var(--color-2);
+  --theme-tint5: var(--color-2-tint-5);
+  --theme-tint10: var(--color-2-tint-10);
+  --theme-tint15: var(--color-2-tint-15);
+  --theme-shade5: var(--color-2-shade-5);
+  --theme-shade10: var(--color-2-shade-10);
+  --theme-shade15: var(--color-2-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-red);
+  --theme-bullet-level2: var(--bullet-level2-red);
+  --theme-bullet-level3: var(--bullet-level3-red);
+}
+
+.orange main,
+div.orange {
+  --theme-base: var(--color-3);
+  --theme-tint5: var(--color-3-tint-5);
+  --theme-tint10: var(--color-3-tint-10);
+  --theme-tint15: var(--color-3-tint-15);
+  --theme-shade5: var(--color-3-shade-5);
+  --theme-shade10: var(--color-3-shade-10);
+  --theme-shade15: var(--color-3-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-orange);
+  --theme-bullet-level2: var(--bullet-level2-orange);
+  --theme-bullet-level3: var(--bullet-level3-orange);
+}
+
+.yellow main,
+div.yellow {
+  --theme-base: var(--color-4);
+  --theme-tint5: var(--color-4-tint-5);
+  --theme-tint10: var(--color-4-tint-10);
+  --theme-tint15: var(--color-4-tint-15);
+  --theme-shade5: var(--color-4-shade-5);
+  --theme-shade10: var(--color-4-shade-10);
+  --theme-shade15: var(--color-4-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-yellow);
+  --theme-bullet-level2: var(--bullet-level2-yellow);
+  --theme-bullet-level3: var(--bullet-level3-yellow);
+}
+
+.blue main,
+div.blue {
+  --theme-base: var(--color-5);
+  --theme-tint5: var(--color-5-tint-5);
+  --theme-tint10: var(--color-5-tint-10);
+  --theme-tint15: var(--color-5-tint-15);
+  --theme-shade5: var(--color-5-shade-5);
+  --theme-shade10: var(--color-5-shade-10);
+  --theme-shade15: var(--color-5-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-blue);
+  --theme-bullet-level2: var(--bullet-level2-blue);
+  --theme-bullet-level3: var(--bullet-level3-blue);
+}
+
+.purple main,
+div.purple {
+  --theme-base: var(--color-6);
+  --theme-tint5: var(--color-6-tint-5);
+  --theme-tint10: var(--color-6-tint-10);
+  --theme-tint15: var(--color-6-tint-15);
+  --theme-shade5: var(--color-6-shade-5);
+  --theme-shade10: var(--color-6-shade-10);
+  --theme-shade15: var(--color-6-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-purple);
+  --theme-bullet-level2: var(--bullet-level2-purple);
+  --theme-bullet-level3: var(--bullet-level3-purple);
+}
+
+.pink main,
+div.pink {
+  --theme-base: var(--color-7);
+  --theme-tint5: var(--color-7-tint-5);
+  --theme-tint10: var(--color-7-tint-10);
+  --theme-tint15: var(--color-7-tint-15);
+  --theme-shade5: var(--color-7-shade-5);
+  --theme-shade10: var(--color-7-shade-10);
+  --theme-shade15: var(--color-7-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-pink);
+  --theme-bullet-level2: var(--bullet-level2-pink);
+  --theme-bullet-level3: var(--bullet-level3-pink);
+}
+
+.teal main,
+div.teal {
+  --theme-base: var(--color-8);
+  --theme-tint5: var(--color-8-tint-5);
+  --theme-tint10: var(--color-8-tint-10);
+  --theme-tint15: var(--color-8-tint-15);
+  --theme-shade5: var(--color-8-shade-5);
+  --theme-shade10: var(--color-8-shade-10);
+  --theme-shade15: var(--color-8-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-teal);
+  --theme-bullet-level2: var(--bullet-level2-teal);
+  --theme-bullet-level3: var(--bullet-level3-teal);
+}
+
+.secondary-green main,
+div.secondary-green {
+  --secondary-theme-base: var(--color-1);
+  --secondary-theme-tint5: var(--color-1-tint-5);
+  --secondary-theme-tint10: var(--color-1-tint-10);
+  --secondary-theme-tint15: var(--color-1-tint-15);
+  --secondary-theme-shade5: var(--color-1-shade-5);
+  --secondary-theme-shade10: var(--color-1-shade-10);
+  --secondary-theme-shade15: var(--color-1-shade-15);
+}
+
+.secondary-red main,
+div.secondary-red {
   --secondary-theme-base: var(--color-2);
   --secondary-theme-tint5: var(--color-2-tint-5);
   --secondary-theme-tint10: var(--color-2-tint-10);
@@ -286,8 +313,8 @@ div.secondary-theme-red {
   --secondary-theme-shade15: var(--color-2-shade-15);
 }
 
-.secondary-theme-orange main,
-div.secondary-theme-orange {
+.secondary-orange main,
+div.secondary-orange {
   --secondary-theme-base: var(--color-3);
   --secondary-theme-tint5: var(--color-3-tint-5);
   --secondary-theme-tint10: var(--color-3-tint-10);
@@ -297,8 +324,8 @@ div.secondary-theme-orange {
   --secondary-theme-shade15: var(--color-3-shade-15);
 }
 
-.secondary-theme-yellow main,
-div.secondary-theme-yellow {
+.secondary-yellow main,
+div.secondary-yellow {
   --secondary-theme-base: var(--color-4);
   --secondary-theme-tint5: var(--color-4-tint-5);
   --secondary-theme-tint10: var(--color-4-tint-10);
@@ -308,8 +335,8 @@ div.secondary-theme-yellow {
   --secondary-theme-shade15: var(--color-4-shade-15);
 }
 
-.secondary-theme-blue main,
-div.secondary-theme-blue {
+.secondary-blue main,
+div.secondary-blue {
   --secondary-theme-base: var(--color-5);
   --secondary-theme-tint5: var(--color-5-tint-5);
   --secondary-theme-tint10: var(--color-5-tint-10);
@@ -319,8 +346,8 @@ div.secondary-theme-blue {
   --secondary-theme-shade15: var(--color-5-shade-15);
 }
 
-.secondary-theme-purple main,
-div.secondary-theme-purple {
+.secondary-purple main,
+div.secondary-purple {
   --secondary-theme-base: var(--color-6);
   --secondary-theme-tint5: var(--color-6-tint-5);
   --secondary-theme-tint10: var(--color-6-tint-10);
@@ -330,8 +357,8 @@ div.secondary-theme-purple {
   --secondary-theme-shade15: var(--color-6-shade-15);
 }
 
-.secondary-theme-pink main,
-div.secondary-theme-pink {
+.secondary-pink main,
+div.secondary-pink {
   --secondary-theme-base: var(--color-7);
   --secondary-theme-tint5: var(--color-7-tint-5);
   --secondary-theme-tint10: var(--color-7-tint-10);
@@ -341,8 +368,8 @@ div.secondary-theme-pink {
   --secondary-theme-shade15: var(--color-7-shade-15);
 }
 
-.secondary-theme-teal main,
-div.secondary-theme-teal {
+.secondary-teal main,
+div.secondary-teal {
   --secondary-theme-base: var(--color-8);
   --secondary-theme-tint5: var(--color-8-tint-5);
   --secondary-theme-tint10: var(--color-8-tint-10);
@@ -540,164 +567,20 @@ main .tabs ul li,
 main .columns ul li {
   position: relative;
   margin-bottom: 16px;
-  list-style-image: var(--bullet-level1-gray);
+  list-style-image: var(--theme-bullet-level1);
   padding-inline-start: 10px;
 }
 
 main .default-content-wrapper ul li ul li,
 main .tabs ul li ul li,
 main .columns ul li ul li {
-  list-style-image: var(--bullet-level2-gray);
+  list-style-image: var(--theme-bullet-level2);
 }
 
 main .default-content-wrapper ul li ul li ul li,
 main .tabs ul li ul li ul li,
 main .columns ul li ul li ul li {
-  list-style-image: var(--bullet-level3-gray);
-}
-
-.theme-green main .default-content-wrapper ul li,
-.theme-green main .tabs ul li,
-.theme-green main .columns ul li {
-  list-style-image: var(--bullet-level1-green);
-}
-
-.theme-red main .default-content-wrapper ul li,
-.theme-red main .tabs ul li,
-.theme-red main .columns ul li {
-  list-style-image: var(--bullet-level1-red);
-}
-
-.theme-orange main .default-content-wrapper ul li,
-.theme-orange main .tabs ul li,
-.theme-orange main .columns ul li {
-  list-style-image: var(--bullet-level1-orange);
-}
-
-.theme-yellow main .default-content-wrapper ul li,
-.theme-yellow main .tabs ul li,
-.theme-yellow main .columns ul li {
-  list-style-image: var(--bullet-level1-yellow);
-}
-
-.theme-blue main .default-content-wrapper ul li,
-.theme-blue main .tabs ul li,
-.theme-blue main .columns ul li {
-  list-style-image: var(--bullet-level1-blue);
-}
-
-.theme-purple main .default-content-wrapper ul li,
-.theme-purple main .tabs ul li,
-.theme-purple main .columns ul li {
-  list-style-image: var(--bullet-level1-purple);
-}
-
-.theme-pink main .default-content-wrapper ul li,
-.theme-pink main .tabs ul li,
-.theme-pink main .columns ul li {
-  list-style-image: var(--bullet-level1-pink);
-}
-
-.theme-teal main .default-content-wrapper ul li,
-.theme-teal main .tabs ul li,
-.theme-teal main .columns ul li {
-  list-style-image: var(--bullet-level1-teal);
-}
-
-.theme-green main .default-content-wrapper ul li ul li,
-.theme-green main .tabs ul li ul li,
-.theme-green main .columns ul li ul li {
-  list-style-image: var(--bullet-level2-green);
-}
-
-.theme-red main .default-content-wrapper ul li ul li,
-.theme-red main .tabs ul li ul li,
-.theme-red main .columns ul li ul li {
-  list-style-image: var(--bullet-level2-red);
-}
-
-.theme-orange main .default-content-wrapper ul li ul li,
-.theme-orange main .tabs ul li ul li,
-.theme-orange main .columns ul li ul li {
-  list-style-image: var(--bullet-level2-orange);
-}
-
-.theme-yellow main .default-content-wrapper ul li ul li,
-.theme-yellow main .tabs ul li ul li,
-.theme-yellow main .columns ul li ul li {
-  list-style-image: var(--bullet-level2-yellow);
-}
-
-.theme-blue main .default-content-wrapper ul li ul li
-.theme-blue main .tabs ul li ul li,
-.theme-blue main .columns ul li ul li {
-  list-style-image: var(--bullet-level2-blue);
-}
-
-.theme-purple main .default-content-wrapper ul li ul li,
-.theme-purple main .tabs ul li ul li,
-.theme-purple main .columns ul li ul li {
-  list-style-image: var(--bullet-level2-purple);
-}
-
-.theme-pink main .default-content-wrapper ul li ul li
-.theme-pink main .tabs ul li ul li,
-.theme-pink main .columns ul li ul li {
-  list-style-image: var(--bullet-level2-pink);
-}
-
-.theme-teal main .default-content-wrapper ul li ul li,
-.theme-teal main .tabs ul li ul li,
-.theme-teal main .columns ul li ul li {
-  list-style-image: var(--bullet-level2-teal);
-}
-
-.theme-green main .default-content-wrapper ul li ul li ul li,
-.theme-green main .tabs ul li ul li ul li,
-.theme-green main .columns ul li ul li ul li {
-  list-style-image: var(--bullet-level3-green);
-}
-
-.theme-red main .default-content-wrapper ul li ul li ul li,
-.theme-red main .tabs ul li ul li ul li,
-.theme-red main .columns ul li ul li ul li {
-  list-style-image: var(--bullet-level3-red);
-}
-
-.theme-orange main .default-content-wrapper ul li ul li ul li,
-.theme-orange main .tabs ul li ul li ul li,
-.theme-orange main .columns ul li ul li ul li {
-  list-style-image: var(--bullet-level3-orange);
-}
-
-.theme-yellow main .default-content-wrapper ul li ul li ul li,
-.theme-yellow main .tabs ul li ul li ul li,
-.theme-yellow main .columns ul li ul li ul li {
-  list-style-image: var(--bullet-level3-yellow);
-}
-
-.theme-blue main .default-content-wrapper ul li ul li ul li,
-.theme-blue main .tabs ul li ul li ul li,
-.theme-blue main .columns ul li ul li ul li {
-  list-style-image: var(--bullet-level3-blue);
-}
-
-.theme-purple main .default-content-wrapper ul li ul li ul li,
-.theme-purple main .tabs ul li ul li ul li,
-.theme-purple main .columns ul li ul li ul li {
-  list-style-image: var(--bullet-level3-purple);
-}
-
-.theme-pink main .default-content-wrapper ul li ul li ul li,
-.theme-pink main .tabs ul li ul li ul li,
-.theme-pink main .columns ul li ul li ul li {
-  list-style-image: var(--bullet-level3-pink);
-}
-
-.theme-teal main .default-content-wrapper ul li ul li ul li,
-.theme-teal main .tabs ul li ul li ul li,
-.theme-teal main .columns ul li ul li ul li {
-  list-style-image: var(--bullet-level3-teal);
+  list-style-image: var(--theme-bullet-level3);
 }
 
 main p:not(:last-of-type) {

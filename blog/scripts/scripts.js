@@ -532,7 +532,12 @@ function decorateTemplateAndTheme() {
   const template = getMetadata('template');
   if (template) document.body.classList.add(toClassName(template));
   const theme = getMetadata('theme');
-  if (theme) document.body.classList.add(toClassName(theme));
+  if (theme) {
+    const themeValues = theme.split(',').map((t) => t.trim());
+    themeValues.forEach((t) => {
+      document.body.classList.add(toClassName(t));
+    });
+  }
 }
 
 /**
@@ -690,19 +695,6 @@ function setCategory() {
   }
 }
 
-function setColorTheme() {
-  const theme = getMetadata('color-theme');
-  const secondaryTheme = getMetadata('secondary-color-theme');
-  if (theme) {
-    const themeName = toClassName(theme);
-    document.body.classList.add(`theme-${themeName}`);
-  }
-  if (secondaryTheme) {
-    const secondaryThemeName = toClassName(secondaryTheme);
-    document.body.classList.add(`secondary-theme-${secondaryThemeName}`);
-  }
-}
-
 /**
  * Build figcaption element
  * @param {Element} pEl The original element to be placed in figcaption.
@@ -851,7 +843,6 @@ export async function decorateMain(main) {
   decorateIcons(main);
   await buildAutoBlocks(main);
   setCategory();
-  setColorTheme();
   decorateSections(main);
   decorateBlocks(main);
   decorateButtons(main);
