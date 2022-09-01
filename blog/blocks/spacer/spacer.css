@@ -1,0 +1,34 @@
+@media (max-width: 599px) {
+    .tablet-spacer,
+    .laptop-spacer,
+    .desktop-spacer {
+        display: none;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+    .laptop-spacer,
+    .desktop-spacer {
+        display: none;
+    }
+}
+
+@media (min-width: 600px) {
+    .mobile-spacer {
+        display: none;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+    .tablet-spacer,
+    .desktop-spacer {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    .tablet-spacer,
+    .laptop-spacer {
+        display: none;
+    }
+}
