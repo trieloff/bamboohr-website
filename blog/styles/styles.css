@@ -100,11 +100,12 @@
   --stylized-font-family: 'Permanent Marker', sans-serif;
 
   /* box-shadow */
-  --box-shadow-transition-default: 0 0 0 0 rgb(0 0 0 / 0);
+  --box-shadow-transition-default: 0 0 0 0 rgb(0 0 0 / 0%);
   --box-shadow-1: 0 2px 5px 0 rgb(0 0 0 / 20%);
   --box-shadow-2: 0 30px 60px -40px rgb(31 38 23 / 50%);
   --box-shadow-3: 0 30px 60px -40px rgb(31 38 23 / 50%), 0 70px 100px -60px rgb(31 38 23 / 25%);
   --box-shadow-4: 0 68px 62px -35px rgb(54 63 58 / 50%);
+
   /* green */
   --box-shadow-1-color1-shade5: 0 2px 5px 0 rgb(29 147 54 / 20%);
   --box-shadow-2-color1-shade5: 0 30px 60px -40px rgb(29 147 54 / 50%);
@@ -114,6 +115,7 @@
   --box-shadow-2-color1-shade10: 0 30px 60px -40px rgb(0 103 59 / 50%);
   --box-shadow-3-color1-shade10: 0 30px 60px -40px rgb(0 103 59 / 50%), 0 70px 100px -60px rgb(0 103 59 / 25%);
   --box-shadow-4-color1-shade10: 0 68px 62px -35px rgb(0 103 59 / 20%);
+
   /* red */
   --box-shadow-1-color2-shade5: 0 2px 5px 0 rgb(206 69 55 / 20%);
   --box-shadow-2-color2-shade5: 0 30px 60px -40px rgb(206 69 55 / 50%);
@@ -123,6 +125,7 @@
   --box-shadow-2-color2-shade10: 0 30px 60px -40px rgb(153 41 46 / 50%);
   --box-shadow-3-color2-shade10: 0 30px 60px -40px rgb(153 41 46 / 20%), 0 70px 100px -60px rgb(153 41 46 / 20%);
   --box-shadow-4-color2-shade10: 0 68px 62px -35px rgb(153 41 46 / 20%);
+
   /* orange */
   --box-shadow-1-color3-shade5: 0 2px 5px 0 rgb(210 105 20 / 20%);
   --box-shadow-2-color3-shade5: 0 30px 60px -40px rgb(210 105 20 / 50%);
@@ -132,6 +135,7 @@
   --box-shadow-2-color3-shade10: 0 30px 60px -40px rgb(170 65 12 / 50%);
   --box-shadow-3-color3-shade10: 0 30px 60px -40px rgb(170 65 12 / 20%), 0 70px 100px -60px rgb(170 65 12 / 20%);
   --box-shadow-4-color3-shade10: 0 68px 62px -35px rgb(170 65 12 / 20%);
+
   /* yellow */
   --box-shadow-1-color4-shade5: 0 2px 5px 0 rgb(219 180 18 / 20%);
   --box-shadow-2-color4-shade5: 0 30px 60px -40px rgb(219 180 18 / 50%);
@@ -141,6 +145,7 @@
   --box-shadow-2-color4-shade10: 0 30px 60px -40px rgb(182 128 11 / 50%);
   --box-shadow-3-color4-shade10: 0 30px 60px -40px rgb(182 128 11 / 20%), 0 70px 100px -60px rgb(182 128 11 / 20%);
   --box-shadow-4-color4-shade10: 0 68px 62px -35px rgb(182 128 11 / 20%);
+
   /* blue */
   --box-shadow-1-color5-shade5: 0 2px 5px 0 rgb(16 135 204 / 20%);
   --box-shadow-2-color5-shade5: 0 30px 60px -40px rgb(16 135 204 / 50%);
@@ -150,6 +155,7 @@
   --box-shadow-2-color5-shade10: 0 30px 60px -40px rgb(9 92 143 / 50%);
   --box-shadow-3-color5-shade10: 0 30px 60px -40px rgb(9 92 143 / 20%), 0 70px 100px -60px rgb(9 92 143 / 20%);
   --box-shadow-4-color5-shade10: 0 68px 62px -35px rgb(9 92 143 / 20%);
+
   /* purple */
   --box-shadow-1-color6-shade5: 0 2px 5px 0 rgb(121 79 205 / 20%);
   --box-shadow-2-color6-shade5: 0 30px 60px -40px rgb(121 79 205 / 50%);
@@ -159,6 +165,7 @@
   --box-shadow-2-color6-shade10: 0 30px 60px -40px rgb(76 50 147 / 50%);
   --box-shadow-3-color6-shade10: 0 30px 60px -40px rgb(76 50 147 / 20%), 0 70px 100px -60px rgb(76 50 147 / 20%);
   --box-shadow-4-color6-shade10: 0 68px 62px -35px rgb(76 50 147 / 20%);
+
   /* pink */
   --box-shadow-1-color7-shade5: 0 2px 5px 0 rgb(204 67 115 / 20%);
   --box-shadow-2-color7-shade5: 0 30px 60px -40px rgb(204 67 115 / 50%);
@@ -168,6 +175,7 @@
   --box-shadow-2-color7-shade10: 0 30px 60px -40px rgb(150 39 93 / 50%);
   --box-shadow-3-color7-shade10: 0 30px 60px -40px rgb(150 39 93 / 20%), 0 70px 100px -60px rgb(150 39 93 / 20%);
   --box-shadow-4-color7-shade10: 0 68px 62px -35px rgb(150 39 93 / 20%);
+
   /* teal */
   --box-shadow-1-color8-shade5: 0 2px 5px 0 rgb(52 185 172 / 20%);
   --box-shadow-2-color8-shade5: 0 30px 60px -40px rgb(52 185 172 / 50%);

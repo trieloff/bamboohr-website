@@ -185,6 +185,7 @@
 
     border-radius: 1rem;
     box-shadow: var(--theme-shadow2-shade5);
+    overflow: hidden;
 }
 
 .cards.icon-inline > .card {
