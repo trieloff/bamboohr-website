@@ -7,8 +7,7 @@ export default function decorate(block) {
 
   // convert "number" classes
   [...block.classList].forEach((name) => {
-    const first = name.split('').at(0);
-    if (!Number.isNaN(+first)) {
+    if (!Number.isNaN(+name.split('').at(0))) {
       block.classList.remove(name);
       block.classList.add(`style-${name}`);
     }
@@ -17,13 +16,18 @@ export default function decorate(block) {
   // empty block
   block.textContent = '';
   cards.forEach((card) => {
+    const icon = card.querySelector('span.icon');
     const image = card.querySelector('picture');
     const title = card.querySelector('h4');
 
-    image.classList.add('image');
-    card.prepend(image);
+    if (image) {
+      image.classList.add('image');
+      card.prepend(image);
+    }
 
-    title.classList.add('title');
+    if (icon) card.prepend(icon);
+
+    if (title) title.classList.add('title');
 
     // clear out empties
     card.querySelectorAll(':scope > p').forEach((empty) => {
