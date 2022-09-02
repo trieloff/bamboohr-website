@@ -1,0 +1,21 @@
+main .back-to-top .back-icon {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 75px;
+  height: 75px;
+  background: url('back-to-top-white-min.png') no-repeat center;
+  background-size: contain;
+  transition: all 0.5s ease-in-out;
+  display: none;
+}
+
+main .back-to-top .back-icon:hover {
+    background-image: url('back-to-top-green-min.png');
+  }
+
+@media (min-width: 1800px) {
+  main .back-to-top .back-icon {
+    right: 165px;
+  }
+}
