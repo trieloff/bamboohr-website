@@ -335,8 +335,11 @@ export function decorateSections($main) {
       const meta = readBlockConfig(sectionMeta);
       const keys = Object.keys(meta);
       keys.forEach((key) => {
-        if (key === 'style') section.classList.add(toClassName(meta.style));
-        else section.dataset[key] = meta[key];
+        const styleValues = meta.style.split(',').map((t) => t.trim());
+        styleValues.forEach((style) => {
+          if (key === 'style') section.classList.add(toClassName(style));
+          else section.dataset[key] = meta[key];
+        });
       });
       sectionMeta.remove();
     }
@@ -529,7 +532,12 @@ function decorateTemplateAndTheme() {
   const template = getMetadata('template');
   if (template) document.body.classList.add(toClassName(template));
   const theme = getMetadata('theme');
-  if (theme) document.body.classList.add(toClassName(theme));
+  if (theme) {
+    const themeValues = theme.split(',').map((t) => t.trim());
+    themeValues.forEach((t) => {
+      document.body.classList.add(toClassName(t));
+    });
+  }
 }
 
 /**
@@ -682,7 +690,9 @@ function setCategory() {
   }
 
   const categoryName = toCategory(category);
-  document.body.classList.add(`category-${categoryName}`);
+  if (category) {
+    document.body.classList.add(`category-${categoryName}`);
+  }
 }
 
 /**
@@ -707,7 +717,7 @@ export function buildFigure(blockEl) {
   const figEl = document.createElement('figure');
   figEl.classList.add('figure');
   // content is picture only, no caption or link
-  if (blockEl.firstElementChild) {
+  if (blockEl?.firstElementChild) {
     if (blockEl.firstElementChild.nodeName === 'PICTURE' || blockEl.firstElementChild.nodeName === 'VIDEO') {
       figEl.append(blockEl.firstElementChild);
     } else if (blockEl.firstElementChild.nodeName === 'P') {
@@ -802,7 +812,8 @@ async function buildAutoBlocks(main) {
       }
     }
 
-    if (template === 'hr-glossary' || template === 'job-description') {
+    if (template === 'hr-glossary' || template === 'job-description'
+      || template === 'resources-guides') {
       buildPageHeader(main, template);
     }
   } catch (error) {
@@ -941,4 +952,35 @@ export function insertNewsletterForm(elem, submitCallback) {
     });
     a.replaceWith(formDiv);
   });
+}
+
+/**
+ * Return whether or not this element has a class that starts with the given string
+ * @param {HtmlElement} elem
+ * @param {string} classNameStart
+ * @returns {boolean}
+ */
+export function hasClassStartsWith(elem, classNameStart) {
+  const classNames = [...elem.classList];
+  let isClassStartsWith = false;
+
+  classNames.forEach((className) => {
+    if (className.startsWith(classNameStart)) {
+      isClassStartsWith = true;
+    }
+  });
+
+  return isClassStartsWith;
+}
+
+/**
+ * Gets array of parameterized values given a class that starts with a name
+ * @param {string} className
+ * @param {string} classNameStart
+ * @return {string[]} Array of remaining items split on the hyphen (-)
+ */
+export function getValuesFromClassName(className, classNameStart) {
+  const params = className.substring(classNameStart.length);
+
+  return params.split('-');
 }

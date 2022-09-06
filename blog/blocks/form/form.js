@@ -1,5 +1,8 @@
-function createSelect(fd) {
+function createSelect(fd, multiSelect = false) {
   const select = document.createElement('select');
+  if (multiSelect === true) {
+    select.setAttribute('multiple', true);
+  }
   select.id = fd.Field;
   if (fd.Mandatory === 'x') {
     select.setAttribute('required', '');
@@ -118,9 +121,12 @@ async function submitForm(form) {
             payload[fe.name] = checkboxGroup.join(', ');
           } else {
             checkboxGroup = [];
-            payload[fe.id] = sanitizeInput(fe.value);
+            payload[fe.name] = sanitizeInput(fe.value);
           }
         }
+      } else if (fe.type === 'select-multiple') {
+        const selected = [...fe.selectedOptions].map((option) => sanitizeInput(option.value));
+        payload[fe.id] = selected.join(', ');
       } else if (fe.id) {
         payload[fe.id] = sanitizeInput(fe.value);
       }
@@ -169,6 +175,10 @@ function createInput(fd) {
   input.type = fd.Type;
   input.id = fd.Field;
 
+  if (fd.Value) {
+    input.value = fd.Value;
+  }
+
   const param = getURLParam(input.id);
   if (param) {
     input.value = param;
@@ -213,17 +223,25 @@ function createTextarea(fd) {
 
 function createLabel(fd) {
   const label = document.createElement('label');
-  label.setAttribute('for', fd.Field);
-  if (fd.Extra) {
-    label.innerHTML = `<a href="${fd.Extra}">${fd.Label}</a>`;
-  } else {
-    label.textContent = fd.Label;
-  }
+  if (fd.Label) {
+    label.setAttribute('for', fd.Field);
+    if (fd.Extra) {
+      label.innerHTML = `<a href="${fd.Extra}">${fd.Label}</a>`;
+    } else {
+      label.textContent = fd.Label;
+    }
 
-  if (fd.Mandatory === 'x') {
-    label.insertAdjacentHTML('beforeend', '<span class="required">*</span>');
+    if (fd.Mandatory === 'x') {
+      label.insertAdjacentHTML('beforeend', '<span class="required">*</span>');
+    }
   }
   return label;
+}
+
+function createDescription(fd) {
+  const desc = document.createElement('p');
+  desc.textContent = fd.Description;
+  return desc;
 }
 
 function applyRules(form, rules) {
@@ -262,25 +280,35 @@ async function createForm(formURL) {
     switch (fd.Type) {
       case 'select':
         fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createDescription(fd));
         fieldWrapper.append(createSelect(fd));
+        break;
+      case 'multiselect':
+        fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createDescription(fd));
+        fieldWrapper.append(createSelect(fd, true));
         break;
       case 'button':
         fieldWrapper.append(createButton(fd));
         break;
       case 'checkbox':
         fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createDescription(fd));
         fieldWrapper.append(createOptions(fd));
         break;
       case 'radio':
         fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createDescription(fd));
         fieldWrapper.append(createOptions(fd));
         break;
       case 'textarea':
         fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createDescription(fd));
         fieldWrapper.append(createTextarea(fd));
         break;
       default:
         fieldWrapper.append(createLabel(fd));
+        fieldWrapper.append(createDescription(fd));
         fieldWrapper.append(createInput(fd));
     }
     form.append(fieldWrapper);

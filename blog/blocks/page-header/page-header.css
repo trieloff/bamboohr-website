@@ -89,3 +89,52 @@ main .page-header .page-header-subtitle {
     max-width: 1200px;
   }
 }
+
+.resources-guides main .page-header  {
+  height: unset;
+  padding: 0;
+}
+
+/* page header share */
+main .page-header-share > a {
+  padding: 9px;
+  border-radius: 18px;
+  display: inline-block;
+  line-height: 0;
+}
+
+main .page-header-share img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+@media (min-width: 900px) {
+  main .page-header-share {
+    position: fixed;
+    right: 0;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main .page-header-share > a {
+    width: 54px;
+    height: 54px;
+    line-height: 54px;
+    box-shadow: var(--box-shadow-1);
+    background-color: var(--color-white);
+    margin: 10px;
+    border-radius: 27px;
+    box-sizing: border-box;
+  }
+
+  main .page-header-share img {
+    display: inline-block;
+    padding: 9px
+  }
+
+  main .page-header-share a:hover {
+    background-color: var(--color-gray-1);
+  } 
+}
