@@ -20,8 +20,8 @@
 .table.comparison table a {
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size);
-  line-height: var(--heading-line-height);
+  font-size: 16px;
+  line-height: 20px;
   font-weight: 700;
   color: var(--color-1-shade-5);
   background: none;
@@ -37,58 +37,51 @@
   overflow-x: auto;
 }
 
-.table table {
-  width: 100%;
-}
-
-.table table, .table th, .table td {
-  padding: 14px;
-  font-size: 12px;
-  line-height: 16px;
-  text-align: left;
-  vertical-align: middle;
-}
-
 .table table thead th {
   font-weight: bold;
 }
 
-.table.data-sync table, .table.data-sync th, .table.data-sync td {
-  border: 2px solid var(--color-gray-4);
-}  
+.table.data-sync th {
+  color: var(--body-color);
+}
 
 .table.comparison table, .table.comparison th, .table.comparison td {
   text-align: center;
   position: relative;
 }
 
-.table.data-sync table {
-  border-collapse: collapse;
+.table.comparison table thead,
+.table.data-sync table thead {
+  background-color: unset;
 }
 
 .table.comparison table {
   border-spacing: 10px 0;
   padding: 0;
   table-layout: fixed;
-}
-
-.table.data-sync table tbody tr:nth-child(odd) {
-  background: var(--color-gray-1);
+  border-collapse: unset;
 }
 
 .table.comparison th, .table.comparison td {
-  background-color: white;
-  font-size: var(--body-font-size-xs);
-  line-height: var(--body-line-height);
+  background-color: var(--color-white);
+  font-size: 14px;
+  line-height: 20px;
   color: var(--color-gray-9);
   font-weight: 400;
+  border: none;
+  padding: 14px;
 }
 
-.table.comparison th {
+.table.comparison table thead th {
   border-radius: 10px 10px 0 0;
   padding-top: 75px;
   padding-bottom: 40px;
   overflow: hidden;
+}
+
+.table.data-sync table thead th {
+  border-color: var(--color-gray-3);
+  background: var(--color-gray-1);
 }
 
 .table.comparison th:first-child {
@@ -151,7 +144,7 @@
     display: unset;
   }
 
-  .table.comparison .table-desktop {
+  .table.comparison table:not(table.table-mobile) {
     display: none;
   }
 }

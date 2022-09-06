@@ -98,7 +98,8 @@ main .listing-facets button {
     color: var(--color-gray-9);
     border: 2px solid var(--color-gray-8);
     font-family: var(--body-font-family);
-    font-size: var(--body-font-size-15);
+    font-size: 15px;
+    line-height: 22px;
     font-weight: 600;
     border-radius: 100px;
     padding: 5px 15px;
@@ -110,7 +111,8 @@ main .listing-facets button {
 
 main .listing-facets h2 {
     font-family: var(--body-font-family);
-    font-size: var(--body-font-size-l);
+    font-size: 20px;
+    line-height: 28px;
     font-weight: 400;
     margin-top: 5px;
     margin-bottom: 20px;
@@ -119,7 +121,7 @@ main .listing-facets h2 {
 main .listing-facets h3 {
     font-family: var(--body-font-family);
     font-size: 16px;
-    line-height: var(--body-line-height-l);
+    line-height: 24px;
     font-weight: 700;
     margin-bottom: 20px;
     text-transform: uppercase;
@@ -142,7 +144,7 @@ main .listing-facets label {
     position: relative;
     font-size: 14px;
     font-weight: 500;
-    line-height: var(--body-line-height-l);
+    line-height: 24px;
     color: var(--color-gray-11);
 }
 
@@ -180,7 +182,7 @@ main .listing-results-count {
 
 main .listing-sortby {
     text-align: center;
-    font-size: var(--body-font-size-s);
+    font-size: 16px;
     position: relative;
     margin-bottom: 54px;
 }
@@ -190,7 +192,8 @@ main .listing-sortby .listing-sort-button {
     display: inline-block;
     color: var(--color-gray-9);
     border: 2px solid var(--color-gray-8);
-    font-size: var(--body-font-size-15);
+    font-size: 15px;
+    line-height: 22px;
     font-weight: 600;
     border-radius: 100px;
     cursor: pointer;
@@ -220,7 +223,7 @@ main .listing-sortby ul {
     padding: 0;
     border-radius: 3px;
     box-shadow: 0 2px 5px 0 var(--overlay-background-color);
-    font-size: var(--body-font-size-m);
+    font-size: 17px;
     min-width: 190px;
 }
 
@@ -245,7 +248,7 @@ main .listing-sortby ul.visible {
 main .listing-results {
     display: flex;
     flex-wrap: wrap;
-    font-size: var(--body-font-size-m);
+    font-size: 17px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -257,14 +260,13 @@ main .listing-results > div {
 }
 
 main .listing-results a.button:any-link {
-    font-size: var(--body-font-size-s);
+    font-size: 16px;
     padding: 4px 15px;
     text-transform: uppercase;
 }
 
-
 main .listing-results h4 {
-    font-size: var(--body-font-size-m);
+    font-size: 17px;
     font-family: var(--heading-font-family);
 }
 
@@ -342,7 +344,7 @@ main .listing-results .listing-card-header h4 a {
 
 main .listing-results .listing-card-cat {
     font-size: 14px;
-    line-height: var(--body-line-height);
+    line-height: 24px;
     color: var(--color-gray-6);
 }
 
@@ -369,7 +371,7 @@ main .listing-results .listing-card-detail a:any-link {
     position: relative;
     font-size: 15px;
     font-weight: 700;
-    line-height: var(--body-line-height);
+    line-height: 22px;
     display: inline-block;
     color: var(--color-1-shade-5);
     text-decoration: none;
@@ -460,16 +462,7 @@ main .listing-results .listing-card-detail a::after {
 
     main .listing-sortby ul {
         top: 40px;
-        right: 0;
-        z-index: 1;
         border: 1px solid #ddd;
-        text-align: left;
-        list-style: none;
-        padding: 0;
-        border-radius: 3px;
-        box-shadow: 0 2px 5px 0 var(--overlay-background-color);
-        font-size: var(--body-font-size-m);
-        min-width: 190px;
     }
 
     main .listing-results > div {

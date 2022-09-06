@@ -122,10 +122,12 @@ export default async function decorate(block) {
         const close = modal.querySelector('.header-search-close');
         close.addEventListener('click', () => {
           modal.classList.remove('visible');
+          document.body.style.overflowY = '';
         });
       } else {
         elem.classList.add('visible');
       }
+      document.body.style.overflowY = 'hidden';
     });
     return (div);
   };
@@ -137,7 +139,10 @@ export default async function decorate(block) {
   });
 
   let collection = 'blog';
-  if (getMetadata('theme') === 'marketplace') collection = 'marketplace';
+  const theme = getMetadata('theme');
+  const template = toClassName(getMetadata('template'));
+  if (theme === 'marketplace') collection = 'marketplace';
+  else if (template === 'resources-guides') collection = 'resources-guides';
 
   if (collection === 'blog') block.append(createSearch());
 }

@@ -41,7 +41,7 @@
   top: 70px;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 70px);
   background-color: var(--body-background-color);
   z-index: 1;
   transition: all 0.1s ease-out;

@@ -15,11 +15,38 @@
     background-color: var(--color-1);
 }
 
+.sg-nav {
+    max-width: 1380px;
+    margin: 0 auto;
+}
+
+.sg-nav-items {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.sg-nav-link {
+    padding: 8px 12px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
 .sg-wrapper {
     margin: 0 auto;
     max-width: 1380px;
     padding: 75px 40px 0;
     text-align: left;
+}
+
+.sg-wrapper--top {
+    padding: 10px 40px 0 40px;
 }
 
 .sg-section-header {
@@ -64,6 +91,24 @@
 
 .sg-outline {
     outline: 1px dotted #16acff;
+}
+
+.sg-list {
+    line-height: 30px;
+    padding-left: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+nav ul li a:hover, nav ul li.active a{
+    background-color: #C8C7C6;
+    color: #666;
+}
+
+nav ul li {
+    margin-right: 3px;
 }
 
 .divider {
@@ -543,4 +588,107 @@
 
 .bhrboxshadow-shadow4-color6-shade10 {
 	box-shadow: var(--box-shadow-4-color6-shade10);
+}
+
+pre {
+    background-color: #f8f8ff;
+    border: 1px solid #dedede;
+    padding: 4px;
+    color: #000;
+    font-size: 13px;
+    line-height: 16px;
+    margin: 10px 0;
+    overflow-x: auto;
+}
+
+.general-modal-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color:rgb(0 0 0 / 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    transition: all 0.1s ease-out;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.general-modal-wrapper.visible {
+    opacity: 1;
+    z-index: 1;
+}
+
+.general-modal main .section > div {
+    padding: 0;
+}
+
+.general-modal main .section img {
+    border-radius: 20px 20px 0 0;
+}
+
+.general-modal {
+    width: 620px;
+    background-color: var(--body-background-color);
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+}
+  
+.general-modal main {
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.general-modal-close {
+    position: absolute;
+    right: -28px;
+    top: -28px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    width: 54px;
+    height: 54px;
+    line-height: 54px;
+    box-shadow: var(--box-shadow-1);
+    background-color: #ccc;
+    margin: 10px;
+    padding: 9px;
+    border-radius: 27px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  
+.general-modal-close::before, .general-modal-close::after {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 21px;
+    height: 3px;
+    background: var(--color-white);
+    transform: rotate(45deg);
+    border-radius: 5px;
+    top: 8px;
+    left: 1px;
+    margin: 18px 16px;
+}
+  
+.general-modal-close::after {
+    transform: rotate(-45deg);
+}
+ 
+.general-modal main .section > div p {
+    color: var(--body-color);
+    margin: 32px 20px;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: left;
+}
+
+.general-modal main h3 {
+    font-style: normal;
+    color: var(--color-black);
 }

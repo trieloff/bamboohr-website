@@ -25,7 +25,7 @@ main .callout.right a.button{
 
 main .callout h3 {
   font-size: 30px;
-  line-height: var(--heading-line-height);
+  line-height: 36px;
   font-weight: 700;
   margin-bottom: 20px;
   color: var(--category-color);
@@ -35,7 +35,7 @@ main .callout h3 {
 main .callout.left h3,
 main .callout.right h3 {
   font-size: 20px;
-  line-height: var(--heading-line-height-m);
+  line-height: 28px;
   font-weight: 600;
   font-style: italic;
   margin: 0 0 30px;

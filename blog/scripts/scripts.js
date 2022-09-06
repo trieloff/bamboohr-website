@@ -335,8 +335,11 @@ export function decorateSections($main) {
       const meta = readBlockConfig(sectionMeta);
       const keys = Object.keys(meta);
       keys.forEach((key) => {
-        if (key === 'style') section.classList.add(toClassName(meta.style));
-        else section.dataset[key] = meta[key];
+        const styleValues = meta.style.split(',').map((t) => t.trim());
+        styleValues.forEach((style) => {
+          if (key === 'style') section.classList.add(toClassName(style));
+          else section.dataset[key] = meta[key];
+        });
       });
       sectionMeta.remove();
     }
@@ -529,7 +532,12 @@ function decorateTemplateAndTheme() {
   const template = getMetadata('template');
   if (template) document.body.classList.add(toClassName(template));
   const theme = getMetadata('theme');
-  if (theme) document.body.classList.add(toClassName(theme));
+  if (theme) {
+    const themeValues = theme.split(',').map((t) => t.trim());
+    themeValues.forEach((t) => {
+      document.body.classList.add(toClassName(t));
+    });
+  }
 }
 
 /**
@@ -629,12 +637,6 @@ document.addEventListener('click', (event) => {
 
 loadPage(document);
 
-function toSlug(name) {
-  return name && typeof name === 'string'
-    ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
-    : '';
-}
-
 export function formatDate(dateString) {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const [year, month, day] = dateString.split('-').map((n) => +n);
@@ -688,7 +690,9 @@ function setCategory() {
   }
 
   const categoryName = toCategory(category);
-  document.body.classList.add(`category-${categoryName}`);
+  if (category) {
+    document.body.classList.add(`category-${categoryName}`);
+  }
 }
 
 /**
@@ -713,93 +717,34 @@ export function buildFigure(blockEl) {
   const figEl = document.createElement('figure');
   figEl.classList.add('figure');
   // content is picture only, no caption or link
-  if (blockEl.firstChild) {
-    if (blockEl.firstChild.nodeName === 'PICTURE' || blockEl.firstChild.nodeName === 'VIDEO') {
-      figEl.append(blockEl.firstChild);
-    } else if (blockEl.firstChild.nodeName === 'P') {
+  if (blockEl?.firstElementChild) {
+    if (blockEl.firstElementChild.nodeName === 'PICTURE' || blockEl.firstElementChild.nodeName === 'VIDEO') {
+      figEl.append(blockEl.firstElementChild);
+    } else if (blockEl.firstElementChild.nodeName === 'P') {
       const pEls = Array.from(blockEl.children);
       pEls.forEach((pEl) => {
-        if (pEl.firstChild) {
-          if (pEl.firstChild.nodeName === 'PICTURE' || pEl.firstChild.nodeName === 'VIDEO') {
-            figEl.append(pEl.firstChild);
-          } else if (pEl.firstChild.nodeName === 'EM') {
+        if (pEl.firstElementChild) {
+          if (pEl.firstElementChild.nodeName === 'PICTURE' || pEl.firstElementChild.nodeName === 'VIDEO') {
+            figEl.append(pEl.firstElementChild);
+          } else if (pEl.firstElementChild.nodeName === 'EM') {
             const figCapEl = buildCaption(pEl);
             figEl.append(figCapEl);
-          } else if (pEl.firstChild.nodeName === 'A') {
+          } else if (pEl.firstElementChild.nodeName === 'A') {
             const picEl = figEl.querySelector('picture');
             if (picEl) {
-              pEl.firstChild.textContent = '';
-              pEl.firstChild.append(picEl);
+              pEl.firstElementChild.textContent = '';
+              pEl.firstElementChild.append(picEl);
             }
-            figEl.prepend(pEl.firstChild);
+            figEl.prepend(pEl.firstElementChild);
           }
         }
       });
     // catch link-only figures (like embed blocks);
-    } else if (blockEl.firstChild.nodeName === 'A') {
-      figEl.append(blockEl.firstChild);
+    } else if (blockEl.firstElementChild.nodeName === 'A') {
+      figEl.append(blockEl.firstElementChild);
     }
   }
   return figEl;
-}
-
-function buildArticleHeader(main) {
-  try {
-    const author = getMetadata('author');
-    const publicationDate = getMetadata('publication-date');
-    const updatedDate = getMetadata('updated-date') || '';
-    const readtime = getMetadata('read-time');
-    const category = getMetadata('category');
-    const h1 = document.querySelector('h1');
-    const picture = document.querySelector('h1 + p > picture');
-    if (author && publicationDate) {
-      document.body.classList.add('blog-post');
-      const section = document.createElement('div');
-      section.append(buildBlock('article-header', [
-        [picture],
-        [`<p>${category}</p><p>${readtime}</p>`],
-        [h1],
-        [`<p>${author}</p><p>${publicationDate}</p><p>${updatedDate}</p>`],
-      ]));
-      main.prepend(section);
-      return (true);
-    }
-  } catch (e) {
-    // something went wrong
-  }
-  return (false);
-}
-
-function buildAuthorContainer(main) {
-  try {
-    if (window.location.pathname.includes('/author/')) {
-      document.body.classList.add('author-page');
-      const container = buildBlock('author-container', []);
-      main.prepend(container);
-      return true;
-    }
-  } catch (e) {
-    // something went wrong
-  }
-  return false;
-}
-
-function buildImageBlocks(main) {
-  let floatCounter = 0;
-  main.querySelectorAll(':scope > div > p > picture, :scope > div > p > a > picture').forEach((picture) => {
-    const up = picture.parentElement;
-    const p = picture.closest('p');
-    const div = p.parentElement;
-    const nextSib = p.nextElementSibling;
-    if ([...up.children].length === 1) {
-      const imgBlock = buildBlock('image', { elems: [up] });
-      if (up.tagName === 'A') {
-        div.insertBefore(imgBlock, p);
-        imgBlock.classList.add(floatCounter % 2 ? 'left' : 'right');
-        floatCounter += 1;
-      } else div.insertBefore(imgBlock, nextSib);
-    }
-  });
 }
 
 export async function lookupPages(pathnames, collection) {
@@ -842,77 +787,6 @@ function loadFooter(footer) {
   loadBlock(footerBlock);
 }
 
-function buildCarousel(main) {
-  const pictures = [...main.querySelectorAll('picture')];
-  if (pictures[0]) {
-    const section = document.createElement('div');
-    const blockStruct = pictures.map((picture) => {
-      picture.parentElement.remove();
-      return [picture];
-    });
-    const block = buildBlock('carousel', blockStruct);
-    section.prepend(block);
-    main.prepend(section);
-  }
-}
-
-function buildHighlightsColumns(main) {
-  const integration = getMetadata('integration-type');
-  const direction = getMetadata('direction-of-data-flow');
-  const trigger = getMetadata('sync-trigger');
-  const frequency = getMetadata('sync-frequency');
-  const columnData = [];
-  if (integration) columnData.push(`<img src="/blog/styles/integration-type.svg" /><h4>Integration Type</h4><p>${integration}</p>`);
-  if (direction) columnData.push(`<img src="/blog/styles/data-flow-direction.svg" /><h4>Direction of Data Flow</h4><p>${direction}</p>`);
-  if (trigger) columnData.push(`<img src="/blog/styles/sync-trigger.svg" /><h4>Sync Trigger</h4><p>${trigger}</p>`);
-  if (frequency) columnData.push(`<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`);
-
-  if (columnData.length > 0) {
-    const columns = buildBlock('columns', [columnData]);
-    columns?.classList?.add('listing-highlights');
-    main.querySelector('.carousel')?.after(columns);
-  }
-}
-
-function setupListingTabs(main) {
-  const container = main.querySelector('.tabs-container');
-  const blockContent = [];
-  if (container) {
-    const tabs = container.querySelectorAll('h2');
-    tabs.forEach((tab) => {
-      const content = document.createElement('div');
-      let sibling = tab.nextElementSibling;
-      while (sibling && ![...tabs].includes(sibling)) {
-        content.append(sibling.cloneNode(true));
-        sibling = sibling.nextElementSibling;
-      }
-      content.prepend(tab);
-      if (content) blockContent.push([content.innerHTML]);
-    });
-    const block = buildBlock('tabs', blockContent);
-    container.innerHTML = block.outerHTML;
-  }
-}
-
-function populateListingDetails(main) {
-  const details = main.querySelector('.details-container');
-  if (details) {
-    const logo = getMetadata('logo');
-    const logoImg = document.createElement('img');
-    logoImg.classList.add('details-logo');
-    logoImg.alt = `${main.querySelector('h1').textContent} logo`;
-    logoImg.src = logo;
-    details.prepend(logoImg);
-    const level = getMetadata('level');
-    if (level && level !== 'BambooHR Product') {
-      const levelBtn = document.createElement('a');
-      levelBtn.id = 'marketplace-details-tier';
-      levelBtn.innerHTML = `<img class="details-badge" title="${level} badge" src="/blog/icons/${toClassName(level)}-badge.svg" />`;
-      logoImg.after(levelBtn);
-    }
-  }
-}
-
 function buildPageHeader(main, type) {
   const section = document.createElement('div');
   const header = buildBlock('page-header', []);
@@ -921,91 +795,26 @@ function buildPageHeader(main, type) {
   main.prepend(section);
 }
 
-function buildListingHeader(main) {
-  const section = document.createElement('div');
-  const h1 = main.querySelector('h1');
-  const category = getMetadata('category');
-  const categories = category.split(',');
-  const listingCategories = categories.reduce((l, cat, i) => {
-    const catVal = i > 0 ? `,${cat}` : cat;
-    return `${l}<a href="/marketplace/listing-category/${toSlug(cat.trim())}">${catVal}</a>`;
-  }, '');
-  section.append(buildBlock('listing-header', [
-    [h1],
-    [`<ul>
-    <li><a href="/marketplace/">Home</a></li>
-    <li>${listingCategories}</li>
-    <li>${h1.textContent}</li>
-    </ul>`],
-  ]));
-  main.prepend(section);
-}
-
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
 // eslint-disable-next-line no-unused-vars
-function buildAutoBlocks(main) {
+async function buildAutoBlocks(main) {
   try {
-    const template = getMetadata('template');
-    if (template === 'marketplace-listing') {
-      buildCarousel(main);
-      buildListingHeader(main);
-      buildHighlightsColumns(main);
-      // build request information button
-      const requestInfo = document.createElement('p');
-      const appName = window.location.pathname.split('/').pop();
-      requestInfo.innerHTML = `<a href="/marketplace/request-information?appName=${appName}" id="marketplace-request-info">Request Information</a>`;
-      const sections = [...main.children].slice(2);
-      if (sections.length < 3) {
-        // if missing, add listing details section
-        const section = document.createElement('div');
-        main.insertBefore(section, sections[0]);
-        sections.unshift(section);
+    let template = toClassName(getMetadata('template'));
+    if (window.location.pathname.startsWith('/blog/') && !template) template = 'blog';
+    const templates = ['blog', 'marketplace-listing'];
+    if (templates.includes(template)) {
+      const mod = await import(`./${template}.js`);
+      if (mod.default) {
+        await mod.default(main);
       }
-      sections[0].append(requestInfo);
-      const classes = ['links', 'tabs', 'details'];
-      sections.forEach((section, i) => section.classList.add(`${classes[i]}-container`));
-      setupListingTabs(main);
-      populateListingDetails(main);
     }
 
-    if (template === 'HR Glossary' || template === 'Job Description') {
+    if (template === 'hr-glossary' || template === 'job-description'
+      || template === 'resources-guides') {
       buildPageHeader(main, template);
-    }
-
-    const isBlog = buildArticleHeader(main);
-    if (isBlog) {
-      buildImageBlocks(main);
-      const related = main.querySelector('.related-posts');
-      if (related) related.parentElement.insertBefore(buildBlock('author', [['']]), related);
-      if (!related.nextElementSibling && !related.parentElement.nextElementSibling) {
-        const section = document.createElement('div');
-        section.append(related);
-        main.append(section);
-      }
-    }
-    const isAuthor = buildAuthorContainer(main);
-    if (isAuthor) {
-      const h1 = document.querySelector('h1');
-      const position = h1.nextElementSibling;
-      position.remove();
-      const pic = document.querySelector('picture')
-        ? document.querySelector('picture').parentElement : null;
-      let bio;
-      if (pic) {
-        bio = pic.nextElementSibling;
-        pic.remove();
-      }
-      const body = bio ? [[h1], [bio]] : [[h1]];
-      document.querySelector('.author-container').append(
-        buildBlock('author-header', body),
-        // buildBlock('featured-articles', 'oy'),
-        buildBlock('article-feed', [
-          ['author', h1.textContent],
-        ]),
-      );
     }
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -1028,11 +837,11 @@ function linkImages(main) {
  * Decorates the main element.
  * @param {Element} main The main element
  */
-export function decorateMain(main) {
+export async function decorateMain(main) {
   linkImages(main);
 
   decorateIcons(main);
-  buildAutoBlocks(main);
+  await buildAutoBlocks(main);
   setCategory();
   decorateSections(main);
   decorateBlocks(main);
@@ -1048,7 +857,7 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
-    decorateMain(main);
+    await decorateMain(main);
     await waitForLCP();
   }
 }
@@ -1086,7 +895,7 @@ export async function loadFragment(path) {
   const main = document.createElement('main');
   if (resp.ok) {
     main.innerHTML = await resp.text();
-    decorateMain(main);
+    await decorateMain(main);
     await loadBlocks(main);
   }
   return (main);
@@ -1143,4 +952,35 @@ export function insertNewsletterForm(elem, submitCallback) {
     });
     a.replaceWith(formDiv);
   });
+}
+
+/**
+ * Return whether or not this element has a class that starts with the given string
+ * @param {HtmlElement} elem
+ * @param {string} classNameStart
+ * @returns {boolean}
+ */
+export function hasClassStartsWith(elem, classNameStart) {
+  const classNames = [...elem.classList];
+  let isClassStartsWith = false;
+
+  classNames.forEach((className) => {
+    if (className.startsWith(classNameStart)) {
+      isClassStartsWith = true;
+    }
+  });
+
+  return isClassStartsWith;
+}
+
+/**
+ * Gets array of parameterized values given a class that starts with a name
+ * @param {string} className
+ * @param {string} classNameStart
+ * @return {string[]} Array of remaining items split on the hyphen (-)
+ */
+export function getValuesFromClassName(className, classNameStart) {
+  const params = className.substring(classNameStart.length);
+
+  return params.split('-');
 }

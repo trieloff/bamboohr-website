@@ -9,6 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+ /* stylelint-disable no-descending-specificity */
 
  :root {
   --color-1-tint-15: #EDFFC8;
@@ -89,46 +90,14 @@
   --body-font-family: 'Red Hat Text', sans-serif;
   --body-font-weight: 400;
   --body-color: var(--color-gray-9);
-  --body-line-height-s: 1.3;
-  --body-line-height: 1.5;
-  --body-line-height-m: 1.6;
-  --body-line-height-l: 1.7;
-  --body-font-size-xxl: 1.75rem; /* 28px */
-  --body-font-size-xl: 1.375rem; /* 22px */
-  --body-font-size-l: 1.25rem; /* 20px */
-  --body-font-size-xm: 1.125rem; /* 18px */
-  --body-font-size-m: 1.063rem; /* 17px */
-  --body-font-size-s: 1rem; /* 16px */
-  --body-font-size-15: 0.9375rem; /* 15px */
-  --body-font-size-xs: 0.875rem; /* 14px */
-  --body-font-size-xxs: 0.75rem; /* 12px */
 
   /* headings */
   --heading-font-weight: 700;
   --heading-color: var(--color-gray-12);
-  --heading-line-height: 1.25;
-  --heading-line-height-m: 1.35;
-  --heading-line-height-l: 1.5;
-  --heading-font-size-xxxl: 5rem; /* 80px */
-  --heading-font-size-xxl: 2.75rem; /* 44px */
-  --heading-font-size-xl: 2.25rem; /* 36px */
-  --heading-font-size-l: 1.875rem; /* 30px */
-  --heading-font-size-m: 1.5rem; /* 24px */
-  --heading-font-size-s: 1.25rem; /* 20px */
-  --heading-font-size-xs: 1.125rem; /* 18px */
-  --heading-font-size: 1rem; /* 16px */
-  --heading-font-size-15: 0.9375rem; /* 15px */
-  --heading-font-size-xxs: 0.875rem; /* 14px */
   --heading-font-family: 'Fira Sans', 'Trebuchet', sans-serif;
 
-
-  /* details */
-  --detail-font-weight: 700;
-  --detail-color: var(--color-gray-10);
-  --detail-line-height: 1.25;
-  --detail-font-size-l: 1.25rem; /* 20px */
-  --detail-font-size-m: 1rem; /* 16px */
-  --detail-font-size-s: 0.75rem; /* 12px */
+  /* stylized font */
+  --stylized-font-family: 'Permanent Marker', sans-serif;
 
   /* box-shadow */
   --box-shadow-1: 0 2px 5px 0 rgb(0 0 0 / 20%);
@@ -159,19 +128,255 @@
   --box-shadow-2-color6-shade10: 0 30px 60px -40px rgb(76 50 147 / 20%);
   --box-shadow-3-color6-shade10: 0 30px 60px -40px rgb(76 50 147 / 20%), 0 70px 100px -60px rgb(76 50 147 / 20%);
   --box-shadow-4-color6-shade10: 0 68px 62px -35px rgb(76 50 147 / 20%);
+
+  /* custom bullet svgs */
+  --bullet-level1-gray: url('/blog/icons/bullets/level1-gray.svg');
+  --bullet-level2-gray: url('/blog/icons/bullets/level2-gray.svg');
+  --bullet-level3-gray: url('/blog/icons/bullets/level3-gray.svg');
+  --bullet-level1-green: url('/blog/icons/bullets/level1-green.svg');
+  --bullet-level2-green: url('/blog/icons/bullets/level2-green.svg');
+  --bullet-level3-green: url('/blog/icons/bullets/level3-green.svg');
+  --bullet-level1-red: url('/blog/icons/bullets/level1-red.svg');
+  --bullet-level2-red: url('/blog/icons/bullets/level2-red.svg');
+  --bullet-level3-red: url('/blog/icons/bullets/level3-red.svg');
+  --bullet-level1-orange: url('/blog/icons/bullets/level1-orange.svg');
+  --bullet-level2-orange: url('/blog/icons/bullets/level2-orange.svg');
+  --bullet-level3-orange: url('/blog/icons/bullets/level3-orange.svg');
+  --bullet-level1-yellow: url('/blog/icons/bullets/level1-yellow.svg');
+  --bullet-level2-yellow: url('/blog/icons/bullets/level2-yellow.svg');
+  --bullet-level3-yellow: url('/blog/icons/bullets/level3-yellow.svg');
+  --bullet-level1-blue: url('/blog/icons/bullets/level1-blue.svg');
+  --bullet-level2-blue: url('/blog/icons/bullets/level2-blue.svg');
+  --bullet-level3-blue: url('/blog/icons/bullets/level3-blue.svg');
+  --bullet-level1-purple: url('/blog/icons/bullets/level1-purple.svg');
+  --bullet-level2-purple: url('/blog/icons/bullets/level2-purple.svg');
+  --bullet-level3-purple: url('/blog/icons/bullets/level3-purple.svg');
+  --bullet-level1-pink: url('/blog/icons/bullets/level1-pink.svg');
+  --bullet-level2-pink: url('/blog/icons/bullets/level2-pink.svg');
+  --bullet-level3-pink: url('/blog/icons/bullets/level3-pink.svg');
+  --bullet-level1-teal: url('/blog/icons/bullets/level1-teal.svg');
+  --bullet-level2-teal: url('/blog/icons/bullets/level2-teal.svg');
+  --bullet-level3-teal: url('/blog/icons/bullets/level3-teal.svg');
+
+  /* Theme variables */
+  --theme-base: var(--color-1);
+  --theme-tint5: var(--color-1-tint-5);
+  --theme-tint10: var(--color-1-tint-10);
+  --theme-tint15: var(--color-1-tint-15);
+  --theme-shade5: var(--color-1-shade-5);
+  --theme-shade10: var(--color-1-shade-10);
+  --theme-shade15: var(--color-1-shade-15);
+  --secondary-theme-base: var(--color-1);
+  --secondary-theme-tint5: var(--color-1-tint-5);
+  --secondary-theme-tint10: var(--color-1-tint-10);
+  --secondary-theme-tint15: var(--color-1-tint-15);
+  --secondary-theme-shade5: var(--color-1-shade-5);
+  --secondary-theme-shade10: var(--color-1-shade-10);
+  --secondary-theme-shade15: var(--color-1-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-gray);
+  --theme-bullet-level2: var(--bullet-level2-gray);
+  --theme-bullet-level3: var(--bullet-level3-gray);
 }
 
-
-@media (min-width: 900px) {
-  :root {
-    --heading-font-size-xxxl: 3.75rem; /* 60px */
-  }
+/* Theme Settings */
+.green main,
+div.green {
+  --theme-base: var(--color-1);
+  --theme-tint5: var(--color-1-tint-5);
+  --theme-tint10: var(--color-1-tint-10);
+  --theme-tint15: var(--color-1-tint-15);
+  --theme-shade5: var(--color-1-shade-5);
+  --theme-shade10: var(--color-1-shade-10);
+  --theme-shade15: var(--color-1-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-green);
+  --theme-bullet-level2: var(--bullet-level2-green);
+  --theme-bullet-level3: var(--bullet-level3-green);
 }
 
-@media (min-width: 1200px) {
-  :root {
-    --heading-font-size-xxxl: 2.75rem; /* 44px */
-  }
+.red main,
+div.red {
+  --theme-base: var(--color-2);
+  --theme-tint5: var(--color-2-tint-5);
+  --theme-tint10: var(--color-2-tint-10);
+  --theme-tint15: var(--color-2-tint-15);
+  --theme-shade5: var(--color-2-shade-5);
+  --theme-shade10: var(--color-2-shade-10);
+  --theme-shade15: var(--color-2-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-red);
+  --theme-bullet-level2: var(--bullet-level2-red);
+  --theme-bullet-level3: var(--bullet-level3-red);
+}
+
+.orange main,
+div.orange {
+  --theme-base: var(--color-3);
+  --theme-tint5: var(--color-3-tint-5);
+  --theme-tint10: var(--color-3-tint-10);
+  --theme-tint15: var(--color-3-tint-15);
+  --theme-shade5: var(--color-3-shade-5);
+  --theme-shade10: var(--color-3-shade-10);
+  --theme-shade15: var(--color-3-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-orange);
+  --theme-bullet-level2: var(--bullet-level2-orange);
+  --theme-bullet-level3: var(--bullet-level3-orange);
+}
+
+.yellow main,
+div.yellow {
+  --theme-base: var(--color-4);
+  --theme-tint5: var(--color-4-tint-5);
+  --theme-tint10: var(--color-4-tint-10);
+  --theme-tint15: var(--color-4-tint-15);
+  --theme-shade5: var(--color-4-shade-5);
+  --theme-shade10: var(--color-4-shade-10);
+  --theme-shade15: var(--color-4-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-yellow);
+  --theme-bullet-level2: var(--bullet-level2-yellow);
+  --theme-bullet-level3: var(--bullet-level3-yellow);
+}
+
+.blue main,
+div.blue {
+  --theme-base: var(--color-5);
+  --theme-tint5: var(--color-5-tint-5);
+  --theme-tint10: var(--color-5-tint-10);
+  --theme-tint15: var(--color-5-tint-15);
+  --theme-shade5: var(--color-5-shade-5);
+  --theme-shade10: var(--color-5-shade-10);
+  --theme-shade15: var(--color-5-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-blue);
+  --theme-bullet-level2: var(--bullet-level2-blue);
+  --theme-bullet-level3: var(--bullet-level3-blue);
+}
+
+.purple main,
+div.purple {
+  --theme-base: var(--color-6);
+  --theme-tint5: var(--color-6-tint-5);
+  --theme-tint10: var(--color-6-tint-10);
+  --theme-tint15: var(--color-6-tint-15);
+  --theme-shade5: var(--color-6-shade-5);
+  --theme-shade10: var(--color-6-shade-10);
+  --theme-shade15: var(--color-6-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-purple);
+  --theme-bullet-level2: var(--bullet-level2-purple);
+  --theme-bullet-level3: var(--bullet-level3-purple);
+}
+
+.pink main,
+div.pink {
+  --theme-base: var(--color-7);
+  --theme-tint5: var(--color-7-tint-5);
+  --theme-tint10: var(--color-7-tint-10);
+  --theme-tint15: var(--color-7-tint-15);
+  --theme-shade5: var(--color-7-shade-5);
+  --theme-shade10: var(--color-7-shade-10);
+  --theme-shade15: var(--color-7-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-pink);
+  --theme-bullet-level2: var(--bullet-level2-pink);
+  --theme-bullet-level3: var(--bullet-level3-pink);
+}
+
+.teal main,
+div.teal {
+  --theme-base: var(--color-8);
+  --theme-tint5: var(--color-8-tint-5);
+  --theme-tint10: var(--color-8-tint-10);
+  --theme-tint15: var(--color-8-tint-15);
+  --theme-shade5: var(--color-8-shade-5);
+  --theme-shade10: var(--color-8-shade-10);
+  --theme-shade15: var(--color-8-shade-15);
+  --theme-bullet-level1: var(--bullet-level1-teal);
+  --theme-bullet-level2: var(--bullet-level2-teal);
+  --theme-bullet-level3: var(--bullet-level3-teal);
+}
+
+.secondary-green main,
+div.secondary-green {
+  --secondary-theme-base: var(--color-1);
+  --secondary-theme-tint5: var(--color-1-tint-5);
+  --secondary-theme-tint10: var(--color-1-tint-10);
+  --secondary-theme-tint15: var(--color-1-tint-15);
+  --secondary-theme-shade5: var(--color-1-shade-5);
+  --secondary-theme-shade10: var(--color-1-shade-10);
+  --secondary-theme-shade15: var(--color-1-shade-15);
+}
+
+.secondary-red main,
+div.secondary-red {
+  --secondary-theme-base: var(--color-2);
+  --secondary-theme-tint5: var(--color-2-tint-5);
+  --secondary-theme-tint10: var(--color-2-tint-10);
+  --secondary-theme-tint15: var(--color-2-tint-15);
+  --secondary-theme-shade5: var(--color-2-shade-5);
+  --secondary-theme-shade10: var(--color-2-shade-10);
+  --secondary-theme-shade15: var(--color-2-shade-15);
+}
+
+.secondary-orange main,
+div.secondary-orange {
+  --secondary-theme-base: var(--color-3);
+  --secondary-theme-tint5: var(--color-3-tint-5);
+  --secondary-theme-tint10: var(--color-3-tint-10);
+  --secondary-theme-tint15: var(--color-3-tint-15);
+  --secondary-theme-shade5: var(--color-3-shade-5);
+  --secondary-theme-shade10: var(--color-3-shade-10);
+  --secondary-theme-shade15: var(--color-3-shade-15);
+}
+
+.secondary-yellow main,
+div.secondary-yellow {
+  --secondary-theme-base: var(--color-4);
+  --secondary-theme-tint5: var(--color-4-tint-5);
+  --secondary-theme-tint10: var(--color-4-tint-10);
+  --secondary-theme-tint15: var(--color-4-tint-15);
+  --secondary-theme-shade5: var(--color-4-shade-5);
+  --secondary-theme-shade10: var(--color-4-shade-10);
+  --secondary-theme-shade15: var(--color-4-shade-15);
+}
+
+.secondary-blue main,
+div.secondary-blue {
+  --secondary-theme-base: var(--color-5);
+  --secondary-theme-tint5: var(--color-5-tint-5);
+  --secondary-theme-tint10: var(--color-5-tint-10);
+  --secondary-theme-tint15: var(--color-5-tint-15);
+  --secondary-theme-shade5: var(--color-5-shade-5);
+  --secondary-theme-shade10: var(--color-5-shade-10);
+  --secondary-theme-shade15: var(--color-5-shade-15);
+}
+
+.secondary-purple main,
+div.secondary-purple {
+  --secondary-theme-base: var(--color-6);
+  --secondary-theme-tint5: var(--color-6-tint-5);
+  --secondary-theme-tint10: var(--color-6-tint-10);
+  --secondary-theme-tint15: var(--color-6-tint-15);
+  --secondary-theme-shade5: var(--color-6-shade-5);
+  --secondary-theme-shade10: var(--color-6-shade-10);
+  --secondary-theme-shade15: var(--color-6-shade-15);
+}
+
+.secondary-pink main,
+div.secondary-pink {
+  --secondary-theme-base: var(--color-7);
+  --secondary-theme-tint5: var(--color-7-tint-5);
+  --secondary-theme-tint10: var(--color-7-tint-10);
+  --secondary-theme-tint15: var(--color-7-tint-15);
+  --secondary-theme-shade5: var(--color-7-shade-5);
+  --secondary-theme-shade10: var(--color-7-shade-10);
+  --secondary-theme-shade15: var(--color-7-shade-15);
+}
+
+.secondary-teal main,
+div.secondary-teal {
+  --secondary-theme-base: var(--color-8);
+  --secondary-theme-tint5: var(--color-8-tint-5);
+  --secondary-theme-tint10: var(--color-8-tint-10);
+  --secondary-theme-tint15: var(--color-8-tint-15);
+  --secondary-theme-shade5: var(--color-8-shade-5);
+  --secondary-theme-shade10: var(--color-8-shade-10);
+  --secondary-theme-shade15: var(--color-8-shade-15);
 }
 
 header {
@@ -186,8 +391,9 @@ img {
 body {
   background-color: var(--body-background-color);
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
-  color: var(--body-color);
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--color-gray-9);
   margin: 0;
   padding: 0;
   display: none;
@@ -209,7 +415,7 @@ a.button:any-link {
 
   /* outline: none; (keep outline for a11n) */
   text-align: center;
-  font-size: var(--heading-font-size-xs);
+  font-size: 18px;
   font-family: var(--heading-font-family);
   font-style: normal;
   font-weight: var(--heading-font-weight);
@@ -230,19 +436,19 @@ a.button:hover, a.button:focus {
 /* small button style */
 a.button.small:any-link,
 main .callout a.button {
-  font-size: var(--heading-font-size-15);
-  line-height: var(--heading-line-height-m);
+  font-size: 15px;
+  line-height: 22px;
   padding: 10px 30px;
 }
 
 a.button.large:any-link {
   padding: 8px 1.2rem;
-  font-size: var(--body-font-size-m);
+  font-size: 17px;
 }
 
 a.button.xlarge:any-link {
   padding: 10px 1.4rem;
-  font-size: var(--body-font-size-l);
+  font-size: 20px;
 }
 
 a.button.primary:any-link {
@@ -296,8 +502,8 @@ a.button.form:any-link {
   padding: 17px 25px;
   width: 100%;
   display: block;
-  font-size: var(--heading-font-size-xs);
-  line-height: var(--heading-line-height);
+  font-size: 18px;
+  line-height: 26px;
 }
 
 a.button > svg {
@@ -317,17 +523,64 @@ a.button > svg > use {
 
 /* headings and body */
 
-main {
-  font-size: var(--body-font-size-m);
-  line-height: var(--body-line-height);
-  margin: 0;
+main,
+main ul li,
+main ol li {
+  font-size: 18px;
+  line-height: 27px;
   font-weight: var(--body-font-weight);
 }
 
+main {
+  margin: 0;
+  color: var(--color-gray-9);
+}
 
 p, dl, ol, ul, pre, blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+main .default-content-wrapper ol {
+  padding-inline-start: 20px;
+}
+
+main .default-content-wrapper ul li,
+main .default-content-wrapper ol li {
+  margin-bottom: 16px;
+  color: var(--color-gray-9);
+}
+
+main .default-content-wrapper ol li {
+  margin-left: 30px;
+}
+
+main .default-content-wrapper ul,
+main .tabs ul,
+main .columns ul {
+  padding-inline-start: 40px;
+  list-style-type: none;
+}
+
+main .default-content-wrapper ul li,
+main .tabs ul li,
+main .columns ul li {
+  position: relative;
+  margin-bottom: 16px;
+  list-style-image: var(--theme-bullet-level1);
+  padding-inline-start: 10px;
+}
+
+main .default-content-wrapper ul li ul li,
+main .tabs ul li ul li,
+main .columns ul li ul li {
+  list-style-image: var(--theme-bullet-level2);
+}
+
+main .default-content-wrapper ul li ul li ul li,
+main .tabs ul li ul li ul li,
+main .columns ul li ul li ul li {
+  list-style-image: var(--theme-bullet-level3);
 }
 
 main p:not(:last-of-type) {
@@ -337,7 +590,6 @@ main p:not(:last-of-type) {
 main h1, main h2, main h3, main h4, main h5, main h6 {
   color: var(--heading-color);
   font-weight: var(--heading-font-weight);
-  line-height: var(--heading-line-height);
   font-family: var(--heading-font-family);
   font-style: italic;
   margin-top: 48px;
@@ -347,16 +599,19 @@ main h1, main h2, main h3, main h4, main h5, main h6 {
 
 main h1 {
   font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-xl);
+  font-size: 36px;
+  line-height: 44px;
   font-style: italic;
 }
 
 main h2 {
-  font-size: var(--heading-font-size-l);
+  font-size: 30px;
+  line-height: 36px;
 }
 
 main h3 {
-  font-size: var(--heading-font-size-m);
+  font-size: 24px;
+  line-height: 36px;
 }
 
 main h4 {
@@ -365,7 +620,8 @@ main h4 {
 }
 
 main h5, main h6 {
-  font-size: var(--heading-font-size-xs);
+  font-size: 18px;
+  line-height: 26px;
 }
 
 main h1.hidden {
@@ -378,7 +634,9 @@ main h1.hidden {
 
 .typ-section-header,
 .marketplace main h1,
-main .article-header h1 {
+.resources-guides main h2,
+main .article-header h1,
+.call-to-action-modal main h3 {
   font-family: var(--heading-font-family);
   font-size: 36px;
   font-weight: 700;
@@ -387,6 +645,7 @@ main .article-header h1 {
 
 .typ-hero-header,
 .typ-display1,
+.resources-guides main h1,
 main .page-header .page-header-title,
 main .page-header .page-header-title h1 {
   font-family: var(--heading-font-family);
@@ -426,7 +685,8 @@ main .page-header .page-header-title h1 {
   line-height: 32px;
 }
 
-.typ-title1 {
+.typ-title1,
+.resources-guides main h3 {
   font-family: var(--heading-font-family);
   font-weight: 700;
   font-size: 26px;
@@ -456,7 +716,8 @@ main .page-header .page-header-title h1 {
   margin: 10px 0 0;
 }
 
-.typ-quote {
+.typ-quote,
+.resources-guides main h5 {
   font-family: var(--body-font-family);
   font-size: 20px;
   font-weight: 500;
@@ -471,7 +732,8 @@ main .page-header .page-header-title h1 {
   margin: 30px 0 0;
 }
 
-.typ-medium-info {
+.typ-medium-info,
+.resources-guides main h4 {
   font-family: var(--body-font-family);
   font-size: 16px;
   font-weight: 700;
@@ -489,7 +751,9 @@ main .page-header .page-header-title h1 {
   text-transform: uppercase;
 }
 
-.typ-table-body {
+.typ-table-body,
+table th,
+table td {
   font-family: var(--body-font-family);
   font-size: 15px;
   line-height: 22px;
@@ -503,7 +767,8 @@ main .page-header .page-header-title h1 {
     margin: 30px 0 0;
   }
 
-  .typ-quote {
+  .typ-quote,
+  .resources-guides main h5 {
     font-size: 26px;
     line-height: 38px;
   }
@@ -512,6 +777,7 @@ main .page-header .page-header-title h1 {
 @media (min-width: 900px) {
   .typ-hero-header,
   .typ-display1,
+  .resources-guides main h1,
   main .page-header .page-header-title,
   main .page-header .page-header-title h1 {
     font-size: 54px;
@@ -522,13 +788,16 @@ main .page-header .page-header-title h1 {
 @media (min-width: 1200px) {
   .typ-section-header,
   .marketplace main h1,
-  main .article-header h1 {
+  .resources-guides main h2,
+  main .article-header h1,
+  .call-to-action-modal main h3 {
     font-size: 48px;
     line-height: 60px;
   }
 
   .typ-hero-header,
   .typ-display1,
+  .resources-guides main h1,
   main .page-header .page-header-title,
   main .page-header .page-header-title h1 {
     font-size: 70px;
@@ -552,11 +821,42 @@ main .page-header .page-header-title h1 {
   }
 }
 
+.resources-guides main h1,
+.resources-guides main h2,
+.resources-guides main h4 {
+  color: var(--theme-shade5);
+}
+
+.resources-guides main h1,
+.resources-guides main h2,
+.resources-guides main h5 {
+  text-align: center;
+}
+
+.resources-guides main h3 {
+  color: var(--color-gray-9);
+}
+
+.resources-guides main h4 {
+  font-style: normal;
+}
+
+.resources-guides main h5 {
+  font-style: normal;
+  color: var(--secondary-theme-shade5);
+}
+
+.resources-guides main .default-content-wrapper a:any-link {
+  font-weight: 700;
+  color: var(--secondary-theme-shade5);
+  background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
+}
+
 /* links */
 
 main a:any-link {
-  color: var(--body-color);
-  line-height: var(--body-line-height);
+  color: var(--color-gray-9);
+  line-height: 1.5;
   text-decoration: none;
 }
 
@@ -627,6 +927,10 @@ main .section > div:empty {
     max-width: 1200px;
   }
 
+  .resources-guides main .section > div {
+    max-width: 1160px;
+  }
+
   main .section > div > :not(div) {
     margin-left: auto;
     margin-right: auto;
@@ -664,6 +968,14 @@ main .default-content-wrapper p a.button:any-link {
 }
 
 /* listing template styles */
+.resources-guides main .toc-wrapper,
+.resources-guides main .default-content-wrapper,
+.resources-guides main .quote-wrapper,
+.resources-guides main .columns-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
 .app-list main .default-content-wrapper {
   padding: 64px;
   text-align: center;
@@ -683,8 +995,8 @@ main .default-content-wrapper p a.button:any-link {
 
 .marketplace-listing .details-container ul li a {
 	font-family: var(--heading-font-family);
-	font-size: var(--heading-font-size);
-	line-height: var(--heading-line-height-m);
+	font-size: 16px;
+	line-height: 24px;
 	font-weight: var(--heading-font-weight);
 	position: relative;
 	display: inline-block;
@@ -698,8 +1010,8 @@ main .default-content-wrapper p a.button:any-link {
 	color: var(--color-1-shade-5);
 	padding: 0;
 	margin: 0;
-	font-size: var(--body-font-size-m);
-	line-height: var(--body-line-height);
+	font-size: 17px;
+  line-height: 24px;
 	font-weight: var(--body-font-weight);
 	font-style: normal;
 	font-family:  var(--body-font-family);
@@ -802,15 +1114,15 @@ main .default-content-wrapper p a.button:any-link {
     width: 1200px;
     max-width: 100%;
     margin: 0 auto;
-    display: grid; 
-    grid-template-columns: 368px calc(100% - 368px); 
+    display: grid;
+    grid-template-columns: 368px calc(100% - 368px);
     grid-template-rows: repeat(3, auto) 1fr;
     /* stylelint-disable-next-line */
-    grid-template-areas: 
+    grid-template-areas:
       'header header'
       'carousel carousel'
       'links tabs'
-      'details tabs'; 
+      'details tabs';
     }
 
   .marketplace-listing .listing-header-container {
@@ -939,18 +1251,12 @@ div.category-color-people-data-analytics {
 
 /* small button style copied here to prevent linting error: no-descending-specificity */
 .marketplace-home main .default-content-wrapper p a.button:any-link {
-  font-size: var(--heading-font-size-15);
-  line-height: var(--heading-line-height-m);
+  font-size: 15px;
+  line-height: 22px;
   padding: 10px 30px;
 
   /* below not part of small button style */
   background-color: var(--color-1-shade-5);
-}
-
-main .default-content-wrapper ol li,
-main .default-content-wrapper ul li {
-  margin-bottom: 16px;
-  margin-left: 30px;
 }
 
 .marketplace-listing .details-container ul {
@@ -959,6 +1265,206 @@ main .default-content-wrapper ul li {
 
 .marketplace-listing .details-container ul li {
 	margin-bottom: 30px;
+  list-style-image: none;
+}
+
+/* Tables */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 20px;
+  border: 2px solid var(--color-gray-3);
+  text-align: left;
+  vertical-align: middle;
+}
+
+table th,
+table tbody th {
+  color: var(--color-white);
+  font-weight: 800;
+}
+
+table td {
+  color: var(--color-gray-9);
+}
+
+table thead {
+  background-color: var(--color-1);
+}
+
+table thead th {
+  border-color: var(--color-1);
+}
+
+table tbody th {
+  background-color: var(--color-gray-8);
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: var(--color-white);
+}
+
+table tbody tr:nth-child(2n) {
+  background-color: var(--color-gray-1);
+}
+
+/* Background styles */
+.resources-guides .section:last-of-type {
+  margin-top: 0;
+}
+
+.gradient-section-1 .image-wrapper:nth-last-of-type(2),
+.gradient-section-2 .image-wrapper:nth-last-of-type(2),
+.gradient-section-3 .image-wrapper:nth-last-of-type(2) {
+  margin: 0;
+  padding: 0;
+  max-width: unset;
+}
+
+.gradient-section-4 .image-wrapper .image {
+  margin: 0;
+}
+
+main .section.gradient-section-4 > div:last-of-type {
+  padding-bottom: 50px;
+}
+
+.purple-1 {
+	background: linear-gradient(207.16deg, var(--color-white) 16.51%, var(--color-5-tint-15) 82.6%);
+}
+
+.purple-2 {
+  background: linear-gradient(207.16deg, var(--color-white) 44.04%, #FEF2FF 82.6%);
+}
+
+.purple-3 {
+	background: linear-gradient(207.16deg, var(--color-white) 29.59%, var(--color-5-tint-15) 82.6%);
+  position: relative;
+}
+
+.purple-4 {
+	background: linear-gradient(207.16deg, var(--color-white) 16.51%, var(--color-6-tint-15) 82.6%);
+}
+
+.gradient-section-4 {
+  position: relative;
+}
+
+.bg-hex-1 img {
+  min-width: 116px;
+  max-width: 478px;
+  width: 34%;
+  top: 13%;
+  left: 0;
+  position: absolute;
+}
+
+.bg-hex-2 img {
+  min-width: 113px;
+  max-width: 469px;
+  right: 7%;
+  top: 170%;
+  width: 49%;
+  position: absolute;
+}
+
+.bg-hex-3 img {
+  min-width: 100px;
+  max-width: 433px;
+  left: 6%;
+  top: 29%;
+  width: 31%;
+  position: absolute;
+}
+
+.bg-hex-4 img {
+  max-width: 621px;
+  left: 0;
+  bottom: 59%;
+  width: 44%;
+  position: absolute;
+}
+
+.bg-hex-5 img {
+  max-width: 280px;
+  right: 3%;
+  bottom: 53%;
+  width: 20%;
+  position: absolute;
+}
+
+.bg-hex-6 img {
+  max-width: 792px;
+  right: 0;
+  bottom: 0;
+  width: 55%;
+  position: absolute;
+}
+
+.bg-section-bottom-1 img {
+  margin-top: 20px;
+  width: 100%;
+  margin-bottom: -8px;
+}
+
+.bg-section-bottom-2 img {
+  transform: scaleX(-1);
+  width: 100%;
+  margin-bottom: -8px;
+}
+
+.bg-section-bottom-3 img {
+  width: 100%;
+  margin-bottom: -8px;
+}
+
+@media screen and (min-width: 600px) {
+  .bg-hex-1 img {
+    top: 11%;
+  }
+
+  .bg-hex-2 img {
+    top: 132%;
+  }
+
+  .bg-hex-3 img {
+    top: 31%;
+  }
+
+  .bg-hex-4 img {
+    bottom: 57%;
+  }
+
+  .bg-hex-5 img {
+    bottom: 47%;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .bg-hex-1 img {
+    top: 20%;
+  }
+
+  .bg-hex-2 img {
+    top: 139%;
+  }
+
+  .bg-hex-3 img {
+    top: 21%;
+  }
+
+  .bg-hex-4 img {
+    bottom: 35%;
+  }
+
+  .bg-hex-5 img {
+    bottom: 35%;
+  }
 }
 
 /* above the fold CSS goes here to squash CLS */

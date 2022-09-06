@@ -4,8 +4,8 @@
 
 .paging-line {
     text-align: right;
-    font-size: var(--heading-font-size-xxs);
-    font-weight: var(--detail-font-weight);
+    font-size: 14px;
+    font-weight: var(--heading-font-weight);
 }
 
 main .paging-wrapper a:any-link {
