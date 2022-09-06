@@ -345,6 +345,10 @@ main .section > .card-wrapper {
     }
 }
 
+.resources-guides .columns.small-icons {
+	margin-top: 60px;
+}
+
 /* Column containers */
 div .column-flex-container {
     display: flex;
@@ -352,6 +356,10 @@ div .column-flex-container {
     justify-content: space-between;
     align-items: center;
     align-content: stretch;
+}
+
+div .column-flex-container.columns-align-start {
+    align-items: flex-start;
 }
 
 div .column-small-icons-container {

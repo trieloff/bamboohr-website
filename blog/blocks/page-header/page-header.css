@@ -90,9 +90,33 @@ main .page-header .page-header-subtitle {
   }
 }
 
+.resources-guides main .section > div.page-header-wrapper {
+  max-width: unset;
+}
+
 .resources-guides main .page-header  {
   height: unset;
   padding: 0;
+}
+
+.resources-guides main .page-header > div {
+  max-width: unset;
+  margin: 0;
+  padding: 0;
+}
+
+.resources-guides main .page-header picture {
+  position: unset;
+}
+
+.resources-guides main .page-header > div.page-header-share {
+  padding-right: 20px;
+}
+
+.resources-guides main .page-header > div.resources-guides-title,
+.resources-guides main .page-header > div.resources-guides-subtitle {
+  max-width: 1160px;
+  margin: 0 auto;
 }
 
 /* page header share */
