@@ -63,8 +63,7 @@ export default function decorate(block) {
         if (col.querySelector('img')) {
           col.classList.add('img-col');
           hasImage = true;
-        }
-        else col.classList.add('non-img-col');
+        } else col.classList.add('non-img-col');
       });
       if (!hasImage) colParent.classList.add('columns-align-start');
 
