@@ -794,7 +794,7 @@ function buildPageHeader(main, type) {
     const picture = document.querySelector('h1 + h5 + p > picture');
     const h1 = document.querySelector('h1');
     const h5 = h1.nextElementSibling.tagName === 'H5' ? h1.nextElementSibling : null;
-    content = [ [picture], [h1], [h5] ].filter((e) => e[0]);
+    content = [[picture], [h1], [h5]].filter((e) => e[0]);
   }
   const header = buildBlock('page-header', content);
   header.setAttribute('data-header-location', toClassName(type));
