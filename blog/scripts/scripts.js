@@ -774,7 +774,12 @@ export async function lookupPages(pathnames, collection) {
 }
 
 function loadHeader(header) {
-  const headerBlock = buildBlock('meganav', '');
+  const queryParams = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  const headerblockName = queryParams.header || 'header';
+
+  const headerBlock = buildBlock(headerblockName, '');
   header.append(headerBlock);
   decorateBlock(headerBlock);
   loadBlock(headerBlock);
