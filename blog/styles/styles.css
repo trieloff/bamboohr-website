@@ -694,6 +694,10 @@ main .page-header .page-header-title h1 {
   margin: 0 0 30px;
 }
 
+.resources-guides main h3 {
+  margin-top: 100px;
+}
+
 .typ-title2,
 .home-more .columns p strong {
   font-family: var(--heading-font-family);
@@ -852,6 +856,18 @@ table td {
   background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
 }
 
+.resources-guides .image.center,
+.resources-guides .center-h3 h3 {
+  text-align: center;
+}
+
+.resources-guides .image-wrapper .image {
+  margin-top: 60px;
+}
+.resources-guides .image-wrapper .image.center {
+  margin-top: 100px;
+}
+
 /* links */
 
 main a:any-link {
@@ -928,7 +944,24 @@ main .section > div:empty {
   }
 
   .resources-guides main .section > div {
+    max-width: 760px;
+  }
+
+  .resources-guides main .section > div.toc-wrapper,
+  .resources-guides main .section > div.quote-wrapper {
+    max-width: 960px;
+  }
+  
+  .resources-guides main .section > div.columns-wrapper.small-width {
+    max-width: 640px;
+  }
+
+  .resources-guides main .section > div.columns-wrapper.full-width {
     max-width: 1160px;
+  }
+
+  .resources-guides main .section > div.image-wrapper.extra-wide {
+    max-width: 1200px;
   }
 
   main .section > div > :not(div) {

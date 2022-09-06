@@ -22,6 +22,8 @@ function findSplitSubType(val) {
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
+  if (block.classList.contains('full-width')) block.parentElement.classList.add('full-width');
+  if (block.classList.contains('small-width')) block.parentElement.classList.add('small-width');
 
   if (block.classList.contains('small-icons')) {
     cols[0].parentElement.classList.add('column-small-icons-container');
@@ -55,11 +57,16 @@ export default function decorate(block) {
       const colParent = cols[0].parentElement;
 
       colParent.classList.add('column-flex-container');
+      let hasImage = false;
       cols.forEach((col, i) => {
         col.classList.add(`column${splitVals[i + extraSplits]}`);
-        if (col.querySelector('img')) col.classList.add('img-col');
+        if (col.querySelector('img')) {
+          col.classList.add('img-col');
+          hasImage = true;
+        }
         else col.classList.add('non-img-col');
       });
+      if (!hasImage) colParent.classList.add('columns-align-start');
 
       if (extraSplits) {
         // Add extra column splits for cases like: 2/5/3/2 or 4/8/4
