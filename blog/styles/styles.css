@@ -694,10 +694,6 @@ main .page-header .page-header-title h1 {
   margin: 0 0 30px;
 }
 
-.resources-guides main h3 {
-  margin-top: 100px;
-}
-
 .typ-title2,
 .home-more .columns p strong {
   font-family: var(--heading-font-family);
@@ -839,6 +835,7 @@ table td {
 
 .resources-guides main h3 {
   color: var(--color-gray-9);
+  margin-top: 100px;
 }
 
 .resources-guides main h4 {
@@ -864,6 +861,7 @@ table td {
 .resources-guides .image-wrapper .image {
   margin-top: 60px;
 }
+
 .resources-guides .image-wrapper .image.center {
   margin-top: 100px;
 }
