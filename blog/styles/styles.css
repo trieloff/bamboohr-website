@@ -835,6 +835,7 @@ table td {
 
 .resources-guides main h3 {
   color: var(--color-gray-9);
+  margin-top: 100px;
 }
 
 .resources-guides main h4 {
@@ -850,6 +851,19 @@ table td {
   font-weight: 700;
   color: var(--secondary-theme-shade5);
   background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
+}
+
+.resources-guides .image.center,
+.resources-guides .center-h3 h3 {
+  text-align: center;
+}
+
+.resources-guides .image-wrapper .image {
+  margin-top: 60px;
+}
+
+.resources-guides .image-wrapper .image.center {
+  margin-top: 100px;
 }
 
 /* links */
@@ -928,7 +942,24 @@ main .section > div:empty {
   }
 
   .resources-guides main .section > div {
+    max-width: 760px;
+  }
+
+  .resources-guides main .section > div.toc-wrapper,
+  .resources-guides main .section > div.quote-wrapper {
+    max-width: 960px;
+  }
+  
+  .resources-guides main .section > div.columns-wrapper.small-width {
+    max-width: 640px;
+  }
+
+  .resources-guides main .section > div.columns-wrapper.full-width {
     max-width: 1160px;
+  }
+
+  .resources-guides main .section > div.image-wrapper.extra-wide {
+    max-width: 1200px;
   }
 
   main .section > div > :not(div) {
