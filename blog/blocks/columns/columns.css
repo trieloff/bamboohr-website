@@ -180,7 +180,7 @@ main .section > .card-wrapper {
     max-width: 1200px;
 }
 
-.cards-wrapper {
+.col-cards-wrapper {
     max-width: 100%;
     width: 100%;
     position: relative;
@@ -285,7 +285,7 @@ main .section > .card-wrapper {
 		flex-wrap: nowrap;
 	}
 
-    .cards-wrapper {
+    .col-cards-wrapper {
         width: calc(50% - 50px);
     }
 }
@@ -338,7 +338,7 @@ main .section > .card-wrapper {
 		line-height: 24px;
 	}
 
-    .cards-wrapper {
+    .col-cards-wrapper {
         max-width: 350px;
         margin-bottom: 20px;
         width: calc(33.33% - 50px);

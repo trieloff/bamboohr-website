@@ -1,6 +1,7 @@
 export default function decorate(block) {
   const cards = block.querySelectorAll(':scope > div > div');
   const cols = block.firstElementChild.children.length;
+  if (block.classList.contains('full-width')) block.parentElement.classList.add('full-width');
 
   // add grid cols class
   block.classList.add(`cols-${cols}`);
