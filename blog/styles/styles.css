@@ -973,9 +973,6 @@ table td {
 
 .resources-guides main h4 {
   font-style: normal;
-}
-
-.resources-guides main h4 {
   margin-top: 0;
 }
 
@@ -1150,7 +1147,7 @@ main .default-content-wrapper a:any-link {
 
 .resources-guides .columns-wrapper a:any-link:not(.button) {
 	color: var(--theme-shade5);
-  background: linear-gradient(rgba(255,0,0,0) 50%, var(--theme-tint10) 0);
+  background: linear-gradient(#f000 50%, var(--theme-tint10) 0%);
 	text-decoration: none;
 }
 
