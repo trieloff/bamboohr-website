@@ -331,15 +331,12 @@ async function buildNavContainer(ref) {
 
   const level1LiElems = [...navRef.querySelectorAll(':scope ul li')];
 
-  await level1LiElems.reduce(async (previous, level1LiElem) => {
-    // To make sure we're sequential
-    await previous;
-
+  const level1Results = await Promise.all(level1LiElems.map(async (level1LiElem) => {
     const level1PathAnchorElem = level1LiElem.querySelector('a');
-    mainNavElem.append(await buildNavLevel1(level1PathAnchorElem));
-  }, Promise.resolve());
+    return buildNavLevel1(level1PathAnchorElem);
+  }));
 
-  mainNavElem.append(buildMobileCta(ref));
+  mainNavElem.append(...level1Results, buildMobileCta(ref));
 
   navContainer.append(mainNavElem);
 
