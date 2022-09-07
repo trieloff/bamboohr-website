@@ -990,7 +990,8 @@ table td {
   color: var(--secondary-theme-shade5);
 }
 
-.resources-guides main .default-content-wrapper a:any-link {
+.resources-guides main .default-content-wrapper a:any-link,
+.resources-guides .columns-wrapper a:any-link:not(.button) {
   font-weight: 700;
   color: var(--secondary-theme-shade5);
   background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
@@ -1142,12 +1143,6 @@ main .section.app-cards-container {
 main .default-content-wrapper a:any-link {
 	color: var(--category-color);
 	background: linear-gradient(#f000 50%, var(--category-bg-color) 50.1%);
-	text-decoration: none;
-}
-
-.resources-guides .columns-wrapper a:any-link:not(.button) {
-	color: var(--theme-shade5);
-  background: linear-gradient(#f000 50%, var(--theme-tint10) 0%);
 	text-decoration: none;
 }
 
