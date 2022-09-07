@@ -967,8 +967,22 @@ table td {
   margin-top: 100px;
 }
 
+.resources-guides main .columns h3 {
+  color: var(--theme-shade5);
+}
+
 .resources-guides main h4 {
   font-style: normal;
+  margin-top: 0;
+}
+
+.resources-guides main .extra-content h4 {
+  margin-top: 80px;
+}
+
+.resources-guides main .extra-content p {
+  font-style: italic;
+  margin-bottom: 80px;
 }
 
 .resources-guides main h5 {
@@ -976,10 +990,15 @@ table td {
   color: var(--secondary-theme-shade5);
 }
 
-.resources-guides main .default-content-wrapper a:any-link {
+.resources-guides main .default-content-wrapper a:any-link,
+.resources-guides .columns-wrapper a:any-link:not(.button) {
   font-weight: 700;
   color: var(--secondary-theme-shade5);
   background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
+}
+
+.resources-guides main .columns:not(.cards) a.button:any-link {
+  background-color: var(--secondary-theme-shade5);
 }
 
 .resources-guides .image.center,
@@ -1083,7 +1102,13 @@ main .section > div:empty {
     max-width: 640px;
   }
 
-  .resources-guides main .section > div.columns-wrapper.full-width {
+  .resources-guides main .section > div.quote-wrapper.normal-width {
+    max-width: 760px;
+  }
+
+  .resources-guides main .section > div.cards-wrapper.full-width,
+  .resources-guides main .section > div.columns-wrapper.full-width,
+  .resources-guides main .section > div.quote-wrapper.full-width {
     max-width: 1160px;
   }
 
@@ -1131,6 +1156,7 @@ main .default-content-wrapper p a.button:any-link {
 .resources-guides main .toc-wrapper,
 .resources-guides main .default-content-wrapper,
 .resources-guides main .quote-wrapper,
+.resources-guides main .cards-wrapper,
 .resources-guides main .columns-wrapper {
   position: relative;
   z-index: 1;

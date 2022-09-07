@@ -34,7 +34,7 @@ export default function decorate(block) {
     cols.forEach((col) => {
       col.classList.add('cards-col');
       const cardWrapper = document.createElement('div');
-      cardWrapper.classList.add('cards-wrapper');
+      cardWrapper.classList.add('col-cards-wrapper');
       col.parentElement.appendChild(cardWrapper);
       cardWrapper.appendChild(col);
       const cardBorder = document.createElement('div');
