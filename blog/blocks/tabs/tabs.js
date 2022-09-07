@@ -1,21 +1,19 @@
-/* TODO: use for skipping click/hover functions  */
-const mediaQuery = window.matchMedia('(max-width: 600px)');
+// mobile vs desktop
+const mediaQueryPhone = window.matchMedia('(max-width: 599px)');
+const mediaQueryTablet = window.matchMedia('(max-width: 1024px)');
 
 function openTab(e) {
   const { target } = e;
   const parent = target.parentNode;
   const selected = target.getAttribute('aria-selected') === 'true';
 
-  // skip for custom styles on small screens
-  if ((parent.classList.contains('style-1')
-    || parent.classList.contains('style-2'))
-    && mediaQuery.matches) return;
+  // no bubbling plz, stopPropagation wasn't working ¯\_(ツ)_/¯
+  if (!target.classList.contains('tabs-title')) return;
 
-  // no bubbling plz
-  if (target.classList.contains('tabs-title') && !selected) {
+  if (!selected) {
     // close all open tabs
-    const openTitles = parent.querySelectorAll('[aria-selected="true"]');
-    const openContent = parent.querySelectorAll('[aria-hidden="false"]');
+    const openTitles = parent.querySelectorAll('.tabs-title[aria-selected="true"]');
+    const openContent = parent.querySelectorAll('.tabs-content[aria-hidden="false"]');
     openTitles.forEach((tab) => tab.setAttribute('aria-selected', false));
     openContent.forEach((tab) => tab.setAttribute('aria-hidden', true));
 
@@ -23,14 +21,49 @@ function openTab(e) {
     target.setAttribute('aria-selected', true);
     const content = parent.querySelector(`[aria-labelledby="${target.id}"]`);
     content.setAttribute('aria-hidden', false);
-  } else if (window.innerWidth < 600) {
+  } else if (mediaQueryPhone.matches && !parent.classList.contains('style-1') && !parent.classList.contains('style-2')) {
     target.setAttribute('aria-selected', false);
     const content = parent.querySelector(`[aria-labelledby="${target.id}"]`);
     content.setAttribute('aria-hidden', true);
   }
 }
 
-function buildDotNav(count) {
+function scrollTab(title) {
+  title.scrollIntoView({ block: 'nearest' });
+}
+
+function getVisibleTab(event) {
+  const { target } = event;
+  const dots = target.querySelectorAll('.tabs-dots-dot');
+  const tabTitles = target.querySelectorAll('.tabs-title');
+  const leftPosition = target.scrollLeft;
+  let leftPadding = 0;
+
+  // skip larger screens that don't do the carousel
+  if (!mediaQueryTablet.matches) return;
+
+  tabTitles.forEach((tabTitle, key) => {
+    const offset = tabTitle.offsetLeft;
+
+    // set first offset (extra padding?)
+    if (key === 0) leftPadding = offset;
+
+    if (offset - leftPadding === leftPosition) {
+      // set active dot
+      dots[key].setAttribute('aria-selected', true);
+
+      // trigger default functionality
+      openTab({ target: tabTitle });
+    } else {
+      // remove active classes
+      dots[key].setAttribute('aria-selected', false);
+    }
+  });
+}
+
+function buildDotNav(block) {
+  // count tabs
+  const count = block.querySelectorAll('.tabs-title').length;
   const dots = document.createElement('ol');
   dots.classList.add('tabs-dots');
 
@@ -38,21 +71,35 @@ function buildDotNav(count) {
   [...new Array(count).fill('').keys()].forEach(() => {
     const dot = document.createElement('li');
     dot.classList.add('tabs-dots-dot');
+    dot.setAttribute('aria-selected', false);
     dots.append(dot);
   });
 
-  return dots;
+  // add dynamic grid number, +1 for dots
+  block.style.gridTemplateRows = `repeat(${count + 1}, min-content)`;
+
+  // attach click listener
+  [...dots.children].forEach((dot, key) => {
+    dot.addEventListener('click', (event) => {
+      const { target } = event;
+      const title = [...block.querySelectorAll('.tabs-title')][key];
+
+      // skip selected
+      if (target.getAttribute('aria-selected') === 'true') return;
+
+      // scroll to title
+      scrollTab(title);
+    });
+  });
+
+  // add dots
+  block.append(dots);
+
+  // attach listener
+  block.addEventListener('scroll', getVisibleTab);
 }
 
 export default function decorate(block) {
-  // check for custom styles
-  let customStyle;
-  block.classList.forEach((value) => {
-    if (value.match(/^style-\d$/)) {
-      customStyle = value;
-    }
-  });
-
   [...block.children].forEach((tab) => {
     // setup tab title
     const title = tab.querySelector('h2');
@@ -61,7 +108,7 @@ export default function decorate(block) {
     let titleElement;
 
     // manipulate for custom styles
-    if (customStyle === 'style-2') {
+    if (block.classList.contains('style-2')) {
       const subtitle = tab.querySelector('h3');
 
       if (anchor) {
@@ -103,20 +150,13 @@ export default function decorate(block) {
     tab.remove();
   });
 
-  if (customStyle === 'style-1' || customStyle === 'style-2') {
-    // count tabs
-    const count = block.querySelectorAll('.tabs-title').length;
-
-    // add dynamic grid number, +1 for dots
-    block.style.gridTemplateRows = `repeat(${count + 1}, min-content)`;
-
-    // add dots
-    block.append(buildDotNav(count));
-  }
+  // add dots
+  if (block.classList.contains('style-1') || block.classList.contains('style-2')) buildDotNav(block);
 
   // if no tabs are open, open first tab by default
   if (!block.querySelector('.tabs-title[aria-selected="true"]')) {
     block.querySelector('.tabs-title').setAttribute('aria-selected', true);
     block.querySelector('.tabs-title + .tabs-content').setAttribute('aria-hidden', false);
+    block.querySelector('.tabs-dots-dot').setAttribute('aria-selected', true);
   }
 }

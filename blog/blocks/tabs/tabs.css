@@ -19,11 +19,11 @@ main .tabs .tabs-title::after {
   transition: all .2s ease-in-out;
 }
 
-main .tabs .tabs-title[aria-selected=true]::after {
+main .tabs .tabs-title[aria-selected="true"]::after {
   transform: rotate(45deg) translateY(-50%);
 }
 
-main .tabs .tabs-content[aria-hidden=true] {
+main .tabs .tabs-content[aria-hidden="true"] {
   display: none;
   visibility: hidden;
 }
@@ -72,17 +72,17 @@ main .tabs .tabs-content[aria-hidden=true] {
     padding-bottom: 20px;
   }
 
-  main .tabs .tabs-title[aria-selected=false] {
+  main .tabs .tabs-title[aria-selected="false"] {
     color: var(--color-gray-5);
     cursor: pointer;
   }
 
-  main .tabs .tabs-title[aria-selected=true] {
-    border-color: var(--color-1);
+  main .tabs .tabs-title[aria-selected="true"] {
+    border-color: var(--theme-base);
   }
 
-  .marketplace-listing .tabs .tabs-title[aria-selected=true] {
-    border-color: var(--color-1-shade-5);
+  .marketplace-listing .tabs .tabs-title[aria-selected="true"] {
+    border-color: var(--theme-shade5);
   }
 
 	.marketplace-listing .tabs-content {
@@ -171,10 +171,7 @@ main .tabs.style-1 .tabs-title[aria-selected="true"] {
 }
 
 main .tabs.style-1 .tabs-title::before {
-  background-color: var(--color-1-shade-5);/* TODO: needs theme replacement */
-  background-image: url('../../styles/checkmark.svg');
-  background-position: 50%;
-  background-repeat: no-repeat;
+  background: var(--theme-shade5) url('../../styles/checkmark.svg') 50% no-repeat;
   border-radius: 50%;
   content: '';
   flex-shrink: 0;
@@ -196,12 +193,12 @@ main .tabs.style-1 .tabs-title::after {
 
 @media (max-width: 1024px) {
   main .tabs.style-1 .tabs-title::before {
-    background-color: var(--color-1); /* TODO: needs theme replacement */
+    background-color: var(--theme-base);
   }
 }
 
 main .tabs.style-1 .tabs-title[aria-selected="true"]::before {
-  background-color: var(--color-1);/* TODO: needs theme replacement */
+  background-color: var(--theme-base);
 }
 
 main .tabs.style-1 .tabs-content {
@@ -254,13 +251,12 @@ main .tabs.style-2 {
 
 main .tabs.style-2 .tabs-title {
   --padding: 2rem;
-  --background: 255, 255, 255;
-  --shadow: rgb(29 147 54 / 50%);/* TODO: needs theme replacement */
+  --background: 255 255 255;/* white in rgb */
 
   background-color: rgb(var(--background) / 0%);
   border-radius: 1rem;
   border-width: 0;
-  box-shadow: 0 0 0 0 var(--shadow);
+  box-shadow: var(--box-shadow-transition-default);
   box-sizing: border-box;
   display: block;
   grid-column: 1;
@@ -274,7 +270,7 @@ main .tabs.style-2 .tabs-title {
 @media (max-width: 1024px) {
   main .tabs.style-2 .tabs-title {
     background-color: rgb(var(--background) / 100%);
-    box-shadow: 0 30px 60px -40px var(--shadow);
+    box-shadow: var(--theme-shadow2-shade5);
     grid-column: revert;
     grid-row: 1;
     width: var(--tab-width);
@@ -287,7 +283,7 @@ main .tabs.style-2 .tabs-title::after {
 
 main .tabs.style-2 .tabs-title[aria-selected="true"] {
   background-color: rgb(var(--background) / 100%);
-  box-shadow: 0 30px 60px -40px var(--shadow);
+  box-shadow: var(--theme-shadow2-shade5);
 }
 
 main .tabs.style-2 .tabs-title .tabs-title-title {
@@ -301,19 +297,16 @@ main .tabs.style-2 .tabs-title .tabs-title-title {
 
 @media (max-width: 1024px) {
   main .tabs.style-2 .tabs-title .tabs-title-title {
-    color: var(--color-1-shade-5); /* TODO: needs theme replacement */
+    color: var(--theme-shade5);
   }
 }
 
 main .tabs.style-2 .tabs-title[aria-selected="true"] .tabs-title-title {
-  color: var(--color-1-shade-5);/* TODO: needs theme replacement */
+  color: var(--theme-shade5);
 }
 
 main .tabs.style-2 .tabs-title .tabs-title-subtitle {
-  align-items: center;
   color: var(--color-gray-6);
-  column-gap: .5rem;
-  display: flex;
   font-family: var(--body-font-family);
   font-size: 1.125rem;
   font-weight: 400;
@@ -323,23 +316,22 @@ main .tabs.style-2 .tabs-title .tabs-title-subtitle {
 
 @media (max-width: 1024px) {
   main .tabs.style-2 .tabs-title .tabs-title-subtitle {
-    color: var(--color-1-shade-15); /* TODO: needs theme replacement */
+    color: var(--theme-shade15);
   }
 }
 
 main .tabs.style-2 .tabs-title[aria-selected="true"] .tabs-title-subtitle {
-  color: var(--color-1-shade-15);/* TODO: needs theme replacement */
+  color: var(--theme-shade15);
+  vertical-align: middle;
 }
 
 main .tabs.style-2 .tabs-title .tabs-title-subtitle::after {
-  background-color: currentcolor;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: 100%;
+  background: currentcolor;
   content: '';
-  display: block;
+  display: inline-block;
   flex-shrink: 0;
   height: .8125rem;
+  margin-left: .5rem;
   mask-image: url('../../styles/caret-right.svg');
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-image: url('../../styles/caret-right.svg');
@@ -347,6 +339,7 @@ main .tabs.style-2 .tabs-title .tabs-title-subtitle::after {
   transition-duration: .25s;
   transition-property: background-color, opacity;
   transition-timing-function: ease-in-out;
+  vertical-align: middle;/* TODO: replace with flex on button? */
   width: .5rem;
 }
 
@@ -410,7 +403,7 @@ main .tabs-dots .tabs-dots-dot {
 }
 
 main .tabs-dots .tabs-dots-dot::before {
-  background-color: var(--color-1-shade-5);/* TODO: needs theme replacement */
+  background-color: var(--theme-shade5);
   border-radius: 50%;
   content: '';
   display: block;
@@ -420,7 +413,11 @@ main .tabs-dots .tabs-dots-dot::before {
   width: 1rem;
 }
 
-/* TODO: attach to JS event to detect tab in viewport? */
-main .tabs-dots .tabs-dots-dot.tabs-dots-dot-active::before {
-  background-color: var(--color-1-shade-10);/* TODO: needs theme replacement */
+main .tabs-dots .tabs-dots-dot[aria-selected="true"]::before {
+  background-color: var(--theme-base);
+}
+
+/* TODO: temp to be removed? */
+main .section > .tabs-wrapper {
+    max-width: 1160px;
 }
