@@ -7,7 +7,7 @@ export default function decorate(block) {
 
   const title = document.createElement('div');
   title.className = 'toc-title';
-  title.textContent = 'Table of Content';
+  title.textContent = 'Table of Contents';
   block.textContent = '';
   block.append(title);
 
