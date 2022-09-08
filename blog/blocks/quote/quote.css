@@ -1,4 +1,4 @@
-main .quote {
+main .quote:not(.source) {
 	font-family: var(--heading-font-family);
 	background: var(--category-quote-bg);
   	background-clip: text;
@@ -58,9 +58,17 @@ main .quote.full > div {
 	margin-top: 1.25rem;
 }
 
+main .quote.full.source > div {
+	margin-top: 0;
+}
+
 main .quote.full .image,
 main .quote.full .content {
 	flex: 1 0 0;
+}
+
+main .quote.full.source .image {
+	margin-bottom: 0;
 }
 
 @media (max-width: 1024px) {
@@ -101,28 +109,31 @@ main .quote.full {
 	-moz-background-clip: revert;
 	background-image: none;
 	border: 0;
-	font-family: var(--body-font-family);
-	font-size: 1.125rem;
 	font-style: normal;
-	font-weight: 500;
-	line-height: 1.5;
 	margin: 0;
 	padding: 0;
-	text-align: center;
 	-webkit-text-fill-color: revert;
 	width: auto;
+}
+
+main .quote.full:not(.source) {
+	font-family: var(--body-font-family);
+	font-size: 1.125rem;
+	font-weight: 500;
+	line-height: 1.5;
+	text-align: center;
 	color: var(--theme-shade5)
 }
 
 @media (min-width: 600px) {
-	main .quote.full {
+	main .quote.full:not(.source) {
 		font-size: 1.375rem;
 		line-height: 1.7272;
 	}
 }
 
 @media (min-width: 1025px) {
-	main .quote.full {
+	main .quote.full:not(.source) {
 		font-size: 1.625rem;
 		line-height: 1.4615;
 		text-align: revert;
@@ -131,6 +142,10 @@ main .quote.full {
 
 main .quote.full [data-align="center"] {
 	text-align: center;
+}
+
+main .quote.full [data-align="right"] {
+	text-align: right;
 }
 
 main .quote.full [data-align="center"] picture {
