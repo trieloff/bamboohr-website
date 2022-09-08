@@ -7,6 +7,7 @@ import {
 const LEVEL_1_NAV_SELECTOR = '.header-nav-level-1';
 const EXPANDED_CSS_CLASS = 'header-level-1-expanded';
 const LINK_ANIMATION_CSS_CLASS = 'header-link-border-animation';
+const MEGANAV_LOCATION = '/meganav';
 
 function createElem(cssClass, elemType = 'div') {
   const elem = document.createElement(elemType);
@@ -351,7 +352,7 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // fetch nav content
-  const navPath = getMetadata('nav') || '/drafts/hoodoo/nav/index';
+  const navPath = getMetadata('nav') || MEGANAV_LOCATION;
 
   const resp = await fetch(`${navPath}.plain.html`);
   let html = await resp.text();
