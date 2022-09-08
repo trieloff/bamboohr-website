@@ -7,7 +7,7 @@ import {
 const LEVEL_1_NAV_SELECTOR = '.header-nav-level-1';
 const EXPANDED_CSS_CLASS = 'header-level-1-expanded';
 const LINK_ANIMATION_CSS_CLASS = 'header-link-border-animation';
-const MEGANAV_LOCATION = '/meganav';
+const MEGANAV_LOCATION = '/meganav/index';
 
 function createElem(cssClass, elemType = 'div') {
   const elem = document.createElement(elemType);
