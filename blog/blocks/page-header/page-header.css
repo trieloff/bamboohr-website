@@ -142,6 +142,10 @@ main .page-header-share img {
     flex-direction: column;
   }
 
+  .resources-guides main .page-header-share {
+    top: 139px;
+  }
+
   main .page-header-share > a {
     width: 54px;
     height: 54px;

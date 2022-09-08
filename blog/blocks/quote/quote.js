@@ -4,7 +4,10 @@ export default function decorate(block) {
   if (block.classList.contains('normal-width')) block.parentElement.classList.add('normal-width');
 
   // Adding image class to block children
-  [...block.children].forEach((row) => [...row.children].forEach((cell) => cell.classList.add(cell.querySelector('img') ? 'image' : 'content')));
+  [...block.children].forEach((row) => {
+    [...row.children].forEach((cell) => cell.classList.add(cell.querySelector('img') ? 'image' : 'content'));
+    if (row.innerText.includes('Source:')) block.classList.add('source');
+  });
 
   // if byline
   if (byline) {

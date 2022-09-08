@@ -774,10 +774,14 @@ export async function lookupPages(pathnames, collection) {
 }
 
 function loadHeader(header) {
-  const queryParams = new Proxy(new URLSearchParams(window.location.search), {
-    get: (searchParams, prop) => searchParams.get(prop),
-  });
-  const headerblockName = queryParams.header || 'header';
+  let headerblockName = 'header';
+  if (window.location.pathname.startsWith('/resources/guides/')) headerblockName = 'meganav';
+  else {
+    const queryParams = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    if (queryParams.header) headerblockName = queryParams.header;
+  }
 
   const headerBlock = buildBlock(headerblockName, '');
   header.append(headerBlock);

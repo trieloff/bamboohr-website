@@ -508,8 +508,12 @@ div.secondary-teal {
   --secondary-theme-shade15: var(--color-8-shade-15);
 }
 
-header {
+.header-wrapper {
   height: 70px;
+}
+
+.meganav-wrapper {
+  height: 109px;
 }
 
 img {
@@ -1093,11 +1097,6 @@ main .section > div:empty {
     max-width: 760px;
   }
 
-  .resources-guides main .section > div.toc-wrapper,
-  .resources-guides main .section > div.quote-wrapper {
-    max-width: 960px;
-  }
-  
   .resources-guides main .section > div.columns-wrapper.small-width {
     max-width: 640px;
   }
@@ -1106,8 +1105,15 @@ main .section > div:empty {
     max-width: 760px;
   }
 
+  .resources-guides main .section > div.toc-wrapper,
+  .resources-guides main .section > div.quote-wrapper,
+  .resources-guides main .section > div.image-wrapper.med-width {
+    max-width: 960px;
+  }
+
   .resources-guides main .section > div.cards-wrapper.full-width,
   .resources-guides main .section > div.columns-wrapper.full-width,
+  .resources-guides main .section > div.image-wrapper.full-width,
   .resources-guides main .section > div.quote-wrapper.full-width {
     max-width: 1160px;
   }
@@ -1157,7 +1163,9 @@ main .default-content-wrapper p a.button:any-link {
 .resources-guides main .default-content-wrapper,
 .resources-guides main .quote-wrapper,
 .resources-guides main .cards-wrapper,
-.resources-guides main .columns-wrapper {
+.resources-guides main .columns-wrapper,
+.resources-guides main .image-wrapper:not(.background-image),
+.resources-guides main .page-header-wrapper {
   position: relative;
   z-index: 1;
 }
@@ -1615,7 +1623,7 @@ main .section.gradient-section-4 > div:last-of-type {
   }
 
   .bg-hex-2 img {
-    top: 132%;
+    top: 216%;
   }
 
   .bg-hex-3 img {
@@ -1637,7 +1645,7 @@ main .section.gradient-section-4 > div:last-of-type {
   }
 
   .bg-hex-2 img {
-    top: 139%;
+    top: 216%;
   }
 
   .bg-hex-3 img {
