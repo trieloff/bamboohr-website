@@ -562,6 +562,10 @@ a.button:any-link {
   display: inline-block;
 }
 
+.live-demo-webinars main .columns a.button:any-link {
+	background-image: linear-gradient(90deg, var(--color-1-tint-5) 0%, var(--color-1-shade-5) 100%);
+}
+
 a.button:hover, a.button:focus {
   background-color: var(--color-1);
 }
