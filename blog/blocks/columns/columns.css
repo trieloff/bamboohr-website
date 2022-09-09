@@ -349,6 +349,10 @@ main .section > .card-wrapper {
 	margin-top: 60px;
 }
 
+main .section p.button-container.left {
+    text-align: left;
+}
+
 /* Column containers */
 div .column-flex-container {
     display: flex;
