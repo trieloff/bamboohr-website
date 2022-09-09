@@ -4,6 +4,7 @@ main .carousel-container {
 
 main .carousel-wrapper {
   padding-bottom: 128px;
+  position: relative;
   max-width: unset;
 }
 
@@ -19,13 +20,21 @@ main .carousel {
   background-color: var(--color-white);
 }
 
+main .carousel *,
+main .carousel *::before,
+main .carousel *::after,
+main .carousel + .carousel-buttons *,
+main .carousel + .carousel-buttons *::before,
+main .carousel + .carousel-buttons *::after {
+    box-sizing: border-box;
+}
+
 main .carousel picture {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  box-sizing: border-box;
 }
 
 main .carousel img {
@@ -33,7 +42,7 @@ main .carousel img {
   width: 100%;
   height: 100%;
 }
-  
+
 main .carousel > div {
   width: 100%;
   flex-shrink: 0;
@@ -89,10 +98,269 @@ main .carousel-buttons button.selected {
     color: unset;
     align-items: center;
   }
-  
+
   main .carousel div.carousel-text {
     margin: unset;
     padding: 32px;
     text-align: left;
   }
+}
+
+/* undo defaults for new styles, set some defaults */
+main .carousel.style-1,
+main .carousel.style-2 {
+    background-color: unset;
+    border-radius: unset;
+    box-shadow: unset;
+}
+
+main .carousel.style-1 > div,
+main .carousel.style-2 > div {
+    background-image: unset;
+    color: unset;
+    height: unset;
+    max-height: unset;
+}
+
+main .carousel.style-1 .carousel-image,
+main .carousel.style-2 .carousel-image {
+    /* no styles... yet */
+}
+
+main .carousel.style-1 picture,
+main .carousel.style-2 picture {
+    position: unset;
+}
+
+main .carousel.style-1 .carousel-text,
+main .carousel.style-2 .carousel-text {
+    color: var(--color-gray-10);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--body-font-family);
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: var(--body-font-weight);
+    gap: 1rem;
+    line-height: 1.5;
+    padding: unset;
+    text-align: unset;
+    width: unset;
+}
+
+main .carousel.style-1 + .carousel-buttons,
+main .carousel.style-2 + .carousel-buttons {
+    gap: calc(var(--gap) - var(--size));
+}
+
+main .carousel.style-1 + .carousel-buttons button,
+main .carousel.style-2 + .carousel-buttons button {
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    height: auto;
+    margin: 0;
+    padding: calc(var(--size) / 2);
+    width: auto;
+}
+
+main .carousel.style-1 + .carousel-buttons button::after,
+main .carousel.style-2 + .carousel-buttons button::after {
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: var(--size);
+    transition-duration: .25s;
+    transition-property: background-color, border-color;
+    transition-timing-function: ease-in-out;
+    width: var(--size);
+}
+
+/* Style 1 */
+main .carousel.style-1 {
+    --gap: 2.5rem;
+
+    gap: var(--gap);
+    max-width: 22.5rem;
+}
+
+main .carousel.style-1 > div {
+    padding-left: var(--gap);
+    padding-top: .5rem;
+    position: relative;
+}
+
+main .carousel.style-1 span.icon {
+    --image-height: auto;
+
+    align-items: end;
+    color: var(--theme-shade5);
+    display: flex;
+    height: var(--image-height);
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: color .25s ease-in-out;
+}
+
+main .carousel.style-1 h2 {
+    color: var(--theme-shade5);
+    font-family: var(--heading-font-family);
+    font-size: 1.625rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.1538;
+    margin: 0;
+}
+
+main .carousel.style-1 p {
+    margin: -.6875rem 0 0;
+}
+
+main .carousel.style-1 p:empty {
+    display: none;
+}
+
+main .carousel.style-1 .button-container {
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+main .carousel.style-1 a.button:any-link {
+    background-color: revert;
+    border-radius: revert;
+    color: var(--theme-shade5);
+    font-family: var(--body-font-family);
+    font-style: var(--heading-font-weight);
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    white-space: revert;
+    font-size: 1.125rem;
+    vertical-align: middle;
+}
+
+main .carousel.style-1 a.button::after {
+    background-color: currentcolor;
+    content: '';
+    display: inline-block;
+    height: .8125rem;
+    margin-left: .5rem;
+    mask-image: url('../../styles/caret-right.svg');
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-mask-image: url('../../styles/caret-right.svg');
+    vertical-align: middle;/* TODO: replace with flex on button? */
+    width: .5rem;
+}
+
+main .carousel.style-1 + .carousel-buttons {
+    --gap: 1.25rem;
+    --size: .75rem;
+
+    padding-left: 5.5rem;
+    justify-content: start;
+}
+
+main .carousel.style-1 + .carousel-buttons button {
+    /* no styles... yet */
+}
+
+main .carousel.style-1 + .carousel-buttons button::after {
+    background-color: transparent;
+    border: 2px solid var(--theme-base);
+}
+
+main .carousel.style-1 + .carousel-buttons button.selected::after {
+    border-color: var(--theme-shade5);
+    background-color: var(--theme-shade5);
+}
+
+/* Style 2 - desktop columns, table/mobile carousel */
+main .carousel.style-2 {
+    gap: 5rem;
+}
+
+@media (min-width: 900px) {
+    main .carousel.style-2 {
+        flex-direction: column;
+        overflow: visible;
+    }
+}
+
+main .carousel.style-2 > div {
+    flex-direction: column;
+    gap: 1.875rem;
+}
+
+@media (min-width: 900px) {
+    main .carousel.style-2 > div {
+        flex-direction: row-reverse;
+        gap: 9.5rem;
+    }
+}
+
+main .carousel.style-2 .carousel-image {
+    /* no styles... yet */
+}
+
+@media (min-width: 900px) {
+    main .carousel.style-2 .carousel-image {
+        width: 430px;
+    }
+}
+
+main .carousel.style-2 .carousel-text {
+    /* no styles... yet */
+}
+
+@media (min-width: 900px) {
+    main .carousel.style-2 .carousel-text {
+        width: 610px;
+    }
+}
+
+main .carousel.style-2 h2 {
+    font-family: var(--heading-font-family);
+    font-style: normal;
+    font-weight: var(--heading-font-weight);
+    font-size: 1.625rem;
+    line-height: 1.1539;
+    color: var(--color-gray-12);
+    margin: 0;
+}
+
+main .carousel.style-2 p {
+    margin: 0;
+    color: var(--color-gray-10);
+}
+
+main .carousel.style-2 + .carousel-buttons {
+    --gap: 1.875rem;
+    --size: 1.25rem;
+}
+
+main .carousel.style-2 + .carousel-buttons button {
+    /* no styles... yet */
+}
+@media (min-width: 900px) {
+    main .carousel.style-2 + .carousel-buttons button {
+        display: none;
+    }
+}
+
+main .carousel.style-2 + .carousel-buttons button::after {
+    background-color: var(--theme-tint5);
+}
+
+main .carousel.style-2 + .carousel-buttons button.selected::after {
+    background-color: var(--theme-shade10);
+}
+
+/* TODO: remove me? */
+main .section > div.carousel-wrapper {
+    max-width: 1160px;
 }
