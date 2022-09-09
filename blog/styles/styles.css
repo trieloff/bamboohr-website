@@ -1305,7 +1305,7 @@ main .default-content-wrapper p a.button:any-link {
 
 .live-demo-webinars {
   background-color: unset;
-  background-image: url(./hex-top-live-demo.svg);
+  background-image: url('./hex-top-live-demo.svg');
   background-size: contain;
   background-position: top, left;
   background-repeat: no-repeat;
