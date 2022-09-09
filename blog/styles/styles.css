@@ -1303,6 +1303,14 @@ main .default-content-wrapper p a.button:any-link {
   background-size: contain;
 }
 
+.live-demo-webinars {
+  background-color: unset;
+  background-image: url(./hex-top-live-demo.svg);
+  background-size: contain;
+  background-position: top, left;
+  background-repeat: no-repeat;
+}
+
 @media (min-width: 1000px) {
   .marketplace-listing main {
     width: 1200px;

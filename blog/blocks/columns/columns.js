@@ -64,6 +64,11 @@ export default function decorate(block) {
           col.classList.add('img-col');
           hasImage = true;
         } else col.classList.add('non-img-col');
+        const button = col.querySelector('a.button');
+        if (button) {
+          button.classList.add('small');
+          button.parentElement.classList.add('left');
+        }
       });
       if (!hasImage) colParent.classList.add('columns-align-start');
 
