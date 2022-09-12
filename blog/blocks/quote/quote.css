@@ -109,20 +109,17 @@ main .quote.full {
 	-moz-background-clip: revert;
 	background-image: none;
 	border: 0;
-	font-style: normal;
-	margin: 0;
-	padding: 0;
-	-webkit-text-fill-color: revert;
-	width: auto;
-}
-
-main .quote.full {
 	font-family: var(--body-font-family);
 	font-size: 1.125rem;
+	font-style: normal;
 	font-weight: 500;
 	line-height: 1.5;
+	margin: 0;
+	padding: 0;
 	text-align: center;
-	color: var(--theme-shade5)
+	-webkit-text-fill-color: revert;
+	width: auto;
+	color: var(--theme-shade5);
 }
 
 @media (min-width: 600px) {
