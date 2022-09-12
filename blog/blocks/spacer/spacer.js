@@ -19,7 +19,7 @@ export default function decorate(block) {
   };
   let simpleVal = '';
   options.forEach((o) => {
-    if (o.startsWith('margin-') ) marginVals.push(o);
+    if (o.startsWith('margin-')) marginVals.push(o);
     else {
       const val = o.split('-');
       if (val.length === 2) [, values[val[0]]] = val;
@@ -70,15 +70,13 @@ export default function decorate(block) {
   }
 
   marginVals.forEach((mv) => {
-    if (mv.startsWith('margin-') ) {
+    if (mv.startsWith('margin-')) {
       const marginParams = getValuesFromClassName(mv, 'margin-');
       let sideParamIdx = 0;
-      let columnParamIdx = 2;
       let marginValue = 0;
 
       if (marginParams[0] === 'negative') {
         sideParamIdx = 1;
-        columnParamIdx = 3;
 
         if (marginParams.length > 2) {
           marginValue = marginParams[2] * -1;

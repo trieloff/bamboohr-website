@@ -107,7 +107,7 @@ export default function decorate(block) {
 
         // If the class includes an `on` param, then we can specify which column to target
         if (marginParams[columnParamIdx] != null && marginParams[columnParamIdx] === 'on') {
-          const columnIdx = parseInt(marginParams[columnParamIdx + 1]) - 1;
+          const columnIdx = parseInt(marginParams[columnParamIdx + 1], 10) - 1;
           colToUse = cols[columnIdx];
         } else colToUse = cols.find((col) => col.querySelector('img'));
 
