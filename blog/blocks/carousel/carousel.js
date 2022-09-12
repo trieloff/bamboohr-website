@@ -4,16 +4,45 @@ function selectButton(block, button, row, buttons) {
   button.classList.add('selected');
 }
 
+function getVisibleSlide(event) {
+  const { target } = event;
+  const buttons = target.nextElementSibling.querySelectorAll('button');
+  const slides = target.querySelectorAll(':scope > div');
+  const leftPosition = target.scrollLeft;
+  let leftPadding = 0;
+
+  slides.forEach((slide, key) => {
+    const offset = slide.offsetLeft;
+
+    // set first offset (extra padding?)
+    if (key === 0) leftPadding = offset;
+
+    if (offset - leftPadding === leftPosition) {
+      // trigger default functionality
+      selectButton(target, buttons[key], slide, buttons);
+    }
+  });
+}
+
 export default function decorate(block) {
   const buttons = document.createElement('div');
   const autoPlayList = [];
   let carouselInterval = null;
   buttons.className = 'carousel-buttons';
   [...block.children].forEach((row, i) => {
-    const classes = ['image', 'text'];
-    classes.forEach((e, j) => {
-      if (row.children[j]) row.children[j].classList.add(`carousel-${e}`);
+    // set classes
+    [...row.children].forEach((child) => {
+      if (child.querySelector('picture')) {
+        child.classList.add('carousel-image');
+      } else {
+        child.classList.add('carousel-text');
+      }
     });
+
+    // move icon to parent's parent
+    const icon = row.querySelector('span.icon');
+    if (icon) icon.parentNode.parentNode.prepend(icon);
+
     /* buttons */
     const button = document.createElement('button');
     if (!i) button.classList.add('selected');
@@ -25,6 +54,12 @@ export default function decorate(block) {
     autoPlayList.push({ row, button });
   });
   block.parentElement.append(buttons);
+
+  // attach scroll event
+  block.addEventListener('scroll', getVisibleSlide);
+
+  // skip for new styles
+  if (block.classList.contains('style-1') || block.classList.contains('style-2')) return;
 
   carouselInterval = window.setInterval(() => {
     autoPlayList.some((b, i) => {
