@@ -23,6 +23,7 @@ export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
   if (block.classList.contains('full-width')) block.parentElement.classList.add('full-width');
+  if (block.classList.contains('med-width')) block.parentElement.classList.add('med-width');
   if (block.classList.contains('small-width')) block.parentElement.classList.add('small-width');
 
   if (block.classList.contains('small-icons')) {
@@ -81,9 +82,7 @@ export default function decorate(block) {
   }
 
   if (hasClassStartsWith(block, 'margin-')) {
-    // Default to target any picture element directly under a column
-    let pictureSelector = '.column-flex-container > div > picture';
-
+    let colToUse = null;
     const classNames = [...block.classList];
 
     classNames.forEach((className) => {
@@ -108,16 +107,20 @@ export default function decorate(block) {
 
         // If the class includes an `on` param, then we can specify which column to target
         if (marginParams[columnParamIdx] != null && marginParams[columnParamIdx] === 'on') {
-          const columnIdx = marginParams[columnParamIdx + 1];
-          pictureSelector = `.column-flex-container > div:nth-child(${columnIdx}) > picture`;
-        }
+          const columnIdx = parseInt(marginParams[columnParamIdx + 1], 10) - 1;
+          colToUse = cols[columnIdx];
+        } else colToUse = cols.find((col) => col.querySelector('img'));
 
-        const pictureElem = block.querySelector(pictureSelector);
-
-        if (marginParams[sideParamIdx] === 'top') {
-          pictureElem.style.marginTop = `${marginValue}px`;
-        } else if (marginParams[sideParamIdx] === 'bottom') {
-          pictureElem.style.marginBottom = `${marginValue}px`;
+        if (colToUse) {
+          if (marginParams[sideParamIdx] === 'top') {
+            colToUse.style.marginTop = `${marginValue}px`;
+          } else if (marginParams[sideParamIdx] === 'bottom') {
+            colToUse.style.marginBottom = `${marginValue}px`;
+          } else if (marginParams[sideParamIdx] === 'right') {
+            colToUse.style.marginRight = `${marginValue}px`;
+          } else if (marginParams[sideParamIdx] === 'left') {
+            colToUse.style.marginLeft = `${marginValue}px`;
+          }
         }
       }
     });
