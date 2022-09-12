@@ -122,11 +122,6 @@ main .carousel.style-2 > div {
     max-height: unset;
 }
 
-main .carousel.style-1 .carousel-image,
-main .carousel.style-2 .carousel-image {
-    /* no styles... yet */
-}
-
 main .carousel.style-1 picture,
 main .carousel.style-2 picture {
     position: unset;
@@ -146,6 +141,11 @@ main .carousel.style-2 .carousel-text {
     padding: unset;
     text-align: unset;
     width: unset;
+}
+
+main .carousel.style-1 p:empty,
+main .carousel.style-2 p:empty {
+    display: none;
 }
 
 main .carousel.style-1 + .carousel-buttons,
@@ -213,12 +213,9 @@ main .carousel.style-1 h2 {
     margin: 0;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 main .carousel.style-1 p {
     margin: -.6875rem 0 0;
-}
-
-main .carousel.style-1 p:empty {
-    display: none;
 }
 
 main .carousel.style-1 .button-container {
@@ -265,10 +262,6 @@ main .carousel.style-1 + .carousel-buttons {
     justify-content: start;
 }
 
-main .carousel.style-1 + .carousel-buttons button {
-    /* no styles... yet */
-}
-
 main .carousel.style-1 + .carousel-buttons button::after {
     background-color: transparent;
     border: 2px solid var(--theme-base);
@@ -284,7 +277,7 @@ main .carousel.style-2 {
     gap: 5rem;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1025px) {
     main .carousel.style-2 {
         flex-direction: column;
         overflow: visible;
@@ -292,11 +285,12 @@ main .carousel.style-2 {
 }
 
 main .carousel.style-2 > div {
+    align-items: center;
     flex-direction: column;
     gap: 1.875rem;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1025px) {
     main .carousel.style-2 > div {
         flex-direction: row-reverse;
         gap: 9.5rem;
@@ -304,22 +298,20 @@ main .carousel.style-2 > div {
 }
 
 main .carousel.style-2 .carousel-image {
-    /* no styles... yet */
+    flex-shrink: 0;
 }
 
-@media (min-width: 900px) {
-    main .carousel.style-2 .carousel-image {
-        width: 430px;
-    }
-}
-
+main .carousel.style-2 .carousel-image,
 main .carousel.style-2 .carousel-text {
-    /* no styles... yet */
+    max-width: 100%;
+    text-align: center;
+    width: 28rem;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1025px) {
     main .carousel.style-2 .carousel-text {
-        width: 610px;
+        text-align: revert;
+        width: revert;
     }
 }
 
@@ -333,6 +325,7 @@ main .carousel.style-2 h2 {
     margin: 0;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 main .carousel.style-2 p {
     margin: 0;
     color: var(--color-gray-10);
@@ -343,10 +336,7 @@ main .carousel.style-2 + .carousel-buttons {
     --size: 1.25rem;
 }
 
-main .carousel.style-2 + .carousel-buttons button {
-    /* no styles... yet */
-}
-@media (min-width: 900px) {
+@media (min-width: 1025px) {
     main .carousel.style-2 + .carousel-buttons button {
         display: none;
     }
@@ -361,6 +351,6 @@ main .carousel.style-2 + .carousel-buttons button.selected::after {
 }
 
 /* TODO: remove me? */
-main .section > div.carousel-wrapper {
-    max-width: 1160px;
+main .carousel-container.temp-wide .carousel-wrapper {
+    max-width: 1040px;
 }
