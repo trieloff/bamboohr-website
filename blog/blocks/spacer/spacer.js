@@ -1,3 +1,5 @@
+import { getValuesFromClassName } from '../../scripts/scripts.js';
+
 function createSpacer(spacerVal, block) {
   const spacerDiv = document.createElement('div');
   spacerDiv.style.height = `${spacerVal}px`;
@@ -10,18 +12,23 @@ export default function decorate(block) {
   const options = [...block.classList].filter((c) => c !== 'spacer' && c !== 'block');
 
   // The rest should be: mobile-XX, tablet-XX, laptop-XX, or desktop-XX OR a single number.
+  // OR margin-[negative-]top/bottom-XX
+  const marginVals = [];
   const values = {
     mobile: '', tablet: '', laptop: '', desktop: '',
   };
   let simpleVal = '';
   options.forEach((o) => {
-    const val = o.split('-');
-    if (val.length === 2) [, values[val[0]]] = val;
-    else [simpleVal] = val;
+    if (o.startsWith('margin-') ) marginVals.push(o);
+    else {
+      const val = o.split('-');
+      if (val.length === 2) [, values[val[0]]] = val;
+      else if (val.length === 1) [simpleVal] = val;
+    }
   });
 
   if (simpleVal) {
-    createSpacer(simpleVal, block);
+    if (simpleVal !== '0') createSpacer(simpleVal, block);
   } else {
     const keys = Object.keys(values);
 
@@ -61,4 +68,30 @@ export default function decorate(block) {
       });
     }
   }
+
+  marginVals.forEach((mv) => {
+    if (mv.startsWith('margin-') ) {
+      const marginParams = getValuesFromClassName(mv, 'margin-');
+      let sideParamIdx = 0;
+      let columnParamIdx = 2;
+      let marginValue = 0;
+
+      if (marginParams[0] === 'negative') {
+        sideParamIdx = 1;
+        columnParamIdx = 3;
+
+        if (marginParams.length > 2) {
+          marginValue = marginParams[2] * -1;
+        }
+      } else if (marginParams.length > 1) {
+        [, marginValue] = marginParams;
+      }
+
+      if (marginParams[sideParamIdx] === 'top') {
+        block.style.marginTop = `${marginValue}px`;
+      } else if (marginParams[sideParamIdx] === 'bottom') {
+        block.style.marginBottom = `${marginValue}px`;
+      }
+    }
+  });
 }

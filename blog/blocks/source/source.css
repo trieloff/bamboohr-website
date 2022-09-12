@@ -1,0 +1,14 @@
+main .source [data-align="center"] {
+	text-align: center;
+}
+
+main .source [data-align="right"] {
+	text-align: right;
+}
+
+main .source a:not(.button),
+main .source strong {
+	font-weight: var(--heading-font-weight);
+	color: var(--theme-shade5);
+	background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--theme-tint10) 0);
+}

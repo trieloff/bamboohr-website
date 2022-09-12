@@ -1014,6 +1014,10 @@ table td {
   text-align: center;
 }
 
+.resources-guides .left-h5 h5 {
+  text-align: left;
+}
+
 .resources-guides .image-wrapper .image {
   margin-top: 60px;
 }
@@ -1109,16 +1113,20 @@ main .section > div:empty {
     max-width: 760px;
   }
 
+  .resources-guides main .section > div.columns-wrapper.med-width,
   .resources-guides main .section > div.toc-wrapper,
   .resources-guides main .section > div.quote-wrapper,
-  .resources-guides main .section > div.image-wrapper.med-width {
+  .resources-guides main .section.negative-margin-section.med-width > div.default-content-wrapper,
+  .resources-guides main .section > div.image-wrapper.med-width,
+  .resources-guides main .section > div.source-wrapper {
     max-width: 960px;
   }
 
   .resources-guides main .section > div.cards-wrapper.full-width,
   .resources-guides main .section > div.columns-wrapper.full-width,
   .resources-guides main .section > div.image-wrapper.full-width,
-  .resources-guides main .section > div.quote-wrapper.full-width {
+  .resources-guides main .section > div.quote-wrapper.full-width,
+  .resources-guides main .section > div.source-wrapper.full-width {
     max-width: 1160px;
   }
 
@@ -1583,7 +1591,7 @@ main .section.gradient-section-4 > div:last-of-type {
   min-width: 100px;
   max-width: 433px;
   left: 6%;
-  top: 29%;
+  top: 25%;
   width: 31%;
   position: absolute;
 }
@@ -1627,6 +1635,8 @@ main .section.gradient-section-4 > div:last-of-type {
 .bg-section-bottom-3 img {
   width: 100%;
   margin-bottom: -8px;
+  position: absolute;
+  bottom: 0;
 }
 
 @media screen and (min-width: 600px) {
@@ -1639,7 +1649,7 @@ main .section.gradient-section-4 > div:last-of-type {
   }
 
   .bg-hex-3 img {
-    top: 31%;
+    top: 27%;
   }
 
   .bg-hex-4 img {
@@ -1661,7 +1671,7 @@ main .section.gradient-section-4 > div:last-of-type {
   }
 
   .bg-hex-3 img {
-    top: 21%;
+    top: 17%;
   }
 
   .bg-hex-4 img {
