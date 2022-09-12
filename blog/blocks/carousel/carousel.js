@@ -4,6 +4,26 @@ function selectButton(block, button, row, buttons) {
   button.classList.add('selected');
 }
 
+function getVisibleSlide(event) {
+  const { target } = event;
+  const buttons = target.nextElementSibling.querySelectorAll('button');
+  const slides = target.querySelectorAll(':scope > div');
+  const leftPosition = target.scrollLeft;
+  let leftPadding = 0;
+
+  slides.forEach((slide, key) => {
+    const offset = slide.offsetLeft;
+
+    // set first offset (extra padding?)
+    if (key === 0) leftPadding = offset;
+
+    if (offset - leftPadding === leftPosition) {
+      // trigger default functionality
+      selectButton(target, buttons[key], slide, buttons);
+    }
+  });
+}
+
 export default function decorate(block) {
   const buttons = document.createElement('div');
   const autoPlayList = [];
@@ -34,6 +54,9 @@ export default function decorate(block) {
     autoPlayList.push({ row, button });
   });
   block.parentElement.append(buttons);
+
+  // attach scroll event
+  block.addEventListener('scroll', getVisibleSlide);
 
   // skip for new styles
   if (block.classList.contains('style-1') || block.classList.contains('style-2')) return;
