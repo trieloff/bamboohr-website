@@ -33,12 +33,12 @@ main .toc li {
     padding-left: 30px;
 }
 
-main .toc li:not(:first-child) {
-    margin-top: 10px;
-}
-
 main .toc > ol > li {
     counter-increment: li;
+}
+
+main .toc li:not(:first-child) {
+    margin-top: 10px;
 }
 
 main .toc > ol > li::before {
