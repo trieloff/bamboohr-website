@@ -100,6 +100,9 @@ footer .footer .blog {
 	grid-area: blog;
 }
 
+footer .footer div[aria-hidden="true"] {
+	visibility: hidden;
+}
 
 @media (min-width: 450px) {
 	footer {

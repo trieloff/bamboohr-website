@@ -643,6 +643,12 @@ a.button.form:any-link {
   line-height: 26px;
 }
 
+a.button.phone-number:any-link {
+  color: var(--color-1);
+  background-color: unset;
+  border: solid 2px var(--color-white);
+}
+
 a.button > svg {
   float: left;
   display: inline;
@@ -1208,7 +1214,12 @@ main .default-content-wrapper p a.button:any-link {
 .back-to-top-wrapper,
 .resources-guides main .page-header-wrapper {
   position: relative;
-  z-index: 2;
+  z-index: 10;
+}
+
+.resources-guides .header-wrapper {
+  position: relative;
+  z-index: 100;
 }
 
 .app-list main .default-content-wrapper {

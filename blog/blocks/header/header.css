@@ -204,7 +204,7 @@ header .nav-brand p {
   margin: 0;
 }
 
-header .nav-brand .icon::after {
+header .nav-brand:not(.simple) .icon::after {
   content: '|';
   color: var(--color-1);
   margin: 0 10px;
@@ -386,6 +386,10 @@ header .nav-section.nav-section-subscribe form {
     grid-template-areas: 'brand sections buttons';
     grid-template-columns: 300px 1fr 250px;
     background-color: var(--color-white)
+  }
+
+  header .nav.extra-buttons {
+    grid-template-columns: 300px 1fr 425px;
   }
 
   header .nav-brand p img {
