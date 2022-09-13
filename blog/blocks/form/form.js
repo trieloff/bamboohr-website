@@ -1,3 +1,15 @@
+const loadScript = (url, callback, type) => {
+  const head = document.querySelector('head');
+  const script = document.createElement('script');
+  script.src = url;
+  if (type) {
+    script.setAttribute('type', type);
+  }
+  head.append(script);
+  script.onload = callback;
+  return script;
+};
+
 function createSelect(fd, multiSelect = false) {
   const select = document.createElement('select');
   if (multiSelect === true) {
@@ -330,10 +342,47 @@ async function createForm(formURL) {
 }
 
 export default async function decorate(block) {
-  const formUrl = block.innerText.trim();
+  const as = block.querySelectorAll('a');
+  let formUrl = as[0] ? as[0].href : '';
+  let successUrl = as[1] ? as[1].href : '';
+
+  if (!formUrl) {
+    const resp = await fetch('/drafts/uncled/forms-map.json');
+    const json = await resp.json();
+    const map = json.data;
+    map.forEach((entry) => {
+      if (entry.URL === window.location.pathname
+        || (entry.URL.endsWith('**') && window.location.pathname.startsWith(entry.URL.split('**')[0]))) {
+        formUrl = entry.Form;
+        successUrl = entry.Success;
+      }
+    });
+  }
+
+  console.log(formUrl, successUrl);
 
   if (formUrl) {
-    const formEl = await createForm(formUrl);
-    block.firstElementChild.replaceWith(formEl);
+    if (formUrl.includes('marketo')) {
+      const formId = new URL(formUrl).hash.substring(4);
+      block.innerHTML = `<form id="mktoForm_${formId}"></form>`;
+      loadScript('//grow.bamboohr.com/js/forms2/js/forms2.min.js', () => {
+        window.MktoForms2.loadForm('//grow.bamboohr.com', '195-LOZ-515', formId);
+        if (successUrl) {
+          window.MktoForms2.whenReady((form) => {
+            form.onSuccess(() => {
+              window.dataLayer.push({
+                event: 'marketoForm',
+                formName: form.formid,
+              });
+              window.location.href = successUrl;
+              return false;
+            });
+          });
+        }
+      });
+    } else {
+      const formEl = await createForm(formUrl);
+      block.firstElementChild.replaceWith(formEl);
+    }
   }
 }
