@@ -973,19 +973,30 @@ table td {
 .resources-guides main h3 {
   color: var(--color-gray-9);
   margin-top: 100px;
+  font-style: normal;
 }
 
 .resources-guides main .columns h3 {
   color: var(--theme-shade5);
+  font-style: italic;
 }
 
 .resources-guides main h4 {
   font-style: normal;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .resources-guides main .extra-content h4 {
   margin-top: 80px;
+}
+
+.resources-guides main .columns.small-icons h4 {
+  color: var(--secondary-theme-shade5);
+}
+
+.resources-guides main p {
+  margin-top: 10px;
 }
 
 .resources-guides main .extra-content p {
@@ -993,9 +1004,22 @@ table td {
   margin-bottom: 80px;
 }
 
+.resources-guides main .columns.numbered-text p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.resources-guides main .columns.numbered-text p:nth-child(even) {
+  margin-bottom: 20px;
+}
+
 .resources-guides main h5 {
   font-style: normal;
   color: var(--secondary-theme-shade5);
+}
+
+.resources-guides main .page-header h5 {
+  color: var(--heading-color);
 }
 
 .resources-guides main .default-content-wrapper a:any-link,
@@ -1010,7 +1034,7 @@ table td {
 }
 
 .resources-guides .image.center,
-.resources-guides .center-h3 h3 {
+.resources-guides .center-h3 .default-content-wrapper h3 {
   text-align: center;
 }
 
@@ -1176,10 +1200,15 @@ main .default-content-wrapper p a.button:any-link {
 .resources-guides main .quote-wrapper,
 .resources-guides main .cards-wrapper,
 .resources-guides main .columns-wrapper,
-.resources-guides main .image-wrapper:not(.background-image),
-.resources-guides main .page-header-wrapper {
+.resources-guides main .image-wrapper:not(.background-image) {
   position: relative;
   z-index: 1;
+}
+
+.back-to-top-wrapper,
+.resources-guides main .page-header-wrapper {
+  position: relative;
+  z-index: 2;
 }
 
 .app-list main .default-content-wrapper {
@@ -1632,9 +1661,14 @@ main .section.gradient-section-4 > div:last-of-type {
   margin-bottom: -8px;
 }
 
-.bg-section-bottom-3 img {
+.bg-section-bottom-3 img,
+.bg-section-bottom-3-offset img {
   width: 100%;
   margin-bottom: -8px;
+  
+}
+
+.bg-section-bottom-3-offset img {
   position: absolute;
   bottom: 0;
 }
