@@ -7,7 +7,7 @@ main .toc {
     border-radius: 20px;
 }
 
-main .toc a:any-link{
+main .toc a:any-link {
     color: var(--category-darker-color);
     background-color: var(--category-bg-color);
     text-decoration: none;
@@ -35,6 +35,10 @@ main .toc li {
 
 main .toc > ol > li {
     counter-increment: li;
+}
+
+main .toc li:not(:first-child) {
+    margin-top: 10px;
 }
 
 main .toc > ol > li::before {

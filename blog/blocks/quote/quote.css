@@ -163,7 +163,7 @@ main .quote.full .byline {
 	letter-spacing: .125rem;
 	line-height: 1.5;
 	text-transform: uppercase;
-	color: var(--color-gray-10);
+	color: var(--color-gray-9);
 }
 
 @media (min-width: 1025px) {
