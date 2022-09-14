@@ -521,7 +521,7 @@ header .nav-section.nav-section-subscribe form {
   }
 
   header .nav-buttons {
-    margin-top: 4px;
+    margin: auto 0;
     display: flex;
     width: 100vw;
   }
@@ -532,6 +532,25 @@ header .nav-section.nav-section-subscribe form {
     margin: 0 5px;
     box-sizing: unset;
     width: auto;
+  }
+
+  header .nav-buttons .button.small {
+    padding: 8px 20px;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: .5px;
+    font-weight: 900;
+    font-family: var(--body-font-family);
+    border: solid 2px var(--color-1);
+  }
+
+  header .nav-buttons .button.small.phone-number {
+    color: var(--color-1);
+    background-color: unset;
+    border: solid 2px var(--color-white);
+    font-size: 15px;
+    line-height: 22px;
+    padding: 6px 20px;
   }
 
   header .nav-section.nav-section-subscribe .nav-section-wrapper {

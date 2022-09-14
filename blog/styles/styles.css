@@ -643,12 +643,6 @@ a.button.form:any-link {
   line-height: 26px;
 }
 
-a.button.phone-number:any-link {
-  color: var(--color-1);
-  background-color: unset;
-  border: solid 2px var(--color-white);
-}
-
 a.button > svg {
   float: left;
   display: inline;
