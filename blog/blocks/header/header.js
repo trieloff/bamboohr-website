@@ -26,7 +26,11 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // fetch nav content
-  const navPath = getMetadata('nav') || '/blog/fixtures/nav';
+  let navPath = getMetadata('nav');
+  if (!navPath) {
+    if (window.location.pathname.startsWith('/blog/')) navPath = '/blog/fixtures/nav';
+    else navPath = '/nav';
+  }
 
   const resp = await fetch(`${navPath}.plain.html`);
   let html = await resp.text();
@@ -46,6 +50,7 @@ export default async function decorate(block) {
     if (!i) {
       // first section is the brand section
       const brand = navSection;
+      if (navPath === '/nav') brand.classList.add('simple');
       brand.classList.add('nav-brand');
       nav.insertBefore(navSections, brand.nextElementSibling);
     } else {
@@ -80,9 +85,12 @@ export default async function decorate(block) {
           });
         }
       } else {
-        const buttons = navSection;
-        buttons.className = 'nav-buttons';
-        buttons.querySelectorAll('a').forEach((a) => {
+        const buttonsContainer = navSection;
+        buttonsContainer.className = 'nav-buttons';
+        const buttons = buttonsContainer.querySelectorAll('a');
+        if (buttons.length === 3) buttonsContainer.parentElement.classList.add('extra-buttons');
+        buttons.forEach((a) => {
+          if (a.href.startsWith('tel:')) a.classList.add('phone-number');
           a.classList.add('button', 'small');
           if (a.parentElement.tagName === 'EM') {
             a.classList.add('light');
