@@ -248,6 +248,10 @@ header .nav[aria-expanded="true"] {
   min-height: 100vh;
 }
 
+header .nav-sections h2 {
+  border-bottom: 2px solid var(--color-gray-2);
+}
+
 header .nav-sections h2,
 header .nav-sections h2 a:any-link {
   position: relative;
@@ -255,7 +259,6 @@ header .nav-sections h2 a:any-link {
   color: var(--color-gray-11);
   font-weight: 700;
   padding: 21px 0 18px;
-  border-bottom: 2px solid var(--color-gray-2);
   text-decoration: none;
 }
 
