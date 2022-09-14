@@ -1,10 +1,7 @@
 export default function decorate(block) {
-  const cards = block.querySelectorAll(':scope > div > div');
-  const cols = block.firstElementChild.children.length;
-  if (block.classList.contains('full-width')) block.parentElement.classList.add('full-width');
+  const cards = block.querySelectorAll(':scope > div');
 
-  // add grid cols class
-  block.classList.add(`cols-${cols}`);
+  if (block.classList.contains('full-width')) block.parentElement.classList.add('full-width');
 
   // convert "number" classes
   [...block.classList].forEach((name) => {
@@ -17,23 +14,38 @@ export default function decorate(block) {
   // empty block
   block.textContent = '';
   cards.forEach((card) => {
+    const contents = card.querySelectorAll(':scope > div');
     const icon = card.querySelector('span.icon');
+
+    // loop children
+    card.textContent = '';
+    contents.forEach((content) => {
+      const alignment = content.dataset.align;
+
+      // set alignment
+      if (alignment) card.dataset.align = alignment;
+
+      // pull everything into one div
+      [...content.children].forEach((element) => card.append(element));
+    });
+
     const image = card.querySelector('picture');
     const title = card.querySelector('h4');
 
-    if (image) {
-      image.classList.add('image');
-      card.prepend(image);
-    }
-
+    // move icon out of p
     if (icon) card.prepend(icon);
 
-    if (title) title.classList.add('title');
-
     // clear out empties
-    card.querySelectorAll(':scope > p').forEach((empty) => {
-      if (empty.textContent.trim() === '') empty.remove();
-    });
+    card.querySelectorAll(':scope > p:empty').forEach((empty) => empty.remove());
+
+    // add image classes
+    if (image) {
+      card.classList.add('has-image');
+      image.classList.add('image');
+    }
+
+    // add title class
+    if (title) title.classList.add('title');
 
     // add card to block
     card.classList.add('card');
