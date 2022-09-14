@@ -6,7 +6,7 @@ import { decorateIcons } from '../../scripts/scripts.js';
  */
 
 export default async function decorate(block) {
-  const hideBlog = window.location.pathname.startsWith('/blog/') ? false : true;
+  const hideBlog = !window.location.pathname.startsWith('/blog/');
   const resp = await fetch('/blog/fixtures/footer.plain.html');
   const html = await resp.text();
   block.innerHTML = html;
