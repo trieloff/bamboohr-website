@@ -1318,6 +1318,7 @@ main .default-content-wrapper p a.button:any-link {
 
 #marketplace-request-info {
   background-color: var(--color-5);
+  white-space: normal;
 }
 
 .marketplace-listing .links-container .button-container .button {
