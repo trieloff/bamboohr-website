@@ -1,11 +1,4 @@
 /* stylelint-disable selector-class-pattern */
-main .form-container {
-  background-image: url('../../styles/leaf-top-3.svg'), linear-gradient(var(--color-white), var(--color-white) calc(290px + (100vw * 0.11)), var(--color-gray-1) calc(100vw * 0.11));
-  background-position: 0 290px, top;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
 main .form-container .default-content-wrapper {
   text-align: center;
 }
@@ -13,11 +6,10 @@ main .form-container .default-content-wrapper {
 main .form {
   max-width: 800px;
   margin: 0 auto;
-  color: #87888B;
+  color: var(--color-gray-8);
   font-size: 15px;
   font-weight: 700;
-  line-height: 24px;
-  padding: 150px 0;
+  line-height: 1.5;
 }
 
 main .form .hidden {
@@ -62,7 +54,13 @@ main .form input {
   border-radius: 3px;
   font-family: inherit;
   font-size: 14px;
-  line-height: 21px;
+  line-height: 1.5;
+}
+
+main .form.gray select,
+main .form.gray textarea, 
+main .form.gray input {
+  background-color: var(--color-gray-1);
 }
 
 main .form select[multiple] {
@@ -114,6 +112,10 @@ main .form .form-checkbox-option > label::before {
   border-radius: 3px;
   box-sizing: border-box;
   cursor: pointer;
+}
+
+main .form.gray .form-checkbox-option > label::before {
+  background-color: var(--color-gray-1);
 }
 
 main .form .form-checkbox-option input:checked + label::after {
@@ -172,13 +174,19 @@ main .form .error input[type="checkbox"] + label::before {
   border-color: var(--color-2);
 }
 
-
-main .form .form-button-wrapper .button {
-  padding: 18px 40px;
+.marketplace main .form-container {
+  background-image: url('../../styles/leaf-top-3.svg'), linear-gradient(var(--color-white), var(--color-white) calc(290px + (100vw * 0.11)), var(--color-gray-1) calc(100vw * 0.11));
+  background-position: 0 290px, top;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
-@media (min-width: 120px) {
-  main .form {
+.marketplace main .form {
+  padding: 150px 0;
+}
+
+@media (min-width: 1200px) {
+  .marketplace main .form {
     padding-top: 250px;
   }
 }
@@ -194,7 +202,7 @@ main .form .form-gdpr-text,
 .mktoHtmlText {
   color: var(--color-gray-8);
   font-size: 14px;
-  line-height: 20px;
+  line-height: 1.5;
   font-weight: 400;
 }
 
@@ -204,4 +212,23 @@ main .form .mktoForm {
 
 main .form .mktoForm[data-styles-ready="true"] {
 	visibility: visible;
+}
+
+main .form .form-submit-wrapper .button,
+main .form .mktoForm .mktoButton {
+  padding: 17px 25px;
+  font-size: 18px;
+  line-height: 1.2;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  background-color: var(--color-1);
+  color: var(--color-white);
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+}
+
+main .form .mktoForm .mktoButton {
+  display: block;
+  width: 100%;
 }
