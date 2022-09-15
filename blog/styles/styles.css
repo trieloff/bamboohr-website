@@ -525,7 +525,7 @@ div.secondary-teal {
   --secondary-theme-shade15: var(--color-8-shade-15);
 }
 
-.header-wrapper {
+header, .header-wrapper {
   height: 70px;
 }
 
