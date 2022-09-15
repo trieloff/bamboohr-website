@@ -30,8 +30,7 @@ export default async function decorate(block) {
   // fetch nav content
   let navPath = getMetadata('nav');
   if (!navPath) {
-    if (window.location.pathname.startsWith('/blog/'))
-      navPath = '/blog/fixtures/nav';
+    if (window.location.pathname.startsWith('/blog/')) navPath = '/blog/fixtures/nav';
     else navPath = '/nav';
   }
 
@@ -63,9 +62,7 @@ export default async function decorate(block) {
         const ul = navSection.querySelector('ul');
 
         if (!ul && !h2.querySelector('a')) {
-          navSection.classList.add(
-            `nav-section-${toClassName(h2.textContent)}`
-          );
+          navSection.classList.add(`nav-section-${toClassName(h2.textContent)}`);
           const wrapper = document.createElement('div');
           wrapper.className = 'nav-section-wrapper';
           while (h2.nextElementSibling) wrapper.append(h2.nextElementSibling);
@@ -75,16 +72,11 @@ export default async function decorate(block) {
         navSection.classList.add('nav-section');
         if (!h2.querySelector('a')) {
           h2.addEventListener('click', () => {
-            if (mediaQueryDesktop.matches)
-              collapseAll([...navSections.children]);
+            if (mediaQueryDesktop.matches) collapseAll([...navSections.children]);
             else {
-              const expanded =
-                navSection.getAttribute('aria-expanded') === 'true';
+              const expanded = navSection.getAttribute('aria-expanded') === 'true';
               collapseAll([...navSections.children]);
-              navSection.setAttribute(
-                'aria-expanded',
-                expanded ? 'false' : 'true'
-              );
+              navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
             }
           });
           navSection.querySelectorAll(':scope > ul > li').forEach((li) => {
@@ -92,14 +84,10 @@ export default async function decorate(block) {
               li.classList.add('sub-menu');
               li.addEventListener('click', () => {
                 if (mediaQueryDesktop.matches) {
-                  collapseAll([
-                    ...nav.querySelectorAll('li[aria-expanded="true"]'),
-                  ]);
+                  collapseAll([...nav.querySelectorAll('li[aria-expanded="true"]')]);
                 } else {
                   const expanded = li.getAttribute('aria-expanded') === 'true';
-                  collapseAll([
-                    ...nav.querySelectorAll('li[aria-expanded="true"]'),
-                  ]);
+                  collapseAll([...nav.querySelectorAll('li[aria-expanded="true"]')]);
                   li.setAttribute('aria-expanded', expanded ? 'false' : 'true');
                 }
               });
@@ -110,8 +98,7 @@ export default async function decorate(block) {
         const buttonsContainer = navSection;
         buttonsContainer.className = 'nav-buttons';
         const buttons = buttonsContainer.querySelectorAll('a');
-        if (buttons.length === 3)
-          buttonsContainer.parentElement.classList.add('extra-buttons');
+        if (buttons.length === 3) buttonsContainer.parentElement.classList.add('extra-buttons');
         buttons.forEach((a) => {
           if (a.href.startsWith('tel:')) a.classList.add('phone-number');
           a.classList.add('button', 'small');
