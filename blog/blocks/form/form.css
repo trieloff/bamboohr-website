@@ -57,6 +57,27 @@ main .form input {
   line-height: 1.5;
 }
 
+main .form select {
+  appearance: none;
+  background: var(--color-white) url('./chevron-down.svg') no-repeat calc(100% - 20px) 50%;
+}
+
+main .form textarea {
+  height: 160px;
+}
+
+main .form select:focus,
+main .form textarea:focus, 
+main .form input:focus {
+  border-color: var(--color-5);
+}
+
+main .form option {
+  box-sizing: border-box;
+  display: block;
+  padding: 2px;
+}
+
 main .form.gray select,
 main .form.gray textarea, 
 main .form.gray input {
@@ -114,6 +135,20 @@ main .form .form-checkbox-option > label::before {
   cursor: pointer;
 }
 
+main .form .form-radio-option > label::before {
+  content: "";
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  padding: 2px;
+  margin-right: 16px;
+  background-clip: content-box;
+  border: 2px solid var(--color-gray-3);
+  background-color: var(--color-white);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
 main .form.gray .form-checkbox-option > label::before {
   background-color: var(--color-gray-1);
 }
@@ -131,37 +166,8 @@ main .form .form-checkbox-option input:checked + label::after {
   box-sizing: border-box;
 }
 
-main .form .form-radio-option > label::before {
-  content: "";
-  display: inline-block;
-  width: 26px;
-  height: 26px;
-  padding: 2px;
-  margin-right: 16px;
-  background-clip: content-box;
-  border: 2px solid var(--color-gray-3);
-  background-color: var(--color-white);
-  border-radius: 50%;
-  box-sizing: border-box;
-}
-
 main .form .form-radio-option input:checked + label::before {
   background-color: var(--color-1);
-}
-
-main .form select {
-  appearance: none;
-  background: var(--color-white) url('./chevron-down.svg') no-repeat calc(100% - 20px) 50%;
-}
-
-main .form textarea {
-  height: 160px;
-}
-
-main .form option {
-  box-sizing: border-box;
-  display: block;
-  padding: 2px;
 }
 
 main .form .error select,
@@ -214,6 +220,18 @@ main .form .mktoForm[data-styles-ready="true"] {
 	visibility: visible;
 }
 
+main .form .mktoForm .mktoInvalid {
+  border-color: var(--color-2);
+}
+
+main .form .mktoForm .mktoInvalid:focus {
+  border-color: var(--color-5);
+}
+
+main .form .mktoForm .mktoErrorMsg {
+  display: none;
+}
+
 main .form .form-submit-wrapper .button,
 main .form .mktoForm .mktoButton {
   padding: 17px 25px;
@@ -231,4 +249,5 @@ main .form .mktoForm .mktoButton {
 main .form .mktoForm .mktoButton {
   display: block;
   width: 100%;
+  margin: 30px 0 0;
 }
