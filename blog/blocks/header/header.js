@@ -6,6 +6,8 @@ import {
   getMetadata,
 } from '../../scripts/scripts.js';
 
+const mediaQueryDesktop = window.matchMedia('(min-width: 1200px)');
+
 /**
  * collapses all open nav sections
  * @param {Element} sections The container element
@@ -70,16 +72,24 @@ export default async function decorate(block) {
         navSection.classList.add('nav-section');
         if (!h2.querySelector('a')) {
           h2.addEventListener('click', () => {
-            const expanded = navSection.getAttribute('aria-expanded') === 'true';
-            collapseAll([...navSections.children]);
-            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            if (mediaQueryDesktop.matches) collapseAll([...navSections.children]);
+            else {
+              const expanded = navSection.getAttribute('aria-expanded') === 'true';
+              collapseAll([...navSections.children]);
+              navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            }
           });
           navSection.querySelectorAll(':scope > ul > li').forEach((li) => {
             if (!li.querySelector(':scope > a')) {
+              li.classList.add('sub-menu');
               li.addEventListener('click', () => {
-                const expanded = li.getAttribute('aria-expanded') === 'true';
-                collapseAll([...nav.querySelectorAll('li[aria-expanded="true"]')]);
-                li.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+                if (mediaQueryDesktop.matches) {
+                  collapseAll([...nav.querySelectorAll('li[aria-expanded="true"]')]);
+                } else {
+                  const expanded = li.getAttribute('aria-expanded') === 'true';
+                  collapseAll([...nav.querySelectorAll('li[aria-expanded="true"]')]);
+                  li.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+                }
               });
             }
           });
@@ -137,7 +147,7 @@ export default async function decorate(block) {
       }
       document.body.style.overflowY = 'hidden';
     });
-    return (div);
+    return div;
   };
 
   block.append(nav);

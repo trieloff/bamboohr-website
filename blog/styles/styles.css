@@ -525,7 +525,8 @@ div.secondary-teal {
   --secondary-theme-shade15: var(--color-8-shade-15);
 }
 
-header, .header-wrapper {
+header,
+.header-wrapper {
   height: 70px;
 }
 
@@ -1251,7 +1252,12 @@ main .default-content-wrapper p a.button:any-link {
 .back-to-top-wrapper,
 .resources-guides main .page-header-wrapper {
   position: relative;
-  z-index: 2;
+  z-index: 10;
+}
+
+.resources-guides .header-wrapper {
+  position: relative;
+  z-index: 100;
 }
 
 .app-list main .default-content-wrapper {
