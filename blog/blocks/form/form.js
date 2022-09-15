@@ -342,6 +342,7 @@ async function createForm(formURL) {
 }
 
 function mktoFormReset(form, moreStyles) {
+  const formId = `mktoForm_${form.getId()}`;
   const formEl = form.getFormElem()[0];
 
   const rando = Math.floor(Math.random() * 1000000);
@@ -367,6 +368,26 @@ function mktoFormReset(form, moreStyles) {
   document.querySelectorAll('.mktoOffset').forEach((el) => { el.remove(); });
   document.querySelectorAll('.mktoGutter').forEach((el) => { el.remove(); });
   document.querySelectorAll('.mktoClear').forEach((el) => { el.remove(); });
+
+  formEl.querySelector('[name="Country"]').addEventListener('change', () => {
+    document.querySelectorAll('.mktoAsterix').forEach((el) => { el.remove(); });
+    document.querySelectorAll('.mktoHtmlText').forEach((el) => { el.removeAttribute('style'); });
+    if (document.getElementById(formId).querySelector('[name="Disclaimer__c"]')) {
+      const gdprLabel = document.getElementById(formId).querySelector('[for="Disclaimer__c"]');
+      const gdprInput = document.getElementById(formId).querySelector('[id="Disclaimer__c"]');
+      gdprInput.id = `Disclaimer__c_${rando}`;
+      gdprLabel.htmlFor = `Disclaimer__c_${rando}`;
+      gdprLabel.removeAttribute('style');
+      gdprInput.parentElement.classList.add('form-checkbox-option');
+      gdprLabel.parentElement.classList.add('form-checkbox-flex');
+      gdprLabel.firstElementChild.classList.add('form-gdpr-text');
+    }
+  });
+
+  formEl.querySelectorAll('[type="checkbox"]').forEach((el) => {
+    el.parentElement.classList.add('form-checkbox-option');
+    el.parentElement.parentElement.classList.add('form-checkbox-flex');
+  });
 
   if (!moreStyles) {
     formEl.setAttribute('data-styles-ready', 'true');
