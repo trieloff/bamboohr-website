@@ -341,6 +341,38 @@ async function createForm(formURL) {
   return (form);
 }
 
+function mktoFormReset(form, moreStyles) {
+  const formEl = form.getFormElem()[0];
+
+  const rando = Math.floor(Math.random() * 1000000);
+  formEl.querySelectorAll('label[for]').forEach((labelEl) => {
+    const forEl = formEl.querySelector(`[id="${labelEl.htmlFor}"]`);
+    if (forEl) {
+      const newId = `${forEl.id}_${rando}`;
+      labelEl.htmlFor = newId;
+      forEl.id = newId;
+    }
+  });
+
+  // remove element styles from <form> and children
+  const styledEls = [...formEl.querySelectorAll('[style]')].concat(formEl);
+  styledEls.forEach((el) => {
+    el.removeAttribute('style');
+  });
+
+  document.getElementById('mktoForms2BaseStyle').disabled = true;
+  document.getElementById('mktoForms2ThemeStyle').disabled = true;
+
+  document.querySelectorAll('.mktoAsterix').forEach((el) => { el.remove(); });
+  document.querySelectorAll('.mktoOffset').forEach((el) => { el.remove(); });
+  document.querySelectorAll('.mktoGutter').forEach((el) => { el.remove(); });
+  document.querySelectorAll('.mktoClear').forEach((el) => { el.remove(); });
+
+  if (!moreStyles) {
+    formEl.setAttribute('data-styles-ready', 'true');
+  }
+}
+
 export default async function decorate(block) {
   const as = block.querySelectorAll('a');
   let formUrl = as[0] ? as[0].href : '';
@@ -367,18 +399,22 @@ export default async function decorate(block) {
       block.innerHTML = `<form id="mktoForm_${formId}"></form>`;
       loadScript('//grow.bamboohr.com/js/forms2/js/forms2.min.js', () => {
         window.MktoForms2.loadForm('//grow.bamboohr.com', '195-LOZ-515', formId);
-        if (successUrl) {
-          window.MktoForms2.whenReady((form) => {
-            form.onSuccess(() => {
-              window.dataLayer.push({
-                event: 'marketoForm',
-                formName: form.formid,
+
+        window.MktoForms2.whenReady((form) => {
+          if (form.getId().toString() === formId) {
+            mktoFormReset(form);
+            if (successUrl) {
+              form.onSuccess(() => {
+                window.dataLayer.push({
+                  event: 'marketoForm',
+                  formName: form.getId(),
+                });
+                window.location.href = successUrl;
+                return false;
               });
-              window.location.href = successUrl;
-              return false;
-            });
-          });
-        }
+            }
+          }
+        });
       });
     } else {
       const formEl = await createForm(formUrl);

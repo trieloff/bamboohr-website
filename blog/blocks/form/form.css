@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 main .form-container {
   background-image: url('../../styles/leaf-top-3.svg'), linear-gradient(var(--color-white), var(--color-white) calc(290px + (100vw * 0.11)), var(--color-gray-1) calc(100vw * 0.11));
   background-position: 0 290px, top;
@@ -181,4 +182,12 @@ main .form .form-button-wrapper .button {
   main .form {
     padding-top: 250px;
   }
+}
+
+main .form .mktoForm {
+	visibility: hidden;
+}
+
+main .form .mktoForm[data-styles-ready="true"] {
+	visibility: visible;
 }
