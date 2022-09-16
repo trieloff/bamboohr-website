@@ -2,59 +2,49 @@
 
 /* using grid for better gap functionality */
 .cards {
+    --cols: 1;/* mobile: always 1-col */
     --gap: 2.5rem;
 
     display: grid;
     gap: var(--gap);
+    grid-template-columns: repeat(var(--cols), 1fr);
 }
 
 /* set better box sizing */
 .cards,
-.cards > * {
+.cards > *,
+.cards > *::before,
+.cards > *::after {
     box-sizing: border-box;
-}
-
-/* mobile: always 1-col */
-.cards.cols-1,
-.cards.cols-2,
-.cards.cols-3,
-.cards.cols-4,
-.cards.cols-5 {
-    --cols: 1;
-
-    grid-template-columns: repeat(var(--cols), 1fr);
 }
 
 /* tablet: always 2-col */
 @media (min-width: 600px) {
-    .cards.cols-1,
-    .cards.cols-2,
-    .cards.cols-3,
-    .cards.cols-4,
-    .cards.cols-5 {
+    /* no style-1-columns since default */
+
+    .cards.style-2-columns,
+    .cards.style-3-columns,
+    .cards.style-4-columns,
+    .cards.style-5-columns {
         --cols: 2;
     }
 }
 
 /* desktop: normal cols */
 @media (min-width: 1025px) {
-    .cards.cols-1 {
-        --cols: 1;
-    }
+    /* no style-1-columns since default */
 
-    .cards.cols-2 {
-        --cols: 2;
-    }
+    /* no style-2-columns since inherit from tablet */
 
-    .cards.cols-3 {
+    .cards.style-3-columns {
         --cols: 3;
     }
 
-    .cards.cols-4 {
+    .cards.style-4-columns {
         --cols: 4;
     }
 
-    .cards.cols-5 {
+    .cards.style-5-columns {
         --cols: 5;
     }
 
@@ -64,6 +54,7 @@
 /* default styles */
 .cards > .card {
     --padding: 0;
+    --spacing: 1rem;
 
     color: var(--color-gray-10);
     display: flex;
@@ -72,7 +63,7 @@
     font-size: 1.125rem;
     font-style: normal;
     font-weight: var(--body-font-weight);
-    gap: 1rem;
+    gap: var(--spacing);
     line-height: 1.5;
     padding: var(--padding);
 }
@@ -259,12 +250,12 @@
     box-shadow: var(--theme-shadow2-shade5);
 }
 
-/* "image top" styles */
-.cards.image-top > .card > .title {
+/* image styles */
+.cards > .card.has-image > .title {
     margin-top: .625rem;
 }
 
-.cards.image-top > .card > .image {
+.cards > .card.has-image > .image {
     border-radius: 1rem;
     box-shadow: var(--theme-shadow2-shade5);
     display: flex;
