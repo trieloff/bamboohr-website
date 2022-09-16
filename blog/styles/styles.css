@@ -99,6 +99,9 @@
   /* stylized font */
   --stylized-font-family: 'Permanent Marker', sans-serif;
 
+  /* display font */
+  --display-font-family: 'Red Hat Display', sans-serif;
+
   /* box-shadow */
   --box-shadow-transition-default: 0 0 0 0 rgb(0 0 0 / 0%);
   --box-shadow-1: 0 2px 5px 0 rgb(0 0 0 / 20%);

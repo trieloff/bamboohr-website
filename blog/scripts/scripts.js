@@ -786,7 +786,12 @@ function loadHeader(header) {
 }
 
 function loadFooter(footer) {
-  const footerBlock = buildBlock('footer', '');
+  const queryParams = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  const footerBlockName = queryParams.header ? 'megafooter' : 'footer';
+
+  const footerBlock = buildBlock(footerBlockName, '');
   footer.append(footerBlock);
   decorateBlock(footerBlock);
   loadBlock(footerBlock);
@@ -995,4 +1000,19 @@ export function getValuesFromClassName(className, classNameStart) {
   const params = className.substring(classNameStart.length);
 
   return params.split('-');
+}
+
+/**
+ * Creates an element with optional class and type
+ * @param {string} elemType type of element to create
+ * @param {...string} [cssClass] CSS class(es) to apply to element
+ * @returns {Element}
+ */
+export function createElem(elemType, ...cssClass) {
+  const elem = document.createElement(elemType);
+  if (cssClass != null && cssClass.length) {
+    elem.classList.add(cssClass);
+  }
+
+  return elem;
 }
