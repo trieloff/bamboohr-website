@@ -1,3 +1,7 @@
+body > footer {
+  min-height: 500px;
+}
+
 .footer-root {
   font-family: var(--display-font-family);
 }

@@ -1,3 +1,7 @@
+body > header {
+  min-height: 50px;
+}
+
 .header-root {
   font-family: var(--body-font-family);
   position: relative;
