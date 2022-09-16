@@ -11,12 +11,15 @@ export default function decorate(block) {
   block.textContent = '';
   block.append(title);
 
-  const tocItems = document.querySelectorAll('.default-content-wrapper h2, .default-content-wrapper h3, .default-content-wrapper h4, .default-content-wrapper h5');
+  const tocItems = document.querySelectorAll(
+    // eslint-disable-next-line comma-dangle
+    '.default-content-wrapper h2, .default-content-wrapper h3, .default-content-wrapper h4, .default-content-wrapper h5, .title-wrapper h2, .title-wrapper h3, .title-wrapper h4, .title-wrapper h5'
+  );
   const olStack = [document.createElement('ol')];
   let lastChapter = '';
   tocItems.forEach((h) => {
     const hLevel = parseInt(h.tagName.substring(1), 10) - 1;
-    const show = showSubtree ? (hLevel < 2 || lastChapter === showSubtree) : true;
+    const show = showSubtree ? hLevel < 2 || lastChapter === showSubtree : true;
     if (hLevel <= maxLevel && show) {
       while (hLevel > olStack.length) {
         const newOl = document.createElement('ol');
@@ -27,7 +30,9 @@ export default function decorate(block) {
       const ol = olStack[hLevel - 1];
       const li = document.createElement('li');
       const numbered = /^\d+\. /;
-      const heading = h.textContent.match(numbered) ? h.textContent.substring(h.textContent.indexOf(' ')) : h.textContent;
+      const heading = h.textContent.match(numbered)
+        ? h.textContent.substring(h.textContent.indexOf(' '))
+        : h.textContent;
       li.innerHTML = `<a href="#${h.id}">${heading}</a>`;
       ol.append(li);
       if (hLevel === 1) lastChapter = h.textContent.toLowerCase().trim();
