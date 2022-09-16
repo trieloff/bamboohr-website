@@ -888,7 +888,6 @@ async function loadLazy(doc) {
     get: (searchParams, prop) => searchParams.get(prop),
   });
   if (queryParams.header === 'meganav') header.classList.add('header-meganav');
-  
   const main = doc.querySelector('main');
   await loadBlocks(main);
 
