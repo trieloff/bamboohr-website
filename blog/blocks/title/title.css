@@ -1,0 +1,15 @@
+main .title [data-align='center'] {
+  text-align: center;
+}
+
+main .title [data-align='left'] {
+  text-align: left;
+}
+
+main .title [data-align='right'] {
+  text-align: right;
+}
+
+main .title.section-header :is(h1, h2, h3, h4, h5, h6, div) {
+  color: var(--theme-shade5);
+}
