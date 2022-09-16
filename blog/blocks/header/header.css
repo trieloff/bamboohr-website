@@ -109,7 +109,7 @@ header .nav {
   grid-template-areas: "brand hamburger" "sections sections" "buttons buttons";
   grid-template-columns: calc(100% - 22px) 22px;
   /* stylelint-disable-next-line declaration-block-no-redundant-longhand-properties */
-  grid-template-rows: 64px 1fr;
+  grid-template-rows: 70px 1fr;
   align-items: center;
   padding: 0 2rem;
   position: fixed;
@@ -384,7 +384,7 @@ header .nav-section.nav-section-subscribe form {
 
 /* desktop nav styles */
 
-@media (min-width: 1000px) {
+@media (min-width: 1200px) {
   header .nav {
     overflow: unset;
     grid-template-areas: "brand sections buttons";
@@ -410,6 +410,7 @@ header .nav-section.nav-section-subscribe form {
     flex-direction: row;
     background-color: unset;
     width: unset;
+    height: 100%;
   }
 
   header .nav[aria-expanded="true"] .nav-sections {
@@ -489,7 +490,9 @@ header .nav-section.nav-section-subscribe form {
   }
 
   header .nav-section[aria-expanded="true"] > ul,
-  header .nav-section[aria-expanded="true"] > .nav-section-wrapper {
+  header .nav-section:hover > ul,
+  header .nav-section[aria-expanded="true"] > .nav-section-wrapper,
+  header .nav-section:hover > .nav-section-wrapper {
     position: absolute;
     opacity: 1;
     max-height: 100vh;
@@ -505,24 +508,29 @@ header .nav-section.nav-section-subscribe form {
   }
 
   header .nav-section[aria-expanded="true"] > ul > *,
-  header .nav-section[aria-expanded="true"] > .nav-section-wrapper > * {
+  header .nav-section:hover > ul > *,
+  header .nav-section[aria-expanded="true"] > .nav-section-wrapper > *,
+  header .nav-section:hover > .nav-section-wrapper > * {
     opacity: 1;
   }
 
-  header .nav-section[aria-expanded="true"] li[aria-expanded="true"] > ul {
+  header .nav-section[aria-expanded="true"] li[aria-expanded="true"] > ul,
+  header .nav-section:hover li:hover > ul {
     position: absolute;
     opacity: 1;
     left: 280px;
-    transition: left 0.1s linear;
+    transition: left 0.4s linear;
     z-index: -1;
     transform: unset;
   }
 
-  header .nav-section[aria-expanded="true"] li[aria-expanded="true"] {
+  header .nav-section[aria-expanded="true"] li[aria-expanded="true"],
+  header .nav-section:hover li:hover {
     color: var(--color-1);
   }
 
-  header .nav-section[aria-expanded="true"] li[aria-expanded="true"]::after {
+  header .nav-section[aria-expanded="true"] li[aria-expanded="true"]::after,
+  header .nav-section:hover li.sub-menu:hover::after {
     content: "❯";
     float: right;
   }
