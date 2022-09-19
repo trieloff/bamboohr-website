@@ -80,10 +80,29 @@ export async function filterResults(config, facets = {}) {
     facetKeys.forEach((facetKey) => {
       let includeInFacet = true;
       Object.keys(filterMatches).forEach((filterKey) => {
-        if (filterKey !== facetKey && !filterMatches[filterKey]) {
+        if (!filterMatches[filterKey]) {
           includeInFacet = false;
+
+          if (filterKey !== facetKey) {
+            keys.every((key) => {
+              let matched = false;
+
+              if (row[key]) {
+                const rowValues = row[key].split(',').map((t) => t.trim());
+                matched = tokens[key].some((t) => rowValues.includes(t));
+
+                if (matched) {
+                  includeInFacet = true;
+                }
+                includeInFacet = false;
+              }
+
+              return matched;
+            });
+          }
         }
       });
+
       if (includeInFacet) {
         if (row[facetKey]) {
           const rowValues = row[facetKey].split(',').map((t) => t.trim());
@@ -132,7 +151,7 @@ export default async function decorate(block, blockName) {
     'click',
     () => {
       block.querySelector('.listing-sortby ul').classList.toggle('visible');
-    }
+    },
   );
 
   const sortList = block.querySelector('.listing-sortby ul');
@@ -190,7 +209,7 @@ export default async function decorate(block, blockName) {
         if (event.currentTarget === event.target) {
           block.querySelector('.listing-facets').classList.remove('visible');
         }
-      }
+      },
     );
 
     const selectedFilters = block.querySelector('.listing-filters-selected');
@@ -245,6 +264,7 @@ export default async function decorate(block, blockName) {
             const filterConfig = createFilterConfig();
             // eslint-disable-next-line no-use-before-define
             runSearch(filterConfig);
+            console.log('filterConfig: ', filterConfig);
           });
         });
         facetsList.append(div);
@@ -260,8 +280,8 @@ export default async function decorate(block, blockName) {
       industryServed: {},
       locationRestrictions: {},
     };
-
     const results = await filterResults(filterConfig, facets);
+    console.log('facets after: ', facets);
     const sortBy = document.getElementById('listing-sortby')
       ? document.getElementById('listing-sortby').dataset.sort
       : 'level';
