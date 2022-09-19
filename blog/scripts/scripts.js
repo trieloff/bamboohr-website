@@ -786,7 +786,12 @@ function loadHeader(header) {
 }
 
 function loadFooter(footer) {
-  const footerBlock = buildBlock('footer', '');
+  const queryParams = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  const footerBlockName = queryParams.header ? 'megafooter' : 'footer';
+
+  const footerBlock = buildBlock(footerBlockName, '');
   footer.append(footerBlock);
   decorateBlock(footerBlock);
   loadBlock(footerBlock);
@@ -878,6 +883,11 @@ async function loadEager(doc) {
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
+  const header = doc.querySelector('header');
+  const queryParams = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  if (queryParams.header === 'meganav') header.classList.add('header-meganav');
   const main = doc.querySelector('main');
   await loadBlocks(main);
 
@@ -885,7 +895,7 @@ async function loadLazy(doc) {
   const element = hash ? main.querySelector(hash) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
+  loadHeader(header);
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
@@ -995,4 +1005,19 @@ export function getValuesFromClassName(className, classNameStart) {
   const params = className.substring(classNameStart.length);
 
   return params.split('-');
+}
+
+/**
+ * Creates an element with optional class and type
+ * @param {string} elemType type of element to create
+ * @param {...string} [cssClass] CSS class(es) to apply to element
+ * @returns {Element}
+ */
+export function createElem(elemType, ...cssClass) {
+  const elem = document.createElement(elemType);
+  if (cssClass != null && cssClass.length) {
+    elem.classList.add(cssClass);
+  }
+
+  return elem;
 }

@@ -1,0 +1,372 @@
+/* stylelint-disable no-descending-specificity */
+
+main .section > div.multi-element-wrapper {
+    max-width: 1024px;
+}
+
+main .section > div.multi-element-wrapper.full-width {
+    max-width: 1220px;
+}
+
+@media (min-width: 1441px) {
+    main .section > div.multi-element-wrapper.full-width {
+        max-width: 1440px;
+    }
+}
+
+main .section > div.multi-element-wrapper.mid-width {
+    max-width: 1390px;
+}
+
+.multi-element,
+.multi-element *,
+.multi-element *::before,
+.multi-element *::after {
+    box-sizing: border-box;
+}
+
+.multi-element {
+    color: var(--color-gray-10);
+}
+
+.multi-element > div {
+    --columns: 1fr;
+    --gap: 2rem;
+    --rows: 1fr;
+
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: var(--columns);
+}
+
+@media (min-width: 1025px) {
+    .multi-element > div {
+        --columns: 1fr;
+        --rows: revert;
+    }
+}
+
+/* "50/50" styles */
+@media (min-width: 1025px) {
+    .multi-element.style-50-50 > div {
+        --columns: repeat(2, 1fr);
+    }
+}
+
+/* "50/25/25" styles */
+.multi-element.style-50-25-25 > div {
+    --columns: repeat(2, 1fr);
+    --rows: repeat(2, min-content);
+}
+
+@media (min-width: 1025px) {
+    .multi-element.style-50-25-25 > div {
+        --columns: 2fr repeat(2, 1fr);
+    }
+}
+
+.multi-element.style-50-25-25 > div > div:first-child {
+    grid-column: 1 / span 2;
+}
+
+@media (min-width: 1025px) {
+    .multi-element.style-50-25-25 > div > div:first-child {
+        grid-column: revert;
+    }
+}
+
+/* "themed headings" styles */
+.multi-element.themed-headings h1,
+.multi-element.themed-headings h2,
+.multi-element.themed-headings h3,
+.multi-element.themed-headings h4,
+.multi-element.themed-headings h5,
+.multi-element.themed-headings h6 {
+    color: var(--theme-shade10);
+}
+
+/* button styles */
+.multi-element a.button:any-link {
+    background-image: linear-gradient(91.98deg, var(--theme-shade5) 0%, var(--theme-shade10) 100%);
+    font-family: var(--body-font-family);
+    font-size: 15px;
+    line-height: 1.3334;
+    margin: 0;
+    padding: .625rem 1.875rem;
+}
+
+/* content styles */
+.multi-element > div > div:not(.has-images) {
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.25rem;
+    justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .multi-element > div > div:not(.has-images) {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+.multi-element h1,
+.multi-element h2,
+.multi-element h3,
+.multi-element h4,
+.multi-element h5,
+.multi-element h6 {
+    margin: 0;
+}
+
+.multi-element h1 {
+    font-size: 1.875rem;
+    line-height: 1.2;
+}
+
+@media (min-width: 1025px) {
+    .multi-element h1 {
+        font-size: 2.25rem;
+        line-height: 1.2222;
+    }
+}
+
+main .multi-element p {
+    margin: 0;
+}
+
+/* image styles */
+.multi-element div.has-images {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.multi-element div.has-images > picture {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+/* not "logo cards" or "hero" styles */
+@media (max-width: 768px) {
+    .multi-element:not(.logo-cards):not(.hero) > div > div:first-child {
+        flex-flow: row wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .multi-element:not(.logo-cards):not(.hero) div.has-images {
+        width: 50%;
+    }
+}
+
+/* "logo cards" style */
+.multi-element.logo-cards > div {
+    --gap: 1.5rem;
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .multi-element.logo-cards > div {
+        --columns: 3fr repeat(2, 4fr);
+    }
+}
+
+@media (min-width: 1025px) {
+    .multi-element.logo-cards > div {
+        --gap: 2rem;
+    }
+}
+
+.multi-element.logo-cards > div > div:not(.has-images) {
+    align-items: start;
+    text-align: left;
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .multi-element.logo-cards > div > div:not(.has-images) {
+        grid-column: 1 / span 3 !important;
+    }
+}
+
+
+.multi-element.logo-cards div:not(.has-images) {
+    justify-content: start;
+}
+
+.multi-element.logo-cards h2 {
+    font-size: 1.875rem;
+    line-height: 1.2;
+}
+
+@media (min-width: 1025px) {
+    .multi-element.logo-cards h2 {
+        font-size: 2.25rem;
+        line-height: 1.2222;
+    }
+}
+
+.multi-element.logo-cards div.has-images {
+    align-items: revert;
+    row-gap: .5rem;
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .multi-element.logo-cards div.has-images:nth-child(2) {
+        grid-column: 2;
+    }
+}
+
+@media (min-width: 600px) {
+    .multi-element.logo-cards div.has-images {
+        row-gap: 1rem;
+    }
+}
+
+.multi-element.logo-cards div.has-images picture {
+    background: var(--color-white);
+    border-radius: 1rem;
+    box-shadow: var(--theme-shadow1-shade5);
+    height: 3rem;
+    padding: .625rem;
+}
+
+@media (min-width: 600px) {
+    .multi-element.logo-cards div.has-images picture {
+        height: 4.5rem;
+        padding: .75rem 1.5rem;
+    }
+}
+
+.multi-element.logo-cards div.has-images img {
+    max-height: 1.75rem;
+    max-width: 6rem;
+}
+
+@media (min-width: 600px) {
+    .multi-element.logo-cards div.has-images img {
+        max-height: 3rem;
+        max-width: 9rem;
+    }
+}
+
+/* "hero" styles */
+.multi-element.hero > div {
+    color: var(--color-gray-11);
+}
+
+@media (min-width: 769px) {
+    .multi-element.hero > div {
+        grid-template-columns: 2fr 3fr;
+    }
+}
+
+@media (min-width: 1441px) {
+    .multi-element.hero > div {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.multi-element.hero > div > div:not(.has-images) {
+    gap: 2.5rem;
+}
+
+@media (min-width: 769px) {
+    .multi-element.hero > div > div:not(.has-images) {
+        align-items: start;
+        justify-content: start;
+        text-align: left;
+    }
+}
+
+.multi-element.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .multi-element.hero h1 {
+        font-size: 3.375rem;
+        line-height: 1.1111;
+    }
+}
+
+@media (min-width: 1441px) {
+    .multi-element.hero h1 {
+        font-size: 4.375rem;
+        line-height: 1.1429;
+    }
+}
+
+.multi-element.hero h2 {
+    font-family: var(--body-font-family);
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.4444;
+    margin-top: -1.875rem;
+}
+
+@media (min-width: 768px) {
+    .multi-element.hero h2 {
+        font-size: 1.3125rem;
+        line-height: 1.3333;
+    }
+}
+
+@media (min-width: 1441px) {
+    .multi-element.hero h2 {
+        font-size: 1.3125rem;
+    }
+}
+
+.multi-element.hero div.has-images {
+    --gap: 1rem;
+
+    gap: var(--gap);
+}
+
+@media (min-width: 768px) {
+    .multi-element.hero div.has-images {
+        --gap: 1.625rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .multi-element.hero div.has-images {
+        --gap: 1.875rem;
+    }
+}
+
+@media (min-width: 1441px) {
+    .multi-element.hero div.has-images {
+        --gap: 1.875rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .multi-element.hero > div > div {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+.multi-element.hero div.has-images picture {
+    border-radius: 1rem;
+    border: .1875rem solid var(--color-gray-1);
+    box-shadow: var(--box-shadow-2-gray-shade10);
+    overflow: hidden;
+}
+
+.multi-element.hero a.button:any-link {
+    background-color: var(--theme-shade5);
+    background-image: revert;
+    transition: background-color .25s ease-in-out;
+}
+
+.multi-element.hero a.button:any-link:hover {
+    background-color: var(--theme-shade10);
+}
