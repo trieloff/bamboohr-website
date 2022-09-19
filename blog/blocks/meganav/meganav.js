@@ -2,19 +2,13 @@ import {
   decorateButtons,
   decorateIcons,
   getMetadata,
+  createElem,
 } from '../../scripts/scripts.js';
 
 const LEVEL_1_NAV_SELECTOR = '.header-nav-level-1';
 const EXPANDED_CSS_CLASS = 'header-level-1-expanded';
 const LINK_ANIMATION_CSS_CLASS = 'header-link-border-animation';
 const MEGANAV_LOCATION = '/meganav/index';
-
-function createElem(cssClass, elemType = 'div') {
-  const elem = document.createElement(elemType);
-  elem.classList.add(cssClass);
-
-  return elem;
-}
 
 function buildSecondaryNav(ref) {
   const secondaryNavButtonElems = ref.querySelectorAll(':scope > div:nth-child(3) p');
@@ -178,7 +172,7 @@ function buildLevel2Column(ref) {
 
     const secondChild = firstChild.nextElementSibling;
     if (secondChild?.nodeName === 'H4') {
-      const level2LinkDescriptionElem = createElem('header-level-2-main-link-description', 'span');
+      const level2LinkDescriptionElem = createElem('span', 'header-level-2-main-link-description');
       level2LinkDescriptionElem.textContent = secondChild.textContent;
 
       level2LinkElem.append(level2LinkDescriptionElem);
@@ -191,7 +185,7 @@ function buildLevel2Column(ref) {
 
   if (linkList) {
     linkList.classList.add('header-subnav-list');
-    const accordionElem = createElem('header-subnav-accordion');
+    const accordionElem = createElem('div', 'header-subnav-accordion');
     accordionElem.append(linkList);
     colElem.append(accordionElem);
 
@@ -235,7 +229,7 @@ function buildSubNavChildren(ref) {
 }
 
 function buildSidebar(ref) {
-  const sidebarElem = createElem('header-sidebar');
+  const sidebarElem = createElem('div', 'header-sidebar');
 
   const cta1 = ref.querySelector(':scope > div:nth-child(2)');
   cta1?.classList.add('header-cta', 'header-cta-primary');
@@ -311,7 +305,7 @@ async function buildNavLevel1(linkElem) {
 function buildMobileCta(ref) {
   const ctaRef = ref.querySelector(':scope > div:nth-child(2) ul + p');
 
-  const mobileCta = createElem('header-cta');
+  const mobileCta = createElem('div', 'header-cta');
   mobileCta.classList.add('header-cta-secondary', 'header-mobile-cta');
 
   if (ctaRef) {
