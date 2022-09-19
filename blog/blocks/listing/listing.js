@@ -154,23 +154,6 @@ export default async function decorate(block, blockName) {
     },
   );
 
-  const sortList = block.querySelector('.listing-sortby ul');
-  const selectSort = (selected) => {
-    [...sortList.children].forEach((li) => li.classList.remove('selected'));
-    selected.classList.add('selected');
-    const sortBy = document.getElementById('listing-sortby');
-    sortBy.textContent = selected.textContent;
-    sortBy.dataset.sort = selected.dataset.sort;
-    document.getElementById('listing-sortby').textContent = selected.textContent;
-    block.querySelector('.listing-sortby ul').classList.remove('visible');
-    // eslint-disable-next-line no-use-before-define
-    runSearch(createFilterConfig());
-  };
-
-  sortList.addEventListener('click', (event) => {
-    selectSort(event.target);
-  });
-
   const displayResults = async (results) => {
     resultsElement.innerHTML = '';
     results.forEach((product) => {
@@ -178,8 +161,27 @@ export default async function decorate(block, blockName) {
     });
   };
 
-  const getSelectedFilters = () => [...block.querySelectorAll('input[type="checkbox"]:checked')];
+  const runSearch = async (filterConfig = config) => {
+    const facets = {
+      category: {},
+      businessSize: {},
+      dataFlow: {},
+      industryServed: {},
+      locationRestrictions: {},
+    };
+    const results = await filterResults(filterConfig, facets);
+    const sortBy = document.getElementById('listing-sortby')
+      ? document.getElementById('listing-sortby').dataset.sort
+      : 'level';
 
+    if (sortBy && sortOptions(sortBy)) results.sort(sortOptions(sortBy));
+    block.querySelector('#listing-results-count').textContent = results.length;
+    displayResults(results, null);
+    // eslint-disable-next-line no-use-before-define
+    displayFacets(facets, filterConfig);
+  };
+
+  const getSelectedFilters = () => [...block.querySelectorAll('input[type="checkbox"]:checked')];
   const createFilterConfig = () => {
     const filterConfig = { ...config };
     getSelectedFilters().forEach((checked) => {
@@ -190,6 +192,22 @@ export default async function decorate(block, blockName) {
     });
     return filterConfig;
   };
+
+  const sortList = block.querySelector('.listing-sortby ul');
+  const selectSort = (selected) => {
+    [...sortList.children].forEach((li) => li.classList.remove('selected'));
+    selected.classList.add('selected');
+    const sortBy = document.getElementById('listing-sortby');
+    sortBy.textContent = selected.textContent;
+    sortBy.dataset.sort = selected.dataset.sort;
+    document.getElementById('listing-sortby').textContent = selected.textContent;
+    block.querySelector('.listing-sortby ul').classList.remove('visible');
+    runSearch(createFilterConfig());
+  };
+
+  sortList.addEventListener('click', (event) => {
+    selectSort(event.target);
+  });
 
   const displayFacets = (facets, filters) => {
     const rawFilters = getSelectedFilters().map((check) => check.value);
@@ -220,7 +238,7 @@ export default async function decorate(block, blockName) {
       span.addEventListener('click', () => {
         document.getElementById(`listing-filter-${tag}`).checked = false;
         const filterConfig = createFilterConfig();
-        // eslint-disable-next-line no-use-before-define
+
         runSearch(filterConfig);
       });
       selectedFilters.append(span);
@@ -231,7 +249,7 @@ export default async function decorate(block, blockName) {
         document.getElementById(`listing-filter-${tag}`).checked = false;
       });
       const filterConfig = createFilterConfig();
-      // eslint-disable-next-line no-use-before-define
+
       runSearch(filterConfig);
     });
 
@@ -262,34 +280,13 @@ export default async function decorate(block, blockName) {
           div.append(input, label);
           input.addEventListener('change', () => {
             const filterConfig = createFilterConfig();
-            // eslint-disable-next-line no-use-before-define
+
             runSearch(filterConfig);
-            console.log('filterConfig: ', filterConfig);
           });
         });
         facetsList.append(div);
       }
     });
-  };
-
-  const runSearch = async (filterConfig = config) => {
-    const facets = {
-      category: {},
-      businessSize: {},
-      dataFlow: {},
-      industryServed: {},
-      locationRestrictions: {},
-    };
-    const results = await filterResults(filterConfig, facets);
-    console.log('facets after: ', facets);
-    const sortBy = document.getElementById('listing-sortby')
-      ? document.getElementById('listing-sortby').dataset.sort
-      : 'level';
-
-    if (sortBy && sortOptions(sortBy)) results.sort(sortOptions(sortBy));
-    block.querySelector('#listing-results-count').textContent = results.length;
-    displayResults(results, null);
-    displayFacets(facets, filterConfig);
   };
 
   runSearch(config);
