@@ -45,7 +45,6 @@ export default function decorate(block) {
 
   // hero duplication
   if (block.classList.contains('hero') || !block.classList.contains('logo-cards')) {
-    console.log(block);
     moveImages(block, mediaQuery.matches);
 
     mediaQuery.addEventListener('change', (event) => {
