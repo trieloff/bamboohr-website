@@ -34,7 +34,7 @@ export default async function decorate(block) {
     else navPath = '/nav';
   }
 
-  const resp = await fetch(`${navPath}.plain.html`);
+  const resp = await fetch(`${window.hlx.serverPath}${navPath}.plain.html`);
   let html = await resp.text();
 
   // forward compatibility

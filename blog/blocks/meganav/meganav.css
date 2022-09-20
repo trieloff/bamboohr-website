@@ -68,7 +68,7 @@
   padding: 8px 18px;
 }
 
-.header-secondary-nav > :first-child a:any-link {
+.meganav .header-secondary-nav > :first-child a:any-link {
   border: none;
 }
 
