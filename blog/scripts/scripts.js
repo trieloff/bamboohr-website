@@ -593,8 +593,8 @@ async function loadPage(doc) {
   loadDelayed(doc);
 }
 
-export function initHlx() {
-  if (!window.hlx) {
+export function initHlx(forceMultiple = false) {
+  if (!window.hlx || forceMultiple) {
     window.hlx = window.hlx || {};
     window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
     window.hlx.codeBasePath = '';
