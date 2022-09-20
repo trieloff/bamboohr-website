@@ -439,7 +439,7 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
   if (chilipiper) {
     loadScript('https://js.chilipiper.com/marketing.js', () => {
       // eslint-disable-next-line
-      window.q = (a) => {return function(){ChiliPiper[a].q=(ChiliPiper[a].q||[]).concat([arguments])}}window.ChiliPiper=window.ChiliPiper||"submit scheduling showCalendar submit widget bookMeeting".split(" ").reduce(function(a,b){a[b]=q(b);return a},{});
+      window.q = (a) => {return function(){ChiliPiper[a].q=(ChiliPiper[a].q||[]).concat([arguments])}};window.ChiliPiper=window.ChiliPiper||"submit scheduling showCalendar submit widget bookMeeting".split(" ").reduce(function(a,b){a[b]=q(b);return a},{});
       // eslint-disable-next-line
       ChiliPiper.scheduling("bamboohr", `"${chilipiper}"`, {title: "Thanks! What time works best for a quick call?"})
     });
