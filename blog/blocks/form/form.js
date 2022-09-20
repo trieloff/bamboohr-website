@@ -426,11 +426,11 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
       if (form.getId().toString() === formId) {
         mktoFormReset(form);
         form.onSuccess(() => {
-          window.dataLayer.push({
-            event: 'marketoForm',
-            formName: form.getId(),
-          });
-          if (successUrl && chilipiper) window.location.href = successUrl;
+          // window.dataLayer.push({
+          //   event: 'marketoForm',
+          //   formName: form.getId(),
+          // });
+          if (successUrl && !chilipiper) window.location.href = successUrl;
           return false;
         });
       }
