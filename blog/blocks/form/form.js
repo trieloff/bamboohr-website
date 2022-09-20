@@ -1,3 +1,5 @@
+import { readBlockConfig } from '../../scripts/scripts.js';
+
 const loadScript = (url, callback, type) => {
   const head = document.querySelector('head');
   const script = document.createElement('script');
@@ -100,7 +102,8 @@ function constructPayload(form) {
 }
 
 function sanitizeInput(input) {
-  const output = input.replace(/<script[^>]*?>.*?<\/script>/gi, '')
+  const output = input
+    .replace(/<script[^>]*?>.*?<\/script>/gi, '')
     // eslint-disable-next-line no-useless-escape
     .replace(/<[\/\!]*?[^<>]*?>/gi, '')
     .replace(/<style[^>]*?>.*?<\/style>/gi, '')
@@ -260,7 +263,10 @@ function applyRules(form, rules) {
   const payload = constructPayload(form);
   const usp = new URLSearchParams(window.location.search);
   rules.forEach((field) => {
-    const { type, condition: { key, operator, value } } = field.rule;
+    const {
+      type,
+      condition: { key, operator, value },
+    } = field.rule;
     if (type === 'visible') {
       if (operator === 'eq') {
         if (payload[key] === value || [...usp.getAll(key)].includes(value)) {
@@ -338,7 +344,7 @@ async function createForm(formURL) {
   form.addEventListener('change', () => applyRules(form, rules));
   applyRules(form, rules);
 
-  return (form);
+  return form;
 }
 
 function mktoFormReset(form, moreStyles) {
@@ -352,6 +358,9 @@ function mktoFormReset(form, moreStyles) {
       const newId = `${forEl.id}_${rando}`;
       labelEl.htmlFor = newId;
       forEl.id = newId;
+      if (forEl.classList.contains('mktoField')) {
+        forEl.nextElementSibling.htmlFor = newId;
+      }
     }
   });
 
@@ -366,18 +375,31 @@ function mktoFormReset(form, moreStyles) {
   document.getElementById('mktoForms2BaseStyle').disabled = true;
   document.getElementById('mktoForms2ThemeStyle').disabled = true;
 
-  document.querySelectorAll('.mktoAsterix').forEach((el) => { el.remove(); });
-  document.querySelectorAll('.mktoOffset').forEach((el) => { el.remove(); });
-  document.querySelectorAll('.mktoGutter').forEach((el) => { el.remove(); });
-  document.querySelectorAll('.mktoClear').forEach((el) => { el.remove(); });
+  document.querySelectorAll('.mktoAsterix').forEach((el) => {
+    el.remove();
+  });
+  document.querySelectorAll('.mktoOffset').forEach((el) => {
+    el.remove();
+  });
+  document.querySelectorAll('.mktoGutter').forEach((el) => {
+    el.remove();
+  });
+  document.querySelectorAll('.mktoClear').forEach((el) => {
+    el.remove();
+  });
 
   formEl.querySelector('[name="Country"]').addEventListener('change', () => {
-    document.querySelectorAll('.mktoAsterix').forEach((el) => { el.remove(); });
-    document.querySelectorAll('.mktoHtmlText').forEach((el) => { el.removeAttribute('style'); });
+    document.querySelectorAll('.mktoAsterix').forEach((el) => {
+      el.remove();
+    });
+    document.querySelectorAll('.mktoHtmlText').forEach((el) => {
+      el.removeAttribute('style');
+    });
     if (document.getElementById(formId).querySelector('[name="Disclaimer__c"]')) {
       const gdprLabel = document.getElementById(formId).querySelector('[for="Disclaimer__c"]');
       const gdprInput = document.getElementById(formId).querySelector('[id="Disclaimer__c"]');
       gdprInput.id = `Disclaimer__c_${rando}`;
+      gdprInput.nextElementSibling.htmlFor = `Disclaimer__c_${rando}`;
       gdprLabel.htmlFor = `Disclaimer__c_${rando}`;
       gdprLabel.removeAttribute('style');
       gdprInput.parentElement.classList.add('form-checkbox-option');
@@ -396,49 +418,111 @@ function mktoFormReset(form, moreStyles) {
   }
 }
 
+function loadFormAndChilipiper(formId, successUrl, chilipiper) {
+  loadScript('//grow.bamboohr.com/js/forms2/js/forms2.min.js', () => {
+    window.MktoForms2.loadForm('//grow.bamboohr.com', '195-LOZ-515', formId);
+
+    window.MktoForms2.whenReady((form) => {
+      if (form.getId().toString() === formId) {
+        mktoFormReset(form);
+        form.onSuccess(() => {
+          window.dataLayer.push({
+            event: 'marketoForm',
+            formName: form.getId(),
+          });
+          if (successUrl && chilipiper) window.location.href = successUrl;
+          return false;
+        });
+      }
+    });
+  });
+  if (chilipiper) {
+    loadScript('https://js.chilipiper.com/marketing.js', () => {
+      // eslint-disable-next-line
+      window.q = (a) => {return function(){ChiliPiper[a].q=(ChiliPiper[a].q||[]).concat([arguments])}};window.ChiliPiper=window.ChiliPiper||"submit scheduling showCalendar submit widget bookMeeting".split(" ").reduce(function(a,b){a[b]=q(b);return a},{});
+      // eslint-disable-next-line
+      ChiliPiper.scheduling("bamboohr", `"${chilipiper}"`, {title: "Thanks! What time works best for a quick call?"})
+    });
+  }
+}
+
 export default async function decorate(block) {
+  const config = readBlockConfig(block);
   const as = block.querySelectorAll('a');
   let formUrl = as[0] ? as[0].href : '';
   let successUrl = as[1] ? as[1].href : '';
+  let chilipiper;
 
   if (!formUrl) {
-    const resp = await fetch('/drafts/uncled/forms-map.json');
+    const resp = await fetch('/forms-map.json');
     const json = await resp.json();
     const map = json.data;
     map.forEach((entry) => {
-      if (entry.URL === window.location.pathname
-        || (entry.URL.endsWith('**') && window.location.pathname.startsWith(entry.URL.split('**')[0]))) {
+      if (
+        entry.URL === window.location.pathname || (entry.URL.endsWith('**') && window.location.pathname.startsWith(entry.URL.split('**')[0]))
+      ) {
         formUrl = entry.Form;
         successUrl = entry.Success;
+        chilipiper = entry.Chilipiper;
       }
     });
   }
 
-  console.log(formUrl, successUrl);
-
   if (formUrl) {
     if (formUrl.includes('marketo')) {
       const formId = new URL(formUrl).hash.substring(4);
-      block.innerHTML = `<form id="mktoForm_${formId}"></form>`;
-      loadScript('//grow.bamboohr.com/js/forms2/js/forms2.min.js', () => {
-        window.MktoForms2.loadForm('//grow.bamboohr.com', '195-LOZ-515', formId);
+      if (config) {
+        block.innerHTML = '';
+      }
+      if (config.modal === 'yes') {
+        const callToActionModal = async (a) => {
+          a.addEventListener('click', async () => {
+            const elem = document.getElementById(`${formId}-modal`);
+            if (!elem) {
+              const wrapper = document.createElement('div');
+              wrapper.className = 'modal-wrapper';
 
-        window.MktoForms2.whenReady((form) => {
-          if (form.getId().toString() === formId) {
-            mktoFormReset(form);
-            if (successUrl) {
-              form.onSuccess(() => {
-                window.dataLayer.push({
-                  event: 'marketoForm',
-                  formName: form.getId(),
-                });
-                window.location.href = successUrl;
-                return false;
+              const modal = document.createElement('div');
+              modal.className = 'modal';
+              modal.id = `${formId}-modal`;
+              modal.innerHTML = '<div class="modal-close"></div>';
+              const modalContent = document.createElement('div');
+              modalContent.classList.add('modal-content');
+              modal.append(modalContent);
+              const formTitle = document.createElement('div');
+              formTitle.classList.add('typ-title1', 'modal-form-title');
+              formTitle.textContent = config['form-title'];
+              const formSubtitle = document.createElement('p');
+              formSubtitle.textContent = config['form-subtitle'];
+              formSubtitle.classList.add('modal-form-subtitle');
+              modalContent.append(formTitle);
+              modalContent.append(formSubtitle);
+              const mktoForm = document.createElement('form');
+              mktoForm.id = `mktoForm_${formId}`;
+              modalContent.append(mktoForm);
+              wrapper.append(modal);
+              block.append(wrapper);
+              loadFormAndChilipiper(formId, successUrl, chilipiper);
+              wrapper.classList.add('visible');
+              const close = modal.querySelector('.modal-close');
+              close.addEventListener('click', () => {
+                wrapper.classList.remove('visible');
               });
+            } else {
+              block.querySelector('.modal-wrapper').classList.add('visible');
             }
-          }
-        });
-      });
+          });
+        };
+        if (config['modal-button-text']) {
+          const modalBtn = document.createElement('a');
+          modalBtn.innerHTML = `<a class="button" href="#" data-modal="${formId}-modal">${config['modal-button-text']}</a>`;
+          callToActionModal(modalBtn);
+          block.append(modalBtn);
+        }
+      } else {
+        block.innerHTML = `<form id="mktoForm_${formId}"></form>`;
+        loadFormAndChilipiper(formId, successUrl, chilipiper);
+      }
     } else {
       const formEl = await createForm(formUrl);
       block.firstElementChild.replaceWith(formEl);

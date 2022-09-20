@@ -220,7 +220,8 @@ main .form .mktoForm[data-styles-ready="true"] {
 	visibility: visible;
 }
 
-main .form .mktoForm .mktoInvalid {
+main .form .mktoForm .mktoInvalid,
+main .form .mktoForm .mktoInvalid.form-checkbox-option label::before {
   border-color: var(--color-2);
 }
 
