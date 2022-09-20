@@ -1,8 +1,8 @@
 import {
+  createElem,
   decorateButtons,
   decorateIcons,
   getMetadata,
-  createElem,
 } from '../../scripts/scripts.js';
 
 const LEVEL_1_NAV_SELECTOR = '.header-nav-level-1';
@@ -279,7 +279,7 @@ function buildNavLevel1Container(ref, linkElem) {
 }
 
 async function buildNavLevel1(linkElem) {
-  const resp = await fetch(`${linkElem.getAttribute('href')}.plain.html`);
+  const resp = await fetch(`${window.hlx.serverPath}${linkElem.pathname}.plain.html`);
   const level1Ref = document.createElement('div');
   level1Ref.innerHTML = await resp.text();
 
@@ -348,7 +348,7 @@ export default async function decorate(block) {
   // fetch nav content
   const navPath = getMetadata('nav') || MEGANAV_LOCATION;
 
-  const resp = await fetch(`${navPath}.plain.html`);
+  const resp = await fetch(`${window.hlx.serverPath}${navPath}.plain.html`);
   let html = await resp.text();
 
   // forward compatibility

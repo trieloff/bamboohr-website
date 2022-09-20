@@ -51,8 +51,8 @@ export function sampleRUM(checkpoint, data = {}) {
             data.cwv[measurement.name] = measurement.value;
             sendPing();
           };
-            // When loading `web-vitals` using a classic script, all the public
-            // methods can be found on the `webVitals` global namespace.
+          // When loading `web-vitals` using a classic script, all the public
+          // methods can be found on the `webVitals` global namespace.
           window.webVitals.getCLS(storeCWV);
           window.webVitals.getFID(storeCWV);
           window.webVitals.getLCP(storeCWV);
@@ -172,9 +172,7 @@ export function addPublishDependencies(url) {
  * @returns {string} The class name
  */
 export function toClassName(name) {
-  return name && typeof name === 'string'
-    ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-')
-    : '';
+  return name && typeof name === 'string' ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-') : '';
 }
 
 /*
@@ -206,9 +204,10 @@ export function decorateIcons(element) {
   // prepare for forward compatible icon handling
   replaceIcons(element);
 
+  const fetchBase = window.hlx.serverPath;
   element.querySelectorAll('span.icon').forEach((span) => {
     const iconName = span.className.split('icon-')[1];
-    fetch(`${window.hlx.codeBasePath}/icons/${iconName}.svg`).then((resp) => {
+    fetch(`${fetchBase}${window.hlx.codeBasePath}/icons/${iconName}.svg`).then((resp) => {
       if (resp.status === 200) resp.text().then((svg) => { span.innerHTML = svg; });
     });
   });
@@ -242,7 +241,7 @@ export async function fetchPlaceholders(prefix = 'default') {
     });
   }
   await window.placeholders[`${prefix}-loaded`];
-  return (window.placeholders[prefix]);
+  return window.placeholders[prefix];
 }
 
 /**
@@ -356,7 +355,9 @@ export function updateSectionsStatus(main) {
     const section = sections[i];
     const status = section.getAttribute('data-section-status');
     if (status !== 'loaded') {
-      const loadingBlock = section.querySelector('.block[data-block-status="initialized"], .block[data-block-status="loading"]');
+      const loadingBlock = section.querySelector(
+        '.block[data-block-status="initialized"], .block[data-block-status="loading"]'
+      );
       if (loadingBlock) {
         section.setAttribute('data-section-status', 'loading');
         break;
@@ -405,7 +406,7 @@ export function buildBlock(blockName, content) {
     });
     blockEl.appendChild(rowEl);
   });
-  return (blockEl);
+  return blockEl;
 }
 
 /**
@@ -592,18 +593,21 @@ async function loadPage(doc) {
   loadDelayed(doc);
 }
 
-export function initHlx() {
-  window.hlx = window.hlx || {};
-  window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
-  window.hlx.codeBasePath = '';
+export function initHlx(forceMultiple = false) {
+  if (!window.hlx || forceMultiple) {
+    window.hlx = window.hlx || {};
+    window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
+    window.hlx.codeBasePath = '';
+    window.hlx.serverPath = '';
 
-  const scriptEl = document.querySelector('script[src$="/scripts/scripts.js"]');
-  if (scriptEl) {
-    try {
-      [window.hlx.codeBasePath] = new URL(scriptEl.src).pathname.split('/scripts/scripts.js');
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log(e);
+    const scriptEl = document.querySelector('script[src$="/scripts/scripts.js"]');
+    if (scriptEl) {
+      try {
+        [window.hlx.codeBasePath] = new URL(scriptEl.src).pathname.split('/scripts/scripts.js');
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e);
+      }
     }
   }
 }
@@ -635,7 +639,7 @@ document.addEventListener('click', (event) => {
   sampleRUM('click', { target: sampleRUM.targetselector(event.target), source: sampleRUM.sourceselector(event.target) });
 });
 
-loadPage(document);
+if (!window.hlx.suppressLoadPage) loadPage(document);
 
 export function formatDate(dateString) {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -652,8 +656,7 @@ export function decorateButtons(block = document) {
     if ($block) {
       blockName = $block.className;
     }
-    if (!noButtonBlocks.includes(blockName)
-      && $a.href !== $a.textContent) {
+    if (!noButtonBlocks.includes(blockName) && $a.href !== $a.textContent) {
       const $up = $a.parentElement;
       const $twoup = $a.parentElement.parentElement;
       if (!$a.querySelector('img')) {
@@ -739,7 +742,7 @@ export function buildFigure(blockEl) {
           }
         }
       });
-    // catch link-only figures (like embed blocks);
+      // catch link-only figures (like embed blocks);
     } else if (blockEl.firstElementChild.nodeName === 'A') {
       figEl.append(blockEl.firstElementChild);
     }
@@ -770,14 +773,14 @@ export async function lookupPages(pathnames, collection) {
   });
   const { lookup } = window.pageIndex[collection];
   const result = pathnames.map((path) => lookup[path]).filter((e) => e);
-  return (result);
+  return result;
 }
 
-function loadHeader(header) {
+export function loadHeader(header) {
   const queryParams = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
   });
-  const headerblockName = queryParams.header ? queryParams.header : 'header';
+  const headerblockName = queryParams.header === 'meganav' ? 'meganav' : 'header';
 
   const headerBlock = buildBlock(headerblockName, '');
   header.append(headerBlock);
@@ -920,7 +923,7 @@ export async function loadFragment(path) {
     await decorateMain(main);
     await loadBlocks(main);
   }
-  return (main);
+  return main;
 }
 
 export function lockBody() {
