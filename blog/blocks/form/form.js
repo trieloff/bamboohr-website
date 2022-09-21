@@ -426,23 +426,32 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
       if (form.getId().toString() === formId) {
         mktoFormReset(form);
         form.onSuccess(() => {
-          // window.dataLayer.push({
-          //   event: 'marketoForm',
-          //   formName: form.getId(),
-          // });
-          if (successUrl && !chilipiper) window.location.href = successUrl;
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'marketoForm',
+            formName: form.getId(),
+          });
+          console.log(window.dataLayer);
+          // window.location.href = successUrl;
+          // if (successUrl && !chilipiper) window.location.href = successUrl;
           return false;
         });
       }
     });
   });
   if (chilipiper) {
-    loadScript('https://js.chilipiper.com/marketing.js', () => {
-      // eslint-disable-next-line
-      window.q = (a) => {return function(){ChiliPiper[a].q=(ChiliPiper[a].q||[]).concat([arguments])}};window.ChiliPiper=window.ChiliPiper||"submit scheduling showCalendar submit widget bookMeeting".split(" ").reduce(function(a,b){a[b]=q(b);return a},{});
-      // eslint-disable-next-line
-      ChiliPiper.scheduling("bamboohr", `"${chilipiper}"`, {title: "Thanks! What time works best for a quick call?"})
-    });
+    // loadScript('https://js.chilipiper.com/marketing.js', () => {
+    //   // eslint-disable-next-line
+    //   window.q = (a) => {return function(){ChiliPiper[a].q=(ChiliPiper[a].q||[]).concat([arguments])}};
+    //   // eslint-disable-next-line
+    //   window.ChiliPiper=window.ChiliPiper||"submit scheduling showCalendar submit widget bookMeeting".split(" ").reduce(function(a,b){a[b]=q(b);return a},{});
+    //   // eslint-disable-next-line
+    //   ChiliPiper.scheduling('bamboohr', `'${chilipiper}'`, {
+    //     title: 'Thanks! What time works best for a quick call?',
+    //     onRouted: setTimeout(() => { window.location.href = successUrl; }, '240000'),
+    //     map: true,
+    //   });
+    // });
   }
 }
 
