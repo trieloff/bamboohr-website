@@ -40,6 +40,7 @@ export default async function decorate(block) {
   nav.classList.add('nav');
   const navSections = document.createElement('div');
   navSections.classList.add('nav-sections');
+  navSections.setAttribute('am-region', 'Mega Nav');
   nav.innerHTML = html;
   decorateIcons(nav);
   nav.querySelectorAll(':scope > div').forEach((navSection, i) => {
@@ -63,6 +64,7 @@ export default async function decorate(block) {
         }
         navSections.append(navSection);
         navSection.classList.add('nav-section');
+        navSection.setAttribute('am-region', h2.textContent);
         if (!h2.querySelector('a')) {
           h2.addEventListener('click', () => {
             const expanded = navSection.getAttribute('aria-expanded') === 'true';

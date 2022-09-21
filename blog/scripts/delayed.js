@@ -13,25 +13,9 @@
 
 // eslint-disable-next-line import/no-cycle
 import { sampleRUM } from './scripts.js';
+import { loadScript } from './scripts.js';
 
 sampleRUM('cwv');
-
-function loadScript(location, url, callback, type) {
-  const $head = document.querySelector('head');
-  const $body = document.querySelector('body');
-  const $script = document.createElement('script');
-  $script.src = url;
-  if (type) {
-    $script.setAttribute('type', type);
-  }
-  if (location === 'header') {
-    $head.append($script);
-  } else if (location === 'footer') {
-    $body.append($script);
-  }
-  $script.onload = callback;
-  return $script;
-}
 
 loadScript('footer', 'https://consent.trustarc.com/v2/notice/qvlbs6', null, 'text/javascript');
 
