@@ -111,6 +111,19 @@ main .tabs .tabs-content[aria-hidden="true"] {
   }
 }
 
+/* resets for style 1/2/3 */
+main .tabs.style-1 *,
+main .tabs.style-1 *::before,
+main .tabs.style-1 *::after,
+main .tabs.style-2 *,
+main .tabs.style-2 *::before,
+main .tabs.style-2 *::after,
+main .tabs.style-3 *,
+main .tabs.style-3 *::before,
+main .tabs.style-3 *::after {
+  box-sizing: border-box;
+}
+
 /* Style 1 - checkbox */
 main .tabs.style-1 {
   /* 60px based on main .section > div selector from styles.css */
@@ -257,7 +270,6 @@ main .tabs.style-2 .tabs-title {
   border-radius: 1rem;
   border-width: 0;
   box-shadow: var(--box-shadow-transition-default);
-  box-sizing: border-box;
   display: block;
   grid-column: 1;
   overflow: hidden;
@@ -374,6 +386,101 @@ main .tabs.style-2 .tabs-content {
   }
 }
 
+/* Style 3 - accordion */
+main .tabs.style-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0 auto;
+  row-gap: .5rem;
+}
+
+@media (min-width: 1025px) {
+  main .tabs.style-3 {
+    max-width: 80%;
+  }
+}
+
+main .tabs.style-3 > .accordion {
+  --gap: .25rem;
+  --padding: 1rem;
+
+  background: var(--color-white);
+  border-radius: 1rem;
+  box-shadow: var(--theme-shadow2-shade5);
+}
+
+@media (min-width: 600px) {
+  main .tabs.style-3 > .accordion {
+    --gap: 1.25rem;
+    --padding: 1.5rem;
+  }
+}
+
+main .tabs.style-3 > .accordion .tabs-title {
+  align-items: center;
+  border: 0;
+  color: var(--color-gray-10);
+  column-gap: 2rem;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  justify-content: space-between;
+  line-height: 1.4;
+  margin: 0;
+  min-height: 5.5rem;
+  padding: var(--padding);
+}
+
+@media (min-width: 600px) {
+  main .tabs.style-3 > .accordion .tabs-title {
+    min-height: auto;
+  }
+}
+
+main .tabs.style-3 > .accordion .tabs-title::after {
+  --caret-size: .75rem;
+  --border-width: .1875rem;
+
+  border-color: var(--color-gray-5);
+  border-style: solid;
+  border-width: 0 var(--border-width) var(--border-width) 0;
+  flex-shrink: 0;
+  height: var(--caret-size);
+  margin: 0;
+  padding: 0;
+  position: static;
+  transform: rotate(45deg);
+  width: var(--caret-size);
+}
+
+main .tabs.style-3 > .accordion .tabs-title[aria-selected="true"]::after {
+  transform: rotate(-135deg);
+}
+
+main .tabs.style-3 > .accordion .tabs-content {
+  color: var(--color-gray-9);
+  font-family: var(--display-font-family);
+  margin-top: calc(var(--padding) * -1.75);
+  padding: var(--padding);
+}
+
+@media (min-width: 1025px) {
+  main .tabs.style-3 > .accordion .tabs-content {
+  margin-top: calc(var(--padding) * -1);
+  }
+}
+
+main .tabs.style-3 > .accordion .tabs-content[aria-hidden="false"] {
+  display: flex;
+  row-gap: var(--padding);
+}
+
+main .tabs.style-3 > .accordion .tabs-content p {
+  margin: 0;
+}
+
 /* Dots */
 main .tabs-wrapper {
   position: relative;
@@ -420,4 +527,10 @@ main .tabs-dots .tabs-dots-dot[aria-selected="true"]::before {
 /* TODO: temp to be removed? */
 main .section > .tabs-wrapper {
     max-width: 1160px;
+}
+
+/* TODO: remove, just to show styles with white BG */
+main .section.temp-bg {
+    background-color: var(--color-gray-1);
+    padding: .1rem 0 3rem;
 }
