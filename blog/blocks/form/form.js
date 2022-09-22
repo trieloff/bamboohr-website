@@ -431,9 +431,7 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
             event: 'marketoForm',
             formName: form.getId(),
           });
-          console.log(window.dataLayer);
-          // window.location.href = successUrl;
-          // if (successUrl && !chilipiper) window.location.href = successUrl;
+          if (successUrl && !chilipiper) window.location.href = successUrl;
           return false;
         });
       }
@@ -441,7 +439,7 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
   });
   if (chilipiper) {
     loadScript('https://js.chilipiper.com/marketing.js', () => {
-      // eslint-disable-next-line
+      //  eslint-disable-next-line
       window.q = (a) => {return function(){ChiliPiper[a].q=(ChiliPiper[a].q||[]).concat([arguments])}};
       // eslint-disable-next-line
       window.ChiliPiper=window.ChiliPiper||"submit scheduling showCalendar submit widget bookMeeting".split(" ").reduce(function(a,b){a[b]=q(b);return a},{});
