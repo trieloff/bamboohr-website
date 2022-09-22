@@ -444,7 +444,7 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
       // eslint-disable-next-line
       window.ChiliPiper=window.ChiliPiper||"submit scheduling showCalendar submit widget bookMeeting".split(" ").reduce(function(a,b){a[b]=q(b);return a},{});
       // eslint-disable-next-line
-      ChiliPiper.scheduling('bamboohr', `'${chilipiper}'`, {
+      ChiliPiper.scheduling('bamboohr', `${chilipiper}`, {
         title: 'Thanks! What time works best for a quick call?',
         onRouted: setTimeout(() => { window.location.href = successUrl; }, '240000'),
         map: true,
