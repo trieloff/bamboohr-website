@@ -438,6 +438,7 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
     });
   });
   if (chilipiper) {
+    const timeoutSuccessUrl = chilipiper === 'pricing-request-form' ? '/chilipiper-pricing-timeout-success' : '/chilipiper-demo-timeout-success';
     loadScript('https://js.chilipiper.com/marketing.js', () => {
       //  eslint-disable-next-line
       window.q = (a) => {return function(){ChiliPiper[a].q=(ChiliPiper[a].q||[]).concat([arguments])}};
@@ -446,7 +447,7 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
       // eslint-disable-next-line
       ChiliPiper.scheduling('bamboohr', `${chilipiper}`, {
         title: 'Thanks! What time works best for a quick call?',
-        onRouted: setTimeout(() => { window.location.href = successUrl; }, '240000'),
+        onRouted: setTimeout(() => { window.location.href = timeoutSuccessUrl; }, '240000'),
         map: true,
       });
     });
@@ -481,17 +482,17 @@ export default async function decorate(block) {
       if (config) {
         block.innerHTML = '';
       }
-      if (config.modal === 'yes') {
-        const callToActionModal = async (a) => {
+      if (config.modal.toLowerCase() === 'yes') {
+        const formModal = async (a) => {
           a.addEventListener('click', async () => {
             const elem = document.getElementById(`${formId}-modal`);
             if (!elem) {
               const wrapper = document.createElement('div');
               wrapper.className = 'modal-wrapper';
+              wrapper.id = `${formId}-modal`;
 
               const modal = document.createElement('div');
               modal.className = 'modal';
-              modal.id = `${formId}-modal`;
               modal.innerHTML = '<div class="modal-close"></div>';
               const modalContent = document.createElement('div');
               modalContent.classList.add('modal-content');
@@ -516,14 +517,14 @@ export default async function decorate(block) {
                 wrapper.classList.remove('visible');
               });
             } else {
-              block.querySelector('.modal-wrapper').classList.add('visible');
+              elem.classList.add('visible');
             }
           });
         };
         if (config['modal-button-text']) {
           const modalBtn = document.createElement('a');
           modalBtn.innerHTML = `<a class="button" href="#" data-modal="${formId}-modal">${config['modal-button-text']}</a>`;
-          callToActionModal(modalBtn);
+          formModal(modalBtn);
           block.append(modalBtn);
         }
       } else {
