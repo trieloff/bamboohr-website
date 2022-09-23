@@ -371,7 +371,8 @@ function mktoFormReset(form, moreStyles) {
     el.removeAttribute('style');
   });
 
-  formEl.querySelector('style[type="text/css"]').remove();
+  const formStyle = formEl.querySelector('style[type="text/css"]');
+  if (formStyle) formStyle.remove();
 
   document.getElementById('mktoForms2BaseStyle').disabled = true;
   document.getElementById('mktoForms2ThemeStyle').disabled = true;
@@ -441,14 +442,15 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
   if (chilipiper) {
     const timeoutSuccessUrl = chilipiper === 'pricing-request-form' ? '/chilipiper-pricing-timeout-success' : '/chilipiper-demo-timeout-success';
     loadScript('https://js.chilipiper.com/marketing.js', () => {
+      function redirectTimeout() {
+        return setTimeout(() => { window.location.href = timeoutSuccessUrl; }, '240000');
+      }
       //  eslint-disable-next-line
-      window.q = (a) => {return function(){ChiliPiper[a].q=(ChiliPiper[a].q||[]).concat([arguments])}};
-      // eslint-disable-next-line
-      window.ChiliPiper=window.ChiliPiper||"submit scheduling showCalendar submit widget bookMeeting".split(" ").reduce(function(a,b){a[b]=q(b);return a},{});
+      window.q = (a) => {return function(){ChiliPiper[a].q=(ChiliPiper[a].q||[]).concat([arguments])}};window.ChiliPiper=window.ChiliPiper||"submit scheduling showCalendar submit widget bookMeeting".split(" ").reduce(function(a,b){a[b]=q(b);return a},{});
       // eslint-disable-next-line
       ChiliPiper.scheduling('bamboohr', `${chilipiper}`, {
         title: 'Thanks! What time works best for a quick call?',
-        onRouted: setTimeout(() => { window.location.href = timeoutSuccessUrl; }, '240000'),
+        onRouted: redirectTimeout,
         map: true,
       });
     });
