@@ -1,15 +1,6 @@
-/* base styles */
-main .section.has-bg {
-    position: relative;
-}
+/* stylelint-disable no-descending-specificity */
 
-main .section.has-bg > span.bg {
-    pointer-events: none;
-    position: absolute;
-    z-index: -1;
-}
-
-/* main theme colors */
+/* theme colors */
 main .section.has-bg > span.bg .theme-tint-15 {
     color: var(--theme-tint15);
 }
@@ -38,7 +29,7 @@ main .section.has-bg > span.bg .theme-shade-15 {
     color: var(--theme-shade15);
 }
 
-/* secondary theme colors */
+/* secondary colors */
 main .section.has-bg > span.bg .secondary-tint-15 {
     color: var(--secondary-theme-tint15);
 }
@@ -67,21 +58,146 @@ main .section.has-bg > span.bg .secondary-shade-15 {
     color: var(--secondary-theme-shade15);
 }
 
-/* "multi-hex" styles */
-main .section.bg-multi-hex > span.bg {
-    bottom: 0;
-    left: 0;
+/* base */
+main .section.has-bg {
+    position: relative;
+}
+
+main .section.has-bg > span.bg {
+    height: 100%;
     overflow: hidden;
-    right: 0;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+main .section.has-bg > span.bg > svg {
+    position: absolute;
+}
+
+/*
+ * top
+ */
+main .section[class*="bg-top-"] > span.bg {
     top: 0;
 }
 
-/* "right-hex" styles */
-main .section.has-bg.bg-right-hex > span.bg {
-    right: 0;
-    height: 100%;
+main .section[class*="bg-top-"] > span.bg > svg {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-main .section.has-bg.bg-right-hex > span.bg > svg {
+@media (min-width: 1900px) {
+    main .section[class*="bg-top-"] > span.bg > svg {
+        height: auto;
+        width: 100%;
+    }
+}
+
+/* multi 1 */
+main .section.bg-top-multi-1 > span.bg {
+    /* uses defaults */
+}
+
+/* multi 2 */
+main .section.bg-top-multi-2 > span.bg {
+    background-image: linear-gradient(180deg, var(--secondary-theme-tint15) 0%, var(--color-white) 100%);
+}
+
+main .section.bg-top-multi-2 > span.bg > svg {
+    bottom: auto;
+    top: 0;
+}
+
+/* multi 3 */
+main .section.bg-top-multi-3 > span.bg > svg {
+    left: auto;
+    right: 0;
+    top: 0;
+    transform: none;
+}
+
+/* multi 4 */
+main .section.bg-top-multi-4 > span.bg {
+    background-image: linear-gradient(180deg, var(--theme-tint15) 0%, var(--color-white) 100%);
+}
+
+main .section.bg-top-multi-4 > span.bg > svg {
+    bottom: auto;
+    top: 0;
+}
+
+/*
+ * left
+ */
+main .section[class*="bg-left-"] > span.bg {
+    left: 0;
+}
+
+main .section[class*="bg-left-"] > span.bg > svg {
+    left: 0;
     max-height: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/*
+ * right
+ */
+main .section[class*="bg-right-"] > span.bg {
+    right: 0;
+}
+
+main .section[class*="bg-right-"] > span.bg > svg {
+    max-height: 100%;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* single 1 */
+main .section.bg-right-single-1 > span.bg {
+    /* uses defaults */
+}
+
+/*
+ * bottom
+ */
+main .section[class*="bg-bottom-"] > span.bg {
+    top: 0;
+}
+
+main .section[class*="bg-bottom-"] > span.bg > svg {
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+@media (min-width: 1900px) {
+    main .section[class*="bg-bottom-"] > span.bg > svg {
+        height: auto;
+        width: 100%;
+    }
+}
+
+/* cap 1 */
+main .section.bg-bottom-cap-1 > span.bg {
+    background-color: var(--theme-tint15);
+}
+
+main .section.bg-bottom-cap-1 > span.bg > svg {
+    width: 100%;
+    height: auto;
+}
+
+/* cap 2 */
+main .section.bg-bottom-cap-2 > span.bg {
+    background-image: linear-gradient(180deg, var(--theme-tint15) 0%, var(--color-white) 100%);
+}
+
+main .section.bg-bottom-cap-2 > span.bg > svg {
+    width: 100%;
+    height: auto;
 }
