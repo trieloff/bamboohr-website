@@ -482,7 +482,7 @@ export default async function decorate(block) {
       if (config) {
         block.innerHTML = '';
       }
-      if (config.modal.toLowerCase() === 'yes') {
+      if (config.modal === 'yes') {
         const formModal = async (a) => {
           a.addEventListener('click', async () => {
             const elem = document.getElementById(`${formId}-modal`);
