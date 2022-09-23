@@ -371,8 +371,8 @@ function mktoFormReset(form, moreStyles) {
     el.removeAttribute('style');
   });
 
-  const formStyle = formEl.querySelector('style[type="text/css"]');
-  if (formStyle) formStyle.remove();
+  const formStyleTag = formEl.querySelector('style[type="text/css"]');
+  if (formStyleTag) formStyleTag.remove();
 
   document.getElementById('mktoForms2BaseStyle').disabled = true;
   document.getElementById('mktoForms2ThemeStyle').disabled = true;
