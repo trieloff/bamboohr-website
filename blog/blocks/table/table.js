@@ -75,6 +75,7 @@ function buildMobileTables(block, tableData, colCnt, isComparisonTable) {
 }
 
 export default async function decorate(block) {
+  if (block.classList.contains('first')) block.parentElement.classList.add('first');
   const table = document.createElement('table');
   const head = document.createElement('thead');
   const body = document.createElement('tbody');

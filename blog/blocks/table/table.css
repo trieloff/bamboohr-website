@@ -13,6 +13,10 @@
   padding-bottom: 240px;
 }
 
+.pricing-quote .table-container .table-wrapper.first {
+  margin-top: 100px;
+}
+
 .table.comparison table h4 {
   margin: 0;
 }
@@ -45,9 +49,36 @@
   color: var(--body-color);
 }
 
+.pricing-quote table thead {
+  background-color: unset;
+}
+
+.pricing-quote table th, .pricing-quote table tbody th {
+  color: var(--color-gray-7);
+  border: none;
+  text-align: center;
+}
+
+.pricing-quote table td {
+  border-left: none;
+  border-right: none;
+}
+
+.pricing-quote table th:first-of-type {
+  color: var(--color-gray-11);
+  text-align: left;
+}
+
+.pricing-quote table th del {
+  visibility: hidden;
+}
+
+.table table, .table th, .table td {
+  position: relative;
+}
+
 .table.comparison table, .table.comparison th, .table.comparison td {
   text-align: center;
-  position: relative;
 }
 
 .table.comparison table thead,

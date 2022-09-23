@@ -305,6 +305,7 @@ main .title.section-header :is(h1, h2, h3, h4, h5, h6, div) {
 .typ-hero-header,
 .typ-display1,
 .resources-guides main h1,
+.pricing-quote main h1,
 main .page-header .page-header-title,
 main .page-header .page-header-title h1,
 main .title.hero-header :is(h1, h2, h3, h4, h5, h6, div) {
@@ -448,10 +449,15 @@ table td {
   }
 }
 
+.pricing-quote .title.section-subhead {
+  font-weight: 500;  
+}
+
 @media (min-width: 900px) {
   .typ-hero-header,
   .typ-display1,
   .resources-guides main h1,
+  .pricing-quote main h1,
   main .page-header .page-header-title,
   main .page-header .page-header-title h1,
   main .title.hero-header :is(h1, h2, h3, h4, h5, h6, div) {
@@ -474,6 +480,7 @@ table td {
   .typ-hero-header,
   .typ-display1,
   .resources-guides main h1,
+  .pricing-quote main h1,
   main .page-header .page-header-title,
   main .page-header .page-header-title h1,
   main .title.hero-header :is(h1, h2, h3, h4, h5, h6, div) {
@@ -591,6 +598,11 @@ table td {
 
 .resources-guides .image-wrapper .image.center {
   margin-top: 100px;
+}
+
+.pricing-quote main h1,
+.pricing-quote main .title-container .default-content-wrapper p {
+  color: var(--color-white);
 }
 
 /* links */
@@ -1272,6 +1284,17 @@ main .section.gradient-section-4 > div:last-of-type {
 .bg-section-bottom-3-offset img {
   position: absolute;
   bottom: 0;
+}
+
+body.pricing-quote {
+  background-image: url('./hex-top-pricing.svg'), linear-gradient(159.58deg, #FFFFFF 1.38%, #EDFFC8 74.25%);
+  background-position: top, left;
+  background-repeat: no-repeat;
+}
+
+.pricing-quote main .call-to-action a.button {
+  color: var(--color-1-shade-15);
+  background-color: var(--color-1-tint-10);
 }
 
 @media screen and (min-width: 600px) {
