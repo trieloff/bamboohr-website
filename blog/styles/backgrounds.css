@@ -1,0 +1,87 @@
+/* base styles */
+main .section.has-bg {
+    position: relative;
+}
+
+main .section.has-bg > span.bg {
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+}
+
+/* main theme colors */
+main .section.has-bg > span.bg .theme-tint-15 {
+    color: var(--theme-tint15);
+}
+
+main .section.has-bg > span.bg .theme-tint-10 {
+    color: var(--theme-tint10);
+}
+
+main .section.has-bg > span.bg .theme-tint-5 {
+    color: var(--theme-tint5);
+}
+
+main .section.has-bg > span.bg .theme {
+    color: var(--theme-base);
+}
+
+main .section.has-bg > span.bg .theme-shade-5 {
+    color: var(--theme-shade5);
+}
+
+main .section.has-bg > span.bg .theme-shade-10 {
+    color: var(--theme-shade10);
+}
+
+main .section.has-bg > span.bg .theme-shade-15 {
+    color: var(--theme-shade15);
+}
+
+/* secondary theme colors */
+main .section.has-bg > span.bg .secondary-tint-15 {
+    color: var(--secondary-theme-tint15);
+}
+
+main .section.has-bg > span.bg .secondary-tint-10 {
+    color: var(--secondary-theme-tint10);
+}
+
+main .section.has-bg > span.bg .secondary-tint-5 {
+    color: var(--secondary-theme-tint5);
+}
+
+main .section.has-bg > span.bg .secondary {
+    color: var(--secondary-theme-base);
+}
+
+main .section.has-bg > span.bg .secondary-shade-5 {
+    color: var(--secondary-theme-shade5);
+}
+
+main .section.has-bg > span.bg .secondary-shade-10 {
+    color: var(--secondary-theme-shade10);
+}
+
+main .section.has-bg > span.bg .secondary-shade-15 {
+    color: var(--secondary-theme-shade15);
+}
+
+/* "multi-hex" styles */
+main .section.bg-multi-hex > span.bg {
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    right: 0;
+    top: 0;
+}
+
+/* "right-hex" styles */
+main .section.has-bg.bg-right-hex > span.bg {
+    right: 0;
+    height: 100%;
+}
+
+main .section.has-bg.bg-right-hex > span.bg > svg {
+    max-height: 100%;
+}

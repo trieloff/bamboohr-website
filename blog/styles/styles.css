@@ -12,6 +12,7 @@
 /* stylelint-disable no-descending-specificity */
 
 @import "style-vars.css";
+@import "backgrounds.css";
 
 header {
   height: 70px;
