@@ -1406,6 +1406,7 @@ main .section.gradient-section-4 > div:last-of-type {
 
 .modal .modal-form-subtitle {
   text-align: center;
+  font-weight: 700;
 }
 
 /* above the fold CSS goes here to squash CLS */

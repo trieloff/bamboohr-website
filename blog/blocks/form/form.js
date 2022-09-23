@@ -255,6 +255,7 @@ function createLabel(fd) {
 
 function createDescription(fd) {
   const desc = document.createElement('p');
+  desc.className = 'form-description';
   desc.textContent = fd.Description;
   return desc;
 }
@@ -438,6 +439,7 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
     });
   });
   if (chilipiper) {
+    const timeoutSuccessUrl = chilipiper === 'pricing-request-form' ? '/chilipiper-pricing-timeout-success' : '/chilipiper-demo-timeout-success';
     loadScript('https://js.chilipiper.com/marketing.js', () => {
       //  eslint-disable-next-line
       window.q = (a) => {return function(){ChiliPiper[a].q=(ChiliPiper[a].q||[]).concat([arguments])}};
@@ -446,7 +448,7 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
       // eslint-disable-next-line
       ChiliPiper.scheduling('bamboohr', `${chilipiper}`, {
         title: 'Thanks! What time works best for a quick call?',
-        onRouted: setTimeout(() => { window.location.href = successUrl; }, '240000'),
+        onRouted: setTimeout(() => { window.location.href = timeoutSuccessUrl; }, '240000'),
         map: true,
       });
     });
@@ -459,6 +461,13 @@ export default async function decorate(block) {
   let formUrl = as[0] ? as[0].href : '';
   let successUrl = as[1] ? as[1].href : '';
   let chilipiper;
+
+  [...block.classList].forEach((name) => {
+    if (!Number.isNaN(+name.split('').at(0))) {
+      block.classList.remove(name);
+      block.classList.add(`grid-${name}`);
+    }
+  });
 
   if (!formUrl) {
     const resp = await fetch('/forms-map.json');
@@ -478,20 +487,20 @@ export default async function decorate(block) {
   if (formUrl) {
     if (formUrl.includes('marketo')) {
       const formId = new URL(formUrl).hash.substring(4);
-      if (config) {
+      if (config && !block.classList.contains('has-content')) {
         block.innerHTML = '';
       }
       if (config.modal === 'yes') {
-        const callToActionModal = async (a) => {
+        const formModal = async (a) => {
           a.addEventListener('click', async () => {
             const elem = document.getElementById(`${formId}-modal`);
             if (!elem) {
               const wrapper = document.createElement('div');
               wrapper.className = 'modal-wrapper';
+              wrapper.id = `${formId}-modal`;
 
               const modal = document.createElement('div');
               modal.className = 'modal';
-              modal.id = `${formId}-modal`;
               modal.innerHTML = '<div class="modal-close"></div>';
               const modalContent = document.createElement('div');
               modalContent.classList.add('modal-content');
@@ -516,19 +525,34 @@ export default async function decorate(block) {
                 wrapper.classList.remove('visible');
               });
             } else {
-              block.querySelector('.modal-wrapper').classList.add('visible');
+              elem.classList.add('visible');
             }
           });
         };
         if (config['modal-button-text']) {
           const modalBtn = document.createElement('a');
           modalBtn.innerHTML = `<a class="button" href="#" data-modal="${formId}-modal">${config['modal-button-text']}</a>`;
-          callToActionModal(modalBtn);
+          formModal(modalBtn);
           block.append(modalBtn);
         }
       } else {
-        block.innerHTML = `<form id="mktoForm_${formId}"></form>`;
-        loadFormAndChilipiper(formId, successUrl, chilipiper);
+        const mktoForm = `<form id="mktoForm_${formId}"></form>`;
+        if (block.classList.contains('has-content')) {
+          const cols = block.querySelectorAll(':scope > div > div');
+          cols.forEach((col) => {
+            const formCol = [...col.children].find((child) => child.textContent.trim() === 'form');
+            if (formCol) {
+              col.classList.add('form-col');
+              formCol.innerHTML = mktoForm;
+              loadFormAndChilipiper(formId, successUrl, chilipiper);
+            } else {
+              col.classList.add('content-col');
+            }
+          });
+        } else {
+          block.innerHTML = mktoForm;
+          loadFormAndChilipiper(formId, successUrl, chilipiper);
+        }
       }
     } else {
       const formEl = await createForm(formUrl);
