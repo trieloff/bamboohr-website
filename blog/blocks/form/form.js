@@ -255,6 +255,7 @@ function createLabel(fd) {
 
 function createDescription(fd) {
   const desc = document.createElement('p');
+  desc.className = 'form-description';
   desc.textContent = fd.Description;
   return desc;
 }
@@ -461,6 +462,13 @@ export default async function decorate(block) {
   let successUrl = as[1] ? as[1].href : '';
   let chilipiper;
 
+  [...block.classList].forEach((name) => {
+    if (!Number.isNaN(+name.split('').at(0))) {
+      block.classList.remove(name);
+      block.classList.add(`grid-${name}`);
+    }
+  });
+
   if (!formUrl) {
     const resp = await fetch('/forms-map.json');
     const json = await resp.json();
@@ -479,7 +487,7 @@ export default async function decorate(block) {
   if (formUrl) {
     if (formUrl.includes('marketo')) {
       const formId = new URL(formUrl).hash.substring(4);
-      if (config) {
+      if (config && !block.classList.contains('has-content')) {
         block.innerHTML = '';
       }
       if (config.modal === 'yes') {
@@ -528,8 +536,23 @@ export default async function decorate(block) {
           block.append(modalBtn);
         }
       } else {
-        block.innerHTML = `<form id="mktoForm_${formId}"></form>`;
-        loadFormAndChilipiper(formId, successUrl, chilipiper);
+        const mktoForm = `<form id="mktoForm_${formId}"></form>`;
+        if (block.classList.contains('has-content')) {
+          const cols = block.querySelectorAll(':scope > div > div');
+          cols.forEach((col) => {
+            const formCol = [...col.children].find((child) => child.textContent.trim() === 'form');
+            if (formCol) {
+              col.classList.add('form-col');
+              formCol.innerHTML = mktoForm;
+              loadFormAndChilipiper(formId, successUrl, chilipiper);
+            } else {
+              col.classList.add('content-col');
+            }
+          });
+        } else {
+          block.innerHTML = mktoForm;
+          loadFormAndChilipiper(formId, successUrl, chilipiper);
+        }
       }
     } else {
       const formEl = await createForm(formUrl);
