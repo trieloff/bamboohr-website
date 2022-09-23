@@ -1287,7 +1287,7 @@ main .section.gradient-section-4 > div:last-of-type {
 }
 
 body.pricing-quote {
-  background-image: url('./hex-top-pricing.svg'), linear-gradient(159.58deg, #FFFFFF 1.38%, #EDFFC8 74.25%);
+  background-image: url('./hex-top-pricing.svg'), linear-gradient(159.58deg, #FFF 1.38%, #EDFFC8 74.25%);
   background-position: top, left;
   background-repeat: no-repeat;
 }
