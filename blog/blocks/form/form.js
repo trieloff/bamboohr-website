@@ -492,7 +492,7 @@ export default async function decorate(block) {
       if (config && !block.classList.contains('has-content')) {
         block.innerHTML = '';
       }
-      if (config.modal === 'yes') {
+      if (config.modal && config.modal.toLowerCase() === 'yes') {
         const formModal = async (a) => {
           a.addEventListener('click', async () => {
             const elem = document.getElementById(`${formId}-modal`);
@@ -542,10 +542,13 @@ export default async function decorate(block) {
         if (block.classList.contains('has-content')) {
           const cols = block.querySelectorAll(':scope > div > div');
           cols.forEach((col) => {
-            const formCol = [...col.children].find((child) => child.textContent.trim() === 'form');
+            const formCol = [...col.children].find((child) => child.textContent.trim().toLowerCase() === 'form');
             if (formCol) {
               col.classList.add('form-col');
-              formCol.innerHTML = mktoForm;
+              formCol.remove();
+              const formContainer = document.createElement('div');
+              formContainer.innerHTML = mktoForm;
+              col.append(formContainer);
               loadFormAndChilipiper(formId, successUrl, chilipiper);
             } else {
               col.classList.add('content-col');
