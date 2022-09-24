@@ -1292,7 +1292,7 @@ body.pricing-quote {
   background-repeat: no-repeat;
 }
 
-.pricing-quote main .call-to-action a.button {
+.pricing-quote main .form a.button {
   color: var(--color-1-shade-15);
   background-color: var(--color-1-tint-10);
 }
