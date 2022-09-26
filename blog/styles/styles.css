@@ -755,7 +755,8 @@ main .default-content-wrapper p a.button:any-link {
 .resources-guides main .quote-wrapper,
 .resources-guides main .cards-wrapper,
 .resources-guides main .columns-wrapper,
-.resources-guides main .image-wrapper:not(.background-image) {
+.resources-guides main .image-wrapper:not(.background-image),
+.pricing-quote main .cards-wrapper {
   position: relative;
   z-index: 1;
 }
@@ -1260,6 +1261,13 @@ main .section.gradient-section-4 > div:last-of-type {
   right: 0;
   bottom: 0;
   width: 55%;
+  position: absolute;
+}
+
+.bg-hex-pricing img {
+  left: 0;
+  top: 100%;
+  width: 100%;
   position: absolute;
 }
 
