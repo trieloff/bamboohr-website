@@ -8,6 +8,7 @@ export function createBlogCard(article, classPrefix, eager = false) {
   const title = article.title.split(' - ')[0];
   const card = document.createElement('div');
   card.className = `${classPrefix}-card`;
+  card.setAttribute('am-region', 'Card');
   const image = article.cardImage || article.image;
   const pictureString = createOptimizedPicture(
     image,
@@ -22,8 +23,8 @@ export function createBlogCard(article, classPrefix, eager = false) {
     <span class="${classPrefix}-card-readtime">${article.readTime || ''}</span>
     </div>
     <div class="${classPrefix}-card-picture"><a href="${article.path}">${pictureString}</a></div>
-    <div class="${classPrefix}-card-body">
-    <h3>${title}</h3>
+    <div am-region="${title}" class="${classPrefix}-card-body">
+    <h3 id = "${title}" >${title}</h3>
     <p>${article.description}</p>
     <p><a href="${article.path}">Read Now</a></p>
     </div>`;
