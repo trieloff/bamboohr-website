@@ -1,5 +1,10 @@
 /* stylelint-disable no-descending-specificity */
 
+/*
+TODO: many backgrounds have different images on different screen sizes, need to come up with a solution for that.
+ Current thought:bg-top-multi-5-desktop/laptop/tablet/mobile classes that hide/show depending on breakpoint
+*/
+
 /* theme colors */
 main .section.has-bg > span.bg .theme-tint-15 {
     color: var(--theme-tint15);
@@ -122,6 +127,11 @@ main .section.bg-top-multi-3 > span.bg > svg {
 /* multi 4 */
 main .section.bg-top-multi-4 > span.bg {
     background-image: linear-gradient(180deg, var(--theme-tint15) 0%, var(--color-white) 100%);
+}
+
+/* multi 5 */
+main .section.bg-top-multi-5 > span.bg {
+    background-image: linear-gradient(180deg, var(--theme-shade5) 0%, var(--theme-tint10) 35.94%, transparent 100%);
 }
 
 main .section.bg-top-multi-4 > span.bg > svg {
