@@ -19,7 +19,7 @@ main .article-feed-card img {
 main .article-feed-card h3 {
   font-family: var(--heading-font-family);
   font-size: 18px;
-  line-height: 22px;
+  line-height: 1.5;
   font-weight: 600;
   font-style: normal;
   margin: 0 0 20px;
