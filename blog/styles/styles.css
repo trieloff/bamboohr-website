@@ -1267,7 +1267,6 @@ main .section.gradient-section-4 > div:last-of-type {
 
 .bg-hex-pricing img {
   left: 0;
-  top: 100%;
   width: 100%;
   position: absolute;
 }
