@@ -12,6 +12,10 @@ main .form .hidden {
   display: none;
 }
 
+.pricing-quote main .form {
+  text-align: center;
+}
+
 main .form h1 {
   margin: 60px 0 90px;
 }
