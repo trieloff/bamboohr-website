@@ -756,7 +756,8 @@ main .default-content-wrapper p a.button:any-link {
 .resources-guides main .cards-wrapper,
 .resources-guides main .columns-wrapper,
 .resources-guides main .image-wrapper:not(.background-image),
-.pricing-quote main .cards-wrapper {
+.pricing-quote main .cards-wrapper,
+.pricing-quote main .multi-element-wrapper {
   position: relative;
   z-index: 1;
 }
