@@ -306,6 +306,7 @@ main .title.section-header :is(h1, h2, h3, h4, h5, h6, div) {
 .typ-hero-header,
 .typ-display1,
 .resources-guides main h1,
+.pricing-quote main h1,
 main .page-header .page-header-title,
 main .page-header .page-header-title h1,
 main .title.hero-header :is(h1, h2, h3, h4, h5, h6, div) {
@@ -449,10 +450,15 @@ table td {
   }
 }
 
+.pricing-quote .title.section-subhead {
+  font-weight: 500;  
+}
+
 @media (min-width: 900px) {
   .typ-hero-header,
   .typ-display1,
   .resources-guides main h1,
+  .pricing-quote main h1,
   main .page-header .page-header-title,
   main .page-header .page-header-title h1,
   main .title.hero-header :is(h1, h2, h3, h4, h5, h6, div) {
@@ -475,6 +481,7 @@ table td {
   .typ-hero-header,
   .typ-display1,
   .resources-guides main h1,
+  .pricing-quote main h1,
   main .page-header .page-header-title,
   main .page-header .page-header-title h1,
   main .title.hero-header :is(h1, h2, h3, h4, h5, h6, div) {
@@ -592,6 +599,11 @@ table td {
 
 .resources-guides .image-wrapper .image.center {
   margin-top: 100px;
+}
+
+.pricing-quote main h1,
+.pricing-quote main .title-container .default-content-wrapper p {
+  color: var(--color-white);
 }
 
 /* links */
@@ -744,7 +756,9 @@ main .default-content-wrapper p a.button:any-link {
 .resources-guides main .quote-wrapper,
 .resources-guides main .cards-wrapper,
 .resources-guides main .columns-wrapper,
-.resources-guides main .image-wrapper:not(.background-image) {
+.resources-guides main .image-wrapper:not(.background-image),
+.pricing-quote main .cards-wrapper,
+.pricing-quote main .multi-element-wrapper {
   position: relative;
   z-index: 1;
 }
@@ -1252,6 +1266,12 @@ main .section.gradient-section-4 > div:last-of-type {
   position: absolute;
 }
 
+.bg-hex-pricing img {
+  left: 0;
+  width: 100%;
+  position: absolute;
+}
+
 .bg-section-bottom-1 img {
   margin-top: 20px;
   width: 100%;
@@ -1273,6 +1293,17 @@ main .section.gradient-section-4 > div:last-of-type {
 .bg-section-bottom-3-offset img {
   position: absolute;
   bottom: 0;
+}
+
+body.pricing-quote {
+  background-image: url('./hex-top-pricing.svg'), linear-gradient(159.58deg, #FFF 1.38%, #EDFFC8 74.25%);
+  background-position: top, left;
+  background-repeat: no-repeat;
+}
+
+.pricing-quote main .form a.button {
+  color: var(--color-1-shade-15);
+  background-color: var(--color-1-tint-10);
 }
 
 @media screen and (min-width: 600px) {
@@ -1407,6 +1438,7 @@ main .section.gradient-section-4 > div:last-of-type {
 
 .modal .modal-form-subtitle {
   text-align: center;
+  font-weight: 700;
 }
 
 /* above the fold CSS goes here to squash CLS */
