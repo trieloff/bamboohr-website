@@ -683,7 +683,8 @@ main .section > div:empty {
   .blog-post main .section > div.default-content-wrapper,
   .blog-post main .section > div.author-wrapper,
   .blog-post main .section > div.quote-wrapper,
-  .blog-post main .section > div.table-wrapper {
+  .blog-post main .section > div.table-wrapper,
+  .pricing-quote main .section > div.table-wrapper {
     max-width: 800px;
   }
 
@@ -769,6 +770,10 @@ main .default-content-wrapper a:any-link {
 main .default-content-wrapper p a.button:any-link {
   color: var(--color-white);
   background: unset;
+  background-color: var(--theme-shade5);
+}
+
+.blog-post main .default-content-wrapper p a.button:any-link {
   background-color: var(--category-color);
 }
 
