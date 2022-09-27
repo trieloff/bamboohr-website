@@ -24,7 +24,7 @@ export function createBlogCard(article, classPrefix, eager = false) {
     </div>
     <div class="${classPrefix}-card-picture"><a href="${article.path}">${pictureString}</a></div>
     <div am-region="${title}" class="${classPrefix}-card-body">
-    <h3 id = "${title}" >${title}</h3>
+    <h3>${title}</h3>
     <p>${article.description}</p>
     <p><a href="${article.path}">Read Now</a></p>
     </div>`;
