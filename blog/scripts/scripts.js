@@ -347,21 +347,6 @@ export function decorateBackgrounds($section) {
       });
 
       $section.prepend(background);
-
-      // get desktop svg
-      // fetch(`${fetchBase}${window.hlx.codeBasePath}/styles/backgrounds/${style}.svg`)
-      //   .then((resp) => {
-      //     // skip if not success
-      //     if (resp.status !== 200) return;
-      //
-      //     // put the svg in the span
-      //     resp.text().then((svg) => {
-      //       background.innerHTML = svg;
-      //       $section.classList.add('has-bg');
-      //     });
-      //   });
-      //
-      // $section.prepend(background);
     }
   });
 }

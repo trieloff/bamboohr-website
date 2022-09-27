@@ -1,10 +1,5 @@
 /* stylelint-disable no-descending-specificity */
 
-/*
-TODO: many backgrounds have different images on different screen sizes, need to come up with a solution for that.
- Current thought:bg-top-multi-5-desktop/laptop/tablet/mobile classes that hide/show depending on breakpoint
-*/
-
 /* theme colors */
 main .section.has-bg > span.bg .theme-tint-15 {
     color: var(--theme-tint15);
@@ -99,22 +94,15 @@ main .section.has-bg {
 
 main .section.has-bg > span.bg {
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
     pointer-events: none;
     position: absolute;
     width: 100%;
     z-index: -1;
 }
 
-main .section.has-bg > span.bg *,
-main .section.has-bg > span.bg *::before,
-main .section.has-bg > span.bg *::after {
-    box-sizing: border-box;
-}
-
 main .section.has-bg > span.bg > svg {
     position: absolute;
-    border: 1px dashed blue;
 }
 
 /*
@@ -122,7 +110,6 @@ main .section.has-bg > span.bg > svg {
  */
 
 main .section[class*="bg-top-"] > span.bg {
-    border-top: 1px dashed red;
     top: 0;
 }
 
@@ -140,7 +127,7 @@ main .section[class*="bg-top-"] > span.bg > svg {
 
 /* multi 1 */
 main .section.bg-top-multi-1 > span.bg {
-    /* uses defaults? */
+    /* uses defaults */
 }
 
 /* multi 2 */
@@ -218,7 +205,6 @@ main .section.bg-top-single-1 > span.bg > svg {
 
 main .section[class*="bg-left-"] > span.bg {
     left: 0;
-    border-right: 1px dashed red;
 }
 
 main .section[class*="bg-left-"] > span.bg > svg {
@@ -233,25 +219,38 @@ main .section[class*="bg-left-"] > span.bg > svg {
  */
 
 main .section[class*="bg-center-"] > span.bg {
-    border-bottom: 1px dashed red;
-    border-top: 1px dashed red;
-    bottom: 0;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 main .section[class*="bg-center-"] > span.bg > svg {
-    height: 100%;
-    left: 50%;
-    max-height: 100%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    height: auto;
     width: 100%;
 }
 
 /* multi 1 */
+@media (max-width: 599px) {
+    main .section.bg-center-multi-1 > span.bg {
+        min-height: 736.6666vw;
+    }
+}
 
-main .section.bg-center-multi-1 {
-    min-height: 121.3045vw;
+@media (min-width: 600px) and (max-width: 1024px) {
+    main .section.bg-center-multi-1 > span.bg {
+        min-height: 353.6458vw;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1799px) {
+    main .section.bg-center-multi-1 > span.bg {
+        min-height: 160.6944vw;
+    }
+}
+
+@media (min-width: 1800px) {
+    main .section.bg-center-multi-1 > span.bg {
+        min-height: 121.3684vw;
+    }
 }
 
 /*
@@ -259,7 +258,6 @@ main .section.bg-center-multi-1 {
  */
 
 main .section[class*="bg-right-"] > span.bg {
-    border-left: 1px dashed red;
     right: 0;
 }
 
@@ -272,7 +270,7 @@ main .section[class*="bg-right-"] > span.bg > svg {
 
 /* single 1 */
 main .section.bg-right-single-1 > span.bg {
-    /* uses defaults? */
+    /* uses defaults */
 }
 
 /*
@@ -280,7 +278,6 @@ main .section.bg-right-single-1 > span.bg {
  */
 
 main .section[class*="bg-bottom-"] > span.bg {
-    border-top: 1px dashed red;
     bottom: 0;
 }
 
