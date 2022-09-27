@@ -314,24 +314,54 @@ export function readBlockConfig(block) {
 export function decorateBackgrounds($section) {
   $section.classList.forEach((style) => {
     if (style.match(/^bg-/g)) {
-      const fetchBase = window.hlx.serverPath;
       const background = document.createElement('span');
+      const fetchBase = window.hlx.serverPath;
+      const sizes = ['', 'laptop', 'tablet', 'mobile'];
+
       background.classList.add('bg');
 
-      // get svg
-      fetch(`${fetchBase}${window.hlx.codeBasePath}/styles/backgrounds/${style}.svg`)
-        .then((resp) => {
-          // skip if not success
-          if (resp.status !== 200) return;
+      // get svgs
+      sizes.forEach((size) => {
+        let name = style;
 
-          // put the svg in the span
-          resp.text().then((svg) => {
-            background.innerHTML = svg;
-            $section.classList.add('has-bg');
+        if (size) name += `-${size}`;
+
+        fetch(`${fetchBase}${window.hlx.codeBasePath}/styles/backgrounds/${name}.svg`)
+          .then((resp) => {
+            // skip if not success
+            if (resp.status !== 200) return;
+
+            // put the svg in the span
+            resp.text()
+              .then((html) => {
+                const element = document.createElement('div');
+                element.innerHTML = html;
+                const svg = element.firstChild;
+
+                svg.classList.add(size || 'desktop');
+
+                background.append(svg);
+                $section.classList.add('has-bg');
+              });
           });
-        });
+      });
 
       $section.prepend(background);
+
+      // get desktop svg
+      // fetch(`${fetchBase}${window.hlx.codeBasePath}/styles/backgrounds/${style}.svg`)
+      //   .then((resp) => {
+      //     // skip if not success
+      //     if (resp.status !== 200) return;
+      //
+      //     // put the svg in the span
+      //     resp.text().then((svg) => {
+      //       background.innerHTML = svg;
+      //       $section.classList.add('has-bg');
+      //     });
+      //   });
+      //
+      // $section.prepend(background);
     }
   });
 }
