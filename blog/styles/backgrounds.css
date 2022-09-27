@@ -94,10 +94,11 @@ main .section.has-bg {
 
 main .section.has-bg > span.bg {
     height: 100%;
+    left: 0;
     overflow-x: hidden;
     pointer-events: none;
     position: absolute;
-    width: 100%;
+    right: 0;
     z-index: -1;
 }
 
