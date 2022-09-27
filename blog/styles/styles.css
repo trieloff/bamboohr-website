@@ -14,6 +14,14 @@
 @import "style-vars.css";
 @import "backgrounds.css";
 
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 header {
   height: 70px;
 }
@@ -642,6 +650,7 @@ main video {
 
 main .section {
   margin-top: 64px;
+  padding: 0 30px;
 }
 
 main .section:first-of-type {
@@ -651,12 +660,13 @@ main .section:first-of-type {
 
 main .section:last-of-type {
   margin-bottom: 0;
-  padding: 0;
+  padding-bottom: 0;
 }
 
 main .section > div {
-  margin: auto;
-  padding: 0 30px;
+  max-width: 1160px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 main .section > div:empty {
@@ -664,17 +674,19 @@ main .section > div:empty {
 }
 
 @media (min-width: 600px) {
-  main .section > div {
-    max-width: unset;
+  main .section {
     padding: 0 54px;
   }
 }
 
 @media (min-width: 700px) {
-  main .section > div {
+  .blog-post main .section > div.toc-wrapper,
+  .blog-post main .section > div.default-content-wrapper,
+  .blog-post main .section > div.author-wrapper,
+  .blog-post main .section > div.quote-wrapper,
+  .blog-post main .section > div.table-wrapper,
+  .pricing-quote main .section > div.table-wrapper {
     max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .marketplace main .section > div {
@@ -720,6 +732,18 @@ main .section > div:empty {
   }
 }
 
+@media (min-width: 1440px) {
+  main .section {
+    padding: 0;
+  }
+}
+
+@media (min-width: 1800px) {
+  main .section > div {
+    max-width: 1520px;
+  }
+}
+
 main .section p.button-container {
   text-align: center;
   margin-top: 16px;
@@ -747,6 +771,10 @@ main .default-content-wrapper a:any-link {
 main .default-content-wrapper p a.button:any-link {
   color: var(--color-white);
   background: unset;
+  background-color: var(--theme-shade5);
+}
+
+.blog-post main .default-content-wrapper p a.button:any-link {
   background-color: var(--category-color);
 }
 
@@ -1369,7 +1397,7 @@ body.pricing-quote {
 
 .modal-wrapper.visible {
   opacity: 1;
-  z-index: 1;
+  z-index: 10;
 }
 
 .modal {

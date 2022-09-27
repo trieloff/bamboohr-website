@@ -128,8 +128,8 @@ main .page-header-share > a {
 }
 
 main .page-header-share img {
-  width: 18px;
-  height: 18px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
 }
 
