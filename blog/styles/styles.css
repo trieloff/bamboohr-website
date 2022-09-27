@@ -749,10 +749,6 @@ main .section p.button-container {
   margin-bottom: 0;
 }
 
-main .section .default-content-wrapper p a.button:any-link {
-  background-color: var(--theme-shade5);
-}
-
 .marketplace .home-featured-cat p.button-container {
   margin-top: 40px;
 }
@@ -774,6 +770,10 @@ main .default-content-wrapper a:any-link {
 main .default-content-wrapper p a.button:any-link {
   color: var(--color-white);
   background: unset;
+  background-color: var(--theme-shade5);
+}
+
+.blog-post main .default-content-wrapper p a.button:any-link {
   background-color: var(--category-color);
 }
 
