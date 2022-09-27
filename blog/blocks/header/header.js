@@ -161,6 +161,7 @@ export default async function decorate(block) {
   const template = toClassName(getMetadata('template'));
   if (theme === 'marketplace') collection = 'marketplace';
   else if (template === 'resources-guides') collection = 'resources-guides';
+  else if (template === 'pricing-quote') collection = 'pricing-quote';
 
   if (collection === 'blog') block.append(createSearch());
 }

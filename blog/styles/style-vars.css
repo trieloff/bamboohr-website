@@ -96,6 +96,18 @@
   --box-shadow-3: 0 30px 60px -40px rgb(31 38 23 / 50%), 0 70px 100px -60px rgb(31 38 23 / 25%);
   --box-shadow-4: 0 68px 62px -35px rgb(54 63 58 / 50%);
 
+  /* gray */
+  --box-shadow-1-gray-shade5: 0 2px 5px 0 rgb(200 200 198 / 20%);
+  --box-shadow-2-gray-shade5: 0 30px 60px -40px rgb(200 200 198 / 50%);
+  --box-shadow-3-gray-shade5: 0 30px 60px -40px rgb(200 200 198 / 50%),
+    0 70px 100px -60px rgb(200 200 198 / 25%);
+  --box-shadow-4-gray-shade5: 0 68px 62px -35px rgb(200 200 198 / 20%);
+  --box-shadow-1-gray-shade10: 0 2px 5px 0 rgb(98 100 103 / 20%);
+  --box-shadow-2-gray-shade10: 0 30px 60px -40px rgb(98 100 103 / 50%);
+  --box-shadow-3-gray-shade10: 0 30px 60px -40px rgb(98 100 103 / 50%),
+    0 70px 100px -60px rgb(98 100 103 / 25%);
+  --box-shadow-4-gray-shade10: 0 68px 62px -35px rgb(98 100 103 / 20%);
+
   /* green */
   --box-shadow-1-color1-shade5: 0 2px 5px 0 rgb(29 147 54 / 20%);
   --box-shadow-2-color1-shade5: 0 30px 60px -40px rgb(29 147 54 / 50%);
@@ -816,10 +828,10 @@ div.secondary-teal {
 
 .color-gray-13,
 .color-gray-13 :is(h1, h2, h3, h4, h5, h6) {
-  color: var(--color-gray-13);
+  color: var(--color-gray-3);
 }
 
 .color-white,
 .color-white :is(h1, h2, h3, h4, h5, h6) {
-  color: var(--color-white);
+  color: var(--color-gray-3);
 }

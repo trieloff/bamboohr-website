@@ -1,5 +1,8 @@
 
 /* article header */
+main .article-header-container {
+  padding: 0;
+}
 
 main .article-header-container > div {
   max-width: unset;
@@ -131,8 +134,8 @@ main .article-header a:any-link {
 }
 
 main .article-header-share img {
-  width: 18px;
-  height: 18px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
 }
 
