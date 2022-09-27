@@ -683,7 +683,8 @@ main .section > div:empty {
   .blog-post main .section > div.default-content-wrapper,
   .blog-post main .section > div.author-wrapper,
   .blog-post main .section > div.quote-wrapper,
-  .blog-post main .section > div.table-wrapper {
+  .blog-post main .section > div.table-wrapper,
+  .pricing-quote main .section > div.table-wrapper {
     max-width: 800px;
   }
 
@@ -746,6 +747,10 @@ main .section p.button-container {
   text-align: center;
   margin-top: 16px;
   margin-bottom: 0;
+}
+
+main .section .default-content-wrapper p a.button:any-link {
+  background-color: var(--theme-shade5);
 }
 
 .marketplace .home-featured-cat p.button-container {
