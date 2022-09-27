@@ -308,6 +308,50 @@ export function readBlockConfig(block) {
 }
 
 /**
+ * Decorates backgrounds in sections.
+ * @param {Element} $section The section element
+ */
+export function decorateBackgrounds($section) {
+  $section.classList.forEach((style) => {
+    if (style.match(/^bg-/g)) {
+      const background = document.createElement('span');
+      const fetchBase = window.hlx.serverPath;
+      const sizes = ['', 'laptop', 'tablet', 'mobile'];
+
+      background.classList.add('bg');
+
+      // get svgs
+      sizes.forEach((size) => {
+        let name = style;
+
+        if (size) name += `-${size}`;
+
+        fetch(`${fetchBase}${window.hlx.codeBasePath}/styles/backgrounds/${name}.svg`)
+          .then((resp) => {
+            // skip if not success
+            if (resp.status !== 200) return;
+
+            // put the svg in the span
+            resp.text()
+              .then((html) => {
+                const element = document.createElement('div');
+                element.innerHTML = html;
+                const svg = element.firstChild;
+
+                svg.classList.add(size || 'desktop');
+
+                background.append(svg);
+                $section.classList.add('has-bg');
+              });
+          });
+      });
+
+      $section.prepend(background);
+    }
+  });
+}
+
+/**
  * Decorates all sections in a container element.
  * @param {Element} $main The container element
  */
@@ -340,6 +384,7 @@ export function decorateSections($main) {
           else section.dataset[key] = meta[key];
         });
       });
+      decorateBackgrounds(section);
       sectionMeta.remove();
     }
   });
