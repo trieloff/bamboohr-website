@@ -15,11 +15,7 @@ main .call-to-action-container {
 }
 
 .pricing-quote main .call-to-action-container.bottom {
-    background-color: unset;
-    background-image: url('../../styles/hex-bottom-pricing.svg');
-    background-size: cover;
-    background-position: top, left;
-    background-repeat: no-repeat;
+    background: unset;
 }
 
 main .call-to-action,
