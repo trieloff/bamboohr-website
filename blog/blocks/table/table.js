@@ -17,6 +17,53 @@ function buildTableCell(col, rowIndex, header, isComparisonTable, isRowHeader) {
   return cell;
 }
 
+const handleCloseTooltip = () => {
+  if (document.body.classList.contains('table-tooltip-is-showing')) {
+    const showedTooltipElems = document.querySelectorAll('.table-tooltip-show');
+
+    showedTooltipElems.forEach((showedTooltipElem) => {
+      showedTooltipElem.classList.remove('table-tooltip-show');
+    });
+
+    document.body.classList.remove('table-tooltip-is-showing');
+  }
+};
+
+const handleTdClick = (evt) => {
+  if (evt.target.tagName !== 'TD' || !evt.target.classList.contains('has-popup-data')) return;
+
+  document.body.classList.add('table-tooltip-is-showing');
+  const tableBodyElem = evt.target.parentElement.parentElement;
+  const popupDataElems = tableBodyElem.querySelectorAll('td.has-popup-data');
+  const isShowed = evt.target.classList.contains('table-tooltip-show');
+
+  popupDataElems.forEach((e) => e.classList.remove('table-tooltip-show'));
+  if (!isShowed) evt.target.classList.add('table-tooltip-show');
+
+  document.body.addEventListener('click', handleCloseTooltip, { capture: true, once: true });
+};
+
+function addPopupDataToFirstCol(popupData, firstCol) {
+  const tooltipContainerElem = document.createElement('div');
+  tooltipContainerElem.classList.add('table-tooltip-container');
+  tooltipContainerElem.innerHTML = popupData.innerHTML;
+  popupData.innerHTML = '';
+
+  if (!tooltipContainerElem.querySelector('h3')) {
+    // Add H3 if not there.
+    const popupHeader = document.createElement('h3');
+    popupHeader.textContent = firstCol.textContent;
+    tooltipContainerElem.prepend(popupHeader);
+  }
+
+  firstCol.append(tooltipContainerElem);
+  firstCol.classList.add('has-popup-data');
+  // Remove button style from links in the tooltip
+  tooltipContainerElem.querySelectorAll('a').forEach((a) => {
+    if (a.classList.contains('button')) a.classList.remove('button');
+  });
+}
+
 function buildMobileTables(block, tableData, colCnt, isComparisonTable) {
   const mobileTableContainer = document.createElement('div');
   mobileTableContainer.className = 'table-mobile-container';
@@ -75,7 +122,10 @@ function buildMobileTables(block, tableData, colCnt, isComparisonTable) {
 }
 
 export default async function decorate(block) {
-  if (block.classList.contains('first')) block.parentElement.classList.add('first');
+  if (block.classList.contains('first')) {
+    block.parentElement.classList.add('first');
+    block.parentElement.setAttribute('id', 'table1');
+  }
   const table = document.createElement('table');
   const head = document.createElement('thead');
   const body = document.createElement('tbody');
@@ -86,6 +136,19 @@ export default async function decorate(block) {
   const isDataSync = block.classList.contains('data-sync');
   const isXY = block.classList.contains('xy');
   const isStandardTable = !isComparisonTable && !isDataSync;
+  let popupDataColIdx = -1;
+  let addBlockClickHandler = true;
+  const colWidths = [];
+
+  [...block.classList].forEach((c) => {
+    if (c.startsWith('width-col-')) {
+      const splitVals = c.split('-');
+      const [, , colNum] = splitVals;
+      const [, , , colWidth] = splitVals;
+
+      colWidths.push({ colNum, colWidth });
+    }
+  });
 
   // build rows
   tableData.forEach((row, i) => {
@@ -94,10 +157,34 @@ export default async function decorate(block) {
     if (colCnt === -1) colCnt = colData.length;
     // build cells
     colData.forEach((col, j) => {
-      const isRowHeader = (isStandardTable && j === 0 && isXY);
-      const cell = buildTableCell(col, i, headers[j], isComparisonTable, isRowHeader);
-      if (i === 0) headers.push(cell);
-      tr.append(cell);
+      if (i === 0 && col.innerText.toLowerCase() === 'popup data') popupDataColIdx = j;
+      if (j === popupDataColIdx) {
+        // Add popupData to first column.
+        if (i > 0 && col.innerHTML) {
+          addPopupDataToFirstCol(col, tr.firstElementChild);
+
+          if (addBlockClickHandler) {
+            // Only need to do this once
+            block.addEventListener('click', handleTdClick);
+            block.classList.add('allow-overflow');
+            addBlockClickHandler = false;
+          }
+        }
+      } else {
+        const isRowHeader = (isStandardTable && j === 0 && isXY);
+        const cell = buildTableCell(col, i, headers[j], isComparisonTable, isRowHeader);
+        if (i === 0) {
+          headers.push(cell);
+          if (colWidths.length) {
+            const val = colWidths.find((v) => parseInt(v.colNum, 10) - 1 === j);
+            if (val) {
+              if (val.colWidth.endsWith('px')) cell.style.width = val.colWidth;
+              else cell.style.width = `${val.colWidth}%`;
+            }
+          }
+        }
+        tr.append(cell);
+      }
     });
     if (i > 0) body.append(tr);
     else head.append(tr);

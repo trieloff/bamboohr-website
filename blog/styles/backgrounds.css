@@ -95,7 +95,7 @@ main .section.has-bg {
 main .section.has-bg > span.bg {
     height: 100%;
     left: 0;
-    overflow-x: hidden;
+    overflow: hidden;
     pointer-events: none;
     position: absolute;
     right: 0;

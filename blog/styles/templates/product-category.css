@@ -18,7 +18,8 @@
   margin: 0;
 }
 
-.hr-software-payroll .title-container h1 {
+.hr-software-payroll .title-container h1,
+.hr-data-reporting .title-container h1 {
   margin-top: 0;
   padding-top: 30px;
 }
@@ -74,4 +75,8 @@
     background-image: url("data:image/svg+xml,%3Csvg width='1900' height='969' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23a)'%3E%3Cpath fill='%23fff' d='M0 0h1900v969H0z'/%3E%3Cpath fill='url(%23b)' d='M0-54h1900v756H0z'/%3E%3Cpath d='m2112.94-248.129-532.75 517.452c-85.38 82.923-207.89 114.17-321.4 81.979L550.467 150.41C436.952 118.219 349.701 27.467 321.56-87.638L145.992-805.966c-28.136-115.115 7.127-237.104 92.506-320.034l532.751-517.45c85.379-82.92 207.884-114.17 321.401-81.98l708.32 200.89c113.51 32.2 200.77 122.95 228.91 238.05l175.55 718.335c28.13 115.114-7.13 237.107-92.49 320.026Z' fill='url(%23c)'/%3E%3Cpath d='m2052.78 934.572 208.15-202.174c33.1-32.152 46.77-79.453 35.86-124.083l-68.59-280.661c-10.91-44.625-44.73-79.804-88.74-92.283l-276.74-78.491c-44.01-12.479-91.5-.367-124.61 31.786L1529.96 390.84c-33.11 32.153-46.78 79.454-35.87 124.085l68.6 280.659c10.91 44.625 44.73 79.804 88.73 92.283l276.75 78.491c44.01 12.479 91.5.367 124.61-31.786Z' stroke='%235CC8FF' stroke-width='2'/%3E%3Cpath d='M277.483 39.018 134.218 178.169c-22.96 22.299-55.904 30.702-86.43 22.046l-190.479-54.024c-30.526-8.656-53.99-33.061-61.557-64.014l-47.213-193.171c-7.566-30.956 1.916-63.762 24.876-86.062l143.266-139.151c22.96-22.299 55.903-30.702 86.43-22.045l190.479 54.023c30.526 8.657 53.989 33.061 61.557 64.015l47.209 193.171c7.566 30.956-1.917 63.762-24.873 86.06Z' fill='%23E0BEFF'/%3E%3Cpath d='m1412.76 621.774-83.37 80.976c-13.36 12.976-32.53 17.866-50.29 12.829l-110.85-31.438c-17.76-5.038-31.42-19.239-35.82-37.252l-27.47-112.411c-4.41-18.015 1.11-37.105 14.47-50.082l83.37-80.976c13.36-12.976 32.53-17.866 50.3-12.829l110.84 31.438c17.77 5.037 31.42 19.239 35.83 37.252l27.47 112.412c4.4 18.014-1.12 37.105-14.48 50.081Z' fill='%23A2E3FF'/%3E%3C/g%3E%3Cdefs%3E%3ClinearGradient id='b' x1='950' y1='-54' x2='950' y2='702' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FDE5FF'/%3E%3Cstop offset='1' stop-color='%23fff'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' x1='2218.99' y1='-673.806' x2='132.894' y2='-718.466' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='.108' stop-color='%23E0BEFF'/%3E%3Cstop offset='.623' stop-color='%23794FCD'/%3E%3C/linearGradient%3E%3CclipPath id='a'%3E%3Cpath fill='%23fff' d='M0 0h1900v969H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
     background-size: calc(max(100%, 1800px));
   }
+}
+
+.hr-data-reporting .default-content-wrapper .button-container a.button:any-link {
+  padding: 10px 30px;
 }

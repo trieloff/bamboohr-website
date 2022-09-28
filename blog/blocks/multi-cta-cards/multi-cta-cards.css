@@ -184,8 +184,13 @@
 }
 
 @media (min-width: 1025px) {
-  main .section > .multi-cta-wrapper-extended {
-    max-width: 1120px;
+  .multi-cta-cards {
+    max-width: 66.67%;
+    margin: 0 auto;
+  }
+
+  main .section > .multi-cta-wrapper-extended .multi-cta-cards {
+    max-width: 100%;
   }
 
   .multi-cta-cards>div {
@@ -201,5 +206,16 @@
   .multi-cta-tooltip-container {
     left: 10px;
     width: 400px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .multi-cta-cards {
+    max-width: 50%;
+    margin: 0 auto;
+  }
+
+  main .section > .multi-cta-wrapper-extended .multi-cta-cards {
+    max-width: 75%;
   }
 }
