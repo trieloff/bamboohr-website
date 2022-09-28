@@ -11,13 +11,17 @@
  */
 /* stylelint-disable no-descending-specificity */
 
-@import "style-vars.css";
+@import 'style-vars.css';
+@import 'templates/hr-software.css';
+@import 'backgrounds.css';
 
 html {
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -458,7 +462,7 @@ table td {
 }
 
 .pricing-quote .title.section-subhead {
-  font-weight: 500;  
+  font-weight: 500;
 }
 
 @media (min-width: 900px) {
@@ -1323,7 +1327,8 @@ main .section.gradient-section-4 > div:last-of-type {
 }
 
 body.pricing-quote {
-  background-image: url('./hex-top-pricing.svg'), linear-gradient(159.58deg, #FFF 1.38%, #EDFFC8 74.25%);
+  background-image: url('./hex-top-pricing.svg'),
+    linear-gradient(159.58deg, #fff 1.38%, #edffc8 74.25%);
   background-position: top, left;
   background-repeat: no-repeat;
 }
@@ -1381,7 +1386,7 @@ body.pricing-quote {
 .modal-wrapper {
   width: 100vw;
   height: 100vh;
-  background-color:rgb(0 0 0 / 50%);
+  background-color: rgb(0 0 0 / 50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1428,23 +1433,24 @@ body.pricing-quote {
   cursor: pointer;
 }
 
-.modal-close::before, .modal-close::after {
-    content: "";
-    display: block;
-    box-sizing: border-box;
-    position: absolute;
-    width: 21px;
-    height: 3px;
-    background: var(--color-white);
-    transform: rotate(45deg);
-    border-radius: 5px;
-    top: 8px;
-    left: 1px;
-    margin: 18px 16px;
+.modal-close::before,
+.modal-close::after {
+  content: '';
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 21px;
+  height: 3px;
+  background: var(--color-white);
+  transform: rotate(45deg);
+  border-radius: 5px;
+  top: 8px;
+  left: 1px;
+  margin: 18px 16px;
 }
 
 .modal-close::after {
-    transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .modal form {
