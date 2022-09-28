@@ -122,6 +122,10 @@ main .quote.full {
 	color: var(--theme-shade5);
 }
 
+.pricing-quote main .quote.full {
+	color: var(--color-1-tint-10);
+}
+
 @media (min-width: 600px) {
 	main .quote.full {
 		font-size: 1.375rem;
@@ -215,6 +219,10 @@ main .quote.hero .byline {
 	letter-spacing: .125rem;
 	line-height: 1.5;
 	text-transform: uppercase;
+}
+
+.pricing-quote main .quote.full .byline {
+	color: var(--color-1-tint-15);
 }
 
 /* TODO: just to show update */

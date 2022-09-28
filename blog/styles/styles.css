@@ -302,6 +302,11 @@ main h1.hidden {
   margin: 0;
 }
 
+.pricing-quote main h1 {
+  margin-top: 0;
+  padding-top: 48px;
+}
+
 .typ-section-header,
 .marketplace main h1,
 .resources-guides main h2,
@@ -617,6 +622,26 @@ table td {
   color: var(--color-white);
 }
 
+.pricing-quote main .title h4 {
+  margin-top: 0;
+}
+
+.pricing-quote main .section.bg-bottom-single-1 .quote {
+  margin-top: 400px;
+  margin-bottom: 100px;
+}
+
+.pricing-quote main .section.bg-bottom-single-1 .form {
+  margin-bottom: 70px;
+}
+
+.pricing-quote main .section.bg-bottom-single-1 .default-content-wrapper p {
+  margin-bottom: 0;
+  padding-bottom: 100px;
+  color: var(--color-white);
+  text-align: left;
+}
+
 /* links */
 
 main a:any-link {
@@ -704,7 +729,8 @@ main .section > div:empty {
     max-width: 640px;
   }
 
-  .resources-guides main .section > div.quote-wrapper.normal-width {
+  .resources-guides main .section > div.quote-wrapper.normal-width,
+  main .section > div.title-wrapper.normal-width {
     max-width: 760px;
   }
 
@@ -789,6 +815,7 @@ main .default-content-wrapper p a.button:any-link {
 .resources-guides main .columns-wrapper,
 .resources-guides main .image-wrapper:not(.background-image),
 .pricing-quote main .cards-wrapper,
+.pricing-quote main .multi-cta-cards-wrapper,
 .pricing-quote main .multi-element-wrapper {
   position: relative;
   z-index: 1;
@@ -1297,12 +1324,6 @@ main .section.gradient-section-4 > div:last-of-type {
   position: absolute;
 }
 
-.bg-hex-pricing img {
-  left: 0;
-  width: 100%;
-  position: absolute;
-}
-
 .bg-section-bottom-1 img {
   margin-top: 20px;
   width: 100%;
@@ -1327,15 +1348,17 @@ main .section.gradient-section-4 > div:last-of-type {
 }
 
 body.pricing-quote {
-  background-image: url('./hex-top-pricing.svg'),
-    linear-gradient(159.58deg, #fff 1.38%, #edffc8 74.25%);
-  background-position: top, left;
-  background-repeat: no-repeat;
+  background: linear-gradient(159.58deg, var(--color-white) 1.38%, var(--color-1-tint-15) 74.25%);
 }
 
 .pricing-quote main .form a.button {
   color: var(--color-1-shade-15);
   background-color: var(--color-1-tint-10);
+}
+
+.pricing-quote main .title-container .button-container a.button {
+  color: var(--color-1-shade-10);
+  background-color: unset;
 }
 
 @media screen and (min-width: 600px) {

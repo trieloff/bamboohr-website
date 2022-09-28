@@ -21,6 +21,15 @@
   margin: 0;
 }
 
+.table-tooltip-container a:any-link {
+  align-items: center;
+  color: var(--theme-shade5);
+  display: inline-flex;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
 .table.comparison table a {
   text-decoration: none;
   font-family: var(--heading-font-family);
@@ -39,6 +48,10 @@
 .table {
   max-width: 100%;
   overflow-x: auto;
+}
+
+.table.allow-overflow {
+  overflow-x: unset;
 }
 
 .table table, .table th, .table td {
@@ -128,8 +141,8 @@
   position: absolute;
   left: 50%;
   top: 33%;
-  width: 5px;
-  height: 10px;
+  width: 9px;
+  height: 14px;
   border: solid var(--color-1);
   border-width: 0 4px 4px 0;
   transform: rotate(45deg);
@@ -177,5 +190,94 @@
 
   .table.comparison table:not(table.table-mobile) {
     display: none;
+  }
+}
+
+.table-tooltip-container p {
+  font-size: 18px;
+  line-height: 27px;
+  margin: 4px 0 24px;
+}
+
+.table-tooltip-container {
+  background: var(--color-white);
+  border-radius: 16px;
+  box-shadow: var(--theme-shadow2-shade5);
+  display: none;
+  left: 36px;
+  padding: 24px;
+  position: absolute;
+  top: 0;
+  z-index: 3000;
+  min-width: 350px;
+}
+
+.table td.has-popup-data.table-tooltip-show .table-tooltip-container {
+  display: block;
+}
+
+.table td.has-popup-data {
+  padding-left: 36px;
+  cursor: pointer;
+}
+
+.table td.has-popup-data::before {
+  background: url('/blog/icons/cta-list-button.svg') center center no-repeat;
+  content: '';
+  height: 8px;
+  left: 16px;
+  top: 26px;
+  position: absolute;
+  transform: rotate(135deg);
+  transition: transform 0.2s;
+  width: 8px;
+}
+
+.table td.has-popup-data.table-tooltip-show::before {
+  transform: rotate(0);
+}
+
+.table-tooltip-container p.button-container {
+  position: relative;
+}
+
+main .section .table-tooltip-container p.button-container {
+  text-align: left;
+}
+
+.table-tooltip-container p.button-container a::after {
+  content: '';
+  border: solid var(--color-1-shade-5);
+  border-width: 0 2.5px 2.5px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+  position: absolute;
+  left: 85px;
+}
+
+.table-tooltip-container h3 {
+  color: var(--color-gray-9);
+  font-size: 26px;
+  font-style: normal;
+  line-height: 30px;
+  margin: 0;
+}
+
+.table-tooltip-container a:any-link .icon {
+  margin-left: 9px;
+}
+
+.table-tooltip-container a:any-link svg {
+  height: 13px;
+}
+
+.table-tooltip-container a:any-link svg > * {
+  fill: var(--theme-shade5);
+}
+
+@media (min-width: 600px) {
+  .table-tooltip-container {
+    width: 400px;
   }
 }
