@@ -713,7 +713,9 @@ main .section > div:empty {
   .blog-post main .section > div.author-wrapper,
   .blog-post main .section > div.quote-wrapper,
   .blog-post main .section > div.table-wrapper,
-  .pricing-quote main .section > div.table-wrapper {
+  .pricing-quote main .section > div.table-wrapper,
+  .marketplace-home main .section > div.default-content-wrapper,
+  .marketplace-home main .section > div.search-wrapper {
     max-width: 800px;
   }
 
@@ -912,15 +914,37 @@ main .default-content-wrapper p a.button:any-link {
 }
 
 .marketplace-home {
-  background-image: url('./leaf-top-1.svg'),
-    linear-gradient(
-      var(--color-gray-3),
-      var(--color-gray-3) calc(500px + (100vw * 0.124)),
-      var(--color-white) calc(100vw * 0.124)
-    );
-  background-position: 0 500px, top;
+  background-image: url('./marketplace-home-hex-mobile.svg');
+  background-position: top center;
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+@media (min-width: 600px) {
+  .marketplace-home {
+    background-image: url('./marketplace-home-hex-tablet.svg');
+  }
+}
+
+@media (min-width: 1025px) {
+  .marketplace-home {
+    background-image: url('./marketplace-home-hex.svg');
+  }
+}
+
+.marketplace-home .search-container,
+.marketplace-home main h1 {
+  color: var(--color-white);
+}
+
+.marketplace-home main h1 {
+  margin-top: 0;
+}
+
+.marketplace.marketplace-home main .image-wrapper,
+.marketplace-home main .image-wrapper .image {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .marketplace-listing,
@@ -1023,18 +1047,6 @@ main .default-content-wrapper p a.button:any-link {
 
   .marketplace-listing .details-container {
     grid-area: details;
-  }
-}
-
-@media (min-width: 1200px) {
-  .marketplace-home {
-    background-image: url('./leaf-top-1.svg'),
-      linear-gradient(
-        var(--color-gray-3),
-        var(--color-gray-3) calc(470px + (100vw * 0.124)),
-        var(--color-white) calc(100vw * 0.124)
-      );
-    background-position: 0 470px, top;
   }
 }
 
