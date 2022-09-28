@@ -12,6 +12,8 @@
 /* stylelint-disable no-descending-specificity */
 
 @import 'style-vars.css';
+@import 'templates/hr-software.css';
+@import 'templates/payroll-roi.css';
 @import 'templates/product-category.css';
 @import 'backgrounds.css';
 

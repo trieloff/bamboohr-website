@@ -51,7 +51,7 @@ main .form form > div {
 }
 
 main .form select,
-main .form textarea, 
+main .form textarea,
 main .form input {
   box-sizing: border-box;
   width: 100%;
@@ -76,7 +76,7 @@ main .form textarea {
 }
 
 main .form select:focus,
-main .form textarea:focus, 
+main .form textarea:focus,
 main .form input:focus {
   border-color: var(--color-5);
 }
@@ -88,7 +88,7 @@ main .form option {
 }
 
 main .form.gray select,
-main .form.gray textarea, 
+main .form.gray textarea,
 main .form.gray input {
   background-color: var(--color-gray-1);
 }
@@ -98,8 +98,8 @@ main .form select[multiple] {
   background: var(--color-white);
 }
 
-main .form input[type=checkbox],
-main .form input[type=radio] {
+main .form input[type='checkbox'],
+main .form input[type='radio'] {
   margin-top: 0;
   margin-right: 10px;
   height: 13px;
@@ -132,7 +132,7 @@ main .form .form-checkbox-option > label {
 }
 
 main .form .form-checkbox-option > label::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -146,7 +146,7 @@ main .form .form-checkbox-option > label::before {
 }
 
 main .form .form-radio-option > label::before {
-  content: "";
+  content: '';
   display: inline-block;
   width: 26px;
   height: 26px;
@@ -164,7 +164,7 @@ main .form.gray .form-checkbox-option > label::before {
 }
 
 main .form .form-checkbox-option input:checked + label::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 8px;
   top: 4px;
@@ -181,17 +181,22 @@ main .form .form-radio-option input:checked + label::before {
 }
 
 main .form .error select,
-main .form .error textarea, 
+main .form .error textarea,
 main .form .error input {
   border-color: var(--color-2);
 }
 
-main .form .error input[type="checkbox"] + label::before {
+main .form .error input[type='checkbox'] + label::before {
   border-color: var(--color-2);
 }
 
 .marketplace main .form-container {
-  background-image: url('../../styles/leaf-top-3.svg'), linear-gradient(var(--color-white), var(--color-white) calc(290px + (100vw * 0.11)), var(--color-gray-1) calc(100vw * 0.11));
+  background-image: url('../../styles/leaf-top-3.svg'),
+    linear-gradient(
+      var(--color-white),
+      var(--color-white) calc(290px + (100vw * 0.11)),
+      var(--color-gray-1) calc(100vw * 0.11)
+    );
   background-position: 0 290px, top;
   background-repeat: no-repeat;
   background-size: contain;
@@ -223,11 +228,11 @@ main .form .form-gdpr-text,
 }
 
 main .form .mktoForm {
-	visibility: hidden;
+  visibility: hidden;
 }
 
-main .form .mktoForm[data-styles-ready="true"] {
-	visibility: visible;
+main .form .mktoForm[data-styles-ready='true'] {
+  visibility: visible;
 }
 
 main .form .mktoForm .mktoInvalid,
@@ -276,6 +281,21 @@ main .form.has-content .form-col {
   margin: 0 auto;
 }
 
+main .form.white-container .form-col {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: var(--box-shadow-2);
+}
+
+main .form.white-container .form-col strong {
+  color: var(--color-1-shade-15);
+}
+
+main .form.white-container .form-col p {
+  color: var(--color-gray-8);
+}
+
 @media (min-width: 1200px) {
   main .form.has-content > div {
     display: grid;
@@ -286,21 +306,17 @@ main .form.has-content .form-col {
   main .form.has-content .content-col {
     grid-column: span 6;
   }
-  
+
   main .form.has-content .form-col {
     grid-column: span 6;
     max-width: 100%;
   }
-  
+
   main .form.has-content.grid-7-5 .content-col {
     grid-column: span 7;
   }
-  
+
   main .form.has-content.grid-7-5 .form-col {
     grid-column: span 5;
   }
 }
-
-
-
-
