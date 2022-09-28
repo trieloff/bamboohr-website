@@ -130,14 +130,10 @@ main .section.bg-top-multi-3 > span.bg > svg {
    /* uses defaults */
 }
 
-/* TODO: multi 4 */
+/* multi 4 */
 main .section.bg-top-multi-4 > span.bg {
     background-image: linear-gradient(180deg, var(--theme-tint15) 0%, transparent 100%);
-}
-
-main .section.bg-top-multi-4 > span.bg > svg {
-    bottom: auto;
-    top: 0;
+    min-height: 50rem;
 }
 
 /* TODO: multi 5 */
