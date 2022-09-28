@@ -14,10 +14,6 @@ main .call-to-action-container {
     background-repeat: no-repeat;
 }
 
-.pricing-quote main .call-to-action-container.bottom {
-    background: unset;
-}
-
 main .call-to-action,
 .pricing-quote main .call-to-action {
     text-align: center;
