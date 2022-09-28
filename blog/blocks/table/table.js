@@ -17,7 +17,7 @@ function buildTableCell(col, rowIndex, header, isComparisonTable, isRowHeader) {
   return cell;
 }
 
-const handleCloseTooltip = (evt) => {
+const handleCloseTooltip = () => {
   if (document.body.classList.contains('table-tooltip-is-showing')) {
     const showedTooltipElems = document.querySelectorAll('.table-tooltip-show');
 
@@ -27,10 +27,10 @@ const handleCloseTooltip = (evt) => {
 
     document.body.classList.remove('table-tooltip-is-showing');
   }
-}
+};
 
 const handleTdClick = (evt) => {
-  if (evt.target.tagName !== 'TD' || !evt.target.classList.contains('has-popup-data') ) return;
+  if (evt.target.tagName !== 'TD' || !evt.target.classList.contains('has-popup-data')) return;
 
   document.body.classList.add('table-tooltip-is-showing');
   const tableBodyElem = evt.target.parentElement.parentElement;
@@ -41,7 +41,7 @@ const handleTdClick = (evt) => {
   if (!isShowed) evt.target.classList.add('table-tooltip-show');
 
   document.body.addEventListener('click', handleCloseTooltip, { capture: true, once: true });
-}
+};
 
 function addPopupDataToFirstCol(popupData, firstCol) {
   const tooltipContainerElem = document.createElement('div');
@@ -58,12 +58,10 @@ function addPopupDataToFirstCol(popupData, firstCol) {
 
   firstCol.append(tooltipContainerElem);
   firstCol.classList.add('has-popup-data');
-  
   // Remove button style from links in the tooltip
   tooltipContainerElem.querySelectorAll('a').forEach((a) => {
     if (a.classList.contains('button')) a.classList.remove('button');
   });
-
 }
 
 function buildMobileTables(block, tableData, colCnt, isComparisonTable) {
@@ -145,10 +143,10 @@ export default async function decorate(block) {
   [...block.classList].forEach((c) => {
     if (c.startsWith('width-col-')) {
       const splitVals = c.split('-');
-      const [,,colNum] = splitVals;
-      const [,,,colWidth] = splitVals;
+      const [, , colNum] = splitVals;
+      const [, , , colWidth] = splitVals;
 
-      colWidths.push({colNum, colWidth});
+      colWidths.push({ colNum, colWidth });
     }
   });
 
@@ -163,14 +161,14 @@ export default async function decorate(block) {
       if (j === popupDataColIdx) {
         // Add popupData to first column.
         if (i > 0 && col.innerHTML) {
-            addPopupDataToFirstCol(col, tr.firstElementChild);
+          addPopupDataToFirstCol(col, tr.firstElementChild);
 
-            if (addBlockClickHandler) {
-              // Only need to do this once
-              block.addEventListener('click', handleTdClick);
-              block.classList.add('allow-overflow');
-              addBlockClickHandler = false;
-            }
+          if (addBlockClickHandler) {
+            // Only need to do this once
+            block.addEventListener('click', handleTdClick);
+            block.classList.add('allow-overflow');
+            addBlockClickHandler = false;
+          }
         }
       } else {
         const isRowHeader = (isStandardTable && j === 0 && isXY);
