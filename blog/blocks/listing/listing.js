@@ -8,7 +8,7 @@ import {
 import { createAppCard, sortOptions } from '../app-cards/app-cards.js';
 
 function getBlockHTML(ph) {
-  return /* html */`
+  return /* html */ `
   <p class="listing-results-count"><span id="listing-results-count"></span> ${ph.results}</p>
   <div class="listing-facets">
   </div>
@@ -27,7 +27,7 @@ function getBlockHTML(ph) {
 }
 
 function getFacetHTML(ph) {
-  return /* html */`
+  return /* html */ `
   <div><div class="listing-filters">
     <div class="listing-filters-selected"></div>
     <p><button class="listing-filters-clear secondary">${ph.clearAll}</button></p>
@@ -48,7 +48,7 @@ export async function filterResults(config, facets = {}) {
   /* simple array lookup */
   if (Array.isArray(config)) {
     const pathnames = config;
-    return (pathnames.map((path) => listings.lookup[path]).filter((e) => e));
+    return pathnames.map((path) => listings.lookup[path]).filter((e) => e);
   }
 
   /* setup config */
@@ -80,8 +80,29 @@ export async function filterResults(config, facets = {}) {
     facetKeys.forEach((facetKey) => {
       let includeInFacet = true;
       Object.keys(filterMatches).forEach((filterKey) => {
-        if (filterKey !== facetKey && !filterMatches[filterKey]) includeInFacet = false;
+        if (!filterMatches[filterKey]) {
+          includeInFacet = false;
+
+          if (filterKey !== facetKey) {
+            keys.every((key) => {
+              let matched = false;
+
+              if (row[key]) {
+                const rowValues = row[key].split(',').map((t) => t.trim());
+                matched = tokens[key].some((t) => rowValues.includes(t));
+
+                if (matched) {
+                  includeInFacet = true;
+                }
+                includeInFacet = false;
+              }
+
+              return matched;
+            });
+          }
+        }
       });
+
       if (includeInFacet) {
         if (row[facetKey]) {
           const rowValues = row[facetKey].split(',').map((t) => t.trim());
@@ -95,7 +116,7 @@ export async function filterResults(config, facets = {}) {
         }
       }
     });
-    return (matchedAll);
+    return matchedAll;
   });
   return results;
 }
@@ -113,7 +134,9 @@ export default async function decorate(block, blockName) {
 
   /* camelCase config */
   const config = {};
-  Object.keys(blockConfig).forEach((key) => { config[toCamelCase(key)] = blockConfig[key]; });
+  Object.keys(blockConfig).forEach((key) => {
+    config[toCamelCase(key)] = blockConfig[key];
+  });
 
   block.innerHTML = getBlockHTML(ph);
 
@@ -123,12 +146,52 @@ export default async function decorate(block, blockName) {
     block.querySelector('.listing-facets').classList.toggle('visible');
   });
 
-  addEventListeners([
-    block.querySelector('.listing-sort-button'),
-    block.querySelector('.listing-sortby p'),
-  ], 'click', () => {
-    block.querySelector('.listing-sortby ul').classList.toggle('visible');
-  });
+  addEventListeners(
+    [block.querySelector('.listing-sort-button'), block.querySelector('.listing-sortby p')],
+    'click',
+    () => {
+      block.querySelector('.listing-sortby ul').classList.toggle('visible');
+    },
+  );
+
+  const displayResults = async (results) => {
+    resultsElement.innerHTML = '';
+    results.forEach((product) => {
+      resultsElement.append(createAppCard(product, blockName));
+    });
+  };
+
+  const runSearch = async (filterConfig = config) => {
+    const facets = {
+      category: {},
+      businessSize: {},
+      dataFlow: {},
+      industryServed: {},
+      locationRestrictions: {},
+    };
+    const results = await filterResults(filterConfig, facets);
+    const sortBy = document.getElementById('listing-sortby')
+      ? document.getElementById('listing-sortby').dataset.sort
+      : 'level';
+
+    if (sortBy && sortOptions(sortBy)) results.sort(sortOptions(sortBy));
+    block.querySelector('#listing-results-count').textContent = results.length;
+    displayResults(results, null);
+    // eslint-disable-next-line no-use-before-define
+    displayFacets(facets, filterConfig);
+  };
+
+  const getSelectedFilters = () => [...block.querySelectorAll('input[type="checkbox"]:checked')];
+  const createFilterConfig = () => {
+    const filterConfig = { ...config };
+    getSelectedFilters().forEach((checked) => {
+      const facetKey = checked.name;
+      const facetValue = checked.value;
+      if (filterConfig[facetKey]) filterConfig[facetKey] += `, ${facetValue}`;
+      else filterConfig[facetKey] = facetValue;
+    });
+    return filterConfig;
+  };
 
   const sortList = block.querySelector('.listing-sortby ul');
   const selectSort = (selected) => {
@@ -139,7 +202,6 @@ export default async function decorate(block, blockName) {
     sortBy.dataset.sort = selected.dataset.sort;
     document.getElementById('listing-sortby').textContent = selected.textContent;
     block.querySelector('.listing-sortby ul').classList.remove('visible');
-    // eslint-disable-next-line no-use-before-define
     runSearch(createFilterConfig());
   };
 
@@ -147,39 +209,26 @@ export default async function decorate(block, blockName) {
     selectSort(event.target);
   });
 
-  const displayResults = async (results) => {
-    resultsElement.innerHTML = '';
-    results.forEach((product) => {
-      resultsElement.append(createAppCard(product, blockName));
-    });
-  };
-
-  const getSelectedFilters = () => [...block.querySelectorAll('input[type="checkbox"]:checked')];
-
-  const createFilterConfig = () => {
-    const filterConfig = { ...config };
-    getSelectedFilters().forEach((checked) => {
-      const facetKey = checked.name;
-      const facetValue = checked.value;
-      if (filterConfig[facetKey]) filterConfig[facetKey] += `, ${facetValue}`;
-      else filterConfig[facetKey] = facetValue;
-    });
-    return (filterConfig);
-  };
-
   const displayFacets = (facets, filters) => {
     const rawFilters = getSelectedFilters().map((check) => check.value);
     const selected = config.category
-      ? rawFilters.filter((filter) => filter !== config.category) : rawFilters;
+      ? rawFilters.filter((filter) => filter !== config.category)
+      : rawFilters;
     facetsElement.innerHTML = getFacetHTML(ph);
 
-    addEventListeners([
-      facetsElement.querySelector('.listing-apply-filters button'),
-      facetsElement.querySelector(':scope > div'),
-      facetsElement,
-    ], 'click', (event) => {
-      if (event.currentTarget === event.target) block.querySelector('.listing-facets').classList.remove('visible');
-    });
+    addEventListeners(
+      [
+        facetsElement.querySelector('.listing-apply-filters button'),
+        facetsElement.querySelector(':scope > div'),
+        facetsElement,
+      ],
+      'click',
+      (event) => {
+        if (event.currentTarget === event.target) {
+          block.querySelector('.listing-facets').classList.remove('visible');
+        }
+      },
+    );
 
     const selectedFilters = block.querySelector('.listing-filters-selected');
     selected.forEach((tag) => {
@@ -189,7 +238,7 @@ export default async function decorate(block, blockName) {
       span.addEventListener('click', () => {
         document.getElementById(`listing-filter-${tag}`).checked = false;
         const filterConfig = createFilterConfig();
-        // eslint-disable-next-line no-use-before-define
+
         runSearch(filterConfig);
       });
       selectedFilters.append(span);
@@ -200,7 +249,7 @@ export default async function decorate(block, blockName) {
         document.getElementById(`listing-filter-${tag}`).checked = false;
       });
       const filterConfig = createFilterConfig();
-      // eslint-disable-next-line no-use-before-define
+
       runSearch(filterConfig);
     });
 
@@ -231,31 +280,13 @@ export default async function decorate(block, blockName) {
           div.append(input, label);
           input.addEventListener('change', () => {
             const filterConfig = createFilterConfig();
-            // eslint-disable-next-line no-use-before-define
+
             runSearch(filterConfig);
           });
         });
         facetsList.append(div);
       }
     });
-  };
-
-  const runSearch = async (filterConfig = config) => {
-    const facets = {
-      category: {},
-      businessSize: {},
-      dataFlow: {},
-      industryServed: {},
-      locationRestrictions: {},
-    };
-
-    const results = await filterResults(filterConfig, facets);
-    const sortBy = document.getElementById('listing-sortby') ? document.getElementById('listing-sortby').dataset.sort : 'level';
-
-    if (sortBy && sortOptions(sortBy)) results.sort(sortOptions(sortBy));
-    block.querySelector('#listing-results-count').textContent = results.length;
-    displayResults(results, null);
-    displayFacets(facets, filterConfig);
   };
 
   runSearch(config);

@@ -26,13 +26,13 @@ describe('Core Helix features', () => {
     document.head.appendChild(document.createElement('script')).src = '/foo/scripts/scripts.js';
     window.history.pushState({}, '', `${window.location.href}&lighthouse=on`);
 
-    scripts.initHlx();
+    scripts.initHlx(true);
     expect(window.hlx.codeBasePath).to.equal('/foo');
     expect(window.hlx.lighthouse).to.equal(true);
 
     // test error handling
     const url = sinon.stub(window, 'URL');
-    scripts.initHlx();
+    scripts.initHlx(true);
 
     // cleanup
     url.restore();

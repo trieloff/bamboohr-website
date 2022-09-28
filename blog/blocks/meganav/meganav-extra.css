@@ -1,0 +1,40 @@
+body .header-nav-container {
+    background-color: var(--body-background-color);
+    font-family: var(--body-font-family);
+    font-size: 18px;
+    line-height: 27px;
+  }
+
+.meganav a.button:any-link {
+    text-decoration: none;
+    border-radius: 100px;
+    border: none;
+    padding: 18px 40px;
+    text-align: center;
+    font-size: 18px;
+    font-family: var(--heading-font-family);
+    font-style: normal;
+    font-weight: var(--heading-font-weight);
+    cursor: pointer;
+    color: var(--color-white);
+    background-color: var(--color-1);
+    margin: 16px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
+  
+  .meganav a.button.light:any-link, .meganav a.button.stroke:any-link {
+    background-color: transparent;
+    color: var(--color-1);
+    border: solid 2px var(--color-1);
+  }
+
+  .meganav p.button-container {
+    margin: unset;
+  }
+
+  .header-topmost-inner {
+    max-width: 1550px !important;
+  }

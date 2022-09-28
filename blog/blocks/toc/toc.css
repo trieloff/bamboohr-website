@@ -7,7 +7,7 @@ main .toc {
     border-radius: 20px;
 }
 
-main .toc a:any-link{
+main .toc a:any-link {
     color: var(--category-darker-color);
     background-color: var(--category-bg-color);
     text-decoration: none;
@@ -37,8 +37,12 @@ main .toc > ol > li {
     counter-increment: li;
 }
 
+main .toc li:not(:first-child) {
+    margin-top: 10px;
+}
+
 main .toc > ol > li::before {
-    content: counter(li);
+    content: counter(li) '.';
     padding-right: 20px;
     position: absolute;
     left: 0;
@@ -65,5 +69,8 @@ main .toc > ol > li::before {
         margin-top: 0;
     }
 
+    .resources-guides main .toc > ol > ol {
+        padding-left: 40px;
+    }
 }  
   

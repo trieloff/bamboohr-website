@@ -6,10 +6,31 @@ main .call-to-action-container {
     background-repeat: no-repeat;
 }
 
-main .call-to-action {
+.live-demo-webinars main .call-to-action-container {
+    background-color: unset;
+    background-image: url('../../styles/hex-cta.svg');
+    background-size: cover;
+    background-position: top, left;
+    background-repeat: no-repeat;
+}
+
+.pricing-quote main .call-to-action-container.bottom {
+    background-color: unset;
+    background-image: url('../../styles/hex-bottom-pricing.svg');
+    background-size: cover;
+    background-position: top, left;
+    background-repeat: no-repeat;
+}
+
+main .call-to-action,
+.pricing-quote main .call-to-action {
     text-align: center;
     color: var(--color-white);
     padding: 66px 0 30px;
+}
+
+.live-demo-webinars main .call-to-action {
+    padding-bottom: 1px;
 }
 
 main .call-to-action h2, main .call-to-action h3, main .call-to-action h4 {
@@ -39,6 +60,10 @@ main .call-to-action a.button {
 @media (min-width: 600px) {
     main .call-to-action {
         padding: 130px 0 60px;
+    }
+
+    .live-demo-webinars main .call-to-action {
+        padding-top: 145px;
     }
     
     main .call-to-action h2 {

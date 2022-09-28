@@ -51,8 +51,8 @@ export function sampleRUM(checkpoint, data = {}) {
             data.cwv[measurement.name] = measurement.value;
             sendPing();
           };
-            // When loading `web-vitals` using a classic script, all the public
-            // methods can be found on the `webVitals` global namespace.
+          // When loading `web-vitals` using a classic script, all the public
+          // methods can be found on the `webVitals` global namespace.
           window.webVitals.getCLS(storeCWV);
           window.webVitals.getFID(storeCWV);
           window.webVitals.getLCP(storeCWV);
@@ -172,9 +172,7 @@ export function addPublishDependencies(url) {
  * @returns {string} The class name
  */
 export function toClassName(name) {
-  return name && typeof name === 'string'
-    ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-')
-    : '';
+  return name && typeof name === 'string' ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-') : '';
 }
 
 /*
@@ -206,9 +204,10 @@ export function decorateIcons(element) {
   // prepare for forward compatible icon handling
   replaceIcons(element);
 
+  const fetchBase = window.hlx.serverPath;
   element.querySelectorAll('span.icon').forEach((span) => {
     const iconName = span.className.split('icon-')[1];
-    fetch(`${window.hlx.codeBasePath}/icons/${iconName}.svg`).then((resp) => {
+    fetch(`${fetchBase}${window.hlx.codeBasePath}/icons/${iconName}.svg`).then((resp) => {
       if (resp.status === 200) resp.text().then((svg) => { span.innerHTML = svg; });
     });
   });
@@ -242,7 +241,7 @@ export async function fetchPlaceholders(prefix = 'default') {
     });
   }
   await window.placeholders[`${prefix}-loaded`];
-  return (window.placeholders[prefix]);
+  return window.placeholders[prefix];
 }
 
 /**
@@ -309,6 +308,50 @@ export function readBlockConfig(block) {
 }
 
 /**
+ * Decorates backgrounds in sections.
+ * @param {Element} $section The section element
+ */
+export function decorateBackgrounds($section) {
+  $section.classList.forEach((style) => {
+    if (style.match(/^bg-/g)) {
+      const background = document.createElement('span');
+      const fetchBase = window.hlx.serverPath;
+      const sizes = ['', 'laptop', 'tablet', 'mobile'];
+
+      background.classList.add('bg');
+
+      // get svgs
+      sizes.forEach((size) => {
+        let name = style;
+
+        if (size) name += `-${size}`;
+
+        fetch(`${fetchBase}${window.hlx.codeBasePath}/styles/backgrounds/${name}.svg`)
+          .then((resp) => {
+            // skip if not success
+            if (resp.status !== 200) return;
+
+            // put the svg in the span
+            resp.text()
+              .then((html) => {
+                const element = document.createElement('div');
+                element.innerHTML = html;
+                const svg = element.firstChild;
+
+                svg.classList.add(size || 'desktop');
+
+                background.append(svg);
+                $section.classList.add('has-bg');
+              });
+          });
+      });
+
+      $section.prepend(background);
+    }
+  });
+}
+
+/**
  * Decorates all sections in a container element.
  * @param {Element} $main The container element
  */
@@ -335,9 +378,13 @@ export function decorateSections($main) {
       const meta = readBlockConfig(sectionMeta);
       const keys = Object.keys(meta);
       keys.forEach((key) => {
-        if (key === 'style') section.classList.add(toClassName(meta.style));
-        else section.dataset[key] = meta[key];
+        const styleValues = meta.style.split(',').map((t) => t.trim());
+        styleValues.forEach((style) => {
+          if (key === 'style') section.classList.add(toClassName(style));
+          else section.dataset[key] = meta[key];
+        });
       });
+      decorateBackgrounds(section);
       sectionMeta.remove();
     }
   });
@@ -353,7 +400,9 @@ export function updateSectionsStatus(main) {
     const section = sections[i];
     const status = section.getAttribute('data-section-status');
     if (status !== 'loaded') {
-      const loadingBlock = section.querySelector('.block[data-block-status="initialized"], .block[data-block-status="loading"]');
+      const loadingBlock = section.querySelector(
+        '.block[data-block-status="initialized"], .block[data-block-status="loading"]'
+      );
       if (loadingBlock) {
         section.setAttribute('data-section-status', 'loading');
         break;
@@ -402,7 +451,7 @@ export function buildBlock(blockName, content) {
     });
     blockEl.appendChild(rowEl);
   });
-  return (blockEl);
+  return blockEl;
 }
 
 /**
@@ -529,7 +578,12 @@ function decorateTemplateAndTheme() {
   const template = getMetadata('template');
   if (template) document.body.classList.add(toClassName(template));
   const theme = getMetadata('theme');
-  if (theme) document.body.classList.add(toClassName(theme));
+  if (theme) {
+    const themeValues = theme.split(',').map((t) => t.trim());
+    themeValues.forEach((t) => {
+      document.body.classList.add(toClassName(t));
+    });
+  }
 }
 
 /**
@@ -584,18 +638,21 @@ async function loadPage(doc) {
   loadDelayed(doc);
 }
 
-export function initHlx() {
-  window.hlx = window.hlx || {};
-  window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
-  window.hlx.codeBasePath = '';
+export function initHlx(forceMultiple = false) {
+  if (!window.hlx || forceMultiple) {
+    window.hlx = window.hlx || {};
+    window.hlx.lighthouse = new URLSearchParams(window.location.search).get('lighthouse') === 'on';
+    window.hlx.codeBasePath = '';
+    window.hlx.serverPath = '';
 
-  const scriptEl = document.querySelector('script[src$="/scripts/scripts.js"]');
-  if (scriptEl) {
-    try {
-      [window.hlx.codeBasePath] = new URL(scriptEl.src).pathname.split('/scripts/scripts.js');
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log(e);
+    const scriptEl = document.querySelector('script[src$="/scripts/scripts.js"]');
+    if (scriptEl) {
+      try {
+        [window.hlx.codeBasePath] = new URL(scriptEl.src).pathname.split('/scripts/scripts.js');
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e);
+      }
     }
   }
 }
@@ -627,7 +684,7 @@ document.addEventListener('click', (event) => {
   sampleRUM('click', { target: sampleRUM.targetselector(event.target), source: sampleRUM.sourceselector(event.target) });
 });
 
-loadPage(document);
+if (!window.hlx.suppressLoadPage) loadPage(document);
 
 export function formatDate(dateString) {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -644,8 +701,7 @@ export function decorateButtons(block = document) {
     if ($block) {
       blockName = $block.className;
     }
-    if (!noButtonBlocks.includes(blockName)
-      && $a.href !== $a.textContent) {
+    if (!noButtonBlocks.includes(blockName) && $a.href !== $a.textContent) {
       const $up = $a.parentElement;
       const $twoup = $a.parentElement.parentElement;
       if (!$a.querySelector('img')) {
@@ -682,7 +738,9 @@ function setCategory() {
   }
 
   const categoryName = toCategory(category);
-  document.body.classList.add(`category-${categoryName}`);
+  if (category) {
+    document.body.classList.add(`category-${categoryName}`);
+  }
 }
 
 /**
@@ -707,7 +765,7 @@ export function buildFigure(blockEl) {
   const figEl = document.createElement('figure');
   figEl.classList.add('figure');
   // content is picture only, no caption or link
-  if (blockEl.firstElementChild) {
+  if (blockEl?.firstElementChild) {
     if (blockEl.firstElementChild.nodeName === 'PICTURE' || blockEl.firstElementChild.nodeName === 'VIDEO') {
       figEl.append(blockEl.firstElementChild);
     } else if (blockEl.firstElementChild.nodeName === 'P') {
@@ -729,7 +787,7 @@ export function buildFigure(blockEl) {
           }
         }
       });
-    // catch link-only figures (like embed blocks);
+      // catch link-only figures (like embed blocks);
     } else if (blockEl.firstElementChild.nodeName === 'A') {
       figEl.append(blockEl.firstElementChild);
     }
@@ -760,18 +818,28 @@ export async function lookupPages(pathnames, collection) {
   });
   const { lookup } = window.pageIndex[collection];
   const result = pathnames.map((path) => lookup[path]).filter((e) => e);
-  return (result);
+  return result;
 }
 
-function loadHeader(header) {
-  const headerBlock = buildBlock('header', '');
+export function loadHeader(header) {
+  const queryParams = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  const headerblockName = queryParams.header === 'meganav' ? 'meganav' : 'header';
+
+  const headerBlock = buildBlock(headerblockName, '');
   header.append(headerBlock);
   decorateBlock(headerBlock);
   loadBlock(headerBlock);
 }
 
 function loadFooter(footer) {
-  const footerBlock = buildBlock('footer', '');
+  const queryParams = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  const footerBlockName = queryParams.header ? 'megafooter' : 'footer';
+
+  const footerBlock = buildBlock(footerBlockName, '');
   footer.append(footerBlock);
   decorateBlock(footerBlock);
   loadBlock(footerBlock);
@@ -779,7 +847,14 @@ function loadFooter(footer) {
 
 function buildPageHeader(main, type) {
   const section = document.createElement('div');
-  const header = buildBlock('page-header', []);
+  let content = [];
+  if (type === 'resources-guides') {
+    const picture = document.querySelector('h1 + h5 + p > picture');
+    const h1 = document.querySelector('h1');
+    const h5 = h1.nextElementSibling.tagName === 'H5' ? h1.nextElementSibling : null;
+    content = [[picture], [h1], [h5]].filter((e) => e[0]);
+  }
+  const header = buildBlock('page-header', content);
   header.setAttribute('data-header-location', toClassName(type));
   section.append(header);
   main.prepend(section);
@@ -802,7 +877,8 @@ async function buildAutoBlocks(main) {
       }
     }
 
-    if (template === 'hr-glossary' || template === 'job-description') {
+    if (template === 'hr-glossary' || template === 'job-description'
+      || template === 'resources-guides') {
       buildPageHeader(main, template);
     }
   } catch (error) {
@@ -983,6 +1059,11 @@ export function loadScript(location, url, callback, type) {
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
+  const header = doc.querySelector('header');
+  const queryParams = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+  if (queryParams.header === 'meganav') header.classList.add('header-meganav');
   const main = doc.querySelector('main');
   await loadBlocks(main);
 
@@ -990,7 +1071,7 @@ async function loadLazy(doc) {
   const element = hash ? main.querySelector(hash) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
+  loadHeader(header);
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
@@ -1015,7 +1096,7 @@ export async function loadFragment(path) {
     await decorateMain(main);
     await loadBlocks(main);
   }
-  return (main);
+  return main;
 }
 
 export function lockBody() {
@@ -1069,4 +1150,50 @@ export function insertNewsletterForm(elem, submitCallback) {
     });
     a.replaceWith(formDiv);
   });
+}
+
+/**
+ * Return whether or not this element has a class that starts with the given string
+ * @param {HtmlElement} elem
+ * @param {string} classNameStart
+ * @returns {boolean}
+ */
+export function hasClassStartsWith(elem, classNameStart) {
+  const classNames = [...elem.classList];
+  let isClassStartsWith = false;
+
+  classNames.forEach((className) => {
+    if (className.startsWith(classNameStart)) {
+      isClassStartsWith = true;
+    }
+  });
+
+  return isClassStartsWith;
+}
+
+/**
+ * Gets array of parameterized values given a class that starts with a name
+ * @param {string} className
+ * @param {string} classNameStart
+ * @return {string[]} Array of remaining items split on the hyphen (-)
+ */
+export function getValuesFromClassName(className, classNameStart) {
+  const params = className.substring(classNameStart.length);
+
+  return params.split('-');
+}
+
+/**
+ * Creates an element with optional class and type
+ * @param {string} elemType type of element to create
+ * @param {...string} [cssClass] CSS class(es) to apply to element
+ * @returns {Element}
+ */
+export function createElem(elemType, ...cssClass) {
+  const elem = document.createElement(elemType);
+  if (cssClass != null && cssClass.length) {
+    elem.classList.add(cssClass);
+  }
+
+  return elem;
 }

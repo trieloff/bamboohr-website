@@ -1,3 +1,17 @@
+import { readBlockConfig } from '../../scripts/scripts.js';
+
+const loadScript = (url, callback, type) => {
+  const head = document.querySelector('head');
+  const script = document.createElement('script');
+  script.src = url;
+  if (type) {
+    script.setAttribute('type', type);
+  }
+  head.append(script);
+  script.onload = callback;
+  return script;
+};
+
 function createSelect(fd, multiSelect = false) {
   const select = document.createElement('select');
   if (multiSelect === true) {
@@ -88,7 +102,8 @@ function constructPayload(form) {
 }
 
 function sanitizeInput(input) {
-  const output = input.replace(/<script[^>]*?>.*?<\/script>/gi, '')
+  const output = input
+    .replace(/<script[^>]*?>.*?<\/script>/gi, '')
     // eslint-disable-next-line no-useless-escape
     .replace(/<[\/\!]*?[^<>]*?>/gi, '')
     .replace(/<style[^>]*?>.*?<\/style>/gi, '')
@@ -175,6 +190,10 @@ function createInput(fd) {
   input.type = fd.Type;
   input.id = fd.Field;
 
+  if (fd.Value) {
+    input.value = fd.Value;
+  }
+
   const param = getURLParam(input.id);
   if (param) {
     input.value = param;
@@ -219,21 +238,24 @@ function createTextarea(fd) {
 
 function createLabel(fd) {
   const label = document.createElement('label');
-  label.setAttribute('for', fd.Field);
-  if (fd.Extra) {
-    label.innerHTML = `<a href="${fd.Extra}">${fd.Label}</a>`;
-  } else {
-    label.textContent = fd.Label;
-  }
+  if (fd.Label) {
+    label.setAttribute('for', fd.Field);
+    if (fd.Extra) {
+      label.innerHTML = `<a href="${fd.Extra}">${fd.Label}</a>`;
+    } else {
+      label.textContent = fd.Label;
+    }
 
-  if (fd.Mandatory === 'x') {
-    label.insertAdjacentHTML('beforeend', '<span class="required">*</span>');
+    if (fd.Mandatory === 'x') {
+      label.insertAdjacentHTML('beforeend', '<span class="required">*</span>');
+    }
   }
   return label;
 }
 
 function createDescription(fd) {
   const desc = document.createElement('p');
+  desc.className = 'form-description';
   desc.textContent = fd.Description;
   return desc;
 }
@@ -242,7 +264,10 @@ function applyRules(form, rules) {
   const payload = constructPayload(form);
   const usp = new URLSearchParams(window.location.search);
   rules.forEach((field) => {
-    const { type, condition: { key, operator, value } } = field.rule;
+    const {
+      type,
+      condition: { key, operator, value },
+    } = field.rule;
     if (type === 'visible') {
       if (operator === 'eq') {
         if (payload[key] === value || [...usp.getAll(key)].includes(value)) {
@@ -320,14 +345,223 @@ async function createForm(formURL) {
   form.addEventListener('change', () => applyRules(form, rules));
   applyRules(form, rules);
 
-  return (form);
+  return form;
+}
+
+function mktoFormReset(form, moreStyles) {
+  const formId = `mktoForm_${form.getId()}`;
+  const formEl = form.getFormElem()[0];
+
+  const rando = Math.floor(Math.random() * 1000000);
+  formEl.querySelectorAll('label[for]').forEach((labelEl) => {
+    const forEl = formEl.querySelector(`[id="${labelEl.htmlFor}"]`);
+    if (forEl) {
+      const newId = `${forEl.id}_${rando}`;
+      labelEl.htmlFor = newId;
+      forEl.id = newId;
+      if (forEl.classList.contains('mktoField')) {
+        forEl.nextElementSibling.htmlFor = newId;
+      }
+    }
+  });
+
+  // remove element styles from <form> and children
+  const styledEls = [...formEl.querySelectorAll('[style]')].concat(formEl);
+  styledEls.forEach((el) => {
+    el.removeAttribute('style');
+  });
+
+  const formStyleTag = formEl.querySelector('style[type="text/css"]');
+  if (formStyleTag) formStyleTag.remove();
+
+  document.getElementById('mktoForms2BaseStyle').disabled = true;
+  document.getElementById('mktoForms2ThemeStyle').disabled = true;
+
+  document.querySelectorAll('.mktoAsterix').forEach((el) => {
+    el.remove();
+  });
+  document.querySelectorAll('.mktoOffset').forEach((el) => {
+    el.remove();
+  });
+  document.querySelectorAll('.mktoGutter').forEach((el) => {
+    el.remove();
+  });
+  document.querySelectorAll('.mktoClear').forEach((el) => {
+    el.remove();
+  });
+
+  formEl.querySelector('[name="Country"]').addEventListener('change', () => {
+    document.querySelectorAll('.mktoAsterix').forEach((el) => {
+      el.remove();
+    });
+    document.querySelectorAll('.mktoHtmlText').forEach((el) => {
+      el.removeAttribute('style');
+    });
+    if (document.getElementById(formId).querySelector('[name="Disclaimer__c"]')) {
+      const gdprLabel = document.getElementById(formId).querySelector('[for="Disclaimer__c"]');
+      const gdprInput = document.getElementById(formId).querySelector('[id="Disclaimer__c"]');
+      gdprInput.id = `Disclaimer__c_${rando}`;
+      gdprInput.nextElementSibling.htmlFor = `Disclaimer__c_${rando}`;
+      gdprLabel.htmlFor = `Disclaimer__c_${rando}`;
+      gdprLabel.removeAttribute('style');
+      gdprInput.parentElement.classList.add('form-checkbox-option');
+      gdprLabel.parentElement.classList.add('form-checkbox-flex');
+      gdprLabel.firstElementChild.classList.add('form-gdpr-text');
+    }
+  });
+
+  formEl.querySelectorAll('[type="checkbox"]').forEach((el) => {
+    el.parentElement.classList.add('form-checkbox-option');
+    el.parentElement.parentElement.classList.add('form-checkbox-flex');
+  });
+
+  if (!moreStyles) {
+    formEl.setAttribute('data-styles-ready', 'true');
+  }
+}
+
+function loadFormAndChilipiper(formId, successUrl, chilipiper) {
+  loadScript('//grow.bamboohr.com/js/forms2/js/forms2.min.js', () => {
+    window.MktoForms2.loadForm('//grow.bamboohr.com', '195-LOZ-515', formId);
+
+    window.MktoForms2.whenReady((form) => {
+      if (form.getId().toString() === formId) {
+        mktoFormReset(form);
+        form.onSuccess(() => {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'marketoForm',
+            formName: form.getId(),
+          });
+          if (successUrl && !chilipiper) window.location.href = successUrl;
+          return false;
+        });
+      }
+    });
+  });
+  if (chilipiper) {
+    const timeoutSuccessUrl = chilipiper === 'pricing-request-form' ? '/chilipiper-pricing-timeout-success' : '/chilipiper-demo-timeout-success';
+    loadScript('https://js.chilipiper.com/marketing.js', () => {
+      function redirectTimeout() {
+        return setTimeout(() => { window.location.href = timeoutSuccessUrl; }, '240000');
+      }
+      //  eslint-disable-next-line
+      window.q = (a) => {return function(){ChiliPiper[a].q=(ChiliPiper[a].q||[]).concat([arguments])}};window.ChiliPiper=window.ChiliPiper||"submit scheduling showCalendar submit widget bookMeeting".split(" ").reduce(function(a,b){a[b]=q(b);return a},{});
+      // eslint-disable-next-line
+      ChiliPiper.scheduling('bamboohr', `${chilipiper}`, {
+        title: 'Thanks! What time works best for a quick call?',
+        onRouted: redirectTimeout,
+        map: true,
+      });
+    });
+  }
 }
 
 export default async function decorate(block) {
-  const formUrl = block.innerText.trim();
+  const config = readBlockConfig(block);
+  const as = block.querySelectorAll('a');
+  let formUrl = as[0] ? as[0].href : '';
+  let successUrl = as[1] ? as[1].href : '';
+  let chilipiper;
+
+  [...block.classList].forEach((name) => {
+    if (!Number.isNaN(+name.split('').at(0))) {
+      block.classList.remove(name);
+      block.classList.add(`grid-${name}`);
+    }
+  });
+
+  if (!formUrl) {
+    const resp = await fetch('/forms-map.json');
+    const json = await resp.json();
+    const map = json.data;
+    map.forEach((entry) => {
+      if (
+        entry.URL === window.location.pathname || (entry.URL.endsWith('**') && window.location.pathname.startsWith(entry.URL.split('**')[0]))
+      ) {
+        formUrl = entry.Form;
+        successUrl = entry.Success;
+        chilipiper = entry.Chilipiper;
+      }
+    });
+  }
 
   if (formUrl) {
-    const formEl = await createForm(formUrl);
-    block.firstElementChild.replaceWith(formEl);
+    if (formUrl.includes('marketo')) {
+      const formId = new URL(formUrl).hash.substring(4);
+      if (config && !block.classList.contains('has-content')) {
+        block.innerHTML = '';
+      }
+      if (config.modal && config.modal.toLowerCase() === 'yes') {
+        const formModal = async (a) => {
+          a.addEventListener('click', async () => {
+            const elem = document.getElementById(`${formId}-modal`);
+            if (!elem) {
+              const wrapper = document.createElement('div');
+              wrapper.className = 'modal-wrapper';
+              wrapper.id = `${formId}-modal`;
+
+              const modal = document.createElement('div');
+              modal.className = 'modal';
+              modal.innerHTML = '<div class="modal-close"></div>';
+              const modalContent = document.createElement('div');
+              modalContent.classList.add('modal-content');
+              modal.append(modalContent);
+              const formTitle = document.createElement('div');
+              formTitle.classList.add('typ-title1', 'modal-form-title');
+              formTitle.textContent = config['form-title'];
+              const formSubtitle = document.createElement('p');
+              formSubtitle.textContent = config['form-subtitle'];
+              formSubtitle.classList.add('modal-form-subtitle');
+              modalContent.append(formTitle);
+              modalContent.append(formSubtitle);
+              const mktoForm = document.createElement('form');
+              mktoForm.id = `mktoForm_${formId}`;
+              modalContent.append(mktoForm);
+              wrapper.append(modal);
+              block.append(wrapper);
+              loadFormAndChilipiper(formId, successUrl, chilipiper);
+              wrapper.classList.add('visible');
+              const close = modal.querySelector('.modal-close');
+              close.addEventListener('click', () => {
+                wrapper.classList.remove('visible');
+              });
+            } else {
+              elem.classList.add('visible');
+            }
+          });
+        };
+        if (config['modal-button-text']) {
+          const modalBtn = document.createElement('a');
+          modalBtn.innerHTML = `<a class="button" href="#" data-modal="${formId}-modal">${config['modal-button-text']}</a>`;
+          formModal(modalBtn);
+          block.append(modalBtn);
+        }
+      } else {
+        const mktoForm = `<form id="mktoForm_${formId}"></form>`;
+        if (block.classList.contains('has-content')) {
+          const cols = block.querySelectorAll(':scope > div > div');
+          cols.forEach((col) => {
+            const formCol = [...col.children].find((child) => child.textContent.trim().toLowerCase() === 'form');
+            if (formCol) {
+              col.classList.add('form-col');
+              formCol.remove();
+              const formContainer = document.createElement('div');
+              formContainer.innerHTML = mktoForm;
+              col.append(formContainer);
+              loadFormAndChilipiper(formId, successUrl, chilipiper);
+            } else {
+              col.classList.add('content-col');
+            }
+          });
+        } else {
+          block.innerHTML = mktoForm;
+          loadFormAndChilipiper(formId, successUrl, chilipiper);
+        }
+      }
+    } else {
+      const formEl = await createForm(formUrl);
+      block.firstElementChild.replaceWith(formEl);
+    }
   }
 }
