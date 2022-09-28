@@ -127,8 +127,34 @@ main .section[class*="bg-top-"] > span.bg > svg {
 }
 
 /* multi 1 */
-main .section.bg-top-multi-1 > span.bg {
-    /* uses defaults */
+@media (max-width: 599px) {
+    main .section.bg-top-multi-1 > span.bg {
+        min-height: 771.1111vw;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    main .section.bg-top-multi-1 > span.bg {
+        min-height: 276.0416vw;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1799px) {
+    main .section.bg-top-multi-1 > span.bg {
+        min-height: 138.3333vw;
+    }
+}
+
+@media (min-width: 1800px) {
+    main .section.bg-top-multi-1 > span.bg {
+        min-height: 117.8421vw;
+    }
+}
+
+main .section.bg-top-multi-1 > span.bg > svg {
+    top: 0;
+    height: auto;
+    width: 100%;
 }
 
 /* multi 2 */

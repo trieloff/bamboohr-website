@@ -1,0 +1,14 @@
+<svg width="360" height="2776" viewBox="0 0 360 2776" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect y="1946" width="360" height="755" fill="currentcolor" class="theme-tint-15"/>
+    <path d="M360 2701H0V2707L21.2585 2729.95C56.2245 2767.7 108.93 2783.86 159.534 2772.35L317.416 2736.43L360 2725.53V2701Z"
+          fill="currentcolor" class="theme-tint-15"/>
+    <path d="M1018.15 1445.07L474.6 1973.01C387.489 2057.62 262.501 2089.5 146.685 2056.65L-575.996 1851.69C-691.812 1818.84 -780.833 1726.25 -809.544 1608.81L-988.671 875.924C-1017.38 758.476 -975.995 182.928 -888.885 98.3242L-350.739 21.4642C-263.629 -63.14 -138.64 -95.0206 -22.8246 -62.1767L699.857 142.788C815.673 175.632 904.694 268.223 933.405 385.661L1112.52 1118.56C1141.22 1236 1105.24 1360.47 1018.15 1445.07Z"
+          fill="url(#bg-top-multi-1-mobile-a)"/>
+    <defs>
+        <linearGradient id="bg-top-multi-1-mobile-a" x1="-74.2458" y1="1676.62" x2="443.965" y2="914.029"
+                        gradientUnits="userSpaceOnUse">
+            <stop stop-color="currentcolor" class="theme-tint-10"/>
+            <stop offset="0.899048" stop-color="white"/>
+        </linearGradient>
+    </defs>
+</svg>
