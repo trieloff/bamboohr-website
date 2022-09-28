@@ -1,6 +1,7 @@
 import { insertNewsletterForm, loadFragment } from '../../scripts/scripts.js';
 
 export default function decorateBlock(block) {
+  if (block.classList.contains('bottom')) block.parentElement.parentElement.classList.add('bottom');
   const callToActionModal = async (a) => {
     a.addEventListener('click', async () => {
       const elem = document.getElementById('call-to-action-modal');

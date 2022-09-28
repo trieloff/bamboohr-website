@@ -1,4 +1,5 @@
 import { formatDate, toCategory, toClassName } from '../../scripts/scripts.js';
+import { createSharing } from '../page-header/page-header.js';
 
 function applyClasses(styles, elements, prefix) {
   [...elements].forEach((row, i) => {
@@ -11,28 +12,6 @@ function createProgress() {
   progress.setAttribute('value', 0);
   progress.setAttribute('max', 100);
   return progress;
-}
-
-function createSharing() {
-  const { title } = document;
-  const url = window.location.href;
-  const shares = [
-    { icon: 'facebook', url: `https://www.facebook.com/sharer/sharer.php?u=${url}` },
-    { icon: 'twitter', url: `http://twitter.com/share?&url=${url}` },
-    { icon: 'linkedin', url: `https://www.linkedin.com/sharing/share-offsite/?url=${url}` },
-    { icon: 'email', url: `mailto:?subject=${title}&body=${url}` },
-    { icon: 'rss', url: '#' },
-  ];
-  const div = document.createElement('div');
-  div.className = 'article-header-share';
-  shares.forEach((button) => {
-    const a = document.createElement('a');
-    a.href = button.url;
-    a.target = '_blank';
-    a.innerHTML = `<img src="${window.hlx.codeBasePath}/icons/${button.icon}.svg" class="icon icon-${button.icon}">`;
-    div.append(a);
-  });
-  return (div);
 }
 
 export default async function decorateArticleHeader($block, blockName) {
@@ -60,7 +39,7 @@ export default async function decorateArticleHeader($block, blockName) {
   if ($update.textContent) $update.textContent = formatDate($update.textContent);
 
   // sharing + progress
-  $block.append(createSharing());
+  $block.append(createSharing('article-header-share'));
   const progress = createProgress();
   $block.append(progress);
 

@@ -1,0 +1,10 @@
+.separator {
+	padding: 0.875rem 0;
+}
+
+.separator-horiz-line {
+	background-color: var(--color-gray-4);
+	border: none;
+	height: 1px;
+}
+
