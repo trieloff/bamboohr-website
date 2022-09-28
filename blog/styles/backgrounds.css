@@ -59,31 +59,27 @@ main .section.has-bg > span.bg .secondary-shade-15 {
 }
 
 /* responsive */
-main .section.has-bg > span.bg > svg:not(:only-child) {
-    display: none;
-}
-
 @media (max-width: 599px) {
-    main .section.has-bg > span.bg > svg:not(:only-child).mobile {
-        display: block;
+    main .section.has-bg > span.bg > svg:not(:only-child):not(.mobile) {
+        display: none;
     }
 }
 
 @media (min-width: 600px) and (max-width: 1024px) {
-    main .section.has-bg > span.bg > svg:not(:only-child).tablet {
-        display: block;
+    main .section.has-bg > span.bg > svg:not(:only-child):not(.tablet) {
+        display: none;
     }
 }
 
 @media (min-width: 1025px) and (max-width: 1799px) {
-    main .section.has-bg > span.bg > svg:not(:only-child).laptop {
-        display: block;
+    main .section.has-bg > span.bg > svg:not(:only-child):not(.laptop) {
+        display: none;
     }
 }
 
 @media (min-width: 1800px) {
-    main .section.has-bg > span.bg > svg:not(:only-child).desktop {
-        display: block;
+    main .section.has-bg > span.bg > svg:not(:only-child):not(.desktop) {
+        display: none;
     }
 }
 
@@ -93,9 +89,8 @@ main .section.has-bg {
 }
 
 main .section.has-bg > span.bg {
-    height: 100%;
+    display: flex;
     left: 0;
-    overflow-x: hidden;
     pointer-events: none;
     position: absolute;
     right: 0;
@@ -103,7 +98,7 @@ main .section.has-bg > span.bg {
 }
 
 main .section.has-bg > span.bg > svg {
-    position: absolute;
+    height: auto;
 }
 
 /*
@@ -111,14 +106,12 @@ main .section.has-bg > span.bg > svg {
  */
 
 main .section[class*="bg-top-"] > span.bg {
-    height: auto;
+    align-items: start;
     top: 0;
 }
 
 main .section[class*="bg-top-"] > span.bg > svg {
-    height: auto;
-    position: static;
-    width: 100%;
+    flex: 1 0 0;
 }
 
 /* multi 1 */
@@ -134,13 +127,10 @@ main .section.bg-top-multi-2 > span.bg {
 
 /* multi 3 */
 main .section.bg-top-multi-3 > span.bg > svg {
-    left: auto;
-    right: 0;
-    top: 0;
-    transform: none;
+   /* uses defaults */
 }
 
-/* multi 4 */
+/* TODO: multi 4 */
 main .section.bg-top-multi-4 > span.bg {
     background-image: linear-gradient(180deg, var(--theme-tint15) 0%, transparent 100%);
 }
@@ -150,7 +140,7 @@ main .section.bg-top-multi-4 > span.bg > svg {
     top: 0;
 }
 
-/* multi 5 */
+/* TODO: multi 5 */
 main .section.bg-top-multi-5 > span.bg {
     background-image: linear-gradient(180deg, var(--theme-shade5) 0%, var(--theme-tint10) 35.94%, transparent 100%);
 }
@@ -161,34 +151,8 @@ main .section.bg-top-multi-5 > span.bg > svg {
 }
 
 /* single 1 */
-@media (max-width: 599px) {
-    main .section.bg-top-single-1 > span.bg {
-        min-height: 237.2222vw;
-    }
-}
-
-@media (min-width: 600px) and (max-width: 1024px) {
-    main .section.bg-top-single-1 > span.bg {
-        min-height: 86.5885vw;
-    }
-}
-
-@media (min-width: 1025px) and (max-width: 1799px) {
-    main .section.bg-top-single-1 > span.bg {
-        min-height: 56.3889vw;
-    }
-}
-
-@media (min-width: 1800px) {
-    main .section.bg-top-single-1 > span.bg {
-        min-height: 49.7895vw;
-    }
-}
-
-main .section.bg-top-single-1 > span.bg > svg {
-    top: 0;
-    height: auto;
-    width: 100%;
+main .section.bg-top-single-1 > span.bg {
+    /* uses defaults */
 }
 
 /*
@@ -196,15 +160,9 @@ main .section.bg-top-single-1 > span.bg > svg {
  */
 
 main .section[class*="bg-left-"] > span.bg {
-    display: flex;
-    height: auto;
     justify-content: start;
     top: 50%;
     transform: translateY(-50%);
-}
-
-main .section[class*="bg-left-"] > span.bg > svg {
-    position: static;
 }
 
 /*
@@ -212,15 +170,12 @@ main .section[class*="bg-left-"] > span.bg > svg {
  */
 
 main .section[class*="bg-center-"] > span.bg {
-    height: auto;
     top: 50%;
     transform: translateY(-50%);
 }
 
 main .section[class*="bg-center-"] > span.bg > svg {
-    height: auto;
-    position: static;
-    width: 100%;
+    flex: 1 0 0;
 }
 
 /* multi 1 */
@@ -233,15 +188,9 @@ main .section.bg-center-multi-1 > span.bg {
  */
 
 main .section[class*="bg-right-"] > span.bg {
-    display: flex;
-    height: auto;
     justify-content: end;
     top: 50%;
     transform: translateY(-50%);
-}
-
-main .section[class*="bg-right-"] > span.bg > svg {
-    position: static;
 }
 
 /* single 1 */
@@ -254,68 +203,35 @@ main .section.bg-right-single-1 > span.bg {
  */
 
 main .section[class*="bg-bottom-"] > span.bg {
+    align-items: end;
     bottom: 0;
 }
 
 main .section[class*="bg-bottom-"] > span.bg > svg {
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-@media (min-width: 1900px) {
-    main .section[class*="bg-bottom-"] > span.bg > svg {
-        height: auto;
-        width: 100%;
-    }
+    flex: 1 0 0;
 }
 
 /* cap 1 */
 main .section.bg-bottom-cap-1 > span.bg {
     background-color: var(--theme-tint15);
+    top: 0;
 }
 
 main .section.bg-bottom-cap-1 > span.bg > svg {
-    width: 100%;
-    height: auto;
+    align-self: start;
 }
 
 /* cap 2 */
 main .section.bg-bottom-cap-2 > span.bg {
     background-image: linear-gradient(180deg, var(--theme-tint15) 0%, transparent 100%);
+    top: 0;
 }
 
 main .section.bg-bottom-cap-2 > span.bg > svg {
-    width: 100%;
-    height: auto;
+    align-self: start;
 }
 
 /* single 1 */
-@media (max-width: 599px) {
-    main .section.bg-bottom-single-1 > span.bg {
-        min-height: 269.7222vw;
-    }
-}
-
-@media (min-width: 600px) and (max-width: 1024px) {
-    main .section.bg-bottom-single-1 > span.bg {
-        min-height: 135.6770vw;
-    }
-}
-
-@media (min-width: 1025px) and (max-width: 1799px) {
-    main .section.bg-bottom-single-1 > span.bg {
-        min-height: 78.4027vw;
-    }
-}
-
-@media (min-width: 1800px) {
-    main .section.bg-bottom-single-1 > span.bg {
-        min-height: 59.1101vw;
-    }
-}
-
-main .section.bg-bottom-single-1 > span.bg > svg {
-    bottom: 0;
-    height: auto;
-    width: 100%;
+main .section.bg-bottom-single-1 > span.bg {
+    /* uses defaults */
 }
