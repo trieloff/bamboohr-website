@@ -113,12 +113,28 @@ main .section.payroll-roi-footer p a.button:any-link {
 
 @media (min-width: 1200px) {
   .payroll-roi-banner {
-    height: 53vw;
+    height: 33vw;
+  }
+  main .section.payroll-top-leaf {
+    margin-bottom: 18vw;
   }
 }
+
+@media (min-width: 1500px) {
+  main .section.payroll-top-leaf {
+    margin-bottom: 7vw;
+  }
+}
+
 @media (min-width: 1600px) {
   .payroll-roi-banner {
-    height: 35vw;
+    height: 24vw;
+  }
+}
+
+@media (min-width: 1750px) {
+  main .section.payroll-top-leaf {
+    margin-bottom: 0;
   }
 }
 
