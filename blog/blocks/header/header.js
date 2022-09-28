@@ -46,7 +46,7 @@ export default async function decorate(block) {
   nav.classList.add('nav');
   const navSections = document.createElement('div');
   navSections.classList.add('nav-sections');
-  navSections.setAttribute('am-region', 'Mega Nav');
+  navSections.setAttribute('am-region', 'Main Nav');
   nav.innerHTML = html;
   decorateIcons(nav);
   nav.querySelectorAll(':scope > div').forEach((navSection, i) => {

@@ -915,29 +915,12 @@ export async function decorateMain(main) {
   window.setTimeout(() => sampleRUM.observe(main.querySelectorAll('picture > img')), 1000);
 }
 
-
 /**
- * Sets an object based on a path and a value.
- */
-function setObject (obj, path, value) {
-  if (Object(obj) !== obj) return obj;
-  
-  if (!Array.isArray(path)) path = path.toString().match(/[^.[\]]+/g) || []; 
-  path.slice(0,-1).reduce((a, c, i) =>
-    Object(a[c]) === a[c]
-      ? a[c] 
-      : a[c] = Math.abs(path[i+1])>>0 === +path[i+1] 
-        ? []
-        : {},
-    obj)[path[path.length-1]] = value;
-  return obj;
-}
-
-/**
- * Loads everything related to Marketing Technology (e.g., Adobe Tags).
+ * Loads everything related to Marketing technology that maust be loaded eagerly (e.g., Adobe Target).
  */
 async function loadMartech() {
   /* Adobe Target Prehiding Snippet */
+  /*
   ;(function(win, doc, style, timeout) {
     const STYLE_ID = 'at-body-style';
     function getParent() {
@@ -967,53 +950,9 @@ async function loadMartech() {
       removeStyle(getParent(), STYLE_ID);
     }, timeout);
   }(window, document, "body {opacity: 0 !important}", 3000));
+  */
   
-  /* Adobe Tags */
-  //const adobeTagsSrc = 'https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/launch-' + (/^(marketplace|partners|www)\.bamboohr\.com$/i.test(document.location.hostname) ? '58a206bf11f0.min.js' : (/^localhost$/i.test(document.location.hostname) ? '30e70f4281a7-development.min.js' : '9e4820bf112c-staging.min.js'));
-  const adobeTagsSrc = 'https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/launch-30e70f4281a7-development.min.js';
-  
-  loadScript('header', adobeTagsSrc, async () => {
-    window.digitalData = {};
-    window.digitalData.push = (obj) => { Object.assign(digitalData, digitalData, obj); };
-    
-    const resp = await fetch('/blog/instrumentation.json');
-    const json = await resp.json();
-    const digitalDataMap = json.digitaldata.data;
-    digitalDataMap.forEach((mapping) => {
-      const metaValue = getMetadata(mapping.metadata);
-      if (metaValue) {
-        setObject(window.digitalData, mapping.digitaldata, metaValue);
-      }
-    });
-    /*const digitalDataLists = json['digitaldata-lists'].data;
-    digitalDataLists.forEach((listEntry) => {
-      const metaValue = getMetadata(listEntry.metadata);
-      if (metaValue) {
-        // eslint-disable-next-line no-underscore-dangle
-        let listValue = digitaldata._get(listEntry.digitaldata) || '';
-        const name = listEntry['list-item-name'];
-        const metaValueArr = listEntry.delimiter
-          ? metaValue.split(listEntry.delimiter)
-          : [metaValue];
-        metaValueArr.forEach((value) => {
-          const escapedValue = value.split('|').join(); // well, well...
-          listValue += `${listValue ? ' | ' : ''}${name}: ${escapedValue}`;
-        });
-        // eslint-disable-next-line no-underscore-dangle
-        digitaldata._set(listEntry.digitaldata, listValue);
-      }*/
-    //});
-    
-    window.digitalData.push({
-      event: 'Page View',
-      page: {
-        country: 'us',
-        language: 'en',
-        platform: 'web',
-        site: 'blog'
-      }
-    });
-  });
+  /* Move Adobe Tags here from delayed.js if Target is added and enabled */
 }
 
 /**
@@ -1028,31 +967,6 @@ async function loadEager(doc) {
     await decorateMain(main);
     await waitForLCP();
   }
-}
-
-/**
- * loads a script by adding a script tag to the head.
- * @param {string} where to load the js file ('header' or 'footer')
- * @param {string} url URL of the js file
- * @param {Function} callback callback on load
- * @param {string} type type attribute of script tag
- * @returns {Element} script element
- */
-export function loadScript(location, url, callback, type) {
-  const $head = document.querySelector('head');
-  const $body = document.querySelector('body');
-  const $script = document.createElement('script');
-  $script.src = url;
-  if (type) {
-    $script.setAttribute('type', type);
-  }
-  if (location === 'header') {
-    $head.append($script);
-  } else if (location === 'footer') {
-    $body.append($script);
-  }
-  $script.onload = callback;
-  return $script;
 }
 
 /**
