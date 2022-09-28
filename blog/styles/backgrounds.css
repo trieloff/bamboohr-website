@@ -111,60 +111,25 @@ main .section.has-bg > span.bg > svg {
  */
 
 main .section[class*="bg-top-"] > span.bg {
+    height: auto;
     top: 0;
 }
 
 main .section[class*="bg-top-"] > span.bg > svg {
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-@media (min-width: 1900px) {
-    main .section[class*="bg-top-"] > span.bg > svg {
-        height: auto;
-        width: 100%;
-    }
+    height: auto;
+    position: static;
+    width: 100%;
 }
 
 /* multi 1 */
-@media (max-width: 599px) {
-    main .section.bg-top-multi-1 > span.bg {
-        min-height: 771.1111vw;
-    }
-}
-
-@media (min-width: 600px) and (max-width: 1024px) {
-    main .section.bg-top-multi-1 > span.bg {
-        min-height: 276.0416vw;
-    }
-}
-
-@media (min-width: 1025px) and (max-width: 1799px) {
-    main .section.bg-top-multi-1 > span.bg {
-        min-height: 138.3333vw;
-    }
-}
-
-@media (min-width: 1800px) {
-    main .section.bg-top-multi-1 > span.bg {
-        min-height: 117.8421vw;
-    }
-}
-
-main .section.bg-top-multi-1 > span.bg > svg {
-    top: 0;
-    height: auto;
-    width: 100%;
+main .section.bg-top-multi-1 > span.bg {
+    /* uses defaults */
 }
 
 /* multi 2 */
 main .section.bg-top-multi-2 > span.bg {
     background-image: linear-gradient(180deg, var(--secondary-theme-tint15) 0%, transparent 100%);
-}
-
-main .section.bg-top-multi-2 > span.bg > svg {
-    bottom: auto;
-    top: 0;
+    min-height: 70rem;
 }
 
 /* multi 3 */
@@ -231,14 +196,15 @@ main .section.bg-top-single-1 > span.bg > svg {
  */
 
 main .section[class*="bg-left-"] > span.bg {
-    left: 0;
+    display: flex;
+    height: auto;
+    justify-content: start;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 main .section[class*="bg-left-"] > span.bg > svg {
-    left: 0;
-    max-height: 100%;
-    top: 50%;
-    transform: translateY(-50%);
+    position: static;
 }
 
 /*
@@ -246,38 +212,20 @@ main .section[class*="bg-left-"] > span.bg > svg {
  */
 
 main .section[class*="bg-center-"] > span.bg {
+    height: auto;
     top: 50%;
     transform: translateY(-50%);
 }
 
 main .section[class*="bg-center-"] > span.bg > svg {
     height: auto;
+    position: static;
     width: 100%;
 }
 
 /* multi 1 */
-@media (max-width: 599px) {
-    main .section.bg-center-multi-1 > span.bg {
-        min-height: 736.6666vw;
-    }
-}
-
-@media (min-width: 600px) and (max-width: 1024px) {
-    main .section.bg-center-multi-1 > span.bg {
-        min-height: 353.6458vw;
-    }
-}
-
-@media (min-width: 1025px) and (max-width: 1799px) {
-    main .section.bg-center-multi-1 > span.bg {
-        min-height: 160.6944vw;
-    }
-}
-
-@media (min-width: 1800px) {
-    main .section.bg-center-multi-1 > span.bg {
-        min-height: 121.3684vw;
-    }
+main .section.bg-center-multi-1 > span.bg {
+    /* uses defaults */
 }
 
 /*
@@ -285,14 +233,15 @@ main .section[class*="bg-center-"] > span.bg > svg {
  */
 
 main .section[class*="bg-right-"] > span.bg {
-    right: 0;
+    display: flex;
+    height: auto;
+    justify-content: end;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 main .section[class*="bg-right-"] > span.bg > svg {
-    max-height: 100%;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    position: static;
 }
 
 /* single 1 */
