@@ -21,6 +21,15 @@
   margin: 0;
 }
 
+.table-tooltip-container a:any-link {
+  align-items: center;
+  color: var(--theme-shade5);
+  display: inline-flex;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
 .table.comparison table a {
   text-decoration: none;
   font-family: var(--heading-font-family);
@@ -228,21 +237,12 @@
   transform: rotate(0);
 }
 
-main .section .table-tooltip-container p.button-container {
-  text-align: left;
-}
-
-.table-tooltip-container a:any-link {
-  align-items: center;
-  color: var(--theme-shade5);
-  display: inline-flex;
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 20px;
-}
-
 .table-tooltip-container p.button-container {
   position: relative;
+}
+
+main .section .table-tooltip-container p.button-container {
+  text-align: left;
 }
 
 .table-tooltip-container p.button-container a::after {

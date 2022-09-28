@@ -170,10 +170,6 @@ main .quote.full .byline {
 	color: var(--color-gray-9);
 }
 
-.pricing-quote main .quote.full .byline {
-	color: var(--color-1-tint-15);
-}
-
 @media (min-width: 1025px) {
 	main .quote.full .button-container {
 		text-align: left;
@@ -223,6 +219,10 @@ main .quote.hero .byline {
 	letter-spacing: .125rem;
 	line-height: 1.5;
 	text-transform: uppercase;
+}
+
+.pricing-quote main .quote.full .byline {
+	color: var(--color-1-tint-15);
 }
 
 /* TODO: just to show update */
