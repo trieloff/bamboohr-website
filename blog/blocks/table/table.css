@@ -136,18 +136,6 @@
   border-radius: 0 0 10px 10px;
 }
 
-.icon.icon-checkmark::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 33%;
-  width: 9px;
-  height: 14px;
-  border: solid var(--color-1);
-  border-width: 0 4px 4px 0;
-  transform: rotate(45deg);
-}
-
 .table.comparison .elite-ribbon::after,
 .table.comparison .pro-ribbon::after {
     font-size: 17px;
@@ -160,7 +148,7 @@
     text-align: center;
     min-width: 112px;
     top: 16px;
-    left: -46px;
+    left: -25px;
 }
 
 .table.comparison .elite-ribbon::after {
