@@ -114,6 +114,18 @@ main .section.has-bg > span[class*="bg-top-"] > svg {
     flex: 1 0 0;
 }
 
+/* cap 1 */
+main .section.has-bg > span.bg-top-cap-1 {
+    background-color: var(--theme-tint15);
+    bottom: 0;
+}
+
+/* cap 2 */
+main .section.has-bg > span.bg-top-cap-2 {
+    background-image: linear-gradient(180deg, var(--theme-tint15) 0%, transparent 100%);
+    bottom: 0;
+}
+
 /* multi 1 */
 main .section.has-bg > span.bg-top-multi-1 {
     /* uses defaults */
@@ -248,27 +260,19 @@ main .section.has-bg > span[class*="bg-bottom-"] > svg {
 
 /* cap 1 */
 main .section.has-bg > span.bg-bottom-cap-1 {
-    background-color: var(--theme-tint15);
+    background-image: linear-gradient(207.16deg, transparent 44.04%, var(--theme-tint15) 82.6%);
     top: 0;
-}
-
-main .section.has-bg > span.bg-bottom-cap-1 > svg {
-    align-self: start;
 }
 
 /* cap 2 */
 main .section.has-bg > span.bg-bottom-cap-2 {
-    background-image: linear-gradient(180deg, var(--theme-tint15) 0%, transparent 100%);
+    background-image: linear-gradient(207.16deg, transparent 44.04%, var(--theme-tint15) 82.6%);
     top: 0;
-}
-
-main .section.has-bg > span.bg-bottom-cap-2 > svg {
-    align-self: start;
 }
 
 /* multi 1 */
 main .section.has-bg > span.bg-bottom-multi-1 {
-    background: linear-gradient(180deg, transparent 0%, var(--secondary-theme-tint15) 31.77%, var(--secondary-theme-tint5) 100%);
+    background-image: linear-gradient(180deg, transparent 0%, var(--secondary-theme-tint15) 31.77%, var(--secondary-theme-tint5) 100%);
 }
 
 @media (max-width: 599px) {
