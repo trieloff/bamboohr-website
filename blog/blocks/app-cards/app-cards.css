@@ -28,8 +28,8 @@
     transform: rotate(45deg);
     text-align: center;
     min-width: 108px;
-    top: 20px;
-    right: -46px;
+    top: 17px;
+    right: -25px;
 }
 
 .app-cards .app-cards-card.app-cards-card-discount::before,
@@ -48,8 +48,8 @@
 
 .app-cards .app-cards-card.app-cards-card-discount.app-cards-card-sponsored::after {
     min-width: 175px;
-    top: 35px;
-    right: -58px;
+    top: 32px;
+    right: -40px;
 }
 
 .app-cards .app-cards-card-body {
