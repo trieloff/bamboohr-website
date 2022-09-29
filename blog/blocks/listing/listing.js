@@ -80,7 +80,7 @@ export async function filterResults(config, facets = {}) {
     facetKeys.forEach((facetKey) => {
       let includeInFacet = true;
       Object.keys(filterMatches).forEach((filterKey) => {
-        if (filterKey !== facetKey && !filterMatches[filterKey]) {
+        if (!filterMatches[filterKey]) {
           includeInFacet = false;
 
           if (filterKey !== facetKey) {
