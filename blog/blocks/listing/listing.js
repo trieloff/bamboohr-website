@@ -80,7 +80,7 @@ export async function filterResults(config, facets = {}) {
     facetKeys.forEach((facetKey) => {
       let includeInFacet = true;
       Object.keys(filterMatches).forEach((filterKey) => {
-        if (!filterMatches[filterKey]) {
+        if (filterKey !== facetKey && !filterMatches[filterKey]) {
           includeInFacet = false;
 
           if (filterKey !== facetKey) {
@@ -267,22 +267,26 @@ export default async function decorate(block, blockName) {
         const h3 = document.createElement('h3');
         h3.innerHTML = ph[facetKey];
         div.append(h3);
+        let isCategoryPage = false;
+        if (config.category) isCategoryPage = true;
         facetValues.forEach((facetValue) => {
-          const input = document.createElement('input');
-          input.type = 'checkbox';
-          input.value = facetValue;
-          input.checked = filterValues.includes(facetValue);
-          input.id = `listing-filter-${facetValue}`;
-          input.name = facetKey;
-          const label = document.createElement('label');
-          label.setAttribute('for', input.id);
-          label.textContent = `${facetValue} (${facets[facetKey][facetValue]})`;
-          div.append(input, label);
-          input.addEventListener('change', () => {
-            const filterConfig = createFilterConfig();
+          if (facetKey !== 'category' || isCategoryPage === false || facetValue === config.category) {
+            const input = document.createElement('input');
+            input.type = 'checkbox';
+            input.value = facetValue;
+            input.checked = filterValues.includes(facetValue);
+            input.id = `listing-filter-${facetValue}`;
+            input.name = facetKey;
+            const label = document.createElement('label');
+            label.setAttribute('for', input.id);
+            label.textContent = `${facetValue} (${facets[facetKey][facetValue]})`;
+            div.append(input, label);
+            input.addEventListener('change', () => {
+              const filterConfig = createFilterConfig();
 
-            runSearch(filterConfig);
-          });
+              runSearch(filterConfig);
+            });
+          }
         });
         facetsList.append(div);
       }
