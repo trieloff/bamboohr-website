@@ -256,28 +256,27 @@ main .section.has-bg > span.bg-bottom-multi-1 {
     background: linear-gradient(180deg, transparent 0%, var(--secondary-theme-tint15) 31.77%, var(--secondary-theme-tint5) 100%);
 }
 
-/* TODO: get heights */
 @media (max-width: 599px) {
     main .section.has-bg > span.bg-bottom-multi-1 {
-        /*min-height: 50rem;*/
+        min-height: 75rem;
     }
 }
 
 @media (min-width: 600px) and (max-width: 1024px) {
     main .section.has-bg > span.bg-bottom-multi-1 {
-        /*min-height: 73rem;*/
+        min-height: 125rem;
     }
 }
 
 @media (min-width: 1025px) and (max-width: 1799px) {
     main .section.has-bg > span.bg-bottom-multi-1 {
-        /*min-height: 140rem;*/
+        min-height: 94rem;
     }
 }
 
 @media (min-width: 1800px) {
     main .section.has-bg > span.bg-bottom-multi-1 {
-        /*min-height: 187rem;*/
+        min-height: 80rem;
     }
 }
 
