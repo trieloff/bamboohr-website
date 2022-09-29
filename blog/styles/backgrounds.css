@@ -1,84 +1,84 @@
 /* stylelint-disable no-descending-specificity */
 
 /* theme colors */
-main .section.has-bg > span.bg .theme-tint-15 {
+main .section.has-bg > span[class*="bg-"] .theme-tint-15 {
     color: var(--theme-tint15);
 }
 
-main .section.has-bg > span.bg .theme-tint-10 {
+main .section.has-bg > span[class*="bg-"] .theme-tint-10 {
     color: var(--theme-tint10);
 }
 
-main .section.has-bg > span.bg .theme-tint-5 {
+main .section.has-bg > span[class*="bg-"] .theme-tint-5 {
     color: var(--theme-tint5);
 }
 
-main .section.has-bg > span.bg .theme {
+main .section.has-bg > span[class*="bg-"] .theme {
     color: var(--theme-base);
 }
 
-main .section.has-bg > span.bg .theme-shade-5 {
+main .section.has-bg > span[class*="bg-"] .theme-shade-5 {
     color: var(--theme-shade5);
 }
 
-main .section.has-bg > span.bg .theme-shade-10 {
+main .section.has-bg > span[class*="bg-"] .theme-shade-10 {
     color: var(--theme-shade10);
 }
 
-main .section.has-bg > span.bg .theme-shade-15 {
+main .section.has-bg > span[class*="bg-"] .theme-shade-15 {
     color: var(--theme-shade15);
 }
 
 /* secondary colors */
-main .section.has-bg > span.bg .secondary-tint-15 {
+main .section.has-bg > span[class*="bg-"] .secondary-tint-15 {
     color: var(--secondary-theme-tint15);
 }
 
-main .section.has-bg > span.bg .secondary-tint-10 {
+main .section.has-bg > span[class*="bg-"] .secondary-tint-10 {
     color: var(--secondary-theme-tint10);
 }
 
-main .section.has-bg > span.bg .secondary-tint-5 {
+main .section.has-bg > span[class*="bg-"] .secondary-tint-5 {
     color: var(--secondary-theme-tint5);
 }
 
-main .section.has-bg > span.bg .secondary {
+main .section.has-bg > span[class*="bg-"] .secondary {
     color: var(--secondary-theme-base);
 }
 
-main .section.has-bg > span.bg .secondary-shade-5 {
+main .section.has-bg > span[class*="bg-"] .secondary-shade-5 {
     color: var(--secondary-theme-shade5);
 }
 
-main .section.has-bg > span.bg .secondary-shade-10 {
+main .section.has-bg > span[class*="bg-"] .secondary-shade-10 {
     color: var(--secondary-theme-shade10);
 }
 
-main .section.has-bg > span.bg .secondary-shade-15 {
+main .section.has-bg > span[class*="bg-"] .secondary-shade-15 {
     color: var(--secondary-theme-shade15);
 }
 
 /* responsive */
 @media (max-width: 599px) {
-    main .section.has-bg > span.bg > svg:not(:only-child):not(.mobile) {
+    main .section.has-bg > span[class*="bg-"] > svg:not(:only-child):not(.mobile) {
         display: none;
     }
 }
 
 @media (min-width: 600px) and (max-width: 1024px) {
-    main .section.has-bg > span.bg > svg:not(:only-child):not(.tablet) {
+    main .section.has-bg > span[class*="bg-"] > svg:not(:only-child):not(.tablet) {
         display: none;
     }
 }
 
 @media (min-width: 1025px) and (max-width: 1799px) {
-    main .section.has-bg > span.bg > svg:not(:only-child):not(.laptop) {
+    main .section.has-bg > span[class*="bg-"] > svg:not(:only-child):not(.laptop) {
         display: none;
     }
 }
 
 @media (min-width: 1800px) {
-    main .section.has-bg > span.bg > svg:not(:only-child):not(.desktop) {
+    main .section.has-bg > span[class*="bg-"] > svg:not(:only-child):not(.desktop) {
         display: none;
     }
 }
@@ -88,7 +88,7 @@ main .section.has-bg {
     position: relative;
 }
 
-main .section.has-bg > span.bg {
+main .section.has-bg > span[class*="bg-"] {
     display: flex;
     left: 0;
     pointer-events: none;
@@ -97,7 +97,7 @@ main .section.has-bg > span.bg {
     z-index: -1;
 }
 
-main .section.has-bg > span.bg > svg {
+main .section.has-bg > span[class*="bg-"] > svg {
     height: auto;
 }
 
@@ -105,49 +105,68 @@ main .section.has-bg > span.bg > svg {
  * top
  */
 
-main .section[class*="bg-top-"] > span.bg {
+main .section.has-bg > span[class*="bg-top-"] {
     align-items: start;
     top: 0;
 }
 
-main .section[class*="bg-top-"] > span.bg > svg {
+main .section.has-bg > span[class*="bg-top-"] > svg {
     flex: 1 0 0;
 }
 
 /* multi 1 */
-main .section.bg-top-multi-1 > span.bg {
+main .section.has-bg > span.bg-top-multi-1 {
     /* uses defaults */
 }
 
 /* multi 2 */
-main .section.bg-top-multi-2 > span.bg {
+main .section.has-bg > span.bg-top-multi-2 {
     background-image: linear-gradient(180deg, var(--secondary-theme-tint15) 0%, transparent 100%);
     min-height: 70rem;
 }
 
 /* multi 3 */
-main .section.bg-top-multi-3 > span.bg > svg {
+main .section.has-bg > span.bg-top-multi-3 {
    /* uses defaults */
 }
 
 /* multi 4 */
-main .section.bg-top-multi-4 > span.bg {
+main .section.has-bg > span.bg-top-multi-4 {
     background-image: linear-gradient(180deg, var(--theme-tint15) 0%, transparent 100%);
     min-height: 50rem;
 }
 
-/* TODO: multi 5 */
-main .section.bg-top-multi-5 > span.bg {
+/* multi 5 */
+main .section.has-bg > span.bg-top-multi-5 {
     background-image: linear-gradient(180deg, var(--theme-shade5) 0%, var(--theme-tint10) 35.94%, transparent 100%);
 }
 
-main .section.bg-top-multi-5 > span.bg > svg {
-    bottom: auto;
-    top: 0;
+@media (max-width: 599px) {
+    main .section.has-bg > span.bg-top-multi-5 {
+        min-height: 50rem;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    main .section.has-bg > span.bg-top-multi-5 {
+        min-height: 73rem;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1799px) {
+    main .section.has-bg > span.bg-top-multi-5 {
+        min-height: 140rem;
+    }
+}
+
+@media (min-width: 1800px) {
+    main .section.has-bg > span.bg-top-multi-5 {
+        min-height: 187rem;
+    }
 }
 
 /* single 1 */
-main .section.bg-top-single-1 > span.bg {
+main .section.has-bg > span.bg-top-single-1 {
     /* uses defaults */
 }
 
@@ -155,7 +174,7 @@ main .section.bg-top-single-1 > span.bg {
  * left
  */
 
-main .section[class*="bg-left-"] > span.bg {
+main .section.has-bg > span[class*="bg-left-"] {
     justify-content: start;
     top: 50%;
     transform: translateY(-50%);
@@ -165,17 +184,22 @@ main .section[class*="bg-left-"] > span.bg {
  * center
  */
 
-main .section[class*="bg-center-"] > span.bg {
+main .section.has-bg > span[class*="bg-center-"] {
     top: 50%;
     transform: translateY(-50%);
 }
 
-main .section[class*="bg-center-"] > span.bg > svg {
+main .section.has-bg > span[class*="bg-center-"] > svg {
     flex: 1 0 0;
 }
 
 /* multi 1 */
-main .section.bg-center-multi-1 > span.bg {
+main .section.has-bg > span.bg-center-multi-1 {
+    /* uses defaults */
+}
+
+/* multi 2 */
+main .section.has-bg > span.bg-center-multi-2 {
     /* uses defaults */
 }
 
@@ -183,14 +207,14 @@ main .section.bg-center-multi-1 > span.bg {
  * right
  */
 
-main .section[class*="bg-right-"] > span.bg {
+main .section.has-bg > span[class*="bg-right-"] {
     justify-content: end;
     top: 50%;
     transform: translateY(-50%);
 }
 
 /* single 1 */
-main .section.bg-right-single-1 > span.bg {
+main .section.has-bg > span.bg-right-single-1 {
     /* uses defaults */
 }
 
@@ -198,36 +222,66 @@ main .section.bg-right-single-1 > span.bg {
  * bottom
  */
 
-main .section[class*="bg-bottom-"] > span.bg {
+main .section.has-bg > span[class*="bg-bottom-"] {
     align-items: end;
     bottom: 0;
 }
 
-main .section[class*="bg-bottom-"] > span.bg > svg {
+main .section.has-bg > span[class*="bg-bottom-"] > svg {
     flex: 1 0 0;
 }
 
 /* cap 1 */
-main .section.bg-bottom-cap-1 > span.bg {
+main .section.has-bg > span.bg-bottom-cap-1 {
     background-color: var(--theme-tint15);
     top: 0;
 }
 
-main .section.bg-bottom-cap-1 > span.bg > svg {
+main .section.has-bg > span.bg-bottom-cap-1 > svg {
     align-self: start;
 }
 
 /* cap 2 */
-main .section.bg-bottom-cap-2 > span.bg {
+main .section.has-bg > span.bg-bottom-cap-2 {
     background-image: linear-gradient(180deg, var(--theme-tint15) 0%, transparent 100%);
     top: 0;
 }
 
-main .section.bg-bottom-cap-2 > span.bg > svg {
+main .section.has-bg > span.bg-bottom-cap-2 > svg {
     align-self: start;
 }
 
+/* multi 1 */
+main .section.has-bg > span.bg-bottom-multi-1 {
+    background: linear-gradient(180deg, transparent 0%, var(--secondary-theme-tint15) 31.77%, var(--secondary-theme-tint5) 100%);
+}
+
+/* TODO: get heights */
+@media (max-width: 599px) {
+    main .section.has-bg > span.bg-bottom-multi-1 {
+        /*min-height: 50rem;*/
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    main .section.has-bg > span.bg-bottom-multi-1 {
+        /*min-height: 73rem;*/
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1799px) {
+    main .section.has-bg > span.bg-bottom-multi-1 {
+        /*min-height: 140rem;*/
+    }
+}
+
+@media (min-width: 1800px) {
+    main .section.has-bg > span.bg-bottom-multi-1 {
+        /*min-height: 187rem;*/
+    }
+}
+
 /* single 1 */
-main .section.bg-bottom-single-1 > span.bg {
+main .section.has-bg > span.bg-bottom-single-1 {
     /* uses defaults */
 }

@@ -312,13 +312,14 @@ export function readBlockConfig(block) {
  * @param {Element} $section The section element
  */
 export function decorateBackgrounds($section) {
-  $section.classList.forEach((style) => {
-    if (style.match(/^bg-/g)) {
+  [...$section.classList].filter((filter) => filter.match(/^bg-/g))
+    .forEach((style) => {
       const background = document.createElement('span');
       const fetchBase = window.hlx.serverPath;
       const sizes = ['', 'laptop', 'tablet', 'mobile'];
 
-      background.classList.add('bg');
+      background.classList.add(style);
+      $section.classList.remove(style);
 
       // get svgs
       sizes.forEach((size) => {
@@ -347,8 +348,7 @@ export function decorateBackgrounds($section) {
       });
 
       $section.prepend(background);
-    }
-  });
+    });
 }
 
 /**
