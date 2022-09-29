@@ -185,6 +185,11 @@ main .section.has-bg > span[class*="bg-left-"] {
     transform: translateY(-50%);
 }
 
+/* single 1 */
+main .section.has-bg > span.bg-left-single-1 {
+    /* uses defaults */
+}
+
 /*
  * center
  */
