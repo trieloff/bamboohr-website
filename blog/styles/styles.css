@@ -913,22 +913,36 @@ main .default-content-wrapper p a.button:any-link {
   margin-bottom: 30px;
 }
 
-.marketplace-home {
+.marketplace-home .search-container {
   background-image: url('./marketplace-home-hex-mobile.svg');
-  background-position: top center;
+  background-position: bottom center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+}
+
+.marketplace-home .search-container .image-wrapper {
+  min-height: 35vw;
 }
 
 @media (min-width: 600px) {
-  .marketplace-home {
+  .marketplace-home .search-container {
     background-image: url('./marketplace-home-hex-tablet.svg');
+  }
+
+  .marketplace-home .search-container .image-wrapper {
+    min-height: 30vw;
   }
 }
 
 @media (min-width: 1025px) {
-  .marketplace-home {
+  .marketplace-home .search-container {
     background-image: url('./marketplace-home-hex.svg');
+  }
+}
+
+@media (min-width: 1200px) {
+  .marketplace-home .search-container .image-wrapper {
+    min-height: 15vw;
   }
 }
 
