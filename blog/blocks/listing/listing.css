@@ -297,8 +297,8 @@ main .listing-results .listing-card.listing-card-discount.listing-card-sponsored
     transform: rotate(45deg);
     text-align: center;
     min-width: 108px;
-    top: 20px;
-    right: -46px;
+    top: 17px;
+    right: -25px;
 }
 
 main .listing-results .listing-card.listing-card-discount::before,
@@ -317,8 +317,8 @@ main .listing-results .listing-card.listing-card-discount.listing-card-sponsored
 
 main .listing-results .listing-card.listing-card-discount.listing-card-sponsored::after {
     min-width: 175px;
-    top: 35px;
-    right: -58px;
+    top: 32px;
+    right: -40px;
 }
 
 main .listing-results .listing-card-body {
