@@ -1,5 +1,10 @@
 .comparison-matrix .section.table-container {
-  background-image: url('../../styles/leaf-top-3.svg'), linear-gradient(var(--color-white), var(--color-white) calc(61px + (100vw * 0.11)), var(--color-gray-1) calc(100vw * 0.11));
+  background-image: url('../../styles/leaf-top-3.svg'),
+    linear-gradient(
+      var(--color-white),
+      var(--color-white) calc(61px + (100vw * 0.11)),
+      var(--color-gray-1) calc(100vw * 0.11)
+    );
   background-position: 0 61px, top;
   background-repeat: no-repeat;
   background-size: contain;
@@ -11,10 +16,6 @@
 
 .comparison-matrix .table-container .table-wrapper {
   padding-bottom: 240px;
-}
-
-.pricing-quote .table-container .table-wrapper.first {
-  margin-top: 100px;
 }
 
 .table.comparison table h4 {
@@ -54,14 +55,10 @@
   overflow-x: unset;
 }
 
-.table table, .table th, .table td {
+.table table,
+.table th,
+.table td {
   position: relative;
-}
-
-.pricing-quote table th, .pricing-quote table tbody th {
-  color: var(--color-gray-7);
-  border: none;
-  text-align: center;
 }
 
 .table table thead th {
@@ -72,20 +69,14 @@
   color: var(--body-color);
 }
 
-.pricing-quote table thead {
-  background-color: unset;
-}
-
-.pricing-quote table td {
-  border-left: none;
-  border-right: none;
-}
-
-.table.comparison table, .table.comparison th, .table.comparison td {
+.table.comparison table,
+.table.comparison th,
+.table.comparison td {
   text-align: center;
 }
 
-.table.comparison th, .table.comparison td {
+.table.comparison th,
+.table.comparison td {
   background-color: var(--color-white);
   font-size: 14px;
   line-height: 20px;
@@ -93,15 +84,6 @@
   font-weight: 400;
   border: none;
   padding: 14px;
-}
-
-.pricing-quote table th:first-of-type {
-  color: var(--color-gray-11);
-  text-align: left;
-}
-
-.pricing-quote table th del {
-  visibility: hidden;
 }
 
 .table.comparison table thead,
@@ -137,7 +119,7 @@
 }
 
 .icon.icon-checkmark::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   top: 33%;
@@ -150,23 +132,23 @@
 
 .table.comparison .elite-ribbon::after,
 .table.comparison .pro-ribbon::after {
-    font-size: 17px;
-    line-height: 13px;
-    font-weight: 700;
-    letter-spacing: 0.2px;
-    padding: 7px 20px;
-    position: absolute;
-    transform: rotate(-45deg);
-    text-align: center;
-    min-width: 112px;
-    top: 16px;
-    left: -46px;
+  font-size: 17px;
+  line-height: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  padding: 7px 20px;
+  position: absolute;
+  transform: rotate(-45deg);
+  text-align: center;
+  min-width: 112px;
+  top: 16px;
+  left: -46px;
 }
 
 .table.comparison .elite-ribbon::after {
-    content: 'ELITE';
-    color: var(--color-white);
-    background-color: var(--color-4);
+  content: 'ELITE';
+  color: var(--color-white);
+  background-color: var(--color-4);
 }
 
 .table.comparison .pro-ribbon::after {
