@@ -453,12 +453,15 @@ div .column-small-icons-container {
   .img-col {
     order: 1;
     width: unset;
-    max-width: 200px;
   }
 
   .non-img-col {
     order: 2;
     width: unset;
+  }
+
+  .resources-guides .img-col {
+    max-width: 200px;
   }
 }
 
