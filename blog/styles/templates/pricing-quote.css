@@ -85,8 +85,8 @@ body.pricing-quote {
 
 /* Quote */
 .pricing-quote main .section.bg-bottom-single-1 .quote {
-  margin-top: 400px;
-  margin-bottom: 100px;
+  margin-top: 100px;
+  margin-bottom: 60px;
 }
 
 .pricing-quote main .quote.full {
@@ -98,7 +98,7 @@ body.pricing-quote {
 }
 
 /* Table */
-.pricing-quote .table-container .table-wrapper.first {
+.table td .pricing-quote .table-container .table-wrapper.first {
   margin-top: 100px;
 }
 
@@ -127,6 +127,22 @@ body.pricing-quote {
   visibility: hidden;
 }
 
+@media (max-width: 440px) {
+  .pricing-quote table th,
+  .pricing-quote table td {
+    padding: 10px 9px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 370px) {
+  .pricing-quote table th,
+  .pricing-quote table td {
+    padding: 8px 4px;
+    font-size: 13px;
+  }
+}
+
 @media (min-width: 700px) {
   .pricing-quote main .section > div.table-wrapper {
     max-width: 800px;
@@ -134,6 +150,11 @@ body.pricing-quote {
 }
 
 @media (min-width: 900px) {
+  .pricing-quote main .section.bg-bottom-single-1 .quote {
+    margin-top: 400px;
+    margin-bottom: 100px;
+  }
+
   .pricing-quote main h1 {
     font-size: 54px;
     line-height: 60px;
