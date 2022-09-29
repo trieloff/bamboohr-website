@@ -235,6 +235,11 @@ main .form .mktoForm[data-styles-ready='true'] {
   visibility: visible;
 }
 
+main .form .mktoForm .mktoField,
+main .form .mktoForm .mktoLabel {
+  width: 100% !important;
+}
+
 main .form .mktoForm .mktoInvalid,
 main .form .mktoForm .mktoInvalid.form-checkbox-option label::before {
   border-color: var(--color-2);
@@ -244,7 +249,8 @@ main .form .mktoForm .mktoInvalid:focus {
   border-color: var(--color-5);
 }
 
-main .form .mktoForm .mktoErrorMsg {
+main .form .mktoForm .mktoErrorMsg,
+main .form .mktoForm .mktoAsterix {
   display: none;
 }
 
