@@ -165,6 +165,11 @@ main .section.has-bg > span.bg-top-multi-5 {
     }
 }
 
+/* multi 6 */
+main .section.has-bg > span.bg-top-multi-6 {
+    /* uses defaults */
+}
+
 /* single 1 */
 main .section.has-bg > span.bg-top-single-1 {
     /* uses defaults */
@@ -211,6 +216,11 @@ main .section.has-bg > span[class*="bg-right-"] {
     justify-content: end;
     top: 50%;
     transform: translateY(-50%);
+}
+
+/* multi 1 */
+main .section.has-bg > span.bg-right-multi-1 {
+    /* uses defaults */
 }
 
 /* single 1 */
