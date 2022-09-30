@@ -1,4 +1,4 @@
-.multi-cta-cards.gray, 
+.multi-cta-cards.gray,
 .multi-cta-cards .gray {
   --theme-tint10: var(--color-gray-1);
   --theme-shade15: var(--color-gray-9);
@@ -7,13 +7,12 @@
   --theme-bullet-level3: var(--bullet-level3-gray);
 }
 
-
-.multi-cta-cards>div {
+.multi-cta-cards > div {
   display: flex;
   flex-direction: column-reverse;
 }
 
-.multi-cta-cards>div>div {
+.multi-cta-cards > div > div {
   background: var(--color-white);
   border-radius: 16px;
   box-shadow: var(--theme-shadow2-shade5);
@@ -21,7 +20,7 @@
   width: 100%;
 }
 
-.multi-cta-cards>div:nth-child(n + 2) {
+.multi-cta-cards > div:nth-child(n + 2) {
   display: none;
 }
 
@@ -41,25 +40,25 @@
 }
 
 .multi-cta-tooltip-container p {
-  font-size: 18px;
-  line-height: 27px;
+  font-size: 16px;
+  line-height: 22px;
   margin: 4px 0 24px;
 }
 
-.multi-cta-cards>div>div>h4+p {
+.multi-cta-cards > div > div > h4 + p {
   border-bottom: 1px solid var(--color-gray-1);
   color: var(--color-gray-9);
   margin: 0;
   padding: 16px;
 }
 
-.multi-cta-cards>div>div>h4+.button-container {
+.multi-cta-cards > div > div > h4 + .button-container {
   border-bottom: none;
   margin: 0;
   padding: 0;
 }
 
-.multi-cta-cards>div>div>h4+.button-container .button {
+.multi-cta-cards > div > div > h4 + .button-container .button {
   border-color: var(--theme-shade5);
   color: var(--theme-shade5);
   margin: 24px auto 8px;
@@ -76,18 +75,19 @@
   line-height: 22px;
 }
 
-.multi-cta-cards>div>div>ul {
+.multi-cta-cards > div > div > ul {
   list-style: none;
   margin: 16px;
   padding: 0;
 }
 
-.multi-cta-cards>div>div>ul li {
+.multi-cta-cards > div > div > ul li {
   padding: 0 16px 0 24px;
   position: relative;
+  cursor: pointer;
 }
 
-.multi-cta-cards>div>div>ul li>span {
+.multi-cta-cards > div > div > ul li > span {
   font-size: 12px;
   font-weight: var(--heading-font-weight);
   letter-spacing: 1.5px;
@@ -100,18 +100,18 @@
   border-radius: 16px;
   box-shadow: var(--theme-shadow2-shade5);
   display: none;
-  left: 0;
+  left: 22px;
   padding: 24px;
   position: absolute;
   top: 0;
   z-index: 3000;
 }
 
-.multi-cta-cards>div>div>ul li.multi-cta-tooltip-show .multi-cta-tooltip-container {
+.multi-cta-cards > div > div > ul li.multi-cta-tooltip-show .multi-cta-tooltip-container {
   display: block;
 }
 
-.multi-cta-cards>div>div>ul li::before {
+.multi-cta-cards > div > div > ul li::before {
   background: url('/blog/icons/cta-list-button.svg') center center no-repeat;
   content: '';
   height: 8px;
@@ -123,7 +123,7 @@
   width: 8px;
 }
 
-.multi-cta-cards>div>div>ul li.multi-cta-tooltip-show::before {
+.multi-cta-cards > div > div > ul li.multi-cta-tooltip-show::before {
   transform: rotate(0);
 }
 
@@ -154,9 +154,9 @@
 
 .multi-cta-tooltip-container h3 {
   color: var(--color-gray-9);
-  font-size: 26px;
+  font-size: 22px;
   font-style: normal;
-  line-height: 30px;
+  line-height: 26px;
   margin: 0;
 }
 
@@ -173,13 +173,24 @@
 }
 
 @media (min-width: 600px) {
-  .multi-cta-cards>div {
+  .multi-cta-cards > div {
     column-gap: 24px;
     flex-flow: wrap row;
   }
 
-  .multi-cta-cards>div>div {
+  .multi-cta-cards > div > div {
     width: calc(50% - 12px);
+  }
+
+  .multi-cta-tooltip-container h3 {
+    font-size: 26px;
+    line-height: 30px;
+  }
+
+  .multi-cta-tooltip-container p {
+    font-size: 18px;
+    line-height: 27px;
+    margin: 4px 0 24px;
   }
 }
 
@@ -193,12 +204,12 @@
     max-width: 100%;
   }
 
-  .multi-cta-cards>div {
+  .multi-cta-cards > div {
     column-gap: 32px;
     flex-wrap: nowrap;
   }
 
-  .multi-cta-cards>div>div {
+  .multi-cta-cards > div > div {
     flex: 1;
     width: unset;
   }
