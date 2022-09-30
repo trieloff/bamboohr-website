@@ -147,9 +147,22 @@
 }
 
 .home-more .columns > div > div {
-  flex: 0 0 auto;
-  width: 50%;
-  padding: 0 20px;
+  margin-bottom: 50px;
+}
+
+@media (min-width: 600px) {
+  .home-more .columns > div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+  }
+
+  .home-more .columns > div > div {
+    flex: 0 0 auto;
+    width: 50%;
+    padding: 0 20px;
+    margin-bottom: 0;
+  }
 }
 
 /* Listings */
@@ -186,10 +199,6 @@
 .marketplace-listing .columns p:first-of-type {
   font-size: 12px;
   line-height: 15px;
-}
-
-main .home-featured-cat {
-  margin-top: 0;
 }
 
 main .section > .card-wrapper {
@@ -275,17 +284,6 @@ main .section > .card-wrapper {
 }
 
 @media (min-width: 600px) {
-  .home-more .columns > div {
-    align-items: flex-start;
-    flex-flow: row nowrap;
-    width: 75%;
-    margin: 0 auto;
-  }
-
-  main .home-featured-cat {
-    margin-top: 60px;
-  }
-
   .icon-3-cols {
     width: 33.33%;
   }
@@ -453,12 +451,15 @@ div .column-small-icons-container {
   .img-col {
     order: 1;
     width: unset;
-    max-width: 200px;
   }
 
   .non-img-col {
     order: 2;
     width: unset;
+  }
+
+  .resources-guides .img-col {
+    max-width: 200px;
   }
 }
 
