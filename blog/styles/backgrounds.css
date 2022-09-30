@@ -202,6 +202,23 @@ main .section.has-bg > span[class*="bg-left-"] {
     transform: translateY(-50%);
 }
 
+/* multi 1 */
+main .section.has-bg > span.bg-left-multi-1 {
+    /* uses defaults */
+}
+
+@media (max-width: 599px) {
+    main .section.has-bg > span.bg-left-multi-1 > svg {
+        flex: 1 0 0;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    main .section.has-bg > span.bg-left-multi-1 {
+        justify-content: end;
+    }
+}
+
 /* single 1 */
 main .section.has-bg > span.bg-left-single-1 {
     /* uses defaults */
@@ -248,6 +265,17 @@ main .section.has-bg > span.bg-right-multi-1 {
 /* multi 2 */
 main .section.has-bg > span.bg-right-multi-2 {
     /* uses defaults */
+}
+
+/* multi 3 */
+main .section.has-bg > span.bg-right-multi-3 {
+    /* uses defaults */
+}
+
+@media (max-width: 599px) {
+    main .section.has-bg > span.bg-right-multi-3 > svg {
+        flex: 1 0 0;
+    }
 }
 
 /* single 1 */
@@ -316,5 +344,10 @@ main .section.has-bg > span.bg-bottom-multi-1 {
 
 /* single 1 */
 main .section.has-bg > span.bg-bottom-single-1 {
+    /* uses defaults */
+}
+
+/* single 2 */
+main .section.has-bg > span.bg-bottom-single-2 {
     /* uses defaults */
 }
