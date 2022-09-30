@@ -44,7 +44,7 @@ function loadScript(location, url, callback, type) {
 /**
  * Sets an object based on a path and a value.
  */
-function setObject (obj, path, value) {
+function setObject(obj, path, value) {
   if (Object(obj) !== obj) return obj;
   
   if (!Array.isArray(path)) path = path.toString().match(/[^.[\]]+/g) || []; 
