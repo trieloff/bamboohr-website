@@ -72,7 +72,7 @@ export default async function decorate(block) {
     <div class="search-results"></div>`;
   const searchBox = block.querySelector('#search-box');
   const results = block.querySelector('.search-results');
-  results.setAttribute('am-region','Search')
+  results.setAttribute('am-region', 'Search');
   searchBox.addEventListener('input', () => {
     displaySearchResults(searchBox.value.toLowerCase(), results);
   });
