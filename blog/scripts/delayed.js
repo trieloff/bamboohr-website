@@ -12,8 +12,7 @@
  */
 
 // eslint-disable-next-line import/no-cycle
-import { sampleRUM } from './scripts.js';
-import { getMetadata } from './scripts.js';
+import { getMetadata, sampleRUM } from './scripts.js';
 
 sampleRUM('cwv');
 
