@@ -187,6 +187,11 @@ main .section.has-bg > span.bg-top-single-1 {
     /* uses defaults */
 }
 
+/* single 2 */
+main .section.has-bg > span.bg-top-single-2 {
+    /* uses defaults */
+}
+
 /*
  * left
  */
@@ -240,8 +245,18 @@ main .section.has-bg > span.bg-right-multi-1 {
     /* uses defaults */
 }
 
+/* multi 2 */
+main .section.has-bg > span.bg-right-multi-2 {
+    /* uses defaults */
+}
+
 /* single 1 */
 main .section.has-bg > span.bg-right-single-1 {
+    /* uses defaults */
+}
+
+/* single 2 */
+main .section.has-bg > span.bg-right-single-2 {
     /* uses defaults */
 }
 
