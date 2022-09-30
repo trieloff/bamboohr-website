@@ -230,6 +230,11 @@ main .form .mktoForm[data-styles-ready='true'] {
   visibility: visible;
 }
 
+main .form .mktoForm .mktoField,
+main .form .mktoForm .mktoLabel {
+  width: 100% !important;
+}
+
 main .form .mktoForm .mktoInvalid,
 main .form .mktoForm .mktoInvalid.form-checkbox-option label::before {
   border-color: var(--color-2);
@@ -239,7 +244,8 @@ main .form .mktoForm .mktoInvalid:focus {
   border-color: var(--color-5);
 }
 
-main .form .mktoForm .mktoErrorMsg {
+main .form .mktoForm .mktoErrorMsg,
+main .form .mktoForm .mktoAsterix {
   display: none;
 }
 
@@ -274,6 +280,22 @@ main .form .form-col p strong {
 main .form.has-content .form-col {
   max-width: 83.33%;
   margin: 0 auto;
+  z-index: 5;
+}
+
+main .form.white-container .form-col {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: var(--box-shadow-2);
+}
+
+main .form.white-container .form-col strong {
+  color: var(--color-1-shade-15);
+}
+
+main .form.white-container .form-col p {
+  color: var(--color-gray-8);
 }
 
 @media (min-width: 1200px) {
