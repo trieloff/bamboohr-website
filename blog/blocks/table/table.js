@@ -2,8 +2,7 @@ import { toClassName } from '../../scripts/scripts.js';
 
 function buildTableCell(col, rowIndex, header, isComparisonTable, isRowHeader) {
   const levels = ['pro', 'elite', 'bamboohr-product'];
-  const cell =
-    rowIndex > 0 && !isRowHeader ? document.createElement('td') : document.createElement('th');
+  const cell = rowIndex > 0 && !isRowHeader ? document.createElement('td') : document.createElement('th');
   if (isComparisonTable && rowIndex === 3) {
     const levelClass = toClassName(col.textContent?.trim().toLowerCase());
     const levelIdx = levels.indexOf(levelClass);
