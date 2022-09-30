@@ -224,6 +224,11 @@ main .section.has-bg > span.bg-left-single-1 {
     /* uses defaults */
 }
 
+/* single 2 */
+main .section.has-bg > span.bg-left-single-2 {
+    /* uses defaults */
+}
+
 /*
  * center
  */
@@ -293,6 +298,11 @@ main .section.has-bg > span.bg-right-single-1 {
     /* uses defaults */
 }
 
+/* single 2 */
+main .section.has-bg > span.bg-right-single-2 {
+    /* uses defaults */
+}
+
 /*
  * bottom
  */
@@ -345,6 +355,11 @@ main .section.has-bg > span.bg-bottom-multi-1 {
     main .section.has-bg > span.bg-bottom-multi-1 {
         min-height: 80rem;
     }
+}
+
+/* multi 2 */
+main .section.has-bg > span.bg-bottom-multi-2 {
+    /* uses defaults */
 }
 
 /* single 1 */
