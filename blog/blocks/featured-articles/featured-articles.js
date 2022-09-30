@@ -23,7 +23,7 @@ export function createBlogCard(article, classPrefix, eager = false) {
     <span class="${classPrefix}-card-readtime">${article.readTime || ''}</span>
     </div>
     <div class="${classPrefix}-card-picture"><a href="${article.path}">${pictureString}</a></div>
-    <div am-region="${title}" class="${classPrefix}-card-body">
+    <div class="${classPrefix}-card-body" am-region="${title}">
     <h3>${title}</h3>
     <p>${article.description}</p>
     <p><a href="${article.path}">Read Now</a></p>
