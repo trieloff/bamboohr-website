@@ -8,7 +8,7 @@ export function createBlogCard(article, classPrefix, eager = false) {
   const title = article.title.split(' - ')[0];
   const card = document.createElement('div');
   card.className = `${classPrefix}-card`;
-  card.setAttribute('am-region', (article.category + ' . ' + article.readTime).toUpperCase());
+  card.setAttribute('am-region', `${article.category} . ${article.readTime}`.toUpperCase());
   const image = article.cardImage || article.image;
   const pictureString = createOptimizedPicture(
     image,
