@@ -139,7 +139,7 @@ main .section.has-bg > span.bg-top-multi-2 {
 
 /* multi 3 */
 main .section.has-bg > span.bg-top-multi-3 {
-   /* uses defaults */
+    /* uses defaults */
 }
 
 /* multi 4 */
@@ -247,6 +247,16 @@ main .section.has-bg > span.bg-center-multi-2 {
     /* uses defaults */
 }
 
+@media (max-width: 1024px) {
+    main .section.has-bg > span.bg-center-multi-2 {
+        justify-content: end;
+    }
+
+    main .section.has-bg > span.bg-center-multi-2 > svg {
+        flex: 0 0 auto;
+    }
+}
+
 /*
  * right
  */
@@ -280,11 +290,6 @@ main .section.has-bg > span.bg-right-multi-3 {
 
 /* single 1 */
 main .section.has-bg > span.bg-right-single-1 {
-    /* uses defaults */
-}
-
-/* single 2 */
-main .section.has-bg > span.bg-right-single-2 {
     /* uses defaults */
 }
 
