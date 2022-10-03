@@ -170,8 +170,6 @@
 }
 
 .table-tooltip-container p {
-  font-size: 16px;
-  line-height: 27px;
   margin: 4px 0 24px;
 }
 
@@ -187,6 +185,8 @@
   z-index: 3000;
   width: calc(100vw - 94px);
   max-width: 360px;
+  font-size: 16px;
+  line-height: 27px;
 }
 
 .table td.has-popup-data.table-tooltip-show .table-tooltip-container {
@@ -262,7 +262,7 @@ main .section .table-tooltip-container p.button-container {
     font-size: 26px;
   }
 
-  .table-tooltip-container p {
+  .table-tooltip-container {
     font-size: 18px;
   }
 }
