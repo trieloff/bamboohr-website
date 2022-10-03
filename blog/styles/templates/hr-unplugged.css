@@ -1,3 +1,31 @@
-.hr-unplugged .gradient-section-1 {
+.hr-unplugged .section-1 {
 	background: linear-gradient(76.43deg, #000000 25.21%, #CC4373 100%);
+}
+
+.hr-unplugged .section-1 h1 {
+  color: var(--color-white);
+}
+
+.hr-unplugged .section-1 h5 {
+  color: var(--color-white);
+  font-style: normal;
+  font-weight: 500 !important;
+  margin-top: 30px !important;
+}
+
+.hr-unplugged .section-1 a {
+  color: var(--color-7-shade-15) !important;
+  background-color: var(--color-7-tint-5) !important;
+}
+.hr-unplugged .columns-3-cols img {
+  margin-bottom: 0;
+}
+
+@media (min-width: 900px) {
+  .hr-unplugged .section-1 .columns-wrapper .full-width {
+    margin-left: -40px;
+  }
+  .hr-unplugged .section-1 .columns > div > div {
+    margin-left: 40px;
+  }
 }
