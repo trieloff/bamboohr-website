@@ -678,13 +678,8 @@ main .section > div:empty {
   .blog-post main .section > div.author-wrapper,
   .blog-post main .section > div.quote-wrapper,
   .blog-post main .section > div.table-wrapper,
-<<<<<<< HEAD
   .pricing-quote main .section > div.table-wrapper,
   .marketplace-home main .section > div.default-content-wrapper {
-=======
-  .marketplace-home main .section > div.default-content-wrapper,
-  .marketplace-home main .section > div.search-wrapper {
->>>>>>> main
     max-width: 800px;
   }
 
