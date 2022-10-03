@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * Sets an object based on a path and a value.
  */
