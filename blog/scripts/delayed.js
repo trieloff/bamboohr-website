@@ -50,7 +50,7 @@ const adobeTagsSrc = 'https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/laun
 
 loadScript('header', adobeTagsSrc, async () => {
   window.digitalData = {};
-  window.digitalData.push = (obj) => { Object.assign(digitalData, digitalData, obj); };
+  window.digitalData.push = (obj) => { Object.assign(window.digitalData, window.digitalData, obj); };
 
   const resp = await fetch('/blog/instrumentation.json');
   const json = await resp.json();
@@ -61,8 +61,6 @@ loadScript('header', adobeTagsSrc, async () => {
       setObject(window.digitalData, mapping.digitaldata, metaValue);
     }
   });
-
-  /* eslint-disable */
 
   /*
   const digitalDataLists = json['digitaldata-lists'].data;
@@ -83,8 +81,6 @@ loadScript('header', adobeTagsSrc, async () => {
       digitaldata._set(listEntry.digitaldata, listValue);
     }
   */
-
-  /* eslint-enable */
 
   window.digitalData.push({
     event: 'Page View',
