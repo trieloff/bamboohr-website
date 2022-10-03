@@ -16,6 +16,7 @@
 @import 'templates/payroll-roi.css';
 @import 'templates/pricing-quote.css';
 @import 'templates/hr-software.css';
+@import 'templates/hr-unplugged.css';
 
 html {
   box-sizing: border-box;
