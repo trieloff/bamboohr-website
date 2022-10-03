@@ -12,10 +12,19 @@
  */
 
 // eslint-disable-next-line import/no-cycle
-import { sampleRUM } from './scripts.js';
+import { getMetadata, sampleRUM } from './scripts.js';
+import { setObject } from './set-object.min.js';
 
 sampleRUM('cwv');
 
+/**
+ * loads a script by adding a script tag to the head.
+ * @param {string} where to load the js file ('header' or 'footer')
+ * @param {string} url URL of the js file
+ * @param {Function} callback callback on load
+ * @param {string} type type attribute of script tag
+ * @returns {Element} script element
+ */
 function loadScript(location, url, callback, type) {
   const $head = document.querySelector('head');
   const $body = document.querySelector('body');
@@ -34,6 +43,54 @@ function loadScript(location, url, callback, type) {
 }
 
 loadScript('footer', 'https://consent.trustarc.com/v2/notice/qvlbs6', null, 'text/javascript');
+
+/* Adobe Tags */
+loadScript('header', `https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/launch-${(/^(marketplace|partners|www)\.bamboohr\.com$/i.test(document.location.hostname) ? '58a206bf11f0.min.js' : '9e4820bf112c-staging.min.js')}`, async () => {
+  window.digitalData = {};
+  window.digitalData.push = (obj) => {
+    Object.assign(window.digitalData, window.digitalData, obj);
+  };
+
+  const resp = await fetch('/blog/instrumentation.json');
+  const json = await resp.json();
+  const digitalDataMap = json.digitaldata.data;
+  digitalDataMap.forEach((mapping) => {
+    const metaValue = getMetadata(mapping.metadata);
+    if (metaValue) {
+      setObject(window.digitalData, mapping.digitaldata, metaValue);
+    }
+  });
+
+  /*
+  const digitalDataLists = json['digitaldata-lists'].data;
+  digitalDataLists.forEach((listEntry) => {
+    const metaValue = getMetadata(listEntry.metadata);
+    if (metaValue) {
+      // eslint-disable-next-line no-underscore-dangle
+      let listValue = digitaldata._get(listEntry.digitaldata) || '';
+      const name = listEntry['list-item-name'];
+      const metaValueArr = listEntry.delimiter
+        ? metaValue.split(listEntry.delimiter)
+        : [metaValue];
+      metaValueArr.forEach((value) => {
+        const escapedValue = value.split('|').join(); // well, well...
+        listValue += `${listValue ? ' | ' : ''}${name}: ${escapedValue}`;
+      });
+      // eslint-disable-next-line no-underscore-dangle
+      digitaldata._set(listEntry.digitaldata, listValue);
+    }
+  */
+
+  window.digitalData.push({
+    event: 'Page View',
+    page: {
+      country: 'us',
+      language: 'en',
+      platform: 'web',
+      site: 'blog'
+    }
+  });
+});
 
 /* google tag manager */
 // eslint-disable-next-line
