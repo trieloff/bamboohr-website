@@ -256,13 +256,10 @@ main .section .table-tooltip-container p.button-container {
 @media (min-width: 600px) {
   .table-tooltip-container {
     width: 400px;
+    font-size: 18px;
   }
 
   .table-tooltip-container h3 {
     font-size: 26px;
-  }
-
-  .table-tooltip-container {
-    font-size: 18px;
   }
 }
