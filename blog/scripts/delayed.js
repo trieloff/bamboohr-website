@@ -50,7 +50,9 @@ const adobeTagsSrc = 'https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/laun
 
 loadScript('header', adobeTagsSrc, async () => {
   window.digitalData = {};
-  window.digitalData.push = (obj) => { Object.assign(window.digitalData, window.digitalData, obj); };
+  window.digitalData.push = (obj) => { 
+    Object.assign(window.digitalData, window.digitalData, obj);
+  };
 
   const resp = await fetch('/blog/instrumentation.json');
   const json = await resp.json();
