@@ -51,10 +51,10 @@ indices:
         value: |
           parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')
 
-  marketplace:
+  integrations:
     include:
-      - '/marketplace/**'
-    target: /marketplace/query-index
+      - '/integrations/**'
+    target: /integrations/query-index
     properties:
       title:
         select: head > meta[property="og:title"]

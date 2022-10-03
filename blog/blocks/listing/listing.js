@@ -41,7 +41,7 @@ function getFacetHTML(ph) {
 export async function filterResults(config, facets = {}) {
   /* load index */
   let collection = 'blog';
-  if (getMetadata('theme') === 'marketplace') collection = 'marketplace';
+  if (getMetadata('theme') === 'integrations') collection = 'integrations';
   await lookupPages([], collection);
   const listings = window.pageIndex[collection];
 
@@ -122,7 +122,7 @@ export async function filterResults(config, facets = {}) {
 }
 
 export default async function decorate(block, blockName) {
-  const ph = await fetchPlaceholders('/marketplace');
+  const ph = await fetchPlaceholders('/integrations');
 
   const addEventListeners = (elements, event, callback) => {
     elements.forEach((e) => {

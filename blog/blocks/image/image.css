@@ -113,27 +113,27 @@ main .image.right img, main .image.left img {
   }
 }
 
-.marketplace main .image-wrapper {
+.integrations main .image-wrapper {
   margin-bottom: 40px;
 }
 
-.marketplace main .image {
+.integrations main .image {
   margin-top: 60px;
 }
 
-.marketplace main .image img {
+.integrations main .image img {
   border-radius: 15px;
   box-shadow: var(--box-shadow-2);
 }
 
 @media (min-width: 600px) {
-  .marketplace main .image-wrapper {
+  .integrations main .image-wrapper {
     margin-bottom: 60px;
   }
 }
 
 @media (min-width: 900px) {
-  .marketplace main .image-wrapper {
+  .integrations main .image-wrapper {
     margin-bottom: 95px;
   }
 }

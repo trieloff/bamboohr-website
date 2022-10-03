@@ -28,27 +28,27 @@ main .tabs .tabs-content[aria-hidden="true"] {
   visibility: hidden;
 }
 
-.marketplace-listing .tabs-content {
+.integrations-listing .tabs-content {
 	margin: 30px -30px;
 	background: var(--color-gray-1);
 	padding: 30px;
 }
 
-.marketplace-listing .tabs > h2 {
+.integrations-listing .tabs > h2 {
 	font-size: 27px;
 	line-height: 46px;
 }
 
-.marketplace-listing .table-wrapper.tabs-content h3,
-.marketplace-listing .table-wrapper.tabs-content p {
+.integrations-listing .table-wrapper.tabs-content h3,
+.integrations-listing .table-wrapper.tabs-content p {
   margin: 0 0 30px;
 }
 
-.marketplace-listing .table-wrapper.tabs-content p:not(:first-of-type) {
+.integrations-listing .table-wrapper.tabs-content p:not(:first-of-type) {
   margin-top: 30px;
 }
 
-.marketplace-listing .table-wrapper.tabs-content h3:not(:first-of-type) {
+.integrations-listing .table-wrapper.tabs-content h3:not(:first-of-type) {
   margin: 48px 0 30px;
 }
 
@@ -81,11 +81,11 @@ main .tabs .tabs-content[aria-hidden="true"] {
     border-color: var(--theme-base);
   }
 
-  .marketplace-listing .tabs .tabs-title[aria-selected="true"] {
+  .integrations-listing .tabs .tabs-title[aria-selected="true"] {
     border-color: var(--theme-shade5);
   }
 
-	.marketplace-listing .tabs-content {
+	.integrations-listing .tabs-content {
 		margin: 40px 0;
 		background: none;
 		padding: 0;
