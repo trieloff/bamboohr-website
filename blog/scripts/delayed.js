@@ -13,6 +13,7 @@
 
 // eslint-disable-next-line import/no-cycle
 import { getMetadata, sampleRUM } from './scripts.js';
+import { setObject } from './set-object.min.js';
 
 sampleRUM('cwv');
 
@@ -41,27 +42,10 @@ function loadScript(location, url, callback, type) {
   return $script;
 }
 
-/**
- * Sets an object based on a path and a value.
- */
-function setObject(obj, path, value) {
-  if (Object(obj) !== obj) return obj;
-  
-  if (!Array.isArray(path)) path = path.toString().match(/[^.[\]]+/g) || []; 
-  path.slice(0,-1).reduce((a, c, i) =>
-    Object(a[c]) === a[c]
-      ? a[c] 
-      : a[c] = Math.abs(path[i+1])>>0 === +path[i+1] 
-        ? []
-        : {},
-    obj)[path[path.length-1]] = value;
-  return obj;
-}
-
 loadScript('footer', 'https://consent.trustarc.com/v2/notice/qvlbs6', null, 'text/javascript');
 
 /* Adobe Tags */
-const adobeTagsSrc = 'https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/launch-' + (/^(marketplace|partners|www)\.bamboohr\.com$/i.test(document.location.hostname) ? '58a206bf11f0.min.js' : (/^localhost$/i.test(document.location.hostname) ? '30e70f4281a7-development.min.js' : '9e4820bf112c-staging.min.js'));
+const adobeTagsSrc = 'https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/launch-' + (/^(marketplace|partners|www)\.bamboohr\.com$/i.test(document.location.hostname) ? '58a206bf11f0.min.js' : '9e4820bf112c-staging.min.js');
 
 loadScript('header', adobeTagsSrc, async () => {
   window.digitalData = {};
