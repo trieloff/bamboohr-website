@@ -919,6 +919,7 @@ export async function decorateMain(main) {
  * Loads everything related to Marketing technology that maust be loaded eagerly (e.g., Adobe Target).
  */
 async function loadMartech() {
+  /* eslint-disable */
   /* Adobe Target Prehiding Snippet */
   /*
   ;(function(win, doc, style, timeout) {
@@ -953,6 +954,7 @@ async function loadMartech() {
   */
   
   /* Move Adobe Tags here from delayed.js if Target is added and enabled */
+  /* eslint-enable */
 }
 
 /**
@@ -960,7 +962,7 @@ async function loadMartech() {
  */
 async function loadEager(doc) {
   if (!window.hlx.lighthouse) loadMartech();
-  
+
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {

@@ -45,12 +45,13 @@ function loadScript(location, url, callback, type) {
 loadScript('footer', 'https://consent.trustarc.com/v2/notice/qvlbs6', null, 'text/javascript');
 
 /* Adobe Tags */
-const adobeTagsSrc = 'https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/launch-' + (/^(marketplace|partners|www)\.bamboohr\.com$/i.test(document.location.hostname) ? '58a206bf11f0.min.js' : '9e4820bf112c-staging.min.js');
+const adobeTagsEnvironment = (/^(marketplace|partners|www)\.bamboohr\.com$/i.test(document.location.hostname) ? '58a206bf11f0.min.js' : '9e4820bf112c-staging.min.js');
+const adobeTagsSrc = 'https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/launch-' + adobeTagsEnvironment;
 
 loadScript('header', adobeTagsSrc, async () => {
   window.digitalData = {};
   window.digitalData.push = (obj) => { Object.assign(digitalData, digitalData, obj); };
-  
+
   const resp = await fetch('/blog/instrumentation.json');
   const json = await resp.json();
   const digitalDataMap = json.digitaldata.data;
@@ -60,7 +61,11 @@ loadScript('header', adobeTagsSrc, async () => {
       setObject(window.digitalData, mapping.digitaldata, metaValue);
     }
   });
-  /*const digitalDataLists = json['digitaldata-lists'].data;
+
+  /* eslint-disable */
+
+  /*
+  const digitalDataLists = json['digitaldata-lists'].data;
   digitalDataLists.forEach((listEntry) => {
     const metaValue = getMetadata(listEntry.metadata);
     if (metaValue) {
@@ -76,9 +81,11 @@ loadScript('header', adobeTagsSrc, async () => {
       });
       // eslint-disable-next-line no-underscore-dangle
       digitaldata._set(listEntry.digitaldata, listValue);
-    }*/
-  //});
-  
+    }
+  */
+
+  /* eslint-enable */
+
   window.digitalData.push({
     event: 'Page View',
     page: {
