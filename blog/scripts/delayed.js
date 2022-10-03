@@ -45,12 +45,11 @@ function loadScript(location, url, callback, type) {
 loadScript('footer', 'https://consent.trustarc.com/v2/notice/qvlbs6', null, 'text/javascript');
 
 /* Adobe Tags */
-const adobeTagsEnvironment = (/^(marketplace|partners|www)\.bamboohr\.com$/i.test(document.location.hostname) ? '58a206bf11f0.min.js' : '9e4820bf112c-staging.min.js');
-const adobeTagsSrc = 'https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/launch-' + adobeTagsEnvironment;
+const adobeTagsSrc = `https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/launch-${(/^(marketplace|partners|www)\.bamboohr\.com$/i.test(document.location.hostname) ? '58a206bf11f0.min.js' : '9e4820bf112c-staging.min.js')}`;
 
 loadScript('header', adobeTagsSrc, async () => {
   window.digitalData = {};
-  window.digitalData.push = (obj) => { 
+  window.digitalData.push = (obj) => {
     Object.assign(window.digitalData, window.digitalData, obj);
   };
 
