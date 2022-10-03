@@ -10,8 +10,11 @@ const TOOLTIP_IS_SHOWING_CSS_CLASS = 'multi-cta-tooltip-is-showing';
 
 const bodyElem = document.querySelector('body');
 
-const handleCloseTooltip = () => {
-  if (bodyElem.classList.contains(TOOLTIP_IS_SHOWING_CSS_CLASS)) {
+const handleCloseTooltip = (e) => {
+  const multiCtaContainers = document.querySelectorAll('.multi-cta-cards');
+  const isClickInMultiCta = [...multiCtaContainers].some((cta) => cta.contains(e.target));
+
+  if (bodyElem.classList.contains(TOOLTIP_IS_SHOWING_CSS_CLASS) && !isClickInMultiCta) {
     const showedTooltipElems = document.querySelectorAll(`.${TOOLTIP_SHOW_CSS_CLASS}`);
 
     showedTooltipElems.forEach((showedTooltipElem) => {
@@ -19,16 +22,16 @@ const handleCloseTooltip = () => {
     });
 
     bodyElem.classList.remove(TOOLTIP_IS_SHOWING_CSS_CLASS);
+    bodyElem.removeEventListener('click', handleCloseTooltip, { capture: true });
   }
 };
 
 const handleLiClick = (evt) => {
   const liElem = evt.target.closest('li');
-  const ulElem = evt.target.closest('ul');
 
   bodyElem.classList.add(TOOLTIP_IS_SHOWING_CSS_CLASS);
 
-  const allLiElems = ulElem.querySelectorAll('li');
+  const allLiElems = document.querySelectorAll('.multi-cta-col li');
 
   const isShowed = liElem.classList.contains(TOOLTIP_SHOW_CSS_CLASS);
 
@@ -40,7 +43,7 @@ const handleLiClick = (evt) => {
     liElem.classList.add(TOOLTIP_SHOW_CSS_CLASS);
   }
 
-  bodyElem.addEventListener('click', handleCloseTooltip, { capture: true, once: true });
+  bodyElem.addEventListener('click', handleCloseTooltip, { capture: true });
 };
 
 function buildTooltips(block) {
@@ -58,7 +61,9 @@ function buildTooltips(block) {
 
       colLiElem.innerHTML = `<span>${colLiElem.innerHTML}</span>`;
 
-      const tooltipElem = block.querySelector(`:scope > div:nth-child(${rowIdx}) > div:nth-child(${colIdx + 1})`);
+      const tooltipElem = block.querySelector(
+        `:scope > div:nth-child(${rowIdx}) > div:nth-child(${colIdx + 1})`,
+      );
 
       const tooltipButtonContainerElems = tooltipElem.querySelectorAll('.button-container');
 
@@ -101,7 +106,9 @@ export default function decorate(block) {
       if (className.startsWith('theme-on-col-')) {
         const colorParams = getValuesFromClassName(className, 'theme-on-col-');
 
-        const columnElem = block.querySelector(`:scope > div:first-child > div:nth-child(${colorParams[0]})`);
+        const columnElem = block.querySelector(
+          `:scope > div:first-child > div:nth-child(${colorParams[0]})`,
+        );
 
         columnElem.classList.add(colorParams[1]);
       }

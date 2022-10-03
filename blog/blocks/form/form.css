@@ -1,6 +1,5 @@
 /* stylelint-disable selector-class-pattern */
-.marketplace main .form-container .default-content-wrapper,
-.pricing-quote main .form-container .default-content-wrapper {
+.marketplace main .form-container .default-content-wrapper {
   text-align: center;
 }
 
@@ -11,10 +10,6 @@ main .form {
 
 main .form .hidden {
   display: none;
-}
-
-.pricing-quote main .form {
-  text-align: center;
 }
 
 main .form h1 {

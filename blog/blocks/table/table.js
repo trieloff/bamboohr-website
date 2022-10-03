@@ -1,6 +1,4 @@
-import {
-  toClassName,
-} from '../../scripts/scripts.js';
+import { toClassName } from '../../scripts/scripts.js';
 
 function buildTableCell(col, rowIndex, header, isComparisonTable, isRowHeader) {
   const levels = ['pro', 'elite', 'bamboohr-product'];
@@ -17,15 +15,18 @@ function buildTableCell(col, rowIndex, header, isComparisonTable, isRowHeader) {
   return cell;
 }
 
-const handleCloseTooltip = () => {
+const handleCloseTooltip = (e) => {
   if (document.body.classList.contains('table-tooltip-is-showing')) {
-    const showedTooltipElems = document.querySelectorAll('.table-tooltip-show');
+    if (e.target.tagName !== 'TD') {
+      const showedTooltipElems = document.querySelectorAll('.table-tooltip-show');
 
-    showedTooltipElems.forEach((showedTooltipElem) => {
-      showedTooltipElem.classList.remove('table-tooltip-show');
-    });
+      showedTooltipElems.forEach((showedTooltipElem) => {
+        showedTooltipElem.classList.remove('table-tooltip-show');
+      });
 
-    document.body.classList.remove('table-tooltip-is-showing');
+      document.body.classList.remove('table-tooltip-is-showing');
+      document.body.removeEventListener('click', handleCloseTooltip, { capture: true });
+    }
   }
 };
 
@@ -33,14 +34,14 @@ const handleTdClick = (evt) => {
   if (evt.target.tagName !== 'TD' || !evt.target.classList.contains('has-popup-data')) return;
 
   document.body.classList.add('table-tooltip-is-showing');
-  const tableBodyElem = evt.target.parentElement.parentElement;
-  const popupDataElems = tableBodyElem.querySelectorAll('td.has-popup-data');
+  const popupDataElems = document.querySelectorAll('td.has-popup-data');
   const isShowed = evt.target.classList.contains('table-tooltip-show');
-
   popupDataElems.forEach((e) => e.classList.remove('table-tooltip-show'));
-  if (!isShowed) evt.target.classList.add('table-tooltip-show');
 
-  document.body.addEventListener('click', handleCloseTooltip, { capture: true, once: true });
+  if (!isShowed) {
+    evt.target.classList.add('table-tooltip-show');
+    document.body.addEventListener('click', handleCloseTooltip, { capture: true });
+  }
 };
 
 function addPopupDataToFirstCol(popupData, firstCol) {
@@ -91,7 +92,7 @@ function buildMobileTables(block, tableData, colCnt, isComparisonTable) {
     });
     // build cells
     row.querySelectorAll('div').forEach((col, j) => {
-      const header = (j > 0) ? tables[j - 1].header : null;
+      const header = j > 0 ? tables[j - 1].header : null;
       const cell = buildTableCell(col, i, header, isComparisonTable);
 
       if (j === 0) {
@@ -171,7 +172,7 @@ export default async function decorate(block) {
           }
         }
       } else {
-        const isRowHeader = (isStandardTable && j === 0 && isXY);
+        const isRowHeader = isStandardTable && j === 0 && isXY;
         const cell = buildTableCell(col, i, headers[j], isComparisonTable, isRowHeader);
         if (i === 0) {
           headers.push(cell);
