@@ -807,7 +807,7 @@ export function buildFigure(blockEl) {
 export async function lookupPages(pathnames, collection) {
   const indexPaths = {
     blog: '/blog/fixtures/blog-query-index.json',
-    marketplace: '/marketplace/query-index.json?sheet=listings',
+    integrations: '/integrations/query-index.json?sheet=listings',
   };
   const indexPath = indexPaths[collection];
   window.pageIndex = window.pageIndex || {};
@@ -878,7 +878,7 @@ async function buildAutoBlocks(main) {
   try {
     let template = toClassName(getMetadata('template'));
     if (window.location.pathname.startsWith('/blog/') && !template) template = 'blog';
-    const templates = ['blog', 'marketplace-listing'];
+    const templates = ['blog', 'integrations-listing'];
     if (templates.includes(template)) {
       const mod = await import(`./${template}.js`);
       if (mod.default) {
@@ -925,9 +925,52 @@ export async function decorateMain(main) {
 }
 
 /**
+ * Loads everything related to Marketing technology that must be loaded eagerly
+ * (e.g., Adobe Target).
+ */
+async function loadMartech() {
+  /* Adobe Target Prehiding Snippet */
+  /*
+  ;(function(win, doc, style, timeout) {
+    const STYLE_ID = 'at-body-style';
+    function getParent() {
+      return doc.getElementsByTagName('head')[0];
+    }
+    function addStyle(parent, id, def) {
+      if (!parent) {
+        return;
+      }
+      const style = doc.createElement('style');
+      style.id = id;
+      style.innerHTML = def;
+      parent.appendChild(style);
+    }
+    function removeStyle(parent, id) {
+      if (!parent) {
+        return;
+      }
+      const style = doc.getElementById(id);
+      if (!style) {
+        return;
+      }
+      parent.removeChild(style);
+    }
+    addStyle(getParent(), STYLE_ID, style);
+    setTimeout(function() {
+      removeStyle(getParent(), STYLE_ID);
+    }, timeout);
+  }(window, document, "body {opacity: 0 !important}", 3000));
+  */
+
+  /* Move Adobe Tags here from delayed.js if Target is added and enabled */
+}
+
+/**
  * loads everything needed to get to LCP.
  */
 async function loadEager(doc) {
+  if (!window.hlx.lighthouse) loadMartech();
+
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {

@@ -20,7 +20,11 @@ export default function decorate(block) {
   let simpleVal = '';
   options.forEach((o) => {
     if (o.startsWith('margin-')) marginVals.push(o);
-    else {
+    else if (o.startsWith('id-')) {
+      const id = o.slice(3);
+      block.parentElement.setAttribute('id', id);
+      block.classList.remove(o);
+    } else {
       const val = o.split('-');
       if (val.length === 2) [, values[val[0]]] = val;
       else if (val.length === 1) [simpleVal] = val;

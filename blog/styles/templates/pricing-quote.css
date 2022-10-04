@@ -1,0 +1,183 @@
+body.pricing-quote {
+  background: linear-gradient(159.58deg, var(--color-white) 1.38%, var(--color-1-tint-15) 74.25%);
+}
+
+.pricing-quote main h1 {
+  font-family: var(--heading-font-family);
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 48px;
+  margin-top: 0;
+  padding-top: 48px;
+}
+
+.pricing-quote .title.section-subhead {
+  font-weight: 500;
+}
+
+.pricing-quote main h1,
+.pricing-quote main .title-container .default-content-wrapper p {
+  color: var(--color-white);
+}
+
+.pricing-quote main .title.section-header :is(h1, h2, h3, h4, h5, h6, div) {
+  font-size: 30px;
+}
+
+.pricing-quote main .title h4 {
+  margin-top: 0;
+}
+
+.pricing-quote main .section.bg-bottom-single-1 .default-content-wrapper p {
+  margin-bottom: 0;
+  padding-bottom: 100px;
+  color: var(--color-white);
+  text-align: left;
+}
+
+.pricing-quote main .title-container .button-container a.button {
+  color: var(--color-1-shade-10);
+  background-color: unset;
+}
+
+.pricing-quote main .tabs-wrapper p a:any-link {
+  font-weight: 700;
+  color: var(--secondary-theme-shade10);
+  background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
+}
+
+.pricing-quote main .cards-wrapper,
+.pricing-quote main .multi-cta-cards-wrapper,
+.pricing-quote main .multi-element-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* Carousel */
+.pricing-quote main .carousel {
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.pricing-quote main .carousel picture {
+  position: relative;
+}
+
+.pricing-quote main .carousel img {
+  object-fit: contain;
+}
+
+.pricing-quote main .carousel > div {
+  background-image: none;
+  height: auto;
+  max-height: unset;
+}
+
+/* Form */
+.pricing-quote main .form {
+  text-align: center;
+}
+
+.pricing-quote main .section.bg-bottom-single-1 .form {
+  margin-bottom: 70px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.pricing-quote main .form a.button {
+  color: var(--color-1-shade-15);
+  background-color: var(--color-1-tint-10);
+}
+
+.pricing-quote main .form-container .default-content-wrapper {
+  text-align: center;
+}
+
+/* Quote */
+.pricing-quote main .section.bg-bottom-single-1 .quote {
+  margin-top: 100px;
+  margin-bottom: 60px;
+}
+
+.pricing-quote main .quote.full {
+  color: var(--color-1-tint-10);
+}
+
+.pricing-quote main .quote.full .byline {
+  color: var(--color-1-tint-15);
+}
+
+/* Table */
+.table td .pricing-quote .table-container .table-wrapper.first {
+  margin-top: 100px;
+}
+
+.pricing-quote table th,
+.pricing-quote table tbody th {
+  color: var(--color-gray-7);
+  border: none;
+  text-align: center;
+}
+
+.pricing-quote table thead {
+  background-color: unset;
+}
+
+.pricing-quote table td {
+  border-left: none;
+  border-right: none;
+}
+
+.pricing-quote table th:first-of-type {
+  color: var(--color-gray-11);
+  text-align: left;
+}
+
+.pricing-quote table th del {
+  visibility: hidden;
+}
+
+@media (max-width: 440px) {
+  .pricing-quote table th,
+  .pricing-quote table td {
+    padding: 10px 9px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 370px) {
+  .pricing-quote table th,
+  .pricing-quote table td {
+    padding: 8px 4px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 700px) {
+  .pricing-quote main .section > div.table-wrapper {
+    max-width: 800px;
+  }
+}
+
+@media (min-width: 900px) {
+  .pricing-quote main .section.bg-bottom-single-1 .quote {
+    margin-top: 400px;
+    margin-bottom: 100px;
+  }
+
+  .pricing-quote main h1 {
+    font-size: 54px;
+    line-height: 60px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .pricing-quote main h1 {
+    font-size: 70px;
+    line-height: 80px;
+  }
+
+  .pricing-quote main .title.section-header :is(h1, h2, h3, h4, h5, h6, div) {
+    font-size: 36px;
+  }
+}

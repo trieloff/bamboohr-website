@@ -1,6 +1,5 @@
 /* stylelint-disable selector-class-pattern */
-.marketplace main .form-container .default-content-wrapper,
-.pricing-quote main .form-container .default-content-wrapper {
+.integrations main .form-container .default-content-wrapper {
   text-align: center;
 }
 
@@ -11,10 +10,6 @@ main .form {
 
 main .form .hidden {
   display: none;
-}
-
-.pricing-quote main .form {
-  text-align: center;
 }
 
 main .form h1 {
@@ -190,7 +185,7 @@ main .form .error input[type='checkbox'] + label::before {
   border-color: var(--color-2);
 }
 
-.marketplace main .form-container {
+.integrations main .form-container {
   background-image: url('../../styles/leaf-top-3.svg'),
     linear-gradient(
       var(--color-white),
@@ -202,12 +197,12 @@ main .form .error input[type='checkbox'] + label::before {
   background-size: contain;
 }
 
-.marketplace main .form {
+.integrations main .form {
   padding: 150px 0;
 }
 
 @media (min-width: 1200px) {
-  .marketplace main .form {
+  .integrations main .form {
     padding-top: 250px;
   }
 }

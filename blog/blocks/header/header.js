@@ -46,6 +46,7 @@ export default async function decorate(block) {
   nav.classList.add('nav');
   const navSections = document.createElement('div');
   navSections.classList.add('nav-sections');
+  navSections.setAttribute('am-region', 'Main Nav');
   nav.innerHTML = html;
   decorateIcons(nav);
   nav.querySelectorAll(':scope > div').forEach((navSection, i) => {
@@ -70,6 +71,7 @@ export default async function decorate(block) {
         }
         navSections.append(navSection);
         navSection.classList.add('nav-section');
+        navSection.setAttribute('am-region', h2.textContent);
         if (!h2.querySelector('a')) {
           h2.addEventListener('click', () => {
             if (mediaQueryDesktop.matches) collapseAll([...navSections.children]);
@@ -159,7 +161,7 @@ export default async function decorate(block) {
   let collection = 'prelogin';
   const theme = getMetadata('theme');
   const template = toClassName(getMetadata('template'));
-  if (theme === 'marketplace') collection = 'marketplace';
+  if (theme === 'integrations') collection = 'integrations';
   else if (window.location.pathname.startsWith('/blog')) collection = 'blog';
   else if (template === 'resources-guides') collection = 'resources-guides';
   else if (template === 'pricing-quote') collection = 'pricing-quote';

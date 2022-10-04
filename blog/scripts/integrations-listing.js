@@ -81,16 +81,20 @@ function buildListingHeader(main) {
   const section = document.createElement('div');
   const h1 = main.querySelector('h1');
   const category = getMetadata('category');
-  const categories = category.split(',');
-  const listingCategories = categories.reduce((l, cat, i) => {
-    const catVal = i > 0 ? `,${cat}` : cat;
-    return `${l}<a href="/marketplace/listing-category/${toSlug(cat.trim())}">${catVal}</a>`;
-  }, '');
+  let listingCategoriesLi = '';
+  if (category) {
+    const categories = category.split(',');
+    const listingCategories = categories.reduce((l, cat, i) => {
+      const catVal = i > 0 ? `,${cat}` : cat;
+      return `${l}<a href="/marketplace/listing-category/${toSlug(cat.trim())}">${catVal}</a>`;
+    }, '');
+    listingCategoriesLi = `<li>${listingCategories}</li>`;
+  }
   section.append(buildBlock('listing-header', [
     [h1],
     [`<ul>
     <li><a href="/marketplace/">Home</a></li>
-    <li>${listingCategories}</li>
+    ${listingCategoriesLi}
     <li>${h1.textContent}</li>
     </ul>`],
   ]));

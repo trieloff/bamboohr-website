@@ -32,12 +32,12 @@ function highlightTextElements(terms, elements) {
 
 async function displaySearchResults(terms, results) {
   let collection = 'blog';
-  if (getMetadata('theme') === 'marketplace') collection = 'marketplace';
+  if (getMetadata('theme') === 'integrations') collection = 'integrations';
   await lookupPages([], collection);
   const allPages = window.pageIndex[collection].data;
   allPages.forEach((page) => {
     let searchTags = '';
-    if (collection === 'marketplace') {
+    if (collection === 'integrations') {
       searchTags = `${page.level}, ${page.tag}, ${page.category}`;
     }
     if (collection === 'blog') {
@@ -53,7 +53,7 @@ async function displaySearchResults(terms, results) {
   filtered.forEach((row) => {
     let card;
     if (collection === 'blog') card = createBlogCard(row, 'search-blog');
-    if (collection === 'marketplace') card = createAppCard(row, 'search-app');
+    if (collection === 'integrations') card = createAppCard(row, 'search-app');
     ul.append(card);
   });
 
@@ -72,6 +72,7 @@ export default async function decorate(block) {
     <div class="search-results"></div>`;
   const searchBox = block.querySelector('#search-box');
   const results = block.querySelector('.search-results');
+  results.setAttribute('am-region', 'Search');
   searchBox.addEventListener('input', () => {
     displaySearchResults(searchBox.value.toLowerCase(), results);
   });

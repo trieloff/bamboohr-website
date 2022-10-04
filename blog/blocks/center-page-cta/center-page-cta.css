@@ -1,0 +1,134 @@
+.center-page-cta {
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    min-height: 29rem;
+}
+
+@media (min-width: 600px) {
+    .center-page-cta {
+        min-height: 36rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .center-page-cta {
+        min-height: 55rem;
+    }
+}
+
+
+@media (max-width: 599px) {
+    .center-page-cta > span.bg > svg:not(.mobile) {
+        display: none;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .center-page-cta > span.bg > svg:not(.tablet) {
+        display: none;
+    }
+}
+
+@media (min-width: 1025px) {
+    .center-page-cta > span.bg > svg:not(.desktop) {
+        display: none;
+    }
+}
+
+.center-page-cta > span.bg {
+    display: flex;
+    justify-content: center;
+    max-width: 100vw;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.center-page-cta > span.bg > svg {
+    height: auto;
+    flex-shrink: 0;
+}
+
+.center-page-cta > span.bg .theme-tint-5 {
+    color: var(--theme-tint5);
+}
+
+.center-page-cta > span.bg .theme-shade-10 {
+    color: var(--theme-shade10);
+}
+
+.center-page-cta > span.bg .theme-shade-15 {
+    color: var(--theme-shade15);
+}
+
+.center-page-cta,
+.center-page-cta > div,
+.center-page-cta > div > div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.center-page-cta > div > div {
+    margin-top: 3.5rem;
+    max-width: 17.25rem;
+}
+
+@media (min-width: 600px) {
+    .center-page-cta > div > div {
+        margin-top: 0;
+        margin-left: 2.5rem;
+        max-width: 26.5rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .center-page-cta > div > div {
+        margin: 0 0 3rem 4.5rem;
+        max-width: 36rem;
+    }
+}
+
+.center-page-cta h2 {
+    color: var(--theme-tint5);
+    font-weight: var(--heading-font-weight);
+    line-height: 1.2;
+    margin: 0;
+}
+
+@media (min-width: 1025px) {
+    .center-page-cta h2 {
+        font-size: 2.25rem;
+    }
+}
+
+.center-page-cta p {
+    color: var(--color-white);
+    margin: .5rem 0 2rem;
+}
+
+main .section .center-page-cta .button-container {
+    margin: 0;
+}
+
+.center-page-cta .button-container > a.button:any-link {
+    background-color: var(--theme-tint5);
+    color: var(--theme-shade15);
+    font-size: .9375rem;
+    letter-spacing: .5px;
+    line-height: 1.2;
+    margin: 0;
+    padding: .625rem 1.875rem;
+}
+
+@media (min-width: 600px) {
+    .center-page-cta .button-container > a.button:any-link {
+        font-size: 1.0625rem;
+        padding: 1.125rem 2.5rem;
+    }
+}
