@@ -21,8 +21,8 @@
 }
 
 /* override since no "laptop" size */
-@media (min-width: 1025px) and (max-width: 1799px) {
-    .has-bg > span.bg > svg:not(:only-child).desktop {
+@media (min-width: 1800px) {
+    .has-bg > span.bg > svg:not(:only-child).laptop {
         display: revert;
     }
 }
@@ -31,9 +31,8 @@
     justify-content: center;
 }
 
-/* don't grow or shrink and width should match SVG */
 .center-page-cta > span.bg > svg {
-    flex: 0 0 auto;
+    flex-shrink: 0;
 }
 
 .center-page-cta,
