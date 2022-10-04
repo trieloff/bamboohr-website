@@ -126,6 +126,12 @@
     bottom: 0;
 }
 
+/* cap 3 */
+.has-bg > span.bg-top-cap-3 {
+    background: var(--theme-shade15);
+    bottom: 0;
+}
+
 /* multi 1 */
 .has-bg > span.bg-top-multi-1 {
     /* uses defaults */
@@ -348,6 +354,12 @@
 /* cap 2 */
 .has-bg > span.bg-bottom-cap-2 {
     background-image: linear-gradient(207.16deg, transparent 44.04%, var(--theme-tint15) 82.6%);
+    top: 0;
+}
+
+/* cap 3 */
+.has-bg > span.bg-bottom-cap-3 {
+    background-image: linear-gradient(76.43deg, var(--color-black) 25.21%, var(--theme-shade5) 100%);
     top: 0;
 }
 
