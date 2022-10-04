@@ -45,21 +45,21 @@ main .callout p {
   color: var(--category-darker-color);
 }
 
-.marketplace.app-list main .callout {
+.integrations.app-list main .callout {
   background: unset;
   margin: 125px 0;
   box-shadow: none;
 }
 
-.marketplace.app-list main .callout h3 {
+.integrations.app-list main .callout h3 {
   color: var(--heading-color);
 }
 
-.marketplace.app-list main .callout p {
+.integrations.app-list main .callout p {
   color: var(--color-gray-9);
 }
 
-.marketplace.app-list main .callout a.button {
+.integrations.app-list main .callout a.button {
   background-color: var(--color-1-shade-5);
 }
 

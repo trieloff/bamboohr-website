@@ -798,7 +798,7 @@ export function buildFigure(blockEl) {
 export async function lookupPages(pathnames, collection) {
   const indexPaths = {
     blog: '/blog/fixtures/blog-query-index.json',
-    marketplace: '/marketplace/query-index.json?sheet=listings',
+    integrations: '/integrations/query-index.json?sheet=listings',
   };
   const indexPath = indexPaths[collection];
   window.pageIndex = window.pageIndex || {};
@@ -869,7 +869,7 @@ async function buildAutoBlocks(main) {
   try {
     let template = toClassName(getMetadata('template'));
     if (window.location.pathname.startsWith('/blog/') && !template) template = 'blog';
-    const templates = ['blog', 'marketplace-listing'];
+    const templates = ['blog', 'integrations-listing'];
     if (templates.includes(template)) {
       const mod = await import(`./${template}.js`);
       if (mod.default) {
