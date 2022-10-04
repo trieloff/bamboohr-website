@@ -65,11 +65,19 @@ main .tabs .tabs-content[aria-hidden="true"] {
     justify-content: space-between;
   }
 
+  .integrations-listing main .tabs {
+    justify-content: flex-start;
+  }
+
   main .tabs .tabs-title {
     order: 1;
     margin: 0;
     border-bottom: 4px solid transparent;
     padding-bottom: 20px;
+  }
+
+  .integrations-listing main .tabs .tabs-title:not(:last-child) {
+    margin-right: 40px;
   }
 
   main .tabs .tabs-title[aria-selected="false"] {

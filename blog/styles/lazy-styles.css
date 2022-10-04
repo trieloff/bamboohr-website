@@ -162,3 +162,14 @@
     margin-bottom: 64px;
   }
 }
+
+@media (min-width: 1440px) {
+  .integrations-listing .details-container,
+  .integrations-listing .links-container {
+    padding-right: 50px;
+  }
+
+  .integrations-listing .tabs-container {
+    padding-left: 50px;
+  }
+}
