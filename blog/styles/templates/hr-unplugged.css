@@ -1,9 +1,14 @@
+.hr-unplugged main {
+  overflow: hidden;
+}
+
 .hr-unplugged .section-1 {
 	background: linear-gradient(76.43deg, #000000 25.21%, #CC4373 100%);
 }
 
 .hr-unplugged .section-1 h1 {
   color: var(--color-white);
+  text-align: left;
 }
 
 .hr-unplugged .section-1 h5 {
@@ -11,14 +16,56 @@
   font-style: normal;
   font-weight: 500 !important;
   margin-top: 30px !important;
+  text-align: left;
 }
 
 .hr-unplugged .section-1 a {
   color: var(--color-7-shade-15) !important;
   background-color: var(--color-7-tint-5) !important;
 }
-.hr-unplugged .columns-3-cols img {
+
+.hr-unplugged .section-1 .columns div div {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.hr-unplugged .section-1 .columns div div p:not(:first-of-type) {
+  color: var(--color-white);
+  margin-top: 10px;
+}
+
+.hr-unplugged .section-1 .columns div div h4 {
+  position: relative;
+}
+
+.hr-unplugged .section-1 .columns div div h4 {
+  color: var(--color-white);
+  margin: 10px 0 0;
+  font-weight: 600 !important;
+  font-style: normal;
+}
+
+.hr-unplugged .section-1 .columns-3-cols img {
   margin-bottom: 0;
+}
+
+.hr-unplugged .section-1 .background-image {
+  max-width: 100%;
+  margin: -50px 0 0;
+}
+
+.hr-unplugged .section-1 .background-image .bg-section-bottom-1 img {
+  margin-top: 0;
+}
+
+.hr-unplugged .section-1 .background-image .bg-section-bottom-1 {
+  margin: 0 -30px;
+}
+
+@media (min-width: 600px) {
+  .hr-unplugged .section-1 .background-image .bg-section-bottom-1 {
+    margin: 0 -54px;
+  }
 }
 
 @media (min-width: 900px) {
@@ -27,5 +74,11 @@
   }
   .hr-unplugged .section-1 .columns > div > div {
     margin-left: 40px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .hr-unplugged .section-1 .background-image .bg-section-bottom-1 {
+    margin: 0;
   }
 }
