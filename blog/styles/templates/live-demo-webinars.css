@@ -1,0 +1,60 @@
+/* live-demo-webinars template styles */
+.live-demo-webinars {
+    background-color: unset;
+    background-image: url('../hex-top-live-demo.svg');
+    background-size: contain;
+    background-position: top, left;
+    background-repeat: no-repeat;
+  }
+
+.live-demo-webinars main .call-to-action-container {
+    background-color: unset;
+    background-image: url('../hex-cta.svg');
+    background-size: cover;
+    background-position: top, left;
+    background-repeat: no-repeat;
+    padding-top: 200px;
+    margin-top: 0;
+}
+
+.live-demo-webinars main .call-to-action {
+    padding-bottom: 1px;
+}
+
+.live-demo-webinars main .call-to-action p {
+    color: var(--color-1-tint-10);
+}
+
+.live-demo-webinars main .call-to-action p.button-container {
+    padding-bottom: 50px;
+}
+
+.live-demo-webinars main .call-to-action a.button:any-link {
+    background-color: transparent;
+    color: var(--color-1-tint-15);
+    border: solid 2px var(--color-1-tint-15);
+}
+
+.live-demo-webinars main .columns a.button:any-link {
+    background-image: linear-gradient(90deg, var(--color-1-tint-5) 0%, var(--color-1-shade-5) 100%);
+}
+
+.live-demo-webinars main .section > .cards-wrapper {
+    margin-top: 40px;
+}
+
+.live-demo-webinars .columns .non-img-col h3 {
+    margin-top: 0;
+}
+
+@media (min-width: 600px) {
+    .live-demo-webinars main .call-to-action {
+        padding-top: 145px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .live-demo-webinars main .section > .cards-wrapper {
+        margin-top: 0;
+    }
+}
