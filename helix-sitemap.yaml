@@ -8,5 +8,5 @@ sitemaps:
 
   marketplace:
     origin: https://www.bamboohr.com
-    source: /marketplace/query-index.json
-    destination: /marketplace/sitemap.xml
+    source: /integrations/query-index.json
+    destination: /integrations/sitemap.xml
