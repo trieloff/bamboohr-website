@@ -86,14 +86,14 @@ function buildListingHeader(main) {
     const categories = category.split(',');
     const listingCategories = categories.reduce((l, cat, i) => {
       const catVal = i > 0 ? `,${cat}` : cat;
-      return `${l}<a href="/marketplace/listing-category/${toSlug(cat.trim())}">${catVal}</a>`;
+      return `${l}<a href="/integrations/listing-category/${toSlug(cat.trim())}">${catVal}</a>`;
     }, '');
     listingCategoriesLi = `<li>${listingCategories}</li>`;
   }
   section.append(buildBlock('listing-header', [
     [h1],
     [`<ul>
-    <li><a href="/marketplace/">Home</a></li>
+    <li><a href="/integrations/">Home</a></li>
     ${listingCategoriesLi}
     <li>${h1.textContent}</li>
     </ul>`],
@@ -108,11 +108,11 @@ export default async function decorateTemplate(main) {
   // build request information button
   const requestInfo = document.createElement('p');
   const appName = window.location.pathname.split('/').pop();
-  requestInfo.innerHTML = `<a href="/marketplace/request-information?appName=${appName}" id="marketplace-request-info">Request Information</a>`;
+  requestInfo.innerHTML = `<a href="/integrations/request-information?appName=${appName}" id="marketplace-request-info">Request Information</a>`;
   const extraFormFields = getMetadata('extra-form-fields');
   if (extraFormFields) {
     const fieldsParam = extraFormFields.split(',').map((field) => `show=${field.trim()}`).join('&');
-    requestInfo.innerHTML = `<a href="/marketplace/request-information?appName=${appName}&${fieldsParam}" id="marketplace-request-info">Request Information</a>`;
+    requestInfo.innerHTML = `<a href="/integrations/request-information?appName=${appName}&${fieldsParam}" id="marketplace-request-info">Request Information</a>`;
   }
   const sections = [...main.children].slice(2);
   if (sections.length < 3) {
