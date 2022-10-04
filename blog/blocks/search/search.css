@@ -24,7 +24,7 @@ main .search-results > ul {
 
 
 /* app cards */
-.marketplace main .search-results > ul {
+.integrations main .search-results > ul {
   grid-template-columns: 1fr;
   grid-gap: 40px;
 }
@@ -70,6 +70,10 @@ main .search-results .search-app-card {
   font-size: 14px;
   line-height: 24px;
   color: var(--color-gray-6);
+}
+
+.search-app-card-detail {
+  color: var(--color-gray-9);
 }
 
 .search-app-card-body > *:first-child {
@@ -193,7 +197,7 @@ main .search input {
     padding: 15px 30px;
 }
 
-.marketplace-home main .search input {
+.integrations-home main .search input {
   color: var(--color-gray-9);
 }
 
@@ -202,20 +206,20 @@ main .search .search-box {
     text-align: center;
 }
 
-/* marketplace home search */
-.marketplace-home main .search-container .default-content-wrapper {
+/* integrations home search */
+.integrations-home main .search-container .default-content-wrapper {
   padding: 32px 0 14px;
   text-align: center;
 }
 
-.marketplace-home main .search-results .search-app-card {
+.integrations-home main .search-results .search-app-card {
   position: relative;
   overflow: hidden;
 }
 
-.marketplace-home main .search-results .search-app-card.search-app-card-discount::before,
-.marketplace-home main .search-results .search-app-card.search-app-card-sponsored::before,
-.marketplace-home main .search-results .search-app-card.search-app-card-discount.search-app-card-sponsored::after {
+.integrations-home main .search-results .search-app-card.search-app-card-discount::before,
+.integrations-home main .search-results .search-app-card.search-app-card-sponsored::before,
+.integrations-home main .search-results .search-app-card.search-app-card-discount.search-app-card-sponsored::after {
     font-size: 8px;
     line-height: 9px;
     font-weight: 700;
@@ -225,59 +229,59 @@ main .search .search-box {
     transform: rotate(45deg);
     text-align: center;
     min-width: 108px;
-    top: 20px;
-    right: -46px;
+    top: 17px;
+    right: -27px;
 }
 
-.marketplace-home main .search-results .search-app-card.search-app-card-discount::before,
-.marketplace-home main .search-results .search-app-card.search-app-card-discount.search-app-card-sponsored::after{
+.integrations-home main .search-results .search-app-card.search-app-card-discount::before,
+.integrations-home main .search-results .search-app-card.search-app-card-discount.search-app-card-sponsored::after{
     content: 'SPECIAL OFFER';
     color: var(--color-4-shade-15);
     background-color: var(--color-4-tint-10);
 }
 
-.marketplace-home main .search-results .search-app-card.search-app-card-sponsored::before,
-.marketplace-home main .search-results .search-app-card.search-app-card-discount.search-app-card-sponsored::before {
+.integrations-home main .search-results .search-app-card.search-app-card-sponsored::before,
+.integrations-home main .search-results .search-app-card.search-app-card-discount.search-app-card-sponsored::before {
     content: 'SPONSORED';
     color: var(--color-1-shade-10);
     background-color: var(--color-1-tint-15);
 }
 
-.marketplace-home main .search-results .search-app-card.search-app-card-discount.search-app-card-sponsored::after {
+.integrations-home main .search-results .search-app-card.search-app-card-discount.search-app-card-sponsored::after {
     min-width: 175px;
-    top: 35px;
-    right: -58px;
+    top: 32px;
+    right: -40px;
 }
 
 @media (min-width: 600px) {
-  .marketplace main .search-results > ul {
+  .integrations main .search-results > ul {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 }
 
 @media (min-width: 900px) {
-  .marketplace-home main .search-container .default-content-wrapper {
+  .integrations-home main .search-container .default-content-wrapper {
     padding: 32px 64px 14px;
   }
 }
 
 @media (min-width: 1200px) {
-  .marketplace .search-results .search-app-card {
+  .integrations .search-results .search-app-card {
       position: relative;
       padding-bottom: 60px;
       overflow: hidden;
   }
 
-  .marketplace .search-results > ul > li .search-app-card-image img {
+  .integrations .search-results > ul > li .search-app-card-image img {
       min-height: 230px;
   }
 
-  .marketplace .search-results .search-app-card-header {
+  .integrations .search-results .search-app-card-header {
       min-height: 60px;
       padding: 0;
   }
 
-  .marketplace .search-results .search-app-card-body {
+  .integrations .search-results .search-app-card-body {
       position: absolute;
       top: calc(100% - 60px);
       right: 0;
@@ -291,39 +295,39 @@ main .search .search-box {
       padding-top: 0;
   }
 
-  .marketplace .search-results .search-app-card:hover .search-app-card-body {
+  .integrations .search-results .search-app-card:hover .search-app-card-body {
       top: 0;
   }
 
-  .marketplace .search-results .search-app-card .search-app-card-cat {
+  .integrations .search-results .search-app-card .search-app-card-cat {
       transition: all .25s ease-in .25s;
   }
 
-  .marketplace .search-results .search-app-card .search-app-card-detail {
+  .integrations .search-results .search-app-card .search-app-card-detail {
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
   }
 
-  .marketplace .search-results .search-app-card .search-app-card-detail p {
+  .integrations .search-results .search-app-card .search-app-card-detail p {
       transition: all .25s ease-in .4s;
   }
 
-  .marketplace .search-results .search-app-card .search-app-card-detail a:any-link {
+  .integrations .search-results .search-app-card .search-app-card-detail a:any-link {
       transition: all .25s ease-in .5s;
   }
 
-  .marketplace .search-results .search-app-card .search-app-card-cat,
-  .marketplace .search-results .search-app-card .search-app-card-detail p,
-  .marketplace .search-results .search-app-card .search-app-card-detail a:any-link {
+  .integrations .search-results .search-app-card .search-app-card-cat,
+  .integrations .search-results .search-app-card .search-app-card-detail p,
+  .integrations .search-results .search-app-card .search-app-card-detail a:any-link {
       opacity: 0;
       transform: translateX(25px);
   }
 
-  .marketplace .search-results .search-app-card:hover .search-app-card-cat,
-  .marketplace .search-results .search-app-card:hover .search-app-card-detail p,
-  .marketplace .search-results .search-app-card:hover .search-app-card-detail a:any-link {
+  .integrations .search-results .search-app-card:hover .search-app-card-cat,
+  .integrations .search-results .search-app-card:hover .search-app-card-detail p,
+  .integrations .search-results .search-app-card:hover .search-app-card-detail a:any-link {
       opacity: 1;
       transform: translateX(0);
   }

@@ -161,7 +161,7 @@ export default async function decorate(block) {
   let collection = 'prelogin';
   const theme = getMetadata('theme');
   const template = toClassName(getMetadata('template'));
-  if (theme === 'marketplace') collection = 'marketplace';
+  if (theme === 'integrations') collection = 'integrations';
   else if (window.location.pathname.startsWith('/blog')) collection = 'blog';
   else if (template === 'resources-guides') collection = 'resources-guides';
   else if (template === 'pricing-quote') collection = 'pricing-quote';

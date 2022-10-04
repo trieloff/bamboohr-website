@@ -40,6 +40,12 @@ body.pricing-quote {
   background-color: unset;
 }
 
+.pricing-quote main .tabs-wrapper p a:any-link {
+  font-weight: 700;
+  color: var(--secondary-theme-shade10);
+  background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
+}
+
 .pricing-quote main .cards-wrapper,
 .pricing-quote main .multi-cta-cards-wrapper,
 .pricing-quote main .multi-element-wrapper {

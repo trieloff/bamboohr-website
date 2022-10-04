@@ -80,8 +80,8 @@ export async function filterApps(config, feed, limit, offset) {
 
   config.sortBy = toCamelCase(config.sortBy);
 
-  await lookupPages([], 'marketplace');
-  const index = [...window.pageIndex.marketplace.data];
+  await lookupPages([], 'integrations');
+  const index = [...window.pageIndex.integrations.data];
 
   if (sortOptions(config.sortBy)) {
     index.sort(sortOptions(config.sortBy));
@@ -154,7 +154,7 @@ async function decorateAppsFeed(
 export default async function decorate(block, blockName) {
   if (block.querySelector('a')) {
     const pathnames = [...block.querySelectorAll('a')].map((a) => new URL(a.href).pathname);
-    const results = await lookupPages(pathnames, 'marketplace');
+    const results = await lookupPages(pathnames, 'integrations');
     block.textContent = '';
     const ul = document.createElement('ul');
     results.forEach((app) => {
