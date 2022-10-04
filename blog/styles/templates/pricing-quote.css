@@ -11,6 +11,10 @@ body.pricing-quote {
   padding-top: 48px;
 }
 
+.pricing-quote main .section:last-child {
+  margin-top: 0;
+}
+
 .pricing-quote .title.section-subhead {
   font-weight: 500;
 }
