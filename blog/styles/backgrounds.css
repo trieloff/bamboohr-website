@@ -182,6 +182,18 @@
     /* uses defaults */
 }
 
+/* multi 7 */
+.has-bg > span.bg-top-multi-7 {
+    /* uses defaults */
+}
+
+@media (min-width: 1800px) {
+    .has-bg > span.bg-top-multi-7 > svg:not(:only-child).laptop {
+        display: revert;
+    }
+}
+
+
 /* single 1 */
 .has-bg > span.bg-top-single-1 {
     /* uses defaults */
@@ -259,6 +271,17 @@
 
     .has-bg > span.bg-center-multi-2 > svg {
         flex: 0 0 auto;
+    }
+}
+
+/* multi 3 */
+.has-bg > span.bg-center-multi-3 {
+    /* uses defaults */
+}
+
+@media (min-width: 1800px) {
+    .has-bg > span.bg-center-multi-3 > svg:not(:only-child).laptop {
+        display: revert;
     }
 }
 
@@ -360,6 +383,17 @@
 /* multi 2 */
 .has-bg > span.bg-bottom-multi-2 {
     /* uses defaults */
+}
+
+/* multi 3 */
+.has-bg > span.bg-bottom-multi-3 {
+    /* uses defaults */
+}
+
+@media (min-width: 1800px) {
+    .has-bg > span.bg-bottom-multi-3 > svg:not(:only-child).laptop {
+        display: revert;
+    }
 }
 
 /* single 1 */
