@@ -413,6 +413,51 @@
     /* uses defaults */
 }
 
+/* pricing page overrides */
+.pricing-quote .section.bg-bottom-single-1.has-bg {
+    overflow-x: hidden;
+}
+
+.pricing-quote .has-bg > span.bg-bottom-single-1 {
+    justify-content: center;
+}
+
+.pricing-quote .has-bg > span.bg-bottom-single-1 > svg {
+    display: none;
+}
+
+/* no more growing or shrinking */
+@media (max-width: 1888px) {
+    .pricing-quote .has-bg > span.bg-bottom-single-1 > svg {
+        flex: 0 0 auto;
+    }
+}
+
+/* override hide/shows with exact SVG widths, since it's not growing to browser width */
+@media (max-width: 360px) {
+    .pricing-quote .has-bg > span.bg-bottom-single-1 > svg:not(:only-child).mobile {
+        display: revert;
+    }
+}
+
+@media (min-width: 361px) and (max-width: 768px) {
+    .pricing-quote .has-bg > span.bg-bottom-single-1 > svg:not(:only-child).tablet {
+        display: revert;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1440px) {
+    .pricing-quote .has-bg > span.bg-bottom-single-1 > svg:not(:only-child).laptop {
+        display: revert;
+    }
+}
+
+@media (min-width: 1441px) {
+    .pricing-quote .has-bg > span.bg-bottom-single-1 > svg:not(:only-child).desktop {
+        display: revert;
+    }
+}
+
 /* single 2 */
 .has-bg > span.bg-bottom-single-2 {
     /* uses defaults */
