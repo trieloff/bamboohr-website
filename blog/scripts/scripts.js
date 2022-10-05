@@ -916,7 +916,7 @@ export async function decorateMain(main) {
 }
 
 /**
- * Loads everything related to Marketing technology that must be loaded eagerly
+ * loads everything related to Marketing technology that must be loaded eagerly
  * (e.g., Adobe Target).
  */
 async function loadMartech() {
@@ -953,7 +953,7 @@ async function loadMartech() {
   }(window, document, "body {opacity: 0 !important}", 3000));
   */
 
-  /* Move Adobe Tags here from delayed.js if Target is added and enabled */
+  /* Move Adobe Tags here from delayed.js if Adobe Target is added and enabled */
 }
 
 /**
