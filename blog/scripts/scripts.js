@@ -312,16 +312,17 @@ export function readBlockConfig(block) {
  * @param {Element} $section The section element
  */
 export function decorateBackgrounds($section) {
-  $section.classList.forEach((style) => {
-    if (style.match(/^bg-/g)) {
+  const sectionKey = [...$section.parentElement.children].indexOf($section);
+  [...$section.classList].filter((filter) => filter.match(/^bg-/g))
+    .forEach((style, bgKey) => {
       const background = document.createElement('span');
       const fetchBase = window.hlx.serverPath;
       const sizes = ['', 'laptop', 'tablet', 'mobile'];
 
-      background.classList.add('bg');
+      background.classList.add('bg', style);
 
       // get svgs
-      sizes.forEach((size) => {
+      sizes.forEach((size, sizeKey) => {
         let name = style;
 
         if (size) name += `-${size}`;
@@ -333,8 +334,17 @@ export function decorateBackgrounds($section) {
 
             // put the svg in the span
             resp.text()
-              .then((html) => {
+              .then((output) => {
                 const element = document.createElement('div');
+                let html = output;
+
+                // get IDs
+                const matches = html.matchAll(/id="([^"]+)"/g);
+                // replace IDs
+                [...matches].forEach(([, match], matchKey) => {
+                  html = html.replaceAll(match, `bg-id-${sectionKey}-${bgKey}-${sizeKey}-${matchKey}`);
+                });
+
                 element.innerHTML = html;
                 const svg = element.firstChild;
 
@@ -347,8 +357,7 @@ export function decorateBackgrounds($section) {
       });
 
       $section.prepend(background);
-    }
-  });
+    });
 }
 
 /**
