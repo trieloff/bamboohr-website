@@ -68,8 +68,7 @@ const adobeTagsDevEnv = adobeTagsDevEnvURLList[adobeTagsDevEnvNumber];
 
 if (adobeTagsDevEnv) {
   adobeTagsSrc += adobeTagsDevEnv;
-}
-else {
+} else {
   const isProdSite = /^(marketplace|partners|www)\.bamboohr\.com$/i.test(document.location.hostname);
   adobeTagsSrc += (isProdSite ? '58a206bf11f0.min.js' : '9e4820bf112c-staging.min.js');
 }
