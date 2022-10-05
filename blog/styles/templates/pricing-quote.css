@@ -24,6 +24,10 @@ body.pricing-quote {
   color: var(--color-white);
 }
 
+.pricing-quote main .section > div.quote-wrapper.full-width {
+  max-width: 1130px;
+}
+
 .pricing-quote main .title.section-header :is(h1, h2, h3, h4, h5, h6, div) {
   font-size: 30px;
 }

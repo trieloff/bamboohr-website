@@ -688,6 +688,10 @@ main .section > div:empty {
     max-width: 760px;
   }
 
+  main .section > div.title-wrapper.extra-small-width {
+    max-width: 450px;
+  }
+
   .resources-guides main .section > div.columns-wrapper.small-width {
     max-width: 640px;
   }

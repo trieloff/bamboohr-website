@@ -24,16 +24,23 @@
   padding-bottom: 40px;
 }
 
-.payroll-roi-banner .form-wrapper {
-  max-width: 1200px;
-  padding-top: 40px;
+.payroll-cta .form {
+  text-align: center;
+  margin-top: 40px;
 }
 
-.payroll-roi-banner .form {
-  max-width: 1200px;
+.payroll-cta a.button:any-link {
+  background-color: var(--color-1-shade-15);
+  color: #fff;
 }
 
-.payroll-roi-banner .form h1 {
+.payroll-roi-banner .title-wrapper {
+  max-width: 960px;
+  padding-top: 131px;
+  text-align: center;
+}
+
+.payroll-roi-banner h1 {
   font-family: var(--heading-font-family);
   font-weight: 900;
   font-size: 70px;
@@ -42,8 +49,19 @@
   margin-bottom: 30px;
 }
 
-.payroll-roi-banner .form .content-col p {
+.payroll-roi-banner p {
   color: #fff;
+  max-width: 760px;
+  margin: 29px auto 47px;
+}
+
+.payroll-roi-banner .form-wrapper {
+  text-align: center;
+}
+
+.payroll-roi-banner a.button:any-link {
+  color: var(--color-1-shade-15);
+  background-color: #fff;
 }
 
 main .section.payroll-top-leaf {
@@ -87,7 +105,6 @@ main .section.payroll-roi-footer {
 main .section.payroll-roi-footer .default-content-wrapper {
   max-width: 960px;
   padding-bottom: 40px;
-  margin-top: -50px;
 }
 
 main .section.payroll-roi-footer h2 {
@@ -100,7 +117,7 @@ main .section.payroll-roi-footer h2 {
   color: var(--color-1-tint-15);
 }
 
-main .section.payroll-roi-footer p a.button:any-link {
+main .section.payroll-roi-footer a.button:any-link {
   background-color: #fff;
   color: var(--color-1-shade-15);
 }

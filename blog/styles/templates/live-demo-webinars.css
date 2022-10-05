@@ -2,10 +2,9 @@
 .live-demo-webinars {
     background-color: unset;
     background-image: url('../hex-top-live-demo.svg');
-    background-size: contain;
     background-position: top, left;
     background-repeat: no-repeat;
-  }
+}
 
 .live-demo-webinars main .call-to-action-container {
     background-color: unset;
@@ -56,5 +55,11 @@
 @media (min-width: 1200px) {
     .live-demo-webinars main .section > .cards-wrapper {
         margin-top: 0;
+    }
+}
+
+@media (min-width: 1440px) {
+    .live-demo-webinars {
+        background-size: contain;
     }
 }
