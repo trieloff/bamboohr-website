@@ -261,18 +261,6 @@
   --theme-shadow4-shade10: var(--box-shadow-4-color1-shade10);
 }
 
-/* secondary override to auto-pull main theme color if needed */
-main,
-div {
-  --secondary-theme-base: var(--theme-base);
-  --secondary-theme-tint5: var(--theme-tint5);
-  --secondary-theme-tint10: var(--theme-tint10);
-  --secondary-theme-tint15: var(--theme-tint15);
-  --secondary-theme-shade5: var(--theme-shade5);
-  --secondary-theme-shade10: var(--theme-shade10);
-  --secondary-theme-shade15: var(--theme-shade15);
-}
-
 /* Theme Settings */
 .green main,
 div.green {
@@ -294,6 +282,13 @@ div.green {
   --theme-shadow2-shade10: var(--box-shadow-2-color1-shade10);
   --theme-shadow3-shade10: var(--box-shadow-3-color1-shade10);
   --theme-shadow4-shade10: var(--box-shadow-4-color1-shade10);
+  --secondary-theme-base: var(--theme-base);
+  --secondary-theme-tint5: var(--theme-tint5);
+  --secondary-theme-tint10: var(--theme-tint10);
+  --secondary-theme-tint15: var(--theme-tint15);
+  --secondary-theme-shade5: var(--theme-shade5);
+  --secondary-theme-shade10: var(--theme-shade10);
+  --secondary-theme-shade15: var(--theme-shade15);
 }
 
 .red main,
@@ -316,6 +311,13 @@ div.red {
   --theme-shadow2-shade10: var(--box-shadow-2-color2-shade10);
   --theme-shadow3-shade10: var(--box-shadow-3-color2-shade10);
   --theme-shadow4-shade10: var(--box-shadow-4-color2-shade10);
+  --secondary-theme-base: var(--theme-base);
+  --secondary-theme-tint5: var(--theme-tint5);
+  --secondary-theme-tint10: var(--theme-tint10);
+  --secondary-theme-tint15: var(--theme-tint15);
+  --secondary-theme-shade5: var(--theme-shade5);
+  --secondary-theme-shade10: var(--theme-shade10);
+  --secondary-theme-shade15: var(--theme-shade15);
 }
 
 .orange main,
@@ -338,6 +340,13 @@ div.orange {
   --theme-shadow2-shade10: var(--box-shadow-2-color3-shade10);
   --theme-shadow3-shade10: var(--box-shadow-3-color3-shade10);
   --theme-shadow4-shade10: var(--box-shadow-4-color3-shade10);
+  --secondary-theme-base: var(--theme-base);
+  --secondary-theme-tint5: var(--theme-tint5);
+  --secondary-theme-tint10: var(--theme-tint10);
+  --secondary-theme-tint15: var(--theme-tint15);
+  --secondary-theme-shade5: var(--theme-shade5);
+  --secondary-theme-shade10: var(--theme-shade10);
+  --secondary-theme-shade15: var(--theme-shade15);
 }
 
 .yellow main,
@@ -360,6 +369,13 @@ div.yellow {
   --theme-shadow2-shade10: var(--box-shadow-2-color4-shade10);
   --theme-shadow3-shade10: var(--box-shadow-3-color4-shade10);
   --theme-shadow4-shade10: var(--box-shadow-4-color4-shade10);
+  --secondary-theme-base: var(--theme-base);
+  --secondary-theme-tint5: var(--theme-tint5);
+  --secondary-theme-tint10: var(--theme-tint10);
+  --secondary-theme-tint15: var(--theme-tint15);
+  --secondary-theme-shade5: var(--theme-shade5);
+  --secondary-theme-shade10: var(--theme-shade10);
+  --secondary-theme-shade15: var(--theme-shade15);
 }
 
 .blue main,
@@ -382,6 +398,13 @@ div.blue {
   --theme-shadow2-shade10: var(--box-shadow-2-color5-shade10);
   --theme-shadow3-shade10: var(--box-shadow-3-color5-shade10);
   --theme-shadow4-shade10: var(--box-shadow-4-color5-shade10);
+  --secondary-theme-base: var(--theme-base);
+  --secondary-theme-tint5: var(--theme-tint5);
+  --secondary-theme-tint10: var(--theme-tint10);
+  --secondary-theme-tint15: var(--theme-tint15);
+  --secondary-theme-shade5: var(--theme-shade5);
+  --secondary-theme-shade10: var(--theme-shade10);
+  --secondary-theme-shade15: var(--theme-shade15);
 }
 
 .purple main,
@@ -404,6 +427,13 @@ div.purple {
   --theme-shadow2-shade10: var(--box-shadow-2-color6-shade10);
   --theme-shadow3-shade10: var(--box-shadow-3-color6-shade10);
   --theme-shadow4-shade10: var(--box-shadow-4-color6-shade10);
+  --secondary-theme-base: var(--theme-base);
+  --secondary-theme-tint5: var(--theme-tint5);
+  --secondary-theme-tint10: var(--theme-tint10);
+  --secondary-theme-tint15: var(--theme-tint15);
+  --secondary-theme-shade5: var(--theme-shade5);
+  --secondary-theme-shade10: var(--theme-shade10);
+  --secondary-theme-shade15: var(--theme-shade15);
 }
 
 .pink main,
@@ -426,6 +456,13 @@ div.pink {
   --theme-shadow2-shade10: var(--box-shadow-2-color7-shade10);
   --theme-shadow3-shade10: var(--box-shadow-3-color7-shade10);
   --theme-shadow4-shade10: var(--box-shadow-4-color7-shade10);
+  --secondary-theme-base: var(--theme-base);
+  --secondary-theme-tint5: var(--theme-tint5);
+  --secondary-theme-tint10: var(--theme-tint10);
+  --secondary-theme-tint15: var(--theme-tint15);
+  --secondary-theme-shade5: var(--theme-shade5);
+  --secondary-theme-shade10: var(--theme-shade10);
+  --secondary-theme-shade15: var(--theme-shade15);
 }
 
 .teal main,
@@ -448,6 +485,13 @@ div.teal {
   --theme-shadow2-shade10: var(--box-shadow-2-color8-shade10);
   --theme-shadow3-shade10: var(--box-shadow-3-color8-shade10);
   --theme-shadow4-shade10: var(--box-shadow-4-color8-shade10);
+  --secondary-theme-base: var(--theme-base);
+  --secondary-theme-tint5: var(--theme-tint5);
+  --secondary-theme-tint10: var(--theme-tint10);
+  --secondary-theme-tint15: var(--theme-tint15);
+  --secondary-theme-shade5: var(--theme-shade5);
+  --secondary-theme-shade10: var(--theme-shade10);
+  --secondary-theme-shade15: var(--theme-shade15);
 }
 
 .secondary-green main,
