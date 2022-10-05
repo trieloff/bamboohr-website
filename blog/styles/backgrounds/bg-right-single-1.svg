@@ -1,11 +1,11 @@
-<svg width="700" height="1328" viewBox="0 0 700 1328" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1191.88 314.74L1287.52 769.823C1302.84 842.754 1278.4 918.045 1223.38 967.355L880.084 1275.04C825.069 1324.35 747.847 1340.16 677.512 1316.55L238.588 1169.15C168.249 1145.53 115.479 1086.05 100.155 1013.12L4.52003 558.039C-10.8042 485.109 13.6423 409.817 68.657 360.507L411.955 52.8261C466.97 3.51646 544.192 -12.3016 614.528 11.3133L1053.45 158.721C1123.79 182.342 1176.56 241.819 1191.88 314.74Z"
+<svg width="744" height="1265" viewBox="0 0 744 1265" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1135.97 300.104L1227.07 733.635C1241.67 803.111 1218.38 874.837 1165.98 921.812L838.936 1214.92C786.526 1261.9 712.961 1276.96 645.957 1254.47L227.82 1114.05C160.812 1091.55 110.542 1034.89 95.9432 965.411L4.83744 531.881C-9.76109 462.404 13.5277 390.678 65.937 343.704L392.977 50.5942C445.386 3.61984 518.951 -11.4491 585.956 11.0474L1004.09 151.474C1071.1 173.976 1121.37 230.636 1135.97 300.104Z"
           fill="url(#bg-right-single-1-a)"/>
     <defs>
-        <linearGradient id="bg-right-single-1-a" x1="350.024" y1="76.0386" x2="788" y2="892"
+        <linearGradient id="bg-right-single-1-a" x1="333.979" y1="72.7074" x2="751.212" y2="850.025"
                         gradientUnits="userSpaceOnUse">
-            <stop stop-color="currentcolor" class="theme-tint-15"/>
-            <stop offset="1" stop-color="currentcolor" class="secondary-tint-15"/>
+            <stop stop-color="currentcolor" class="secondary-tint-15"/>
+            <stop offset="1" stop-color="currentcolor" class="theme-tint-15"/>
         </linearGradient>
     </defs>
 </svg>
