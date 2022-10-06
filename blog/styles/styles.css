@@ -1389,7 +1389,7 @@ body.modal-open {
 
 .modal-wrapper.visible {
   opacity: 1;
-  z-index: 10;
+  z-index: 1005;
 }
 
 .modal {
