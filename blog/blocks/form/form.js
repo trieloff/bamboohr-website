@@ -494,7 +494,8 @@ export default async function decorate(block) {
       }
       if (config.modal && config.modal.toLowerCase() === 'yes') {
         const formModal = async (a) => {
-          a.addEventListener('click', async () => {
+          a.addEventListener('click', async (e) => {
+            e.preventDefault();
             const elem = document.getElementById(`${formId}-modal`);
             if (!elem) {
               const wrapper = document.createElement('div');
@@ -522,12 +523,15 @@ export default async function decorate(block) {
               block.append(wrapper);
               loadFormAndChilipiper(formId, successUrl, chilipiper);
               wrapper.classList.add('visible');
+              document.body.classList.add('modal-open');
               const close = modal.querySelector('.modal-close');
               close.addEventListener('click', () => {
                 wrapper.classList.remove('visible');
+                document.body.classList.remove('modal-open');
               });
             } else {
               elem.classList.add('visible');
+              document.body.classList.add('modal-open');
             }
           });
         };
