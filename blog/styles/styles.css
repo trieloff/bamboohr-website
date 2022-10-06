@@ -1367,6 +1367,10 @@ main .section.gradient-section-4 > div:last-of-type {
 }
 
 /* modal */
+body.modal-open {
+  overflow: hidden;
+}
+
 .modal-wrapper {
   width: 100vw;
   height: 100vh;
