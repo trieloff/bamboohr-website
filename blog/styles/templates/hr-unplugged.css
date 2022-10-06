@@ -25,7 +25,7 @@
   text-align: left;
 }
 
-.hr-unplugged .section-1 .button-container a,
+.hr-unplugged .section-1 .form-wrapper > .form > a > a,
 .hr-unplugged .section-3 .button-container a {
   color: var(--theme-shade15);
   background-color: var(--theme-tint5);
@@ -59,6 +59,10 @@
 .hr-unplugged .section-1 .columns-3-cols img {
   margin-bottom: 0;
   width: 100%;
+}
+
+.hr-unplugged .section-1 .form-wrapper .form {
+  max-width: 1520px;
 }
 
 .hr-unplugged .section-1 .image-wrapper,
@@ -169,6 +173,9 @@
 }
 
 @media (min-width: 1800px) {
+  .hr-unplugged .section-1 .form-wrapper .form {
+    margin-top: -5%;
+  }
 }
 
 .background-color-7-shade-15 {
