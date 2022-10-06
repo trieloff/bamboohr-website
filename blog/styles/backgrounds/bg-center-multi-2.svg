@@ -1,0 +1,19 @@
+<svg width="1900" height="939" viewBox="0 0 1900 939" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path opacity="0.5"
+          d="M1879.26 29.6205L1879.35 28.9448L1879.26 29.6205L1662.34 2.11177C1627.94 -2.25034 1593.7 12.2187 1572.53 40.0815L1439.09 215.704C1417.92 243.568 1413.04 280.582 1426.28 312.804L1509.76 515.931C1523 548.149 1552.35 570.684 1586.76 575.046L1803.68 602.554C1838.08 606.916 1872.32 592.447 1893.49 564.585L2026.93 388.962C2048.09 361.1 2052.98 324.086 2039.73 291.864L1956.26 88.7351C1943.02 56.5175 1913.67 33.9825 1879.26 29.6205Z"
+          stroke="url(#bg-center-multi-2-a)" stroke-width="2"/>
+    <path d="M227.862 727.084L228.703 726.602L227.862 727.084L159.9 608.465C149.185 589.769 129.372 578.308 107.92 578.4L-28.1929 578.977C-49.645 579.068 -69.48 590.696 -80.2262 609.491L-148.374 728.687C-159.12 747.483 -159.137 770.582 -148.423 789.281L-80.458 907.898C-69.7439 926.595 -49.9301 938.055 -28.4789 937.964L107.635 937.387C129.087 937.295 148.922 925.668 159.668 906.873L227.815 787.676C238.559 768.882 238.576 745.783 227.862 727.084Z"
+          stroke="url(#bg-center-multi-2-b)" stroke-opacity="0.5" stroke-width="2"/>
+    <defs>
+        <linearGradient id="bg-center-multi-2-a" x1="1851.83" y1="13.6363" x2="1614.19" y2="591.029"
+                        gradientUnits="userSpaceOnUse">
+            <stop stop-color="currentcolor" class="theme-shade-15"/>
+            <stop offset="1" stop-color="currentcolor" class="theme-shade-10"/>
+        </linearGradient>
+        <linearGradient id="bg-center-multi-2-b" x1="89.695" y1="570.377" x2="-10.2545" y2="945.987"
+                        gradientUnits="userSpaceOnUse">
+            <stop stop-color="currentcolor" class="theme-shade-10"/>
+            <stop offset="1" stop-color="currentcolor" class="theme"/>
+        </linearGradient>
+    </defs>
+</svg>

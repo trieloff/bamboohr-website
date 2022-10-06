@@ -16,7 +16,11 @@
 @import 'templates/payroll-roi.css';
 @import 'templates/pricing-quote.css';
 @import 'templates/hr-software.css';
+<<<<<<< HEAD
 @import 'templates/hr-unplugged.css';
+=======
+@import 'templates/live-demo-webinars.css';
+>>>>>>> main
 
 html {
   box-sizing: border-box;
@@ -80,10 +84,6 @@ a.button:any-link {
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
-}
-
-.live-demo-webinars main .columns a.button:any-link {
-  background-image: linear-gradient(90deg, var(--color-1-tint-5) 0%, var(--color-1-shade-5) 100%);
 }
 
 a.button:hover,
@@ -700,6 +700,10 @@ main .section > div:empty {
     max-width: 760px;
   }
 
+  main .section > div.title-wrapper.extra-small-width {
+    max-width: 450px;
+  }
+
   .resources-guides main .section > div.columns-wrapper.small-width {
     max-width: 640px;
   }
@@ -983,14 +987,6 @@ main .default-content-wrapper p a.button:any-link {
   background-position: 0 250px, top;
   background-repeat: no-repeat;
   background-size: contain;
-}
-
-.live-demo-webinars {
-  background-color: unset;
-  background-image: url('./hex-top-live-demo.svg');
-  background-size: contain;
-  background-position: top, left;
-  background-repeat: no-repeat;
 }
 
 @media (min-width: 1000px) {
@@ -1383,6 +1379,10 @@ main .section.gradient-section-4 > div:last-of-type {
 }
 
 /* modal */
+body.modal-open {
+  overflow: hidden;
+}
+
 .modal-wrapper {
   width: 100vw;
   height: 100vh;
@@ -1401,7 +1401,7 @@ main .section.gradient-section-4 > div:last-of-type {
 
 .modal-wrapper.visible {
   opacity: 1;
-  z-index: 10;
+  z-index: 1005;
 }
 
 .modal {

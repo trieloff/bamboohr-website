@@ -1,7 +1,9 @@
 export default function decorate(block) {
   const cards = block.querySelectorAll(':scope > div');
+  let topImageFull = false;
 
   if (block.classList.contains('full-width')) block.parentElement.classList.add('full-width');
+  if (block.classList.contains('image-top-full')) topImageFull = true;
 
   // convert "number" classes
   [...block.classList].forEach((name) => {
@@ -25,8 +27,23 @@ export default function decorate(block) {
       // set alignment
       if (alignment) card.dataset.align = alignment;
 
-      // pull everything into one div
-      [...content.children].forEach((element) => card.append(element));
+      // pull everything into one div or two (if top image is full)
+      let textDiv = null;
+      [...content.children].forEach((element) => {
+        if (topImageFull) {
+          // Picture element is separate so it can be full width
+          if (element?.firstElementChild?.tagName.toLowerCase() === 'picture') card.append(element);
+          else {
+            // Everything else goes in it's own div
+            if (!textDiv) {
+              textDiv = document.createElement('div');
+              textDiv.classList.add('has-text-only');
+              card.append(textDiv);
+            }
+            textDiv.append(element);
+          }
+        } else card.append(element);
+      });
     });
 
     const image = card.querySelector('picture');
@@ -41,6 +58,7 @@ export default function decorate(block) {
     // add image classes
     if (image) {
       card.classList.add('has-image');
+      if (topImageFull) card.classList.add('full');
       image.classList.add('image');
     }
 

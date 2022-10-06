@@ -1,0 +1,19 @@
+<svg width="1440" height="1268" viewBox="0 0 1440 1268" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M-62.2826 810.377L-62.3919 809.383L-62.2827 810.377L-228.063 828.599C-254.271 831.48 -277.013 848.252 -287.72 872.61L-355.416 1026.62C-366.124 1050.98 -363.163 1079.21 -347.653 1100.69L-249.571 1236.47C-234.063 1257.94 -208.365 1269.39 -182.158 1266.51L-16.3774 1248.29C9.83106 1245.41 32.5722 1228.63 43.2795 1204.28L110.976 1050.26C121.68 1025.91 118.719 997.675 103.21 976.203L104.021 975.618L103.21 976.203L5.13099 840.413C-10.3778 818.945 -36.075 807.495 -62.2826 810.377Z"
+          stroke="url(#bg-center-multi-2-laptop-a)" stroke-opacity="0.5" stroke-width="2"/>
+    <path opacity="0.5"
+          d="M1585.79 30.2565L1585.91 29.2664L1585.79 30.2564L1368.87 2.74776C1334.46 -1.61437 1300.23 12.8547 1279.06 40.7175L1145.62 216.34C1124.44 244.204 1119.56 281.218 1132.81 313.44L1216.29 516.567C1229.53 548.785 1258.88 571.32 1293.28 575.682L1510.2 603.19C1544.61 607.553 1578.84 593.084 1600.01 565.221L1733.45 389.598C1754.62 361.736 1759.5 324.722 1746.26 292.5L1747.18 292.12L1746.26 292.5L1662.78 89.3711C1649.54 57.1535 1620.19 34.6185 1585.79 30.2565Z"
+          stroke="url(#bg-center-multi-2-laptop-b)" stroke-width="2"/>
+    <defs>
+        <linearGradient id="bg-center-multi-2-laptop-a" x1="-85.4985" y1="803.17" x2="-158.943" y2="1273.72"
+                        gradientUnits="userSpaceOnUse">
+            <stop stop-color="currentcolor" class="theme-shade-10"/>
+            <stop offset="1" stop-color="currentcolor" class="theme"/>
+        </linearGradient>
+        <linearGradient id="bg-center-multi-2-laptop-b" x1="1558.36" y1="14.2723" x2="1320.71" y2="591.665"
+                        gradientUnits="userSpaceOnUse">
+            <stop stop-color="currentcolor" class="theme-shade-15"/>
+            <stop offset="1" stop-color="currentcolor" class="theme-shade-10"/>
+        </linearGradient>
+    </defs>
+</svg>

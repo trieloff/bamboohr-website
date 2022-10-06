@@ -124,7 +124,8 @@
     }
 }
 
-.cards > .card .button:any-link {
+.cards > .card .button:any-link,
+.cards div.has-text-only p.button-container .button:any-link {
     background-color: revert;
     border-radius: revert;
     color: var(--theme-shade5);
@@ -137,6 +138,10 @@
     padding: 0;
     text-align: left;
     white-space: revert;
+}
+
+.cards div.has-text-only p.button-container {
+    text-align: left;
 }
 
 /* link caret styles */
@@ -224,10 +229,25 @@
 }
 
 .cards.background > .card {
-    --padding: 2.5rem;
-
     background-color: var(--color-white);
     border-radius: 1rem;
+}
+
+.cards.background > .card:not(.full) {
+    --padding: 2.5rem;
+}
+
+.cards.background > .card > div.has-text-only {
+    padding: 0 2.5rem 2.5rem;
+}
+
+div.has-text-only h3,
+div.has-text-only h4 {
+    margin: 0;
+}
+
+div.has-text-only h4 {
+    color: var(--color-gray-6);
 }
 
 .cards.background > .card > .title,
