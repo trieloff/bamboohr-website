@@ -2,7 +2,6 @@ import {
   createElem,
   decorateButtons,
   decorateIcons,
-  getMetadata,
 } from '../../scripts/scripts.js';
 
 const LEVEL_1_NAV_SELECTOR = '.header-nav-level-1';
