@@ -68,7 +68,7 @@
     padding: var(--padding);
 }
 
-.cards > .card > .icon {
+.cards > .card .icon {
     --image-height: auto;
 
     align-items: end;
@@ -79,7 +79,7 @@
 }
 
 @media (min-width: 600px) {
-    .cards > .card > .icon {
+    .cards > .card .icon {
         --image-height: 2rem;
     }
 }
@@ -167,7 +167,7 @@
     text-align: center;
 }
 
-.cards > .card[data-align="center"] > .icon,
+.cards > .card[data-align="center"] .icon,
 .cards > .card[data-align="center"] > .image {
     align-self: center;
 }
@@ -180,7 +180,7 @@
     text-align: right;
 }
 
-.cards > .card[data-align="right"] > .icon,
+.cards > .card[data-align="right"] .icon,
 .cards > .card[data-align="right"] > .image {
     align-self: end;
 }
@@ -191,11 +191,11 @@
 
 /* icon styles */
 @media (min-width: 600px) {
-    .cards.icon-50 > .card > .icon {
+    .cards.icon-50 > .card .icon {
         --image-height: 3.125rem;
     }
 
-    .cards.icon-60 > .card > .icon {
+    .cards.icon-60 > .card .icon {
         --image-height: 3.75rem;
     }
 }
@@ -255,7 +255,7 @@ div.has-text-only h4 {
     transition: color .25s ease-in-out;
 }
 
-.cards.background > .card:hover > .icon,
+.cards.background > .card:hover .icon,
 .cards.background > .card:hover > .title,
 .cards.background > .card:hover .button:any-link {
     color: var(--theme-shade5);
@@ -289,7 +289,7 @@ div.has-text-only h4 {
     position: relative;
 }
 
-.cards.icon-inline > .card > .icon {
+.cards.icon-inline > .card .icon {
     color: var(--theme-shade5);
     left: calc(var(--gap) * -.75);
     position: absolute;
@@ -307,12 +307,12 @@ div.has-text-only h4 {
 }
 
 /* "dual-tone" styles */
-.cards.dual-tone > .card > .icon,
-.cards.dual-tone > .card > .icon .shade {
+.cards.dual-tone > .card .icon,
+.cards.dual-tone > .card .icon .shade {
     color: var(--secondary-theme-shade5);
 }
 
-.cards.dual-tone > .card > .icon .tint {
+.cards.dual-tone > .card .icon .tint {
     color: var(--secondary-theme-tint10);
 }
 
@@ -385,6 +385,45 @@ div.has-text-only h4 {
     text-transform: uppercase;
 }
 
+.cards.hex-background-dual-tone > .card {
+    text-align: center;
+}
+
+.cards.hex-background-dual-tone > .card .icon-container {
+    display: block;
+    height: 58px;
+    margin: 0 auto;
+    position: relative;
+    text-align: left;
+    width: 60px;
+}
+
+.cards.hex-background-dual-tone > .card .icon-container .icon-background {
+    position: absolute;
+}
+
+.cards.hex-background-dual-tone > .card .icon-background .hex-primary {
+    fill: var(--theme-shade15);
+}
+
+.cards.hex-background-dual-tone > .card .icon-background .hex-secondary {
+    stroke: var(--theme-shade5);
+}
+
+.cards.hex-background-dual-tone > .card .icon-container .icon {
+    bottom: 10px;
+    position: absolute;
+    right: 12px;
+}
+
+.cards.hex-background-dual-tone > .card .icon {
+    color: var(--theme-tint5);
+}
+
+.cards.hex-background-dual-tone > .card > .title {
+    color: var(--theme-shade5);
+}
+
 /* TODO: temp to be removed? */
 main .section > .cards-wrapper {
     max-width: 1160px;
@@ -395,4 +434,14 @@ main .section > .cards-wrapper {
     background-color: var(--color-gray-1);
     padding-bottom: 3rem;
     padding-top: .1rem;
+}
+
+@media (min-width: 600px) {
+    .cards.hex-background-dual-tone > .card {
+        text-align: left;
+    }
+
+    .cards.hex-background-dual-tone > .card .icon-container {
+        margin: 0;
+    }
 }
