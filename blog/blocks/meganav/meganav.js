@@ -351,7 +351,7 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // fetch nav content
-  const navPath = getMetadata('nav') || MEGANAV_LOCATION;
+  const navPath = MEGANAV_LOCATION;
 
   const resp = await fetch(`${window.hlx.serverPath}${navPath}.plain.html`);
   let html = await resp.text();

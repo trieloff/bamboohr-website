@@ -473,7 +473,8 @@ export async function loadBlock(block, eager = false) {
     const blockName = block.getAttribute('data-block-name');
     try {
       const cssLoaded = new Promise((resolve) => {
-        loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`, resolve);
+        const cssBase = `${window.hlx.serverPath}${window.hlx.codeBasePath}`;
+        loadCSS(`${cssBase}/blocks/${blockName}/${blockName}.css`, resolve);
       });
       const decorationComplete = new Promise((resolve) => {
         (async () => {
