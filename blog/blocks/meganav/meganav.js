@@ -132,6 +132,7 @@ function buildLevel1Link(ref) {
   const linkElem = document.createElement('a');
   linkElem.classList.add('header-level-1-link', LINK_ANIMATION_CSS_CLASS);
   linkElem.setAttribute('href', titleRef?.href);
+  linkElem.setAttribute('am-region', titleRef?.textContent);
 
   const titleElem = document.createElement('span');
   titleElem.classList.add('header-level-1-link-title');
@@ -159,13 +160,14 @@ const level2ToggleHandler = (evt) => {
 function buildLevel2Column(ref) {
   const colElem = document.createElement('div');
   colElem.classList.add('header-subnav-col');
-
+  
   const firstChild = ref.firstElementChild;
 
   if (firstChild.nodeName === 'H3') {
     // Header Link
     const level2LinkElem = firstChild.firstElementChild;
     level2LinkElem.classList.add('header-level-2-main-link', LINK_ANIMATION_CSS_CLASS);
+    colElem.setAttribute('am-region', level2LinkElem.textContent);
 
     level2LinkElem.addEventListener('click', level2ToggleHandler);
 
@@ -232,8 +234,14 @@ function buildSidebar(ref) {
 
   const cta1 = ref.querySelector(':scope > div:nth-child(2)');
   cta1?.classList.add('header-cta', 'header-cta-primary');
+  let cta1AMRegion = cta1?.innerHTML.match(/<h\d.*?>(.*)<\/h\d>/);
+  cta1AMRegion = (cta1AMRegion ? `CTA 1: ${cta1AMRegion[1]}` : 'CTA 1');
+  cta1?.setAttribute('am-region', cta1AMRegion);
   const cta2 = ref.querySelector(':scope > div:nth-child(3)');
   cta2?.classList.add('header-cta', 'header-cta-secondary');
+  let cta2AMRegion = cta2?.innerHTML.match(/<h\d.*?>(.*)<\/h\d>/);
+  cta2AMRegion = (cta2AMRegion ? `CTA 2: ${cta2AMRegion[1]}` : 'CTA 2');
+  cta2?.setAttribute('am-region', cta2AMRegion);
 
   if (cta1) {
     sidebarElem.append(cta1);
@@ -289,6 +297,7 @@ async function buildNavLevel1(linkElem) {
 
   const level1RootElem = document.createElement('div');
   level1RootElem.classList.add('header-nav-level-1');
+  level1RootElem.setAttribute('am-region', linkElem.textContent);
 
   const topNavLink = document.createElement('a');
   topNavLink.classList.add('header-top-link');
@@ -324,6 +333,7 @@ async function buildNavContainer(ref) {
   const navRef = ref.querySelector(':scope > div:nth-child(2)');
   const navContainer = document.createElement('div');
   navContainer.classList.add('header-nav-container');
+  navContainer.setAttribute('am-region', 'Mega Nav');
 
   const mainNavElem = document.createElement('nav');
   mainNavElem.classList.add('header-navigation');
