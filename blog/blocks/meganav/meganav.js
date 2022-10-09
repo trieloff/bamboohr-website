@@ -160,7 +160,7 @@ const level2ToggleHandler = (evt) => {
 function buildLevel2Column(ref) {
   const colElem = document.createElement('div');
   colElem.classList.add('header-subnav-col');
-  
+
   const firstChild = ref.firstElementChild;
 
   if (firstChild.nodeName === 'H3') {
