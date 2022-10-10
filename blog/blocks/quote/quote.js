@@ -6,9 +6,9 @@ export default function decorate(block) {
 
   // Adding image class to block children
   [...block.children].forEach((row) => {
-    [...row.children].forEach((cell) =>
-      cell.classList.add(cell.querySelector('img') ? 'image' : 'content')
-    );
+    [...row.children].forEach((cell) => {
+      cell.classList.add(cell.querySelector('img') ? 'image' : 'content');
+    });
   });
 
   // if company
