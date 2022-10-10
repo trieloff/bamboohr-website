@@ -173,7 +173,7 @@ main .carousel.style-3 ~ .carousel-buttons {
   margin-top: -1.5rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 700px) {
   main .carousel.style-1 ~ .carousel-buttons,
   main .carousel.style-2 ~ .carousel-buttons,
   main .carousel.style-3 ~ .carousel-buttons {
