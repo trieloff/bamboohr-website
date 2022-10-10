@@ -16,15 +16,6 @@ main .carousel {
   background-color: var(--color-white);
 }
 
-main .carousel *,
-main .carousel *::before,
-main .carousel *::after,
-main .carousel + .carousel-buttons *,
-main .carousel + .carousel-buttons *::before,
-main .carousel + .carousel-buttons *::after {
-  box-sizing: border-box;
-}
-
 main .carousel picture {
   position: absolute;
   top: 0;
@@ -96,6 +87,10 @@ main .carousel-buttons button.selected {
   background-color: var(--color-1);
 }
 
+main .carousel-wrapper .carousel-controls {
+  display: none;
+}
+
 @media (min-width: 700px) {
   main .carousel {
     margin: 64px 0;
@@ -126,14 +121,16 @@ main .carousel-buttons button.selected {
 
 /* undo defaults for new styles, set some defaults */
 main .carousel.style-1,
-main .carousel.style-2 {
+main .carousel.style-2,
+main .carousel.style-3 {
   background-color: unset;
   border-radius: unset;
   box-shadow: unset;
 }
 
 main .carousel.style-1 > div,
-main .carousel.style-2 > div {
+main .carousel.style-2 > div,
+main .carousel.style-3 > div {
   background-image: unset;
   color: unset;
   height: unset;
@@ -141,12 +138,14 @@ main .carousel.style-2 > div {
 }
 
 main .carousel.style-1 picture,
-main .carousel.style-2 picture {
+main .carousel.style-2 picture,
+main .carousel.style-3 picture {
   position: unset;
 }
 
 main .carousel.style-1 .carousel-text,
-main .carousel.style-2 .carousel-text {
+main .carousel.style-2 .carousel-text,
+main .carousel.style-3 .carousel-text {
   color: var(--color-gray-10);
   display: flex;
   flex-direction: column;
@@ -162,17 +161,29 @@ main .carousel.style-2 .carousel-text {
 }
 
 main .carousel.style-1 p:empty,
-main .carousel.style-2 p:empty {
+main .carousel.style-2 p:empty,
+main .carousel.style-3 p:empty {
   display: none;
 }
 
-main .carousel.style-1 + .carousel-buttons,
-main .carousel.style-2 + .carousel-buttons {
+main .carousel.style-1 ~ .carousel-buttons,
+main .carousel.style-2 ~ .carousel-buttons,
+main .carousel.style-3 ~ .carousel-buttons {
   gap: calc(var(--gap) - var(--size));
+  margin-top: -1.5rem;
 }
 
-main .carousel.style-1 + .carousel-buttons button,
-main .carousel.style-2 + .carousel-buttons button {
+@media (min-width: 700px) {
+  main .carousel.style-1 ~ .carousel-buttons,
+  main .carousel.style-2 ~ .carousel-buttons,
+  main .carousel.style-3 ~ .carousel-buttons {
+    margin-top: -3rem;
+  }
+}
+
+main .carousel.style-1 ~ .carousel-buttons button,
+main .carousel.style-2 ~ .carousel-buttons button,
+main .carousel.style-3 ~ .carousel-buttons button {
   background-color: transparent;
   border-radius: 50%;
   display: flex;
@@ -182,8 +193,9 @@ main .carousel.style-2 + .carousel-buttons button {
   width: auto;
 }
 
-main .carousel.style-1 + .carousel-buttons button::after,
-main .carousel.style-2 + .carousel-buttons button::after {
+main .carousel.style-1 ~ .carousel-buttons button::after,
+main .carousel.style-2 ~ .carousel-buttons button::after,
+main .carousel.style-3 ~ .carousel-buttons button::after {
   border-radius: 50%;
   content: '';
   display: block;
@@ -272,7 +284,7 @@ main .carousel.style-1 a.button::after {
   width: 0.5rem;
 }
 
-main .carousel.style-1 + .carousel-buttons {
+main .carousel.style-1 ~ .carousel-buttons {
   --gap: 1.25rem;
   --size: 0.75rem;
 
@@ -280,12 +292,12 @@ main .carousel.style-1 + .carousel-buttons {
   justify-content: start;
 }
 
-main .carousel.style-1 + .carousel-buttons button::after {
+main .carousel.style-1 ~ .carousel-buttons button::after {
   background-color: transparent;
   border: 2px solid var(--theme-base);
 }
 
-main .carousel.style-1 + .carousel-buttons button.selected::after {
+main .carousel.style-1 ~ .carousel-buttons button.selected::after {
   border-color: var(--theme-shade5);
   background-color: var(--theme-shade5);
 }
@@ -349,26 +361,127 @@ main .carousel.style-2 p {
   color: var(--color-gray-10);
 }
 
-main .carousel.style-2 + .carousel-buttons {
+main .carousel.style-2 ~ .carousel-buttons {
   --gap: 1.875rem;
   --size: 1.25rem;
 }
 
 @media (min-width: 1025px) {
-  main .carousel.style-2 + .carousel-buttons button {
+  main .carousel.style-2 ~ .carousel-buttons button {
     display: none;
   }
 }
 
-main .carousel.style-2 + .carousel-buttons button::after {
+main .carousel.style-2 ~ .carousel-buttons button::after {
   background-color: var(--theme-tint5);
 }
 
-main .carousel.style-2 + .carousel-buttons button.selected::after {
+main .carousel.style-2 ~ .carousel-buttons button.selected::after {
   background-color: var(--theme-shade10);
 }
 
-/* TODO: remove me? */
-main .carousel-container.temp-wide .carousel-wrapper {
-  max-width: 1040px;
+/* style 3 */
+main .carousel.style-3 {
+  --max-width: 11.25rem;
+  --margin-left: calc(calc(100% / 2) - calc(var(--max-width) / 2));
+
+  gap: 2.5rem;
+  margin-left: var(--margin-left);
+  margin-right: calc(calc(calc(100vw - 100%) - var(--scrollbar-width)) / -2);
+}
+
+@media (min-width: 600px) {
+  main .carousel.style-3 {
+    --margin-left: 8rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  main .carousel.style-3 {
+    --margin-left: 12rem;
+  }
+}
+
+main .carousel.style-3 > div {
+  box-shadow: var(--box-shadow-2-gray-shade10);
+  max-width: var(--max-width);
+  width: auto;
+}
+
+@media (min-width: 600px) {
+  main .carousel.style-3 > div {
+    --max-width: 18.75rem;
+  }
+}
+
+@media (min-width: 600px) {
+  main .carousel.style-3 > div {
+    --max-width: 22.5rem;
+  }
+}
+
+main .carousel.style-3 > div:last-child {
+  margin-right: 100vw;
+}
+
+main .carousel.style-3 ~ .carousel-buttons {
+  --gap: .5rem;
+  --size: 0.5rem;
+}
+
+main .carousel.style-3 ~ .carousel-buttons button::after {
+  background-color: transparent;
+  border: 1px solid var(--theme-shade10);
+}
+
+main .carousel.style-3 ~ .carousel-buttons button.selected::after {
+  background-color: var(--theme-shade10);
+  border-color: var(--theme-shade10);
+}
+
+main .carousel.style-3 ~ .carousel-controls {
+  --extra-padding: 64px;
+
+  flex-direction: column;
+  left: 0;
+  position: absolute;
+  top: calc(50% - var(--extra-padding));
+  transform: translateY(calc(-50% - calc(var(--extra-padding) / 2)));
+}
+
+@media (min-width: 600px) {
+  main .carousel.style-3 ~ .carousel-controls {
+    display: flex;
+  }
+}
+
+main .carousel.style-3 ~ .carousel-controls button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: .5rem;
+}
+
+main .carousel.style-3 ~ .carousel-controls button::after {
+  background-color: var(--theme-shade10);
+  content: '';
+  display: block;
+  height: 1rem;
+  mask-image: url('../../styles/arrow-right.svg');
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-image: url('../../styles/arrow-right.svg');
+  transition: background-color .25s ease-in-out;
+  width: 1.875rem;
+}
+
+main .carousel.style-3 ~ .carousel-controls button.disabled {
+  cursor: auto;
+}
+
+main .carousel.style-3 ~ .carousel-controls button.disabled::after {
+  background-color: var(--color-gray-5);
+}
+
+main .carousel.style-3 ~ .carousel-controls button.prev {
+  transform: rotate(180deg);
 }
