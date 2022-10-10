@@ -91,6 +91,8 @@ export default function decorate(block) {
     const active = buttons.querySelector('.selected');
     const index = [...buttons.children].indexOf(active);
 
+    if (target.classList.contains('disabled')) return;
+
     if (target.classList.contains('prev')) {
       [...buttons.children].at(index - 1).click();
     } else if (target.classList.contains('next')) {
