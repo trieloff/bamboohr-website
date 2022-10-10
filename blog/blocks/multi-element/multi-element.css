@@ -276,7 +276,7 @@ main .multi-element p {
 @media (min-width: 769px) {
     .multi-element.hero > div > div:not(.has-images) {
         align-items: start;
-        justify-content: start;
+        justify-content: center;
         text-align: left;
     }
 }
