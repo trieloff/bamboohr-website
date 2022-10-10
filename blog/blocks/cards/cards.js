@@ -29,7 +29,6 @@ export default function decorate(block) {
   cards.forEach((card) => {
     const contents = card.querySelectorAll(':scope > div');
     const icon = card.querySelector('span.icon');
-    const iconContainer = createElem('span', 'icon-container');
 
     // loop children
     card.textContent = '';
@@ -61,11 +60,14 @@ export default function decorate(block) {
     const image = card.querySelector('picture');
     const title = card.querySelector('h4');
 
+    let iconContainer = createElem('span', 'icon-container');
+
     if (block.classList.contains('hex-background-dual-tone')) {
       iconContainer.append(decorateIconBackground());
+      iconContainer.append(icon);
+    } else {
+      iconContainer = icon;
     }
-
-    iconContainer.append(icon);
 
     // move icon out of p
     if (icon) card.prepend(iconContainer);
