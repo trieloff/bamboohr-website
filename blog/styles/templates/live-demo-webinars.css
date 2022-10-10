@@ -42,8 +42,16 @@
     margin-top: 40px;
 }
 
-.live-demo-webinars .columns .non-img-col h3 {
+.live-demo-webinars .columns .non-img-col h3,
+.live-demo-webinars .columns .non-img-col h5 {
     margin-top: 0;
+    margin-bottom: 0;
+}
+
+.live-demo-webinars .cards div.has-text-only h6 {
+    color: var(--color-gray-6);
+    margin-top: 0;
+    font-size: 16px;
 }
 
 @media (min-width: 600px) {
