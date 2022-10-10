@@ -31,34 +31,26 @@
   background-color: var(--theme-tint5);
 }
 
-.hr-unplugged .section-1 .columns.podcast-cards div div {
+.hr-unplugged .section-1 .columns.podcast-cards > div > div {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.hr-unplugged .section-1 .columns.podcast-cards div div p:first-of-type {
+.hr-unplugged .section-1 .columns.podcast-cards > div > div p:first-of-type {
   margin: 0;
 }
 
-.hr-unplugged .section-1 .columns.podcast-cards div div p:not(:first-of-type) {
+.hr-unplugged .section-1 .columns.podcast-cards > div > div p:not(:first-of-type) {
   color: var(--color-white);
   margin-top: 10px;
 }
 
-.hr-unplugged .section-1 .columns.podcast-cards div div h4 {
+.hr-unplugged .section-1 .columns.podcast-cards > div > div > h4 {
   position: relative;
-}
-
-.hr-unplugged .section-1 .columns.podcast-cards div div h4 {
   color: var(--color-white);
   margin: 10px 0 0;
   font-weight: 600 !important;
   font-style: normal;
-}
-
-.hr-unplugged .section-1 .columns-3-cols img {
-  margin-bottom: 0;
-  width: 100%;
 }
 
 .hr-unplugged .section-1 .form-wrapper .form {
@@ -81,22 +73,26 @@
 }
 
 .hr-unplugged .hexie-cap-2 img {
-  margin: -30px -30px -50px;
+  margin: -1px -30px -50px;
 }
 
-.hr-unplugged .columns.podcast-links div div:first-child {
+.hr-unplugged .section-3 {
+  margin-top: -30px;
+}
+
+.hr-unplugged .columns.podcast-links > div {
   margin-top: 30px;
 }
 
-.hr-unplugged .columns.podcast-links div div {
-  margin-top: 20px;
+.hr-unplugged .columns.podcast-links > div > div {
+  margin-bottom: 20px;
 }
 
-.hr-unplugged .columns.podcast-links div div h4 {
+.hr-unplugged .columns.podcast-links > div > div > h4 {
   margin: 0;
 }
 
-.hr-unplugged .section-2 .title.section-header div div {
+.hr-unplugged .section-2 .title.section-header > div > div {
   color: var(--theme-tint5);
 }
 
@@ -109,14 +105,14 @@
 }
 
 @media (min-width: 600px) {
- .hr-unplugged .section-1 .columns.podcast-cards div {
+ .hr-unplugged .section-1 .columns.podcast-cards > div {
     flex-direction: row;
     flex-wrap: wrap;
     margin-left: -40px;
     align-items: flex-start;
   }
 
-  .hr-unplugged .section-1 .columns.podcast-cards div div {
+  .hr-unplugged .section-1 .columns.podcast-cards > div > div {
     width: calc(50% - 40px);
     margin: 0 0 50px 40px;
   }
@@ -127,20 +123,13 @@
     margin-right: -54px;
   }
 
-  .hr-unplugged .columns.podcast-links div {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 420px;
-    margin: 0 auto;
+  .hr-unplugged .columns.podcast-links > div {
+    flex-flow: row wrap;
+    justify-content: center;
   }
 
-  .hr-unplugged .columns.podcast-links div div {
-    width: calc(50% - 10px);
-  }
-
-  .hr-unplugged .columns.podcast-links div div:first-child {
-    margin-top: 20px;
+  .hr-unplugged .columns.podcast-links > div > div {
+    margin: 0 10px 20px;
   }
 
 }
@@ -151,16 +140,8 @@
     margin-right: 0;
   }
 
-  .hr-unplugged .section-1 .columns.podcast-cards div div {
+  .hr-unplugged .section-1 .columns.podcast-cards > div > div {
     width: calc(33.33% - 40px);
-  }
-
-  .hr-unplugged .columns.podcast-links div {
-    max-width: 820px;
-  }
-
-  .hr-unplugged .columns.podcast-links div div {
-    width: calc(25% - 10px);
   }
 }
 
@@ -178,26 +159,14 @@
   }
 }
 
-.background-color-7-shade-15 {
-  background-color: var(--color-7-shade-15);
-}
-
-.color-7-tint-5 {
-  color: var(--color-7-tint-5);
-}
-
-.color-white {
-  color: var(--color-white);
-}
-
-.black {
-  color: var(--color-black);
-}
-
 .center {
   text-align: center;
 }
 
 .italic {
   font-style: italic;
+}
+
+.hr-unplugged .section-2 p {
+  color: var(--color-black);
 }
