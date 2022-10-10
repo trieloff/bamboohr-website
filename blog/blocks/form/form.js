@@ -152,7 +152,7 @@ async function submitForm(form) {
 
 function createButton(fd) {
   const button = document.createElement('a');
-  button.classList.add('button, small');
+  button.classList.add('button');
   button.href = '';
   button.textContent = fd.Label;
   if (fd.Field === 'submit') {
