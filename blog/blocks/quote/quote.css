@@ -166,6 +166,26 @@ main .quote.full .byline {
   color: var(--color-gray-9);
 }
 
+main .quote.full .content h4.company {
+  font-family: var(--body-font-family);
+  font-weight: 700;
+  font-size: 1.625rem;
+  line-height: 1.15;
+  font-style: normal;
+}
+
+main .quote.full.secondary {
+  color: var(--theme-shade10);
+}
+
+main .quote.full.secondary .content h4.company {
+  color: var(--theme-shade5);
+}
+
+main .quote.full.secondary .byline {
+  color: var(--theme-shade5);
+}
+
 @media (min-width: 1025px) {
   main .quote.full .button-container {
     text-align: left;
