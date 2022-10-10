@@ -1,3 +1,14 @@
+import { createElem } from '../../scripts/scripts.js';
+
+function decorateIconBackground() {
+  const iconBackground = createElem('span', 'icon-background');
+  fetch(`${window.hlx.serverPath}${window.hlx.codeBasePath}/icons/bg-hex-dual.svg`).then((resp) => {
+    if (resp.status === 200) resp.text().then((svg) => { iconBackground.innerHTML = svg; });
+  });
+
+  return iconBackground;
+}
+
 export default function decorate(block) {
   const cards = block.querySelectorAll(':scope > div');
   let topImageFull = false;
@@ -49,8 +60,17 @@ export default function decorate(block) {
     const image = card.querySelector('picture');
     const title = card.querySelector('h4');
 
+    let iconContainer = createElem('span', 'icon-container');
+
+    if (block.classList.contains('hex-background-dual-tone')) {
+      iconContainer.append(decorateIconBackground());
+      iconContainer.append(icon);
+    } else {
+      iconContainer = icon;
+    }
+
     // move icon out of p
-    if (icon) card.prepend(icon);
+    if (icon) card.prepend(iconContainer);
 
     // clear out empties
     card.querySelectorAll(':scope > p:empty').forEach((empty) => empty.remove());

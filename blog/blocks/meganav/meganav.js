@@ -2,7 +2,6 @@ import {
   createElem,
   decorateButtons,
   decorateIcons,
-  getMetadata,
 } from '../../scripts/scripts.js';
 
 const LEVEL_1_NAV_SELECTOR = '.header-nav-level-1';
@@ -279,9 +278,14 @@ function buildNavLevel1Container(ref, linkElem) {
 }
 
 async function buildNavLevel1(linkElem) {
-  const resp = await fetch(`${window.hlx.serverPath}${linkElem.pathname}.plain.html`);
+  const level1Src = new URL(`${window.hlx.serverPath}${linkElem.pathname}.plain.html`, window.location.href).toString();
+  const resp = await fetch(level1Src);
   const level1Ref = document.createElement('div');
   level1Ref.innerHTML = await resp.text();
+  level1Ref.querySelectorAll('picture img, picture source').forEach((e) => {
+    if (e.src) e.src = new URL(e.getAttribute('src'), level1Src);
+    if (e.srcset) e.srcset = new URL(e.getAttribute('srcset'), level1Src);
+  });
 
   const level1RootElem = document.createElement('div');
   level1RootElem.classList.add('header-nav-level-1');
@@ -346,7 +350,7 @@ export default async function decorate(block) {
   block.textContent = '';
 
   // fetch nav content
-  const navPath = getMetadata('nav') || MEGANAV_LOCATION;
+  const navPath = MEGANAV_LOCATION;
 
   const resp = await fetch(`${window.hlx.serverPath}${navPath}.plain.html`);
   let html = await resp.text();

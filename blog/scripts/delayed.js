@@ -44,8 +44,36 @@ function loadScript(location, url, callback, type) {
 
 loadScript('footer', 'https://consent.trustarc.com/v2/notice/qvlbs6', null, 'text/javascript');
 
-/* Adobe Tags */
-loadScript('header', `https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/launch-${(/^(marketplace|partners|www)\.bamboohr\.com$/i.test(document.location.hostname) ? '58a206bf11f0.min.js' : '9e4820bf112c-staging.min.js')}`, async () => {
+/**
+ * Adobe Tags
+ *
+ * To set a Development Environment, from your browser's Developer Tools' Console run
+ *   localStorage.setItem('Adobe Tags Development Environment', '#')
+ * (where # is 1, 2, 3, 4, or 5) and reload the page.
+ *
+ * To remove the Development Environment, from your browser's Developer Tools' Console run
+ *   localStorage.removeItem('Adobe Tags Development Environment')
+ * and reload the page.
+ */
+let adobeTagsSrc = 'https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/launch-';
+const adobeTagsDevEnvNumber = (localStorage ? localStorage.getItem('Adobe Tags Development Environment') : undefined);
+const adobeTagsDevEnvURLList = {
+  1: 'f8d48fe68c86-development.min.js',
+  2: 'c043b6e2b351-development.min.js',
+  3: 'ede0a048d603-development.min.js',
+  4: '7565e018a7a2-development.min.js',
+  5: '30e70f4281a7-development.min.js'
+};
+const adobeTagsDevEnv = adobeTagsDevEnvURLList[adobeTagsDevEnvNumber];
+
+if (adobeTagsDevEnv) {
+  adobeTagsSrc += adobeTagsDevEnv;
+} else {
+  const isProdSite = /^(marketplace|partners|www)\.bamboohr\.com$/i.test(document.location.hostname);
+  adobeTagsSrc += (isProdSite ? '58a206bf11f0.min.js' : '9e4820bf112c-staging.min.js');
+}
+
+loadScript('header', adobeTagsSrc, async () => {
   window.digitalData = {};
   window.digitalData.push = (obj) => {
     Object.assign(window.digitalData, window.digitalData, obj);

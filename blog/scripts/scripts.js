@@ -473,7 +473,8 @@ export async function loadBlock(block, eager = false) {
     const blockName = block.getAttribute('data-block-name');
     try {
       const cssLoaded = new Promise((resolve) => {
-        loadCSS(`${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`, resolve);
+        const cssBase = `${window.hlx.serverPath}${window.hlx.codeBasePath}`;
+        loadCSS(`${cssBase}/blocks/${blockName}/${blockName}.css`, resolve);
       });
       const decorationComplete = new Promise((resolve) => {
         (async () => {
@@ -925,7 +926,7 @@ export async function decorateMain(main) {
 }
 
 /**
- * Loads everything related to Marketing technology that must be loaded eagerly
+ * loads everything related to Marketing technology that must be loaded eagerly
  * (e.g., Adobe Target).
  */
 async function loadMartech() {
@@ -962,7 +963,7 @@ async function loadMartech() {
   }(window, document, "body {opacity: 0 !important}", 3000));
   */
 
-  /* Move Adobe Tags here from delayed.js if Target is added and enabled */
+  /* Move Adobe Tags here from delayed.js if Adobe Target is added and enabled */
 }
 
 /**
