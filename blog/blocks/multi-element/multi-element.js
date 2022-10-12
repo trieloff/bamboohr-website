@@ -1,26 +1,4 @@
-const mediaQuery = window.matchMedia('(max-width: 768px)');
-
-function moveImages(block, matched) {
-  const images = block.querySelectorAll('.has-images');
-  const p = block.querySelector('p:first-of-type');
-
-  images.forEach((image) => {
-    if (matched) {
-      // move images into content section
-      p.before(image);
-    } else {
-      // put 'em back
-      block.querySelector(':scope > div').append(image);
-    }
-  });
-}
-
 export default function decorate(block) {
-  const cols = block.querySelectorAll(':scope > div > div');
-
-  if (block.classList.contains('full-width')) block.parentElement.classList.add('full-width');
-  if (block.classList.contains('mid-width')) block.parentElement.classList.add('mid-width');
-
   // convert "number" classes
   [...block.classList].forEach((name) => {
     if (!Number.isNaN(+name.split('').at(0))) {
@@ -29,26 +7,33 @@ export default function decorate(block) {
     }
   });
 
-  cols.forEach((col) => {
-    const pictures = col.querySelectorAll('picture');
+  // clean up markup, move all "columns" as block children
+  block.querySelectorAll(':scope > div').forEach((row, key) => {
+    row.querySelectorAll(':scope > div').forEach((col) => {
+      const pictures = col.querySelectorAll('picture');
 
-    if (pictures.length) {
-      col.classList.add('has-images');
+      if (pictures.length > 1) {
+        col.classList.add('images');
 
-      // move to parent div and remove empty p
-      pictures.forEach((picture) => {
-        picture.parentNode.remove();
-        col.append(picture);
-      });
-    }
-  });
+        // move to parent div and remove empty p
+        pictures.forEach((picture) => {
+          picture.parentNode.remove();
+          col.append(picture);
+        });
+      } else {
+        col.classList.add('content');
+      }
 
-  // hero duplication
-  if (block.classList.contains('hero') || !block.classList.contains('logo-cards')) {
-    moveImages(block, mediaQuery.matches);
+      if (
+        key === 1 &&
+        (block.classList.contains('extra') || block.classList.contains('extra-right'))
+      ) {
+        col.classList.add('extra');
+      }
 
-    mediaQuery.addEventListener('change', (event) => {
-      moveImages(block, event.matches);
+      block.append(col);
     });
-  }
+
+    row.remove();
+  });
 }
