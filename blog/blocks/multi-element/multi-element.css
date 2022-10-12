@@ -119,8 +119,12 @@
     color: var(--theme-shade10);
 }
 
-/* "themed headings" styles */
+/* "themed content" styles */
 .multi-element.themed-content {
+    color: var(--theme-shade15);
+}
+
+.multi-element.themed-content strong {
     color: var(--theme-shade10);
 }
 
@@ -138,17 +142,50 @@ main .multi-element p.button-container {
     padding: .625rem 1.875rem;
 }
 
+/* "inline button" styles */
+.multi-element.inline-button a.button:any-link {
+    background: revert;
+    border-radius: revert;
+    color: var(--theme-shade5);
+    font-family: var(--heading-font-family);
+    font-size: .9375rem;
+    line-height: 1.3333;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    transition: color .25s ease-in-out;
+    vertical-align: middle;
+    white-space: revert;
+}
+
+.multi-element.inline-button a.button:any-link:hover {
+    color: var(--theme-shade10);
+}
+
+.multi-element.inline-button a.button:any-link::after {
+    background-color: currentcolor;
+    content: '';
+    display: inline-block;
+    height: .8125rem;
+    margin-left: .5rem;
+    mask-image: url('../../styles/caret-right.svg');
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-mask-image: url('../../styles/caret-right.svg');
+    vertical-align: middle;/* TODO: replace with flex on button? */
+    width: .5rem;
+}
+
 /* content styles */
 .multi-element > .content {
     align-items: start;
     display: flex;
     flex-direction: column;
-    row-gap: 1.25rem;
     justify-content: center;
+    row-gap: 1.25rem;
 }
 
 @media (max-width: 1024px) {
-    .multi-element > .content {
+    .multi-element:not(.content-left) > .content {
         align-items: center;
         text-align: center;
     }
@@ -221,6 +258,12 @@ main .multi-element p {
     }
 }
 
+@media (max-width: 1024px) {
+    .multi-element.logo-cards {
+        --row-gap: 2rem;
+    }
+}
+
 .multi-element.logo-cards h2 {
     font-size: 1.875rem;
     line-height: 1.2;
@@ -269,6 +312,17 @@ main .multi-element p {
         max-height: 3rem;
         max-width: 9rem;
     }
+}
+
+.multi-element.logo-cards a.button:any-link {
+    background-color: var(--theme-shade15);
+    background-image: revert;
+    color: var(--theme-tint5);
+    transition: background-color .25s ease-in-out;
+}
+
+.multi-element.logo-cards a.button:any-link:hover {
+    background-color: var(--theme-shade10);
 }
 
 /* "hero" styles */
