@@ -18,6 +18,7 @@
 @import 'templates/hr-software.css';
 @import 'templates/hr-unplugged.css';
 @import 'templates/live-demo-webinars.css';
+@import 'templates/rippling-comparison.css';
 
 html {
   box-sizing: border-box;

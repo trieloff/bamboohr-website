@@ -1,0 +1,77 @@
+.rippling-comparison .has-bg > span.bg-bottom-cap-3 {
+    background-image: linear-gradient(159.58deg, var(--color-white) 1.38%, var(--color-1-tint-15) 74.25%);
+    top: 0;
+}
+
+.rippling-comparison .bg-bottom-cap-3 {
+    margin-bottom: 500px;
+}
+
+.rippling-comparison .section.bg-bottom-multi-3 {
+    margin-top: -400px;
+}
+
+.rippling-comparison main .form {
+    text-align: center;
+}
+
+.rippling-comparison main .form a.button {
+    color: var(--color-1-shade-15);
+    background-color: var(--color-1-tint-10);
+}
+
+.rippling-comparison .center-page-cta h2 {
+    color: var(--color-1-tint-10);
+}
+
+.rippling-comparison .center-page-cta .button-container > a.button:any-link {
+    background-color: var(--color-1-tint-10);
+}
+
+.rippling-comparison .quote h3 {
+    font-style: normal;
+    color: var(--color-1-shade-10);
+}
+
+.rippling-comparison main .quote.full .byline {
+    color: var(--color-1-shade-10);
+}
+
+.rippling-comparison main .columns {
+    color: var(--color-gray-12);
+}
+
+.rippling-comparison main .columns h4,
+.rippling-comparison main .columns h5 {
+    margin-top: 0;
+    font-style: normal;
+}
+
+.rippling-comparison main .columns h4 {
+    font-family: var(--body-font-family);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-1-shade-10);
+}
+
+.rippling-comparison main .columns .img-col h4 {
+    color: var(--color-1-shade-5);
+}
+
+.rippling-comparison main .columns h5 {
+  font-family: var(--body-font-family);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+    color: var(--color-1-shade-5);
+}
+
+.rippling-comparison main .columns li strong {
+    color: var(--color-1-shade-5);
+}
