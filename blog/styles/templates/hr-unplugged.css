@@ -85,10 +85,14 @@
 }
 
 .hr-unplugged .columns.podcast-links > div > div {
-  margin-bottom: 20px;
+	margin: 0 auto 30px;
 }
 
 .hr-unplugged .columns.podcast-links > div > div > h4 {
+  margin: 0;
+}
+
+.hr-unplugged .columns.podcast-links > div > div > h4 > a > picture > img {
   margin: 0;
 }
 
@@ -128,7 +132,7 @@
   }
 
   .hr-unplugged .columns.podcast-links > div > div {
-    margin: 0 10px 20px;
+    margin: 0 10px 30px;
   }
 
 }

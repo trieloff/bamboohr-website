@@ -640,6 +640,10 @@ main a.cta-link:focus {
   color: var(--color-1);
 }
 
+main a > picture {
+  display: flex;
+}
+
 main img,
 main video {
   max-width: 100%;
