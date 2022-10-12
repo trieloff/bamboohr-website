@@ -121,7 +121,8 @@ export default async function decorateTemplate(main) {
     main.insertBefore(section, sections[0]);
     sections.unshift(section);
   }
-  sections[0].append(requestInfo);
+  const includRequestInfo = getMetadata('request-information');
+  if (includRequestInfo.toLowerCase().trim() !== 'no') sections[0].append(requestInfo);
   const classes = ['links', 'tabs', 'details'];
   sections.forEach((section, i) => section.classList.add(`${classes[i]}-container`));
   setupListingTabs(main);
