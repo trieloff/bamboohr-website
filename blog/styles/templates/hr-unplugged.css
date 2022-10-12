@@ -3,11 +3,11 @@
 }
 
 .hr-unplugged .section-1 {
-	background: linear-gradient(76.43deg, var(--color-black) 25.21%, var(--theme-shade5) 100%);
+  background: linear-gradient(76.43deg, var(--color-black) 25.21%, var(--theme-shade5) 100%);
 }
 
 .hr-unplugged .section-1 .hero .img-col  {
-	margin-right: auto;
+  margin-right: auto;
   max-width: 192px;
 }
 
@@ -106,8 +106,7 @@
 
 @media (min-width: 600px) {
  .hr-unplugged .section-1 .columns.podcast-cards > div {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     margin-left: -40px;
     align-items: flex-start;
   }
