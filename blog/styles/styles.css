@@ -16,6 +16,7 @@
 @import 'templates/payroll-roi.css';
 @import 'templates/pricing-quote.css';
 @import 'templates/hr-software.css';
+@import 'templates/hr-unplugged.css';
 @import 'templates/live-demo-webinars.css';
 
 html {
@@ -318,6 +319,7 @@ main .title.section-header :is(h1, h2, h3, h4, h5, h6, div) {
 .resources-guides main h1,
 main .page-header .page-header-title,
 main .page-header .page-header-title h1,
+.hr-unplugged main h1,
 main .title.hero-header :is(h1, h2, h3, h4, h5, h6, div) {
   font-family: var(--heading-font-family);
   font-size: 40px;
@@ -327,6 +329,7 @@ main .title.hero-header :is(h1, h2, h3, h4, h5, h6, div) {
 
 .typ-hero-subhead,
 .typ-subhead1,
+.hr-unplugged .section-1 h5,
 main .title.hero-subhead :is(h1, h2, h3, h4, h5, h6, div) {
   font-family: var(--body-font-family);
   font-size: 18px;
@@ -457,6 +460,11 @@ table td {
     font-size: 26px;
     line-height: 38px;
   }
+
+  .hr-unplugged main h1 :is(h1, h2, h3, h4, h5, h6, div) {
+    font-size: 54px;
+    line-height: 60px;
+  }
 }
 
 @media (min-width: 900px) {
@@ -485,6 +493,7 @@ table td {
   .typ-hero-header,
   .typ-display1,
   .resources-guides main h1,
+  .hr-unplugged main h1,
   main .page-header .page-header-title,
   main .page-header .page-header-title h1,
   main .title.hero-header :is(h1, h2, h3, h4, h5, h6, div) {
