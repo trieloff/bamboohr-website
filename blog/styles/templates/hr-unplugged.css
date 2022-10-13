@@ -68,16 +68,21 @@
   width: 100vw;
 }
 
+.hr-unplugged .hexie-cap-1,
+.hr-unplugged .hexie-cap-2 {
+  margin: 0;
+}
+
 .hr-unplugged .hexie-cap-1 img {
-  margin: -50px -30px -8px;
+  margin: -110px -30px -8px;
 }
 
 .hr-unplugged .hexie-cap-2 img {
-  margin: -1px -30px -50px;
+  margin: -1px -30px -80px;
 }
 
 .hr-unplugged .section-3 {
-  margin-top: -30px;
+  margin-top: -10px;
 }
 
 .hr-unplugged .columns.podcast-links > div {
@@ -85,10 +90,14 @@
 }
 
 .hr-unplugged .columns.podcast-links > div > div {
-  margin-bottom: 20px;
+	margin: 0 auto 30px;
 }
 
 .hr-unplugged .columns.podcast-links > div > div > h4 {
+  margin: 0;
+}
+
+.hr-unplugged .columns.podcast-links > div > div > h4 > a > picture > img {
   margin: 0;
 }
 
@@ -102,6 +111,25 @@
 
 .hr-unplugged .section-3 .call-to-action {
   padding: 0;
+}
+
+.hr-unplugged .section-1.success .columns-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.hr-unplugged .section-1.success h2,
+.hr-unplugged .section-1.success p,
+.hr-unplugged .section-1.success a {
+  color: var(--color-white);
+}
+
+.hr-unplugged .section-1.success a {
+  background: linear-gradient(#f000 50%, var(--theme-shade5) 50.1%);
+}
+
+.hr-unplugged .section-2.success {
+  margin-top: 0;
 }
 
 @media (min-width: 600px) {
@@ -128,7 +156,7 @@
   }
 
   .hr-unplugged .columns.podcast-links > div > div {
-    margin: 0 10px 20px;
+    margin: 0 10px 30px;
   }
 
 }
