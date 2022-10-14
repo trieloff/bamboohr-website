@@ -1,5 +1,6 @@
-.rippling-comparison .has-bg > span.bg-bottom-cap-3 {
-    background-image: linear-gradient(159.58deg, var(--color-white) 1.38%, var(--color-1-tint-15) 74.25%);
+.rippling-comparison .has-bg > span.bg-bottom-cap-3,
+.rippling-comparison .has-bg > span.bg-bottom-multi-3 {
+    background-image: linear-gradient(159.58deg, var(--color-white) 1.38%, var(--theme-tint15) 74.25%);
     top: 0;
 }
 
@@ -16,25 +17,25 @@
 }
 
 .rippling-comparison main .form a.button {
-    color: var(--color-1-shade-15);
-    background-color: var(--color-1-tint-10);
+    color: var(--theme-shade15);
+    background-color: var(--secondary-theme-tint10);
 }
 
 .rippling-comparison .center-page-cta h2 {
-    color: var(--color-1-tint-10);
+    color: var(--secondary-theme-tint10);
 }
 
 .rippling-comparison .center-page-cta .button-container > a.button:any-link {
-    background-color: var(--color-1-tint-10);
+    background-color: var(--secondary-theme-tint10);
 }
 
 .rippling-comparison .quote h3 {
     font-style: normal;
-    color: var(--color-1-shade-10);
+    color: var(--secondary-theme-shade10);
 }
 
 .rippling-comparison main .quote.full .byline {
-    color: var(--color-1-shade-10);
+    color: var(--secondary-theme-shade10);
 }
 
 .rippling-comparison main .columns {
@@ -54,11 +55,11 @@
     line-height: 24px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--color-1-shade-10);
+    color: var(--secondary-theme-shade10);
 }
 
 .rippling-comparison main .columns .img-col h4 {
-    color: var(--color-1-shade-5);
+    color: var(--theme-shade5);
 }
 
 .rippling-comparison main .columns h5 {
@@ -69,11 +70,11 @@
   letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-bottom: 0;
-  color: var(--color-1-shade-5);
+  color: var(--theme-shade5);
 }
 
 .rippling-comparison main .columns li strong {
-    color: var(--color-1-shade-5);
+    color: var(--theme-shade5);
 }
 
 .rippling-comparison .has-bg > span.bg-center-multi-3 {
@@ -81,8 +82,8 @@
 }
 
 .rippling-comparison main .section.bg-bottom-multi-3 .default-content-wrapper a.button {
-    color: var(--color-1-shade-15);
-    background-color: var(--color-1-tint-10);
+    color: var(--theme-shade15);
+    background-color: var(--secondary-theme-tint10);
     margin-bottom: 100px;
 }
 
