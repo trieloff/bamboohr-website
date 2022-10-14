@@ -38,23 +38,22 @@
 }
 
 .wistia-modal .modal {
-    --width: 90vw;
-
-    border-radius: 0;
+    border-radius: 1rem;
     max-width: none;
-    padding: 0;
+    padding: 1rem;
 }
 
-.wistia-modal .modal-content {
+/* stylelint-disable-next-line selector-class-pattern */
+.wistia-modal .wistia_embed {
+    --width: 85vw;
+
+    height: calc(var(--width) * .5625);/* 16:9 */
     width: var(--width);
 }
 
 @media (min-width: 1025px) {
-    .wistia-modal .modal-content {
+    /* stylelint-disable-next-line selector-class-pattern */
+    .wistia-modal .wistia_embed {
         --width: 75vw;
     }
-}
-
-.wistia-modal .modal-content .wistia_embed {
-    height: calc(var(--width) * .5625) !important;
 }

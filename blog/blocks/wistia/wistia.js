@@ -10,6 +10,7 @@ const loadWistia = () => {
 
   const modalWrapperElem = createElem('div', 'modal-wrapper');
   modalWrapperElem.classList.add('wistia-modal');
+  modalWrapperElem.setAttribute('id', 'wistia-modal');
   const modalElem = createElem('div', 'modal');
   const modalCloseElem = createElem('div', 'modal-close');
   const modalContentElem = createElem('div', 'modal-content');
@@ -54,7 +55,7 @@ const handleThumbClick = (evt) => {
 
   const wistiaThumbElem = evt.target.closest('.wistia');
 
-  const modalWrapperElem = document.querySelector('.modal-wrapper');
+  const modalWrapperElem = document.querySelector('#wistia-modal');
   modalWrapperElem.addEventListener('click', handleCloseClick);
   const modalCloseElem = modalWrapperElem.querySelector('.modal-close');
   modalCloseElem.addEventListener('click', handleCloseClick);
@@ -66,7 +67,6 @@ const handleThumbClick = (evt) => {
     const embedElem = createElem('div', 'wistia_embed');
     embedElem.classList.add(`wistia_async_${wistiaId}`);
     embedElem.setAttribute('videoFoam', 'true');
-    embedElem.setAttribute('style', 'height: auto; position: relative; width: 100%;');
 
     if (wistiaMinQuality) embedElem.setAttribute('qualityMin', wistiaMinQuality);
 
@@ -77,7 +77,9 @@ const handleThumbClick = (evt) => {
     modalWrapperElem.classList.add('visible');
 
     // play it again, sam
+    /* eslint-disable-next-line no-underscore-dangle */
     window._wq = window._wq || [];
+    /* eslint-disable-next-line no-undef */
     _wq.push({
       id: wistiaId,
       onReady: (video) => video.play(),
