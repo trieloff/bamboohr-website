@@ -715,8 +715,9 @@ main .section > div:empty {
   .resources-guides main .section > div.toc-wrapper,
   .resources-guides main .section > div.quote-wrapper,
   .resources-guides main .section.negative-margin-section.med-width > div.default-content-wrapper,
-  .resources-guides main .section > div.image-wrapper.med-width,
-  .resources-guides main .section > div.source-wrapper {
+  main .section > div.image-wrapper.med-width,
+  .resources-guides main .section > div.source-wrapper,
+  main .section > div.title-wrapper.med-width {
     max-width: 960px;
   }
 
