@@ -1,35 +1,52 @@
 import { readBlockConfig, createElem } from '../../scripts/scripts.js';
 
+let loaded = false;
+
 const loadWistia = () => {
+  if (loaded) return;
   const scriptElem = createElem('script');
-  scriptElem.setAttribute('charset', 'ISO-8859-1');
-  scriptElem.setAttribute('src', '//fast.wistia.com/assets/external/E-v1.js');
   scriptElem.setAttribute('async', '');
+  scriptElem.setAttribute('src', '//fast.wistia.com/assets/external/E-v1.js');
 
-  const modalContainerElem = createElem('div', 'modal-container');
+  const modalWrapperElem = createElem('div', 'modal-wrapper');
+  modalWrapperElem.classList.add('wistia-modal');
+  const modalElem = createElem('div', 'modal');
+  const modalCloseElem = createElem('div', 'modal-close');
   const modalContentElem = createElem('div', 'modal-content');
-  modalContainerElem.append(modalContentElem);
+  modalElem.append(modalCloseElem, modalContentElem);
+  modalWrapperElem.append(modalElem);
 
-  document.querySelector('body')?.append(modalContainerElem, scriptElem);
+  document.querySelector('body')?.append(modalWrapperElem, scriptElem);
 
   // this script is use for defining Wistia
   window.wistiaInitQueue = window.wistiaInitQueue || [];
-  window.wistiaInitQueue.push((W) => {
-    // TODO: consider removing this console.log, I can't imagine it is actually necessary.
-    // eslint-disable-next-line no-console
-    console.log('Wistia library loaded and available in the W argument!', W);
-  });
+
+  loaded = true;
 };
 
 loadWistia();
 
 const handleCloseClick = (evt) => {
-  evt.preventDefault();
+  // no bubbles
+  evt.stopImmediatePropagation();
 
-  if (!evt.target.closest('.modal-content')) {
-    const bodyElem = document.querySelector('body');
-    bodyElem.classList.remove('modal--open');
+  // skip children clicks
+  if (
+    !evt.target.classList.contains('modal-wrapper') &&
+    !evt.target.classList.contains('modal-close')
+  ) {
+    return;
   }
+
+  const wrapperElem = evt.target.closest('.modal-wrapper');
+
+  // hide modal
+  const bodyElem = document.querySelector('body');
+  bodyElem.classList.remove('modal-open');
+  wrapperElem.classList.remove('visible');
+
+  // remove existing player
+  wrapperElem.querySelector('.wistia_embed').remove();
 };
 
 const handleThumbClick = (evt) => {
@@ -37,31 +54,35 @@ const handleThumbClick = (evt) => {
 
   const wistiaThumbElem = evt.target.closest('.wistia');
 
-  const modalContainerElem = document.querySelector('.modal-container');
-  modalContainerElem.addEventListener('click', handleCloseClick, { once: true });
+  const modalWrapperElem = document.querySelector('.modal-wrapper');
+  modalWrapperElem.addEventListener('click', handleCloseClick);
+  const modalCloseElem = modalWrapperElem.querySelector('.modal-close');
+  modalCloseElem.addEventListener('click', handleCloseClick);
+  const modalContentElem = modalWrapperElem.querySelector('.modal-content');
 
-  const modalContentElem = modalContainerElem.querySelector('.modal-content');
-
-  const { wistiaId } = wistiaThumbElem.dataset;
-  const { wistiaMinQuality } = wistiaThumbElem.dataset;
-
-  const wistiaElem = createElem('div', 'wistia-content');
+  const { wistiaId, wistiaMinQuality } = wistiaThumbElem.dataset;
 
   if (wistiaId) {
-    // Should probably construct this differently for better security
-    let wistiaEmbedMarkup = `<script src="https://fast.wistia.com/embed/medias/${wistiaId}.jsonp" async></script>`;
-    wistiaEmbedMarkup += `<div class="wistia_embed wistia_async_${wistiaId}" videoFoam=true`;
-    if (wistiaMinQuality) {
-      wistiaEmbedMarkup += ` qualityMin="${wistiaMinQuality}"`;
-    }
-    wistiaEmbedMarkup += ' style="height:auto;position:relative;width:100%"></div>';
+    const embedElem = createElem('div', 'wistia_embed');
+    embedElem.classList.add(`wistia_async_${wistiaId}`);
+    embedElem.setAttribute('videoFoam', 'true');
+    embedElem.setAttribute('style', 'height: auto; position: relative; width: 100%;');
 
-    wistiaElem.innerHTML = wistiaEmbedMarkup;
+    if (wistiaMinQuality) embedElem.setAttribute('qualityMin', wistiaMinQuality);
+
+    modalContentElem.append(embedElem);
+
+    const bodyElem = document.querySelector('body');
+    bodyElem.classList.add('modal-open');
+    modalWrapperElem.classList.add('visible');
+
+    // play it again, sam
+    window._wq = window._wq || [];
+    _wq.push({
+      id: wistiaId,
+      onReady: (video) => video.play(),
+    });
   }
-
-  modalContentElem.append(wistiaElem);
-  const bodyElem = document.querySelector('body');
-  bodyElem.classList.add('modal--open');
 };
 
 export default function decorate(block) {
