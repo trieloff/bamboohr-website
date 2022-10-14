@@ -411,9 +411,22 @@ div.has-text-only h4 {
 }
 
 .cards.hex-background-dual-tone > .card .icon-container .icon {
-    bottom: 10px;
-    position: absolute;
-    right: 12px;
+    width: 100%;
+    height: 100%;
+}
+
+.cards.hex-background-dual-tone > .card .icon-container .icon svg {
+    position: relative;
+    margin: auto;
+}
+
+.cards.hex-background-dual-tone > .card .icon-container .icon.icon-profile-search svg {
+    margin-top: 14px;
+}
+
+.cards.hex-background-dual-tone > .card .icon-container .icon.icon-popup svg {
+    margin-left: 16px;
+    margin-top: 19px;
 }
 
 .cards.hex-background-dual-tone > .card .icon {
