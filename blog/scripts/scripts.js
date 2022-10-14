@@ -705,7 +705,7 @@ export function formatDate(dateString) {
 export function decorateButtons(block = document) {
   const noButtonBlocks = [];
   block.querySelectorAll(':scope a').forEach(($a) => {
-    $a.title = $a.title || $a.textContent;
+    $a.title = $a.title || $a.textContent.trim();
     const $block = $a.closest('div.section > div > div');
     let blockName;
     if ($block) {

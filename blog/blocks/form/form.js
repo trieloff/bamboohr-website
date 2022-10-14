@@ -536,8 +536,12 @@ export default async function decorate(block) {
           });
         };
         if (config['modal-button-text']) {
+          let buttonSize = '';
+          if (config['modal-button-size'] && config['modal-button-size'].toLowerCase() === 'small') {
+            buttonSize = 'small';
+          }
           const modalBtn = document.createElement('a');
-          modalBtn.innerHTML = `<a class="button" href="#" data-modal="${formId}-modal">${config['modal-button-text']}</a>`;
+          modalBtn.innerHTML = `<a class="button ${buttonSize}" href="#" data-modal="${formId}-modal">${config['modal-button-text']}</a>`;
           formModal(modalBtn);
           block.append(modalBtn);
         }

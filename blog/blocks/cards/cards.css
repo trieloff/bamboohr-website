@@ -424,11 +424,6 @@ div.has-text-only h4 {
     color: var(--theme-shade5);
 }
 
-/* TODO: temp to be removed? */
-main .section > .cards-wrapper {
-    max-width: 1160px;
-}
-
 /* TODO: remove, just to show styles with white BG */
 .temp-bg-alt {
     background-color: var(--color-gray-1);

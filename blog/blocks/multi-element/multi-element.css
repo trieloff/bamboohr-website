@@ -1,77 +1,111 @@
 /* stylelint-disable no-descending-specificity */
 
-main .section > div.multi-element-wrapper {
-    max-width: 1024px;
-}
-
-main .section > div.multi-element-wrapper.full-width {
-    max-width: 1220px;
-}
-
-@media (min-width: 1441px) {
-    main .section > div.multi-element-wrapper.full-width {
-        max-width: 1440px;
-    }
-}
-
-main .section > div.multi-element-wrapper.mid-width {
-    max-width: 1390px;
-}
-
-.multi-element,
-.multi-element *,
-.multi-element *::before,
-.multi-element *::after {
-    box-sizing: border-box;
-}
-
 .multi-element {
+    --column-gap: 2rem;
+    --columns: repeat(2, 1fr);
+    --row-gap: 1rem;
+
     color: var(--color-gray-10);
-}
-
-.multi-element > div {
-    --columns: 1fr;
-    --gap: 2rem;
-    --rows: 1fr;
-
+    column-gap: var(--column-gap);
     display: grid;
-    gap: var(--gap);
     grid-template-columns: var(--columns);
-}
-
-@media (min-width: 1025px) {
-    .multi-element > div {
-        --columns: 1fr;
-        --rows: revert;
-    }
+    row-gap: var(--row-gap);
 }
 
 /* "50/50" styles */
-@media (min-width: 1025px) {
-    .multi-element.style-50-50 > div {
-        --columns: repeat(2, 1fr);
+@media (max-width: 1024px) {
+    .multi-element.style-50-50 {
+        --columns: 1fr;
     }
 }
 
 /* "50/25/25" styles */
-.multi-element.style-50-25-25 > div {
-    --columns: repeat(2, 1fr);
-    --rows: repeat(2, min-content);
-}
-
 @media (min-width: 1025px) {
-    .multi-element.style-50-25-25 > div {
+    .multi-element.style-50-25-25 {
         --columns: 2fr repeat(2, 1fr);
     }
 }
 
-.multi-element.style-50-25-25 > div > div:first-child {
-    grid-column: 1 / span 2;
+/* "25/25/50" styles */
+@media (min-width: 1025px) {
+    .multi-element.style-25-25-50 {
+        --columns: repeat(2, 1fr) 2fr;
+    }
+}
+
+/* "50/25/25" and "25/25/50" styles */
+@media (max-width: 1024px) {
+    /*
+     * 50/25/25 - first column
+     * 25/25/50 - third column
+     */
+    .multi-element.style-50-25-25 > :first-child,
+    .multi-element.style-25-25-50 > :nth-child(3) {
+        grid-column: auto / span 2;
+    }
+}
+
+/* "extra" styles */
+@media (min-width: 769px) {
+    /*
+     * 50/50, extra - second column
+     * 50/50, extra right - first column
+     */
+    .multi-element.style-50-50.extra > :nth-child(2),
+    .multi-element.style-50-50.extra-right > :first-child {
+        grid-row: auto / span 2;
+    }
 }
 
 @media (min-width: 1025px) {
-    .multi-element.style-50-25-25 > div > div:first-child {
-        grid-column: revert;
+    /*
+     * 50/25/25, extra - second and third columns
+     * 50/25/25, extra right - first column
+     * 25/25/50, extra - third column
+     * 25/25/50, extra right - first and second columns
+     */
+    .multi-element.style-50-25-25.extra > :not(:first-child):not(:last-child),
+    .multi-element.style-50-25-25.extra-right > :first-child,
+    .multi-element.style-25-25-50.extra > :nth-child(3),
+    .multi-element.style-25-25-50.extra-right > :not(:nth-child(3)):not(:last-child) {
+        grid-row: auto / span 2;
+    }
+}
+
+@media (max-width: 1024px) {
+    .multi-element:not(.style-50-50) > .extra {
+        grid-column: auto / span 2;
+    }
+}
+
+@media (min-width: 1025px) {
+    .multi-element.style-50-25-25.extra-right > .extra,
+    .multi-element.style-25-25-50.extra > .extra {
+        grid-column: auto / span 2;
+    }
+}
+
+@media (min-width: 769px) {
+    /*
+     * 50/50, extra - first column
+     * 50/50, extra right - second column
+     */
+    .multi-element.style-50-50.extra > :first-child {
+        justify-content: end;
+    }
+}
+
+@media (min-width: 1025px) {
+    .multi-element.style-50-25-25.extra > :first-child,
+    .multi-element.style-25-25-50.extra-right > :nth-child(3) {
+        justify-content: end;
+    }
+}
+
+@media (min-width: 1025px) {
+    .multi-element.extra > :last-child,
+    .multi-element.extra-right > :last-child {
+        justify-content: start;
     }
 }
 
@@ -85,7 +119,20 @@ main .section > div.multi-element-wrapper.mid-width {
     color: var(--theme-shade10);
 }
 
+/* "themed content" styles */
+.multi-element.themed-content {
+    color: var(--theme-shade15);
+}
+
+.multi-element.themed-content strong {
+    color: var(--theme-shade10);
+}
+
 /* button styles */
+main .multi-element p.button-container {
+    margin-top: 0;
+}
+
 .multi-element a.button:any-link {
     background-image: linear-gradient(91.98deg, var(--theme-shade5) 0%, var(--theme-shade10) 100%);
     font-family: var(--body-font-family);
@@ -95,20 +142,63 @@ main .section > div.multi-element-wrapper.mid-width {
     padding: .625rem 1.875rem;
 }
 
+/* "inline button" styles */
+.multi-element.inline-button a.button:any-link {
+    background: revert;
+    border-radius: revert;
+    color: var(--theme-shade5);
+    font-family: var(--heading-font-family);
+    font-size: .9375rem;
+    line-height: 1.3333;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    transition: color .25s ease-in-out;
+    vertical-align: middle;
+    white-space: revert;
+}
+
+.multi-element.inline-button a.button:any-link:hover {
+    color: var(--theme-shade10);
+}
+
+.multi-element.inline-button a.button:any-link::after {
+    background-color: currentcolor;
+    content: '';
+    display: inline-block;
+    height: .8125rem;
+    margin-left: .5rem;
+    mask-image: url('../../styles/caret-right.svg');
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-mask-image: url('../../styles/caret-right.svg');
+    vertical-align: middle;/* TODO: replace with flex on button? */
+    width: .5rem;
+}
+
 /* content styles */
-.multi-element > div > div:not(.has-images) {
+.multi-element > .content {
     align-items: start;
     display: flex;
     flex-direction: column;
-    row-gap: 1.25rem;
     justify-content: center;
+    row-gap: 1.25rem;
 }
 
 @media (max-width: 1024px) {
-    .multi-element > div > div:not(.has-images) {
+    .multi-element:not(.content-left) > .content {
         align-items: center;
         text-align: center;
     }
+}
+
+.multi-element > .content[data-align="center"] {
+    align-items: center;
+    text-align: center;
+}
+
+.multi-element > .content[data-align="right"] {
+    align-items: end;
+    text-align: right;
 }
 
 .multi-element h1,
@@ -136,64 +226,42 @@ main .multi-element p {
     margin: 0;
 }
 
+.multi-element strong {
+    font-size: .75rem;
+    letter-spacing: .1rem;
+    line-height: 1.25;
+    text-transform: uppercase;
+}
+
 /* image styles */
-.multi-element div.has-images {
+.multi-element > .images {
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.multi-element div.has-images > picture {
+.multi-element > .images > picture {
     align-items: center;
     display: flex;
     justify-content: center;
 }
 
-/* not "logo cards" or "hero" styles */
-@media (max-width: 768px) {
-    .multi-element:not(.logo-cards):not(.hero) > div > div:first-child {
-        flex-flow: row wrap;
-    }
-}
-
-@media (max-width: 768px) {
-    .multi-element:not(.logo-cards):not(.hero) div.has-images {
-        width: 50%;
-    }
-}
-
 /* "logo cards" style */
-.multi-element.logo-cards > div {
-    --gap: 1.5rem;
-}
-
-@media (min-width: 600px) and (max-width: 1024px) {
-    .multi-element.logo-cards > div {
-        --columns: 3fr repeat(2, 4fr);
-    }
+.multi-element.logo-cards {
+    --column-gap: 1.5rem;
 }
 
 @media (min-width: 1025px) {
-    .multi-element.logo-cards > div {
-        --gap: 2rem;
+    .multi-element.logo-cards {
+        --column-gap: 2rem;
     }
 }
 
-.multi-element.logo-cards > div > div:not(.has-images) {
-    align-items: start;
-    text-align: left;
-}
-
-@media (min-width: 600px) and (max-width: 1024px) {
-    .multi-element.logo-cards > div > div:not(.has-images) {
-        grid-column: 1 / span 3 !important;
+@media (max-width: 1024px) {
+    .multi-element.logo-cards {
+        --row-gap: 2rem;
     }
-}
-
-
-.multi-element.logo-cards div:not(.has-images) {
-    justify-content: start;
 }
 
 .multi-element.logo-cards h2 {
@@ -208,24 +276,18 @@ main .multi-element p {
     }
 }
 
-.multi-element.logo-cards div.has-images {
+.multi-element.logo-cards > .images {
     align-items: revert;
     row-gap: .5rem;
 }
 
-@media (min-width: 600px) and (max-width: 1024px) {
-    .multi-element.logo-cards div.has-images:nth-child(2) {
-        grid-column: 2;
-    }
-}
-
 @media (min-width: 600px) {
-    .multi-element.logo-cards div.has-images {
+    .multi-element.logo-cards > .images {
         row-gap: 1rem;
     }
 }
 
-.multi-element.logo-cards div.has-images picture {
+.multi-element.logo-cards > .images picture {
     background: var(--color-white);
     border-radius: 1rem;
     box-shadow: var(--theme-shadow1-shade5);
@@ -234,49 +296,55 @@ main .multi-element p {
 }
 
 @media (min-width: 600px) {
-    .multi-element.logo-cards div.has-images picture {
+    .multi-element.logo-cards > .images picture {
         height: 4.5rem;
         padding: .75rem 1.5rem;
     }
 }
 
-.multi-element.logo-cards div.has-images img {
+.multi-element.logo-cards > .images img {
     max-height: 1.75rem;
     max-width: 6rem;
 }
 
 @media (min-width: 600px) {
-    .multi-element.logo-cards div.has-images img {
+    .multi-element.logo-cards > .images img {
         max-height: 3rem;
         max-width: 9rem;
     }
 }
 
+.multi-element.logo-cards a.button:any-link {
+    background-color: var(--theme-shade15);
+    background-image: revert;
+    color: var(--theme-tint5);
+    transition: background-color .25s ease-in-out;
+}
+
+.multi-element.logo-cards a.button:any-link:hover {
+    background-color: var(--theme-shade10);
+}
+
 /* "hero" styles */
-.multi-element.hero > div {
+.multi-element.hero {
+    --row-gap: 2rem;
+
     color: var(--color-gray-11);
 }
 
-@media (min-width: 769px) {
-    .multi-element.hero > div {
-        grid-template-columns: 2fr 3fr;
+@media (min-width: 769px) and (max-width: 1440px) {
+    .multi-element.hero {
+        --columns: 2fr 3fr;
     }
 }
 
-@media (min-width: 1441px) {
-    .multi-element.hero > div {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-.multi-element.hero > div > div:not(.has-images) {
+.multi-element.hero > .content {
     gap: 2.5rem;
 }
 
-@media (min-width: 769px) {
-    .multi-element.hero > div > div:not(.has-images) {
+@media (min-width: 769px) and (max-width: 1024px) {
+    .multi-element.hero > .content {
         align-items: start;
-        justify-content: start;
         text-align: left;
     }
 }
@@ -323,38 +391,38 @@ main .multi-element p {
     }
 }
 
-.multi-element.hero div.has-images {
-    --gap: 1rem;
+.multi-element.hero > .images {
+    --column-gap: 1rem;
 
-    gap: var(--gap);
+    gap: var(--column-gap);
 }
 
 @media (min-width: 768px) {
-    .multi-element.hero div.has-images {
-        --gap: 1.625rem;
+    .multi-element.hero > .images {
+        --column-gap: 1.625rem;
     }
 }
 
 @media (min-width: 1025px) {
-    .multi-element.hero div.has-images {
-        --gap: 1.875rem;
+    .multi-element.hero > .images {
+        --column-gap: 1.875rem;
     }
 }
 
 @media (min-width: 1441px) {
-    .multi-element.hero div.has-images {
-        --gap: 1.875rem;
+    .multi-element.hero > .images {
+        --column-gap: 1.875rem;
     }
 }
 
 @media (max-width: 768px) {
-    .multi-element.hero > div > div {
+    .multi-element.hero > div {
         align-items: center;
         text-align: center;
     }
 }
 
-.multi-element.hero div.has-images picture {
+.multi-element.hero > .images picture {
     border-radius: 1rem;
     border: .1875rem solid var(--color-gray-1);
     box-shadow: var(--box-shadow-2-gray-shade10);
