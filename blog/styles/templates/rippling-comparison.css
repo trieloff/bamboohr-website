@@ -60,6 +60,7 @@
 
 .rippling-comparison main .columns .img-col h4 {
     color: var(--theme-shade5);
+    text-align: center;
 }
 
 .rippling-comparison main .columns h5 {
