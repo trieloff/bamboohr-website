@@ -1,23 +1,27 @@
-import { readBlockConfig, createElem } from '../../scripts/scripts.js';
+import { createElem } from '../../scripts/scripts.js';
 
+const bodyElem = document.querySelector('body');
 let loaded = false;
 
-const loadWistia = () => {
+const loadModal = () => {
+  // skip if loaded
   if (loaded) return;
+
+  // get wistia script
   const scriptElem = createElem('script');
   scriptElem.setAttribute('async', '');
   scriptElem.setAttribute('src', '//fast.wistia.com/assets/external/E-v1.js');
 
-  const modalWrapperElem = createElem('div', 'modal-wrapper');
-  modalWrapperElem.classList.add('wistia-modal');
-  modalWrapperElem.setAttribute('id', 'wistia-modal');
+  // create modal
+  const wrapperElem = createElem('div', 'modal-wrapper');
+  wrapperElem.classList.add('wistia-modal');
   const modalElem = createElem('div', 'modal');
-  const modalCloseElem = createElem('div', 'modal-close');
-  const modalContentElem = createElem('div', 'modal-content');
-  modalElem.append(modalCloseElem, modalContentElem);
-  modalWrapperElem.append(modalElem);
+  const closeElem = createElem('div', 'modal-close');
+  const contentElem = createElem('div', 'modal-content');
+  modalElem.append(closeElem, contentElem);
+  wrapperElem.append(modalElem);
 
-  document.querySelector('body')?.append(modalWrapperElem, scriptElem);
+  bodyElem.append(wrapperElem, scriptElem);
 
   // this script is use for defining Wistia
   window.wistiaInitQueue = window.wistiaInitQueue || [];
@@ -25,85 +29,101 @@ const loadWistia = () => {
   loaded = true;
 };
 
-loadWistia();
+const getOembed = (path) => {
+  const oembed = new URL('/oembed', 'https://fast.wistia.com');
+  const params = new URLSearchParams({
+    autoPlay: 'true',
+    embedType: 'async',
+    url: path,
+    videoWidth: '1000',
+  });
 
-const handleCloseClick = (evt) => {
+  return fetch(`${oembed.toString()}?${params.toString()}`)
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((error) => console.error(error));
+};
+
+const handleCloseClick = (event) => {
   // no bubbles
-  evt.stopImmediatePropagation();
+  event.stopImmediatePropagation();
 
   // skip children clicks
   if (
-    !evt.target.classList.contains('modal-wrapper') &&
-    !evt.target.classList.contains('modal-close')
+    !event.target.classList.contains('modal-wrapper') &&
+    !event.target.classList.contains('modal-close')
   ) {
     return;
   }
 
-  const wrapperElem = evt.target.closest('.modal-wrapper');
+  const wrapperElem = event.target.closest('.modal-wrapper');
 
   // hide modal
-  const bodyElem = document.querySelector('body');
   bodyElem.classList.remove('modal-open');
   wrapperElem.classList.remove('visible');
 
   // remove existing player
-  wrapperElem.querySelector('.wistia_embed').remove();
+  wrapperElem.querySelector('.modal-content > div').remove();
 };
 
-const handleThumbClick = (evt) => {
-  evt.preventDefault();
+const handleThumbClick = ({ target }) => {
+  const wistiaElem = target.closest('.wistia');
+  const { embedHeight, embedHtml, embedWidth } = wistiaElem.dataset;
+  const wrapperElem = document.querySelector('.wistia-modal');
+  const closeElem = wrapperElem.querySelector('.modal-close');
+  const contentElem = wrapperElem.querySelector('.modal-content');
 
-  const wistiaThumbElem = evt.target.closest('.wistia');
+  // skip if no html
+  if (!embedHtml) return;
 
-  const modalWrapperElem = document.querySelector('#wistia-modal');
-  modalWrapperElem.addEventListener('click', handleCloseClick);
-  const modalCloseElem = modalWrapperElem.querySelector('.modal-close');
-  modalCloseElem.addEventListener('click', handleCloseClick);
-  const modalContentElem = modalWrapperElem.querySelector('.modal-content');
+  // attach events
+  wrapperElem.addEventListener('click', handleCloseClick);
+  closeElem.addEventListener('click', handleCloseClick);
 
-  const { wistiaId, wistiaMinQuality } = wistiaThumbElem.dataset;
+  // inject embed
+  contentElem.innerHTML = embedHtml;
+  const embedElem = contentElem.querySelector(':scope > div');
 
-  if (wistiaId) {
-    const embedElem = createElem('div', 'wistia_embed');
-    embedElem.classList.add(`wistia_async_${wistiaId}`);
-    embedElem.setAttribute('videoFoam', 'true');
-
-    if (wistiaMinQuality) embedElem.setAttribute('qualityMin', wistiaMinQuality);
-
-    modalContentElem.append(embedElem);
-
-    const bodyElem = document.querySelector('body');
-    bodyElem.classList.add('modal-open');
-    modalWrapperElem.classList.add('visible');
-
-    // play it again, sam
-    /* eslint-disable-next-line no-underscore-dangle */
-    window._wq = window._wq || [];
-    /* eslint-disable-next-line no-undef */
-    _wq.push({
-      id: wistiaId,
-      onReady: (video) => video.play(),
-    });
+  // set proportional height
+  if (embedHeight > 0 && embedWidth > 0) {
+    embedElem.setAttribute('style', `height: calc(var(--width) * ${embedHeight / embedWidth});`);
   }
+
+  // show modal
+  bodyElem.classList.add('modal-open');
+  wrapperElem.classList.add('visible');
 };
 
-export default function decorate(block) {
-  const ref = block;
+export default async function decorate(block) {
+  const url = block.querySelector('a')?.getAttribute('href') || null;
+  let posterElem = block.querySelector('picture');
 
-  const config = readBlockConfig(block);
+  // skip if no url
+  if (!url) return;
 
-  const thumbnailImgElem = ref.querySelector('picture');
+  // create modal
+  loadModal();
 
-  block.dataset.wistiaId = config['wistia-id'];
-  if (config['wistia-min-quality']) {
-    block.dataset.wistiaMinQuality = config['wistia-min-quality'];
-  }
+  // eslint-disable-next-line camelcase
+  await getOembed(url).then(({ height, html, thumbnail_url, title, width }) => {
+    // set data for modal
+    block.dataset.embedHeight = height;
+    block.dataset.embedHtml = html;
+    block.dataset.embedWidth = width;
 
-  const playBtnElem = createElem('div', 'wistia-play-btn');
+    // if no override, use from wistia
+    if (!posterElem) {
+      const imageElem = createElem('img');
+      imageElem.setAttribute('alt', title);
+      imageElem.setAttribute('src', thumbnail_url);
 
-  block.innerHTML = '';
+      posterElem = createElem('picture');
+      posterElem.append(imageElem);
+      posterElem.addEventListener('click', handleThumbClick);
+    }
+  });
 
-  block.append(thumbnailImgElem, playBtnElem);
-
-  block.addEventListener('click', handleThumbClick);
+  // empty and add elements
+  block.innerText = '';
+  block.append(posterElem);
 }
