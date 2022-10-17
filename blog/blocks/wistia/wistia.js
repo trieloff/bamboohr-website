@@ -40,8 +40,7 @@ const getOembed = (path) => {
 
   return fetch(`${oembed.toString()}?${params.toString()}`)
     .then((response) => response.json())
-    .then((data) => data)
-    .catch((error) => console.error(error));
+    .then((data) => data);
 };
 
 const handleCloseClick = (event) => {
