@@ -88,6 +88,39 @@ main .image.right img, main .image.left img {
   max-width: 400px;
 }
 
+.image.background-highlight {
+  box-shadow: var(--theme-shadow2-shade5);
+  background-color: white;
+  border-radius: 1rem;
+  margin: 0;
+}
+
+main .image.background-highlight > div > div {
+  text-align: center;
+}
+
+main .image p:not(:only-child) {
+  display: none;
+}
+
+main .image p:not(:only-child):nth-child(1) {
+  display: block;
+}
+
+@media (min-width: 700px) {
+  .image.background-highlight {
+    padding: 2.5rem;
+  }
+
+  main .image p:not(:only-child):nth-child(1) {
+    display: none;
+  }
+
+  main .image p:not(:only-child):nth-child(2) {
+    display: block;
+  }
+}
+
 @media (min-width: 900px) {
   main .image.right, main .image.left {
     margin: 20px;
