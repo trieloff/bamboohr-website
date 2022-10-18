@@ -118,8 +118,10 @@ export default async function decorate(block) {
 
       posterElem = createElem('picture');
       posterElem.append(imageElem);
-      posterElem.addEventListener('click', handleThumbClick);
     }
+
+    // attach event
+    posterElem.addEventListener('click', handleThumbClick);
   });
 
   // empty and add elements
