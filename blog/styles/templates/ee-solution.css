@@ -1,21 +1,22 @@
 /* cards overrides */
 @media (min-width: 600px) and (max-width: 1024px) {
-    .ee-solution .cards-wrapper {
+    /* only first */
+    .ee-solution .cards-container:not(.cards-container ~ .cards-container) .cards-wrapper {
         max-width: 31.5rem;
     }
 }
 
 @media (min-width: 1441px) {
     .ee-solution .cards-wrapper {
-        max-width: 94.5rem;
+        max-width: 95rem;
     }
 }
 
 @media (min-width: 600px) and (max-width: 1024px) {
-    .ee-solution .cards.style-2-columns,
-    .ee-solution .cards.style-3-columns,
-    .ee-solution .cards.style-4-columns,
-    .ee-solution .cards.style-5-columns {
+    .ee-solution .cards-container:not(.cards-container ~ .cards-container) .cards.style-2-columns,
+    .ee-solution .cards-container:not(.cards-container ~ .cards-container) .cards.style-3-columns,
+    .ee-solution .cards-container:not(.cards-container ~ .cards-container) .cards.style-4-columns,
+    .ee-solution .cards-container:not(.cards-container ~ .cards-container) .cards.style-5-columns {
         --cols: 1;
     }
 }
@@ -29,7 +30,7 @@
     margin: 0;
 }
 
-.ee-solution .default-content-wrapper .button {
+.ee-solution .default-content-wrapper a.button:any-link {
     background-color: var(--theme-shade10);
     font-family: var(--body-font-family);
     font-size: .9375rem;
@@ -41,6 +42,19 @@
 }
 
 /* column overrides */
+
+@media (max-width: 599px) {
+    .ee-solution .columns-container.bg-right-multi-3 .columns .column-flex-container {
+        gap: 5rem;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+    .ee-solution .columns-container.bg-right-multi-3 .columns .column-flex-container {
+        gap: 5rem;
+    }
+}
+
 .ee-solution .columns-container h3 {
     font-style: normal;
 }
@@ -60,6 +74,18 @@
 }
 
 /* background overrides */
+@media (max-width: 599px) {
+    .ee-solution .bg-right-multi-3.has-bg > .bg {
+        top: 5%;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+    .ee-solution .bg-right-multi-3.has-bg > .bg {
+        top: 12.5%;
+    }
+}
+
 .ee-solution .bg-block-ee-solutions-quote.has-bg > .bg {
     right: auto;
     top: 85%;
