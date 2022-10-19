@@ -186,7 +186,7 @@ main .section .hero p.button-container {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .hero {
     flex-direction: row;
   }
