@@ -77,14 +77,9 @@ div.pink .hero>div:first-child h1 {
   left: calc(50% - 435px);
   position: absolute;
   width: 830px;
-  -webkit-mask-image: url(/blog/styles/masks/mask-hex.svg);
-  mask-image: url(/blog/styles/masks/mask-hex.svg);
-  -webkit-mask-position: center;
+  mask-image: url('/blog/styles/masks/mask-hex.svg');
   mask-position: center;
-  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-  -webkit-mask-size: 830px 830px;
-  mask-size: 830px 830px;
 }
 
 .hero .cta-container {
@@ -211,7 +206,7 @@ main .section .hero p.button-container {
 
   .hero.single-mega-hex picture {
     left: auto;
-    right: calc(50% - 831.03px/2 - 120px);
+    right: calc(50% - 831.03px / 2 - 120px);
   }
 
   .hero>div:first-child h1 {
