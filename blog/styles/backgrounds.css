@@ -489,10 +489,7 @@
     left: unset;
   }
   
-  @media (min-width: 600px) {
-    .has-bg > .bg.bg-block-center-left-single-1 {
-    }
-  
+  @media (min-width: 600px) {  
     .has-bg > span.bg.bg-block-center-right-double-1 > svg.mobile {
       display: block;
     }
