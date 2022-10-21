@@ -13,6 +13,7 @@
 
 @import 'style-vars.css';
 @import 'backgrounds.css';
+@import 'templates/our-platform.css';
 @import 'templates/payroll-roi.css';
 @import 'templates/pricing-quote.css';
 @import 'templates/hr-software.css';
@@ -87,6 +88,35 @@ a.button:any-link {
 a.button:hover,
 a.button:focus {
   background-color: var(--color-1);
+}
+
+a.button.link:any-link {
+  background-color: revert;
+  border-radius: revert;
+  color: var(--theme-shade5);
+  font-family: var(--body-font-family);
+  font-size: 1rem;
+  font-style: var(--heading-font-weight);
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  white-space: revert;
+}
+
+/* link caret styles */
+a.button.link:any-link::after {
+  background-color: currentcolor;
+  content: '';
+  display: inline-block;
+  height: 0.8125rem;
+  margin-left: 0.5rem;
+  mask-image: url('../styles/caret-right.svg');
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-image: url('../styles/caret-right.svg');
+  vertical-align: middle; /* TODO: replace with flex on button? */
+  width: 0.5rem;
 }
 
 /* small button style */
@@ -659,6 +689,18 @@ main .section {
   padding: 0 30px;
 }
 
+@media (min-width: 600px) {
+  main .section {
+    margin-top: 80px;
+  }
+}
+
+@media (min-width: 1025px) {
+  main .section {
+    margin-top: 96px;
+  }
+}
+
 main .section:first-of-type {
   padding-top: 0;
   margin-top: 0;
@@ -751,9 +793,21 @@ main .section > div:empty {
   }
 }
 
+main .section.max-width-small > div {
+  max-width: 760px;
+}
+
 @media (min-width: 1800px) {
   main .section > div {
     max-width: 1520px;
+  }
+
+  main .section.max-width-medium > div {
+    max-width: 1300px;
+  }
+
+  main .section.max-width-small > div {
+    max-width: 1000px;
   }
 }
 

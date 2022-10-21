@@ -3,6 +3,14 @@
   flex-direction: column;
 }
 
+.columns-wrapper.medium-width {
+  max-width: 1300px;
+}
+
+.columns-wrapper.small-width {
+  max-width: 1000px;
+}
+
 .columns img {
   width: 100%;
 }
@@ -34,7 +42,7 @@
 
 .cards-col a.button:any-link {
   color: #1087cc;
-  font-family: "Red Hat Text", Arial, Helvetica, sans-serif;
+  font-family: 'Red Hat Text', Arial, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 12px;
   line-height: 15px;
@@ -67,7 +75,7 @@
   position: relative;
 }
 
-.column-small-icons-container .button::after {
+.column-small-icons-container a::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -75,7 +83,7 @@
   left: 0;
   z-index: 1;
   pointer-events: auto;
-  content: "";
+  content: '';
   background-color: rgba(0 0 0 0%);
 }
 
@@ -87,7 +95,7 @@
 }
 
 .home-more .columns a.button:any-link::after {
-  content: "";
+  content: '';
   border: solid var(--heading-color);
   border-width: 0 2.5px 2.5px 0;
   display: inline-block;
@@ -231,7 +239,7 @@ main .section > .card-wrapper {
 
 .cards-col .button-container::after {
   margin-left: 10px;
-  content: url("https://www.bamboohr.com/images/icons/color5-shade5-right-arrow.svg");
+  content: url('https://www.bamboohr.com/images/icons/color5-shade5-right-arrow.svg');
 }
 
 .cards-border {
@@ -242,6 +250,10 @@ main .section > .card-wrapper {
   left: -10px;
   background: linear-gradient(120deg, #5cc8ff 13.4%, #a168ff 86.6%);
   border-radius: 15px;
+}
+
+.columns.button-text-link p.button-container {
+  margin-top: 10px;
 }
 
 .columns.step .step-wrap {
