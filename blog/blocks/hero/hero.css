@@ -4,8 +4,7 @@
   padding: 30px 0;
 }
 
-.hero.single-mega-hex,
-.hero.triple-hex {
+.hero.single-mega-hex {
   flex-direction: column;
 }
 
@@ -28,7 +27,6 @@ div.pink .hero>div:first-child {
 div.pink .hero>div:first-child h1 {
   color: var(--color-white);
 }
-
 
 .hero>.image-group-container {
   width: 66.66%;
@@ -90,7 +88,7 @@ div.pink .hero>div:first-child h1 {
 .hero a.button:any-link {
   font-size: 14px;
 }
- 
+
 main .section .hero p.button-container {
   margin-top: 0;
   text-align: left;
@@ -100,44 +98,6 @@ main .section .hero p.button-container {
   background: var(--theme-tint5);
   color: var(--theme-shade15);
   margin-right: 30px;
-}
-
-/** Triple Hex **/
-
-.hero.triple-hex {
-  margin-bottom: 0;
-  padding: 40px 0 0;
-}
-
-.hero.triple-hex>div {
-  position: relative;
-}
-
-.hero.triple-hex>div:first-child {
-  color: var(--color-white);
-  text-align: center;
-  z-index: 5;
-}
-
-.hero.triple-hex>div:first-child h1 {
-  color: var(--color-white);
-  line-height: 48px;
-  margin: 0 0 16px;
-}
-
-.hero.triple-hex>div:first-child h2 {
-  color: var(--theme-tint15);
-  margin: 0 0 16px;
-}
-
-.hero.triple-hex .image-group-container {
-  position: relative;
-  margin-top: 20px;
-  width: 100%;
-}
-
-.hero.triple-hex .image-container:first-child {
-  display: none;
 }
 
 @media (min-width: 600px) {
@@ -162,27 +122,6 @@ main .section .hero p.button-container {
 
   .hero a.button:any-link {
     font-size: 18px;
-  }
-
-  .hero.triple-hex {
-    flex-direction: row;
-  }
-
-  .hero.triple-hex>div:first-child {
-    padding: 60px 0 0 30px;
-    text-align: left;
-    width: 60%;
-  }
-
-  .hero.triple-hex>div:first-child h1 {
-    font-size: 54px;
-    line-height: 60px;
-  }
-
-  .hero.triple-hex>.image-group-container {
-    margin-left: -10%;
-    margin-top: 20%;
-    width: 50%;
   }
 }
 
@@ -213,28 +152,199 @@ main .section .hero p.button-container {
     font-size: 70px;
     margin-top: 0;
   }
-
-  .hero.triple-hex {
-    margin-bottom: -10px;
-  }
-
-  /* TODO would probably be better to handle this within the picture element's sources */
-  .hero.hero.triple-hex .image-container:first-child {
-    display: block;
-  }
-
-  .hero.hero.triple-hex .image-container:nth-child(2) {
-    display: none;
-  }
 }
 
-@media (min-width: 1440px) {
-  .hero.triple-hex>div:first-child h1 {
-    font-size: 70px;
-    line-height: 80px;
-  }
+/*
+ * Triple Hex
+ */
 
-  .hero.hero.triple-hex .image-group-container {
-    margin-top: 3%;
-  }
+/* container */
+.hero-container.triple-hex {
+    --container-width: 360;
+
+    overflow: hidden;
+    position: relative;
+}
+
+@media (min-width: 600px) {
+    .hero-container.triple-hex {
+        --container-width: 768;
+    }
+}
+
+@media (min-width: 1025px) {
+    .hero-container.triple-hex {
+        --container-width: 1440;
+    }
+}
+
+@media (min-width: 1800px) {
+    .hero-container.triple-hex {
+        --container-width: 1900;
+    }
+}
+
+/* wrapper */
+.hero-container.triple-hex > .hero-wrapper {
+    --wrapper-height: 750;
+
+    min-height: calc((var(--wrapper-height) / var(--container-width)) * 100vw);
+}
+
+@media (min-width: 600px) {
+    .hero-container.triple-hex > .hero-wrapper {
+        --wrapper-height: 725;
+    }
+}
+
+@media (min-width: 1025px) {
+    .hero-container.triple-hex > .hero-wrapper {
+        --wrapper-height: 630;
+    }
+}
+
+@media (min-width: 1800px) {
+    .hero-container.triple-hex > .hero-wrapper {
+        --wrapper-height: 710;
+    }
+}
+
+/* block */
+.hero.triple-hex {
+    margin: 0;
+    padding: 0;
+}
+
+/* content area */
+.hero.triple-hex > div:first-child {
+    --content-height: 340;
+    --content-width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    justify-content: center;
+    max-width: 650px;
+    min-height: calc((var(--content-height) / var(--container-width)) * 100vw);
+    padding: 0;
+    width: calc((var(--content-width) / var(--container-width)) * 100vw);
+}
+
+@media (max-width: 599px) {
+    .hero.triple-hex > div:first-child {
+        text-align: center;
+    }
+}
+
+@media (min-width: 600px) {
+    .hero.triple-hex > div:first-child {
+        --content-height: 470;
+        --content-width: 425;
+    }
+}
+
+@media (min-width: 1025px) {
+    .hero.triple-hex > div:first-child {
+        --content-height: 620;
+        --content-width: 650;
+    }
+}
+
+/* content */
+.hero.triple-hex > div:first-child > * {
+    margin: 0;
+}
+
+.hero.triple-hex > div:first-child h1 {
+    color: var(--color-white);
+    line-height: 1.2;
+}
+
+@media (min-width: 600px) {
+    .hero.triple-hex > div:first-child h1 {
+        font-size: 3.375rem;
+        line-height: 1.1111;
+    }
+}
+
+@media (min-width: 1025px) {
+    .hero.triple-hex > div:first-child h1 {
+        font-size: 4.375rem;
+        line-height: 1.1429;
+    }
+}
+
+.hero.triple-hex > div:first-child h2 {
+    color: var(--theme-tint15);
+    font-size: 1.625rem;
+    font-style: normal;
+    line-height: 1.1538;
+}
+
+.hero.triple-hex > div:first-child p {
+    color: var(--color-white);
+    font-size: 1.3125rem;
+    font-weight: normal;
+    line-height: 1.4286;
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .hero.triple-hex > div:first-child p {
+        margin-right: calc((60 / var(--container-width)) * 100vw);
+    }
+}
+
+/* images */
+.hero.triple-hex .image-group-container {
+    --image-right: 15;
+    --image-top: 345;
+    --image-width: 320;
+
+    padding: 0;
+    position: absolute;
+    right: calc((var(--image-right) / var(--container-width)) * 100vw);
+    top: calc((var(--image-top) / var(--container-width)) * 100vw);
+    width: calc((var(--image-width) / var(--container-width)) * 100vw);
+    z-index: -1;
+}
+
+@media (min-width: 600px) {
+    .hero.triple-hex .image-group-container {
+        --image-right: -25;
+        --image-top: 225;
+        --image-width: 500;
+    }
+}
+
+@media (min-width: 1025px) {
+    .hero.triple-hex .image-group-container {
+        --image-right: 10;
+        --image-top: 60;
+        --image-width: 630;
+    }
+}
+
+@media (min-width: 1800px) {
+    .hero.triple-hex .image-group-container {
+        --image-right: 200;
+        --image-top: 25;
+        --image-width: 770;
+    }
+}
+
+.hero.triple-hex .image-group-container img {
+    width: 100%;
+}
+
+/* TODO: would probably be better to handle this within the picture element's sources */
+@media (max-width: 1024px) {
+    .hero.hero.triple-hex .image-container:first-child {
+        display: none;
+    }
+}
+
+@media (min-width: 1025px) {
+    .hero.hero.triple-hex .image-container:nth-child(2) {
+        display: none;
+    }
 }
