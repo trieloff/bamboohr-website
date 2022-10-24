@@ -466,3 +466,37 @@ div .column-small-icons-container {
 .column-flex-container > div > picture {
   display: block;
 }
+
+.columns.title1-heading h2 {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 30px;
+  margin: 0 0 30px;
+  font-style: normal;
+  color: var(--theme-shade5);
+}
+
+.columns .non-img-col ul li strong {
+  color: var(--theme-shade10);
+}
+
+.columns a.button:any-link {
+  color: var(--theme-tint5);
+  background-color: var(--theme-shade15);
+}
+
+.columns.image-info .img-col em {
+  font-family: var(--body-font-family);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-style: normal;
+  color: var(--color-gray-12)
+}
+
+.columns.image-info .img-col[data-align='center'] {
+  text-align: center;
+}
