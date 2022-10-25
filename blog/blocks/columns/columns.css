@@ -489,6 +489,10 @@ div .column-small-icons-container {
   color: var(--theme-shade5);
 }
 
+.columns.gray-heading h2 {
+  color: var(--color-gray-12);
+}
+
 .columns .non-img-col ul li strong {
   color: var(--theme-shade10);
 }
