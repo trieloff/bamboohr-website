@@ -1,4 +1,4 @@
-import { hasClassStartsWith, getValuesFromClassName } from '../../scripts/scripts.js';
+import { hasClassStartsWith, getValuesFromClassName, addWidthToParent } from '../../scripts/scripts.js';
 
 function buildSplit(splitVal) {
   const newCol = document.createElement('div');
@@ -22,10 +22,7 @@ function findSplitSubType(val) {
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
-  if (block.classList.contains('full-width')) block.parentElement.classList.add('full-width');
-  if (block.classList.contains('med-width')) block.parentElement.classList.add('med-width');
-  if (block.classList.contains('medium-width')) block.parentElement.classList.add('medium-width');
-  if (block.classList.contains('small-width')) block.parentElement.classList.add('small-width');
+  addWidthToParent(block);
 
   if (block.classList.contains('small-icons')) {
     cols[0].parentElement.classList.add('column-small-icons-container');

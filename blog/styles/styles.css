@@ -19,7 +19,7 @@
 @import 'templates/hr-software.css';
 @import 'templates/hr-unplugged.css';
 @import 'templates/live-demo-webinars.css';
-@import 'templates/rippling-comparison.css';
+@import 'templates/bhr-comparison.css';
 @import 'templates/industry.css';
 @import 'templates/ee-solution.css';
 
@@ -757,10 +757,12 @@ main .section > div:empty {
   }
 
   .resources-guides main .section > div.quote-wrapper.normal-width,
+  main .section > div.image-wrapper.normal-width,
   main .section > div.title-wrapper.normal-width {
     max-width: 760px;
   }
 
+  main .section > div.cards-wrapper.med-width,
   .resources-guides main .section > div.columns-wrapper.med-width,
   .resources-guides main .section > div.toc-wrapper,
   .resources-guides main .section > div.quote-wrapper,
@@ -773,7 +775,7 @@ main .section > div:empty {
 
   .resources-guides main .section > div.cards-wrapper.full-width,
   .resources-guides main .section > div.columns-wrapper.full-width,
-  .resources-guides main .section > div.image-wrapper.full-width,
+  main .section > div.image-wrapper.full-width,
   .resources-guides main .section > div.quote-wrapper.full-width,
   .resources-guides main .section > div.source-wrapper.full-width {
     max-width: 1160px;

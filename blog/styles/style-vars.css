@@ -894,5 +894,5 @@ div.secondary-teal {
 
 .color-white,
 .color-white :is(h1, h2, h3, h4, h5, h6) {
-  color: var(--color-gray-3);
+  color: var(--color-white);
 }
