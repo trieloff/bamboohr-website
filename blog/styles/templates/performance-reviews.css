@@ -1,0 +1,11 @@
+.performance-reviews .gradient {
+  background: linear-gradient(to top, var(--secondary-theme-tint15) 0%, var(--color-white) 100%);
+}
+
+.performance-reviews .section {
+  padding: 100px 0;
+}
+
+.performance-reviews .section > div {
+  max-width: 960px;
+}
