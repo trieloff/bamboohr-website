@@ -20,11 +20,11 @@ main .section > .image-wrapper {
   max-width: 1200px;
 }
 
-main .section > .image-wrapper.full-width {
+main .section > .image-wrapper.content-width-full {
   max-width: 100%;
 }
 
-.image-wrapper.full-width img {
+.image-wrapper.content-width-full img {
   width: 100%;
 }
 

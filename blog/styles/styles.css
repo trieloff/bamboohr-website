@@ -13,6 +13,7 @@
 
 @import 'style-vars.css';
 @import 'backgrounds.css';
+@import 'themes/base.css';
 @import 'templates/our-platform.css';
 @import 'templates/payroll-roi.css';
 @import 'templates/performance-reviews.css';

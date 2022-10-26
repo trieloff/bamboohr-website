@@ -293,6 +293,13 @@ export function decorateBlock(block) {
 
   const blockWrapper = block.parentElement;
   blockWrapper.classList.add(`${shortBlockName}-wrapper`);
+
+  [...block.classList]
+    .filter((filter) => filter.match(/^content-width-/g))
+    .forEach((style) => {
+      block.parentElement.classList.add(style);
+      block.classList.remove(style);
+    });
 }
 
 /**
