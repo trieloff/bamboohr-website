@@ -1,54 +1,64 @@
-.rippling-comparison .has-bg > span.bg-bottom-cap-3,
-.rippling-comparison .has-bg > span.bg-bottom-multi-3 {
+.bhr-comparison .has-bg > span.bg-bottom-cap-3,
+.bhr-comparison .has-bg > span.bg-bottom-multi-3 {
     background-image: linear-gradient(159.58deg, var(--color-white) 1.38%, var(--theme-tint15) 74.25%);
     top: 0;
 }
 
-.rippling-comparison .bg-bottom-cap-3 {
+.bhr-comparison .bg-bottom-cap-3 {
     margin-bottom: 230px;
 }
 
-.rippling-comparison .section.bg-bottom-multi-3 {
+.bhr-comparison .section.bg-bottom-multi-3 {
     margin-top: -230px;
 }
 
-.rippling-comparison main .form {
+.bhr-comparison main .title.section-subhead {
+    font-weight: 500;
+}
+
+.bhr-comparison main .form {
     text-align: center;
 }
 
-.rippling-comparison main .form a.button {
+.bhr-comparison main .form a.button {
     color: var(--theme-shade15);
     background-color: var(--secondary-theme-tint10);
 }
 
-.rippling-comparison .center-page-cta h2 {
+.bhr-comparison .center-page-cta h2 {
     color: var(--secondary-theme-tint10);
 }
 
-.rippling-comparison .center-page-cta .button-container > a.button:any-link {
+.bhr-comparison .center-page-cta .button-container > a.button:any-link {
     background-color: var(--secondary-theme-tint10);
 }
 
-.rippling-comparison .quote h3 {
+.bhr-comparison .quote h3 {
     font-style: normal;
     color: var(--secondary-theme-shade10);
 }
 
-.rippling-comparison main .quote.full .byline {
+.bhr-comparison main .quote.full .byline {
     color: var(--secondary-theme-shade10);
 }
 
-.rippling-comparison main .columns {
+.bhr-comparison main .columns {
     color: var(--color-gray-12);
 }
 
-.rippling-comparison main .columns h4,
-.rippling-comparison main .columns h5 {
+.bhr-comparison main .columns .img-col h3 {
+    color: var(--color-gray-10);
+    text-align: center;
+    font-style: normal;
+}
+
+.bhr-comparison main .columns h4,
+.bhr-comparison main .columns h5 {
     margin-top: 0;
     font-style: normal;
 }
 
-.rippling-comparison main .columns h4 {
+.bhr-comparison main .columns h4 {
     font-family: var(--body-font-family);
     font-size: 16px;
     font-weight: 700;
@@ -58,12 +68,12 @@
     color: var(--secondary-theme-shade10);
 }
 
-.rippling-comparison main .columns .img-col h4 {
+.bhr-comparison main .columns .img-col h4 {
     color: var(--theme-shade5);
     text-align: center;
 }
 
-.rippling-comparison main .columns h5 {
+.bhr-comparison main .columns h5 {
   font-family: var(--body-font-family);
   font-weight: 700;
   font-size: 12px;
@@ -74,84 +84,95 @@
   color: var(--theme-shade5);
 }
 
-.rippling-comparison main .columns li strong {
+.bhr-comparison main .columns .img-col h5 {
+    color: var(--color-gray-12);
+    text-align: center;
+}
+
+.bhr-comparison main .columns .non-img-col ul li strong {
     color: var(--theme-shade5);
 }
 
-.rippling-comparison .has-bg > span.bg-center-multi-3 {
+.bhr-comparison .has-bg > span.bg-center-multi-3 {
     top: 38%;
 }
 
-.rippling-comparison main .section.bg-bottom-multi-3 .default-content-wrapper a.button {
+.bhr-comparison main .section.bg-bottom-multi-3 .default-content-wrapper a.button {
     color: var(--theme-shade15);
     background-color: var(--secondary-theme-tint10);
     margin-bottom: 100px;
 }
 
-.rippling-comparison main .section.bg-bottom-multi-3 .default-content-wrapper p:last-child {
+.bhr-comparison main .section.bg-bottom-multi-3 .default-content-wrapper p:last-child {
     margin-bottom: 0;
     padding-bottom: 50px;
     color: var(--color-white);
 }
 
-.rippling-comparison .has-bg > span.bg-top-multi-7 {
+.bhr-comparison .has-bg > span.bg-top-multi-7 {
     top: calc(((100vw * 1.82) - 537px) * -1);
 }
 
-.rippling-comparison .has-bg > span.bg-bottom-multi-3 {
+.bhr-comparison .has-bg > span.bg-bottom-multi-3 {
     bottom: calc((100vw * 1.83) - 670px);
 }
 
 @media (min-width: 367px) {
-    .rippling-comparison .has-bg > span.bg-bottom-multi-3 {
+    .bhr-comparison .has-bg > span.bg-bottom-multi-3 {
         bottom: calc(((100vw * 1.83) - 670px) * -1);
     }
 }
 
 @media (min-width: 600px) {
-    .rippling-comparison .bg-bottom-cap-3 {
+    .bhr-comparison .bg-bottom-cap-3 {
         margin-bottom: 300px;
     }
     
-    .rippling-comparison .section.bg-bottom-multi-3 {
+    .bhr-comparison .section.bg-bottom-multi-3 {
         margin-top: -300px;
     }
 
-    .rippling-comparison .has-bg > span.bg-top-multi-7 {
+    .bhr-comparison .has-bg > span.bg-top-multi-7 {
         top: calc(((100vw * 0.82) - 537px) * -1);
     }
 
-    .rippling-comparison .has-bg > span.bg-bottom-multi-3 {
+    .bhr-comparison .has-bg > span.bg-bottom-multi-3 {
         bottom: calc((100vw * 0.96) - 670px);
     }
 }
 
 @media (min-width: 698px) {
-    .rippling-comparison .has-bg > span.bg-bottom-multi-3 {
+    .bhr-comparison .has-bg > span.bg-bottom-multi-3 {
         bottom: calc(((100vw * 0.96) - 670px) * -1);
     }
 }
 
+@media (max-width: 899px) {
+    .bhr-comparison .non-img-col {
+        margin-top: 40px;
+    }
+}
+
 @media (min-width: 1025px) {
-    .rippling-comparison .bg-bottom-cap-3 {
+    .bhr-comparison .bg-bottom-cap-3 {
         margin-bottom: 500px;
     }
 
-    .rippling-comparison .section.bg-bottom-multi-3 {
+    .bhr-comparison .section.bg-bottom-multi-3 {
         margin-top: -400px;
     }
 
-    .rippling-comparison .has-bg > span.bg-top-multi-7 {
+    .bhr-comparison .has-bg > span.bg-top-multi-7 {
         top: calc(((100vw * 0.55) - 537px) * -1);
     }
 
-    .rippling-comparison .has-bg > span.bg-bottom-multi-3 {
+    .bhr-comparison .has-bg > span.bg-bottom-multi-3 {
         bottom: calc((100vw * 0.55) - 670px);
     }
 }
 
 @media (min-width: 1219px) {
-    .rippling-comparison .has-bg > span.bg-bottom-multi-3 {
+    .bhr-comparison .has-bg > span.bg-bottom-multi-3 {
         bottom: calc(((100vw * 0.55) - 670px) * -1);
     }
 }
