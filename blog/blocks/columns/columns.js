@@ -22,9 +22,6 @@ function findSplitSubType(val) {
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
-  if (block.classList.contains('full-width')) block.parentElement.classList.add('full-width');
-  if (block.classList.contains('med-width')) block.parentElement.classList.add('med-width');
-  if (block.classList.contains('small-width')) block.parentElement.classList.add('small-width');
 
   if (block.classList.contains('small-icons')) {
     cols[0].parentElement.classList.add('column-small-icons-container');
@@ -65,10 +62,19 @@ export default function decorate(block) {
           col.classList.add('img-col');
           hasImage = true;
         } else col.classList.add('non-img-col');
-        const button = col.querySelector('a.button');
-        if (button) {
-          button.classList.add('small');
-          button.parentElement.classList.add('left');
+        const isLinkList = block.classList.contains('button-text-link');
+        const buttons = col.querySelectorAll('a.button');
+
+        if (!isLinkList) {
+          buttons.forEach((button) => {
+            button.classList.add('small');
+            button.parentElement.classList.add('left');
+          });
+        } else {
+          buttons.forEach((button) => {
+            button.classList.add('link');
+            button.parentElement.classList.add('left');
+          });
         }
       });
       if (!hasImage) colParent.classList.add('columns-align-start');

@@ -269,6 +269,7 @@ export function decorateBlock(block) {
 
   const blockWrapper = block.parentElement;
   blockWrapper.classList.add(`${shortBlockName}-wrapper`);
+  addWidthToParent(block);
 }
 
 /**
@@ -321,41 +322,45 @@ export function decorateBackgrounds($section) {
 
       background.classList.add('bg', style);
 
-      // get svgs
-      sizes.forEach((size, sizeKey) => {
-        let name = style;
+      if (!style.startsWith('bg-gradient') && !style.startsWith('bg-solid')) {
+        // get svgs
+        sizes.forEach((size, sizeKey) => {
+          let name = style;
 
-        if (size) name += `-${size}`;
+          if (size) name += `-${size}`;
 
-        fetch(`${fetchBase}${window.hlx.codeBasePath}/styles/backgrounds/${name}.svg`)
-          .then((resp) => {
-            // skip if not success
-            if (resp.status !== 200) return;
+          fetch(`${fetchBase}${window.hlx.codeBasePath}/styles/backgrounds/${name}.svg`)
+            .then((resp) => {
+              // skip if not success
+              if (resp.status !== 200) return;
 
-            // put the svg in the span
-            resp.text()
-              .then((output) => {
-                const element = document.createElement('div');
-                let html = output;
+              // put the svg in the span
+              resp.text()
+                .then((output) => {
+                  const element = document.createElement('div');
+                  let html = output;
 
-                // get IDs
-                const matches = html.matchAll(/id="([^"]+)"/g);
-                // replace IDs
-                [...matches].forEach(([, match], matchKey) => {
-                  html = html.replaceAll(match, `bg-id-${sectionKey}-${bgKey}-${sizeKey}-${matchKey}`);
+                  // get IDs
+                  const matches = html.matchAll(/id="([^"]+)"/g);
+                  // replace IDs
+                  [...matches].forEach(([, match], matchKey) => {
+                    html = html.replaceAll(match, `bg-id-${sectionKey}-${bgKey}-${sizeKey}-${matchKey}`);
+                  });
+
+                  element.innerHTML = html;
+                  const svg = element.firstChild;
+
+                  svg.classList.add(size || 'desktop');
+
+                  background.append(svg);
+                  $section.classList.add('has-bg');
                 });
-
-                element.innerHTML = html;
-                const svg = element.firstChild;
-
-                svg.classList.add(size || 'desktop');
-
-                background.append(svg);
-                $section.classList.add('has-bg');
-              });
-          });
-      });
-
+            });
+        });
+      }
+      if (style.startsWith('bg-gradient') || style.startsWith('bg-solid')) {
+        $section.classList.add('has-bg');
+      }
       $section.prepend(background);
     });
 }
@@ -1121,4 +1126,20 @@ export function createElem(elemType, ...cssClass) {
   }
 
   return elem;
+}
+
+/**
+ * Add width to a block's parent.
+ * @param {Element} block The block element
+ */
+export function addWidthToParent(block) {
+  const widths = ['full-width', 'med-width', 'normal-width', 'small-width', 'medium-width', 'extra-wide', 'extra-small-width'];
+  widths.some((w) => {
+    const found = block.classList.contains(w);
+    if (found) {
+      block.parentElement.classList.add(w);
+      block.classList.remove(w);
+    }
+    return found;
+  });
 }
