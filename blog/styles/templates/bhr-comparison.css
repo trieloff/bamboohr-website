@@ -46,12 +46,6 @@
     color: var(--color-gray-12);
 }
 
-.bhr-comparison main .columns .img-col h3 {
-    color: var(--color-gray-10);
-    text-align: center;
-    font-style: normal;
-}
-
 .bhr-comparison main .columns h4,
 .bhr-comparison main .columns h5 {
     margin-top: 0;
@@ -70,7 +64,6 @@
 
 .bhr-comparison main .columns .img-col h4 {
     color: var(--theme-shade5);
-    text-align: center;
 }
 
 .bhr-comparison main .columns h5 {
@@ -82,11 +75,6 @@
   text-transform: uppercase;
   margin-bottom: 0;
   color: var(--theme-shade5);
-}
-
-.bhr-comparison main .columns .img-col h5 {
-    color: var(--color-gray-12);
-    text-align: center;
 }
 
 .bhr-comparison main .columns .non-img-col ul li strong {

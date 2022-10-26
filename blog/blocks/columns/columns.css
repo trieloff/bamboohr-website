@@ -502,7 +502,13 @@ div .column-small-icons-container {
   background-color: var(--theme-shade15);
 }
 
-.columns.image-info .img-col em {
+.columns .img-col h3 {
+  color: var(--color-gray-10);
+  font-style: normal;
+}
+
+.columns.image-info .img-col em,
+.columns .img-col em {
   font-family: var(--body-font-family);
   font-weight: 700;
   font-size: 12px;
@@ -513,6 +519,7 @@ div .column-small-icons-container {
   color: var(--color-gray-12)
 }
 
-.columns.image-info .img-col[data-align='center'] {
+.columns.image-info .img-col[data-align='center'],
+.columns .img-col[data-align='center'] {
   text-align: center;
 }
