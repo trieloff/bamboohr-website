@@ -1,9 +1,8 @@
-import { decorateBackgrounds, addWidthToParent } from '../../scripts/scripts.js';
+import { decorateBackgrounds } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   const byline = block.querySelector('em');
   const company = block.querySelector('h4');
-  addWidthToParent(block);
 
   // Adding image class to block children
   [...block.children].forEach((row) =>

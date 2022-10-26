@@ -269,6 +269,7 @@ export function decorateBlock(block) {
 
   const blockWrapper = block.parentElement;
   blockWrapper.classList.add(`${shortBlockName}-wrapper`);
+  addWidthToParent(block);
 }
 
 /**
@@ -1135,7 +1136,10 @@ export function addWidthToParent(block) {
   const widths = ['full-width', 'med-width', 'normal-width', 'small-width', 'medium-width', 'extra-wide', 'extra-small-width'];
   widths.some((w) => {
     const found = block.classList.contains(w);
-    if (found) block.parentElement.classList.add(w);
+    if (found) {
+      block.parentElement.classList.add(w);
+      block.classList.remove(w);
+    }
     return found;
   });
 }

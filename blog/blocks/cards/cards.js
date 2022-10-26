@@ -1,4 +1,4 @@
-import { createElem, addWidthToParent } from '../../scripts/scripts.js';
+import { createElem } from '../../scripts/scripts.js';
 
 function decorateIconBackground() {
   const iconBackground = createElem('span', 'icon-background');
@@ -13,7 +13,6 @@ export default function decorate(block) {
   const cards = block.querySelectorAll(':scope > div');
   let topImageFull = false;
 
-  addWidthToParent(block);
   if (block.classList.contains('image-top-full')) topImageFull = true;
 
   // convert "number" classes

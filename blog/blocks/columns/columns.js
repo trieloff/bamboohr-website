@@ -1,4 +1,4 @@
-import { hasClassStartsWith, getValuesFromClassName, addWidthToParent } from '../../scripts/scripts.js';
+import { hasClassStartsWith, getValuesFromClassName } from '../../scripts/scripts.js';
 
 function buildSplit(splitVal) {
   const newCol = document.createElement('div');
@@ -22,7 +22,6 @@ function findSplitSubType(val) {
 export default function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
-  addWidthToParent(block);
 
   if (block.classList.contains('small-icons')) {
     cols[0].parentElement.classList.add('column-small-icons-container');

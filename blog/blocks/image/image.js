@@ -1,4 +1,4 @@
-import { buildFigure, addWidthToParent } from '../../scripts/scripts.js';
+import { buildFigure } from '../../scripts/scripts.js';
 
 function buildColumns(rowEl, count) {
   const columnEls = Array.from(rowEl.children);
@@ -11,7 +11,6 @@ function buildColumns(rowEl, count) {
 }
 
 export default function decorateImage(blockEl) {
-  addWidthToParent(blockEl);
   if ([...blockEl.classList].some((c) => c.startsWith('bg-'))) {
     blockEl.parentElement.classList.add('background-image');
   }
