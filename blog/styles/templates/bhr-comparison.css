@@ -84,6 +84,11 @@
   color: var(--theme-shade5);
 }
 
+.bhr-comparison main .columns .img-col h5 {
+    color: var(--color-gray-12);
+    text-align: center;
+}
+
 .bhr-comparison main .columns .non-img-col ul li strong {
     color: var(--theme-shade5);
 }
