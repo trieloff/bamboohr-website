@@ -529,3 +529,79 @@ main .section .hero p.button-container {
     display: none;
   }
 }
+
+/* cards */
+
+/* example MQs */
+@media (min-width: 600px) {}
+@media (min-width: 1025px) {}
+@media (min-width: 1800px) {}
+
+@media (min-width: 1800px) {
+  .hero-container.cards-2-column .hero-wrapper {
+    max-width: 1520px;
+  }
+}
+
+.hero.cards-2-column {
+  flex-direction: column;
+  gap: 2.5rem;
+  padding: 2.5rem 0;
+}
+
+@media (min-width: 1025px) {
+  .hero.cards-2-column {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 7.5rem 0;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hero.cards-2-column > .content,
+  .hero.cards-2-column > .cards {
+    width: 50%;
+  }
+}
+
+.hero.cards-2-column > .content {
+  color: var(--theme-shade10);
+  padding: 0;
+}
+
+@media (max-width: 1024px) {
+  .hero.cards-2-column > .content {
+    text-align: center;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hero.cards-2-column > .content {
+    width: min(50%, 640px);
+  }
+}
+
+.hero.cards-2-column > .content > h1 {
+  color: var(--theme-shade15);
+}
+
+.hero.cards-2-column > .content > p {
+  font-weight: normal;
+}
+
+/* cards overrides */
+.hero.cards-2-column > .cards {
+  padding: 0;
+}
+
+@media (min-width: 1025px) {
+  .hero.cards-2-column > .cards {
+    width: min(50%, 740px);
+  }
+}
+
+.hero.cards-2-column > .cards .icon > svg {
+  color: var(--theme-shade10);
+  max-height: 2rem;
+  max-width: 2rem;
+}
