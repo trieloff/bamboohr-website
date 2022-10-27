@@ -858,6 +858,7 @@ main .default-content-wrapper p a.button:any-link {
 .resources-guides main .quote-wrapper,
 .resources-guides main .cards-wrapper,
 .resources-guides main .columns-wrapper,
+main .center-page-cta-wrapper,
 .resources-guides main .image-wrapper:not(.background-image) {
   position: relative;
   z-index: 1;
