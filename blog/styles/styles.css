@@ -13,8 +13,10 @@
 
 @import 'style-vars.css';
 @import 'backgrounds.css';
+@import 'themes/base.css';
 @import 'templates/our-platform.css';
 @import 'templates/payroll-roi.css';
+@import 'templates/performance-reviews.css';
 @import 'templates/pricing-quote.css';
 @import 'templates/hr-software.css';
 @import 'templates/hr-unplugged.css';
@@ -79,21 +81,22 @@ a.button:any-link {
   font-weight: var(--heading-font-weight);
   cursor: pointer;
   color: var(--color-white);
-  background-color: var(--color-1);
+  background-color: var(--theme-base);
   margin: 16px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
+  transition: background-color 0.1s;
 }
 
 a.button:hover,
 a.button:focus {
-  background-color: var(--color-1);
+  background-color: var(--theme-shade5);
 }
 
 a.button.link:any-link {
-  background-color: revert;
+  background-color: transparent !important;
   border-radius: revert;
   color: var(--theme-shade5);
   font-family: var(--body-font-family);

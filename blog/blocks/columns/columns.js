@@ -40,9 +40,17 @@ export default function decorate(block) {
       cardWrapper.appendChild(cardBorder);
     });
   } else if (block.classList.contains('step')) {
-    cols[0].parentElement.classList.add('step-wrap');
-    cols[0].classList.add('step-left');
-    cols[1].classList.add('step-right');
+    const rows = [...block.children];
+    rows.forEach((row) => {
+      row.classList.add('step-wrap');
+      [...row.children].forEach((col, index) => {
+        if (index % 2 === 0) {
+          col.classList.add('step-left');
+        } else {
+          col.classList.add('step-right');
+        }
+      });
+    });
   } else if (cols.length === 2) {
     let splitVals = null;
     [...block.classList].some((c) => {
