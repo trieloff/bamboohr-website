@@ -4,17 +4,18 @@ function setupImages(block) {
   const imageGroupContainer = createElem('div', 'image-group-container');
   const imageParents = block.querySelectorAll(':scope > div:nth-child(n + 2)');
 
-  if (block.classList.contains('triple-hex')) {
-    block.closest('.hero-container').classList.add('triple-hex');
-  }
-
   imageParents.forEach((imageParent) => {
     const imageContainer = createElem('div', 'image-container');
-    const caption = imageParent.querySelector(':scope > p:nth-child(2)');
+    const caption = imageParent.querySelector(':scope > div:nth-child(2) p:nth-child(2)');
 
-    imageContainer.append(imageParent.querySelector('picture'));
+    const imageMask = createElem('div', 'image-mask');
+    imageMask.append(imageParent.querySelector('picture'));
+    imageContainer.append(imageMask);
 
-    if (caption) imageContainer.append(caption);
+    if (caption) {
+      caption.classList.add('image-caption');
+      imageContainer.append(caption);
+    }
 
     imageGroupContainer.append(imageContainer);
   });
@@ -37,6 +38,10 @@ function setupContent(block) {
 }
 
 export default function decorate(block) {
+  if (block.classList.contains('triple-hex')) {
+    block.closest('.hero-container').classList.add('triple-hex');
+  }
+
   const content = setupContent(block);
   const imagesContainer = setupImages(block);
 
