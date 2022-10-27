@@ -337,6 +337,34 @@
   font-weight: 900;
 }
 
+#base .title-color :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--theme-base);
+}
+
+#base .title-color-tint-5 :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--theme-tint5);
+}
+
+#base .title-color-tint-15 :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--theme-tint15);
+}
+
+#base .title-color-tint-10 :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--theme-tint10);
+}
+
+#base .title-color-shade-5 :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--theme-shade5);
+}
+
+#base .title-color-shade-10 :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--theme-shade10);
+}
+
+#base .title-color-shade-15 :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--theme-shade15);
+}
+
 /** columns **/
 #base .columns strong {
   color: var(--theme-shade10);
