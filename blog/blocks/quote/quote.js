@@ -3,8 +3,6 @@ import { decorateBackgrounds } from '../../scripts/scripts.js';
 export default function decorate(block) {
   const byline = block.querySelector('em');
   const company = block.querySelector('h4');
-  if (block.classList.contains('full-width')) block.parentElement.classList.add('full-width');
-  if (block.classList.contains('normal-width')) block.parentElement.classList.add('normal-width');
 
   // Adding image class to block children
   [...block.children].forEach((row) =>
