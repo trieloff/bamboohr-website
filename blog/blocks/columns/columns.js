@@ -40,10 +40,6 @@ export default function decorate(block) {
       cardWrapper.appendChild(cardBorder);
     });
   } else if (block.classList.contains('step')) {
-    // cols[0].parentElement.classList.add('step-wrap');
-    // cols[0].classList.add('step-left');
-    // cols[1].classList.add('step-right');
-    // cols[0].parentElement.classList.add('step-wrap');
     const rows = [...block.children];
     rows.forEach((row) => {
       row.classList.add('step-wrap');

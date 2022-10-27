@@ -59,22 +59,6 @@ main .image.margin-none {
   margin: 0;
 }
 
-main .image.zoom-50 picture {
-  transform: scale(0.5);
-}
-
-main .image.zoom-75 {
-  transform: scale(0.75);
-}
-
-main .image.zoom-150 {
-  transform: scale(1.5);
-}
-
-main .image.zoom-200 {
-  transform: scale(2);
-}
-
 main .image.shadow {
   box-shadow: var(--box-shadow-2);
 }
