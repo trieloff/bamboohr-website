@@ -640,6 +640,7 @@ function decorateTemplateAndTheme() {
   if (theme) {
     const themeValues = theme.split(',').map((t) => t.trim());
     themeValues.forEach((t) => {
+      if (t.toLowerCase() === 'base') document.querySelector('main')?.setAttribute('id', 'base');
       document.body.classList.add(toClassName(t));
     });
   }

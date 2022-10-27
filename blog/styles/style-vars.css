@@ -898,36 +898,36 @@ div.secondary-teal {
 }
 
 .theme,
-.title-theme :is(h1, h2, h3, h4, h5, h6) {
+.title-color :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-base);
 }
 
 .theme-tint-5,
-.title-theme-tint-5 :is(h1, h2, h3, h4, h5, h6) {
+.title-color-tint-5 :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-tint5);
 }
 
 .theme-tint-15,
-.title-theme-tint-15 :is(h1, h2, h3, h4, h5, h6) {
+.title-color-tint-15 :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-tint15);
 }
 
 .theme-tint-10,
-.title-theme-tint-10 :is(h1, h2, h3, h4, h5, h6) {
+.title-color-tint-10 :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-tint10);
 }
 
 .theme-shade-5,
-.title-theme-shade-5 :is(h1, h2, h3, h4, h5, h6) {
+.title-color-shade-5 :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-shade5);
 }
 
 .theme-shade-10,
-.title-theme-shade-10 :is(h1, h2, h3, h4, h5, h6) {
+.title-color-shade-10 :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-shade10);
 }
 
 .theme-shade-15,
-.title-theme-shade-15 :is(h1, h2, h3, h4, h5, h6) {
+.title-color-shade-15 :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-shade15);
 }

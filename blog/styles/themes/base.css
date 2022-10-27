@@ -1,47 +1,56 @@
 /**** BASE Styles ****/
-.base {
+#base {
   --section-padding: 54px;
   --section-padding-mobile: 30px;
 }
 
+/** base tags **/
+#base :is(h1, h2, h3, h4, h5, h6) {
+  font-style: normal;
+}
+
 /** section **/
-.base .section {
+#base .section {
   margin-top: 48px;
   padding-bottom: 48px;
 }
 
+#base .section:first-of-type {
+  margin-top: 0;
+}
+
 @media (min-width: 600px) {
-  .base .section {
+  #base .section {
     margin-top: 64px;
   }
 }
 
 @media (min-width: 1025px) {
-  .base .section {
+  #base .section {
     margin-top: 96px;
     padding-bottom: 64px;
   }
 }
 
 @media (min-width: 1800px) {
-  .base .section {
+  #base .section {
     margin-top: 128px;
   }
 }
 
-.base .section.spacing-none {
+#base .section.spacing-none {
   margin-top: 0;
 }
 
 /** block wrapper **/
-.base .section > div {
+#base .section > div {
   max-width: calc(960px + var(--section-padding-mobile) * 2);
   padding-left: var(--section-padding-mobile);
   padding-right: var(--section-padding-mobile);
 }
 
 @media (min-width: 600px) {
-  .base .section > div {
+  #base .section > div {
     max-width: calc(960px + var(--section-padding) * 2);
     padding-left: var(--section-padding);
     padding-right: var(--section-padding);
@@ -49,140 +58,332 @@
 }
 
 @media (min-width: 1441px) {
-  .base .section > div {
+  #base .section > div {
     max-width: calc(1160px + var(--section-padding) * 2);
   }
 }
 
-.base .section > div.content-width-xs {
+#base .section > div.content-width-xs {
   max-width: calc(560px + var(--section-padding-mobile) * 2);
 }
 
 @media (min-width: 600px) {
-  .base .section > div.content-width-xs {
+  #base .section > div.content-width-xs {
     max-width: calc(560px + var(--section-padding) * 2);
   }
 }
 
-.base .section > div.content-width-sm {
+#base .section > div.content-width-sm {
   max-width: calc(760px + var(--section-padding-mobile) * 2);
 }
 
 @media (min-width: 600px) {
-  .base .section > div.content-width-sm {
+  #base .section > div.content-width-sm {
     max-width: calc(760px + var(--section-padding) * 2);
   }
 }
 
-.base .section > div.content-width-md {
+#base .section > div.content-width-md {
   max-width: calc(960px + var(--section-padding-mobile) * 2);
 }
 
 @media (min-width: 600px) {
-  .base .section > div.content-width-md {
+  #base .section > div.content-width-md {
     max-width: calc(960px + var(--section-padding) * 2);
   }
 }
 
 @media (min-width: 1441px) {
-  .base .section > div.content-width-md {
+  #base .section > div.content-width-md {
     max-width: calc(1160px + var(--section-padding) * 2);
   }
 }
 
-.base .section > div.content-width-lg {
+#base .section > div.content-width-lg {
   max-width: calc(1160px + var(--section-padding-mobile) * 2);
 }
 
 @media (min-width: 600px) {
-  .base .section > div.content-width-lg {
+  #base .section > div.content-width-lg {
     max-width: calc(1160px + var(--section-padding) * 2);
   }
 }
 
 @media (min-width: 1441px) {
-  .base .section > div.content-width-lg {
+  #base .section > div.content-width-lg {
     max-width: calc(1360px + var(--section-padding) * 2);
   }
 }
 
-.base .section > div.content-width-xl {
+#base .section > div.content-width-xl {
   max-width: calc(1360px + var(--section-padding-mobile) * 2);
 }
 
 @media (min-width: 600px) {
-  .base .section > div.content-width-xl {
+  #base .section > div.content-width-xl {
     max-width: calc(1360px + var(--section-padding) * 2);
   }
 }
 
 @media (min-width: 1441px) {
-  .base .section > div.content-width-xl {
+  #base .section > div.content-width-xl {
     max-width: calc(1560px + var(--section-padding) * 2);
   }
 }
 
-.base .section > div.content-width-full {
+#base .section > div.content-width-full {
   max-width: 100%;
   padding-left: 0;
   padding-right: 0;
 }
 
 /** block **/
-.base .block.spacing {
+#base .block.spacing {
   margin-top: 64px;
   margin-bottom: 64px;
 }
 
-.base .block.spacing-top {
+#base .block.spacing-top {
   margin-top: 64px;
 }
 
-.base .block.spacing-bottom {
+#base .block.spacing-bottom {
   margin-bottom: 64px;
+}
+
+/** buttons/links **/
+#base .button-color-base a.button:any-link,
+#base .button-color-base.columns a.button:any-link {
+  background-color: var(--theme-base);
+}
+
+#base .button-color-white a.button:any-link,
+#base .button-color-white.columns a.button:any-link {
+  background-color: var(--color-white);
+}
+
+#base .button-color-black a.button:any-link,
+#base .button-color-black.columns a.button:any-link {
+  background-color: var(--color-black);
+}
+
+#base .button-color-shade-5 a.button:any-link,
+#base .button-color-shade-5.columns a.button:any-link {
+  background-color: var(--theme-shade5);
+}
+
+#base .button-color-shade-10 a.button:any-link,
+#base .button-color-shade-10.columns a.button:any-link {
+  background-color: var(--theme-shade10);
+}
+
+#base .button-color-shade-15 a.button:any-link,
+#base .button-color-shade-15.columns a.button:any-link {
+  background-color: var(--theme-shade15);
+}
+
+#base .button-color-tint-5 a.button:any-link,
+#base .button-color-tint-5.columns a.button:any-link {
+  background-color: var(--theme-tint5);
+}
+
+#base .button-color-tint-10 a.button:any-link,
+#base .button-color-tint-10.columns a.button:any-link {
+  background-color: var(--theme-tint10);
+}
+
+#base .button-color-tint-15 a.button:any-link,
+#base .button-color-tint-15.columns a.button:any-link {
+  background-color: var(--theme-tint15);
+}
+
+#base .button-text-color-base a.button:any-link,
+#base .button-text-color-base.columns a.button:any-link {
+  color: var(--theme-base);
+}
+
+#base .button-text-color-white a.button:any-link,
+#base .button-text-color-white.columns a.button:any-link {
+  color: var(--color-white);
+}
+
+#base .button-text-color-black a.button:any-link,
+#base .button-text-color-black.columns a.button:any-link {
+  color: var(--color-black);
+}
+
+#base .button-text-color-shade-5 a.button:any-link,
+#base .button-text-color-shade-5.columns a.button:any-link {
+  color: var(--theme-shade5);
+}
+
+#base .button-text-color-shade-10 a.button:any-link,
+#base .button-text-color-shade-10.columns a.button:any-link {
+  color: var(--theme-shade10);
+}
+
+#base .button-text-color-shade-15 a.button:any-link,
+#base .button-text-color-shade-15.columns a.button:any-link {
+  color: var(--theme-shade15);
+}
+
+#base .button-text-color-tint-5 a.button:any-link,
+#base .button-text-color-tint-5.columns a.button:any-link {
+  color: var(--theme-tint5);
+}
+
+#base .button-text-color-tint-10 a.button:any-link,
+#base .button-text-color-tint-10.columns a.button:any-link {
+  color: var(--theme-tint10);
+}
+
+#base .button-text-color-tint-15 a.button:any-link,
+#base .button-text-color-tint-15.columns a.button:any-link {
+  color: var(--theme-tint15);
+}
+
+#base .button-color-secondary-base a.button:any-link,
+#base .button-color-secondary-base.columns a.button:any-link {
+  background-color: var(--secondary-theme-base);
+}
+
+#base .button-color-secondary-shade-5 a.button:any-link,
+#base .button-color-secondary-shade-5.columns a.button:any-link {
+  background-color: var(--secondary-theme-shade5);
+}
+
+#base .button-color-secondary-shade-10 a.button:any-link,
+#base .button-color-secondary-shade-10.columns a.button:any-link {
+  background-color: var(--secondary-theme-shade10);
+}
+
+#base .button-color-secondary-shade-15 a.button:any-link,
+#base .button-color-secondary-shade-15.columns a.button:any-link {
+  background-color: var(--secondary-theme-shade15);
+}
+
+#base .button-color-secondary-tint-5 a.button:any-link,
+#base .button-color-secondary-tint-5.columns a.button:any-link {
+  background-color: var(--secondary-theme-tint5);
+}
+
+#base .button-color-secondary-tint-10 a.button:any-link,
+#base .button-color-secondary-tint-10.columns a.button:any-link {
+  background-color: var(--secondary-theme-tint10);
+}
+
+#base .button-color-secondary-tint-15 a.button:any-link,
+#base .button-color-secondary-tint-15.columns a.button:any-link {
+  background-color: var(--secondary-theme-tint15);
+}
+
+#base .button-text-color-secondary-base a.button:any-link,
+#base .button-text-color-secondary-base.columns a.button:any-link {
+  color: var(--secondary-theme-base);
+}
+
+#base .button-text-color-secondary-shade-5 a.button:any-link,
+#base .button-text-color-secondary-shade-5.columns a.button:any-link {
+  color: var(--secondary-theme-shade5);
+}
+
+#base .button-text-color-secondary-shade-10 a.button:any-link,
+#base .button-text-color-secondary-shade-10.columns a.button:any-link {
+  color: var(--secondary-theme-shade10);
+}
+
+#base .button-text-color-secondary-shade-15 a.button:any-link,
+#base .button-text-color-secondary-shade-15.columns a.button:any-link {
+  color: var(--secondary-theme-shade15);
+}
+
+#base .button-text-color-secondary-tint-5 a.button:any-link,
+#base .button-text-color-secondary-tint-5.columns a.button:any-link {
+  color: var(--secondary-theme-tint5);
+}
+
+#base .button-text-color-secondary-tint-10 a.button:any-link,
+#base .button-text-color-secondary-tint-10.columns a.button:any-link {
+  color: var(--secondary-theme-tint10);
+}
+
+#base .button-text-color-secondary-tint-15 a.button:any-link,
+#base .button-text-color-secondary-tint-15.columns a.button:any-link {
+  color: var(--secondary-theme-tint15);
+}
+
+/** title **/
+#base .title-style-italic :is(h1, h2, h3, h4, h5, h6) {
+  font-style: italic;
+}
+
+#base .title-weight-light :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: 300;
+}
+
+#base .title-weight-regular :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: 400;
+}
+
+#base .title-weight-semibold :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: 500;
+}
+
+#base .title-weight-bold :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: 700;
+}
+
+#base .title-weight-extrabold :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: 900;
+}
+
+/** columns **/
+#base .columns strong {
+  color: var(--theme-shade10);
 }
 
 /**** RESETS ****/
-.base main .section {
+/* stylelint-disable-next-line no-duplicate-selectors */
+#base .section {
   padding-left: 0;
   padding-right: 0;
 }
 
-.base main .image {
+#base .image {
   margin: 0;
 }
 
-.base main .section > .image-wrapper {
+#base .section > .image-wrapper {
   max-width: calc(960px + var(--section-padding-mobile) * 2);
 }
 
 @media (min-width: 600px) {
-  .base main .section > .image-wrapper {
+  #base .section > .image-wrapper {
     max-width: calc(960px + var(--section-padding) * 2);
   }
 }
 
 @media (min-width: 1441px) {
-  .base main .section > .image-wrapper {
+  #base .section > .image-wrapper {
     max-width: calc(1160px + var(--section-padding) * 2);
   }
 }
 
-.base main .toc {
+#base .toc {
   padding: 40px 50px;
   color: var(--theme-shade10);
   background-color: var(--secondary-theme-tint15);
 }
 
-.base main .toc a:any-link {
+#base .toc a:any-link {
   color: var(--color-gray-12);
   background-color: transparent;
 }
 
-.base main .toc ol {
+#base .toc ol {
   margin-bottom: 0;
 }
 
-.base main .toc li:not(:first-child) {
+#base .toc li:not(:first-child) {
   margin-top: 5px;
 }
