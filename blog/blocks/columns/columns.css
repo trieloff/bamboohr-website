@@ -508,7 +508,7 @@ div .column-small-icons-container {
   color: var(--theme-shade10);
 }
 
-.columns a.button:any-link {
+.columns a.button:not(.link):any-link {
   color: var(--theme-tint5);
   background-color: var(--theme-shade15);
 }
