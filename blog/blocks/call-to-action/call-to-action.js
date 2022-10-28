@@ -21,12 +21,15 @@ export default function decorateBlock(block) {
         wrapper.append(modal);
         block.append(wrapper);
         wrapper.classList.add('visible');
+        document.body.classList.add('modal-open');
         const close = modal.querySelector('.modal-close');
         close.addEventListener('click', () => {
           wrapper.classList.remove('visible');
+          document.body.classList.remove('modal-open');
         });
       } else {
         block.querySelector('.modal-wrapper').classList.add('visible');
+        document.body.classList.add('modal-open');
       }
     });
     a.dataset.modal = new URL(a.href).pathname;
