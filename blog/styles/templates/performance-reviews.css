@@ -30,3 +30,12 @@
   text-transform: uppercase;
   color: var(--theme-shade5);
 }
+
+.performance-reviews main .toc > ol > li::before {
+  font-weight: 400;
+  color: var(--color-gray-12);
+}
+
+.performance-reviews .toc li:not(:first-child) {
+  margin-top: 2px !important;
+}

@@ -21,6 +21,11 @@
   background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
 }
 
+.columns a.button:not(.link):any-link {
+  color: var(--theme-tint5);
+  background-color: var(--theme-shade15);
+}
+
 .columns.columns-3-cols p,
 .columns.columns-4-cols p,
 .columns.listing-highlights p,
@@ -102,6 +107,7 @@
   font-weight: 600;
   line-height: 24px;
   color: var(--theme-shade5);
+  background-color: transparent;
   border-radius: 0;
 }
 
@@ -506,11 +512,6 @@ div .column-small-icons-container {
 
 .columns .non-img-col ul li strong {
   color: var(--theme-shade10);
-}
-
-.columns a.button:not(.link):any-link {
-  color: var(--theme-tint5);
-  background-color: var(--theme-shade15);
 }
 
 .columns .img-col h3 {
