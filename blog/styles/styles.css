@@ -99,7 +99,7 @@ a.button:focus {
 a.button.link:any-link {
   background-color: transparent !important;
   border-radius: revert;
-  color: var(--theme-shade5);
+  color: var(--theme-shade10);
   font-family: var(--body-font-family);
   font-size: 1rem;
   font-style: var(--heading-font-weight);
