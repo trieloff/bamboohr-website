@@ -337,7 +337,15 @@
   font-weight: 900;
 }
 
-#base .title-color :is(h1, h2, h3, h4, h5, h6) {
+#base .title-color-white :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--color-white);
+}
+
+#base .title-color-black :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--color-black);
+}
+
+#base .title-color-base :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-base);
 }
 

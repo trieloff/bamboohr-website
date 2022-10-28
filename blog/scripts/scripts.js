@@ -40,6 +40,7 @@ export function sampleRUM(checkpoint, data = {}) {
           weight,
           id,
           referer: window.location.href,
+          // eslint-disable-next-line no-use-before-define
           generation: RUM_GENERATION,
           checkpoint,
           ...data,

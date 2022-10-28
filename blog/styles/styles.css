@@ -95,6 +95,7 @@ a.button:focus {
   background-color: var(--theme-shade5);
 }
 
+/* button link */
 a.button.link:any-link {
   background-color: transparent !important;
   border-radius: revert;
@@ -110,7 +111,7 @@ a.button.link:any-link {
   white-space: revert;
 }
 
-/* link caret styles */
+/* button link caret */
 a.button.link:any-link::after {
   background-color: currentcolor;
   content: '';

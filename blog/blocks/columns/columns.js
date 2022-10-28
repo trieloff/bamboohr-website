@@ -70,17 +70,17 @@ export default function decorate(block) {
           col.classList.add('img-col');
           hasImage = true;
         } else col.classList.add('non-img-col');
-        const isLinkList = block.classList.contains('button-text-link');
+        const isButtonLinks = block.classList.contains('button-style-link');
         const buttons = col.querySelectorAll('a.button');
 
-        if (!isLinkList) {
+        if (isButtonLinks) {
           buttons.forEach((button) => {
-            button.classList.add('small');
+            button.classList.add('link');
             button.parentElement.classList.add('left');
           });
         } else {
           buttons.forEach((button) => {
-            button.classList.add('link');
+            button.classList.add('small');
             button.parentElement.classList.add('left');
           });
         }
@@ -92,6 +92,14 @@ export default function decorate(block) {
         if (splitVals[0] !== '0') colParent.insertBefore(buildSplit(splitVals[0]), cols[0]);
         if (splitVals[3] && splitVals[3] !== '0') colParent.appendChild(buildSplit(splitVals[3]));
       }
+    }
+  } else if (cols.length === 1) {
+    if (block.classList.contains('button-style-link')) {
+      const buttons = block.querySelectorAll('a.button');
+      buttons.forEach((button) => {
+        button.classList.add('link');
+        button.parentElement.classList.add('left');
+      });
     }
   }
 
