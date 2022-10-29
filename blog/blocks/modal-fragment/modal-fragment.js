@@ -27,6 +27,10 @@ export default async function decorate(block) {
           
           if (a.dataset.path) {
             const fragment = await loadFragment(a.dataset.path);
+            const formTitleEl = fragment.querySelector('h2');
+            formTitleEl.outerHTML = `<div class="modal-form-title typ-title1">${formTitleEl.innerHTML}</div>`;
+            const formSubTitleEl = fragment.querySelector('h3');
+            formSubTitleEl.outerHTML = `<p class="modal-form-subtitle">${formSubTitleEl.innerHTML}</p>`;
             modalContent.append(fragment);
           }
           wrapper.append(modal);
