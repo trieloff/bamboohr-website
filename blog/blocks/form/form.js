@@ -427,21 +427,14 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
     window.MktoForms2.whenReady((form) => {
       if (form.getId().toString() === formId) {
         mktoFormReset(form);
-        console.log('ready');
-        form.onSubmit(() => {
-          // Get the form field values
-          const vals = form.vals();
-          console.log(vals);
-      });
         form.onSuccess(() => {
-          console.log('success');
-          // window.dataLayer = window.dataLayer || [];
-          // window.dataLayer.push({
-          //   event: 'marketoForm',
-          //   formName: form.getId(),
-          // });
-          // if (successUrl && !chilipiper) window.location.href = successUrl;
-          // return false;
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'marketoForm',
+            formName: form.getId(),
+          });
+          if (successUrl && !chilipiper) window.location.href = successUrl;
+          return false;
         });
       }
     });
