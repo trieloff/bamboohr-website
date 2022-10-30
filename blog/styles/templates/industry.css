@@ -1,3 +1,11 @@
+.industry main .multi-element.hero > .content {
+  row-gap: 15px;
+}
+
+.industry main .multi-element.hero .content p {
+  margin-bottom: 10px;
+}
+
 .industry main .quote.full h3 {
   font-family: var(--heading-font-family);
   font-weight: 700;
