@@ -20,7 +20,11 @@
     text-align: center;
 }
 
-.bhr-comparison main .form a.button {
+.bhr-comparison main .section p.button-container {
+    margin-top: 0;
+}
+
+.bhr-comparison main .default-content-wrapper p a.button:any-link {
     color: var(--theme-shade15);
     background-color: var(--secondary-theme-tint10);
 }
@@ -31,6 +35,7 @@
 
 .bhr-comparison .center-page-cta .button-container > a.button:any-link {
     background-color: var(--secondary-theme-tint10);
+    margin-top: 32px;
 }
 
 .bhr-comparison .quote h3 {
@@ -83,12 +88,6 @@
     top: 38%;
 }
 
-.bhr-comparison main .section.bg-bottom-multi-3 .default-content-wrapper a.button {
-    color: var(--theme-shade15);
-    background-color: var(--secondary-theme-tint10);
-    margin-bottom: 100px;
-}
-
 .bhr-comparison main .section.bg-bottom-multi-3 .default-content-wrapper p:last-child {
     margin-bottom: 0;
     padding-bottom: 50px;
@@ -106,6 +105,12 @@
 @media (min-width: 367px) {
     .bhr-comparison .has-bg > span.bg-bottom-multi-3 {
         bottom: calc(((100vw * 1.83) - 670px) * -1);
+    }
+}
+
+@media (max-width: 599px) {
+    .bhr-comparison .center-page-cta .button-container > a.button:any-link {
+        margin-top: 16px;
     }
 }
 
