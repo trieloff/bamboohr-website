@@ -154,6 +154,12 @@
   min-height: 50rem;
 }
 
+/* multi 4 white */
+.has-bg > span.bg-top-multi-4-white {
+  background-image: linear-gradient(180deg, var(--theme-tint15) 0%, transparent 100%);
+  min-height: 50rem;
+}
+
 /* multi 5 */
 .has-bg > span.bg-top-multi-5 {
   background-image: linear-gradient(
@@ -478,6 +484,12 @@
 .has-bg > span.bg-bottom-single-2 {
   /* uses defaults */
 }
+
+/* single 3 */
+.has-bg > span.bg-bottom-single-3 {
+  /* uses defaults */
+}
+
 
 /*
 * block
