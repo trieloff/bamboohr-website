@@ -72,7 +72,7 @@
 
 .app-download > div:last-child > div {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .app-download > div:last-child a {
