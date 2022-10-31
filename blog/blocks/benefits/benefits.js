@@ -30,13 +30,15 @@ export default function decorate(block) {
 
     benefit.classList.add('benefit');
 
-    if (key < 4) {
+    // split if more than 4 and where it's even (balanced first col gets +1 on odds)
+    if (benefits.length < 4 || key < Math.ceil(benefits.length / 2)) {
       col1.append(benefit);
     } else {
       col2.append(benefit);
     }
   });
 
+  // attach benefits cols
   block.append(col1);
   if (col2.children.length > 0) block.append(col2);
 }
