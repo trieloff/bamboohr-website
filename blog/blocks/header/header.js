@@ -44,6 +44,7 @@ export default async function decorate(block) {
   // decorate nav DOM
   const nav = document.createElement('div');
   nav.classList.add('nav');
+  nav.setAttribute('role', 'navigation');
   const navSections = document.createElement('div');
   navSections.classList.add('nav-sections');
   navSections.setAttribute('am-region', 'Main Nav');
@@ -93,7 +94,7 @@ export default async function decorate(block) {
                   li.setAttribute('aria-expanded', expanded ? 'false' : 'true');
                 }
               });
-            }
+            } 
           });
         }
       } else {
@@ -127,7 +128,7 @@ export default async function decorate(block) {
   const createSearch = () => {
     const div = document.createElement('div');
     div.className = 'header-search';
-    div.innerHTML = `<a data-modal="/tools/search"><img src="${window.hlx.codeBasePath}/icons/search.svg" class="icon icon-search"></a>`;
+    div.innerHTML = `<a href="#" data-modal="/tools/search"><img src="${window.hlx.codeBasePath}/icons/search.svg" alt="search" class="icon icon-search"></a>`;
     div.addEventListener('click', async () => {
       const elem = document.getElementById('header-search-modal');
       if (!elem) {

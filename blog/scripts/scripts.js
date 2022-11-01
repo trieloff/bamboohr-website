@@ -1058,6 +1058,7 @@ async function loadEager(doc) {
   if (!window.hlx.lighthouse) loadMartech();
 
   decorateTemplateAndTheme();
+  document.documentElement.lang = 'en';
   const main = doc.querySelector('main');
   if (main) {
     await decorateMain(main);
