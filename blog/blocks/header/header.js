@@ -94,7 +94,7 @@ export default async function decorate(block) {
                   li.setAttribute('aria-expanded', expanded ? 'false' : 'true');
                 }
               });
-            } 
+            }
           });
         }
       } else {
