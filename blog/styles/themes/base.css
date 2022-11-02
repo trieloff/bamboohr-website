@@ -80,88 +80,88 @@
 }
 
 #base .section > div.content-width-xs,
-#base .section.content-width-xs > div {
+#base .section.content-width-xs > div:not([class*='content-width-']) {
   max-width: calc(560px + var(--section-padding-mobile) * 2);
 }
 
 @media (min-width: 600px) {
   #base .section > div.content-width-xs,
-  #base .section.content-width-xs > div {
+  #base .section.content-width-xs > div:not([class*='content-width-']) {
     max-width: calc(560px + var(--section-padding) * 2);
   }
 }
 
 #base .section > div.content-width-sm,
-#base .section.content-width-sm > div.not([class^='content-width-']) {
+#base .section.content-width-sm > div:not([class*='content-width-']) {
   max-width: calc(760px + var(--section-padding-mobile) * 2);
 }
 
 @media (min-width: 600px) {
   #base .section > div.content-width-sm,
-  #base .section.content-width-sm > div.not([class^='content-width-']) {
+  #base .section.content-width-sm > div:not([class*='content-width-']) {
     max-width: calc(760px + var(--section-padding) * 2);
   }
 }
 
 #base .section > div.content-width-md,
-#base .section.content-width-md > div {
+#base .section.content-width-md > div:not([class*='content-width-']) {
   max-width: calc(960px + var(--section-padding-mobile) * 2);
 }
 
 @media (min-width: 600px) {
   #base .section > div.content-width-md,
-  #base .section.content-width-md > div {
+  #base .section.content-width-md > div:not([class*='content-width-']) {
     max-width: calc(960px + var(--section-padding) * 2);
   }
 }
 
 @media (min-width: 1441px) {
   #base .section > div.content-width-md,
-  #base .section.content-width-md > div {
+  #base .section.content-width-md > div:not([class*='content-width-']) {
     max-width: calc(1160px + var(--section-padding) * 2);
   }
 }
 
 #base .section > div.content-width-lg,
-#base .section.content-width-lg > div {
+#base .section.content-width-lg > div:not([class*='content-width-']) {
   max-width: calc(1160px + var(--section-padding-mobile) * 2);
 }
 
 @media (min-width: 600px) {
   #base .section > div.content-width-lg,
-  #base .section.content-width-lg > div {
+  #base .section.content-width-lg > div:not([class*='content-width-']) {
     max-width: calc(1160px + var(--section-padding) * 2);
   }
 }
 
 @media (min-width: 1441px) {
   #base .section > div.content-width-lg,
-  #base .section.content-width-lg > div {
+  #base .section.content-width-lg > div:not([class*='content-width-']) {
     max-width: calc(1360px + var(--section-padding) * 2);
   }
 }
 
 #base .section > div.content-width-xl,
-#base .section.content-width-xl > div {
+#base .section.content-width-xl > div:not([class*='content-width-']) {
   max-width: calc(1360px + var(--section-padding-mobile) * 2);
 }
 
 @media (min-width: 600px) {
   #base .section > div.content-width-xl,
-  #base .section.content-width-xl > div {
+  #base .section.content-width-xl > div:not([class*='content-width-']) {
     max-width: calc(1360px + var(--section-padding) * 2);
   }
 }
 
 @media (min-width: 1441px) {
   #base .section > div.content-width-xl,
-  #base .section.content-width-xl > div {
+  #base .section.content-width-xl > div:not([class*='content-width-']) {
     max-width: calc(1560px + var(--section-padding) * 2);
   }
 }
 
 #base .section > div.content-width-full,
-#base .section.content-width-full > div {
+#base .section.content-width-full > div:not([class*='content-width-']) {
   max-width: 100%;
   padding-left: 0;
   padding-right: 0;
@@ -536,4 +536,8 @@
 
 #base .toc li:not(:first-child) {
   margin-top: 5px;
+}
+
+#base .cards > .card .button:any-link {
+  padding: 0;
 }
