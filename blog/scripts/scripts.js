@@ -1231,3 +1231,10 @@ export function addWidthToParent(block) {
     return found;
   });
 }
+
+const params = new URLSearchParams(window.location.search);
+if (params.get('performance')) {
+  import('./performance.js').then((mod) => {
+    if (mod.default) mod.default();
+  });
+}
