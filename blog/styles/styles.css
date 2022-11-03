@@ -65,6 +65,9 @@ body.appear {
   display: unset;
 }
 
+main {
+  overflow-x: hidden;
+}
 /* buttons */
 
 a.button:any-link {
