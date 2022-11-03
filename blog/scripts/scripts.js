@@ -459,6 +459,9 @@ export function updateSectionsStatus(main) {
         break;
       } else {
         section.setAttribute('data-section-status', 'loaded');
+        const event = new CustomEvent('section-display', { detail: { section }});
+        document.body.dispatchEvent(event);
+        console.log('event dispatched')
       }
     }
   }
@@ -1094,7 +1097,7 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 4000);
+  if (!window.hlx.performance) window.setTimeout(() => import('./delayed.js'), 4000);
   // load anything that can be postponed to the latest here
 }
 
@@ -1234,6 +1237,7 @@ export function addWidthToParent(block) {
 
 const params = new URLSearchParams(window.location.search);
 if (params.get('performance')) {
+  window.hlx.performance = true;
   import('./performance.js').then((mod) => {
     if (mod.default) mod.default();
   });

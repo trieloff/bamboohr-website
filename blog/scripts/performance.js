@@ -11,6 +11,7 @@ function stamp(message, time = new Date() - performance.timing.navigationStart, 
       lcp: 'green',
       tbt: 'red',
       paint: '#b73',
+      franklin: '#586AE8',
     };
     const color = colors[type] || '#888';
     // eslint-disable-next-line no-console
@@ -79,6 +80,12 @@ function stamp(message, time = new Date() - performance.timing.navigationStart, 
     } catch (e) {
       // no output
     }
+
+    document.body.addEventListener('section-display', (e) => {
+        stamp(`section displayed`, new Date() - performance.timing.navigationStart,'franklin');
+        // eslint-disable-next-line no-console
+        console.log(e.detail.section);
+    });
   }
   
   export default function performanceLogger() {
