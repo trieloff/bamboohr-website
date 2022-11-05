@@ -7,9 +7,11 @@
 /** base tags **/
 #base :is(h1, h2, h3, h4, h5, h6) {
   font-style: normal;
+  color: var(--color-gray-11);
+  margin-top: 1.25em;
 }
 
-#base [data-align='center'] {
+#base [data-align='center']:not([class*='img-col']) {
   width: 100%;
 }
 
@@ -26,36 +28,37 @@
 }
 
 /** section **/
-#base .section {
+#base .section:not(.page-header-container):not(:first-of-type) {
   margin-top: 48px;
   padding-bottom: 48px;
 }
 
-#base .section:first-of-type {
-  margin-top: 0;
-}
-
 @media (min-width: 600px) {
-  #base .section {
+  #base .section:not(.page-header-container):not(:first-of-type) {
     margin-top: 64px;
   }
 }
 
 @media (min-width: 1025px) {
-  #base .section {
+  #base .section:not(.page-header-container):not(:first-of-type) {
     margin-top: 96px;
     padding-bottom: 64px;
   }
 }
 
 @media (min-width: 1800px) {
-  #base .section {
+  #base .section:not(.page-header-container):not(:first-of-type) {
     margin-top: 128px;
   }
 }
 
-#base .section.spacing-none {
+#base .section:first-of-type,
+#base .section.page-header-container + .section {
   margin-top: 0;
+}
+
+#base .section.spacing-none {
+  margin-top: 0 !important;
 }
 
 /** block wrapper **/
@@ -199,6 +202,7 @@
 /** button **/
 #base .button {
   font-size: 15px;
+  line-height: 18px;
   padding: 10px 30px;
   background-image: unset;
 }
@@ -210,6 +214,19 @@
 #base .button-size-lg .button {
   font-size: 17px;
   padding: 18px 40px;
+}
+
+#base .button-style-outline .button,
+#base .block:not(.button-style-link) .button-container ~ .button-container .button {
+  background: none;
+  border: solid 2px var(--theme-base);
+  color: var(--theme-base);
+}
+
+#base .button-style-outline:not(.button-size-lg) .button,
+#base .button-container ~ .button-container .button {
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 #base .button-style-link .button {
@@ -485,6 +502,49 @@
 
 #base .title-color-secondary-shade-15 :is(h1, h2, h3, h4, h5, h6) {
   color: var(--secondary-theme-shade15);
+}
+
+#base .title-size-hero :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--heading-font-family);
+  font-size: 72px;
+  line-height: 80px;
+}
+
+#base .title-size-section :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--heading-font-family);
+  font-size: 48px;
+  line-height: 60px;
+}
+
+#base .title-size-h1 :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--heading-font-family);
+  font-size: 36px;
+  line-height: 44px;
+}
+
+#base .title-size-h2 :is(h1, h2, h3, h4, h5, h6) {
+  font-size: 30px;
+  line-height: 38px;
+}
+
+#base .title-size-h3 :is(h1, h2, h3, h4, h5, h6) {
+  font-size: 26px;
+  line-height: 34px;
+}
+
+#base .title-size-h4 :is(h1, h2, h3, h4, h5, h6) {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+#base .title-size-h5 :is(h1, h2, h3, h4, h5, h6) {
+  font-size: 18px;
+  line-height: 26px;
+}
+
+#base .title-size-h6 :is(h1, h2, h3, h4, h5, h6) {
+  font-size: 16px;
+  line-height: 22px;
 }
 
 /** columns **/

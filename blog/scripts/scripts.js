@@ -976,7 +976,8 @@ async function buildAutoBlocks(main) {
     if (
       template === 'hr-glossary' ||
       template === 'job-description' ||
-      template === 'resources-guides'
+      template === 'resources-guides' ||
+      template === 'performance-reviews'
     ) {
       buildPageHeader(main, template);
     }
