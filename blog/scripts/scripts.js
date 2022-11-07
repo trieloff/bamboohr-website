@@ -892,6 +892,7 @@ export async function lookupPages(pathnames, collection) {
   const indexPaths = {
     blog: '/blog/fixtures/blog-query-index.json',
     integrations: '/integrations/query-index.json?sheet=listings',
+    hrvs: '/drafts/sclayton/resources/hr-vs/query-index.json',
   };
   const indexPath = indexPaths[collection];
   window.pageIndex = window.pageIndex || {};
@@ -944,7 +945,7 @@ function buildPageHeader(main, type) {
   if (type === 'resources-guides') {
     const picture = document.querySelector('h1 + h5 + p > picture');
     const h1 = document.querySelector('h1');
-    const h5 = h1.nextElementSibling.tagName === 'H5' ? h1.nextElementSibling : null;
+    const h5 = h1.nextElementSibling?.tagName === 'H5' ? h1.nextElementSibling : null;
     content = [[picture], [h1], [h5]].filter((e) => e[0]);
   }
   const header = buildBlock('page-header', content);
