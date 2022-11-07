@@ -26,7 +26,7 @@ export function createSharing(shareClass = 'page-header-share') {
     a.innerHTML = `<img alt="${button.icon}" src="${window.hlx.codeBasePath}/icons/${button.icon}.svg" class="icon icon-${button.icon}">`;
     div.append(a);
   });
-  return (div);
+  return div;
 }
 
 export default async function decoratePageHeader(block, blockName) {
@@ -36,6 +36,8 @@ export default async function decoratePageHeader(block, blockName) {
       else if (row.querySelector('h1')) row.classList.add('resources-guides-title');
       else if (row.querySelector('h5')) row.classList.add('resources-guides-subtitle');
     });
+    block.append(createSharing());
+  } else if (toClassName(getMetadata('template')) === 'performance-reviews') {
     block.append(createSharing());
   } else {
     const location = block.getAttribute('data-header-location');
