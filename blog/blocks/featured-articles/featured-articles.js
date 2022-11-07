@@ -12,7 +12,7 @@ export function createBlogCard(article, classPrefix, eager = false) {
   const image = article.cardImage || article.image;
   const pictureString = createOptimizedPicture(
     image,
-    article.imageAlt,
+    article.imageAlt || article.title,
     eager,
     [{ width: 750 }],
   ).outerHTML;

@@ -547,6 +547,14 @@
   line-height: 22px;
 }
 
+#base .title-color-gray-9 :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--color-gray9);
+}
+
+#base .title-margin-top-none :is(h1, h2, h3, h4, h5, h6) {
+  margin-top: 0;
+}
+
 /** columns **/
 #base .columns strong {
   color: var(--theme-shade10);
