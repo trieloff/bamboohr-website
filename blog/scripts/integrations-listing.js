@@ -108,12 +108,20 @@ export default async function decorateTemplate(main) {
   // build request information button
   const requestInfo = document.createElement('p');
   const appName = window.location.pathname.split('/').pop();
-  requestInfo.innerHTML = `<a href="/integrations/request-information?appName=${appName}" id="marketplace-request-info">Request Information</a>`;
+  const level = getMetadata('level');
+  const requestType = getMetadata('form-request-type');
+  let formPageLink = `/integrations/request-information?appName=${appName}`;
+  if (level === 'BambooHR Product') {
+    formPageLink = `/integrations/request-information-bamboohr-products?requestType=${requestType}`;
+  }
   const extraFormFields = getMetadata('extra-form-fields');
   if (extraFormFields) {
     const fieldsParam = extraFormFields.split(',').map((field) => `show=${field.trim()}`).join('&');
-    requestInfo.innerHTML = `<a href="/integrations/request-information?appName=${appName}&${fieldsParam}" id="marketplace-request-info">Request Information</a>`;
+    formPageLink = `/integrations/request-information?appName=${appName}&${fieldsParam}`;
   }
+
+  requestInfo.innerHTML = `<a href="${formPageLink}" id="marketplace-request-info">Request Information</a>`;
+
   const sections = [...main.children].slice(2);
   if (sections.length < 3) {
     // if missing, add listing details section

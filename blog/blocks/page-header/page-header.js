@@ -23,19 +23,22 @@ export function createSharing(shareClass = 'page-header-share') {
     const a = document.createElement('a');
     a.href = button.url;
     a.target = '_blank';
-    a.innerHTML = `<img src="${window.hlx.codeBasePath}/icons/${button.icon}.svg" class="icon icon-${button.icon}">`;
+    a.innerHTML = `<img alt="${button.icon}" src="${window.hlx.codeBasePath}/icons/${button.icon}.svg" class="icon icon-${button.icon}">`;
     div.append(a);
   });
-  return (div);
+  return div;
 }
 
 export default async function decoratePageHeader(block, blockName) {
-  if (toClassName(getMetadata('template')) === 'resources-guides') {
+  const template = toClassName(getMetadata('template'));
+  if (template === 'resources-guides') {
     [...block.children].forEach((row) => {
       if (row.querySelector('picture')) row.classList.add('resources-guides-image');
       else if (row.querySelector('h1')) row.classList.add('resources-guides-title');
       else if (row.querySelector('h5')) row.classList.add('resources-guides-subtitle');
     });
+    block.append(createSharing());
+  } else if (template === 'performance-reviews') {
     block.append(createSharing());
   } else {
     const location = block.getAttribute('data-header-location');

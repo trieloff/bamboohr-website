@@ -39,3 +39,8 @@
 .performance-reviews .toc li:not(:first-child) {
   margin-top: 2px !important;
 }
+
+.performance-reviews .page-header {
+  height: 0;
+  padding: 0;
+}

@@ -459,6 +459,9 @@ export function updateSectionsStatus(main) {
         break;
       } else {
         section.setAttribute('data-section-status', 'loaded');
+        const event = new CustomEvent('section-display', { detail: { section }});
+        document.body.dispatchEvent(event);
+        console.log('event dispatched')
       }
     }
   }
@@ -892,6 +895,7 @@ export async function lookupPages(pathnames, collection) {
   const indexPaths = {
     blog: '/blog/fixtures/blog-query-index.json',
     integrations: '/integrations/query-index.json?sheet=listings',
+    hrvs: '/drafts/sclayton/resources/hr-vs/query-index.json',
   };
   const indexPath = indexPaths[collection];
   window.pageIndex = window.pageIndex || {};
@@ -944,7 +948,7 @@ function buildPageHeader(main, type) {
   if (type === 'resources-guides') {
     const picture = document.querySelector('h1 + h5 + p > picture');
     const h1 = document.querySelector('h1');
-    const h5 = h1.nextElementSibling.tagName === 'H5' ? h1.nextElementSibling : null;
+    const h5 = h1.nextElementSibling?.tagName === 'H5' ? h1.nextElementSibling : null;
     content = [[picture], [h1], [h5]].filter((e) => e[0]);
   }
   const header = buildBlock('page-header', content);
@@ -973,7 +977,8 @@ async function buildAutoBlocks(main) {
     if (
       template === 'hr-glossary' ||
       template === 'job-description' ||
-      template === 'resources-guides'
+      template === 'resources-guides' ||
+      template === 'performance-reviews'
     ) {
       buildPageHeader(main, template);
     }
@@ -1058,6 +1063,7 @@ async function loadEager(doc) {
   if (!window.hlx.lighthouse) loadMartech();
 
   decorateTemplateAndTheme();
+  document.documentElement.lang = 'en';
   const main = doc.querySelector('main');
   if (main) {
     await decorateMain(main);
@@ -1094,7 +1100,7 @@ async function loadLazy(doc) {
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 4000);
+  if (!window.hlx.performance) window.setTimeout(() => import('./delayed.js'), 4000);
   // load anything that can be postponed to the latest here
 }
 
@@ -1229,5 +1235,13 @@ export function addWidthToParent(block) {
       block.classList.remove(w);
     }
     return found;
+  });
+}
+
+const params = new URLSearchParams(window.location.search);
+if (params.get('performance')) {
+  window.hlx.performance = true;
+  import('./performance.js').then((mod) => {
+    if (mod.default) mod.default();
   });
 }
