@@ -55,6 +55,11 @@ export function sortOptions(sortBy) {
                       || a.title.localeCompare(b.title),
     publicationDate: (a, b) => b.publicationDate.localeCompare(a.publicationDate)
                                 || a.title.localeCompare(b.title),
+    presenter: (a, b) => a.presenter.localeCompare(b.presenter),
+    startTime: (a, b) => a.date.localeCompare(b.date)
+                                || a.time.localeCompare(b.time)
+                                || a.category.localeCompare(b.category),
+    title: (a, b) => a.title.localeCompare(b.title),
   };
   return sorts[sortBy];
 }

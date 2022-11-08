@@ -30,14 +30,15 @@ export function createSharing(shareClass = 'page-header-share') {
 }
 
 export default async function decoratePageHeader(block, blockName) {
-  if (toClassName(getMetadata('template')) === 'resources-guides') {
+  const template = toClassName(getMetadata('template'));
+  if (template === 'resources-guides') {
     [...block.children].forEach((row) => {
       if (row.querySelector('picture')) row.classList.add('resources-guides-image');
       else if (row.querySelector('h1')) row.classList.add('resources-guides-title');
       else if (row.querySelector('h5')) row.classList.add('resources-guides-subtitle');
     });
     block.append(createSharing());
-  } else if (toClassName(getMetadata('template')) === 'performance-reviews') {
+  } else if (template === 'performance-reviews') {
     block.append(createSharing());
   } else {
     const location = block.getAttribute('data-header-location');
