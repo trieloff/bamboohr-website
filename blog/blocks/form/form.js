@@ -427,11 +427,28 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
     window.MktoForms2.whenReady((form) => {
       if (form.getId().toString() === formId) {
         mktoFormReset(form);
+        /* Adobe Form Start event tracking when user click into the first field */
+        form.getFormElem()[0].firstElementChild.addEventListener('click', () => {
+          window.digitalData.push({
+            event: 'Form Start',
+            component: {
+              name: form.getId()
+            }
+          });
+        });
         form.onSuccess(() => {
+          /* GA events tracking */
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({
             event: 'marketoForm',
             formName: form.getId(),
+          });
+          /* Adobe events tracking */
+          window.digitalData.push({
+            event: 'Form Complete',
+            component: {
+              name: form.getId()
+            }
           });
           if (successUrl && !chilipiper) window.location.href = successUrl;
           return false;
