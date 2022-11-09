@@ -24,6 +24,11 @@ main .listing-facets > div {
     pointer-events: none;
 }
 
+main .horizontal-filters .listing-facets > div {
+    margin-bottom: 20px;
+    flex-direction: row;
+}
+
 main .listing-facets > div::after {
     position: absolute;
     background-image: url('./close.svg');
@@ -94,6 +99,19 @@ main .listing-filters-selected:empty + p {
     display: none;
 }
 
+main .listing-filters-selected.never-show:empty + p {
+    visibility: hidden;
+    display: unset;
+}
+
+main .listing-filters-selected.never-show {
+    display: none;
+}
+
+main .horizontal-filters .listing-filters > p {
+    text-align: right;
+}
+
 main .listing-facets button {
     color: var(--color-gray-9);
     border: 2px solid var(--color-gray-8);
@@ -148,6 +166,11 @@ main .listing-facets label {
     color: var(--color-gray-11);
 }
 
+main .horizontal-filters .listing-facets label {
+    display: unset;
+    padding-right: 30px;
+}
+
 main .listing-facets label::before {
     content: "";
     position: absolute;
@@ -160,6 +183,10 @@ main .listing-facets label::before {
     border-radius: 3px;
 }
 
+main .horizontal-filters .listing-facets label::before {
+    top: -3px;
+}
+
 main .listing-facets :checked + label::after {
     content: "";
     position: absolute;
@@ -170,6 +197,10 @@ main .listing-facets :checked + label::after {
     border: solid var(--color-1);
     border-width: 0 4px 4px 0;
     transform: rotate(45deg);
+}
+
+main .horizontal-filters .listing-facets :checked + label::after {
+    top: 1px;
 }
 
 main .listing-facets.visible {
@@ -336,6 +367,9 @@ main .listing-results .listing-card-header h4 {
     margin: 0;
     font-size: 18px;
     font-style: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 main .listing-results .listing-card-header h4 a {
@@ -428,6 +462,11 @@ main .listing-results .listing-card-detail a::after {
         margin: 0 40px 0 -40px;
     }
 
+    main .horizontal-filters .listing-facets {
+        width: 100%;
+        margin: 0;
+    }
+
     main .listing-facets .listing-filters {
         overflow-y: unset;
         height: unset;
@@ -447,6 +486,10 @@ main .listing-results .listing-card-detail a::after {
         display: grid;
         grid-template-areas: '- count sortby' 'facets results results';
         align-items: flex-start;
+    }
+
+    main .listing.horizontal-filters {
+        grid-template-areas: 'count - sortby' 'facets facets facets' 'results results results';
     }
 
     main .listing-sortby {
