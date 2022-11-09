@@ -127,7 +127,7 @@ indices:
         value: |
           attribute(el, 'content')
       term:
-        select: head > meta[property="term"]
+        select: head > meta[name="term"]
         value: |
           attribute(el, 'content')
       robots:
