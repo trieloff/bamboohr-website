@@ -276,7 +276,7 @@ div.has-text-only h4 {
     margin-top: .625rem;
 }
 
-.cards > .card.has-image > .image {
+.cards > .card.has-image img {
     border-radius: 1rem;
     box-shadow: var(--theme-shadow2-shade5);
     display: flex;
