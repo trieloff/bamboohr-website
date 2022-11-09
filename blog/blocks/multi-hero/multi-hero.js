@@ -1,4 +1,5 @@
-import { createElem } from '../../scripts/scripts.js';
+import { createElem, loadCSS } from '../../scripts/scripts.js';
+import decorateCarousel from '../carousel/carousel.js';
 
 const MIN_BREAKPOINTS = {
   'tablet': '600px',
@@ -16,7 +17,7 @@ const IMAGE_OPTIMIZATION = 'medium';
 
 // TODO: would probably be best to make this a global utility
 function buildPicture(images) {
-  const pictureElem = createElem('picture', 'homepage-hero-background');
+  const pictureElem = createElem('picture', 'multi-hero-background');
 
   Object.keys(images).forEach((key) => {
     const sourceWebpElem = createElem('source');
@@ -78,16 +79,18 @@ function processBackground(block) {
   if (Object.keys(images).length > 0) {
     const backgroundPictureElem = buildPicture(images);
 
-    const homepageHeroSection = block.closest('.homepage-hero-container');
+    const multiHeroSection = block.closest('.multi-hero-container');
 
-    homepageHeroSection.prepend(backgroundPictureElem);
+    multiHeroSection.prepend(backgroundPictureElem);
   }
 }
 
 function processCarousel(block) {
   const parts = block.querySelectorAll(':scope > div');
 
-  const carouselContainer = createElem('div', 'homepage-hero-carousel');
+  // const carouselContainer = createElem('div', 'multi-hero-carousel');
+  const carouselBlock = document.createElement('div');
+  carouselBlock.classList.add('multi-hero', 'carousel', 'style-1', 'auto-play', 'block');
 
   parts.forEach((part) => {
     const partChildren = part.children;
@@ -96,14 +99,24 @@ function processCarousel(block) {
       const key = partChildren.item(0).innerText.toLowerCase();
 
       if (key === 'carousel') {
-        carouselContainer.append(partChildren.item(1));
+        // carouselContainer.append(partChildren.item(1));
+        const div = document.createElement('div');
+        div.append(partChildren.item(1));
+        carouselBlock.append(div);
       }
 
       part.remove();
     }
   });
 
-  block.append(carouselContainer);
+  block.append(carouselBlock);
+  decorateCarousel(carouselBlock);
+
+  // load css
+  const cssBase = `${window.hlx.serverPath}${window.hlx.codeBasePath}`;
+  loadCSS(`${cssBase}/blocks/carousel/carousel.css`, null);
+
+  // block.append(carouselContainer);
 }
 
 export default function decorate(block) {
@@ -111,12 +124,12 @@ export default function decorate(block) {
   processCarousel(block);
 
   const mainContentContainer = block.firstElementChild;
-  mainContentContainer.classList.add('homepage-hero-main-container');
+  mainContentContainer.classList.add('multi-hero-main-container');
   const mainContent = mainContentContainer.firstElementChild;
-  mainContent.classList.add('homepage-hero-main-content');
+  mainContent.classList.add('multi-hero-main-content');
   const heroCtas = mainContent.querySelectorAll('.button-container');
   if (heroCtas.length) {
-    const heroCtasContainer = createElem('div', 'homepage-hero-buttons');
+    const heroCtasContainer = createElem('div', 'multi-hero-buttons');
 
     heroCtas.forEach((buttonContainer) => {
       heroCtasContainer.append(buttonContainer);
