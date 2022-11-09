@@ -94,7 +94,6 @@ export default function decorate(block) {
       }
     }
   } else if (cols.length === 1) {
-    console.log('test meng');
     if (block.classList.contains('button-style-link')) {
       const buttons = block.querySelectorAll('a.button');
       buttons.forEach((button) => {
