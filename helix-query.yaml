@@ -152,6 +152,7 @@ indices:
         select: none
         value: |
           parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')
+
   hr-vs:
     include:
       - '/drafts/sclayton/resources/hr-vs/**'
