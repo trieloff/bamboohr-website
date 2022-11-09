@@ -537,6 +537,7 @@ main .multi-element p {
     }
 }
 
+
 @media (min-width: 1800px) {
     .multi-element.hero.industry .content picture img {
         max-height: 550px;
