@@ -108,9 +108,10 @@ export default function decorate(block) {
   window.addEventListener('resize', calculateScrollbarWidth, false);
 
   // skip for new styles
-  if (block.classList.contains('style-1')
-    || block.classList.contains('style-2')
-    || block.classList.contains('style-3')) return;
+  if ((block.classList.contains('style-1')
+      || block.classList.contains('style-2')
+      || block.classList.contains('style-3')) 
+    && !block.classList.contains('auto-play')) return;
 
   carouselInterval = window.setInterval(() => {
     autoPlayList.some((b, i) => {

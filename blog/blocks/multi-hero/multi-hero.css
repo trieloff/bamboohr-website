@@ -1,0 +1,176 @@
+main .multi-hero-container {
+    padding: 0;
+    position: relative;
+}
+
+.multi-hero-background {
+    display: none;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -5;
+}
+
+.multi-hero-background img {
+    width: 100%;
+}
+
+main .section .multi-hero-wrapper {
+  margin-left: 26px;
+  margin-right: 0;
+}
+
+.multi-hero-main-container {
+  background: linear-gradient(342.37deg, var(--theme-shade5) 31.85%, var(--theme-tint5) 114.99%);
+  padding: 35px 30px 0;
+  text-align: center;
+}
+
+.multi-hero.carousel {
+  margin-left: 30px;
+}
+
+.multi-hero-main-content {
+  color: var(--color-white);
+  font-size: 21px;
+  line-height: 28px;
+  font-weight: 500;
+  margin: 0 auto;
+  max-width: 464px;
+}
+
+.multi-hero-main-content h1 {
+  color: var(--color-white);
+  font-size: 54px;
+  line-height: 60px;
+  font-weight: 900;
+  margin: 0;
+}
+
+.multi-hero-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.multi-hero-buttons .button-container {
+  margin-left: 10px;
+}
+
+.multi-hero-buttons .button-container:first-child {
+  margin-left: 0;
+}
+
+.multi-hero-buttons .button-container a:any-link {
+  background: var(--theme-tint10);
+  color: var(--theme-shade15);
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.multi-hero-buttons .button-container a.light:any-link {
+  background: transparent;
+  border-color: var(--theme-tint10);
+  color: var(--theme-tint10);
+}
+
+.multi-hero-carousel {
+  background: url('images/top-lower-min.png') no-repeat;
+  background-size: contain;
+  height: calc(100vw * 1.1834);
+  margin-top: -120px;
+}
+
+.multi-hero-carousel > div:nth-child(n + 2) {
+  display: none;
+}
+
+main .multi-hero {
+  position: relative;
+}
+
+main .multi-hero .carousel.style-1 span.icon {
+  color: var(--theme-tint10);
+  top: 6px;
+}
+
+main .multi-hero .carousel.style-1 span.icon.icon-star {
+  left: 10px;
+}
+
+main .multi-hero .carousel.style-1 span.icon.icon-microphone {
+  padding-top: 10px;
+  left: 20px;
+}
+
+main .multi-hero .carousel.style-1 h2,
+main .multi-hero .carousel.style-1 .carousel-text {
+  color: var(--color-white);
+}
+
+main .multi-hero .carousel.style-1 a.button:any-link {
+  color: var(--theme-tint10);
+}
+
+main .multi-hero .carousel.style-1 a.button::after {
+  background-color: var(--color-white);
+}
+
+main .multi-hero .carousel-buttons {
+  text-align: center;
+  margin-top: -48px;
+  position: absolute;
+  display: flex;
+  right: 0;
+  left: 0;
+  justify-content: center;
+}
+
+main .multi-hero .carousel.style-1 {
+  --gap: 3.5rem;
+}
+
+main .multi-hero .carousel.style-1 ~ .carousel-buttons {
+  padding-left: 6.5rem;
+}
+
+main .multi-hero .carousel.style-1 ~ .carousel-buttons button::after {
+  background-color: transparent;
+  border: 2px solid var(--theme-tint10);
+}
+
+main .multi-hero .carousel.style-1 ~ .carousel-buttons button.selected::after {
+  border-color: var(--color-white);
+  background-color: var(--color-white);
+}
+
+main .multi-hero .carousel-controls {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .multi-hero-background {
+    display: block;
+  }
+
+  .multi-hero-main-container {
+    background: none;
+    padding: 75px 54px 0;
+    text-align: left;
+  }
+
+  .multi-hero.carousel {
+    margin-left: 54px;
+  }
+
+  .multi-hero-main-content {
+    margin: 0;
+  }
+
+  .multi-hero-carousel {
+    background: none;
+    height: auto;
+    margin-top: 0;
+  }
+}

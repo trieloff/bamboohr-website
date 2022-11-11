@@ -210,16 +210,22 @@ main .multi-element p.button-container {
     margin: 0;
 }
 
-.multi-element h1 {
+.multi-element h1,
+.multi-element h2 {
     font-size: 1.875rem;
     line-height: 1.2;
 }
 
 @media (min-width: 1025px) {
-    .multi-element h1 {
+    .multi-element h1,
+    .multi-element h2 {
         font-size: 2.25rem;
         line-height: 1.2222;
     }
+}
+
+.multi-element h4 {
+    color: var(--color-gray-10);
 }
 
 main .multi-element p {

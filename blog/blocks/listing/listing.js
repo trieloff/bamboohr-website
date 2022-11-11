@@ -7,18 +7,26 @@ import {
 } from '../../scripts/scripts.js';
 import { createAppCard, sortOptions } from '../app-cards/app-cards.js';
 
-function getBlockHTML(ph) {
+function getBlockHTML(ph, theme) {
+  const defaultSortText = (theme === 'hrvs') ? ph.startTime : ph.default;
+  const defaultSortProp = (theme === 'hrvs') ? 'startTime' : 'level';
+  const sortOptions = (theme === 'hrvs') ? 
+      `<li data-sort="startTime">${ph.startTime}</li>
+      <li data-sort="presenter">${ph.presenter}</li>
+      <li data-sort="title">${ph.title}</li>`
+    : 
+      `<li data-sort="level">${ph.default}</li>
+      <li data-sort="name">${ph.name}</li>
+      <li data-sort="publicationDate">${ph.newest}</li>`;
   return /* html */ `
   <p class="listing-results-count"><span id="listing-results-count"></span> ${ph.results}</p>
   <div class="listing-facets">
   </div>
   <div class="listing-sortby">
     <div class="listing-filter-button">${ph.filter}</div>
-    <p class="listing-sort-button">${ph.sortBy} <span data-sort="level" id="listing-sortby">${ph.default}</span></p>
+    <p class="listing-sort-button">${ph.sortBy} <span data-sort="${defaultSortProp}" id="listing-sortby">${defaultSortText}</span></p>
     <ul>
-      <li data-sort="level">${ph.default}</li>
-      <li data-sort="name">${ph.name}</li>
-      <li data-sort="publicationDate">${ph.newest}</li>
+      ${sortOptions}
     </ul>
   </div>
   </div>
@@ -26,12 +34,18 @@ function getBlockHTML(ph) {
   </ul>`;
 }
 
-function getFacetHTML(ph) {
+function getFacetHTML(ph, horizFilters) {
+  const filterOptions = horizFilters ? 
+      `<div class="listing-filters-facetlist"></div>
+      <div class="listing-filters-selected never-show"></div>
+      <p><button class="listing-filters-clear secondary">${ph.clearAll}</button></p>`
+    : 
+      `<div class="listing-filters-selected"></div>
+      <p><button class="listing-filters-clear secondary">${ph.clearAll}</button></p>
+      <div class="listing-filters-facetlist"></div>`;
   return /* html */ `
   <div><div class="listing-filters">
-    <div class="listing-filters-selected"></div>
-    <p><button class="listing-filters-clear secondary">${ph.clearAll}</button></p>
-    <div class="listing-filters-facetlist"></div>
+    ${filterOptions}
     </div>
     <div class="listing-apply-filters">
       <button>${ph.seeResults}</button>
@@ -41,7 +55,9 @@ function getFacetHTML(ph) {
 export async function filterResults(config, facets = {}) {
   /* load index */
   let collection = 'blog';
-  if (getMetadata('theme') === 'integrations') collection = 'integrations';
+  const theme = getMetadata('theme');
+  if (theme === 'integrations') collection = 'integrations';
+  else if (theme === 'hrvs') collection = 'hrvs';
   await lookupPages([], collection);
   const listings = window.pageIndex[collection];
 
@@ -74,7 +90,7 @@ export async function filterResults(config, facets = {}) {
 
     const isListing = () => !!row.publisher;
 
-    if (!isListing()) matchedAll = false;
+    if (theme === 'integrations' && !isListing()) matchedAll = false;
 
     /* facets */
     facetKeys.forEach((facetKey) => {
@@ -122,6 +138,8 @@ export async function filterResults(config, facets = {}) {
 }
 
 export default async function decorate(block, blockName) {
+  const horizFilters = block.classList.contains('horizontal-filters');
+  const theme = getMetadata('theme');
   const ph = await fetchPlaceholders('/integrations');
 
   const addEventListeners = (elements, event, callback) => {
@@ -138,7 +156,7 @@ export default async function decorate(block, blockName) {
     config[toCamelCase(key)] = blockConfig[key];
   });
 
-  block.innerHTML = getBlockHTML(ph);
+  block.innerHTML = getBlockHTML(ph, theme);
 
   const resultsElement = block.querySelector('.listing-results');
   const facetsElement = block.querySelector('.listing-facets');
@@ -159,6 +177,12 @@ export default async function decorate(block, blockName) {
     results.forEach((product) => {
       resultsElement.append(createAppCard(product, blockName));
     });
+
+    window.setTimeout(() => {
+      document.querySelectorAll('.listing-card-header h4').forEach(h4 => {
+        if (h4.scrollWidth > h4.clientWidth) h4.title = h4.innerText;
+      });
+    }, 1000);
   };
 
   const runSearch = async (filterConfig = config) => {
@@ -172,7 +196,7 @@ export default async function decorate(block, blockName) {
     const results = await filterResults(filterConfig, facets);
     const sortBy = document.getElementById('listing-sortby')
       ? document.getElementById('listing-sortby').dataset.sort
-      : 'level';
+      : (theme === 'hrvs') ? 'startTime' : 'level';
 
     if (sortBy && sortOptions(sortBy)) results.sort(sortOptions(sortBy));
     block.querySelector('#listing-results-count').textContent = results.length;
@@ -214,7 +238,7 @@ export default async function decorate(block, blockName) {
     const selected = config.category
       ? rawFilters.filter((filter) => filter !== config.category)
       : rawFilters;
-    facetsElement.innerHTML = getFacetHTML(ph);
+    facetsElement.innerHTML = getFacetHTML(ph, horizFilters);
 
     addEventListeners(
       [
@@ -241,7 +265,7 @@ export default async function decorate(block, blockName) {
 
         runSearch(filterConfig);
       });
-      selectedFilters.append(span);
+      selectedFilters?.append(span);
     });
 
     facetsElement.querySelector('.listing-filters-clear').addEventListener('click', () => {
