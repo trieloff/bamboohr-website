@@ -604,3 +604,7 @@ div .column-small-icons-container.column-multi-element {
 .columns [data-align='center'] {
   text-align: center;
 }
+
+.columns.button-text-color-shade-5 a.button.link:any-link {
+  color: var(--theme-shade5);
+}
