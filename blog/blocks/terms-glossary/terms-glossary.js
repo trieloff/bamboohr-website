@@ -5,24 +5,18 @@ import {
 
 import { sortOptions } from '../app-cards/app-cards.js';
   
-  
   export async function filterTerms(config, block) {
   
     await lookupPages([], 'hrGlossary');
     const index = window.pageIndex.hrGlossary;
-
-    // sort alphabetically by term
     const sortBy = 'term';
     if (sortBy && sortOptions(sortBy)) index.data.sort(sortOptions(sortBy));
-    
     const glossaryTermContainer = document.createElement('div');
     glossaryTermContainer.className = 'glossary-term-container';
     block.append(glossaryTermContainer);
 
     index.data.forEach((glossaryItem) => {
       if (glossaryItem.term != '') {
-
-        //grab the first letter of each term
         const term = glossaryItem.term;
         const glossaryLetter = term.charAt(0);
         if (glossaryLetter >= '0' && glossaryLetter <= '9') {
@@ -30,27 +24,20 @@ import { sortOptions } from '../app-cards/app-cards.js';
         } else {
           glossaryItem.groupLetter = glossaryLetter;
         }
-        
       }
     });
 
-    // Accepts the array and key
     const groupBy = (array, key) => {
-      // Return the end result
       return array.reduce((result, currentValue) => {
-        // If an array already present for key, push it to the array. Else create an array and push the object
         (result[currentValue[key]] = result[currentValue[key]] || []).push(
           currentValue
         );
-        // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
         return result;
-      }, {}); // empty object is the initial value for result object
+      }, {});
     };
 
-    // Group by first letter as key to the person array
     const glossaryGroupedByLetter = groupBy(index.data, 'groupLetter');
     
-    //Converts objects to arrays
     const glossaryGroups = Object.entries(glossaryGroupedByLetter);
 
     glossaryGroups.forEach((glossaryGroup) => {
@@ -74,8 +61,6 @@ import { sortOptions } from '../app-cards/app-cards.js';
       }
     });
   }
-
-
   
   export default async function decorate(block) {
     const config = readBlockConfig(block);
