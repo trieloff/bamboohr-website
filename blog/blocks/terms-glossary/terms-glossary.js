@@ -18,9 +18,6 @@ import { sortOptions } from '../app-cards/app-cards.js';
     const glossaryTermContainer = document.createElement('div');
     glossaryTermContainer.className = 'glossary-term-container';
     block.append(glossaryTermContainer);
-    // const glossaryGroupContainer = document.createElement('div');
-    // glossaryGroupContainer.className = 'glossary-group-container';
-    // glossaryTermContainer.append(glossaryGroupContainer);
 
     index.data.forEach((glossaryItem) => {
       if (glossaryItem.term != '') {
@@ -66,7 +63,6 @@ import { sortOptions } from '../app-cards/app-cards.js';
         glossaryGroupContainer.append(glossaryGroupLetter);
         glossaryGroupLetter.textContent = glossaryGroup[0];
         glossaryGroupLetter.id = glossaryGroup[0];
-        console.log(glossaryGroup[0]);
 
         glossaryGroup[1].forEach((glossaryGroupItem) => {
           const glossaryLink = document.createElement('a');
