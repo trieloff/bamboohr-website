@@ -1,3 +1,7 @@
+main .section > div.terms-glossary-wrapper {
+    max-width: 1200px;
+}
+
 .glossary-group-container {
     margin-bottom: 60px;
 }
