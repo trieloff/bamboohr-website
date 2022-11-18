@@ -1021,7 +1021,6 @@ function linkImages(main) {
 export async function decorateMain(main) {
   linkImages(main);
 
-  decorateIcons(main);
   await buildAutoBlocks(main);
   setCategory();
   decorateSections(main);
@@ -1098,6 +1097,7 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   loadTemplateCSS();
   await loadBlocks(main);
+  decorateIcons(main);
 
   const { hash } = window.location;
   const element = hash ? main.querySelector(hash) : false;

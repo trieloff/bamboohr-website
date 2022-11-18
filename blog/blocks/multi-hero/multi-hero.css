@@ -156,6 +156,40 @@ main .multi-hero .carousel-controls {
   }
 }
 
+@media (max-width: 456px) {
+  .multi-hero-buttons {
+    flex-direction: column;
+  }
+
+  .multi-hero-mobile-background {
+    top: 443px;
+  }
+
+  .multi-hero.carousel {
+    margin-top: 70px;
+  }
+}
+
+@media (max-width: 366px) {
+  .multi-hero-mobile-background {
+    top: 491px;
+  }
+
+  .multi-hero.carousel {
+    margin-top: 60px;
+  }
+}
+
+@media (max-width: 350px) {
+  .multi-hero-mobile-background {
+    top: 519px;
+  }
+
+  .multi-hero.carousel {
+    margin-top: 40px;
+  }
+}
+
 @media (min-width: 600px) {
   .multi-hero-background {
     display: block;

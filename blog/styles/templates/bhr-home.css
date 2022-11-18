@@ -2,6 +2,7 @@
     background-color: var(--theme-tint15);
     position: relative;
     z-index: 0;
+    padding-bottom: 1450px;
 }
 
 .bhr-home main .multi-hero-container .title-wrapper,
@@ -113,11 +114,15 @@
 }
 
 .bhr-home .section-2 {
+    margin-top: -1450px;
+}
+
+.bhr-home .section-3 {
     background-color: var(--color-white);
     position: relative;
 }
 
-.bhr-home .section-3 {
+.bhr-home .section-4 {
     position: relative;
     background: linear-gradient(180deg, var(--color-gray-1),hsla(45,17%,95%,0));
 }
@@ -169,13 +174,71 @@
     line-height: 44px;
 }
 
+@media (min-width: 361px) {
+    .bhr-home main .section:first-of-type {
+        padding-bottom: 1500px;
+    }
+    
+    .bhr-home .section-2 {
+        margin-top: -1500px;
+    }
+}
+
+@media (min-width: 388px) {
+    .bhr-home main .section:first-of-type {
+        padding-bottom: 1450px;
+    }
+    
+    .bhr-home .section-2 {
+        margin-top: -1450px;
+    }
+}
+
+@media (min-width: 390px) {
+    .bhr-home main .section:first-of-type {
+        padding-bottom: 1400px;
+    }
+    
+    .bhr-home .section-2 {
+        margin-top: -1400px;
+    }
+}
+
+@media (min-width: 514px) {
+    .bhr-home main .section:first-of-type {
+        padding-bottom: 1375px;
+    }
+    
+    .bhr-home .section-2 {
+        margin-top: -1375px;
+    }
+}
+
 @media (min-width: 600px) {
+    .bhr-home main .section:first-of-type {
+        padding-bottom: 1100px;
+    }
+    
+    .bhr-home .section-2 {
+        margin-top: -1100px;
+    }
+
     .bhr-home main .multi-hero-container {
         padding: 0 54px;
     }
 
     .bhr-home .title-wrapper.top-section-top-margin {
         margin-top: 13%;
+    }
+}
+
+@media (min-width: 769px) {
+    .bhr-home main .section:first-of-type {
+        padding-bottom: 1200px;
+    }
+    
+    .bhr-home .section-2 {
+        margin-top: -1200px;
     }
 }
 
@@ -211,6 +274,18 @@
 }
 
 @media (min-width: 1025px) {
+    .bhr-home main .section:first-of-type {
+        padding-bottom: 0;
+    }
+    
+    .bhr-home .section-2 {
+        margin-top: 96px;
+    }
+
+    .bhr-home .title-wrapper.top-section-top-margin {
+        margin-top: 16%;
+    }
+
     .bhr-home .columns:not(.columns-1-cols) > div {
       align-items: center;
       flex-direction: unset;
@@ -230,6 +305,10 @@
 }
 
 @media (min-width: 1200px) {
+    .bhr-home .title-wrapper.top-section-top-margin {
+        margin-top: 13%;
+    }
+
     .bhr-home .columns.bottom-cta h2 {
         font-size: 48px;
         line-height: 60px;
@@ -237,6 +316,14 @@
 }
 
 @media (min-width: 1800px) {
+    .bhr-home main .section:first-of-type {
+        padding-bottom: 1000px;
+    }
+    
+    .bhr-home .section-2 {
+        margin-top: -1000px;
+    }
+
     .bhr-home main .image.bg-home-middle-1 p:not(:only-child):nth-child(2),
     .bhr-home main .image.bg-home-bottom p:not(:only-child):nth-child(2) {
         display: none;
