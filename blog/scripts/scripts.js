@@ -164,6 +164,21 @@ export function loadCSS(href, callback) {
 }
 
 /**
+ * Loads a template specific CSS file.
+ */
+ function loadTemplateCSS() {
+  const template = toClassName(getMetadata('template'));
+  if (template) {
+    const templates = ['bhr-comparison', 'bhr-home', 'ee-solution', 'hr-software', 'hr-unplugged',
+      'industry', 'live-demo-webinars', 'payroll-roi', 'performance-reviews', 'pricing-quote'];
+    if (templates.includes(template)) {
+      const cssBase = `${window.hlx.serverPath}${window.hlx.codeBasePath}`;
+      loadCSS(`${cssBase}/styles/templates/${template}.css`);
+    }
+  }
+}
+
+/**
  * Retrieves the content of a metadata tag.
  * @param {string} name The metadata name (or property)
  * @returns {string} The metadata value
@@ -1081,6 +1096,7 @@ async function loadLazy(doc) {
   });
   if (queryParams.header === 'meganav') header.classList.add('header-meganav');
   const main = doc.querySelector('main');
+  loadTemplateCSS();
   await loadBlocks(main);
 
   const { hash } = window.location;
