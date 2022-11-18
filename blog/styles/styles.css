@@ -23,6 +23,7 @@
 @import 'templates/bhr-comparison.css';
 @import 'templates/industry.css';
 @import 'templates/ee-solution.css';
+@import 'templates/bhr-home.css';
 
 html {
   box-sizing: border-box;

@@ -302,7 +302,7 @@ export function decorateBlock(block) {
       block.classList.remove(style);
     });
   // eslint-disable-next-line no-use-before-define
-  addWidthToParent(block);
+  addClassToParent(block);
 }
 
 /**
@@ -1215,11 +1215,11 @@ export function createElem(elemType, ...cssClass) {
 }
 
 /**
- * Add width to a block's parent.
+ * Add class to a block's parent.
  * @param {Element} block The block element
  */
-export function addWidthToParent(block) {
-  const widths = [
+export function addClassToParent(block) {
+  const classes = [
     'full-width',
     'med-width',
     'normal-width',
@@ -1227,12 +1227,15 @@ export function addWidthToParent(block) {
     'medium-width',
     'extra-wide',
     'extra-small-width',
+    'top-section-top-margin',
+    'bottom-margin',
+    'top-margin'
   ];
-  widths.some((w) => {
-    const found = block.classList.contains(w);
+  classes.some((c) => {
+    const found = block.classList.contains(c);
     if (found) {
-      block.parentElement.classList.add(w);
-      block.classList.remove(w);
+      block.parentElement.classList.add(c);
+      block.classList.remove(c);
     }
     return found;
   });
