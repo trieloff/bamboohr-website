@@ -910,6 +910,7 @@ export async function lookupPages(pathnames, collection) {
   const indexPaths = {
     blog: '/blog/fixtures/blog-query-index.json',
     integrations: '/integrations/query-index.json?sheet=listings',
+    hrGlossary: '/hr-glossary/query-index.json',
     hrvs: '/drafts/sclayton/resources/hr-vs/query-index.json',
   };
   const indexPath = indexPaths[collection];
