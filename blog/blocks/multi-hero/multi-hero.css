@@ -72,7 +72,7 @@ main .multi-hero-container {
 }
 
 .multi-hero-mobile-background {
-  background: url('images/top-lower-min.png') no-repeat;
+  background: url('images/top-lower-min.webp') no-repeat;
   background-size: contain;
   height: calc(100vw * 1.1834);
   position: absolute;
