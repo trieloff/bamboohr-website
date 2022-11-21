@@ -12,16 +12,76 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
+const createCalloutBlock = (main, document) => {
+  main.querySelectorAll('.HrGlossaryTerm__contentCta').forEach((callout) => {
+    const cells = [['Callout']];
+
+    const container = document.createElement('div');
+
+    const firstText = callout.querySelector('.HrGlossaryTerm__contentCtaTitle');
+    if (firstText) {
+      const h = document.createElement('h3');
+      h.innerHTML = firstText.textContent;
+      container.append(h);
+    }
+
+    const sub = callout.querySelector('.HrGlossaryTerm__contentCtaSubheading');
+    if (sub) {
+      const p = document.createElement('p');
+      p.innerHTML = sub.innerHTML;
+      container.append(p);
+    }
+
+    cells.push([container]);
+
+    let cta = callout.querySelector('.HrGlossaryTerm__contentCtaBtn');
+    // const href = cta.getAttribute('href');
+    // const goodUrl = 'https://www.bamboohr.com' + href;
+    // cta.href = goodUrl;
+    if (cta) {
+      cells.push([cta]);
+      // cells.push([newBtn]);
+    }
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    callout.replaceWith(table);
+  });
+};
+
 const createReferenceBlock = (main, document) => {
   main.querySelectorAll('.HrGlossaryAlsoLike__container').forEach((container) => {
-    const cells = [['Reference']];
-    container.querySelectorAll('.HrGlossaryAlsoLike__wrapper').forEach((cell) => {
-      cells.push([cell]);
+
+    const cells = [['Cards (image top, 3 columns)']];
+    // const container = document.createElement('div');
+
+    container.querySelectorAll('.HrGlossaryAlsoLike__wrapper').forEach((reference) => {
+      const wrapper = document.createElement('div');
+
+      const image = reference.querySelector('.HrGlossaryAlsoLike__image');
+      if (image) {
+        wrapper.append(image);
+      }
+
+      const description = reference.querySelector('.HrGlossaryAlsoLike__paragraph');
+      if (description) {
+        const p = document.createElement('p');
+        p.innerHTML = description.innerHTML.replace(/[\r\n\t]/gm, '');
+        wrapper.append(p);
+      }
+
+      const button = reference.querySelector('.HrGlossaryAlsoLike__link');
+      if (button) {
+        wrapper.append(button);
+      }
+
+      cells.push([wrapper]);
     });
+
     const table = WebImporter.DOMUtils.createTable(cells, document);
     container.replaceWith(table);
   });
+
 };
+
 
 const createMetadata = (main, document) => {
   const meta = {};
@@ -31,39 +91,9 @@ const createMetadata = (main, document) => {
     meta.Title = title.innerHTML.replace(/[\n\t]/gm, '');
   }
 
-  const desc = document.querySelector('[property="og:description"]');
-  if (desc) {
-    meta.Description = desc.content;
-  }
-
-  const category = document.querySelector('[property="article:section"]');
-  if (category) {
-    meta.Category = category.content;
-  }
-
-  const date = document.querySelector('[property="article:published_time"]');
-  if (date) {
-    meta['Publication Date'] = date.content.substring(0, date.content.indexOf('T'));
-  }
-
-  const updated = main.querySelector('.blogPostContent__metaModifiedDate');
-  if (updated && updated.textContent) {
-    const d = updated.textContent.replace('Updated ', '');
-    meta['Updated Date'] = new Date(d).toISOString().substring(0, 10);
-  }
-
-  const author = main.querySelector('[rel="author"]');
-  if (author) {
-    meta.Author = author;
-  }
-
-  const metatop = main.querySelector('.blogPostContent__metaTop');
-  if (metatop) {
-    const split = metatop.textContent.trim().split('\n');
-    if (split.length === 3) {
-      // eslint-disable-next-line prefer-destructuring
-      meta['Read Time'] = split[2].trim();
-    }
+  const description = document.querySelector('[property="og:description"]');
+  if (description) {
+    meta.Description = description.content.replace(/[\r\n\t]/gm, '');
   }
 
   const img = document.querySelector('[property="og:image"]');
@@ -72,6 +102,19 @@ const createMetadata = (main, document) => {
     el.src = img.content;
     meta.Image = el;
   }
+
+  const term = document.querySelector('h1');
+  if (term) {
+    meta.Term = term.innerHTML.replace(/[\n\t]/gm, '');
+  }
+
+  meta.Template = 'HR Glossary';
+  
+  meta.Theme = 'green';
+
+  meta.Category = '';
+
+  meta.Robots = '';
 
   const block = WebImporter.Blocks.getMetadataBlock(document, meta);
   main.append(block);
@@ -101,11 +144,14 @@ export default {
       '.HrGlossaryBreadcrumb',
       '.NavbarMobile',
       '.HrGlossaryBanner',
+      '.HrGlossaryCalc',
+      // '.HrGlossaryAlsoLike',
+      // '.HrGlossaryTerm__contentCtaWrap',
       '.acc-out-of-view',
       '.Footer',
     ]);
     const main = document.querySelector('.HrGlossary');
-
+    createCalloutBlock(main, document);
     createReferenceBlock(main, document);
     createMetadata(main, document);
 
