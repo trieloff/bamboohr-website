@@ -784,6 +784,10 @@ main .section > div:empty {
     max-width: 1200px;
   }
 
+  .bhr-home main .section > div.quote-wrapper.extra-wide {
+    max-width: 1280px;
+  }
+
   main .section > div > :not(div) {
     margin-left: auto;
     margin-right: auto;
