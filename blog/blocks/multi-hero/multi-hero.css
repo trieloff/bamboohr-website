@@ -20,6 +20,7 @@ main .multi-hero-container {
 .multi-hero-main-container {
   background: linear-gradient(342.37deg, var(--theme-shade5) 31.85%, var(--theme-tint5) 114.99%);
   padding-left: 26px;
+  padding-right: 26px;
   text-align: center;
 }
 
@@ -155,6 +156,16 @@ main .multi-hero .carousel-controls {
   }
 }
 
+@media (max-width: 482px) {
+  .multi-hero-mobile-background {
+    top: 443px;
+  }
+
+  .multi-hero.carousel {
+    margin-top: 180px;
+  }
+}
+
 @media (max-width: 456px) {
   .multi-hero-buttons {
     flex-direction: column;
@@ -169,7 +180,7 @@ main .multi-hero .carousel-controls {
   }
 }
 
-@media (max-width: 366px) {
+@media (max-width: 392px) {
   .multi-hero-mobile-background {
     top: 491px;
   }
@@ -179,13 +190,15 @@ main .multi-hero .carousel-controls {
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 376px) {
   .multi-hero-mobile-background {
     top: 519px;
   }
+}
 
+@media (max-width: 350px) {
   .multi-hero.carousel {
-    margin-top: 40px;
+    margin-top: 30px;
   }
 }
 

@@ -36,8 +36,19 @@
     height: auto;
 }
 
+.bhr-home .columns .column-small-icons-container.column-multi-element p.button-container {
+    line-height: 12px;
+}
+
 .bhr-home .columns .column-small-icons-container.column-multi-element p.button-container.btn-ats {
     max-width: 165px;
+}
+
+.bhr-home .columns .column-small-icons-container.column-multi-element a {
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
 .bhr-home .columns a.button:not(.link):any-link {

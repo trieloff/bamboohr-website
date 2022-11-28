@@ -386,6 +386,11 @@ header .nav-buttons .nav-search-text-area.show-input {
   margin: 0;
 }
 
+.nav-search-input:focus {
+  outline: none;
+  border-color: var(--color-5);
+}
+
 .nav-search-input-btn {
   line-height: 0;
   border-radius: 0 25px 25px 0;
