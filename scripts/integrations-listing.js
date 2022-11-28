@@ -26,10 +26,10 @@ function buildHighlightsColumns(main) {
   const trigger = getMetadata('sync-trigger');
   const frequency = getMetadata('sync-frequency');
   const columnData = [];
-  if (integration) columnData.push(`<img src="/blog/styles/integration-type.svg" /><h4>Integration Type</h4><p>${integration}</p>`);
-  if (direction) columnData.push(`<img src="/blog/styles/data-flow-direction.svg" /><h4>Direction of Data Flow</h4><p>${direction}</p>`);
-  if (trigger) columnData.push(`<img src="/blog/styles/sync-trigger.svg" /><h4>Sync Trigger</h4><p>${trigger}</p>`);
-  if (frequency) columnData.push(`<img src="/blog/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`);
+  if (integration) columnData.push(`<img src="/styles/integration-type.svg" /><h4>Integration Type</h4><p>${integration}</p>`);
+  if (direction) columnData.push(`<img src="/styles/data-flow-direction.svg" /><h4>Direction of Data Flow</h4><p>${direction}</p>`);
+  if (trigger) columnData.push(`<img src="/styles/sync-trigger.svg" /><h4>Sync Trigger</h4><p>${trigger}</p>`);
+  if (frequency) columnData.push(`<img src="/styles/sync-frequency.svg" /><h4>Sync Frequency</h4><p>${frequency}</p>`);
 
   if (columnData.length > 0) {
     const columns = buildBlock('columns', [columnData]);
@@ -71,7 +71,7 @@ function populateListingDetails(main) {
     if (level && level !== 'BambooHR Product') {
       const levelBtn = document.createElement('a');
       levelBtn.id = 'marketplace-details-tier';
-      levelBtn.innerHTML = `<img class="details-badge" title="${level} badge" src="/blog/icons/${toClassName(level)}-badge.svg" />`;
+      levelBtn.innerHTML = `<img class="details-badge" title="${level} badge" src="/icons/${toClassName(level)}-badge.svg" />`;
       logoImg.after(levelBtn);
     }
   }

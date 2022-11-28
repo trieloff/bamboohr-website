@@ -16,7 +16,7 @@ export function createAppCard(app, prefix) {
   }
 
   const title = app.title.split(' - ')[0];
-  const level = app.level ? `<img src="/blog/icons/${toClassName(app.level)}-badge.svg" alt="${toClassName(app.level)} badge icon">` : '';
+  const level = app.level ? `<img src="/icons/${toClassName(app.level)}-badge.svg" alt="${toClassName(app.level)} badge icon">` : '';
   const picture = createOptimizedPicture(app.image, title, false, [{ width: 750 }]).outerHTML;
   const searchTags = app.searchTags ? `<div class="${prefix}-card-search-tags"><span>${app.searchTags.split(',').join('</span><span>')}</span></div>` : '';
   card.innerHTML = `<div class="${prefix}-card-image">${picture}</div>

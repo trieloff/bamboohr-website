@@ -199,7 +199,7 @@
 }
 
 .table td.has-popup-data::before {
-  background: url('/blog/icons/cta-list-button.svg') center center no-repeat;
+  background: url('/icons/cta-list-button.svg') center center no-repeat;
   content: '';
   height: 8px;
   left: 16px;
