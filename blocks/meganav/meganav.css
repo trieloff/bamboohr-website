@@ -191,7 +191,7 @@
 
 .header-top-link::after {
   content: "";
-  background: url('/blog/icons/nav-arrow.svg') center center no-repeat;
+  background: url('/icons/nav-arrow.svg') center center no-repeat;
   height: 100%;
   position: absolute;
   right: 30px;
@@ -236,7 +236,7 @@
 }
 
 .header-nav-level-1-close {
-  background: url('/blog/icons/nav-arrow.svg') center center no-repeat;
+  background: url('/icons/nav-arrow.svg') center center no-repeat;
   border: none;
   height: 100%;
   left: 14px;
@@ -259,7 +259,7 @@
 }
 
 .header-level-1-link-title::after {
-  background-image: url('/blog/icons/nav-arrow.svg');
+  background-image: url('/icons/nav-arrow.svg');
   background-position: 50%;
   background-repeat: no-repeat;
   content: "";
@@ -626,7 +626,7 @@
   }
 
   .header-level-2-main-link::after {
-    background-image: url('/blog/icons/nav-arrow.svg');
+    background-image: url('/icons/nav-arrow.svg');
     background-position: 50%;
     background-repeat: no-repeat;
     content: "";
