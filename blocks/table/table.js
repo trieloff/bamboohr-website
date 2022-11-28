@@ -7,7 +7,7 @@ function buildTableCell(col, rowIndex, header, isComparisonTable, isRowHeader) {
     const levelClass = toClassName(col.textContent?.trim().toLowerCase());
     const levelIdx = levels.indexOf(levelClass);
     if (levelIdx >= 0) {
-      cell.innerHTML = `<img src="/blog/icons/${levelClass}-badge.svg">`;
+      cell.innerHTML = `<img src="/icons/${levelClass}-badge.svg">`;
       if (levelIdx < 2) header?.classList.add(`${levelClass}-ribbon`);
     } else cell.innerHTML = col.innerHTML;
   } else cell.innerHTML = col.innerHTML;
