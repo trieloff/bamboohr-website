@@ -120,7 +120,7 @@ indices:
   hr-glossary:
     include:
       - '/hr-glossary/**'
-    target: /hr-glossary/query-index
+    target: /resources/hr-glossary/query-index
     properties:
       title:
         select: head > meta[property="og:title"]
