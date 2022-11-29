@@ -119,7 +119,7 @@ indices:
 
   hr-glossary:
     include:
-      - '/hr-glossary/**'
+      - '/resources/hr-glossary/**'
     target: /resources/hr-glossary/query-index
     properties:
       title:
