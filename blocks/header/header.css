@@ -545,11 +545,15 @@ header .nav-section.nav-section-subscribe form {
     color: var(--color-gray-7);
     margin: 0;
     padding: 0;
-    cursor: pointer;
+    cursor: default;
     display: flex;
     align-items: center;
     height: 60px;
     border: none;
+  }
+
+  header .nav-sections h2 a:any-link {
+    cursor: pointer;
   }
 
   header .nav-section:hover h2 {
@@ -577,7 +581,12 @@ header .nav-section.nav-section-subscribe form {
 
   header .nav-section li {
     font-size: 14px;
+    line-height: 18px;
     padding: 8px 44px;
+    cursor: default;
+  }
+
+  header .nav-section li a:any-link {
     cursor: pointer;
   }
 
@@ -624,7 +633,7 @@ header .nav-section.nav-section-subscribe form {
   }
 
   header .nav-section[aria-expanded="true"] li[aria-expanded="true"] > ul,
-  header .nav-section:hover li:hover > ul {
+  header .nav-section:hover li.show-sub-menu > ul {
     position: absolute;
     opacity: 1;
     left: 280px;
@@ -635,6 +644,10 @@ header .nav-section.nav-section-subscribe form {
 
   header .nav-section[aria-expanded="true"] li[aria-expanded="true"],
   header .nav-section:hover li:hover {
+    color: var(--color-1);
+  }
+
+  header .nav-section li a:any-link:hover {
     color: var(--color-1);
   }
 
