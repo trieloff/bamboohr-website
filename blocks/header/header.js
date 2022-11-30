@@ -181,10 +181,13 @@ export default async function decorate(block) {
               li.addEventListener('mouseenter', () => {
                 submenuAction(nav, li);
               });
-              li.parentElement.addEventListener('mouseleave', (evt) => {
-                submenuAction(nav, null, false);
-                evt.stopImmediatePropagation();
-              });
+
+              if (!li.parentElement.getAttribute('data-listener')) {
+                li.parentElement.addEventListener('mouseleave', (evt) => {
+                  submenuAction(nav, null, false);
+                });
+                li.parentElement.setAttribute('data-listener', true);
+              }
             } else {
               li.addEventListener('mouseenter', () => {
                 submenuAction(nav);
