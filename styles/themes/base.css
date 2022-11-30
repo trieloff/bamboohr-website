@@ -5,9 +5,7 @@
 }
 
 /** base tags **/
-#base :is(h1, h2, h3, h4, h5, h6) {
-  font-style: normal;
-  color: var(--color-gray-11);
+#base .title-spacing-top :is(h1, h2, h3, h4, h5, h6) {
   margin-top: 1.25em;
 }
 
@@ -15,6 +13,7 @@
   width: 100%;
 }
 
+#base [data-align='center'],
 #base [data-align='center'] :is(h1, h2, h3, h4, h5, h6, p) {
   text-align: center;
 }
@@ -23,8 +22,14 @@
   width: 100%;
 }
 
+#base [data-align='right'],
 #base [data-align='right'] :is(h1, h2, h3, h4, h5, h6, p) {
   text-align: right;
+}
+
+#base [data-align='left'],
+#base [data-align='left'] :is(h1, h2, h3, h4, h5, h6, p) {
+  text-align: left;
 }
 
 /** section **/
@@ -235,7 +240,6 @@
 
 #base .button-container {
   margin: 0;
-  text-align: unset;
 }
 
 #base .button-style-link .button-container {

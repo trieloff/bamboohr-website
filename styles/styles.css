@@ -290,10 +290,18 @@ main h6 {
   color: var(--heading-color);
   font-weight: var(--heading-font-weight);
   font-family: var(--heading-font-family);
-  font-style: italic;
   margin-top: 48px;
   margin-bottom: 16px;
   scroll-margin: 80px;
+}
+
+.blog-post main h1,
+.blog-post main h2,
+.blog-post main h3,
+.blog-post main h4,
+.blog-post main h5,
+.blog-post main h6 {
+  font-style: italic;
 }
 
 main h1 {
@@ -819,9 +827,12 @@ main .section.max-width-small > div {
 }
 
 main .section p.button-container {
-  text-align: center;
   margin-top: 16px;
   margin-bottom: 0;
+}
+
+main .section .default-content-wrapper .button-container {
+  text-align: center;
 }
 
 .integrations .home-featured-cat p.button-container {
