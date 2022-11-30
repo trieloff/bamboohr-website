@@ -7,6 +7,7 @@ import {
 } from '../../scripts/scripts.js';
 
 const mediaQueryDesktop = window.matchMedia('(min-width: 1200px)');
+let submenuActionTimer = null;
 
 /**
  * collapses all open nav sections
@@ -85,6 +86,25 @@ function addSearch(buttonsContainer) {
 }
 
 /**
+ * Hides all visible submenus, shows the submenu for the given li
+ * @param Element nav Main nav div element
+ * @param Element li Optional element used to show it's submenu
+ * @param Boolean delayed if true actions are delayed, if false actions are immediate.
+ */
+const submenuAction = (nav, li, delayed = true) => {
+  if (submenuActionTimer) window.clearTimeout(submenuActionTimer);
+
+  if (delayed) {
+    submenuActionTimer = window.setTimeout(() => {
+      [...nav.querySelectorAll('li.show-sub-menu')].forEach(e => e.classList.remove('show-sub-menu'));
+      li?.classList.add('show-sub-menu');
+    }, 300);
+  } else {
+    [...nav.querySelectorAll('li.show-sub-menu')].forEach(e => e.classList.remove('show-sub-menu'));
+  }
+};
+
+/**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -156,6 +176,18 @@ export default async function decorate(block) {
                   collapseAll([...nav.querySelectorAll('li[aria-expanded="true"]')]);
                   li.setAttribute('aria-expanded', expanded ? 'false' : 'true');
                 }
+              });
+
+              li.addEventListener('mouseenter', () => {
+                submenuAction(nav, li);
+              });
+              li.parentElement.addEventListener('mouseleave', (evt) => {
+                submenuAction(nav, null, false);
+                evt.stopImmediatePropagation();
+              });
+            } else {
+              li.addEventListener('mouseenter', () => {
+                submenuAction(nav);
               });
             }
           });
