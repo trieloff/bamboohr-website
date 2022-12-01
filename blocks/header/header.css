@@ -523,6 +523,7 @@ header .nav-section.nav-section-subscribe form {
     background-color: unset;
     width: unset;
     height: 100%;
+    align-items: center;
   }
 
   header .nav[aria-expanded="true"] .nav-sections {
