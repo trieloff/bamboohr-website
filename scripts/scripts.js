@@ -163,6 +163,27 @@ export function loadCSS(href, callback) {
   }
 }
 
+
+/**
+ * Retrieves the content of a metadata tag.
+ * @param {string} name The metadata name (or property)
+ * @returns {string} The metadata value
+ */
+export function getMetadata(name) {
+  const attr = name && name.includes(':') ? 'property' : 'name';
+  const meta = document.head.querySelector(`meta[${attr}="${name}"]`);
+  return meta && meta.content;
+}
+
+/**
+ * Sanitizes a name for use as class name.
+ * @param {string} name The unsanitized name
+ * @returns {string} The class name
+ */
+ export function toClassName(name) {
+  return name && typeof name === 'string' ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-') : '';
+}
+
 /**
  * Loads a template specific CSS file.
  */
@@ -179,17 +200,6 @@ export function loadCSS(href, callback) {
 }
 
 /**
- * Retrieves the content of a metadata tag.
- * @param {string} name The metadata name (or property)
- * @returns {string} The metadata value
- */
-export function getMetadata(name) {
-  const attr = name && name.includes(':') ? 'property' : 'name';
-  const meta = document.head.querySelector(`meta[${attr}="${name}"]`);
-  return meta && meta.content;
-}
-
-/**
  * Adds one or more URLs to the dependencies for publishing.
  * @param {string|[string]} url The URL(s) to add as dependencies
  */
@@ -201,15 +211,6 @@ export function addPublishDependencies(url) {
   } else {
     window.hlx.dependencies = urls;
   }
-}
-
-/**
- * Sanitizes a name for use as class name.
- * @param {string} name The unsanitized name
- * @returns {string} The class name
- */
-export function toClassName(name) {
-  return name && typeof name === 'string' ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-') : '';
 }
 
 /*
@@ -1079,6 +1080,7 @@ async function loadEager(doc) {
   const experiment = getMetadata('experiment');
   const instantExperiment = getMetadata('instant-experiment');
   if (instantExperiment || experiment) {
+    // eslint-disable-next-line import/no-cycle
     const { runExperiment } = await import('./experimentation.js');
     await runExperiment(experiment, instantExperiment);
   }
@@ -1120,7 +1122,7 @@ async function loadLazy(doc) {
 
   if (window.location.hostname.endsWith('hlx.page') || window.location.hostname === ('localhost')) {
     // eslint-disable-next-line import/no-cycle
-    import('../../tools/preview/experimentation-preview.js');
+    import('../tools/preview/experimentation-preview.js');
   }
 }
 

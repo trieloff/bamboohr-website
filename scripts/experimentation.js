@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import {
   sampleRUM,
   toCamelCase,
@@ -31,8 +32,6 @@ function parseExperimentConfig(json) {
       const key = toCamelCase(line.Name);
       config[key] = line.Value;
     });
-    config.id = experimentId;
-    config.manifest = path;
     const variants = {};
     let variantNames = Object.keys(json.experiences.data[0]);
     variantNames.shift();
@@ -192,8 +191,8 @@ function getDecisionPolicy(config) {
           allocationPercentage: props.percentageSplit
             ? parseFloat(props.percentageSplit) * 100
             : 100 - Object.values(config.variants).reduce((result, variant) => {
-              result -= parseFloat(variant.percentageSplit || 0) * 100;
-              return result;
+              const newResult = result - parseFloat(variant.percentageSplit || 0) * 100;              
+              return newResult;
             }, 100),
         })),
       },
@@ -281,7 +280,7 @@ export async function runExperiment(experiment, instantExperiment) {
   }
 
   // Fullpage content experiment
-  document.body.classList.add('experiment-' + experimentConfig.id);
-  document.body.classList.add('variant-' + experimentConfig.selectedVariant);
+  document.body.classList.add(`experiment-${experimentConfig.id}`);
+  document.body.classList.add(`variant-${experimentConfig.selectedVariant}`);
   await replaceInner(pages[0], document.querySelector('main'));
 }
