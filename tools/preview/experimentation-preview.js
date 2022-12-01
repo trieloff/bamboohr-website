@@ -53,7 +53,7 @@ async function createExperiment() {
   const config = window?.hlx?.experiment;
   const selectedVariant = config?.selectedVariant || config?.variantNames[0];
   const experiment = toClassName(getMetadata('experiment'));
-  console.log('preview experiment', experiment);
+  console.debug('preview experiment', experiment);
   if (!experiment || !config) {
     return '';
   }
@@ -97,7 +97,7 @@ async function createExperiment() {
     </div>
     <div class="hlx-variants"></div>
     </div>`;
-  console.log(config.id);
+
   const popup = div.querySelector('.hlx-popup');
 
   const variantMap = {};
@@ -235,5 +235,6 @@ async function decoratePreviewMode() {
 try {
   decoratePreviewMode();
 } catch (e) {
+  // eslint-disable-next-line no-console
   console.log(e);
 }

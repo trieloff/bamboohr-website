@@ -1,3 +1,4 @@
+/* eslint-disable */
 var LOCAL_STORAGE_KEY = 'unified-decisioning-experiments';
 function assignTreatment(allocationPercentages, treatments) {
   var random = Math.random() * 100;

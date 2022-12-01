@@ -478,6 +478,7 @@ export function updateSectionsStatus(main) {
         section.setAttribute('data-section-status', 'loaded');
         const event = new CustomEvent('section-display', { detail: { section }});
         document.body.dispatchEvent(event);
+        /* eslint-disable no-console */
         console.log('event dispatched')
       }
     }

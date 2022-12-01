@@ -61,6 +61,7 @@ function parseExperimentConfig(json) {
     config.variantNames = variantNames;
     return config;
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log('error parsing experiment config:', e);
   }
   return null;
@@ -122,6 +123,7 @@ function parseExperimentConfig(json) {
   try {
     const resp = await fetch(path);
     if (!resp.ok) {
+      // eslint-disable-next-line no-console
       console.log('error loading experiment config:', resp);
       return null;
     }
@@ -132,6 +134,7 @@ function parseExperimentConfig(json) {
     config.basePath = `/experimentation/${experimentId}`;
     return config;
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log(`error loading experiment manifest: ${path}`, e);
   }
   return null;
@@ -212,6 +215,7 @@ async function replaceInner(path, element, isBlock = false) {
   try {
     const resp = await fetch(plainPath);
     if (!resp.ok) {
+      // eslint-disable-next-line no-console
       console.log('error loading experiment content:', resp);
       return null;
     }
@@ -224,6 +228,7 @@ async function replaceInner(path, element, isBlock = false) {
       element.innerHTML = html;
     }
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log(`error loading experiment content: ${plainPath}`, e);
   }
   return null;
@@ -236,8 +241,7 @@ export async function runExperiment(experiment, instantExperiment) {
   const usp = new URLSearchParams(window.location.search);
   const [forcedExperiment, forcedVariant] = usp.has('experiment') ? usp.get('experiment').split('/') : [];
 
-  const experimentConfig = await getExperimentConfig(experiment, instantExperiment);
-  console.debug(experimentConfig);
+  const experimentConfig = await getExperimentConfig(experiment, instantExperiment);  
   if (!experimentConfig || (toCamelCase(experimentConfig.status) !== 'active' && !forcedExperiment)) {
     return;
   }
@@ -247,8 +251,9 @@ export async function runExperiment(experiment, instantExperiment) {
     
   window.hlx = window.hlx || {};
   window.hlx.experiment = experimentConfig;
-  console.debug('run', experimentConfig.run, experimentConfig.audience);
   if (!experimentConfig.run) {
+    // eslint-disable-next-line no-console
+    console.debug('run', experimentConfig.run, experimentConfig.audience, isSuitablePage());
     return;
   }
 
@@ -261,6 +266,7 @@ export async function runExperiment(experiment, instantExperiment) {
   }
 
   sampleRUM('experiment', { source: experimentConfig.id, target: experimentConfig.selectedVariant });
+  // eslint-disable-next-line no-console
   console.debug(`running experiment (${window.hlx.experiment.id}) -> ${window.hlx.experiment.selectedVariant}`);
 
   if (experimentConfig.selectedVariant === experimentConfig.variantNames[0]) {
