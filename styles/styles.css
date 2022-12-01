@@ -440,7 +440,7 @@ main .title.stats-subhead :is(h1, h2, h3, h4, h5, h6, div) {
 }
 
 .typ-quote,
-main .title.quote :is(h1, h2, h3, h4, h5, h6, div),
+main .title.typ-quote :is(h1, h2, h3, h4, h5, h6, div),
 .resources-guides main h5 {
   font-family: var(--body-font-family);
   font-size: 20px;
