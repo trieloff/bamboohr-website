@@ -898,36 +898,43 @@ div.secondary-teal {
 }
 
 .theme,
+.color-base,
 .color-base :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-base);
 }
 
 .theme-tint-5,
+.color-tint-5,
 .color-tint-5 :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-tint5);
 }
 
 .theme-tint-10,
+.color-tint-10,
 .color-tint-10 :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-tint10);
 }
 
 .theme-tint-15,
+.color-tint-15,
 .color-tint-15 :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-tint15);
 }
 
 .theme-shade-5,
+.color-shade-5,
 .color-shade-5 :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-shade5);
 }
 
 .theme-shade-10,
+.color-shade-10,
 .color-shade-10 :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-shade10);
 }
 
 .theme-shade-15,
+.color-shade-15,
 .color-shade-15 :is(h1, h2, h3, h4, h5, h6) {
   color: var(--theme-shade15);
 }
