@@ -81,9 +81,15 @@
   }
 }
 
-@media (min-width: 1441px) {
+@media (min-width: 1440px) {
   #base .section > div {
     max-width: calc(1160px + var(--section-padding) * 2);
+  }
+}
+
+@media (min-width: 1800px) {
+  #base .section > div {
+    max-width: calc(1520px + var(--section-padding) * 2);
   }
 }
 
@@ -123,7 +129,7 @@
   }
 }
 
-@media (min-width: 1441px) {
+@media (min-width: 1440px) {
   #base .section > div.content-width-md,
   #base .section.content-width-md > div:not([class*='content-width-']) {
     max-width: calc(1160px + var(--section-padding) * 2);
@@ -142,7 +148,7 @@
   }
 }
 
-@media (min-width: 1441px) {
+@media (min-width: 1440px) {
   #base .section > div.content-width-lg,
   #base .section.content-width-lg > div:not([class*='content-width-']) {
     max-width: calc(1360px + var(--section-padding) * 2);
@@ -161,7 +167,7 @@
   }
 }
 
-@media (min-width: 1441px) {
+@media (min-width: 1440px) {
   #base .section > div.content-width-xl,
   #base .section.content-width-xl > div:not([class*='content-width-']) {
     max-width: calc(1560px + var(--section-padding) * 2);
@@ -419,6 +425,10 @@
   color: var(--secondary-theme-tint15);
 }
 
+#base .button-spacing-none a.button:any-link {
+  margin: 0;
+}
+
 /** title **/
 #base .title-style-italic :is(h1, h2, h3, h4, h5, h6) {
   font-style: italic;
@@ -585,7 +595,7 @@
   }
 }
 
-@media (min-width: 1441px) {
+@media (min-width: 1440px) {
   #base .section > .image-wrapper {
     max-width: calc(1160px + var(--section-padding) * 2);
   }
