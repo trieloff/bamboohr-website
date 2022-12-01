@@ -355,6 +355,10 @@ main .multi-element p {
     }
 }
 
+.multi-element.hero > .content h3 {
+    margin-bottom: -20px;
+}
+
 .multi-element.hero h1 {
     font-size: 2.5rem;
     font-weight: 900;

@@ -81,9 +81,15 @@
   }
 }
 
-@media (min-width: 1441px) {
+@media (min-width: 1440px) {
   #base .section > div {
     max-width: calc(1160px + var(--section-padding) * 2);
+  }
+}
+
+@media (min-width: 1800px) {
+  #base .section > div {
+    max-width: calc(1520px + var(--section-padding) * 2);
   }
 }
 
@@ -417,6 +423,10 @@
 #base .button-text-color-secondary-tint-15 a.button:any-link,
 #base .button-text-color-secondary-tint-15.columns a.button:any-link {
   color: var(--secondary-theme-tint15);
+}
+
+#base .button-spacing-none a.button:any-link {
+  margin: 0;
 }
 
 /** title **/

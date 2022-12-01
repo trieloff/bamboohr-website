@@ -58,8 +58,8 @@ body.appear {
 main {
   overflow: hidden;
 }
-/* buttons */
 
+/* buttons */
 a.button:any-link {
   text-decoration: none;
   border-radius: 100px;
