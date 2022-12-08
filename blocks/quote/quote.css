@@ -88,6 +88,10 @@ main .quote.full.source .image {
   }
 }
 
+main .quote.full.image-60 .image {
+  max-width: 3.8rem;
+}
+
 main .quote.full.image-130 .image {
   max-width: 8.125rem;
 }
