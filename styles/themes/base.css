@@ -682,7 +682,7 @@
 
 /** columns **/
 #base .columns strong {
-  background-image: var(--theme-shade10);
+  color: var(--theme-shade10);
 }
 
 /**** RESETS ****/
