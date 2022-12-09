@@ -44,3 +44,52 @@
   height: 0;
   padding: 0;
 }
+
+.performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
+  min-width: 600px;
+  bottom: -20%;
+}
+
+@media (max-width: 899px) {
+  .performance-reviews .list-helper div:not(:first-child) ul {
+    margin: 0;
+  }
+}
+
+@media (min-width: 400px) {
+  .performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
+    bottom: -40%;
+  }
+}
+
+@media (min-width: 600px) {
+  .performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
+    min-width: 900px;
+    bottom: -20%;
+  }
+}
+
+@media (min-width: 768px) {
+  .performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
+    min-width: 900px;
+    bottom: -40%;
+  }
+}
+
+@media (min-width: 900px) {
+  .performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
+    bottom: -60%;
+  }
+}
+
+@media (min-width: 1025px) {
+  .performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
+    bottom: -20%;
+  }
+}
+
+@media (min-width: 1025px) {
+  .performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
+    bottom: 0;
+  }
+}
