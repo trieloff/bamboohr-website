@@ -1247,7 +1247,8 @@ export function addClassToParent(block) {
     'extra-small-width',
     'top-section-top-margin',
     'bottom-margin',
-    'top-margin'
+    'top-margin',
+    'laptop-small-width'
   ];
   classes.some((c) => {
     const found = block.classList.contains(c);
