@@ -480,8 +480,8 @@ main .multi-element p {
 }
   
 .multi-element.hero a.button.light:any-link:hover {
-    color: var(--color-white);
-    background-color: var(--theme-base);
+    color: var(--theme-shade5);
+    background-color: var(--theme-tint10);
 }
 
 .multi-element.industry {

@@ -54,6 +54,7 @@
   color: var(--color-white);
   background-color: var(--theme-shade5);
   border: solid 2px transparent;
+  transition: background-color .25s ease-in-out;
 }
 
 .columns.button-theme-shade-5 a.button.light:not(.link):any-link {
@@ -67,8 +68,8 @@
 }
 
 .columns.button-theme-shade-5 a.button.light:not(.link):any-link:hover {
-  color: var(--color-white);
-  background-color: var(--theme-base);
+  color: var(--theme-shade5);
+  background-color: var(--theme-tint10);
 }
 
 .columns.columns-3-cols p,
