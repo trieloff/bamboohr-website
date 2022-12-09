@@ -55,6 +55,7 @@
   background-color: var(--theme-shade5);
   border: solid 2px transparent;
   transition: background-color .25s ease-in-out;
+  margin: 0;
 }
 
 .columns.button-theme-shade-5 a.button.light:not(.link):any-link {
@@ -180,6 +181,7 @@
 }
 
 .columns.button-inline .button-container:last-of-type {
+  margin-top: 0;
   margin-right: 0;
 }
 
@@ -607,7 +609,6 @@ div .column-small-icons-container.column-multi-element {
   font-weight: 700;
   font-size: 26px;
   line-height: 30px;
-  margin: 0 0 30px;
   font-style: normal;
   color: var(--theme-shade5);
 }
@@ -661,6 +662,12 @@ div .column-small-icons-container.column-multi-element {
 
 .columns.button-text-color-shade-5 a.button.link:any-link {
   color: var(--theme-shade5);
+}
+
+@media (min-width: 900px) {
+  .columns.title1-heading h2 {
+    margin: 0 0 30px;
+  }
 }
 
 @media (min-width: 1200px) {
