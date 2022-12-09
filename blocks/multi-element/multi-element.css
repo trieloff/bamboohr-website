@@ -142,6 +142,16 @@ main .multi-element p.button-container {
     padding: .625rem 1.875rem;
 }
 
+/* button inline styles */
+.multi-element.button-inline .button-container {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+.multi-element.button-inline .button-container:last-of-type {
+    margin-right: 0;
+}
+
 /* "inline button" styles */
 .multi-element.inline-button a.button:any-link {
     background: revert;
@@ -364,7 +374,8 @@ main .multi-element p {
     line-height: 30px;
 }
 
-.multi-element.hero.gray-heading > .content h3 {
+.multi-element.hero.gray-heading > .content h3,
+.multi-element.hero.gray-heading p {
     color: var(--color-gray-12);
 }
 
@@ -454,8 +465,23 @@ main .multi-element p {
     transition: background-color .25s ease-in-out;
 }
 
+.multi-element.hero .multi-inline-buttons a.button:any-link {
+    border: solid 2px transparent;
+}
+
 .multi-element.hero a.button:any-link:hover {
     background-color: var(--theme-shade10);
+}
+
+.multi-element.hero a.button.light:any-link {
+    color: var(--theme-shade5);
+    background-color: var(--color-white);
+    border: solid 2px var(--theme-shade5);
+}
+  
+.multi-element.hero a.button.light:any-link:hover {
+    color: var(--color-white);
+    background-color: var(--theme-base);
 }
 
 .multi-element.industry {
