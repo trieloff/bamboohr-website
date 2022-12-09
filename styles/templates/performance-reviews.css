@@ -71,7 +71,6 @@
 
 @media (min-width: 768px) {
   .performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
-    min-width: 900px;
     bottom: -40%;
   }
 }
