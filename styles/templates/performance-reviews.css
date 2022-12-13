@@ -45,9 +45,14 @@
   padding: 0;
 }
 
-.performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
-  min-width: 600px;
-  bottom: -20%;
+.bhr-comparison .has-bg > span.bg-bottom-multi-3 {
+  bottom: calc((100vw * 1.83) - 670px);
+}
+
+@media (min-width: 367px) {
+  .bhr-comparison .has-bg > span.bg-bottom-multi-3 {
+      bottom: calc(((100vw * 1.83) - 670px) * -1);
+  }
 }
 
 @media (max-width: 899px) {
@@ -56,39 +61,45 @@
   }
 }
 
-@media (min-width: 400px) {
-  .performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
-    bottom: -40%;
-  }
-}
-
 @media (min-width: 600px) {
-  .performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
-    min-width: 900px;
-    bottom: -20%;
+  .bhr-comparison .has-bg > span.bg-bottom-multi-3 {
+    bottom: calc((100vw * 0.96) - 670px);
   }
-}
 
-@media (min-width: 768px) {
-  .performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
-    bottom: -40%;
-  }
-}
-
-@media (min-width: 900px) {
-  .performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
-    bottom: -60%;
-  }
 }
 
 @media (min-width: 1025px) {
-  .performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
-    bottom: -20%;
+  .performance-reviews .has-bg > span.bg-bottom-multi-3 {
+    bottom: calc((100vw * 0.55) - 670px);
   }
 }
 
-@media (min-width: 1025px) {
-  .performance-reviews .background-responsive-helper .bg.bg-bottom-multi-3 {
-    bottom: 0;
+
+@media (min-width: 1219px) {
+  .performance-reviews .has-bg > span.bg-bottom-multi-3 {
+      bottom: calc(((100vw * 0.55) - 670px) * -1);
+  }
+}
+
+
+.performance-reviews .has-bg > span.bg-solid-industry {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 40%;
+  z-index: -2;
+  background-color: var(--theme-shade15);
+}
+
+@media (min-width: 1200px) {
+  .performance-reviews .has-bg > span.bg-solid-industry {
+    top: 70%;
+  }
+}
+
+@media (min-width: 1800px) {
+  .performance-reviews .has-bg > span.bg-solid-industry {
+    position: relative;
   }
 }
