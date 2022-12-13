@@ -45,13 +45,24 @@
   padding: 0;
 }
 
-.bhr-comparison .has-bg > span.bg-bottom-multi-3 {
-  bottom: calc((100vw * 1.83) - 670px);
+.performance-reviews .has-bg > span.bg-bottom-multi-3 {
+  top: calc(((100vh * .5) - 38%) * -1);
+  bottom: unset;
 }
 
-@media (min-width: 367px) {
-  .bhr-comparison .has-bg > span.bg-bottom-multi-3 {
-      bottom: calc(((100vw * 1.83) - 670px) * -1);
+.performance-reviews .has-bg > span.bg-solid-industry {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(((100vh * .5) - 120%) * -1);
+  z-index: -2;
+  background-color: var(--theme-shade15);
+}
+
+@media (min-width: 600px) {
+  .performance-reviews .has-bg > span.bg-bottom-multi-3 {
+    top: calc(((100vh * .5) - 45%) * -1);
   }
 }
 
@@ -61,45 +72,32 @@
   }
 }
 
-@media (min-width: 600px) {
-  .bhr-comparison .has-bg > span.bg-bottom-multi-3 {
-    bottom: calc((100vw * 0.96) - 670px);
+@media (min-width: 900px) {
+  .performance-reviews .has-bg > span.bg-bottom-multi-3 {
+    top: calc(((100vh * .5) - 53%) * -1);
   }
 
+  .performance-reviews .has-bg > span.bg-solid-industry {
+    height: calc((100vh * .5) - 35%);
+  }
 }
 
 @media (min-width: 1025px) {
   .performance-reviews .has-bg > span.bg-bottom-multi-3 {
-    bottom: calc((100vw * 0.55) - 670px);
+    top: calc(((100vh * .5) - 41%) * -1);
   }
-}
 
-
-@media (min-width: 1219px) {
-  .performance-reviews .has-bg > span.bg-bottom-multi-3 {
-      bottom: calc(((100vw * 0.55) - 670px) * -1);
-  }
-}
-
-
-.performance-reviews .has-bg > span.bg-solid-industry {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 40%;
-  z-index: -2;
-  background-color: var(--theme-shade15);
-}
-
-@media (min-width: 1200px) {
   .performance-reviews .has-bg > span.bg-solid-industry {
-    top: 70%;
+    height: calc((100vh * .5) - 40%);
   }
 }
 
 @media (min-width: 1800px) {
+  .performance-reviews .has-bg > span.bg-bottom-multi-3 {
+    top: calc(((100vh * .5) - 5%) * -1);
+  }
+
   .performance-reviews .has-bg > span.bg-solid-industry {
-    position: relative;
+    height: calc((100vh * .5) - 80%);
   }
 }
