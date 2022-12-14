@@ -46,8 +46,8 @@
 }
 
 .performance-reviews .has-bg > span.bg-bottom-multi-3 {
-  top: calc(((100vh * .5) - 38%) * -1);
-  bottom: unset;
+  top: -15%;
+  bottom: auto;
 }
 
 .performance-reviews .has-bg > span.bg-solid-industry {
@@ -55,7 +55,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: calc(((100vh * .5) - 120%) * -1);
+  height: 70%;
+  top: auto;
   z-index: -2;
   background-color: var(--theme-shade15);
 }
@@ -68,36 +69,32 @@
 
 @media (min-width: 600px) {
   .performance-reviews .has-bg > span.bg-bottom-multi-3 {
-    top: calc(((100vh * .5) - 45%) * -1);
+    top: -20%;
   }
 }
 
 @media (min-width: 900px) {
-  .performance-reviews .has-bg > span.bg-bottom-multi-3 {
-    top: calc(((100vh * .5) - 53%) * -1);
-  }
-
   .performance-reviews .has-bg > span.bg-solid-industry {
-    height: calc((100vh * .5) - 30%);
+    height: 50%;
   }
 }
 
 @media (min-width: 1200px) {
   .performance-reviews .has-bg > span.bg-bottom-multi-3 {
-    top: calc(((100vh * .5) - 41%) * -1);
+    top: -40%;
   }
 
   .performance-reviews .has-bg > span.bg-solid-industry {
-    height: calc((100vh * .5) - 42%);
+    height: 20%;
   }
 }
 
 @media (min-width: 1800px) {
   .performance-reviews .has-bg > span.bg-bottom-multi-3 {
-    top: calc(((100vh * .5) - 5%) * -1);
+    top: -80%;
   }
 
   .performance-reviews .has-bg > span.bg-solid-industry {
-    height: calc((100vh * .5) - 80%);
+    height: 10%;
   }
 }
