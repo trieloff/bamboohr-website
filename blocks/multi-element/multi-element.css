@@ -381,7 +381,7 @@ main .multi-element p {
 }
 
 .multi-element.hero.gray-heading > .content h3,
-.multi-element.hero.gray-heading p {
+.multi-element.gray-heading p {
     color: var(--color-gray-12);
 }
 
