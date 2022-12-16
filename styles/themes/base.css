@@ -566,7 +566,11 @@
 }
 
 #base .title-color-gray-9 :is(h1, h2, h3, h4, h5, h6) {
-  color: var(--color-gray9);
+  color: var(--color-gray-9);
+}
+
+#base .title-color-gray-12 :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--color-gray-12);
 }
 
 #base .title-margin-top-none :is(h1, h2, h3, h4, h5, h6) {
