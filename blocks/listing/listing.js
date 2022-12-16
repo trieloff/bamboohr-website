@@ -550,8 +550,11 @@ export default async function decorate(block, blockName) {
               });
 
               if (listingMiddleCtaElem) {
-                if (currentSelected.length < 4) listingMiddleCtaElem.classList.add('listing-group-hidden');
-                else listingMiddleCtaElem.classList.remove('listing-group-hidden');
+                if (!currentSelected.length || currentSelected.length >= 4) {
+                  listingMiddleCtaElem.classList.remove('listing-group-hidden');
+                } else if (!listingMiddleCtaElem.classList.contains('listing-group-hidden')) {
+                  listingMiddleCtaElem.classList.add('listing-group-hidden');
+                }
               }
               
               // Show/hide clear all
