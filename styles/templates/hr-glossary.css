@@ -12,6 +12,11 @@
   width: 100%;
 }
 
+.hr-glossary main .section:not(:first-of-type) {
+  z-index: 1;
+  position: relative;
+}
+
 .hr-glossary .callout.block {
   background: var(--theme-base);
 }
@@ -46,6 +51,11 @@
 /* cover */
 .section.bg-cover-green-patterns {
   position: relative;
+}
+
+.hr-glossary ol li::marker {
+  color: var(--theme-shade5);
+  font-weight: 500;
 }
 
 @media (min-width: 600px) {
