@@ -1335,10 +1335,6 @@ table tbody tr:nth-child(2n) {
   margin-top: 0;
 }
 
-.hrvs .section:first-of-type {
-  background: linear-gradient(180.67deg, #96E1FD 0.58%, #96E1FD 19.95%, #E1F3FD 50.52%, #FFFFFF 64.63%);
-}
-
 .gradient-section-1 .image-wrapper:nth-last-of-type(2),
 .gradient-section-2 .image-wrapper:nth-last-of-type(2),
 .gradient-section-3 .image-wrapper:nth-last-of-type(2) {

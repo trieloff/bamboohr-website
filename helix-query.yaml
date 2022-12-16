@@ -155,8 +155,8 @@ indices:
 
   hr-vs:
     include:
-      - '/drafts/sclayton/resources/hr-vs/**'
-    target: /drafts/sclayton/resources/hr-vs/query-index
+      - '/resources/events/hr-virtual/2022/**'
+    target: /resources/events/hr-virtual/2022/query-index
     properties:
       title:
         select: head > meta[property="og:title"]
@@ -172,6 +172,10 @@ indices:
           attribute(el, 'content')
       category:
         select: head > meta[name="category"]
+        value: |
+          attribute(el, 'content')
+      format:
+        select: head > meta[name="format"]
         value: |
           attribute(el, 'content')
       robots:

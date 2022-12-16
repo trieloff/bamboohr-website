@@ -191,7 +191,7 @@ export function getMetadata(name) {
   const template = toClassName(getMetadata('template'));
   if (template) {
     const templates = ['bhr-comparison', 'bhr-home', 'ee-solution', 'hr-glossary', 'hr-software-payroll', 'hr-unplugged',
-      'industry', 'live-demo-webinars', 'payroll-roi', 'performance-reviews', 'pricing-quote'];
+      'hrvs-listing', 'industry', 'live-demo-webinars', 'payroll-roi', 'performance-reviews', 'pricing-quote'];
     if (templates.includes(template)) {
       const cssBase = `${window.hlx.serverPath}${window.hlx.codeBasePath}`;
       loadCSS(`${cssBase}/styles/templates/${template}.css`);
@@ -914,7 +914,7 @@ export async function lookupPages(pathnames, collection) {
     blog: '/blog/fixtures/blog-query-index.json',
     integrations: '/integrations/query-index.json?sheet=listings',
     hrGlossary: '/resources/hr-glossary/query-index.json',
-    hrvs: '/drafts/sclayton/resources/hr-vs/query-index.json',
+    hrvs: '/resources/events/hr-virtual/2022/query-index.json',
   };
   const indexPath = indexPaths[collection];
   window.pageIndex = window.pageIndex || {};

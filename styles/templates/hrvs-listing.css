@@ -1,0 +1,326 @@
+.hrvs-listing .section:first-of-type {
+  background: linear-gradient(180.67deg, #96E1FD 0.58%, #96E1FD 19.95%, #E1F3FD 50.52%, #FFFFFF 64.63%);
+  background-size: 100% 1800px;
+  background-repeat: no-repeat;
+}
+
+.hrvs-listing main .section.columns-container:last-of-type {
+  background-image: url('../hrvs-middle-cta.svg');
+  background-position: top center;
+  background-size: contain;
+  background-position: top, bottom;
+  background-repeat: no-repeat;
+}
+
+/* Listing styles */
+.hrvs-listing main .section > div.listing-wrapper {
+  max-width: unset;
+}
+
+@media (min-width: 1440px) {
+  .hrvs-listing main .section > div.listing-wrapper {
+      padding: 0 54px;
+      max-width: 1440px;
+  }
+}
+
+.hrvs-listing main .listing-filters-selected:empty + p {
+  display: block;
+  margin-top: 40px;
+}
+
+.hrvs-listing main .listing-facets > div {
+  border-radius: 15px;
+  height: unset;
+  overflow-y: unset;
+  background-color: var(--color-gray-1);
+}
+
+.hrvs-listing main .horizontal-filters .listing-facets > div {
+  background-color: unset;
+  border-radius: unset;
+}
+
+.hrvs-listing main .listing-facets > div::after {
+  display: none;
+}
+
+.hrvs-listing main .listing-facets .listing-apply-filters {
+  display: none;
+}
+
+.hrvs-listing main .listing-facets  {
+  z-index: unset;
+  height: unset;
+  background: unset;
+  grid-area: facets;
+  display: unset;
+  position: unset;
+  width: 320px;
+  margin: 0 40px 0 -40px;
+}
+
+.hrvs-listing main .horizontal-filters .listing-facets {
+  margin: 0;
+}
+
+.hrvs-listing main .listing-facets .listing-filters {
+  overflow-y: unset;
+  height: unset;
+}
+
+.hrvs-listing main .listing-groups {
+  grid-area: results;
+}
+
+.hrvs-listing main .listing-results-count {
+  grid-area: count;
+  text-align: left;
+}
+
+.hrvs-listing main .listing {
+  display: unset;
+  grid-template-areas: '- count sortby' 'facets results results';
+  align-items: flex-start;
+}
+
+.hrvs-listing main .listing.horizontal-filters {
+  grid-template-areas: 'count - sortby' 'facets facets facets' 'results results results';
+}
+
+.hrvs-listing main .listing-sortby {
+  display: none;
+  grid-area: sortby;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.hrvs-listing main .listing-sortby .listing-filter-button {
+  display: none;
+}
+
+.hrvs-listing main .horizontal-filters .listing-facet {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hrvs-listing main .horizontal-filters .listing-facets h3 {
+  display: none;
+}
+
+.hrvs-listing main .category-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-right: 29px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.hrvs-listing main .horizontal-filters .listing-facets .category-icon label {
+  white-space: nowrap;
+  margin-bottom: -20px;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.hrvs-listing main .horizontal-filters .listing-facets .category-icon label::before {
+  display: none;
+}
+
+.hrvs-listing main .horizontal-filters .listing-facets .category-icon :checked + label::after {
+  display: none;
+}
+
+.hrvs-listing main .career-growth-icon {
+  width: 155px;
+  height: 155px;
+  background: url('../../icons/hrvs-icons/career-growth.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .career-growth-icon:hover {
+  background: url('../../icons/hrvs-icons/career-growth-hover.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .career-growth-icon.selected {
+  background: url('../../icons/hrvs-icons/career-growth-selected.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .compensation-benefits-icon {
+  width: 155px;
+  height: 155px;
+  background: url('../../icons/hrvs-icons/compensation-benefits.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .compensation-benefits-icon:hover {
+  background: url('../../icons/hrvs-icons/compensation-benefits-hover.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .compensation-benefits-icon.selected {
+  background: url('../../icons/hrvs-icons/compensation-benefits-selected.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .culture-values-icon {
+  width: 155px;
+  height: 155px;
+  background: url('../../icons/hrvs-icons/culture-values.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .culture-values-icon:hover {
+  background: url('../../icons/hrvs-icons/culture-values-hover.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .culture-values-icon.selected {
+  background: url('../../icons/hrvs-icons/culture-values-selected.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .employee-experience-icon {
+  width: 155px;
+  height: 155px;
+  background: url('../../icons/hrvs-icons/employee-experience.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .employee-experience-icon:hover {
+  background: url('../../icons/hrvs-icons/employee-experience-hover.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .employee-experience-icon.selected {
+  background: url('../../icons/hrvs-icons/employee-experience-selected.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .hr-newcomer-icon {
+  width: 155px;
+  height: 155px;
+  background: url('../../icons/hrvs-icons/hr-newcomer.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .hr-newcomer-icon:hover {
+  background: url('../../icons/hrvs-icons/hr-newcomer-hover.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .hr-newcomer-icon.selected {
+  background: url('../../icons/hrvs-icons/hr-newcomer-selected.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .keynotes-icon {
+  width: 155px;
+  height: 155px;
+  background: url('../../icons/hrvs-icons/keynotes.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .keynotes-icon:hover {
+  background: url('../../icons/hrvs-icons/keynotes-hover.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .keynotes-icon.selected {
+  background: url('../../icons/hrvs-icons/keynotes-selected.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .wellbeing-icon {
+  width: 155px;
+  height: 155px;
+  background: url('../../icons/hrvs-icons/wellbeing.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .wellbeing-icon:hover {
+  background: url('../../icons/hrvs-icons/wellbeing-hover.png') no-repeat center;
+  background-size: contain;
+}
+
+.hrvs-listing main .wellbeing-icon.selected {
+  background: url('../../icons/hrvs-icons/wellbeing-selected.png') no-repeat center;
+  background-size: contain;
+}
+
+@media (min-width: 410px) {
+  .hrvs-listing main .category-icon {
+      margin-right: 0;
+  }
+  
+  .hrvs-listing main .horizontal-filters .listing-facets .category-icon label {
+      white-space: unset;
+      margin-bottom: -30px;
+  }
+}
+
+@media (min-width: 468px) {
+  .hrvs-listing main .category-icon {
+      margin-right: 29px;
+  }
+  
+  .hrvs-listing main .horizontal-filters .listing-facets .category-icon label {
+      white-space: nowrap;
+      margin-bottom: -20px;
+  }
+}
+
+@media (min-width: 700px) {
+  .hrvs-listing main .listing-results {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 65px;
+  }
+}
+
+@media (min-width: 900px) {
+  .hrvs-listing main .listing-results {
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 65px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hrvs-listing main .horizontal-filters .listing-facets > div {
+    background-color: unset;
+    border-radius: unset;
+  }
+
+  .hrvs-listing main .listing-results {
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 65px;
+  }
+
+  .hrvs-listing main .listing-groups {
+      grid-area: results;
+  }
+
+  .hrvs-listing main .listing {
+    display: grid;
+  }
+}
+
+/* Columns styles */
+.hrvs .columns p {
+  font-family: var(--heading-font-family);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 44px;
+  font-style: italic;
+  color: var(--color-black);
+}
+
+.hrvs .columns.button-color-gradient a.button:not(.link):any-link {
+  background-image: linear-gradient(90deg, #284D59 0%, #39998E 100%);
+  color: var(--color-white);
+}
