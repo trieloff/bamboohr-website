@@ -528,11 +528,11 @@ main .listing-results .hrvs-card-body a:after {
     font-weight: 700;
     line-height: 44px;
     font-style: italic;
-    color: var(--color-black);
+    color: var(--color-gray-13);
 }
 
 .listing-middle-cta a.button:not(.link):any-link {
-    background-image: linear-gradient(90deg, #284D59 0%, #39998E 100%);
+    background-image: linear-gradient(90deg, var(--color-teal-2) 0%, #39998E 100%);
     color: var(--color-white);
 }
 

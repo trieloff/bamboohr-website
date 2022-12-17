@@ -70,6 +70,7 @@
   --color-gray-13: #313335;
   --color-white: #fff;
   --color-black: #000;
+  --color-teal-2: #284D59;
 
   /* body */
   --body-background-color: var(--color-white);
