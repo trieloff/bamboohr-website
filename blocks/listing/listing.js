@@ -469,7 +469,7 @@ export default async function decorate(block, blockName) {
 
         // Show groups
         hrvsCategoryGroups.forEach(g => {
-          if (g.catGroupElem.classList.contains('listing-group-hidden')) {
+          if (g.catGroupElem?.classList.contains('listing-group-hidden')) {
             g.catGroupElem.classList.remove('listing-group-hidden');
           }
         });
@@ -527,8 +527,11 @@ export default async function decorate(block, blockName) {
             iconDiv.append(input, label);
             div.append(iconDiv);
 
-            iconDiv.addEventListener('click', () => {
-              input.checked = !input.checked;
+            iconDiv.addEventListener('click', (event) => {
+              // Don't fire for the label
+              if (event.target.tagName === 'LABEL') return;
+              // If caused by parent div, toggle the input.
+              if (event.target.tagName !== 'INPUT') input.checked = !input.checked;
 
               if (input.checked) input.parentElement.classList.add('selected');
               else input.parentElement.classList.remove('selected');
@@ -539,11 +542,11 @@ export default async function decorate(block, blockName) {
               hrvsCategoryGroups.forEach(g => {
                 const isSelected = currentSelected.find(checked => checked.value === g.category);
                 if (!currentSelected.length || isSelected) {
-                  if (g.catGroupElem.classList.contains('listing-group-hidden')) {
+                  if (g.catGroupElem?.classList.contains('listing-group-hidden')) {
                     g.catGroupElem.classList.remove('listing-group-hidden');
                   }
                 } else {
-                  if (!g.catGroupElem.classList.contains('listing-group-hidden')) {
+                  if (g.catGroupElem && !g.catGroupElem.classList.contains('listing-group-hidden')) {
                     g.catGroupElem.classList.add('listing-group-hidden');
                   }
                 }
@@ -564,14 +567,24 @@ export default async function decorate(block, blockName) {
               // Update results count
               block.querySelector('#listing-results-count').textContent = getHRVSVisibleCount();
             });
-          } else div.append(input, label);
-          input.addEventListener('change', () => {
-            const filterConfig = createFilterConfig();
+          } else {
+            div.append(input, label);
 
-            runSearch(filterConfig);
-          });
+            input.addEventListener('change', () => {
+              const filterConfig = createFilterConfig();
+
+              runSearch(filterConfig);
+            });
+          }
         });
         facetsList.append(div);
+
+        if (theme === 'hrvs') {
+          // Update selected filter icons
+          getSelectedFilters().forEach(f => {
+            if (f.checked) f.parentElement.classList.add('selected');
+          });
+        }
       }
     });
   };
