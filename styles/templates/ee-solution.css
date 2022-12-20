@@ -75,7 +75,8 @@
 
 /* background overrides */
 @media (max-width: 599px) {
-    .ee-solution .bg-right-multi-3.has-bg > .bg {
+    .ee-solution .bg-right-multi-3.has-bg > .bg,
+    .ee-solution .bg-left-multi-1.has-bg > .bg {
         top: 5%;
     }
 }
