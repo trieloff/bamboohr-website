@@ -55,8 +55,8 @@ export function sortOptions(sortBy) {
                       || a.title.localeCompare(b.title),
     hrvsCategory: (a, b) => a.category === b.category 
                               ? b.date.localeCompare(a.date) || b.time.localeCompare(a.time)
-                              : a.category.toLowerCase() === 'keynotes' ? -1
-                              : b.category.toLowerCase() === 'keynotes' ? 1
+                              : a.category.toLowerCase() === 'keynote' ? -1
+                              : b.category.toLowerCase() === 'keynote' ? 1
                               : a.category.localeCompare(b.category),
     publicationDate: (a, b) => b.publicationDate.localeCompare(a.publicationDate)
                                 || a.title.localeCompare(b.title),

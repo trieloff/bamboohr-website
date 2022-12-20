@@ -24,9 +24,16 @@
   }
 }
 
+.hrvs-listing main .listing-facets input[type="checkbox"] {
+  visibility: hidden;
+  height: 54px;
+  display: unset;
+}
+
 .hrvs-listing main .listing-filters-selected:empty + p {
   display: block;
-  margin-top: 40px;
+  margin-top: 0;
+  margin-right: 40px;
 }
 
 .hrvs-listing main .listing-facets > div {
@@ -80,6 +87,12 @@
 .hrvs-listing main .listing-results-count {
   grid-area: count;
   text-align: left;
+  color: var(--gray-12);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 10px;
+  line-height: 15px;
 }
 
 .hrvs-listing main .listing {
@@ -113,22 +126,35 @@
   display: none;
 }
 
+.hrvs-listing main .horizontal-filters .listing-facets button {
+  color: #39998E;
+  border: none;
+  font-family: var(--heading-font-family);
+  background-color: transparent;
+  font-size: 10px;
+  line-height: 15px;
+}
+
 .hrvs-listing main .category-icon {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  margin-right: 29px;
-  margin-top: 20px;
+  margin-right: 10px;
   cursor: pointer;
+  width: 75px;
+  margin-bottom: 20px;
 }
 
 .hrvs-listing main .horizontal-filters .listing-facets .category-icon label {
-  white-space: nowrap;
-  margin-bottom: -20px;
+  white-space: unset;
+  margin-bottom: unset;
   padding-left: 0;
   padding-right: 0;
   text-align: center;
   cursor: pointer;
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 15px;
 }
 
 .hrvs-listing main .horizontal-filters .listing-facets .category-icon label::before {
@@ -140,143 +166,161 @@
 }
 
 .hrvs-listing main .career-growth-icon {
-  width: 155px;
-  height: 155px;
   background: url('../../icons/hrvs-icons/career-growth.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
 .hrvs-listing main .career-growth-icon:hover {
   background: url('../../icons/hrvs-icons/career-growth-hover.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
 .hrvs-listing main .career-growth-icon.selected {
   background: url('../../icons/hrvs-icons/career-growth-selected.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
-.hrvs-listing main .compensation-benefits-icon {
-  width: 155px;
-  height: 155px;
+.hrvs-listing main .compensation---benefits-icon {
   background: url('../../icons/hrvs-icons/compensation-benefits.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
-.hrvs-listing main .compensation-benefits-icon:hover {
+.hrvs-listing main .compensation---benefits-icon:hover {
   background: url('../../icons/hrvs-icons/compensation-benefits-hover.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
-.hrvs-listing main .compensation-benefits-icon.selected {
+.hrvs-listing main .compensation---benefits-icon.selected {
   background: url('../../icons/hrvs-icons/compensation-benefits-selected.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
-.hrvs-listing main .culture-values-icon {
-  width: 155px;
-  height: 155px;
+.hrvs-listing main .culture---values-icon {
   background: url('../../icons/hrvs-icons/culture-values.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
-.hrvs-listing main .culture-values-icon:hover {
+.hrvs-listing main .culture---values-icon:hover {
   background: url('../../icons/hrvs-icons/culture-values-hover.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
-.hrvs-listing main .culture-values-icon.selected {
+.hrvs-listing main .culture---values-icon.selected {
   background: url('../../icons/hrvs-icons/culture-values-selected.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
 .hrvs-listing main .employee-experience-icon {
-  width: 155px;
-  height: 155px;
   background: url('../../icons/hrvs-icons/employee-experience.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
 .hrvs-listing main .employee-experience-icon:hover {
   background: url('../../icons/hrvs-icons/employee-experience-hover.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
 .hrvs-listing main .employee-experience-icon.selected {
   background: url('../../icons/hrvs-icons/employee-experience-selected.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
 .hrvs-listing main .hr-newcomer-icon {
-  width: 155px;
-  height: 155px;
   background: url('../../icons/hrvs-icons/hr-newcomer.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
 .hrvs-listing main .hr-newcomer-icon:hover {
   background: url('../../icons/hrvs-icons/hr-newcomer-hover.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
 .hrvs-listing main .hr-newcomer-icon.selected {
   background: url('../../icons/hrvs-icons/hr-newcomer-selected.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
-.hrvs-listing main .keynotes-icon {
-  width: 155px;
-  height: 155px;
-  background: url('../../icons/hrvs-icons/keynotes.png') no-repeat center;
+.hrvs-listing main .keynote-icon {
+  background: url('../../icons/hrvs-icons/keynote.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
-.hrvs-listing main .keynotes-icon:hover {
-  background: url('../../icons/hrvs-icons/keynotes-hover.png') no-repeat center;
+.hrvs-listing main .keynote-icon:hover {
+  background: url('../../icons/hrvs-icons/keynote-hover.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
-.hrvs-listing main .keynotes-icon.selected {
-  background: url('../../icons/hrvs-icons/keynotes-selected.png') no-repeat center;
+.hrvs-listing main .keynote-icon.selected {
+  background: url('../../icons/hrvs-icons/keynote-selected.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
 .hrvs-listing main .wellbeing-icon {
-  width: 155px;
-  height: 155px;
   background: url('../../icons/hrvs-icons/wellbeing.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
 .hrvs-listing main .wellbeing-icon:hover {
   background: url('../../icons/hrvs-icons/wellbeing-hover.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
 .hrvs-listing main .wellbeing-icon.selected {
   background: url('../../icons/hrvs-icons/wellbeing-selected.png') no-repeat center;
   background-size: contain;
+  background-position: top center;
 }
 
-@media (min-width: 410px) {
+@media (min-width: 385px) {
   .hrvs-listing main .category-icon {
-      margin-right: 0;
-  }
-  
-  .hrvs-listing main .horizontal-filters .listing-facets .category-icon label {
-      white-space: unset;
-      margin-bottom: -30px;
+    margin-right: 20px;
   }
 }
 
-@media (min-width: 468px) {
+@media (min-width: 412px) {
   .hrvs-listing main .category-icon {
-      margin-right: 29px;
+    margin-right: 29px;
   }
-  
-  .hrvs-listing main .horizontal-filters .listing-facets .category-icon label {
-      white-space: nowrap;
-      margin-bottom: -20px;
+}
+
+@media (min-width: 487px) {
+  .hrvs-listing main .listing-filters-selected:empty + p {
+    margin-top: 20px;
+  }
+
+  .hrvs-listing main .category-icon {
+    width: 100px;
+  }
+
+  .hrvs-listing main .listing-facets input[type="checkbox"] {
+    height: 79px;
+  }
+
+  .hrvs-listing main .listing-results-count,
+  .hrvs-listing main .horizontal-filters .listing-facets .category-icon label,
+  .hrvs-listing main .horizontal-filters .listing-facets button {
+    font-size: 14px;
+    line-height: 24px;
   }
 }
 
@@ -284,6 +328,26 @@
   .hrvs-listing main .listing-results {
       grid-template-columns: repeat(3, 1fr);
       margin-top: 65px;
+  }
+
+  .hrvs-listing main .listing-filters-selected:empty + p {
+    margin-top: 40px;
+  }
+
+  .hrvs-listing main .category-icon {
+    width: 155px;
+    margin-bottom: 0;
+  }
+
+  .hrvs-listing main .listing-facets input[type="checkbox"] {
+    height: 134px;
+  }
+
+  .hrvs-listing main .listing-results-count,
+  .hrvs-listing main .horizontal-filters .listing-facets .category-icon label,
+  .hrvs-listing main .horizontal-filters .listing-facets button {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 

@@ -501,8 +501,8 @@ export default async function decorate(block, blockName) {
       const filterValues = filter ? filter.split(',').map((t) => t.trim()) : [];
       const facetValues = Object.keys(facets[facetKey]);
       if (theme === 'hrvs' && facetKey === 'category') {
-        facetValues.sort((a, b) => a.toLowerCase() === 'keynotes' ? -1
-                                    : b.toLowerCase() === 'keynotes' ? 1
+        facetValues.sort((a, b) => a.toLowerCase() === 'keynote' ? -1
+                                    : b.toLowerCase() === 'keynote' ? 1
                                     : a.localeCompare(b));
       } else facetValues.sort();
       if (facetValues.length) {

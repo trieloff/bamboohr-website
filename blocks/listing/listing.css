@@ -25,7 +25,6 @@ main .listing-facets > div {
 }
 
 main .horizontal-filters .listing-facets > div {
-    margin-bottom: 20px;
     flex-direction: row;
 }
 
@@ -482,7 +481,7 @@ main .listing-results .hrvs-card-body a:after {
 }
 
 .listing-group:not(:first-child) {
-    margin-top: 100px;
+    margin-top: 30px;
 }
 
 .listing-group-label {
@@ -549,6 +548,18 @@ main .listing-results .hrvs-card-body a:after {
 .middle-cta-column7 {
     flex: 0 0 auto;
     width: calc(58.33% - 20px);
+}
+
+@media (min-width: 487px) {
+    .listing-group:not(:first-child) {
+        margin-top: 60px;
+    }
+}
+
+@media (min-width: 700px) {
+    .listing-group:not(:first-child) {
+        margin-top: 100px;
+    }
 }
 
 @media (max-width: 899px) {
