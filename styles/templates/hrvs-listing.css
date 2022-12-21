@@ -380,19 +380,43 @@
 
 /* Columns styles */
 .hrvs .columns p {
-  font-family: var(--heading-font-family);
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 44px;
-  font-style: italic;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 30px;
   color: var(--color-gray-13);
 }
 
-.hrvs .columns.color-teal-2 p {
+.hrvs .columns.color-teal-2 h1 {
+  font-family: var(--heading-font-family);
+  font-size: 85px;
+  font-weight: 900;
+  line-height: 90px;
+  font-style: italic;
   color: var(--color-teal-2);
 }
 
 .hrvs .columns.button-color-gradient a.button:not(.link):any-link {
   background-image: linear-gradient(90deg, var(--color-teal-2) 0%, #39998E 100%);
   color: var(--color-white);
+}
+
+/* Individual listing pages */
+.hrvs-listing .image.hrvs-listing-logo {
+  margin-top: 0;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.hrvs-listing .image.hrvs-listing-logo img {
+  width: 286px;
+}
+
+.hrvs-listing main .section > div.default-content-wrapper,
+.hrvs-listing main .section > div.metadata-content-wrapper {
+  max-width: 960px;
+}
+
+.hrvs-listing main .section > .related-posts-wrapper {
+  background: unset;
+  padding: 0;
 }
