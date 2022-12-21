@@ -190,10 +190,6 @@ indices:
         select: head > meta[name="presentation-date"]
         value: |
           attribute(el, 'content')
-      time:
-        select: head > meta[name="presentation-time"]
-        value: |
-          attribute(el, 'content')
       presenter:
         select: head > meta[name="presenter"]
         value: |

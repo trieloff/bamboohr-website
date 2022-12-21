@@ -54,7 +54,7 @@ export function sortOptions(sortBy) {
     level: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level))
                       || a.title.localeCompare(b.title),
     hrvsCategory: (a, b) => a.category === b.category 
-                              ? b.date.localeCompare(a.date) || b.time.localeCompare(a.time)
+                              ? b.date.localeCompare(a.date)
                               : a.category.toLowerCase() === 'keynote' ? -1
                               : b.category.toLowerCase() === 'keynote' ? 1
                               : a.category.localeCompare(b.category),
@@ -62,7 +62,6 @@ export function sortOptions(sortBy) {
                                 || a.title.localeCompare(b.title),
     presenter: (a, b) => a.presenter.localeCompare(b.presenter),
     startTime: (a, b) => a.date.localeCompare(b.date)
-                                || a.time.localeCompare(b.time)
                                 || a.category.localeCompare(b.category),
     title: (a, b) => a.title.localeCompare(b.title),
     term: (a, b) => a.term.localeCompare(b.term),
