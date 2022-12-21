@@ -12,15 +12,6 @@
     }
 }
 
-@media (min-width: 600px) and (max-width: 1024px) {
-    .ee-solution .cards-container:not(.cards-container ~ .cards-container) .cards.style-2-columns,
-    .ee-solution .cards-container:not(.cards-container ~ .cards-container) .cards.style-3-columns,
-    .ee-solution .cards-container:not(.cards-container ~ .cards-container) .cards.style-4-columns,
-    .ee-solution .cards-container:not(.cards-container ~ .cards-container) .cards.style-5-columns {
-        --cols: 1;
-    }
-}
-
 /* default content overrides */
 .ee-solution .default-content-wrapper p {
     text-align: center;
