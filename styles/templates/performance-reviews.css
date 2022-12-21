@@ -55,7 +55,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 70%;
+  height: 75%;
   top: auto;
   z-index: -2;
   background-color: var(--theme-shade15);
@@ -85,16 +85,16 @@
   }
 
   .performance-reviews .has-bg > span.bg-solid-industry {
-    height: 20%;
+    height: 40%;
   }
 }
 
 @media (min-width: 1800px) {
   .performance-reviews .has-bg > span.bg-bottom-multi-3 {
-    top: -80%;
+    top: -68%;
   }
 
   .performance-reviews .has-bg > span.bg-solid-industry {
-    height: 10%;
+    height: 0;
   }
 }
