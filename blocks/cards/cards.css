@@ -42,7 +42,10 @@
     .cards.style-3-columns {
         --cols: 3;
     }
+    /* follow pattern to add more */
+}
 
+@media (min-width: 1200px) {
     .cards.style-4-columns {
         --cols: 4;
     }
@@ -51,10 +54,6 @@
         --cols: 5;
     }
 
-    /* follow pattern to add more */
-}
-
-@media (min-width: 1200px) {
     .cards.style-2-columns.wide-gap {
         --gap: 13rem;
     }
