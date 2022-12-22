@@ -5,3 +5,9 @@ main .metadata-content .content-date::before {
     font-size: 10px;
     vertical-align: top;
 }
+
+.metadata-content .content-container {
+    display: flex;
+    align-items: center;
+    column-gap: 60px;
+}

@@ -379,25 +379,48 @@
 }
 
 /* Columns styles */
-.hrvs .columns p {
-  font-size: 21px;
-  font-weight: 400;
-  line-height: 30px;
-  color: var(--color-gray-13);
+.hrvs .columns h1 {
+  font-family: var(--heading-font-family);
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 48px;
+  font-style: italic;
 }
 
 .hrvs .columns.color-teal-2 h1 {
-  font-family: var(--heading-font-family);
-  font-size: 85px;
-  font-weight: 900;
-  line-height: 90px;
-  font-style: italic;
   color: var(--color-teal-2);
+}
+
+.hrvs .columns p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  color: var(--color-gray-13);
 }
 
 .hrvs .columns.button-color-gradient a.button:not(.link):any-link {
   background-image: linear-gradient(90deg, var(--color-teal-2) 0%, #39998E 100%);
   color: var(--color-white);
+}
+
+@media (min-width: 900px) {
+  .hrvs .columns h1 {
+    font-size: 54px;
+    line-height: 60px;
+  }
+
+  .hrvs .columns p {
+    font-size: 21px;
+    line-height: 30px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hrvs .columns h1 {
+    font-size: 70px;
+    line-height: 80px;
+    color: var(--color-teal-2);
+  }
 }
 
 /* Individual listing pages */
@@ -409,6 +432,14 @@
 
 .hrvs-listing .image.hrvs-listing-logo img {
   width: 286px;
+}
+
+.hrvs-listing .metadata-content .content-image img {
+  width: 400px;
+}
+
+.hrvs-listing .metadata-content-wrapper {
+  margin-bottom: 50px;
 }
 
 .hrvs-listing main .section > div.default-content-wrapper,

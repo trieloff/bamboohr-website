@@ -1,4 +1,4 @@
-main .related-posts-container {
+main .related-posts-container:not(.metadata-content-container) {
   padding: 0;
 }
 
