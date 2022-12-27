@@ -507,5 +507,9 @@ div.has-text-only h4 {
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--theme-shade5);
-  margin: 0 0 -10px;
+  margin: 0;
+}
+
+.cards .card.has-image h6 {
+    margin-bottom: -10px;
 }
