@@ -17,13 +17,13 @@
 
 @media (min-width: 1025px) {
   .industry-category .has-bg > span.bg-top-multi-7 {
-    top: calc(((100vw * 0.30) - 410px) * -1);
+    top: calc(((100vw * 0.40) - 410px) * -1);
   }
 }
 
 @media (min-width: 1200px) {
   .industry-category .has-bg > span.bg-top-multi-7 {
-    top: calc(((100vw * 0.40) - 460px) * -1);
+    top: calc(((100vw * 0.40) - 470px) * -1);
   }
 }
 

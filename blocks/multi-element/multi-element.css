@@ -510,6 +510,7 @@ main .multi-element p {
     display: block;
 }
 
+.multi-element.industry .extra,
 .multi-element.industry .extra p {
     color: var(--color-gray-10);
     font-family: var(--body-font-family);
@@ -634,8 +635,10 @@ main .multi-element p {
     row-gap: 16px;
 }
 
-.multi-element.button-inline {
-    align-items: center;
+@media (min-width: 1200px) {
+    .multi-element.button-inline {
+        align-items: center;
+    }
 }
 
 .multi-element.button-inline > .content {
