@@ -76,3 +76,15 @@
     bottom: -30px;
   } 
 }
+
+@media (min-width: 769px) {
+  .industry-category .multi-element.industry {
+    align-items: flex-start;
+  }
+}
+
+@media (min-width: 1200px) {
+  .industry-category .multi-element.industry {
+    align-items: center;
+  }
+}
