@@ -793,7 +793,8 @@ main .section > div:empty {
 
   .resources-guides main .section > div.quote-wrapper.normal-width,
   main .section > div.image-wrapper.normal-width,
-  main .section > div.title-wrapper.normal-width {
+  main .section > div.title-wrapper.normal-width,
+  main .section > div.wistia-wrapper.normal-width {
     max-width: 760px;
   }
 
@@ -1333,10 +1334,6 @@ table tbody tr:nth-child(2n) {
 /* Background styles */
 .resources-guides .section:last-of-type {
   margin-top: 0;
-}
-
-.hrvs .section:first-of-type {
-  background: linear-gradient(180.67deg, #96E1FD 0.58%, #96E1FD 19.95%, #E1F3FD 50.52%, #FFFFFF 64.63%);
 }
 
 .gradient-section-1 .image-wrapper:nth-last-of-type(2),
