@@ -64,7 +64,7 @@
     --padding: 0;
     --spacing: 1rem;
 
-    color: var(--color-gray-10);
+    color: var(--color-gray-12);
     display: flex;
     flex-direction: column;
     font-family: var(--body-font-family);
@@ -84,6 +84,11 @@
     display: flex;
     height: var(--image-height);
     transition: color .25s ease-in-out;
+}
+
+.cards .icon.icon-time svg {
+    max-height: 2rem;
+    max-width: 2rem;
 }
 
 @media (min-width: 600px) {
@@ -338,7 +343,8 @@ div.has-text-only h4 {
     margin-top: .625rem;
 }
 
-.cards.dual-tone > .card > .title > a:any-link {
+.cards.dual-tone > .card > .title > a:any-link,
+.cards.dual-tone > .card > h4.title {
     color: var(--theme-shade5);
 }
 
