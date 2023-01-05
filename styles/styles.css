@@ -1595,6 +1595,11 @@ body.modal-open {
   font-weight: 400;
 }
 
+.z-index-1 {
+  position: relative;
+  z-index: 1;
+}
+
 /* above the fold CSS goes here to squash CLS */
 
 main .section[data-section-status='loading'],
