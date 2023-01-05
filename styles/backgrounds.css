@@ -101,6 +101,11 @@
   height: auto;
 }
 
+.desktop-max-height-800.has-bg > span.bg > svg.desktop,
+.laptop-max-height-800.has-bg > span.bg > svg.laptop {
+  max-height: 800px;
+}
+
 /*
    * top
    */
