@@ -330,6 +330,7 @@ div.has-text-only h4 {
 
 .cards.dual-tone > .card > .title {
     margin-top: .625rem;
+    color: var(--theme-shade5);
 }
 
 .cards.dual-tone > .card > .title > a:any-link {
@@ -506,7 +507,7 @@ div.has-text-only h4 {
   line-height: 15px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--theme-shade5);
+  color: var(--theme-shade10);
   margin: 0;
 }
 

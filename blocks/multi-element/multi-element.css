@@ -502,7 +502,7 @@ main .multi-element p {
     margin-bottom: 24px;
 }
 
-.multi-element.industry .content p {
+.multi-element.content-color-tint-5 .content p {
     color: var(--theme-tint5);
 }
 
@@ -589,21 +589,6 @@ main .multi-element p {
     .multi-element.hero.industry .extra {
         right: 20px;
     }
-}
-
-.multi-element.white-content .content p{
-    color: var(--color-gray-10);
-}
-
-@media (min-width: 769px) {
-    .multi-element.white-content .content,
-    .multi-element.white-content .content p{
-        color: var(--color-white);
-    }
-}
-
-.multi-element.hero.industry.white-content .extra {
-    color: var(--color-gray-12);
 }
 
 @media (max-width: 768px) {
