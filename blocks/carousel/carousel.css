@@ -328,6 +328,7 @@ main .carousel.style-2 {
   main .carousel.style-4 {
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
