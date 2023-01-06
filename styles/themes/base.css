@@ -650,42 +650,58 @@
 /** link background **/
 #base .link-background-base :is(a:not(.button)) {
   background-image: linear-gradient(transparent 50%, var(--theme-base) 0);
-
 }
 
 #base .link-background-tint-5 :is(a:not(.button)) {
   background-image: linear-gradient(transparent 50%, var(--theme-tint5) 0);
-
-}
-
-#base .link-background-tint-15 :is(a:not(.button)) {
-  background-image: linear-gradient(transparent 50%, var(--theme-tint15) 0);
-
 }
 
 #base .link-background-tint-10 :is(a:not(.button)) {
   background-image: linear-gradient(transparent 50%, var(--theme-tint10) 0);
+}
 
+#base .link-background-tint-15 :is(a:not(.button)) {
+  background-image: linear-gradient(transparent 50%, var(--theme-tint15) 0);
 }
 
 #base .link-background-shade-5 :is(a:not(.button)) {
   background-image: linear-gradient(transparent 50%, var(--theme-shade5) 0);
-
 }
 
 #base .link-background-shade-10 :is(a:not(.button)) {
   background-image: linear-gradient(transparent 50%, var(--theme-shade10) 0);
-
 }
 
 #base .link-background-shade-15 :is(a:not(.button)) {
   background-image: linear-gradient(transparent 50%, var(--theme-shade15) 0);
-
 }
 
 #base .link-background-white :is(a:not(.button)) {
   background-image: linear-gradient(transparent 50%, var(--color-white) 0);
+}
 
+#base .link-background-secondary-tint-5 :is(a:not(.button)) {
+  background-image: linear-gradient(transparent 50%, var(--secondary-theme-tint5) 0);
+}
+
+#base .link-background-secondary-tint-10 :is(a:not(.button)) {
+  background-image: linear-gradient(transparent 50%, var(--secondary-theme-tint10) 0);
+}
+
+#base .link-background-secondary-tint-15 :is(a:not(.button)) {
+  background-image: linear-gradient(transparent 50%, var(--secondary-theme-tint15) 0);
+}
+
+#base .link-background-secondary-shade-5 :is(a:not(.button)) {
+  background-image: linear-gradient(transparent 50%, var(--secondary-theme-shade5) 0);
+}
+
+#base .link-background-secondary-shade-10 :is(a:not(.button)) {
+  background-image: linear-gradient(transparent 50%, var(--secondary-theme-shade10) 0);
+}
+
+#base .link-background-secondary-shade-15 :is(a:not(.button)) {
+  background-image: linear-gradient(transparent 50%, var(--secondary-theme-shade15) 0);
 }
 
 /** columns **/
