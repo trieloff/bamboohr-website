@@ -101,6 +101,11 @@
   height: auto;
 }
 
+.desktop-max-height-800.has-bg > span.bg > svg.desktop,
+.laptop-max-height-800.has-bg > span.bg > svg.laptop {
+  max-height: 800px;
+}
+
 /*
    * top
    */
@@ -164,10 +169,7 @@
 /* multi 5 */
 .has-bg > span.bg-top-multi-5 {
   background-image: linear-gradient(
-    180deg,
-    var(--theme-shade5) 0%,
-    var(--theme-tint10) 35.94%,
-    transparent 100%
+    180deg, var(--theme-shade5) 0%, var(--theme-tint10) 35.94%, transparent 100%
   );
 }
 
@@ -205,8 +207,13 @@
   /* uses defaults */
 }
 
+.has-bg > span.bg-top-multi-7-tint-15 {
+  /* uses defaults */
+}
+
 @media (min-width: 1800px) {
-  .has-bg > span.bg-top-multi-7 > svg:not(:only-child).laptop {
+  .has-bg > span.bg-top-multi-7 > svg:not(:only-child).laptop,
+  .has-bg > span.bg-top-multi-7-tint-15 > svg:not(:only-child).laptop {
     display: revert;
   }
 }

@@ -610,6 +610,10 @@
   color: var(--color-white);
 }
 
+#base .copy-color-gray-12 :is(p, li, div) {
+  color: var(--color-gray-12);
+}
+
 /** link **/
 #base .link-color-base :is(a:not(.button)) {
   color: var(--theme-base);
