@@ -552,7 +552,7 @@ main .multi-element p {
         right: 0;
     }
 
-    .multi-element.industry .extra p {
+    .multi-element.industry.extra-color-white .extra p {
         color: var(--color-white);
     }
 }
