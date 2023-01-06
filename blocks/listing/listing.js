@@ -1,4 +1,5 @@
 import {
+  loadFragment,
   lookupPages,
   getMetadata,
   createOptimizedPicture,
@@ -39,15 +40,20 @@ function createHRVSCard(article, classPrefix, eager = false) {
 }
 
 function getBlockHTML(ph, theme) {
-  const defaultSortText = (theme === 'hrvs') ? ph.category : ph.default;
-  const defaultSortProp = (theme === 'hrvs') ? 'hrvsCategory' : 'level';
-  const sortOptions = (theme === 'hrvs') ? 
-      `<li data-sort="hrvsCategory">${ph.category}</li>
+  const defaultSortText = (theme === 'hrvs') ? ph.category
+    : (theme === 'block-inventory') ? ph.group : ph.default;
+  const defaultSortProp = (theme === 'hrvs') ? 'hrvsCategory'
+    : (theme === 'block-inventory') ? 'group' : 'level';
+  const sortOptions = (theme === 'hrvs')
+    ? `<li data-sort="hrvsCategory">${ph.category}</li>
       <li data-sort="startTime">${ph.startTime}</li>
       <li data-sort="presenter">${ph.presenter}</li>
       <li data-sort="title">${ph.title}</li>`
-    : 
-      `<li data-sort="level">${ph.default}</li>
+    : (theme === 'block-inventory') ? 
+      `<li data-sort="block">${ph.block}</li>
+      <li data-sort="group">${ph.group}</li>
+      <li data-sort="lastModified">${ph.newest}</li>`
+    : `<li data-sort="level">${ph.default}</li>
       <li data-sort="name">${ph.name}</li>
       <li data-sort="publicationDate">${ph.newest}</li>`;
   return /* html */ `
@@ -90,6 +96,7 @@ export async function filterResults(config, facets = {}) {
   const theme = getMetadata('theme');
   if (theme === 'integrations') collection = 'integrations';
   else if (theme === 'hrvs') collection = 'hrvs';
+  else if (theme === 'block-inventory') collection = 'blockInventory';
   await lookupPages([], collection);
   const listings = window.pageIndex[collection];
 
@@ -364,6 +371,26 @@ export default async function decorate(block, blockName) {
   const displayResults = async (results) => {
     if (theme === 'hrvs') {
       displayHRVSResults(results);
+    } else if (theme === 'block-inventory') {
+      resultsElement.innerHTML = '';
+      let lastGroup = '';
+      const isSortedByGroup = document.getElementById('listing-sortby')?.dataset?.sort === 'group';
+      results.forEach(async (product) => {
+        const fragmentContainer = document.createElement('div');
+        resultsElement.append(fragmentContainer);
+
+        loadFragment(product.path).then(fragment => {
+          if (isSortedByGroup && product.group && product.group !== product.block &&
+              lastGroup !== product.group) {
+            // Add group title.
+            const groupTitle = document.createElement('h2');
+            groupTitle.innerHTML = product.group;
+            fragmentContainer.append(groupTitle);
+            lastGroup = product.group;
+          }
+          fragmentContainer.append(fragment);
+        });
+      });
     } else {
       resultsElement.innerHTML = '';
       results.forEach((product) => {
@@ -379,17 +406,27 @@ export default async function decorate(block, blockName) {
   };
 
   const runSearch = async (filterConfig = config) => {
-    const facets = {
-      category: {},
-      businessSize: {},
-      dataFlow: {},
-      industryServed: {},
-      locationRestrictions: {},
-    };
+    let facets = {};
+    if (theme === 'block-inventory') {
+      facets = {
+        category: {},
+        group: {},
+        block: {},
+      };
+    } else {
+      facets = {
+        category: {},
+        businessSize: {},
+        dataFlow: {},
+        industryServed: {},
+        locationRestrictions: {},
+      };
+    }
     const results = await filterResults(filterConfig, facets);
     const sortBy = document.getElementById('listing-sortby')
       ? document.getElementById('listing-sortby').dataset.sort
-      : (theme === 'hrvs') ? 'hrvsCategory' : 'level';
+      : (theme === 'hrvs') ? 'hrvsCategory'
+      : (theme === 'block-inventory') ? 'group' : 'level';
 
     if (sortBy && sortOptions(sortBy)) results.sort(sortOptions(sortBy));
     block.querySelector('#listing-results-count').textContent = results.length;

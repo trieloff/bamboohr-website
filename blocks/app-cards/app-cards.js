@@ -60,11 +60,15 @@ export function sortOptions(sortBy) {
                               : a.category.localeCompare(b.category),
     publicationDate: (a, b) => b.publicationDate.localeCompare(a.publicationDate)
                                 || a.title.localeCompare(b.title),
+    lastModified: (a, b) => b.lastModified.localeCompare(a.lastModified)
+                              || a.block.localeCompare(b.block),
     presenter: (a, b) => a.presenter.localeCompare(b.presenter),
     startTime: (a, b) => a.date.localeCompare(b.date)
                                 || a.category.localeCompare(b.category),
     title: (a, b) => a.title.localeCompare(b.title),
     term: (a, b) => a.term.localeCompare(b.term),
+    block: (a, b) => a.block.localeCompare(b.block),
+    group: (a, b) => a.group.localeCompare(b.group) || a.block.localeCompare(b.block),
   };
   return sorts[sortBy];
 }

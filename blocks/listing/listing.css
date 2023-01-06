@@ -585,6 +585,10 @@ main .listing-results .hrvs-card-body a:after {
         grid-gap: 30px;
     }
 
+    .block-inventory main .listing-results {
+        display: flex;
+    }
+
     main .listing-results > li {
         margin-bottom: 0;
     }
@@ -665,6 +669,10 @@ main .listing-results .hrvs-card-body a:after {
 
     main .listing-results > div {
         width: calc(100% / 3);
+    }
+
+    .block-inventory main .listing-results > div {
+        width: unset;
     }
 
     main .listing-results .listing-card {

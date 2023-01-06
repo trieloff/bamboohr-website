@@ -915,6 +915,7 @@ export async function lookupPages(pathnames, collection) {
     integrations: '/integrations/query-index.json?sheet=listings',
     hrGlossary: '/resources/hr-glossary/query-index.json',
     hrvs: '/resources/events/hr-virtual/2022/query-index.json',
+    blockInventory: '/blocks/query-index.json',
   };
   const indexPath = indexPaths[collection];
   window.pageIndex = window.pageIndex || {};
