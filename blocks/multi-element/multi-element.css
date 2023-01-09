@@ -626,10 +626,6 @@ main .multi-element p {
     }
 }
 
-.multi-element.button-inline > .content {
-    display: block;
-}
-
 .multi-element.button-inline > .content p {
     margin-bottom: 20px;
 }

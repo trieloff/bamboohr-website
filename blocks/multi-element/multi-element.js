@@ -7,6 +7,8 @@ export default function decorate(block) {
     }
   });
 
+  const inlineButtons = block.classList.contains('button-inline');
+
   // clean up markup, move all "columns" as block children
   block.querySelectorAll(':scope > div').forEach((row, key) => {
     row.querySelectorAll(':scope > div').forEach((col) => {
@@ -27,16 +29,18 @@ export default function decorate(block) {
       if (key === 1 &&
           (block.classList.contains('extra') || block.classList.contains('extra-right'))) {
         col.classList.add('extra');
-        if (block.classList.contains('button-inline')) {
-          const btns = col.querySelectorAll('.button-container');
-          if (btns.length) {
-            const multiInlineBtns = document.createElement('div');
-            multiInlineBtns.classList.add('multi-inline-buttons');
+      }
 
-            btns.forEach(btn => multiInlineBtns.append(btn));
+      if (inlineButtons) {
+        // Group inline buttons
+        const btns = col.querySelectorAll('.button-container');
+        if (btns.length) {
+          const multiInlineBtns = document.createElement('div');
+          multiInlineBtns.classList.add('multi-inline-buttons');
 
-            col.append(multiInlineBtns);
-          }
+          btns.forEach(btn => multiInlineBtns.append(btn));
+
+          col.append(multiInlineBtns);
         }
       }
 
