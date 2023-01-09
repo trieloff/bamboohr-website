@@ -88,3 +88,14 @@
     align-items: center;
   }
 }
+
+.industry-category .cards .card h6 {
+  font-family: var(--body-font-family);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--theme-shade10);
+  margin: 0;
+}
