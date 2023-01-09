@@ -505,18 +505,3 @@ div.has-text-only h4 {
   color: var(--color-gray-5);
   margin: 0;
 }
-
-.cards .card h6 {
-  font-family: var(--body-font-family);
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 15px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--theme-shade10);
-  margin: 0;
-}
-
-.cards .card.has-image h6 {
-    margin-bottom: -10px;
-}
