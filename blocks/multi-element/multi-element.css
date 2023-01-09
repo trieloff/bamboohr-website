@@ -626,6 +626,6 @@ main .multi-element p {
     }
 }
 
-.multi-element.button-inline > .content p {
+.multi-element.hero.industry.button-inline > .content p {
     margin-bottom: 20px;
 }
