@@ -209,6 +209,7 @@
 
 .has-bg > span.bg-top-multi-7-tint-15 {
   /* uses defaults */
+  top: -2%;
 }
 
 @media (min-width: 1800px) {
