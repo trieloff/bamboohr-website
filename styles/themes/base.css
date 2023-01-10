@@ -185,6 +185,11 @@
   padding-right: 0;
 }
 
+/* reset section spacing on modal */
+#base .modal .section > div {
+  padding: 0;
+}
+
 /** block **/
 #base .block.spacing {
   margin-top: 48px;
