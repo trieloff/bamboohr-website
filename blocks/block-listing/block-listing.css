@@ -433,6 +433,10 @@ main .block-listing-results .listing-card-detail a::after {
     display: none;
 }
 
+.block-inventory main .section > div {
+    max-width: unset;
+}
+
 @media (min-width: 487px) {
     .listing-group:not(:first-child) {
         margin-top: 60px;
