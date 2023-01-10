@@ -1,5 +1,4 @@
 import {
-  loadFragment,
   lookupPages,
   getMetadata,
   createOptimizedPicture,
@@ -40,19 +39,13 @@ function createHRVSCard(article, classPrefix, eager = false) {
 }
 
 function getBlockHTML(ph, theme) {
-  const defaultSortText = (theme === 'hrvs') ? ph.category
-    : (theme === 'block-inventory') ? ph.group : ph.default;
-  const defaultSortProp = (theme === 'hrvs') ? 'hrvsCategory'
-    : (theme === 'block-inventory') ? 'group' : 'level';
+  const defaultSortText = (theme === 'hrvs') ? ph.category : ph.default;
+  const defaultSortProp = (theme === 'hrvs') ? 'hrvsCategory' : 'level';
   const sortOptions = (theme === 'hrvs')
     ? `<li data-sort="hrvsCategory">${ph.category}</li>
       <li data-sort="startTime">${ph.startTime}</li>
       <li data-sort="presenter">${ph.presenter}</li>
       <li data-sort="title">${ph.title}</li>`
-    : (theme === 'block-inventory') ? 
-      `<li data-sort="block">${ph.block}</li>
-      <li data-sort="group">${ph.group}</li>
-      <li data-sort="lastModified">${ph.newest}</li>`
     : `<li data-sort="level">${ph.default}</li>
       <li data-sort="name">${ph.name}</li>
       <li data-sort="publicationDate">${ph.newest}</li>`;
@@ -90,13 +83,11 @@ function getFacetHTML(ph, horizFilters) {
   </div></div>`;
 }
 
-export async function filterResults(config, facets = {}) {
+export async function filterResults(theme, config, facets = {}) {
   /* load index */
   let collection = 'blog';
-  const theme = getMetadata('theme');
   if (theme === 'integrations') collection = 'integrations';
   else if (theme === 'hrvs') collection = 'hrvs';
-  else if (theme === 'block-inventory') collection = 'blockInventory';
   await lookupPages([], collection);
   const listings = window.pageIndex[collection];
 
@@ -179,7 +170,10 @@ export async function filterResults(config, facets = {}) {
 export default async function decorate(block, blockName) {
   const horizFilters = block.classList.contains('horizontal-filters');
   const middleCta = block.classList.contains('middle-cta');
-  const theme = getMetadata('theme');
+  const themeOverrides = [...block.classList].filter((filter) => filter.startsWith('theme-'));
+  const firstHyphenIdx = themeOverrides[0] ? themeOverrides[0].indexOf('-') + 1 : 0;
+  const themeOverride = themeOverrides[0] ? themeOverrides[0].substring(firstHyphenIdx) : '';
+  const theme = themeOverride ? themeOverride : getMetadata('theme');
   const ph = await fetchPlaceholders('/integrations');
 
   const addEventListeners = (elements, event, callback) => {
@@ -369,29 +363,8 @@ export default async function decorate(block, blockName) {
   };
 
   const displayResults = async (results) => {
-    if (theme === 'hrvs') {
-      displayHRVSResults(results);
-    } else if (theme === 'block-inventory') {
-      resultsElement.innerHTML = '';
-      let lastGroup = '';
-      const isSortedByGroup = document.getElementById('listing-sortby')?.dataset?.sort === 'group';
-      results.forEach(async (product) => {
-        const fragmentContainer = document.createElement('div');
-        resultsElement.append(fragmentContainer);
-
-        loadFragment(product.path).then(fragment => {
-          if (isSortedByGroup && product.group && product.group !== product.block &&
-              lastGroup !== product.group) {
-            // Add group title.
-            const groupTitle = document.createElement('h2');
-            groupTitle.innerHTML = product.group;
-            fragmentContainer.append(groupTitle);
-            lastGroup = product.group;
-          }
-          fragmentContainer.append(fragment);
-        });
-      });
-    } else {
+    if (theme === 'hrvs') displayHRVSResults(results);
+    else {
       resultsElement.innerHTML = '';
       results.forEach((product) => {
         resultsElement.append(createAppCard(product, blockName));
@@ -407,26 +380,17 @@ export default async function decorate(block, blockName) {
 
   const runSearch = async (filterConfig = config) => {
     let facets = {};
-    if (theme === 'block-inventory') {
-      facets = {
-        category: {},
-        group: {},
-        block: {},
-      };
-    } else {
-      facets = {
-        category: {},
-        businessSize: {},
-        dataFlow: {},
-        industryServed: {},
-        locationRestrictions: {},
-      };
-    }
-    const results = await filterResults(filterConfig, facets);
+    facets = {
+      category: {},
+      businessSize: {},
+      dataFlow: {},
+      industryServed: {},
+      locationRestrictions: {},
+    };
+    const results = await filterResults(theme, filterConfig, facets);
     const sortBy = document.getElementById('listing-sortby')
       ? document.getElementById('listing-sortby').dataset.sort
-      : (theme === 'hrvs') ? 'hrvsCategory'
-      : (theme === 'block-inventory') ? 'group' : 'level';
+      : (theme === 'hrvs') ? 'hrvsCategory' : 'level';
 
     if (sortBy && sortOptions(sortBy)) results.sort(sortOptions(sortBy));
     block.querySelector('#listing-results-count').textContent = results.length;

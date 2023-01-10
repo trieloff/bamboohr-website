@@ -68,7 +68,11 @@ export function sortOptions(sortBy) {
     title: (a, b) => a.title.localeCompare(b.title),
     term: (a, b) => a.term.localeCompare(b.term),
     block: (a, b) => a.block.localeCompare(b.block),
-    group: (a, b) => a.group.localeCompare(b.group) || a.block.localeCompare(b.block),
+    group: (a, b) => a.group && b.group
+                      ? a.group.localeCompare(b.group) || a.block.localeCompare(b.block)
+                      : a.group ? a.group.localeCompare(b.block)
+                      : b.group ? a.block.localeCompare(b.group)
+                      : a.block.localeCompare(b.block),
   };
   return sorts[sortBy];
 }
