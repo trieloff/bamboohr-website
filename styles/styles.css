@@ -757,6 +757,10 @@ main .section > div:empty {
   padding: 0;
 }
 
+.block-inventory main .section > div {
+  max-width: unset;
+}
+
 @media (min-width: 600px) {
   main .section {
     padding: 0 54px;
