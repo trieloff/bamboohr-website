@@ -35,14 +35,11 @@
     .cards.style-2-columns.wide-gap {
         --gap: 10rem;
     }
-    /* no style-1-columns since default */
 
     /* no style-2-columns since inherit from tablet */
-
     .cards.style-3-columns {
         --cols: 3;
     }
-    /* follow pattern to add more */
 }
 
 @media (min-width: 1200px) {
@@ -289,16 +286,13 @@ div.has-text-only h4 {
 }
 
 /* image styles */
-.cards > .card.has-image > .title {
-    margin-top: .625rem;
-}
-
 .cards > .card.has-image img {
     border-radius: 1rem;
     box-shadow: var(--theme-shadow2-shade5);
     display: flex;
     overflow: hidden;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .cards.no-box-shadow > .card.has-image img {
@@ -341,6 +335,7 @@ div.has-text-only h4 {
 
 .cards.dual-tone > .card > .title {
     margin-top: .625rem;
+    color: var(--theme-shade5);
 }
 
 .cards.dual-tone > .card > .title > a:any-link,
