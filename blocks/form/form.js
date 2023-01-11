@@ -390,26 +390,28 @@ function mktoFormReset(form, moreStyles) {
     el.remove();
   });
 
-  formEl.querySelector('[name="Country"]').addEventListener('change', () => {
-    document.querySelectorAll('.mktoAsterix').forEach((el) => {
-      el.remove();
+  if (formEl.querySelector('[name="Country"]')) {
+    formEl.querySelector('[name="Country"]').addEventListener('change', () => {
+      document.querySelectorAll('.mktoAsterix').forEach((el) => {
+        el.remove();
+      });
+      document.querySelectorAll('.mktoHtmlText').forEach((el) => {
+        el.removeAttribute('style');
+      });
+      if (document.getElementById(formId).querySelector('[name="Disclaimer__c"]')) {
+        const gdprLabel = document.getElementById(formId).querySelector('[for="Disclaimer__c"]');
+        const gdprInput = document.getElementById(formId).querySelector('[id="Disclaimer__c"]');
+        gdprInput.id = `Disclaimer__c_${rando}`;
+        gdprInput.nextElementSibling.htmlFor = `Disclaimer__c_${rando}`;
+        gdprLabel.htmlFor = `Disclaimer__c_${rando}`;
+        gdprLabel.removeAttribute('style');
+        gdprInput.parentElement.classList.add('form-checkbox-option');
+        gdprLabel.parentElement.classList.add('form-checkbox-flex');
+        gdprLabel.firstElementChild.classList.add('form-gdpr-text');
+      }
     });
-    document.querySelectorAll('.mktoHtmlText').forEach((el) => {
-      el.removeAttribute('style');
-    });
-    if (document.getElementById(formId).querySelector('[name="Disclaimer__c"]')) {
-      const gdprLabel = document.getElementById(formId).querySelector('[for="Disclaimer__c"]');
-      const gdprInput = document.getElementById(formId).querySelector('[id="Disclaimer__c"]');
-      gdprInput.id = `Disclaimer__c_${rando}`;
-      gdprInput.nextElementSibling.htmlFor = `Disclaimer__c_${rando}`;
-      gdprLabel.htmlFor = `Disclaimer__c_${rando}`;
-      gdprLabel.removeAttribute('style');
-      gdprInput.parentElement.classList.add('form-checkbox-option');
-      gdprLabel.parentElement.classList.add('form-checkbox-flex');
-      gdprLabel.firstElementChild.classList.add('form-gdpr-text');
-    }
-  });
-
+  }
+  
   formEl.querySelectorAll('[type="checkbox"]').forEach((el) => {
     el.parentElement.classList.add('form-checkbox-option');
     el.parentElement.parentElement.classList.add('form-checkbox-flex');
