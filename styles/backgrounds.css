@@ -125,6 +125,10 @@
   bottom: 0;
 }
 
+.has-bg.push-down > span.bg-top-cap-1 {
+  top: 40%;
+} 
+
 /* cap 2 */
 .has-bg > span.bg-top-cap-2 {
   background-image: linear-gradient(180deg, var(--theme-tint15) 0%, transparent 100%);
@@ -611,5 +615,9 @@
 }
 
 .has-bg > span.bg-gradient-industry {
+  background-image: linear-gradient(180deg, var(--color-white) 0%, var(--theme-tint15) 100%);
+}
+
+.has-bg > span.bg-gradient-tint-15 {
   background-image: linear-gradient(180deg, var(--color-white) 0%, var(--theme-tint15) 100%);
 }
