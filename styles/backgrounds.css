@@ -127,7 +127,14 @@
 
 .has-bg.push-down > span.bg-top-cap-1 {
   top: 40%;
-} 
+}
+
+@media (min-width: 1800px) {
+  .has-bg.push-down > span.bg-top-cap-1 {
+    top: 10%;
+  }
+  }
+
 
 /* cap 2 */
 .has-bg > span.bg-top-cap-2 {
