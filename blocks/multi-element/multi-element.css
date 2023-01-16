@@ -502,6 +502,10 @@ main .multi-element p {
     margin-bottom: 24px;
 }
 
+.bg-top-multi-2-light .multi-element.industry h1 {
+    color: var(--theme-shade10);
+}
+
 .multi-element.content-color-tint-5 .content p {
     color: var(--theme-tint5);
 }
