@@ -157,7 +157,7 @@ indices:
         value: |
           attribute(el, 'content')
       category:
-        select: head > meta[property="og:category"]
+        select: head > meta[name="category"]
         value: |
           attribute(el, 'content')
       robots:
