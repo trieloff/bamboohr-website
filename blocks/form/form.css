@@ -3,7 +3,7 @@
   text-align: center;
 }
 
-main .form {
+main .form:not(.wide-form) {
   max-width: 800px;
   margin: 0 auto;
 }
@@ -275,6 +275,13 @@ main .form .form-col p strong {
   font-size: 26px;
   line-height: 30px;
   margin: 0 0 30px;
+}
+
+main .form.has-content .content-col img {
+  border-radius: 10px;
+  box-shadow: 0 30px 60px -40px rgb(31 38 23 / 50%);
+  margin: 60px auto;
+  width: 100%;
 }
 
 main .form.has-content .form-col {
