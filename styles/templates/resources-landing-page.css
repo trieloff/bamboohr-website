@@ -1,0 +1,7 @@
+.resources-landing-page .courses-speaker {
+    background-color: var(--color-gray-1);
+}
+.resources-landing-page .courses-speaker .columns img {
+    border-radius: 50%;
+    max-width: 157px;
+}
