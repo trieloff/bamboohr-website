@@ -254,9 +254,12 @@ function createLabel(fd) {
 }
 
 function createDescription(fd) {
-  const desc = document.createElement('p');
-  desc.className = 'form-description';
-  desc.textContent = fd.Description;
+  let desc = '';
+  if (fd.Description) {
+    desc = document.createElement('p');
+    desc.className = 'form-description';
+    desc.textContent = fd.Description;
+  }
   return desc;
 }
 
@@ -351,6 +354,7 @@ async function createForm(formURL) {
 function mktoFormReset(form, moreStyles) {
   const formId = `mktoForm_${form.getId()}`;
   const formEl = form.getFormElem()[0];
+  const currentForm = document.getElementById(formId);
 
   const rando = Math.floor(Math.random() * 1000000);
   formEl.querySelectorAll('label[for]').forEach((labelEl) => {
@@ -359,7 +363,8 @@ function mktoFormReset(form, moreStyles) {
       const newId = `${forEl.id}_${rando}`;
       labelEl.htmlFor = newId;
       forEl.id = newId;
-      if (forEl.classList.contains('mktoField')) {
+
+      if (forEl.classList.contains('mktoField') && forEl.getAttribute('type') !== 'checkbox') {
         forEl.nextElementSibling.htmlFor = newId;
       }
     }
@@ -398,9 +403,9 @@ function mktoFormReset(form, moreStyles) {
       document.querySelectorAll('.mktoHtmlText').forEach((el) => {
         el.removeAttribute('style');
       });
-      if (document.getElementById(formId).querySelector('[name="Disclaimer__c"]')) {
-        const gdprLabel = document.getElementById(formId).querySelector('[for="Disclaimer__c"]');
-        const gdprInput = document.getElementById(formId).querySelector('[id="Disclaimer__c"]');
+      if (currentForm.querySelector('[name="Disclaimer__c"]')) {
+        const gdprLabel = currentForm.querySelector('[for="Disclaimer__c"]');
+        const gdprInput = currentForm.querySelector('[id="Disclaimer__c"]');
         gdprInput.id = `Disclaimer__c_${rando}`;
         gdprInput.nextElementSibling.htmlFor = `Disclaimer__c_${rando}`;
         gdprLabel.htmlFor = `Disclaimer__c_${rando}`;
@@ -408,6 +413,12 @@ function mktoFormReset(form, moreStyles) {
         gdprInput.parentElement.classList.add('form-checkbox-option');
         gdprLabel.parentElement.classList.add('form-checkbox-flex');
         gdprLabel.firstElementChild.classList.add('form-gdpr-text');
+ 
+        currentForm.querySelector('[name="Disclaimer__c"]').addEventListener('input', () => {
+          if (currentForm.querySelector('.form-msg') && currentForm.querySelectorAll('.mktoField.mktoInvalid').length === 0 && currentForm.querySelectorAll('.mktoLogicalField.mktoInvalid').length === 0) {
+            currentForm.querySelector('.form-msg').remove();
+          }
+        });
       }
     });
   }
@@ -415,6 +426,29 @@ function mktoFormReset(form, moreStyles) {
   formEl.querySelectorAll('[type="checkbox"]').forEach((el) => {
     el.parentElement.classList.add('form-checkbox-option');
     el.parentElement.parentElement.classList.add('form-checkbox-flex');
+  });
+
+  // Add error message when form is invalid
+  const mktoButton = formEl.querySelector('.mktoButton');
+  const formMsg = document.createElement('div');
+  formMsg.classList.add('form-msg');
+  formMsg.textContent = '*Please correct marked fields';
+
+  mktoButton.addEventListener('click', () => {
+    if (form.validate() === false && !currentForm.querySelector('.form-msg')) {
+      currentForm.append(formMsg);
+    }
+  });
+
+  // Remove error message when form is valid
+  formEl.querySelectorAll('.mktoField').forEach((input) => {
+    ['input', 'blur'].forEach((event) => {
+      input.addEventListener(event, () => {
+        if (currentForm.querySelector('.form-msg') && currentForm.querySelectorAll('.mktoField.mktoInvalid').length === 0) {
+          currentForm.querySelector('.form-msg').remove();
+        }
+      });
+    })
   });
 
   if (!moreStyles) {
