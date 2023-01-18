@@ -3,7 +3,7 @@
   text-align: center;
 }
 
-main .form:not(.wide-form) {
+main .form {
   max-width: 800px;
   margin: 0 auto;
 }
