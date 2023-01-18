@@ -279,7 +279,7 @@ main .form .form-col p strong {
 
 main .form.has-content .content-col img {
   border-radius: 10px;
-  box-shadow: 0 30px 60px -40px rgb(31 38 23 / 50%);
+  box-shadow: var(--box-shadow-2);
   margin: 60px auto;
   width: 100%;
 }
