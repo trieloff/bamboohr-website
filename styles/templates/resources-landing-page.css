@@ -5,3 +5,13 @@
     border-radius: 50%;
     max-width: 157px;
 }
+
+.wistia-course {
+    display: none;
+}
+
+@media (min-width: 600px) {
+    .wistia-course {
+        display: block;
+    }
+}
