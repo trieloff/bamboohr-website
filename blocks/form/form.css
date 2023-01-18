@@ -277,6 +277,13 @@ main .form .form-col p strong {
   margin: 0 0 30px;
 }
 
+main .form.has-content .content-col img {
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-2);
+  margin: 60px auto;
+  width: 100%;
+}
+
 main .form.has-content .form-col {
   max-width: 83.33%;
   margin: 0 auto;
