@@ -361,6 +361,10 @@ main h1.hidden {
   display: none;
 }
 
+main .font-style-normal h1 {
+  font-style: normal;
+}
+
 .comparison-matrix main h1 {
   margin: 0;
 }
