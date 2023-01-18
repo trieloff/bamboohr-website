@@ -664,6 +664,10 @@ div .column-small-icons-container.column-multi-element {
   color: var(--theme-shade5);
 }
 
+.columns.mb-minus-72-px {
+  margin-bottom: -72px;
+}
+
 @media (min-width: 900px) {
   .columns.title1-heading h2 {
     margin: 0 0 30px;
