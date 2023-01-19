@@ -246,14 +246,39 @@ main .form .mktoForm[data-styles-ready='true'] {
   visibility: visible;
 }
 
+main .form .mktoForm > div {
+  margin: 0;
+}
+
 main .form .mktoForm .mktoFieldWrap {
   position: relative;
+  margin-top: 16px;
 }
 
 main .form .mktoForm .mktoField,
 main .form .mktoForm .mktoLabel {
   width: 100% !important;
 }
+
+/* un-comment this when clearbit is disabled and fields order is updated
+@media screen and (min-width: 600px) {
+  main .form .mktoForm {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: stretch;
+  }
+
+  main .form .mktoForm > div {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+
+  main .form .mktoForm .mktoFormRow.form-input-width50 {
+    width: calc(50% - 8px);
+  }
+} */
 
 main .form .mktoForm .mktoErrorMsg {
   position: absolute;

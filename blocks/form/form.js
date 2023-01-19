@@ -428,6 +428,23 @@ function mktoFormReset(form, moreStyles) {
     el.parentElement.parentElement.classList.add('form-checkbox-flex');
   });
 
+  // side-by-side fields
+
+  const firstName = formEl.querySelector('[name="FirstName"]');
+  const lastName = formEl.querySelector('[name="LastName"]');
+  const phone = formEl.querySelector('[name="Phone"]');
+  const numberOfEmp = formEl.querySelector('[name="Employees_Text__c"]');
+
+  if (firstName && lastName) {
+    firstName.closest('.mktoFormRow').classList.add('form-input-width50');
+    lastName.closest('.mktoFormRow').classList.add('form-input-width50');
+  }
+
+  if (phone && numberOfEmp) {
+    phone.closest('.mktoFormRow').classList.add('form-input-width50');
+    numberOfEmp.closest('.mktoFormRow').classList.add('form-input-width50');
+  }
+
   // Add error message when form is invalid
   const mktoButton = formEl.querySelector('.mktoButton');
   const formMsg = document.createElement('div');
