@@ -13,31 +13,24 @@
 /* eslint-disable no-console, class-methods-use-this */
 
 export default {
-  preprocess: ({ document, params }) => {
-    const s = document.getElementById('successPageData');
-    let pdf = '';
-    if (s) {
-      const json = JSON.parse(s.innerHTML);
-      if (json && json.length > 0) {
-        pdf = json[0].url;
-      }
-    }
-    console.log('pdf',pdf);
-    params.pdf = pdf;
-  },
-
   /**
    * Apply DOM operations to the provided document and return
    * the root element to be then transformed to Markdown.
    * @param {HTMLDocument} document The document
    * @returns {HTMLElement} The root element
    */
-  transform: ({ params }) => {
-    console.log('pdf',params.pdf);
+  transform: ({ document, url }) => {
+    const form = document.querySelector('.AssetTopContainer form');
+    let formId = '';
+    if (form) {
+      formId = form.id;
+    }
+    const testvalue = 'meng';
     return {
-      path:  new URL(params.originalURL).pathname.replace('/success.php', '.pdf'),
+      path:  new URL(url).pathname.replace(/\/$/, ''),
       report: {
-        pdf: `https:${params.pdf}`,
+        formid: formId,
+        test: testvalue,
       }
     };
   },
