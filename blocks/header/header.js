@@ -30,8 +30,8 @@ function hideSearchInput(navSearchBtn, phoneNumElem, navButtons) {
 }
 
 function addSearch(buttonsContainer) {
-  const search = buttonsContainer.querySelector('p:not(:has(*))');
-  if (search?.textContent?.toLowerCase() === '[search]') {
+  const search = [...buttonsContainer.children].find(b => b.textContent?.toLowerCase() === '[search]');
+  if (search) {
     buttonsContainer.parentElement.classList.add('has-search');
     // Build search.
     const div = document.createElement('div');
