@@ -246,7 +246,7 @@ main .form .mktoForm[data-styles-ready='true'] {
   visibility: visible;
 }
 
-main .form .mktoForm > div {
+main .form .mktoForm > div:not(.form-msg) {
   margin: 0;
 }
 
