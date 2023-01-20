@@ -20,17 +20,21 @@ export default {
    * @returns {HTMLElement} The root element
    */
   transform: ({ document, url }) => {
-    const form = document.querySelector('.AssetTopContainer form');
-    let formId = '';
-    if (form) {
-      formId = form.id;
+    // const form = document.querySelector('.AssetTopContainer form');
+    // let formId = '';
+    // if (form) {
+    //   formId = form.id;
+    // }
+    const cta = document.querySelector('.callout-wrapper');
+    let ctaExist = 'no';
+    if (cta) {
+      ctaExist = 'yes';
     }
-    const testvalue = 'meng';
+    
     return {
       path:  new URL(url).pathname.replace(/\/$/, ''),
       report: {
-        formid: formId,
-        test: testvalue,
+        cta: ctaExist,
       }
     };
   },
