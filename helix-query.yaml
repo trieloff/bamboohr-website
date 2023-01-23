@@ -160,6 +160,10 @@ indices:
         select: head > meta[name="category"]
         value: |
           attribute(el, 'content')
+      formSubmitText:
+        select: head > meta[name="form-submit-text"]
+        value: |
+          attribute(el, 'content')
       robots:
         select: head > meta[name="robots"]
         value: |
