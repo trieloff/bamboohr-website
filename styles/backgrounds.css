@@ -409,12 +409,6 @@
   z-index: -2;
 }
 
-.has-bg > span.bg-bottom-cap-3-tint-reverse {
-  background-image: linear-gradient(180deg, var(--color-white) 0%, var(--theme-tint15) 100%);
-  top: 0;
-  z-index: -2;
-}
-
 /* multi 1 */
 .has-bg > span.bg-bottom-multi-1 {
   background-image: linear-gradient(
