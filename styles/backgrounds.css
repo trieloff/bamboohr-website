@@ -222,12 +222,12 @@
   top: -2%;
 }
 
-.has-bg.minus-top > span.bg-top-multi-7-tint-15 {
+.has-bg.minus-top > span.bg {
   top: -6%;
 }
 
 @media (min-width: 1200px) {
-  .has-bg.minus-top > span.bg-top-multi-7-tint-15 {
+  .has-bg.minus-top > span.bg {
     top: -7%;
   }
 }
