@@ -222,6 +222,16 @@
   top: -2%;
 }
 
+.has-bg.minus-top > span.bg-top-multi-7-tint-15 {
+  top: -6%;
+}
+
+@media (min-width: 1200px) {
+  .has-bg.minus-top > span.bg-top-multi-7-tint-15 {
+    top: -7%;
+  }
+}
+
 @media (min-width: 1800px) {
   .has-bg > span.bg-top-multi-7 > svg:not(:only-child).laptop,
   .has-bg > span.bg-top-multi-7-tint-15 > svg:not(:only-child).laptop {
