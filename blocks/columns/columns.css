@@ -668,6 +668,16 @@ div .column-small-icons-container.column-multi-element {
   margin-bottom: -72px;
 }
 
+.columns[class*='background-card-color-'] {
+  padding: 10px 60px;
+  margin: 0 -60px;
+  border-radius: 15px;
+}
+
+.columns.background-card-color-tint-15 {
+  background-color: var(--theme-tint15);
+}
+
 @media (min-width: 900px) {
   .columns.title1-heading h2 {
     margin: 0 0 30px;
