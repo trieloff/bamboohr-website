@@ -155,7 +155,7 @@ indices:
       image:
         select: head > meta[property="og:image"]
         value: |
-          attribute(el, 'content')
+          match(attribute(el, 'content'), 'https:\/\/[^/]+(\/.*)')
       category:
         select: head > meta[name="category"]
         value: |
