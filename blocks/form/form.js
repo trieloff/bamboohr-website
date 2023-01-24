@@ -493,7 +493,6 @@ export default async function decorate(block) {
       block.classList.add(`grid-${name}`);
     }
   });
-
   if (!formUrl) {
     const resp = await fetch('/forms-map.json');
     const json = await resp.json();
@@ -503,7 +502,7 @@ export default async function decorate(block) {
         entry.URL === window.location.pathname || (entry.URL.endsWith('**') && window.location.pathname.startsWith(entry.URL.split('**')[0]))
       ) {
         formUrl = entry.Form;
-        successUrl = entry.Success;
+        successUrl = entry.Success === '' ? `${window.location.pathname}?formSubmit=success` : entry.Success;
         chilipiper = entry.Chilipiper;
       }
     });
@@ -526,6 +525,7 @@ export default async function decorate(block) {
             const formContainer = document.createElement('div');
             formContainer.innerHTML = mktoForm;
             col.append(formContainer);
+            console.log(successUrl);
             loadFormAndChilipiper(formId, successUrl, chilipiper);
           } else {
             col.classList.add('content-col');

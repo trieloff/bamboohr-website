@@ -988,9 +988,21 @@ async function buildAutoBlocks(main) {
   try {
     let template = toClassName(getMetadata('template'));
     if (window.location.pathname.startsWith('/blog/') && !template) template = 'blog';
-    const templates = ['blog', 'integrations-listing', 'content-library'];
+
+    const templates = ['blog', 'integrations-listing'];
     if (templates.includes(template)) {
       const mod = await import(`./${template}.js`);
+      if (mod.default) {
+        await mod.default(main);
+      }
+    }
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const formSubmit = urlParams.get('formSubmit');
+    const successTemplates = ['content-library'];
+    if (successTemplates.includes(template) && formSubmit === 'success') {
+      const mod = await import(`./${template}-success.js`);
       if (mod.default) {
         await mod.default(main);
       }
