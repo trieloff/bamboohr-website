@@ -60,9 +60,9 @@
   display: inline-block;
   height: 0.8125rem;
   margin-left: 0.5rem;
-  mask-image: url('../styles/caret-right.svg');
+  mask-image: url('../caret-right.svg');
   /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-image: url('../styles/caret-right.svg');
+  -webkit-mask-image: url('../caret-right.svg');
   vertical-align: middle; /* TODO: replace with flex on button? */
   width: 0.5rem;
 }
