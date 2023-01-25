@@ -21,7 +21,7 @@ function buildSuccessDownload(main) {
   if (columnData.length > 0) {
     const section = document.createElement('div');
     const columns = buildBlock('columns', [columnData]);
-    columns?.classList?.add('6/6');
+    columns?.classList?.add('6/6', 'success-download');
     section.prepend(columns);
     main.prepend(section);
   }
@@ -46,7 +46,7 @@ function buildSuccessMore(main) {
 
   if (moreData.length > 0) {
     const moreBlock = buildBlock('columns', [moreData]);
-    moreBlock?.classList?.add('style-4-columns');
+    moreBlock?.classList?.add('style-4-columns', 'want-more-columns');
     main.querySelector('.title')?.after(moreBlock);
   }
 }
@@ -75,8 +75,9 @@ function downloadPdf() {
 
 export default async function decorateTemplate(main) {
   main.innerHTML = '';
+  document.body.classList.add('content-library-success');
   buildSuccessDownload(main);
   buildSuccessMoreTitle(main);
   buildSuccessMore(main);
-  downloadPdf();
+  // downloadPdf();
 }
