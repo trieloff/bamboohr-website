@@ -49,6 +49,16 @@
   margin-top: 30px;
 }
 
+.content-library-success .want-more-columns > div > div {
+  margin-bottom: 50px;
+}
+
+@media (min-width: 900px) {
+  .content-library-success .want-more-columns > div > div {
+    margin-bottom: 0;
+  }
+}
+
 .content-library-success .want-more-columns a.button:not(.link):any-link {
   background: none;
   color: var(--theme-shade10);

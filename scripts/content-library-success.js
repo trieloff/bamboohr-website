@@ -79,5 +79,5 @@ export default async function decorateTemplate(main) {
   buildSuccessDownload(main);
   buildSuccessMoreTitle(main);
   buildSuccessMore(main);
-  downloadPdf();
+  window.onload = downloadPdf();
 }
