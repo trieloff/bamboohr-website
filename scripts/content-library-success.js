@@ -1,27 +1,35 @@
 import { buildBlock, getMetadata } from './scripts.js';
 
-function buildSuccessDownload(main) {
-
+function buildSuccessDownload(main, category) {
   const resourceImgUrl = new URL(getMetadata('og:image'));
   const resourceImgPath = resourceImgUrl.href.replace(resourceImgUrl.origin, '');
 
   const resourceThumbImg = document.createElement('img');
-  resourceThumbImg.classList.add('resource-image');
-  resourceThumbImg.alt = ` logo`;
-  resourceThumbImg.src = resourceImgPath;
-
   const resourceTitle = getMetadata('og:title').split(' | ')[0];
   const pdfPath = window.location.pathname.replace('/resources/','/resources/assets/');
   const pdfDownload = `${pdfPath}.pdf`;
   const columnData = [];
 
-  columnData.push(resourceThumbImg);
-  columnData.push(`<h1>Success! ${resourceTitle} is coming your way.</h1><p>Thank you for downloading ${resourceTitle}—we think you’re going to love it. It should start downloading automatically, but if it doesn’t, please <a href="${pdfDownload}" target="_blank" rel="noopener noreferrer" aria-label="Click here to download ${resourceTitle} - Opens in a new window">click here</a></p>`);
+  resourceThumbImg.classList.add('resource-image');
+  resourceThumbImg.alt = resourceTitle;
+  resourceThumbImg.src = resourceImgPath;
+  
+  if(category === 'videos') {
+    const wistiaVideoId = getMetadata('wistia-video-id');
+    const wistiaVideoUrl = `https://bamboohr.wistia.com/medias/${wistiaVideoId}`;
+    if (wistiaVideoId) {
+      columnData.push(`<p><a href="${wistiaVideoUrl}"></a></p>`);
+      columnData.push(`<h1>Success! ${resourceTitle} is coming your way.</h1>`);
+    }
+  } else {
+    columnData.push(resourceThumbImg);
+    columnData.push(`<h1>Success! ${resourceTitle} is coming your way.</h1><p>Thank you for downloading ${resourceTitle}—we think you’re going to love it. It should start downloading automatically, but if it doesn’t, please <a href="${pdfDownload}" target="_blank" rel="noopener noreferrer" aria-label="Click here to download ${resourceTitle} - Opens in a new window">click here</a></p>`);
+  }
 
   if (columnData.length > 0) {
     const section = document.createElement('div');
     const columns = buildBlock('columns', [columnData]);
-    columns?.classList?.add('6/6', 'success-download');
+    columns?.classList?.add('6-6', 'success-download');
     section.prepend(columns);
     main.prepend(section);
   }
@@ -76,8 +84,11 @@ function downloadPdf() {
 export default async function decorateTemplate(main) {
   main.innerHTML = '';
   document.body.classList.add('content-library-success');
-  buildSuccessDownload(main);
+  const category = getMetadata('category');
+  buildSuccessDownload(main, category);
   buildSuccessMoreTitle(main);
   buildSuccessMore(main);
-  window.onload = downloadPdf();
+  if (category !== 'videos') {
+    window.onload = downloadPdf();
+  }
 }
