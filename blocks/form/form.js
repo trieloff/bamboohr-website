@@ -424,14 +424,12 @@ function mktoFormReset(form, moreStyles) {
 
 /* Adobe event tracking */
 function adobeEventTracking(event, name) {
-  if(window.digitalData) {
-    window.digitalData.push({
-      event,
-      component: {
-        name
-      }
-    });
-  }
+  window.digitalData.push({
+    event,
+    component: {
+      name
+    }
+  });
 }
 
 function loadFormAndChilipiper(formId, successUrl, chilipiper) {
@@ -444,7 +442,7 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
 
         /* Adobe Form Start event tracking when user click into the first field */
         form.getFormElem()[0].firstElementChild.addEventListener('click', () => {
-          adobeEventTracking('Form Start', form.getId());
+          window.setTimeout(() => adobeEventTracking('Form Start', form.getId()), 4000);
         });
 
         form.onSuccess(() => {
