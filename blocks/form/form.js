@@ -424,12 +424,14 @@ function mktoFormReset(form, moreStyles) {
 
 /* Adobe event tracking */
 function adobeEventTracking(event, name) {
-  window.digitalData.push({
-    event,
-    component: {
-      name
-    }
-  });
+  if(window.digitalData) {
+    window.digitalData.push({
+      event,
+      component: {
+        name
+      }
+    });
+  }
 }
 
 function loadFormAndChilipiper(formId, successUrl, chilipiper) {
@@ -525,7 +527,6 @@ export default async function decorate(block) {
             const formContainer = document.createElement('div');
             formContainer.innerHTML = mktoForm;
             col.append(formContainer);
-            console.log(successUrl);
             loadFormAndChilipiper(formId, successUrl, chilipiper);
           } else {
             col.classList.add('content-col');
