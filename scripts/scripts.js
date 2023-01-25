@@ -989,7 +989,7 @@ async function buildAutoBlocks(main) {
     let template = toClassName(getMetadata('template'));
     if (window.location.pathname.startsWith('/blog/') && !template) template = 'blog';
 
-    const templates = ['blog', 'integrations-listing'];
+    const templates = ['blog', 'integrations-listing', 'content-library'];
     if (templates.includes(template)) {
       const mod = await import(`./${template}.js`);
       if (mod.default) {

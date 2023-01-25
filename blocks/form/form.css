@@ -7,10 +7,6 @@ main .form .hidden {
   display: none;
 }
 
-main .form h1 {
-  margin: 60px 0 90px;
-}
-
 main .form form {
   text-align: left;
 }
@@ -352,7 +348,6 @@ main .form .form-col p strong {
 main .form.has-content .content-col img {
   border-radius: 10px;
   box-shadow: var(--box-shadow-2);
-  margin: 60px auto;
   width: 100%;
 }
 
@@ -482,6 +477,7 @@ main .form.old-style .form-submit-wrapper .button:hover {
 
 main .form.old-style .form-col p {
   margin: 1em 0;
+  text-align: center;
 }
 
 main .form.old-style .form-col strong {
