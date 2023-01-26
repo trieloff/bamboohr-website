@@ -1529,7 +1529,7 @@ body.modal-open {
   background-color: var(--body-background-color);
   border-radius: 20px;
   position: absolute;
-  top: 70px;
+  top: 90px;
   margin: 0 auto;
   padding: 50px 30px;
 }
