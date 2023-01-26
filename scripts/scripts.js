@@ -1134,9 +1134,23 @@ async function loadLazy(doc) {
  * the user experience.
  */
 function loadDelayed() {
-  // eslint-disable-next-line import/no-cycle
-  if (!window.hlx.performance) window.setTimeout(() => import('./delayed.js'), 4000);
-  // load anything that can be postponed to the latest here
+
+	const testPaths = [
+		"/resources/hr-glossary/performance-review",
+		"/resources/hr-glossary/",
+		"/hr-solutions/industry/construction",
+		"/blog/key-hr-metrics"
+	];	
+	const isOnTestPath = testPaths.includes(window.location.pathname);
+
+	if(isOnTestPath){
+		//import without delay (for testing page performance)
+		import('./delayed.js');
+	}else{
+		// eslint-disable-next-line import/no-cycle
+		if (!window.hlx.performance) window.setTimeout(() => import('./delayed.js'), 4000);
+		// load anything that can be postponed to the latest here
+	}  
 }
 
 export async function loadFragment(path) {
