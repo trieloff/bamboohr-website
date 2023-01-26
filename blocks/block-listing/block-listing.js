@@ -220,45 +220,38 @@ export default async function decorate(block, blockName) {
 
   const getSelectedFilters = () => [...block.querySelectorAll('input.block-inventory[type="checkbox"]:checked')];
 
-  const hrvsCategoryGroups = [];
-
-  const getHRVSVisibleCount = () => {
-    const currentSelected = getSelectedFilters();
-    return hrvsCategoryGroups.reduce((cnt, g) => {
-      const isSelected = currentSelected.find(checked => checked.value === g.category);
-      return (!currentSelected.length || isSelected) ? cnt + g.visibleCnt : cnt;
-    }, 0);
-  };
-
   const displayResults = async (results) => {
     resultsElement.innerHTML = '';
     let lastGroup = '';
     const isSortedByGroup = document.getElementById('block-listing-sortby')?.dataset?.sort === 'group';
     results.forEach(async (product, index) => {
-      const blockContainer = document.createElement('div');
-      blockContainer.classList = 'block-container';
-      resultsElement.append(blockContainer);
+      if (product.block) {
+        const blockContainer = document.createElement('div');
+        blockContainer.classList = 'block-container';
+        resultsElement.append(blockContainer);
 
-      if (isSortedByGroup && product.group && product.group !== product.block &&
-          lastGroup !== product.group) {
-        if (lastGroup) addEndGroupLabel(lastGroup, resultsElement, blockContainer);
-        addGroupLabel(product.group, blockContainer);
-        if (index === results.length - 1) addEndGroupLabel(product.group, resultsElement);
+        if (isSortedByGroup && product.group && product.group !== product.block &&
+            lastGroup !== product.group) {
+          if (lastGroup) addEndGroupLabel(lastGroup, resultsElement, blockContainer);
+          addGroupLabel(product.group, blockContainer);
+          if (index === results.length - 1) addEndGroupLabel(product.group, resultsElement);
 
-        lastGroup = product.group;
-      } else if (isSortedByGroup && lastGroup &&
-                ((lastGroup !== product.group) || index === results.length - 1)) {
-        const siblingContainer = index === results.length - 1 ? null : blockContainer;
-        addEndGroupLabel(lastGroup, resultsElement, siblingContainer);
+          lastGroup = product.group;
+        } else if (isSortedByGroup && lastGroup &&
+                  ((lastGroup !== product.group) || index === results.length - 1)) {
+          const siblingContainer = lastGroup === product.group && index === results.length - 1
+            ? null : blockContainer;
+          addEndGroupLabel(lastGroup, resultsElement, siblingContainer);
 
-        lastGroup = '';
+          lastGroup = '';
+        }
+
+        // Load the block fragment
+        loadFragment(product.path).then(fragment => {
+          blockContainer.append(fragment);
+          addBlockLinks(blockContainer, product.block);
+        });
       }
-
-      // Load the block fragment
-      loadFragment(product.path).then(fragment => {
-        blockContainer.append(fragment);
-        addBlockLinks(blockContainer, product.block);
-      });
     });
 
     window.setTimeout(() => {
