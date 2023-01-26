@@ -1115,6 +1115,8 @@ async function loadEager(doc) {
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
+  loadDelayedOnClick();
+
   const header = doc.querySelector('header');
   const queryParams = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
@@ -1141,13 +1143,26 @@ async function loadLazy(doc) {
   }
 }
 
+function loadDelayedOnClick() {
+  document.body.addEventListener('click', handleLoadDelayed);
+}
+
+async function handleLoadDelayed() {
+  if (!window.hlx.delayedJSLoaded) {
+    window.hlx.delayedJSLoaded = true;
+    await import('./delayed.js');
+
+    document.body.removeEventListener('click', handleLoadDelayed);
+  }
+}
+
 /**
  * loads everything that happens a lot later, without impacting
  * the user experience.
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  if (!window.hlx.performance) window.setTimeout(() => import('./delayed.js'), 4000);
+  if (!window.hlx.performance) window.setTimeout(() => handleLoadDelayed(), 4000);
   // load anything that can be postponed to the latest here
 }
 
