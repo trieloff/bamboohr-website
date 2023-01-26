@@ -1136,10 +1136,10 @@ async function loadLazy(doc) {
 function loadDelayed() {
 
 	const testPaths = [
-		"/resources/hr-glossary/performance-review",
-		"/resources/hr-glossary/",
-		"/hr-solutions/industry/construction",
-		"/blog/key-hr-metrics"
+		'/resources/hr-glossary/performance-review',
+		'/resources/hr-glossary/',
+		'/hr-solutions/industry/construction',
+		'/blog/key-hr-metrics'
 	];	
 	const isOnTestPath = testPaths.includes(window.location.pathname);
 
