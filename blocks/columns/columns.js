@@ -77,17 +77,29 @@ function addIconContainer(col) {
   }
 }
 
+function hasOnlyWistiaChildren(colChildren) {
+  let hasOnlyWistiaChildren = false;
+  // Assumption: wistia block content is thumbnail (picture) + wistia link or just wistia link 
+  if (colChildren?.length == 2 &&
+      colChildren[0].firstElementChild?.tagName === 'PICTURE' &&
+      colChildren[1].firstElementChild?.tagName === 'A' &&
+      colChildren[1].firstElementChild?.href?.includes('wistia')) {
+    hasOnlyWistiaChildren = true;
+  } else if (colChildren?.length == 1 && 
+            colChildren[0].tagName === 'A' &&
+            colChildren[0].href?.includes('wistia')) {
+    hasOnlyWistiaChildren = true;
+  }
+
+  return hasOnlyWistiaChildren;
+}
+
 function addWistia(col, loadWistiaCSS) {
   const wistiaBlock = document.createElement('div');
   wistiaBlock.classList.add('wistia', 'block');
 
   const colChildren = [...col.children];
-  let addAllChildren = false;
-  if (colChildren.length == 2 &&
-      colChildren[0].firstElementChild.tagName === 'PICTURE' &&
-      colChildren[1].firstElementChild.tagName === 'A') {
-    addAllChildren = true;
-  }
+  const addAllChildren = hasOnlyWistiaChildren(colChildren);
 
   colChildren?.forEach((child) => {
     if (addAllChildren || child.querySelector('a')?.href?.includes('wistia')) {
