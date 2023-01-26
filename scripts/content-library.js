@@ -1,49 +1,5 @@
 import { buildBlock, getMetadata } from './scripts.js';
 
-function buildFormBlock(main) {
-  const formBlockData = [];
-  const category = getMetadata('category').substring(0, getMetadata('category').length-1);
-  const customFormTitle = getMetadata('custom-form-title');
-  const customFormSubheading = getMetadata('custom-form-subheading');
-
-  // const tabs = main.querySelectorAll('h2');
-  // tabs.forEach((tab) => {
-  //   const content = document.createElement('div');
-  //   let sibling = tab.nextElementSibling;
-  //   while (sibling && ![...tabs].includes(sibling)) {
-  //     content.append(sibling.cloneNode(true));
-  //     sibling = sibling.nextElementSibling;
-  //   }
-  //   content.prepend(tab);
-  //   // if (content) blockContent.push([content.innerHTML]);
-  //   console.log(content);
-  // });
-
-  const partners = main.querySelectorAll('h2');
-  console.log(partners);
-  partners.forEach((partner) => {
-    console.log(partner);
-  });
-  
-  
-  formBlockData.push(main.innerHTML);
-
-  
-
-  main.innerHTML = '';
-  const formTitle = customFormTitle || `Download your free ${category}.`;
-  const formSubheading = customFormSubheading || 'All you need to do is complete the form below.';
-  formBlockData.push(`<p><strong>${formTitle}</strong></p><p>${formSubheading}</p><p>form</p>`);
-
-  if (formBlockData.length > 0) {
-    const section = document.createElement('div');
-    const formBlock = buildBlock('form', [formBlockData]);
-    formBlock?.classList?.add('has-content', 'grid-7-5', 'old-style');
-    section.prepend(formBlock);
-    main.prepend(section);
-  }
-}
-
 function buildSuccessDownload(main, category) {
   const resourceImgUrl = new URL(getMetadata('og:image'));
   const resourceImgPath = resourceImgUrl.href.replace(resourceImgUrl.origin, '');
@@ -129,17 +85,17 @@ export default async function decorateTemplate(main) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const formSubmit = urlParams.get('formSubmit');
-    if (formSubmit && formSubmit === 'success') {
-      main.innerHTML = '';
-      document.body.classList.add('content-library-success');
-      const category = getMetadata('category');
-      buildSuccessDownload(main, category);
-      buildSuccessMoreTitle(main);
-      buildSuccessMore(main);
-      if (category !== 'videos') {
-        window.onload = downloadPdf();
-      }
-    } else {
-      buildFormBlock(main);
+  if (formSubmit && formSubmit === 'success') {
+    main.innerHTML = '';
+    document.body.classList.add('content-library-success');
+    const category = getMetadata('category');
+    buildSuccessDownload(main, category);
+    buildSuccessMoreTitle(main);
+    buildSuccessMore(main);
+    if (category !== 'videos') {
+      window.onload = downloadPdf();
     }
+  } else {
+    main.querySelector('.form').classList.add('old-style');
+  }
 }

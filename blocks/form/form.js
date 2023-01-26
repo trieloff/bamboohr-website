@@ -577,6 +577,10 @@ export default async function decorate(block) {
             formContainer.innerHTML = mktoForm;
             col.append(formContainer);
             loadFormAndChilipiper(formId, successUrl, chilipiper);
+
+            if (col.querySelector('picture')) {
+              col.querySelector('picture').parentElement.classList.add('form-logos');
+            }
           } else {
             col.classList.add('content-col');
           }
