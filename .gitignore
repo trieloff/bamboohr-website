@@ -6,3 +6,5 @@ node_modules/*
 .cache
 .DS_Store
 helix-importer-ui
+
+.idea/
