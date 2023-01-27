@@ -1,4 +1,31 @@
-import { buildBlock, getMetadata } from './scripts.js';
+import { buildBlock, getMetadata, toClassName } from './scripts.js';
+
+function buildLandingPage(main) {
+  const blockContent = [];
+  blockContent.push(main.querySelector(':scope > div').innerHTML);
+  
+  let partners = getMetadata('partners');
+  let logos = '';
+  if (partners) {
+    partners = [...partners.split(', ')];
+    let partnerLogos = '<img src="/assets/partner-logos/bamboohr.svg" alt="BambooHR logo" />';
+    partners.forEach((partner) => {
+      partnerLogos += `<img src="/assets/partner-logos/${toClassName(partner)}.svg" alt="${partner} logo" />`;
+    });
+    logos = `<p class="form-logos">${partnerLogos}</p>`;
+  }
+
+  const category = getMetadata('category');
+  const formTitle = getMetadata('form-title') || `Download your free ${category.slice(0, -1)}`;
+  const formSubheading = getMetadata('form-subheading') || 'All you need to do is complete the form below.';
+  blockContent.push(`<p><strong>${formTitle}</strong></p><p>${formSubheading}</p>${logos}<p>form</p>`);
+  
+  const section = document.createElement('div');
+  const block = buildBlock('form', [blockContent]);
+  block?.classList?.add('grid-7-5', 'has-content', 'old-style');
+  section.prepend(block);
+  main.innerHTML = section.outerHTML;
+}
 
 function buildSuccessDownload(main, category) {
   const resourceImgUrl = new URL(getMetadata('og:image'));
@@ -96,6 +123,6 @@ export default async function decorateTemplate(main) {
       window.onload = downloadPdf();
     }
   } else {
-    main.querySelector('.form').classList.add('old-style');
+    buildLandingPage(main);
   }
 }

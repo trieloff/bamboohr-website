@@ -398,7 +398,7 @@ main .form .form-col .form-logos {
 	align-content: stretch;
 }
 
-main .form .form-col .form-logos picture {
+main .form .form-col .form-logos img {
   flex: 0 0 auto;
   width: 33.33%;
   max-width: 120px;
