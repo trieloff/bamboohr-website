@@ -191,7 +191,7 @@ export function getMetadata(name) {
   const template = toClassName(getMetadata('template'));
   if (template) {
     const templates = ['bhr-comparison', 'bhr-home', 'ee-solution', 'hr-glossary', 'hr-software-payroll', 'hr-unplugged',
-      'hrvs-listing', 'industry', 'industry-category', 'live-demo-webinars', 'payroll-roi', 'performance-reviews', 'pricing-quote', 'resources-landing-page'];
+      'hrvs-listing', 'industry', 'industry-category', 'live-demo-webinars', 'payroll-roi', 'performance-reviews', 'pricing-quote', 'content-library'];
     if (templates.includes(template)) {
       const cssBase = `${window.hlx.serverPath}${window.hlx.codeBasePath}`;
       loadCSS(`${cssBase}/styles/templates/${template}.css`);
@@ -988,9 +988,21 @@ async function buildAutoBlocks(main) {
   try {
     let template = toClassName(getMetadata('template'));
     if (window.location.pathname.startsWith('/blog/') && !template) template = 'blog';
-    const templates = ['blog', 'integrations-listing'];
+
+    const templates = ['blog', 'integrations-listing', 'content-library'];
     if (templates.includes(template)) {
       const mod = await import(`./${template}.js`);
+      if (mod.default) {
+        await mod.default(main);
+      }
+    }
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const formSubmit = urlParams.get('formSubmit');
+    const successTemplates = ['content-library'];
+    if (successTemplates.includes(template) && formSubmit === 'success') {
+      const mod = await import(`./${template}-success.js`);
       if (mod.default) {
         await mod.default(main);
       }
@@ -1103,6 +1115,8 @@ async function loadEager(doc) {
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
+  loadDelayedOnClick();
+
   const header = doc.querySelector('header');
   const queryParams = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
@@ -1129,6 +1143,19 @@ async function loadLazy(doc) {
   }
 }
 
+function loadDelayedOnClick() {
+  document.body.addEventListener('click', handleLoadDelayed);
+}
+
+async function handleLoadDelayed() {
+  if (!window.hlx.delayedJSLoaded) {
+    window.hlx.delayedJSLoaded = true;
+    await import('./delayed.js');
+
+    document.body.removeEventListener('click', handleLoadDelayed);
+  }
+}
+
 /**
  * loads everything that happens a lot later, without impacting
  * the user experience.
@@ -1145,10 +1172,10 @@ function loadDelayed() {
 
 	if(isOnTestPath){
 		//import without delay (for testing page performance)
-		import('./delayed.js');
+		handleLoadDelayed();
 	}else{
 		// eslint-disable-next-line import/no-cycle
-		if (!window.hlx.performance) window.setTimeout(() => import('./delayed.js'), 4000);
+		if (!window.hlx.performance) window.setTimeout(() => handleLoadDelayed(), 4000);
 		// load anything that can be postponed to the latest here
 	}  
 }

@@ -7,10 +7,6 @@ main .form .hidden {
   display: none;
 }
 
-main .form h1 {
-  margin: 60px 0 90px;
-}
-
 main .form form {
   text-align: left;
 }
@@ -337,6 +333,7 @@ main .form .bhrForm__partnerDisclaimer a {
 main .form .form-col p {
   margin: 0;
   color: var(--color-gray-8);
+  text-align: center;
 }
 
 main .form .form-col p strong {
@@ -352,14 +349,12 @@ main .form .form-col p strong {
 main .form.has-content .content-col img {
   border-radius: 10px;
   box-shadow: var(--box-shadow-2);
-  margin: 60px auto;
   width: 100%;
 }
 
 main .form.has-content .form-col {
   max-width: 83.33%;
   margin: 0 auto;
-  z-index: 5;
 }
 
 main .form.white-container .form-col {
@@ -393,6 +388,20 @@ main .form.white-container .form-col {
   main .form.has-content.grid-7-5 .form-col {
     grid-column: span 5;
   }
+}
+
+main .form .form-col .form-logos {
+  display: flex;
+	flex: row wrap;
+	justify-content: center;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+main .form .form-col .form-logos picture {
+  flex: 0 0 auto;
+  width: 33.33%;
+  max-width: 120px;
 }
 
 /* old-style, remove once we don't need */
