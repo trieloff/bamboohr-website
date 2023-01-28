@@ -363,6 +363,21 @@ export function readBlockConfig(block) {
  * @param {Element} $section The section element
  */
 export function decorateBackgrounds($section) {
+  const missingBgs = ['bg-bottom-cap-3-tint-laptop', 'bg-bottom-cap-3-tint-mobile', 'bg-bottom-cap-3-tint-tablet',
+    'bg-top-cap-3-laptop', 'bg-top-cap-3-mobile', 'bg-top-cap-3-tablet', 'bg-top-multi-7', 'bg-bottom-multi-3',
+    'bg-center-multi-3', 'bg-block-center-page-cta', 'bg-block-benefits-laptop', 'bg-block-benefits-tablet',
+    'bg-block-benefits-mobile', 'bg-block-center-left-single-1-laptop', 'bg-block-center-left-single-1-tablet',
+    'bg-block-center-left-single-1-mobile', 'bg-block-center-left-single-2-laptop', 'bg-block-center-left-single-2-tablet',
+    'bg-block-center-left-single-2-mobile', 'bg-block-center-right-double-1-laptop', 'bg-block-center-right-double-1-tablet',
+    'bg-block-center-right-single-3-laptop', 'bg-block-center-right-single-3-tablet', 'bg-block-center-right-single-3-mobile',
+    'bg-block-ee-solutions-quote-laptop', 'bg-block-ee-solutions-quote-tablet', 'bg-block-ee-solutions-quote-mobile',
+    'bg-bottom-cap-1-laptop', 'bg-bottom-cap-1-tablet', 'bg-bottom-cap-1-mobile', 'bg-bottom-cap-2-laptop', 'bg-bottom-cap-2-tablet',
+    'bg-bottom-cap-2-mobile', 'bg-bottom-cap-3-laptop', 'bg-bottom-cap-3-tablet', 'bg-bottom-cap-3-mobile',
+    'bg-cover-green-patterns-laptop', 'bg-cover-green-patterns-tablet', 'bg-cover-green-patterns-mobile', 'bg-left-single-1-laptop',
+    'bg-left-single-1-tablet', 'bg-left-single-1-mobile', 'bg-left-single-2-tablet', 'bg-left-single-2-mobile', 'bg-right-multi-2-mobile',
+    'bg-top-cap-1-laptop', 'bg-top-cap-1-tablet', 'bg-top-cap-1-mobile', 'bg-top-cap-2-laptop', 'bg-top-cap-2-tablet',
+    'bg-top-cap-2-mobile', 'bg-top-multi-7-tint-10', 'bg-top-multi-7-tint-15', 'bg-top-multi-11-laptop', 'bg-top-multi-11-tablet',
+    'bg-top-multi-11-mobile'];
   const sectionKey = [...$section.parentElement.children].indexOf($section);
   [...$section.classList]
     .filter((filter) => filter.match(/^bg-/g))
@@ -380,36 +395,38 @@ export function decorateBackgrounds($section) {
 
           if (size) name += `-${size}`;
 
-          fetch(`${fetchBase}${window.hlx.codeBasePath}/styles/backgrounds/${name}.svg`).then(
-            (resp) => {
-              // skip if not success
-              if (resp.status !== 200) return;
-
-              // put the svg in the span
-              resp.text().then((output) => {
-                const element = document.createElement('div');
-                let html = output;
-
-                // get IDs
-                const matches = html.matchAll(/id="([^"]+)"/g);
-                // replace IDs
-                [...matches].forEach(([, match], matchKey) => {
-                  html = html.replaceAll(
-                    match,
-                    `bg-id-${sectionKey}-${bgKey}-${sizeKey}-${matchKey}`
-                  );
+          if (!missingBgs.includes(name)) {
+            fetch(`${fetchBase}${window.hlx.codeBasePath}/styles/backgrounds/${name}.svg`).then(
+              (resp) => {
+                // skip if not success
+                if (resp.status !== 200) return;
+  
+                // put the svg in the span
+                resp.text().then((output) => {
+                  const element = document.createElement('div');
+                  let html = output;
+  
+                  // get IDs
+                  const matches = html.matchAll(/id="([^"]+)"/g);
+                  // replace IDs
+                  [...matches].forEach(([, match], matchKey) => {
+                    html = html.replaceAll(
+                      match,
+                      `bg-id-${sectionKey}-${bgKey}-${sizeKey}-${matchKey}`
+                    );
+                  });
+  
+                  element.innerHTML = html;
+                  const svg = element.firstChild;
+  
+                  svg.classList.add(size || 'desktop');
+  
+                  background.append(svg);
+                  $section.classList.add('has-bg');
                 });
-
-                element.innerHTML = html;
-                const svg = element.firstChild;
-
-                svg.classList.add(size || 'desktop');
-
-                background.append(svg);
-                $section.classList.add('has-bg');
-              });
-            }
-          );
+              }
+            );
+          }
         });
       }
       if (style.startsWith('bg-gradient') || style.startsWith('bg-solid')) {
