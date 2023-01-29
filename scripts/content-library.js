@@ -122,7 +122,7 @@ export default async function decorateTemplate(main) {
     if (category !== 'videos') {
       window.onload = downloadPdf();
     }
-  } else {
+  } else if (category !== 'courses') {
     buildLandingPage(main);
   }
 }
