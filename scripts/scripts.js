@@ -1089,6 +1089,8 @@ async function loadLazy(doc) {
     import('../tools/preview/experimentation-preview.js');
   }
   sampleRUM('lazy');
+  sampleRUM.convert(document.querySelectorAll('a[href^="https://www.bamboohr.com/signup"]'), 'signup');
+  sampleRUM.convert(document.querySelectorAll('a[href^="https://www.bamboohr.com/pl-pages/demo-request/"]'), 'demo-request');
 }
 
 function loadDelayedOnClick() {
