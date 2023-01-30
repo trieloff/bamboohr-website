@@ -130,7 +130,7 @@ loadScript('header', adobeTagsSrc, async () => {
   });
 });
 
-loadScript('header', 'https://www.googleoptimize.com/optimize.js?id=OPT-PXL7MPD', null, 'text/javascript');
+loadScript('header', 'https://www.googleoptimize.com/optimize.js?id=OPT-PXL7MPD', null);
 
 /* google tag manager */
 // eslint-disable-next-line
