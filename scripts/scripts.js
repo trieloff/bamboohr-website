@@ -696,7 +696,7 @@ initHlx();
  */
 
 const LCP_BLOCKS = ['hero', 'featured-articles']; // add your LCP blocks to the list
-const RUM_GENERATION = 'project-1'; // add your RUM generation information here
+const window.hlx.RUM_GENERATION = 'bamboo-rum-bp-1'; // add your RUM generation information here
 
 sampleRUM('top');
 
