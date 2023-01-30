@@ -31,6 +31,7 @@ export function sampleRUM(checkpoint, data = {}) {
   sampleRUM.on = (chkpnt, fn) => { sampleRUM.cases[chkpnt] = fn; };
   defer('observe');
   defer('cwv');
+  defer('convert');
   try {
     window.hlx = window.hlx || {};
     if (!window.hlx.rum) {
