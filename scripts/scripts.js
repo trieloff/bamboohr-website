@@ -1180,6 +1180,7 @@ async function handleLoadDelayed() {
 function loadDelayed() {
 
 	const testPaths = [
+    '/',
 		'/resources/hr-glossary/performance-review',
 		'/resources/hr-glossary/',
 		'/hr-solutions/industry/construction',
