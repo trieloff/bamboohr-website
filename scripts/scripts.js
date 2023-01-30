@@ -1308,11 +1308,11 @@ sampleRUM.drain('convert', (elements, cevent, cvalue) => {
           // send conversion event for each experiment that has been seen by this visitor
           sampleRUM('variant', { source: experiment, target: treatment });
         });
+      // send conversion event
+      sampleRUM('convert', { source: cevent, target: cvalue });
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('error reading experiments', e);
     }
-    // send conversion event
-    sampleRUM('convert', { source: cevent, target: cvalue });
   }
 });
