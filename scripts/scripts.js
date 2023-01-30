@@ -887,7 +887,7 @@ export async function lookupPages(pathnames, collection, sheet = '') {
   return result;
 }
 
-export function loadHeader(header) {
+export async function loadHeader(header) {
   const queryParams = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
   });
@@ -896,7 +896,7 @@ export function loadHeader(header) {
   const headerBlock = buildBlock(headerblockName, '');
   header.append(headerBlock);
   decorateBlock(headerBlock);
-  loadBlock(headerBlock);
+  await loadBlock(headerBlock);
 }
 
 function loadFooter(footer) {
@@ -1078,7 +1078,7 @@ async function loadLazy(doc) {
   const element = hash ? main.querySelector(hash) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(header);
+  const headerloaded = loadHeader(header);
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
@@ -1089,8 +1089,10 @@ async function loadLazy(doc) {
     import('../tools/preview/experimentation-preview.js');
   }
   sampleRUM('lazy');
+  await headerloaded;
   sampleRUM.convert(document.querySelectorAll('a[href^="https://www.bamboohr.com/signup"]'), 'signup');
   sampleRUM.convert(document.querySelectorAll('a[href^="https://www.bamboohr.com/pl-pages/demo-request/"]'), 'demo-request');
+  sampleRUM.convert(document.querySelectorAll('a[data-modal="#pricing-modal"]'), 'pricing-quote');
 }
 
 function loadDelayedOnClick() {
