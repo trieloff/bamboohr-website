@@ -1276,3 +1276,43 @@ if (params.get('performance')) {
     if (mod.default) mod.default();
   });
 }
+
+/**
+ * Registers the 'convert' function to `sampleRUM` which sends
+ * variant and convert events upon conversion.
+ */
+sampleRUM.drain('convert', (elements, cevent, cvalue) => {
+  // if elements is an array or nodelist, register a conversion event for each element
+  if (Array.isArray(elements) || elements instanceof NodeList) {
+    elements.forEach((element) => {
+      // if the element is a form, register a submit event
+      if (element.tagName === 'FORM') {
+        element.addEventListener('submit', () => {
+          sampleRUM.convert(element, cevent, cvalue);
+        });
+      } else {
+        element.addEventListener('click', () => {
+          sampleRUM.convert(element, cevent, cvalue);
+        });
+      }
+    });
+  } else {
+    const MAX_SESSION_LENGTH = 1000 * 60 * 60 * 24 * 30; // 30 days
+    try {
+      // get all stored experiments from local storage (unified-decisioning-experiments)
+      const experiments = JSON.parse(localStorage.getItem('unified-decisioning-experiments'));
+      Object.entries(experiments)
+        .map(([experiment, { treatment, date }]) => ({ experiment, treatment, date }))
+        .filter(({ date }) => Date.now() - date < MAX_SESSION_LENGTH)
+        .forEach(({ experiment, treatment }) => {
+          // send conversion event for each experiment that has been seen by this visitor
+          sampleRUM('variant', { source: experiment, target: treatment });
+        });
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log('error reading experiments', e);
+    }
+    // send conversion event
+    sampleRUM('convert', { source: cevent, target: cvalue });
+  }
+});
