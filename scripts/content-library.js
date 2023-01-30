@@ -4,7 +4,7 @@ function buildLandingPage(main) {
   const blockContent = [];
   blockContent.push(main.querySelector(':scope > div').innerHTML);
   
-  let partners = getMetadata('partners');
+  let partners = getMetadata('partner');
   let logos = '';
   if (partners) {
     partners = [...partners.split(', ')];
