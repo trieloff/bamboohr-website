@@ -7,7 +7,7 @@
     box-shadow: var(--box-shadow-2);
     background-color: white;
 }
-.resource-card-image {
+.resource-card-image picture img {
     width: 100%;
 	border-radius: 15px;
 }
@@ -54,7 +54,7 @@ h1#content-library {
         flex-wrap: wrap;
         align-content: space-between;
     }
-    .resource-card-image {
+    .resource-card-image picture img {
         border-radius: 15px 15px 0 0;
     } 
 }

@@ -1,6 +1,7 @@
 import {
     lookupPages,
     readBlockConfig,
+    createOptimizedPicture,
   } from '../../scripts/scripts.js';
 
 import { sortOptions } from '../app-cards/app-cards.js';
@@ -9,8 +10,9 @@ export function createResourceCard(app, prefix) {
     const card = document.createElement('div');
     card.className = `${prefix}-card`;
     const cardLinkText = app.formSubmitText ? app.formSubmitText : 'Free Download';
+    const picture = createOptimizedPicture(app.image, app.title, false, [{ width: 750 }]).outerHTML;
 
-    card.innerHTML = `<a href="${app.path}"><img class="${prefix}-card-image" alt="${app.title}" src="${app.image}"></a><div class="${prefix}-card-copy-container"><p>${app.description}</p><a href="${app.path}" class="${prefix}-card-link">${cardLinkText}</a></div>`;
+    card.innerHTML = `<a href="${app.path}"><div class="${prefix}-card-image">${picture}</div></a><div class="${prefix}-card-copy-container"><p>${app.description}</p><a href="${app.path}" class="${prefix}-card-link">${cardLinkText}</a></div>`;
     return (card);
 }
   
