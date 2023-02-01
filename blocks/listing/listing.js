@@ -225,7 +225,7 @@ export default async function decorate(block, blockName) {
 
   let listingGroupsElem = null;
   let listingMiddleCtaElem = null;
-  let currentSelected = null;
+  let currentHRVSSelected = null;
   const displayHRVSResults = async (results) => {
     if (listingGroupsElem) {
       // Nth time through initialization. Doesn't need to be done first time.
@@ -239,7 +239,7 @@ export default async function decorate(block, blockName) {
         g.catGroupElem = null;
         g.catGroupResultsElm = null;
       });
-      currentSelected = getSelectedFilters();
+      currentHRVSSelected = getSelectedFilters();
     }
     results.forEach((product) => {
       if (!listingGroupsElem) {
@@ -258,9 +258,9 @@ export default async function decorate(block, blockName) {
         // Create group element
         groupElem = document.createElement('div');
         groupElem.className = 'listing-group';
-        if (currentSelected?.length > 0) {
+        if (currentHRVSSelected?.length > 0) {
           // Nth time through need to keep filter state
-          const isSelected = currentSelected.find(checked => checked.value === group.category);
+          const isSelected = currentHRVSSelected.find(checked => checked.value === group.category);
           if (!isSelected) groupElem.classList.add('listing-group-hidden');
         }
         listingGroupsElem.append(groupElem);
@@ -537,7 +537,7 @@ export default async function decorate(block, blockName) {
               if (input.checked) input.parentElement.classList.add('selected');
               else input.parentElement.classList.remove('selected');
 
-              currentSelected = getSelectedFilters();
+              const currentSelected = getSelectedFilters();
 
               // Show/hide groups based on current filter state
               hrvsCategoryGroups.forEach(g => {
@@ -546,11 +546,9 @@ export default async function decorate(block, blockName) {
                   if (g.catGroupElem?.classList.contains('listing-group-hidden')) {
                     g.catGroupElem.classList.remove('listing-group-hidden');
                   }
-                } else {
-                  // eslint-disable-next-line no-lonely-if
-                  if (g.catGroupElem && !g.catGroupElem.classList.contains('listing-group-hidden')) {
-                    g.catGroupElem.classList.add('listing-group-hidden');
-                  }
+                } else if (g.catGroupElem &&
+                           !g.catGroupElem.classList.contains('listing-group-hidden')) {
+                  g.catGroupElem.classList.add('listing-group-hidden');
                 }
               });
 
