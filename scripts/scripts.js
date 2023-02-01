@@ -1014,17 +1014,6 @@ async function buildAutoBlocks(main) {
       }
     }
 
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const formSubmit = urlParams.get('formSubmit');
-    const successTemplates = ['content-library'];
-    if (successTemplates.includes(template) && formSubmit === 'success') {
-      const mod = await import(`./${template}-success.js`);
-      if (mod.default) {
-        await mod.default(main);
-      }
-    }
-
     if (
       template === 'job-description' ||
       template === 'resources-guides' ||
