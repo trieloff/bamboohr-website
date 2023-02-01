@@ -537,7 +537,7 @@ export default async function decorate(block, blockName) {
               if (input.checked) input.parentElement.classList.add('selected');
               else input.parentElement.classList.remove('selected');
 
-              const currentSelected = getSelectedFilters();
+              currentSelected = getSelectedFilters();
 
               // Show/hide groups based on current filter state
               hrvsCategoryGroups.forEach(g => {
@@ -547,6 +547,7 @@ export default async function decorate(block, blockName) {
                     g.catGroupElem.classList.remove('listing-group-hidden');
                   }
                 } else {
+                  // eslint-disable-next-line no-lonely-if
                   if (g.catGroupElem && !g.catGroupElem.classList.contains('listing-group-hidden')) {
                     g.catGroupElem.classList.add('listing-group-hidden');
                   }
