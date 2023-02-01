@@ -341,7 +341,7 @@ export default async function decorate(block, blockName) {
           loadMore.remove();
           group.limit = false;
           
-          const listings = window.pageIndex['hrvs'];
+          const listings = window.pageIndex.hrvs;
           const loadMoreGroupResults = listings.data.filter(row => row.category === group.category);
           loadMoreGroupResults.sort(sortOptions('hrvsCategory'));
 
@@ -386,6 +386,7 @@ export default async function decorate(block, blockName) {
       locationRestrictions: {},
     };
     const results = await filterResults(theme, filterConfig, facets);
+    // eslint-disable-next-line no-nested-ternary
     const sortBy = document.getElementById('listing-sortby')
       ? document.getElementById('listing-sortby').dataset.sort
       : (theme === 'hrvs') ? 'hrvsCategory' : 'level';
@@ -500,6 +501,7 @@ export default async function decorate(block, blockName) {
       const filterValues = filter ? filter.split(',').map((t) => t.trim()) : [];
       const facetValues = Object.keys(facets[facetKey]);
       if (theme === 'hrvs' && facetKey === 'category') {
+        // eslint-disable-next-line no-nested-ternary
         facetValues.sort((a, b) => a.toLowerCase() === 'keynote' ? -1
                                     : b.toLowerCase() === 'keynote' ? 1
                                     : a.localeCompare(b));
