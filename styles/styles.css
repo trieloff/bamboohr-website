@@ -1318,11 +1318,11 @@ table td {
 }
 
 table thead {
-  background-color: var(--color-1);
+  background-color: var(--theme-tint5);
 }
 
 table thead th {
-  border-color: var(--color-1);
+  border-color: var(--theme-tint5);
 }
 
 table tbody th {

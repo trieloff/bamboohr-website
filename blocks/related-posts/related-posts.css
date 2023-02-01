@@ -13,6 +13,13 @@ main .section > .related-posts-wrapper {
   margin-top: 100px;
 }
 
+main .section > .related-posts-wrapper.no-background {
+  background-color: unset;
+  background-image: none;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 main .section > .related-posts-wrapper::before {
   content: 'You might also like...';
   display: block;
