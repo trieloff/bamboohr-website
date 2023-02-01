@@ -41,7 +41,7 @@ function createHRVSCard(article, classPrefix, eager = false) {
 function getBlockHTML(ph, theme) {
   const defaultSortText = (theme === 'hrvs') ? ph.category : ph.default;
   const defaultSortProp = (theme === 'hrvs') ? 'hrvsCategory' : 'level';
-  const sortOptions = (theme === 'hrvs')
+  const pageSortOptions = (theme === 'hrvs')
     ? `<li data-sort="hrvsCategory">${ph.category}</li>
       <li data-sort="startTime">${ph.startTime}</li>
       <li data-sort="presenter">${ph.presenter}</li>
@@ -57,7 +57,7 @@ function getBlockHTML(ph, theme) {
     <div class="listing-filter-button">${ph.filter}</div>
     <p class="listing-sort-button">${ph.sortBy} <span data-sort="${defaultSortProp}" id="listing-sortby">${defaultSortText}</span></p>
     <ul>
-      ${sortOptions}
+      ${pageSortOptions}
     </ul>
   </div>
   </div>
@@ -173,7 +173,7 @@ export default async function decorate(block, blockName) {
   const themeOverrides = [...block.classList].filter((filter) => filter.startsWith('theme-'));
   const firstHyphenIdx = themeOverrides[0] ? themeOverrides[0].indexOf('-') + 1 : 0;
   const themeOverride = themeOverrides[0] ? themeOverrides[0].substring(firstHyphenIdx) : '';
-  const theme = themeOverride ? themeOverride : getMetadata('theme');
+  const theme = themeOverride || getMetadata('theme');
   const ph = await fetchPlaceholders('/integrations');
 
   const addEventListeners = (elements, event, callback) => {
@@ -298,9 +298,7 @@ export default async function decorate(block, blockName) {
         }
 
         if (ctaBlockInfo) {
-          const groupCnt = hrvsCategoryGroups.reduce((cnt, g) => {
-            return g.catGroupElem ? cnt + 1 : cnt;
-          }, 0);
+          const groupCnt = hrvsCategoryGroups.reduce((cnt, g) => g.catGroupElem ? cnt + 1 : cnt, 0);
   
           if (groupCnt === 2 && !listingMiddleCtaElem) {
             listingMiddleCtaElem = ctaBlockInfo.firstElementChild;
