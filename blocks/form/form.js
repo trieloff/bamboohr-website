@@ -1,4 +1,4 @@
-import { readBlockConfig } from '../../scripts/scripts.js';
+import { readBlockConfig, getMetadata } from '../../scripts/scripts.js';
 
 const loadScript = (url, callback, type) => {
   const head = document.querySelector('head');
@@ -490,11 +490,17 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
     window.MktoForms2.whenReady((form) => {
       if (form.getId().toString() === formId) {
         mktoFormReset(form);
+        const formEl = form.getFormElem()[0];
 
         /* Adobe Form Start event tracking when user click into the first field */
         form.getFormElem()[0].firstElementChild.addEventListener('click', () => {
           window.setTimeout(() => adobeEventTracking('Form Start', form.getId()), 4000);
         });
+
+        const formSubmitText = getMetadata('form-submit-text');
+        if (formSubmitText) {
+          formEl.querySelector('.mktoButton').textContent = formSubmitText;
+        }
 
         form.onSuccess(() => {
           /* GA events tracking */
@@ -577,10 +583,6 @@ export default async function decorate(block) {
             formContainer.innerHTML = mktoForm;
             col.append(formContainer);
             loadFormAndChilipiper(formId, successUrl, chilipiper);
-
-            if (col.querySelector('picture')) {
-              col.querySelector('picture').parentElement.classList.add('form-logos');
-            }
           } else {
             col.classList.add('content-col');
           }
