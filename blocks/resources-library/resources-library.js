@@ -16,7 +16,7 @@ export function createResourceCard(app, prefix) {
     return (card);
 }
   
-  export async function filterTerms(config, block) {
+  export async function decorateResourceFeed(config, block) {
   
     await lookupPages([], 'resources');
     const index = window.pageIndex.resources;
@@ -72,7 +72,7 @@ export function createResourceCard(app, prefix) {
   
   export default async function decorate(block) {
     const config = readBlockConfig(block);
-    filterTerms(config, block);
     block.innerHTML = '';
+    await decorateResourceFeed(config, block);
   }
   
