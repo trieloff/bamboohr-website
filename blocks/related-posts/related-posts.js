@@ -18,4 +18,11 @@ export default async function decorate(block) {
   articles.forEach((article) => {
     block.append(createBlogCard(article, 'related-posts'));
   });
+
+  const relatedPostsWrapper = document.querySelectorAll('.related-posts-wrapper');
+  relatedPostsWrapper.forEach((relatedPost) => {
+    if (relatedPost.querySelector('.no-background')) {
+      relatedPost.classList.add('no-background');
+    }
+  });
 }
