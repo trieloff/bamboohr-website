@@ -9,6 +9,7 @@
 }
 .resource-card-image picture img {
     width: 100%;
+    max-width: 600px;
 	border-radius: 15px;
 }
 .resource-card-copy-container {
@@ -56,5 +57,6 @@ h1#content-library {
     }
     .resource-card-image picture img {
         border-radius: 15px 15px 0 0;
+        max-width: 500px;
     } 
 }
