@@ -284,8 +284,8 @@ indices:
           select: head > meta[name="category"]
           value: |
             attribute(el, 'content')
-        date:
-          select: head > meta[name="date"]
+        eventDate:
+          select: head > meta[name="event-date"]
           value: |
             attribute(el, 'content')
         robots:
