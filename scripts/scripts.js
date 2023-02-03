@@ -714,13 +714,6 @@ window.addEventListener('error', (event) => {
 
 window.addEventListener('load', () => sampleRUM('load'));
 
-document.addEventListener('click', (event) => {
-  sampleRUM('click', {
-    target: sampleRUM.targetselector(event.target),
-    source: sampleRUM.sourceselector(event.target),
-  });
-});
-
 if (!window.hlx.suppressLoadPage) loadPage(document);
 
 export function formatDate(dateString) {
