@@ -53,8 +53,10 @@ export function sortOptions(sortBy) {
     name: (a, b) => a.title.localeCompare(b.title),
     level: (a, b) => levels.indexOf(toClassName(b.level)) - levels.indexOf(toClassName(a.level))
                       || a.title.localeCompare(b.title),
+    // eslint-disable-next-line no-nested-ternary
     hrvsCategory: (a, b) => a.category === b.category 
                               ? b.date.localeCompare(a.date)
+                              // eslint-disable-next-line no-nested-ternary
                               : a.category.toLowerCase() === 'keynote' ? -1
                               : b.category.toLowerCase() === 'keynote' ? 1
                               : a.category.localeCompare(b.category),
@@ -68,8 +70,10 @@ export function sortOptions(sortBy) {
     title: (a, b) => a.title.localeCompare(b.title),
     term: (a, b) => a.term.localeCompare(b.term),
     block: (a, b) => a.block.localeCompare(b.block),
+    // eslint-disable-next-line no-nested-ternary
     group: (a, b) => a.group && b.group
                       ? a.group.localeCompare(b.group) || a.block.localeCompare(b.block)
+                      // eslint-disable-next-line no-nested-ternary
                       : a.group ? a.group.localeCompare(b.block)
                       : b.group ? a.block.localeCompare(b.group)
                       : a.block.localeCompare(b.block),

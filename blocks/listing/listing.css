@@ -462,7 +462,7 @@ main .listing-results .hrvs-card-body a {
     line-height: 20px;
 }
 
-main .listing-results .hrvs-card-body a:after {
+main .listing-results .hrvs-card-body a::after {
     background-color: currentcolor;
     content: '';
     display: inline-block;

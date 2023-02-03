@@ -255,8 +255,7 @@ main .block-listing-sortby ul.visible {
 
 main .block-listing-results {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
     font-size: 17px;
     list-style: none;
     margin: 0;

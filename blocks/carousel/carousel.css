@@ -325,9 +325,9 @@ main .carousel.style-2 {
     flex-direction: column;
     overflow: visible;
   }
+
   main .carousel.style-4 {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     justify-content: center;
   }
 }
@@ -343,9 +343,7 @@ main .carousel.style-2 > div {
     flex-direction: row-reverse;
     gap: 9.5rem;
   }
-  main .carousel.style-2 > div {
-    flex-direction: row-reverse;
-  }
+
   main .carousel.row-4 > div {
     width: 25%;
   }
