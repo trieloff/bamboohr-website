@@ -1315,4 +1315,11 @@ sampleRUM.drain('convert', (elements, cevent, cvalue) => {
   }
 });
 
-sampleRUM.always.on('convert', ({ source, target }) => console.log('someone converted', source, target));
+sampleRUM.always.on('convert', ({ source, target }) => window.adobeDataLayer && window.adobeDataLayer.push({
+  // TODO: this is just me guessing what the event should be called, same for the payload
+  event: 'Conversion',
+  conversion: {
+    thingClickedOn: source,
+    valueOfAClick: target,
+  }
+}));
