@@ -1301,7 +1301,7 @@ sampleRUM.drain('convert', (elements, cevent, cvalue) => {
       const experiments = JSON.parse(localStorage.getItem('unified-decisioning-experiments'));
       Object.entries(experiments)
         .map(([experiment, { treatment, date }]) => ({ experiment, treatment, date }))
-        .filter(({ date }) => Date.now() - date < MAX_SESSION_LENGTH)
+        .filter(({ date }) => Date.now() - new Date(date) < MAX_SESSION_LENGTH)
         .forEach(({ experiment, treatment }) => {
           // send conversion event for each experiment that has been seen by this visitor
           sampleRUM('variant', { source: experiment, target: treatment });
