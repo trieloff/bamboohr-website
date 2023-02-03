@@ -940,17 +940,6 @@ async function buildAutoBlocks(main) {
       }
     }
 
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const formSubmit = urlParams.get('formSubmit');
-    const successTemplates = ['content-library'];
-    if (successTemplates.includes(template) && formSubmit === 'success') {
-      const mod = await import(`./${template}-success.js`);
-      if (mod.default) {
-        await mod.default(main);
-      }
-    }
-
     if (
       template === 'job-description' ||
       template === 'resources-guides' ||
@@ -1058,6 +1047,7 @@ async function loadEager(doc) {
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
+  // eslint-disable-next-line no-use-before-define
   loadDelayedOnClick();
 
   const header = doc.querySelector('header');
@@ -1092,12 +1082,14 @@ async function loadLazy(doc) {
 }
 
 function loadDelayedOnClick() {
+  // eslint-disable-next-line no-use-before-define
   document.body.addEventListener('click', handleLoadDelayed);
 }
 
 async function handleLoadDelayed() {
   if (!window.hlx.delayedJSLoaded) {
     window.hlx.delayedJSLoaded = true;
+    // eslint-disable-next-line import/no-cycle
     await import('./delayed.js');
 
     document.body.removeEventListener('click', handleLoadDelayed);
@@ -1111,6 +1103,7 @@ async function handleLoadDelayed() {
 function loadDelayed() {
 
 	const testPaths = [
+    '/',
 		'/resources/hr-glossary/performance-review',
 		'/resources/hr-glossary/',
 		'/hr-solutions/industry/construction',
@@ -1119,10 +1112,10 @@ function loadDelayed() {
 	const isOnTestPath = testPaths.includes(window.location.pathname);
 
 	if(isOnTestPath){
-		//import without delay (for testing page performance)
+		// import without delay (for testing page performance)
 		handleLoadDelayed();
 	}else{
-		// eslint-disable-next-line import/no-cycle
+		// eslint-disable-next-line import/no-cycle, no-lonely-if
 		if (!window.hlx.performance) window.setTimeout(() => handleLoadDelayed(), 4000);
 		// load anything that can be postponed to the latest here
 	}  

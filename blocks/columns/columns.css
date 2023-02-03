@@ -31,7 +31,7 @@
   background-image: unset;
 }
 
-.columns .column-small-icons-container.column-multi-element a:not(.column-svg-link):after {
+.columns .column-small-icons-container.column-multi-element a:not(.column-svg-link)::after {
   background-color: currentcolor;
   content: '';
   display: inline-block;

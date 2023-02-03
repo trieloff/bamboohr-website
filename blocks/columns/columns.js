@@ -12,7 +12,7 @@ function addBreakpointImages(col, block) {
       const imagePath = imagePathFull.substr(0, imagePathFull.indexOf('?'));
 
       images[imgSizes[imgsFoundCnt]] = imagePath;
-      imgsFoundCnt++;
+      imgsFoundCnt += 1;
 
       if (pic.parentElement.tagName === 'P') pic.parentElement.remove();
       else pic.remove();
@@ -78,20 +78,20 @@ function addIconContainer(col) {
 }
 
 function hasOnlyWistiaChildren(colChildren) {
-  let hasOnlyWistiaChildren = false;
+  let hasWistiaChildrenOnly = false;
   // Assumption: wistia block content is thumbnail (picture) + wistia link or just wistia link 
-  if (colChildren?.length == 2 &&
+  if (colChildren?.length === 2 &&
       colChildren[0].firstElementChild?.tagName === 'PICTURE' &&
       colChildren[1].firstElementChild?.tagName === 'A' &&
       colChildren[1].firstElementChild?.href?.includes('wistia')) {
-    hasOnlyWistiaChildren = true;
-  } else if (colChildren?.length == 1 && 
+      hasWistiaChildrenOnly = true;
+  } else if (colChildren?.length === 1 && 
             colChildren[0].tagName === 'A' &&
             colChildren[0].href?.includes('wistia')) {
-    hasOnlyWistiaChildren = true;
+      hasWistiaChildrenOnly = true;
   }
 
-  return hasOnlyWistiaChildren;
+  return hasWistiaChildrenOnly;
 }
 
 function addWistia(col, loadWistiaCSS) {
@@ -115,7 +115,6 @@ function addWistia(col, loadWistiaCSS) {
     // load css
     const cssBase = `${window.hlx.serverPath}${window.hlx.codeBasePath}`;
     loadCSS(`${cssBase}/blocks/wistia/wistia.css`, null);
-    loadWistiaCSS = false;
   }
 
   col.classList.add('img-col');
@@ -162,6 +161,7 @@ function setupColumns(cols, splitVals, block, needToLoadWistiaCSS) {
       colsToRemove.push(col);
     } else if (col.querySelector('a')?.href?.includes('wistia')) {
       addWistia(col, loadWistiaCSS);
+      loadWistiaCSS = false;
       hasImage = true;
       hasWistia = true;
     } else if (col.querySelector('img')) {
