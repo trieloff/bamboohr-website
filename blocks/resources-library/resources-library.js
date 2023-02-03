@@ -27,8 +27,7 @@ export function createResourceCard(app, prefix) {
     block.append(resourceLibraryContainer);
 
     index.data.forEach((resourceCard) => {
-      if (resourceCard.title != '') {
-        const title = resourceCard.title;
+      if (resourceCard.title !== '') {
         const category = resourceCard.category;
         resourceCard.groupCategory = category;
       }
@@ -48,7 +47,7 @@ export function createResourceCard(app, prefix) {
     const resourceGroups = Object.entries(resourcesGroupedByCategories);
 
     resourceGroups.forEach((resourceGroup) => {
-      if (resourceGroup[0] != 'undefined') {
+      if (resourceGroup[0] !== 'undefined') {
         const resourceGroupContainer = document.createElement('div');
         resourceGroupContainer.className = 'resource-group-container';
         resourceLibraryContainer.append(resourceGroupContainer);
@@ -61,7 +60,7 @@ export function createResourceCard(app, prefix) {
 
         resourceGroup[1].forEach((resourceGroupItem) => {
             const cardContainer = document.createElement('ul');
-            if (resourceGroupItem.image != '') {
+            if (resourceGroupItem.image !== '') {
               cardContainer.append(createResourceCard(resourceGroupItem, 'resource'));
               resourceGroupContainer.append(cardContainer);
             }
