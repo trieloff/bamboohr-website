@@ -1314,3 +1314,5 @@ sampleRUM.drain('convert', (elements, cevent, cvalue) => {
     }
   }
 });
+
+sampleRUM.always.on('convert', ({ source, target }) => console.log('someone converted', source, target));
