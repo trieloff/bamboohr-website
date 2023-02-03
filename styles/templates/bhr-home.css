@@ -76,6 +76,10 @@
     color: var(--color-white);
 }
 
+.bhr-home .columns.stacked-spacing > div > div:last-of-type {
+    margin-top: 50px;
+}
+
 .bhr-home main .quote.full {
     color: var(--theme-shade10);
 }
@@ -209,7 +213,7 @@
     line-height: 44px;
 }
 
-@media (min-width: 361px) {
+@media (min-width: 319px) {
     .bhr-home main .section:first-of-type {
         padding-bottom: 1500px;
     }
@@ -219,7 +223,7 @@
     }
 }
 
-@media (min-width: 388px) {
+@media (min-width: 340px) {
     .bhr-home main .section:first-of-type {
         padding-bottom: 1450px;
     }
@@ -229,7 +233,7 @@
     }
 }
 
-@media (min-width: 390px) {
+@media (min-width: 398px) {
     .bhr-home main .section:first-of-type {
         padding-bottom: 1400px;
     }
@@ -338,6 +342,7 @@
     
     .bhr-home .columns > div > div:last-of-type {
         margin-right: unset;
+        margin-top: unset;
     }
 
     .bhr-home .image.bg-home-bottom picture {
