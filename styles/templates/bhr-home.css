@@ -342,6 +342,9 @@
     
     .bhr-home .columns > div > div:last-of-type {
         margin-right: unset;
+    }
+
+    .bhr-home .columns.stacked-spacing > div > div:last-of-type {
         margin-top: unset;
     }
 
