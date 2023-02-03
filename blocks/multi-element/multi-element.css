@@ -510,6 +510,10 @@ main .multi-element p {
     color: var(--theme-tint5);
 }
 
+.multi-element.hero.industry .content:not(.extra) p {
+    font-weight: 500;
+}
+
 .multi-element.industry .extra {
     display: block;
 }
@@ -520,7 +524,7 @@ main .multi-element p {
     font-family: var(--body-font-family);
     font-weight: 700;
     font-size: 12px;
-    line-height: 15px;
+    line-height: 5px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
