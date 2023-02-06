@@ -14,8 +14,9 @@
  * log RUM if part of the sample.
  * @param {string} checkpoint identifies the checkpoint in funnel
  * @param {Object} data additional data for RUM sample
+ * @param {Object} extraData optional data for analytics track
  */
-export function sampleRUM(checkpoint, data = {}) {
+export function sampleRUM(checkpoint, data = {}, extraData) {
   sampleRUM.defer = sampleRUM.defer || [];
   const defer = (fnname) => {
     sampleRUM[fnname] = sampleRUM[fnname]
@@ -71,7 +72,7 @@ export function sampleRUM(checkpoint, data = {}) {
       sendPing(data);
       if (sampleRUM.cases[checkpoint]) { sampleRUM.cases[checkpoint](); }
     }
-    if (sampleRUM.always[checkpoint]) { sampleRUM.always[checkpoint](data); }
+    if (sampleRUM.always[checkpoint]) { sampleRUM.always[checkpoint](data, extraData); }
   } catch (error) {
     // something went wrong
   }
@@ -396,11 +397,13 @@ export function decorateSections($main) {
       const meta = readBlockConfig(sectionMeta);
       const keys = Object.keys(meta);
       keys.forEach((key) => {
-        const styleValues = meta.style.split(',').map((t) => t.trim());
-        styleValues.forEach((style) => {
-          if (key === 'style') section.classList.add(toClassName(style));
-          else section.dataset[key] = meta[key];
-        });
+        if (key === 'style') {
+          section.classList.add(...meta.style.split(', ').map(toClassName));
+        } else if (key === 'anchor') {
+          section.id = toClassName(meta.anchor);
+        } else {
+          section.dataset[key] = meta[key];
+        }
       });
       decorateBackgrounds(section);
       sectionMeta.remove();
@@ -1086,9 +1089,56 @@ async function loadLazy(doc) {
   }
   sampleRUM('lazy');
   await headerloaded;
-  sampleRUM.convert(document.querySelectorAll('a[href^="https://www.bamboohr.com/signup"]'), 'signup');
-  sampleRUM.convert(document.querySelectorAll('a[href^="https://www.bamboohr.com/pl-pages/demo-request/"]'), 'demo-request');
-  sampleRUM.convert(document.querySelectorAll('a[data-modal="#pricing-modal"]'), 'pricing-quote');
+  registerConversionListeners(document);
+}
+
+/**
+ * Registers conversion listeners according to the metadata configured in the document.
+ * @param {Element} parent element where to find potential event conversion sources
+ * @param {string} path fragment path when the parent element is coming from a fragment
+ */
+export async function registerConversionListeners(parent, path) {
+  const conversionElements = getMetadata('conversion-element')?.split(',').map(toClassName);
+  if (conversionElements && Array.isArray(conversionElements)) {
+    //Track form submissions conversions
+    if (conversionElements.includes('form')) {
+      parent.querySelectorAll('form').forEach((element) => {
+        const section = element.closest('div.section[data-conversionid]');      
+        let formId;
+        if (section) {
+          formId = section ? section.dataset.conversionid : element.id;
+        } else {
+          formId = path ? toClassName(path) : element.id;
+        }        
+        sampleRUM.convert(Array.of(element), formId);
+      });
+    }
+    //Track link submissions conversions
+    if (conversionElements.includes('link')) {
+      // track all links
+      parent.querySelectorAll('a').forEach((element) => {  
+        const linkLabel = getLinkLabel(element);    
+        sampleRUM.convert(Array.of(element), linkLabel);
+      });    
+    } 
+    else if (conversionElements.includes('labeled-link')) {
+      //track only the links configured in the metadata
+      const linkLabels = getMetadata('conversion-link-labels');
+      const trackedLabels = linkLabels?.split(',').map((p) => toClassName(p.trim()));
+      if(trackedLabels && Array.isArray(trackedLabels)) {
+        parent.querySelectorAll('a').forEach((element) => {  
+          const linkLabel = getLinkLabel(element);    
+          if (trackedLabels.includes(linkLabel)) {
+              sampleRUM.convert(Array.of(element), linkLabel);
+          }      
+        });    
+      }
+    }
+  }
+}
+
+function getLinkLabel(element) {
+  return element.title ? toClassName(element.title) : toClassName(element.innerHTML);
 }
 
 function loadDelayedOnClick() {
@@ -1279,18 +1329,35 @@ if (params.get('performance')) {
  * Registers the 'convert' function to `sampleRUM` which sends
  * variant and convert events upon conversion.
  */
-sampleRUM.drain('convert', (elements, cevent, cvalue) => {
+sampleRUM.drain('convert', (elements, cevent, cvalue, extraData) => {
   // if elements is an array or nodelist, register a conversion event for each element
   if (Array.isArray(elements) || elements instanceof NodeList) {
     elements.forEach((element) => {
       // if the element is a form, register a submit event
       if (element.tagName === 'FORM') {
         element.addEventListener('submit', () => {
-          sampleRUM.convert(element, cevent, cvalue);
+          const extraData = {
+            event: "Form Complete",
+            forms: {
+               formsComplete: 1,
+               formName: cevent,
+               formId: element.id,
+               formsType: "" 
+            }
+          };
+          sampleRUM.convert(element, cevent, cvalue, extraData);
         });
       } else {
         element.addEventListener('click', () => {
-          sampleRUM.convert(element, cevent, cvalue);
+          const extraData = {
+            event: "Link Click",
+            eventData: {
+              linkName: cevent,
+              linkText: element.innerHTML,
+              linkHref: element.href              
+            }
+          };
+          sampleRUM.convert(element, cevent, cvalue, extraData);
         });
       }
     });
@@ -1301,13 +1368,13 @@ sampleRUM.drain('convert', (elements, cevent, cvalue) => {
       const experiments = JSON.parse(localStorage.getItem('unified-decisioning-experiments'));
       Object.entries(experiments)
         .map(([experiment, { treatment, date }]) => ({ experiment, treatment, date }))
-        .filter(({ date }) => Date.now() - date < MAX_SESSION_LENGTH)
+        .filter(({ date }) => Date.now() - new Date(date) < MAX_SESSION_LENGTH)
         .forEach(({ experiment, treatment }) => {
           // send conversion event for each experiment that has been seen by this visitor
           sampleRUM('variant', { source: experiment, target: treatment });
         });
       // send conversion event
-      sampleRUM('convert', { source: cevent, target: cvalue });
+      sampleRUM('convert', { source: cevent, target: cvalue }, extraData);
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('error reading experiments', e);
@@ -1315,11 +1382,8 @@ sampleRUM.drain('convert', (elements, cevent, cvalue) => {
   }
 });
 
-sampleRUM.always.on('convert', ({ source, target }) => window.adobeDataLayer && window.adobeDataLayer.push({
-  // TODO: this is just me guessing what the event should be called, same for the payload
-  event: 'Conversion',
-  conversion: {
-    thingClickedOn: source,
-    valueOfAClick: target,
+sampleRUM.always.on('convert', ( data, extraData ) => {
+  if(window.digitalData) {
+    window.digitalData.push(extraData);
   }
-}));
+});
