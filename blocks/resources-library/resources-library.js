@@ -14,8 +14,8 @@ export function createResourceCard(app, prefix) {
     const picture = createOptimizedPicture(app.image, app.title, false, [{ width: 750 }]).outerHTML;
     card.innerHTML = `<a href="${app.path}"><div class="${prefix}-card-image">${picture}</div></a><div class="${prefix}-card-copy-container"><p>${app.description}</p><a href="${app.path}" class="${prefix}-card-link">${cardLinkText}</a></div>`;
     return (card);
+  //  eslint-disable-next-line
   } else {
-    //  eslint-disable-next-line
     return '';
   }
 }
