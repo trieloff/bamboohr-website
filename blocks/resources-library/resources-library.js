@@ -37,8 +37,8 @@ export async function decorateResourceFeed(config, block) {
     }
   });
 
+  //  eslint-disable-next-line
   const groupBy = (array, key) => {
-    //  eslint-disable-next-line
     return array.reduce((result, currentValue) => {(result[currentValue[key]] = result[currentValue[key]] || []).push(currentValue);
       return result;
     }, {});
