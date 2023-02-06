@@ -12,10 +12,10 @@ export function createResourceCard(app, prefix) {
     card.className = `${prefix}-card`;
     const cardLinkText = app.formSubmitText ? app.formSubmitText : 'Free Download';
     const picture = createOptimizedPicture(app.image, app.title, false, [{ width: 750 }]).outerHTML;
-
     card.innerHTML = `<a href="${app.path}"><div class="${prefix}-card-image">${picture}</div></a><div class="${prefix}-card-copy-container"><p>${app.description}</p><a href="${app.path}" class="${prefix}-card-link">${cardLinkText}</a></div>`;
     return (card);
   } else {
+    //  eslint-disable-next-line
     return '';
   }
 }
@@ -38,6 +38,7 @@ export async function decorateResourceFeed(config, block) {
   });
 
   const groupBy = (array, key) => {
+    //  eslint-disable-next-line
     return array.reduce((result, currentValue) => {(result[currentValue[key]] = result[currentValue[key]] || []).push(currentValue);
       return result;
     }, {});
@@ -57,6 +58,7 @@ export async function decorateResourceFeed(config, block) {
       resourceGroupContainer.append(resourceGroupCategory);
       const resourceGroupTitle = resourceGroup[0].charAt(0).toUpperCase() + resourceGroup[0].slice(1);;
       resourceGroupCategory.textContent = resourceGroupTitle;
+      //  eslint-disable-next-line
       resourceGroupCategory.id = resourceGroup[0];
 
       resourceGroup[1].forEach((resourceGroupItem) => {
