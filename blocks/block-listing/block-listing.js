@@ -4,10 +4,9 @@ import {
   fetchPlaceholders,
   readBlockConfig,
   toCamelCase,
-  toCategory,
   toClassName,
 } from '../../scripts/scripts.js';
-import { createAppCard, sortOptions } from '../app-cards/app-cards.js';
+import { sortOptions } from '../app-cards/app-cards.js';
 
 function addGroupLabel(groupName, parentContainer) {
   const groupLabel = document.createElement('h2');
@@ -33,8 +32,8 @@ async function addBlockLinks(parentContainer, blockName) {
   const blockNameSanitized = toClassName(blockName);
   if (!noLinks.includes(blockNameSanitized)) {
     // Add links
-    let collection = 'blockTracker';
-    lookupPages([], collection, blockNameSanitized).then(results => {
+    const collection = 'blockTracker';
+    lookupPages([], collection, blockNameSanitized).then(() => {
       const collectionCache = `${collection}${blockNameSanitized}`;
       const trackerListings = window.pageIndex[collectionCache];
 
@@ -53,7 +52,6 @@ async function addBlockLinks(parentContainer, blockName) {
       uniqueLinks.some((link, index) => {
         const blockExampleLink = document.createElement('a');
         blockExampleLink.className = 'block-example-link';
-        //blockExampleLink.href = '#'; // link.path
         blockExampleLink.textContent = link.Title;
 
         blockLinks.append(blockExampleLink);
@@ -106,7 +104,7 @@ function getFacetHTML(ph) {
 
 export async function filterResults(config, facets = {}) {
   /* load index */
-  let collection = 'blockInventory';
+  const collection = 'blockInventory';
   await lookupPages([], collection);
   const listings = window.pageIndex[collection];
 
@@ -127,7 +125,7 @@ export async function filterResults(config, facets = {}) {
   /* filter */
   const results = listings.data.filter((row) => {
     const filterMatches = {};
-    let matchedAll = keys.every((key) => {
+    const matchedAll = keys.every((key) => {
       let matched = false;
       if (row[key]) {
         const rowValues = row[key].split(',').map((t) => t.trim());
@@ -136,8 +134,6 @@ export async function filterResults(config, facets = {}) {
       filterMatches[key] = matched;
       return matched;
     });
-
-    const isListing = () => !!row.publisher;
 
     /* facets */
     facetKeys.forEach((facetKey) => {
@@ -184,7 +180,7 @@ export async function filterResults(config, facets = {}) {
   return results;
 }
 
-export default async function decorate(block, blockName) {
+export default async function decorate(block) {
   const ph = await fetchPlaceholders('/integrations');
 
   const addEventListeners = (elements, event, callback) => {
@@ -201,7 +197,6 @@ export default async function decorate(block, blockName) {
     config[toCamelCase(key)] = blockConfig[key];
   });
 
-  let ctaBlockInfo = null;
   block.innerHTML = getBlockHTML(ph);
 
   const resultsElement = block.querySelector('.block-listing-results');

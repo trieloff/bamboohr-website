@@ -593,9 +593,6 @@ header .nav-section.nav-section-subscribe form {
 
   header .nav-section li a:any-link {
     cursor: pointer;
-  }
-
-  header .nav-section li a:any-link {
     color: var(--color-gray-8);
     padding: 0;
   }
