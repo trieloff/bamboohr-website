@@ -71,6 +71,7 @@
     border-radius: 1rem;
     max-width: none;
     padding: 1rem;
+    width: unset;
 }
 
 /* embed */
@@ -83,6 +84,6 @@
 
 @media (min-width: 1025px) {
     .wistia-modal .modal-content > div {
-        --width: 75vw;
+      --width: 75vw;
     }
 }
