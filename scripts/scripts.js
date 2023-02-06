@@ -957,7 +957,7 @@ export async function lookupPages(pathnames, collection, sheet = '') {
   return result;
 }
 
-export async function loadHeader(header) {
+export function loadHeader(header) {
   const queryParams = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
   });
@@ -966,7 +966,7 @@ export async function loadHeader(header) {
   const headerBlock = buildBlock(headerblockName, '');
   header.append(headerBlock);
   decorateBlock(headerBlock);
-  await loadBlock(headerBlock);
+  loadBlock(headerBlock);
 }
 
 function loadFooter(footer) {
@@ -1138,7 +1138,7 @@ async function loadLazy(doc) {
   const element = hash ? main.querySelector(hash) : false;
   if (hash && element) element.scrollIntoView();
 
-  await loadHeader(header);
+  loadHeader(header);
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
