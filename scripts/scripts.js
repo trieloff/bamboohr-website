@@ -14,7 +14,7 @@
  * log RUM if part of the sample.
  * @param {string} checkpoint identifies the checkpoint in funnel
  * @param {Object} data additional data for RUM sample
- * @param {Object} extraData optional data for analytics track
+ * @param {Object} extraData optional data for analytics tracking
  */
 export function sampleRUM(checkpoint, data = {}, extraData) {
   sampleRUM.defer = sampleRUM.defer || [];
@@ -1088,7 +1088,7 @@ async function loadLazy(doc) {
  * @param {string} path fragment path when the parent element is coming from a fragment
  */
 export async function registerConversionListeners(parent, path) {
-  const conversionElements = getMetadata('conversion-element')?.split(',').map(toClassName);
+  const conversionElements = getMetadata('conversion-element')?.split(',').map((ce) => toClassName(ce.trim()));
   if (conversionElements && Array.isArray(conversionElements)) {
     //Track form submissions conversions
     if (conversionElements.includes('form')) {
@@ -1328,7 +1328,7 @@ sampleRUM.drain('convert', (elements, cevent, cvalue, extraData) => {
     elements.forEach((element) => {
       // if the element is a form, register a submit event
       if (element.tagName === 'FORM') {
-        element.addEventListener('submit', () => {
+        element.addEventListener('submit', () => {          
           const extraData = {
             event: "Form Complete",
             forms: {
@@ -1341,7 +1341,7 @@ sampleRUM.drain('convert', (elements, cevent, cvalue, extraData) => {
           sampleRUM.convert(element, cevent, cvalue, extraData);
         });
       } else {
-        element.addEventListener('click', () => {
+        element.addEventListener('click', () => {          
           const extraData = {
             event: "Link Click",
             eventData: {
@@ -1366,8 +1366,8 @@ sampleRUM.drain('convert', (elements, cevent, cvalue, extraData) => {
           // send conversion event for each experiment that has been seen by this visitor
           sampleRUM('variant', { source: experiment, target: treatment });
         });
-      // send conversion event
-      sampleRUM('convert', { source: cevent, target: cvalue }, extraData);
+      // send conversion event      
+      sampleRUM('convert', { source: cevent, target: cvalue }, extraData);      
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('error reading experiments', e);
@@ -1376,6 +1376,7 @@ sampleRUM.drain('convert', (elements, cevent, cvalue, extraData) => {
 });
 
 sampleRUM.always.on('convert', ( data, extraData ) => {
+  console.debug('push to datalayer - convert ', extraData);
   if(window.digitalData) {
     window.digitalData.push(extraData);
   }
