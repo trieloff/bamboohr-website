@@ -38,10 +38,7 @@ export async function decorateResourceFeed(config, block) {
   });
 
   const groupBy = (array, key) => {
-    return array.reduce((result, currentValue) => {
-      (result[currentValue[key]] = result[currentValue[key]] || []).push(
-        currentValue
-      );
+    return array.reduce((result, currentValue) => {(result[currentValue[key]] = result[currentValue[key]] || []).push(currentValue);
       return result;
     }, {});
   };
@@ -63,9 +60,11 @@ export async function decorateResourceFeed(config, block) {
       resourceGroupCategory.id = resourceGroup[0];
 
       resourceGroup[1].forEach((resourceGroupItem) => {
+        if (resourceGroupItem.image !== '') {
           const cardContainer = document.createElement('ul');
           cardContainer.append(createResourceCard(resourceGroupItem, 'resource'));
           resourceGroupContainer.append(cardContainer);
+        }
       });
     }
   });
