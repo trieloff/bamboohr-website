@@ -7,9 +7,7 @@ import {
 import { sortOptions } from '../app-cards/app-cards.js';
 
 export function createResourceCard(app, prefix) {
-  if (app.image == '') {
-    return '';
-  } else {
+  if (app.image !== '') {
     const card = document.createElement('div');
     card.className = `${prefix}-card`;
     const cardLinkText = app.formSubmitText ? app.formSubmitText : 'Free Download';
@@ -17,6 +15,8 @@ export function createResourceCard(app, prefix) {
 
     card.innerHTML = `<a href="${app.path}"><div class="${prefix}-card-image">${picture}</div></a><div class="${prefix}-card-copy-container"><p>${app.description}</p><a href="${app.path}" class="${prefix}-card-link">${cardLinkText}</a></div>`;
     return (card);
+  } else {
+    return '';
   }
 }
   
