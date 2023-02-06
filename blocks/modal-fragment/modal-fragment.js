@@ -1,4 +1,4 @@
-import { loadFragment, sampleRUM, registerConversionListeners } from '../../scripts/scripts.js';
+import { loadFragment, registerConversionListeners } from '../../scripts/scripts.js';
 
 function getModalId(path) {
   const segments = path.split('/');
