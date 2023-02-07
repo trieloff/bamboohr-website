@@ -32,11 +32,9 @@ h1#content-library {
 }
 
 @media screen and (min-width: 600px) {
-
     .resource-group-container {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
         justify-content: flex-start;
         align-items: stretch;
         align-content: stretch;
@@ -53,7 +51,6 @@ h1#content-library {
 }
 
 @media screen and (min-width: 1025px) {
-
     .resource-group-container ul {
         width: calc(33.33% - 40px);
         margin: 0 20px 60px;
@@ -66,7 +63,7 @@ h1#content-library {
         flex-wrap: wrap;
         align-content: space-between;
     }
-    
+
     .resource-card-image picture img {
         border-radius: 15px 15px 0 0;
         max-width: 500px;
