@@ -1,4 +1,4 @@
-import { loadFragment, registerConversionListeners } from '../../scripts/scripts.js';
+import { loadFragment, initConversionTracking } from '../../scripts/scripts.js';
 
 function getModalId(path) {
   const segments = path.split('/');
@@ -33,7 +33,7 @@ export default async function decorate(block) {
             formSubTitleEl.outerHTML = `<p class="modal-form-subtitle">${formSubTitleEl.innerHTML}</p>`;
             modalContent.append(fragment);
           }          
-          registerConversionListeners(modal, path);
+          initConversionTracking(modal, path);
           wrapper.append(modal);
           block.append(wrapper);
           wrapper.classList.add('visible');

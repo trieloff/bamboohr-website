@@ -50,9 +50,10 @@ export function sampleRUM(checkpoint, data = {}, extraData = {}) {
     }
     const { weight, id } = window.hlx.rum;
     if (window.hlx && window.hlx.rum && window.hlx.rum.isSelected) {
-      const sendPing = (pdata = data) => {
+      const sendPing = (pdata = data) => {      
         // eslint-disable-next-line object-curly-newline, max-len, no-use-before-define
-        const body = JSON.stringify({ weight, id, referer: window.location.href, generation: window.hlx.RUM_GENERATION, checkpoint, ...data });
+        /* TODO: remove element from the data object */
+        const body = JSON.stringify({ weight, id, referer: window.location.href, generation: window.hlx.RUM_GENERATION, checkpoint, ...data });        
         const url = `https://rum.hlx.page/.rum/${weight}`;
         // eslint-disable-next-line no-unused-expressions
         navigator.sendBeacon(url, body);
@@ -1080,7 +1081,7 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   await headerloaded;
   // eslint-disable-next-line no-use-before-define
-  registerConversionListeners(document);
+  initConversionTracking(document);
 }
 
 /**
@@ -1097,12 +1098,10 @@ function getLinkLabel(element) {
  * @param {Element} parent element where to find potential event conversion sources
  * @param {string} path fragment path when the parent element is coming from a fragment
  */
-export async function registerConversionListeners(parent, path) {
-
-  const conversionElements = getMetadata('conversion-element')?.split(',').map((ce) => toClassName(ce.trim()));
-  if (conversionElements && Array.isArray(conversionElements)) {
-    // Track form submissions conversions
-    if (conversionElements.includes('form')) {
+export async function initConversionTracking(parent, path) {
+  const conversionElements = {
+    form: () => {
+      //Track all forms
       parent.querySelectorAll('form').forEach((element) => {
         const section = element.closest('div.section[data-conversionid]');      
         let formId;
@@ -1111,31 +1110,36 @@ export async function registerConversionListeners(parent, path) {
         } else {
           formId = path ? toClassName(path) : element.id;
         }        
-        sampleRUM.convert(Array.of(element), formId);
+        sampleRUM.convert(element, 'submit', formId);
       });
-    }
-    // Track link submissions conversions
-    if (conversionElements.includes('link')) {
+    },
+    link: () => {
       // track all links
       parent.querySelectorAll('a').forEach((element) => {  
-        const linkLabel = getLinkLabel(element);    
-        sampleRUM.convert(Array.of(element), linkLabel);
+        const linkLabel = getLinkLabel(element);        
+        sampleRUM.convert(element, 'click', linkLabel);
       });    
-    } 
-    else if (conversionElements.includes('labeled-link')) {
+    },
+    'labeled-link': () => {
       // track only the links configured in the metadata
       const linkLabels = getMetadata('conversion-link-labels');
       const trackedLabels = linkLabels?.split(',').map((p) => toClassName(p.trim()));
-      if(trackedLabels && Array.isArray(trackedLabels)) {
+      if(Array.isArray(trackedLabels)) {
         parent.querySelectorAll('a').forEach((element) => {  
           const linkLabel = getLinkLabel(element);    
-          if (trackedLabels.includes(linkLabel)) {
-              sampleRUM.convert(Array.of(element), linkLabel);
+          if (trackedLabels.includes(linkLabel)) {              
+              sampleRUM.convert(element, 'click', linkLabel);
           }      
-        });    
-      }
-    }
-  }
+        });
+      }    
+    } 
+  };
+
+  const declaredConversionElements = getMetadata('conversion-element') ? getMetadata('conversion-element').split(',').map((ce) => toClassName(ce.trim())) : [];  
+
+  Object.keys(conversionElements)
+    .filter((ce) => declaredConversionElements.includes(ce))
+    .forEach((cefn) => conversionElements[cefn]());
 }
 
 function loadDelayedOnClick() {
@@ -1328,40 +1332,23 @@ if (params.get('performance')) {
 /**
  * Registers the 'convert' function to `sampleRUM` which sends
  * variant and convert events upon conversion.
+ * The function will register a listener for an element if listenTo parameter is provided.
+ * listenTo supports 'submit' and 'click'.  
+ * If listenTo is not provided, the information is used to track a conversion event.
  */
-sampleRUM.drain('convert', (elements, cevent, cvalue, extraData) => {
-  // if elements is an array or nodelist, register a conversion event for each element
-  if (Array.isArray(elements) || elements instanceof NodeList) {
-    elements.forEach((element) => {
-      // if the element is a form, register a submit event
-      if (element.tagName === 'FORM') {
-        element.addEventListener('submit', () => {          
-          const evtDataLayer = {
-            event: "Form Complete",
-            forms: {
-               formsComplete: 1,
-               formName: cevent,
-               formId: element.id,
-               formsType: "" 
-            }
-          };
-          sampleRUM.convert(element, cevent, cvalue, evtDataLayer);
-        });
-      } else {
-        element.addEventListener('click', () => {          
-          const evtDataLayer = {
-            event: "Link Click",
-            eventData: {
-              linkName: cevent,
-              linkText: element.innerHTML,
-              linkHref: element.href              
-            }
-          };
-          sampleRUM.convert(element, cevent, cvalue, evtDataLayer);
-        });
-      }
-    });
-  } else {
+sampleRUM.drain('convert', (element, listenTo, cevent, cvalue) => {
+
+  function registerConversionListener(element, listenTo, cevent, cvalue) {
+    // if elements is an array or nodelist, register a conversion event for each element
+    if (Array.isArray(element) || element instanceof NodeList) {
+      elements.forEach(e => registerConversionListener (e, listenTo, cevent, cvalue));
+    }
+    else if (listenTo === 'click' || listenTo === 'submit') {
+      element.addEventListener(listenTo, () => trackConversion(element, cevent, cvalue));
+    }
+  }
+
+  function trackConversion(celement, cevent, cvalue) {
     const MAX_SESSION_LENGTH = 1000 * 60 * 60 * 24 * 30; // 30 days
     try {
       // get all stored experiments from local storage (unified-decisioning-experiments)
@@ -1374,17 +1361,48 @@ sampleRUM.drain('convert', (elements, cevent, cvalue, extraData) => {
           sampleRUM('variant', { source: experiment, target: treatment });
         });
       // send conversion event      
-      sampleRUM('convert', { source: cevent, target: cvalue }, extraData);      
+      sampleRUM('convert', { source: cevent, target: cvalue, element: celement}, );      
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('error reading experiments', e);
     }
   }
+  if (element && listenTo) {
+    registerConversionListener(element, listenTo, cevent, cvalue);
+  } else {
+    trackConversion(element, cevent, cvalue);
+  }
 });
 
-sampleRUM.always.on('convert', ( data, extraData ) => {
-  console.debug('push to datalayer - convert ', extraData);
-  if(window.digitalData) {
-    window.digitalData.push(extraData);
+// call upon conversion events, pushes them to the datalayer
+sampleRUM.always.on('convert', (data) => {
+  console.debug('push to datalayer - convert ', data);
+  const element = data.element;
+  if (element) {
+    let evtDataLayer;
+    if (element.tagName === 'FORM') {
+      evtDataLayer = {
+        event: "Form Complete",
+        forms: {
+          formsComplete: 1,
+          formName: data.source,
+          formId: element.id,
+          formsType: "" 
+        }
+      };
+    } else if (element.tagName === 'A' || element.tagName === 'BUTTON') {
+      evtDataLayer = {
+        event: "Link Click",
+        eventData: {
+          linkName: data.source,
+          linkText: element.innerHTML,
+          linkHref: element.href              
+        }
+      };
+    }
+    if(window.digitalData) {
+      console.debug('push to datalayer', evtDataLayer);
+      window.digitalData.push(evtDataLayer);
+    }
   }
 });
