@@ -33,7 +33,7 @@ export async function decorateResourceFeed(config, block) {
   index.data.forEach((resourceCard) => {
     if (resourceCard.title !== '') {
       const { category } = resourceCard;
-      resourceCard.groupCategory = category;
+      resourceCard.groupCategory = category.charAt(0).toUpperCase() + category.slice(1);
     }
   });
 
@@ -56,7 +56,7 @@ export async function decorateResourceFeed(config, block) {
       const resourceGroupCategory = document.createElement('div');
       resourceGroupCategory.className = 'resource-group-title typ-title1';
       resourceGroupContainer.append(resourceGroupCategory);
-      const resourceGroupTitle = resourceGroup[0].charAt(0).toUpperCase() + resourceGroup[0].slice(1);;
+      const resourceGroupTitle = resourceGroup[0];
       resourceGroupCategory.textContent = resourceGroupTitle;
       //  eslint-disable-next-line
       resourceGroupCategory.id = resourceGroup[0];
