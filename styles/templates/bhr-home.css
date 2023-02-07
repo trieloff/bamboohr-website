@@ -117,7 +117,7 @@
 .bhr-home main .reprise-wrapper,
 .bhr-home main .wistia-wrapper {
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 
 .bhr-home .quote-wrapper {
