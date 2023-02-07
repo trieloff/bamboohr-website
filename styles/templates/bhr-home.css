@@ -115,7 +115,7 @@
 .bhr-home main .quote-wrapper,
 .bhr-home main .title-wrapper {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .bhr-home .quote-wrapper {
@@ -389,3 +389,24 @@
     align-items: flex-start;
 }
   
+
+/* reprise homepage test */
+.section-2 {
+    background: #EDFFC8;
+}
+
+.block.reprise,
+.block.wistia {
+    position: relative;
+    z-index: 1;
+}
+
+.reprise-copy {
+    display: none;
+}
+
+@media screen and (min-width: 1320px) {
+    .reprise-copy {
+        display: block;
+    }
+}
