@@ -17,6 +17,8 @@ const loadModal = () => {
   modalElem.append(closeElem, contentElem);
   wrapperElem.append(modalElem);
   bodyElem.append(wrapperElem);
+
+  loaded = true;
 };
 
 const handleCloseClick = (event) => {
@@ -59,7 +61,7 @@ const loadreprise = async (block) => {
   }
 
   repriseUrl = block.querySelector('a')?.getAttribute('href') || null;
-  let posterElem = block.querySelector('picture');
+  const posterElem = block.querySelector('picture');
 
   // skip if no url
   if (!repriseUrl) return;
