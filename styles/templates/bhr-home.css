@@ -105,6 +105,10 @@
     background-color: var(--theme-tint15);
 }
 
+.section.bg-bottom-cap-3-tint.section-3-reprise.columns-container.image-container.quote-container.has-bg > span.bg-bottom-cap-3-tint {
+    top: -100px;
+}
+
 .bhr-home main .section > div.multi-hero-wrapper {
     margin-left: 0;
     margin-right: 0;
