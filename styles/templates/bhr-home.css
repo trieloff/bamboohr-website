@@ -113,7 +113,9 @@
 .bhr-home main .columns-wrapper,
 .bhr-home main .default-content-wrapper,
 .bhr-home main .quote-wrapper,
-.bhr-home main .title-wrapper {
+.bhr-home main .title-wrapper,
+.bhr-home main .reprise-wrapper,
+.bhr-home main .wistia-wrapper {
     position: relative;
     z-index: 2;
 }
@@ -393,12 +395,6 @@
 /* reprise homepage test */
 .section-2 {
     background: #EDFFC8;
-}
-
-.block.reprise,
-.block.wistia {
-    position: relative;
-    z-index: 1;
 }
 
 .reprise-copy {
