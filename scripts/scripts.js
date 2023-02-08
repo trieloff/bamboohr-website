@@ -1389,7 +1389,7 @@ sampleRUM.always.on('convert', (data) => {
         event: "Form Complete",
         forms: {
           formsComplete: 1,
-          formName: data.source,
+          formName: data.source, // this is the conversion event name
           formId: element.id,
           formsType: "" 
         }
@@ -1398,7 +1398,7 @@ sampleRUM.always.on('convert', (data) => {
       evtDataLayer = {
         event: "Link Click",
         eventData: {
-          linkName: data.source,
+          linkName: data.source, // this is the conversion event name
           linkText: element.innerHTML,
           linkHref: element.href              
         }
