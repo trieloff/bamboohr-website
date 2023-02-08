@@ -52,8 +52,7 @@ export function sampleRUM(checkpoint, data = {}, extraData = {}) {
     if (window.hlx && window.hlx.rum && window.hlx.rum.isSelected) {
       const sendPing = (pdata = data) => {      
         // eslint-disable-next-line object-curly-newline, max-len, no-use-before-define
-        /* TODO: remove element from the data object */
-        const body = JSON.stringify({ weight, id, referer: window.location.href, generation: window.hlx.RUM_GENERATION, checkpoint, ...data });        
+        const body = JSON.stringify({ weight, id, referer: window.location.href, generation: window.hlx.RUM_GENERATION, checkpoint, ...data }, (key, value) => (key === 'element' ? undefined : value));        
         const url = `https://rum.hlx.page/.rum/${weight}`;
         // eslint-disable-next-line no-unused-expressions
         navigator.sendBeacon(url, body);
