@@ -1,6 +1,7 @@
 import { getMetadata, lookupPages } from '../../scripts/scripts.js';
 import { createBlogCard } from '../featured-articles/featured-articles.js';
 import { createAppCard } from '../app-cards/app-cards.js';
+import { createResourceCard } from '../resources-library/resources-library.js';
 
 function highlightTextElements(terms, elements) {
   elements.forEach((e) => {
@@ -33,6 +34,7 @@ function highlightTextElements(terms, elements) {
 async function displaySearchResults(terms, results) {
   let collection = 'blog';
   if (getMetadata('theme') === 'integrations') collection = 'integrations';
+  if (getMetadata('theme') === 'resources') collection = 'resources';
   await lookupPages([], collection);
   const allPages = window.pageIndex[collection].data;
   allPages.forEach((page) => {
@@ -42,6 +44,9 @@ async function displaySearchResults(terms, results) {
     }
     if (collection === 'blog') {
       searchTags = `${page.tags}`;
+    }
+    if (collection === 'resources') {
+      searchTags = `${page.title}, ${page.category}, ${page.description}`;
     }
     page.searchTags = searchTags;
   });
@@ -54,6 +59,7 @@ async function displaySearchResults(terms, results) {
     let card;
     if (collection === 'blog') card = createBlogCard(row, 'search-blog');
     if (collection === 'integrations') card = createAppCard(row, 'search-app');
+    if (collection === 'resources') card = createResourceCard(row, 'resource');
     ul.append(card);
   });
 
