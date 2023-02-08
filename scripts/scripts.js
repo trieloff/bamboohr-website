@@ -984,6 +984,63 @@ export async function decorateMain(main) {
 }
 
 /**
+ * Returns the label used for tracking link clicks
+ * @param {Element} element link element
+ * @returns link label used for tracking converstion
+ */
+function getLinkLabel(element) {
+  return element.title ? toClassName(element.title) : toClassName(element.innerHTML);
+}
+
+/**
+ * Registers conversion listeners according to the metadata configured in the document.
+ * @param {Element} parent element where to find potential event conversion sources
+ * @param {string} path fragment path when the parent element is coming from a fragment
+ */
+export async function initConversionTracking(parent, path) {
+  const conversionElements = {
+    form: () => {
+      // Track all forms
+      parent.querySelectorAll('form').forEach((element) => {
+        const section = element.closest('div.section[data-conversionid]');
+        let formId;
+        if (section) {
+          formId = section ? section.dataset.conversionid : element.id;
+        } else {
+          formId = path ? toClassName(path) : element.id;
+        }
+        sampleRUM.convert('submit', formId, element);
+      });
+    },
+    link: () => {
+      // track all links
+      parent.querySelectorAll('a').forEach((element) => {
+        const linkLabel = getLinkLabel(element);
+        sampleRUM.convert('click', linkLabel, element);
+      });
+    },
+    'labeled-link': () => {
+      // track only the links configured in the metadata
+      const linkLabels = getMetadata('conversion-link-labels');
+      const trackedLabels = linkLabels?.split(',').map((p) => toClassName(p.trim()));
+      if (Array.isArray(trackedLabels)) {
+        parent.querySelectorAll('a').forEach((element) => {
+          const linkLabel = getLinkLabel(element);
+          if (trackedLabels.includes(linkLabel)) {
+            sampleRUM.convert('click', linkLabel, element);
+          }
+        });
+      }
+    }
+  };
+
+  const declaredConversionElements = getMetadata('conversion-element') ? getMetadata('conversion-element').split(',').map((ce) => toClassName(ce.trim())) : [];
+
+  Object.keys(conversionElements)
+    .filter((ce) => declaredConversionElements.includes(ce))
+    .forEach((cefn) => conversionElements[cefn]());
+}
+/**
  * loads everything related to Marketing technology that must be loaded eagerly
  * (e.g., Adobe Target).
  */
@@ -1079,66 +1136,7 @@ async function loadLazy(doc) {
   }
   sampleRUM('lazy');
   await headerloaded;
-  // eslint-disable-next-line no-use-before-define
   initConversionTracking(document);
-}
-
-/**
- * Returns the label used for tracking link clicks
- * @param {Element} element link element
- * @returns link label used for tracking converstion
- */
-function getLinkLabel(element) {
-  return element.title ? toClassName(element.title) : toClassName(element.innerHTML);
-}
-
-/**
- * Registers conversion listeners according to the metadata configured in the document.
- * @param {Element} parent element where to find potential event conversion sources
- * @param {string} path fragment path when the parent element is coming from a fragment
- */
-export async function initConversionTracking(parent, path) {
-  const conversionElements = {
-    form: () => {
-      // Track all forms
-      parent.querySelectorAll('form').forEach((element) => {
-        const section = element.closest('div.section[data-conversionid]');      
-        let formId;
-        if (section) {
-          formId = section ? section.dataset.conversionid : element.id;
-        } else {
-          formId = path ? toClassName(path) : element.id;
-        }        
-        sampleRUM.convert('submit', formId, element);
-      });
-    },
-    link: () => {
-      // track all links
-      parent.querySelectorAll('a').forEach((element) => {  
-        const linkLabel = getLinkLabel(element);        
-        sampleRUM.convert('click', linkLabel, element);
-      });    
-    },
-    'labeled-link': () => {
-      // track only the links configured in the metadata
-      const linkLabels = getMetadata('conversion-link-labels');
-      const trackedLabels = linkLabels?.split(',').map((p) => toClassName(p.trim()));
-      if(Array.isArray(trackedLabels)) {
-        parent.querySelectorAll('a').forEach((element) => {  
-          const linkLabel = getLinkLabel(element);    
-          if (trackedLabels.includes(linkLabel)) {              
-            sampleRUM.convert('click', linkLabel, element);
-          }
-        });
-      }    
-    } 
-  };
-
-  const declaredConversionElements = getMetadata('conversion-element') ? getMetadata('conversion-element').split(',').map((ce) => toClassName(ce.trim())) : [];  
-
-  Object.keys(conversionElements)
-    .filter((ce) => declaredConversionElements.includes(ce))
-    .forEach((cefn) => conversionElements[cefn]());
 }
 
 function loadDelayedOnClick() {
@@ -1361,7 +1359,7 @@ sampleRUM.drain('convert', (cevent, cvalue, element, listenTo = []) => {
     if (Array.isArray(elements) || elements instanceof NodeList) {
       elements.forEach(e => registerConversionListener(e, listenTo, cevent, cvalue));
     } else {
-      listenTo.forEach(eventName => element.addEventListener(eventName, trackConversion));
+      listenTo.forEach(eventName => element.addEventListener(eventName, (e) => trackConversion(e.target)));
     }
   }
 
