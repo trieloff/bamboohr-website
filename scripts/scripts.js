@@ -1338,10 +1338,10 @@ if (params.get('performance')) {
  */
 sampleRUM.drain('convert', (element, listenTo, cevent, cvalue) => {
 
-  function registerConversionListener(element, listenTo, cevent, cvalue) {
+  function registerConversionListener(elements, listenTo, cevent, cvalue) {
     // if elements is an array or nodelist, register a conversion event for each element
-    if (Array.isArray(element) || element instanceof NodeList) {
-      elements.forEach(e => registerConversionListener (e, listenTo, cevent, cvalue));
+    if (Array.isArray(elements) || elements instanceof NodeList) {
+      elements.forEach(e => registerConversionListener(e, listenTo, cevent, cvalue));
     }
     else if (listenTo === 'click' || listenTo === 'submit') {
       element.addEventListener(listenTo, () => trackConversion(element, cevent, cvalue));
