@@ -1110,14 +1110,14 @@ export async function initConversionTracking(parent, path) {
         } else {
           formId = path ? toClassName(path) : element.id;
         }        
-        sampleRUM.convert(element, 'submit', formId);
+        sampleRUM.convert('submit', formId, element);
       });
     },
     link: () => {
       // track all links
       parent.querySelectorAll('a').forEach((element) => {  
         const linkLabel = getLinkLabel(element);        
-        sampleRUM.convert(element, 'click', linkLabel);
+        sampleRUM.convert('click', linkLabel, element);
       });    
     },
     'labeled-link': () => {
@@ -1128,8 +1128,8 @@ export async function initConversionTracking(parent, path) {
         parent.querySelectorAll('a').forEach((element) => {  
           const linkLabel = getLinkLabel(element);    
           if (trackedLabels.includes(linkLabel)) {              
-              sampleRUM.convert(element, 'click', linkLabel);
-          }      
+            sampleRUM.convert('click', linkLabel, element);
+          }
         });
       }    
     } 
