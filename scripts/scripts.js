@@ -989,7 +989,7 @@ export async function decorateMain(main) {
  * @returns link label used for tracking converstion
  */
 function getLinkLabel(element) {
-  return element.title ? toClassName(element.title) : toClassName(element.innerHTML);
+  return element.title ? toClassName(element.title) : toClassName(element.textContent);
 }
 
 /**
