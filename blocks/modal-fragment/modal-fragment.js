@@ -1,4 +1,4 @@
-import { loadFragment, sampleRUM } from '../../scripts/scripts.js';
+import { loadFragment, initConversionTracking } from '../../scripts/scripts.js';
 
 function getModalId(path) {
   const segments = path.split('/');
@@ -32,8 +32,8 @@ export default async function decorate(block) {
             const formSubTitleEl = fragment.querySelector('h3');
             formSubTitleEl.outerHTML = `<p class="modal-form-subtitle">${formSubTitleEl.innerHTML}</p>`;
             modalContent.append(fragment);
-          }
-          sampleRUM.convert(modal.querySelectorAll('form'), 'quote');
+          }          
+          initConversionTracking(modal, path);
           wrapper.append(modal);
           block.append(wrapper);
           wrapper.classList.add('visible');

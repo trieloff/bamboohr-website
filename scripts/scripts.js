@@ -14,8 +14,9 @@
  * log RUM if part of the sample.
  * @param {string} checkpoint identifies the checkpoint in funnel
  * @param {Object} data additional data for RUM sample
+ * @param {Object} extraData optional data for analytics tracking
  */
-export function sampleRUM(checkpoint, data = {}) {
+export function sampleRUM(checkpoint, data = {}, extraData = {}) {
   sampleRUM.defer = sampleRUM.defer || [];
   const defer = (fnname) => {
     sampleRUM[fnname] = sampleRUM[fnname]
@@ -49,9 +50,9 @@ export function sampleRUM(checkpoint, data = {}) {
     }
     const { weight, id } = window.hlx.rum;
     if (window.hlx && window.hlx.rum && window.hlx.rum.isSelected) {
-      const sendPing = (pdata = data) => {
+      const sendPing = (pdata = data) => {      
         // eslint-disable-next-line object-curly-newline, max-len, no-use-before-define
-        const body = JSON.stringify({ weight, id, referer: window.location.href, generation: window.hlx.RUM_GENERATION, checkpoint, ...data });
+        const body = JSON.stringify({ weight, id, referer: window.location.href, generation: window.hlx.RUM_GENERATION, checkpoint, ...data }, (key, value) => (key === 'element' ? undefined : value));        
         const url = `https://rum.hlx.page/.rum/${weight}`;
         // eslint-disable-next-line no-unused-expressions
         navigator.sendBeacon(url, body);
@@ -71,7 +72,7 @@ export function sampleRUM(checkpoint, data = {}) {
       sendPing(data);
       if (sampleRUM.cases[checkpoint]) { sampleRUM.cases[checkpoint](); }
     }
-    if (sampleRUM.always[checkpoint]) { sampleRUM.always[checkpoint](data); }
+    if (sampleRUM.always[checkpoint]) { sampleRUM.always[checkpoint](data, extraData); }
   } catch (error) {
     // something went wrong
   }
@@ -396,11 +397,13 @@ export function decorateSections($main) {
       const meta = readBlockConfig(sectionMeta);
       const keys = Object.keys(meta);
       keys.forEach((key) => {
-        const styleValues = meta.style.split(',').map((t) => t.trim());
-        styleValues.forEach((style) => {
-          if (key === 'style') section.classList.add(toClassName(style));
-          else section.dataset[key] = meta[key];
-        });
+        if (key === 'style') {
+          section.classList.add(...meta.style.split(', ').map(toClassName));
+        } else if (key === 'anchor') {
+          section.id = toClassName(meta.anchor);
+        } else {
+          section.dataset[toCamelCase(key)] = meta[key];
+        }
       });
       decorateBackgrounds(section);
       sectionMeta.remove();
@@ -981,6 +984,75 @@ export async function decorateMain(main) {
 }
 
 /**
+ * Returns the label used for tracking link clicks
+ * @param {Element} element link element
+ * @returns link label used for tracking converstion
+ */
+function getLinkLabel(element) {
+  return element.title ? toClassName(element.title) : toClassName(element.textContent);
+}
+
+/**
+ * Registers conversion listeners according to the metadata configured in the document.
+ * @param {Element} parent element where to find potential event conversion sources
+ * @param {string} path fragment path when the parent element is coming from a fragment
+ */
+export async function initConversionTracking(parent, path) {
+  const conversionElements = {
+    form: () => {
+      // Track all forms
+      parent.querySelectorAll('form').forEach((element) => {
+        const section = element.closest('div.section');
+        if (section.dataset.conversionElement && section.querySelector(`#${section.dataset.conversionElement}`)) {
+          // this will track the value of the element with the id specified in the "Conversion Element" field.
+          // ideally, this should not be an ID, but the case-insensitive name label of the element.
+          sampleRUM.convert(undefined, () => section.querySelector(`#${section.dataset.conversionElement}`).value, element, ['submit']);
+        }
+        if (section.dataset.conversionName) {
+          sampleRUM.convert(section.dataset.conversionName, undefined, element, ['submit']);
+        } else {
+          // if no conversion name is specified, use the form path or id
+          sampleRUM.convert(path ? toClassName(path) : element.id, undefined, element, ['submit']);
+        }
+      });
+    },
+    link: () => {
+      // track all links
+      Array.from(parent.querySelectorAll('a[href]'))
+        .map(element => ({
+          element,
+          cevent: getMetadata('conversion-name') || getLinkLabel(element),
+        }))
+        .forEach(({ element, cevent }) => {
+          sampleRUM.convert(cevent, undefined, element, ['click'])
+      });
+    },
+    'labeled-link': () => {
+      // track only the links configured in the metadata
+      const linkLabels = getMetadata('conversion-link-labels') || '';
+      const trackedLabels = linkLabels.split(',')
+        .map((p) => p.trim())
+        .map(toClassName);
+
+      Array.from(parent.querySelectorAll('a[href]'))
+        .filter((element) => trackedLabels.includes(getLinkLabel(element)))
+        .map(element => ({
+          element,
+          cevent: getMetadata(`conversion-name--${getLinkLabel(element)}-`) || getMetadata('conversion-name') || getLinkLabel(element),
+        }))
+        .forEach(({ element, cevent }) => {
+          sampleRUM.convert(cevent, undefined, element, ['click']);
+        });
+    }
+  };
+
+  const declaredConversionElements = getMetadata('conversion-element') ? getMetadata('conversion-element').split(',').map((ce) => toClassName(ce.trim())) : [];
+
+  Object.keys(conversionElements)
+    .filter((ce) => declaredConversionElements.includes(ce))
+    .forEach((cefn) => conversionElements[cefn]());
+}
+/**
  * loads everything related to Marketing technology that must be loaded eagerly
  * (e.g., Adobe Target).
  */
@@ -1076,9 +1148,7 @@ async function loadLazy(doc) {
   }
   sampleRUM('lazy');
   await headerloaded;
-  sampleRUM.convert(document.querySelectorAll('a[href^="https://www.bamboohr.com/signup"]'), 'signup');
-  sampleRUM.convert(document.querySelectorAll('a[href^="https://www.bamboohr.com/pl-pages/demo-request/"]'), 'demo-request');
-  sampleRUM.convert(document.querySelectorAll('a[data-modal="#pricing-modal"]'), 'pricing-quote');
+  initConversionTracking(document);
 }
 
 function loadDelayedOnClick() {
@@ -1271,23 +1341,12 @@ if (params.get('performance')) {
 /**
  * Registers the 'convert' function to `sampleRUM` which sends
  * variant and convert events upon conversion.
+ * The function will register a listener for an element if listenTo parameter is provided.
+ * listenTo supports 'submit' and 'click'.  
+ * If listenTo is not provided, the information is used to track a conversion event.
  */
-sampleRUM.drain('convert', (elements, cevent, cvalue) => {
-  // if elements is an array or nodelist, register a conversion event for each element
-  if (Array.isArray(elements) || elements instanceof NodeList) {
-    elements.forEach((element) => {
-      // if the element is a form, register a submit event
-      if (element.tagName === 'FORM') {
-        element.addEventListener('submit', () => {
-          sampleRUM.convert(element, cevent, cvalue);
-        });
-      } else {
-        element.addEventListener('click', () => {
-          sampleRUM.convert(element, cevent, cvalue);
-        });
-      }
-    });
-  } else {
+sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
+  function trackConversion(celement) {
     const MAX_SESSION_LENGTH = 1000 * 60 * 60 * 24 * 30; // 30 days
     try {
       // get all stored experiments from local storage (unified-decisioning-experiments)
@@ -1300,19 +1359,57 @@ sampleRUM.drain('convert', (elements, cevent, cvalue) => {
           sampleRUM('variant', { source: experiment, target: treatment });
         });
       // send conversion event
-      sampleRUM('convert', { source: cevent, target: cvalue });
+      const cvalue = typeof cvalueThunk === 'function' ? cvalueThunk() : cvalueThunk;
+      sampleRUM('convert', { source: cevent, target: cvalue, element: celement });      
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('error reading experiments', e);
     }
   }
+
+  function registerConversionListener(elements) {
+    // if elements is an array or nodelist, register a conversion event for each element
+    if (Array.isArray(elements) || elements instanceof NodeList) {
+      elements.forEach(e => registerConversionListener(e, listenTo, cevent, cvalueThunk));
+    } else {
+      listenTo.forEach(eventName => element.addEventListener(eventName, (e) => trackConversion(e.target)));
+    }
+  }
+
+  if (element && listenTo.length) {
+    registerConversionListener(element, listenTo, cevent, cvalueThunk);
+  } else {
+    trackConversion(element, cevent, cvalueThunk);
+  }
 });
 
-sampleRUM.always.on('convert', ({ source, target }) => window.adobeDataLayer && window.adobeDataLayer.push({
-  // TODO: this is just me guessing what the event should be called, same for the payload
-  event: 'Conversion',
-  conversion: {
-    thingClickedOn: source,
-    valueOfAClick: target,
+// call upon conversion events, pushes them to the datalayer
+sampleRUM.always.on('convert', (data) => {
+  console.debug('push to datalayer - convert ', data);
+  const { element } = data;
+  if (element && window.digitalData) {
+    let evtDataLayer;
+    if (element.tagName === 'FORM') {
+      evtDataLayer = {
+        event: "Form Complete",
+        forms: {
+          formsComplete: 1,
+          formName: data.source, // this is the conversion event name
+          formId: element.id,
+          formsType: "" 
+        }
+      };
+    } else if (element.tagName === 'A' || element.tagName === 'BUTTON') {
+      evtDataLayer = {
+        event: "Link Click",
+        eventData: {
+          linkName: data.source, // this is the conversion event name
+          linkText: element.innerHTML,
+          linkHref: element.href              
+        }
+      };
+    }
+    console.debug('push to datalayer', evtDataLayer);
+    window.digitalData.push(evtDataLayer);
   }
-}));
+});
