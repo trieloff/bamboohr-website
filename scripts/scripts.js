@@ -1025,16 +1025,20 @@ export async function initConversionTracking(parent, path) {
     },
     'labeled-link': () => {
       // track only the links configured in the metadata
-      const linkLabels = getMetadata('conversion-link-labels');
-      const trackedLabels = linkLabels?.split(',').map((p) => toClassName(p.trim()));
-      if (Array.isArray(trackedLabels)) {
-        parent.querySelectorAll('a').forEach((element) => {
-          const linkLabel = getLinkLabel(element);
-          if (trackedLabels.includes(linkLabel)) {
-            sampleRUM.convert('click', linkLabel, element);
-          }
+      const linkLabels = getMetadata('conversion-link-labels') || '';
+      const trackedLabels = linkLabels.split(',')
+        .map((p) => p.trim())
+        .map(toClassName);
+
+      Array.from(parent.querySelectorAll('a[href]'))
+        .filter((element) => trackedLabels.includes(getLinkLabel(element)))
+        .map(element => ({
+          element,
+          cevent: getMetadata(`conversion-name--${getLinkLabel(element)}-`) || getMetadata('conversion-name') || getLinkLabel(element),
+        }))
+        .forEach(({ element, cevent }) => {
+          sampleRUM.convert(cevent, undefined, element, ['click']);
         });
-      }
     }
   };
 
