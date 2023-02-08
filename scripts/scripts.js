@@ -1341,7 +1341,7 @@ if (params.get('performance')) {
  * listenTo supports 'submit' and 'click'.  
  * If listenTo is not provided, the information is used to track a conversion event.
  */
-sampleRUM.drain('convert', (cevent, cvalue, element, listenTo = []) => {
+sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
   function trackConversion(celement) {
     const MAX_SESSION_LENGTH = 1000 * 60 * 60 * 24 * 30; // 30 days
     try {
@@ -1354,8 +1354,9 @@ sampleRUM.drain('convert', (cevent, cvalue, element, listenTo = []) => {
           // send conversion event for each experiment that has been seen by this visitor
           sampleRUM('variant', { source: experiment, target: treatment });
         });
-      // send conversion event      
-      sampleRUM('convert', { source: cevent, target: cvalue, element: celement}, );      
+      // send conversion event
+      const cvalue = typeof cvalueThunk === 'function' ? cvalueThunk() : cvalueThunk;
+      sampleRUM('convert', { source: cevent, target: cvalue, element: celement });      
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('error reading experiments', e);
@@ -1365,16 +1366,16 @@ sampleRUM.drain('convert', (cevent, cvalue, element, listenTo = []) => {
   function registerConversionListener(elements) {
     // if elements is an array or nodelist, register a conversion event for each element
     if (Array.isArray(elements) || elements instanceof NodeList) {
-      elements.forEach(e => registerConversionListener(e, listenTo, cevent, cvalue));
+      elements.forEach(e => registerConversionListener(e, listenTo, cevent, cvalueThunk));
     } else {
       listenTo.forEach(eventName => element.addEventListener(eventName, (e) => trackConversion(e.target)));
     }
   }
 
   if (element && listenTo.length) {
-    registerConversionListener(element, listenTo, cevent, cvalue);
+    registerConversionListener(element, listenTo, cevent, cvalueThunk);
   } else {
-    trackConversion(element, cevent, cvalue);
+    trackConversion(element, cevent, cvalueThunk);
   }
 });
 
