@@ -402,7 +402,7 @@ export function decorateSections($main) {
         } else if (key === 'anchor') {
           section.id = toClassName(meta.anchor);
         } else {
-          section.dataset[key] = meta[key];
+          section.dataset[toCamelCase(key)] = meta[key];
         }
       });
       decorateBackgrounds(section);
