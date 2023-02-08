@@ -1002,14 +1002,18 @@ export async function initConversionTracking(parent, path) {
     form: () => {
       // Track all forms
       parent.querySelectorAll('form').forEach((element) => {
-        const section = element.closest('div.section[data-conversionid]');
-        let formId;
-        if (section) {
-          formId = section ? section.dataset.conversionid : element.id;
-        } else {
-          formId = path ? toClassName(path) : element.id;
+        const section = element.closest('div.section');
+        if (section.dataset.conversionElement && section.querySelector(`#${section.dataset.conversionElement}`)) {
+          // this will track the value of the element with the id specified in the "Conversion Element" field.
+          // ideally, this should not be an ID, but the case-insensitive name label of the element.
+          sampleRUM.convert(undefined, () => section.querySelector(`#${section.dataset.conversionElement}`).value, element, ['submit']);
         }
-        sampleRUM.convert('submit', formId, element);
+        if (section.dataset.conversionName) {
+          sampleRUM.convert(section.dataset.conversionName, undefined, element, ['submit']);
+        } else {
+          // if no conversion name is specified, use the form path or id
+          sampleRUM.convert(path ? toClassName(path) : element.id, undefined, element, ['submit']);
+        }
       });
     },
     link: () => {
