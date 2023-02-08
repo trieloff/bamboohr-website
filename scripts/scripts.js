@@ -1014,9 +1014,13 @@ export async function initConversionTracking(parent, path) {
     },
     link: () => {
       // track all links
-      parent.querySelectorAll('a').forEach((element) => {
-        const linkLabel = getLinkLabel(element);
-        sampleRUM.convert('click', linkLabel, element);
+      Array.from(parent.querySelectorAll('a[href]'))
+        .map(element => ({
+          element,
+          cevent: getMetadata('conversion-name') || getLinkLabel(element),
+        }))
+        .forEach(({ element, cevent }) => {
+          sampleRUM.convert(cevent, undefined, element, ['click'])
       });
     },
     'labeled-link': () => {
