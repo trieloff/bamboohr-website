@@ -1101,7 +1101,7 @@ function getLinkLabel(element) {
 export async function initConversionTracking(parent, path) {
   const conversionElements = {
     form: () => {
-      //Track all forms
+      // Track all forms
       parent.querySelectorAll('form').forEach((element) => {
         const section = element.closest('div.section[data-conversionid]');      
         let formId;
@@ -1377,7 +1377,7 @@ sampleRUM.drain('convert', (element, listenTo, cevent, cvalue) => {
 // call upon conversion events, pushes them to the datalayer
 sampleRUM.always.on('convert', (data) => {
   console.debug('push to datalayer - convert ', data);
-  const element = data.element;
+  const { element } = data;
   if (element) {
     let evtDataLayer;
     if (element.tagName === 'FORM') {
