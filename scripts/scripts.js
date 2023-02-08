@@ -1336,8 +1336,8 @@ if (params.get('performance')) {
  * listenTo supports 'submit' and 'click'.  
  * If listenTo is not provided, the information is used to track a conversion event.
  */
-sampleRUM.drain('convert', (element, listenTo, cevent, cvalue) => {
-  function trackConversion(celement, cevent, cvalue) {
+sampleRUM.drain('convert', (cevent, cvalue, element, listenTo = []) => {
+  function trackConversion(celement) {
     const MAX_SESSION_LENGTH = 1000 * 60 * 60 * 24 * 30; // 30 days
     try {
       // get all stored experiments from local storage (unified-decisioning-experiments)
@@ -1357,17 +1357,16 @@ sampleRUM.drain('convert', (element, listenTo, cevent, cvalue) => {
     }
   }
 
-  function registerConversionListener(elements, listenTo, cevent, cvalue) {
+  function registerConversionListener(elements) {
     // if elements is an array or nodelist, register a conversion event for each element
     if (Array.isArray(elements) || elements instanceof NodeList) {
       elements.forEach(e => registerConversionListener(e, listenTo, cevent, cvalue));
-    }
-    else if (listenTo === 'click' || listenTo === 'submit') {
-      element.addEventListener(listenTo, () => trackConversion(element, cevent, cvalue));
+    } else {
+      listenTo.forEach(eventName => element.addEventListener(eventName, trackConversion));
     }
   }
 
-  if (element && listenTo) {
+  if (element && listenTo.length) {
     registerConversionListener(element, listenTo, cevent, cvalue);
   } else {
     trackConversion(element, cevent, cvalue);
