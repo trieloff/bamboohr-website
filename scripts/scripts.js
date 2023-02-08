@@ -1377,7 +1377,7 @@ sampleRUM.drain('convert', (cevent, cvalue, element, listenTo = []) => {
 sampleRUM.always.on('convert', (data) => {
   console.debug('push to datalayer - convert ', data);
   const { element } = data;
-  if (element) {
+  if (element && window.digitalData) {
     let evtDataLayer;
     if (element.tagName === 'FORM') {
       evtDataLayer = {
@@ -1399,9 +1399,7 @@ sampleRUM.always.on('convert', (data) => {
         }
       };
     }
-    if(window.digitalData) {
-      console.debug('push to datalayer', evtDataLayer);
-      window.digitalData.push(evtDataLayer);
-    }
+    console.debug('push to datalayer', evtDataLayer);
+    window.digitalData.push(evtDataLayer);
   }
 });
