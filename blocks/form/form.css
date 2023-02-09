@@ -236,6 +236,7 @@ main .form .form-gdpr-text,
 
 main .form .mktoForm {
   visibility: hidden;
+  width: 100% !important;
 }
 
 main .form .mktoForm[data-styles-ready='true'] {

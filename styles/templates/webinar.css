@@ -1,0 +1,23 @@
+.webinar main .form-container {
+  background-color: var(--color-gray-1);
+  padding: 20px 0;
+}
+
+@media (min-width: 1200px) {
+  .webinar main .form-container {
+    padding: 60px 0;
+  }
+}
+
+.webinar .form.has-content .content-col img {
+  margin: 40px 0;
+  background-color: var(--color-white);
+}
+
+.webinar main .speaker-container .title-wrapper {
+  margin-bottom: 30px;
+}
+
+.webinar main .speaker-container {
+  margin-bottom: 100px;
+}

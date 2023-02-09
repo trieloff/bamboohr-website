@@ -22,11 +22,17 @@ function buildForm(main) {
 async function buildSpeaker(main) {
   const speakers = getMetadata('speaker');
   if (speakers) {
-
     const container = buildBlock('speaker-container', []);
     main.append(container);
-    const speakerBlock = buildBlock('speaker', [['']]);
-    // console.log(speakerBlock);
+
+    const title = 'About the speakers';
+    const titleBlock = buildBlock('title', title);
+    titleBlock?.classList.add('title1', 'color-gray-12');
+    titleBlock?.querySelector('div').setAttribute('data-align', 'center');
+    main.querySelector('.speaker-container').append(titleBlock);
+
+    const speakerBlock = buildBlock('speaker', []);
+    speakerBlock.classList.add('style-2-columns');
     main.querySelector('.speaker-container').append(speakerBlock);
   }
 }
