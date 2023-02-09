@@ -14,9 +14,8 @@
  * log RUM if part of the sample.
  * @param {string} checkpoint identifies the checkpoint in funnel
  * @param {Object} data additional data for RUM sample
- * @param {Object} extraData optional data for analytics tracking
  */
-export function sampleRUM(checkpoint, data = {}, extraData = {}) {
+export function sampleRUM(checkpoint, data = {}) {
   sampleRUM.defer = sampleRUM.defer || [];
   const defer = (fnname) => {
     sampleRUM[fnname] = sampleRUM[fnname]
@@ -72,7 +71,7 @@ export function sampleRUM(checkpoint, data = {}, extraData = {}) {
       sendPing(data);
       if (sampleRUM.cases[checkpoint]) { sampleRUM.cases[checkpoint](); }
     }
-    if (sampleRUM.always[checkpoint]) { sampleRUM.always[checkpoint](data, extraData); }
+    if (sampleRUM.always[checkpoint]) { sampleRUM.always[checkpoint](data); }
   } catch (error) {
     // something went wrong
   }
@@ -992,6 +991,21 @@ function getLinkLabel(element) {
   return element.title ? toClassName(element.title) : toClassName(element.textContent);
 }
 
+function findConversionValue(parent, fieldName) {
+  // Try to find the element by Id or Name
+  const valueElement = document.getElementById(fieldName) || parent.querySelector(`[name='${fieldName}']`);  
+  if (valueElement) {
+    return valueElement.value;
+  }
+  // Find the element by the inner text of the label
+  return Array.from(parent.getElementsByTagName('label'))
+    .filter(l => l.innerText === fieldName)
+    .map(label => document.getElementById(label.htmlFor))
+    .filter(field => field)
+    .map(field => field.value)
+    .find(value => value);
+}
+
 /**
  * Registers conversion listeners according to the metadata configured in the document.
  * @param {Element} parent element where to find potential event conversion sources
@@ -1003,10 +1017,11 @@ export async function initConversionTracking(parent, path) {
       // Track all forms
       parent.querySelectorAll('form').forEach((element) => {
         const section = element.closest('div.section');
-        if (section.dataset.conversionElement && section.querySelector(`#${section.dataset.conversionElement}`)) {
+        if (section.dataset.conversionValueField) {
+          const cvField = section.dataset.conversionValueField.trim();
           // this will track the value of the element with the id specified in the "Conversion Element" field.
           // ideally, this should not be an ID, but the case-insensitive name label of the element.
-          sampleRUM.convert(undefined, () => section.querySelector(`#${section.dataset.conversionElement}`).value, element, ['submit']);
+          sampleRUM.convert(undefined, (cvParent) => findConversionValue(cvParent, cvField), element, ['submit']);
         }
         if (section.dataset.conversionName) {
           sampleRUM.convert(section.dataset.conversionName, undefined, element, ['submit']);
@@ -1021,7 +1036,7 @@ export async function initConversionTracking(parent, path) {
       Array.from(parent.querySelectorAll('a[href]'))
         .map(element => ({
           element,
-          cevent: getMetadata('conversion-name') || getLinkLabel(element),
+          cevent: getMetadata(`conversion-name--${getLinkLabel(element)}-`) || getMetadata('conversion-name') || getLinkLabel(element),
         }))
         .forEach(({ element, cevent }) => {
           sampleRUM.convert(cevent, undefined, element, ['click'])
@@ -1359,8 +1374,10 @@ sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
           sampleRUM('variant', { source: experiment, target: treatment });
         });
       // send conversion event
-      const cvalue = typeof cvalueThunk === 'function' ? cvalueThunk() : cvalueThunk;
-      sampleRUM('convert', { source: cevent, target: cvalue, element: celement });      
+      const cvalue = typeof cvalueThunk === 'function' ? cvalueThunk(element) : cvalueThunk;
+      if (cvalue || cevent) {
+        sampleRUM('convert', { source: cevent, target: cvalue, element: celement });      
+      }
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('error reading experiments', e);
