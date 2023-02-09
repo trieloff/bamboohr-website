@@ -11,6 +11,7 @@
 
 .content-library .form.has-content .content-col img {
   margin: 40px 0;
+  background-color: var(--color-white);
 }
 
 .content-library .courses-speaker {
@@ -40,6 +41,15 @@
   .content-library .wistia-course-button {
       display: none;
   }
+}
+
+.content-library-success main {
+  background: none;
+}
+
+.content-library-success .columns .img-col img {
+  box-shadow: var(--box-shadow-2);
+  border-radius: 15px;
 }
 
 .content-library-success .success-download {
