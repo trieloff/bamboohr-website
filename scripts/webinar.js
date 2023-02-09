@@ -54,7 +54,6 @@ export default async function decorateTemplate(main) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const formSubmit = urlParams.get('formSubmit');
-  const category = getMetadata('category');
 
   if (formSubmit && formSubmit === 'success') {
     main.innerHTML = '';
