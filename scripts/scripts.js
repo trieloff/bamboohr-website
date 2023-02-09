@@ -412,7 +412,7 @@ export function decorateBackgrounds($section) {
                   [...matches].forEach(([, match], matchKey) => {
                     html = html.replaceAll(
                       match,
-                      `bg-id-${sectionKey}-${bgKey}-${sizeKey}-${matchKey}`
+                      `${match}-id-${sectionKey}-${bgKey}-${sizeKey}-${matchKey}`
                     );
                   });
   
