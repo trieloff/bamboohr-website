@@ -142,7 +142,7 @@ function findSplitSubType(val) {
 function setupColumns(cols, splitVals, block, needToLoadWistiaCSS) {
   const extraSplits = splitVals.length > 2 ? 1 : 0;
   const colParent = cols[0].parentElement;
-  const loadWistiaCSS = needToLoadWistiaCSS;
+  let loadWistiaCSS = needToLoadWistiaCSS;
   const colsToRemove = [];
 
   colParent.classList.add('column-flex-container');
@@ -161,6 +161,7 @@ function setupColumns(cols, splitVals, block, needToLoadWistiaCSS) {
       colsToRemove.push(col);
     } else if (col.querySelector('a')?.href?.includes('wistia')) {
       addWistia(col, loadWistiaCSS);
+      loadWistiaCSS = false;
       hasImage = true;
       hasWistia = true;
     } else if (col.querySelector('img')) {
