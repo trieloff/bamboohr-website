@@ -999,11 +999,11 @@ function findConversionValue(parent, fieldName) {
   }
   // Find the element by the inner text of the label
   return Array.from(parent.getElementsByTagName('label'))
-    .filter(l => l.innerText === fieldName)
+    .filter(l => l.innerText.trim().toLowerCase() === fieldName.toLowerCase())
     .map(label => document.getElementById(label.htmlFor))
-    .filter(field => field)
+    .filter(field => !!field)
     .map(field => field.value)
-    .find(value => value);
+    .pop();
 }
 
 /**
@@ -1361,7 +1361,7 @@ if (params.get('performance')) {
  * If listenTo is not provided, the information is used to track a conversion event.
  */
 sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
-  function trackConversion(celement) {
+  async function trackConversion(celement) {
     const MAX_SESSION_LENGTH = 1000 * 60 * 60 * 24 * 30; // 30 days
     try {
       // get all stored experiments from local storage (unified-decisioning-experiments)
@@ -1374,7 +1374,7 @@ sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
           sampleRUM('variant', { source: experiment, target: treatment });
         });
       // send conversion event
-      const cvalue = typeof cvalueThunk === 'function' ? cvalueThunk(element) : cvalueThunk;
+      const cvalue = typeof cvalueThunk === 'function' ? await cvalueThunk(element) : cvalueThunk;
       if (cvalue || cevent) {
         sampleRUM('convert', { source: cevent, target: cvalue, element: celement });      
       }
@@ -1416,7 +1416,7 @@ sampleRUM.always.on('convert', (data) => {
           formsType: "" 
         }
       };
-    } else if (element.tagName === 'A' || element.tagName === 'BUTTON') {
+    } else if (element.tagName === 'A') {
       evtDataLayer = {
         event: "Link Click",
         eventData: {
