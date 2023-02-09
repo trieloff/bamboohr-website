@@ -49,9 +49,9 @@ export function sampleRUM(checkpoint, data = {}) {
     }
     const { weight, id } = window.hlx.rum;
     if (window.hlx && window.hlx.rum && window.hlx.rum.isSelected) {
-      const sendPing = (pdata = data) => {      
+      const sendPing = (pdata = data) => {
         // eslint-disable-next-line object-curly-newline, max-len, no-use-before-define
-        const body = JSON.stringify({ weight, id, referer: window.location.href, generation: window.hlx.RUM_GENERATION, checkpoint, ...data }, (key, value) => (key === 'element' ? undefined : value));        
+        const body = JSON.stringify({ weight, id, referer: window.location.href, generation: window.hlx.RUM_GENERATION, checkpoint, ...data }, (key, value) => (key === 'element' ? undefined : value));
         const url = `https://rum.hlx.page/.rum/${weight}`;
         // eslint-disable-next-line no-unused-expressions
         navigator.sendBeacon(url, body);
@@ -993,7 +993,7 @@ function getLinkLabel(element) {
 
 function findConversionValue(parent, fieldName) {
   // Try to find the element by Id or Name
-  const valueElement = document.getElementById(fieldName) || parent.querySelector(`[name='${fieldName}']`);  
+  const valueElement = document.getElementById(fieldName) || parent.querySelector(`[name='${fieldName}']`);
   if (valueElement) {
     return valueElement.value;
   }
@@ -1193,7 +1193,7 @@ function loadDelayed() {
 		'/resources/hr-glossary/',
 		'/hr-solutions/industry/construction',
 		'/blog/key-hr-metrics'
-	];	
+	];
 	const isOnTestPath = testPaths.includes(window.location.pathname);
 
 	if(isOnTestPath){
@@ -1203,7 +1203,7 @@ function loadDelayed() {
 		// eslint-disable-next-line import/no-cycle, no-lonely-if
 		if (!window.hlx.performance) window.setTimeout(() => handleLoadDelayed(), 4000);
 		// load anything that can be postponed to the latest here
-	}  
+	}
 }
 
 export async function loadFragment(path) {
@@ -1357,7 +1357,7 @@ if (params.get('performance')) {
  * Registers the 'convert' function to `sampleRUM` which sends
  * variant and convert events upon conversion.
  * The function will register a listener for an element if listenTo parameter is provided.
- * listenTo supports 'submit' and 'click'.  
+ * listenTo supports 'submit' and 'click'.
  * If listenTo is not provided, the information is used to track a conversion event.
  */
 sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
@@ -1374,8 +1374,8 @@ sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
           sampleRUM('variant', { source: experiment, target: treatment });
         });
       // send conversion event
-      const cvalue = typeof cvalueThunk === 'function' ? await cvalueThunk(element) : cvalueThunk;      
-      sampleRUM('convert', { source: cevent, target: cvalue, element: celement });            
+      const cvalue = typeof cvalueThunk === 'function' ? await cvalueThunk(element) : cvalueThunk;
+      sampleRUM('convert', { source: cevent, target: cvalue, element: celement });
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('error reading experiments', e);
@@ -1411,7 +1411,7 @@ sampleRUM.always.on('convert', (data) => {
           formsComplete: 1,
           formName: data.source, // this is the conversion event name
           formId: element.id,
-          formsType: "" 
+          formsType: ""
         }
       };
     } else if (element.tagName === 'A') {
@@ -1420,7 +1420,7 @@ sampleRUM.always.on('convert', (data) => {
         eventData: {
           linkName: data.source, // this is the conversion event name
           linkText: element.innerHTML,
-          linkHref: element.href              
+          linkHref: element.href
         }
       };
     }
