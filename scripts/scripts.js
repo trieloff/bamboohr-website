@@ -1374,10 +1374,8 @@ sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
           sampleRUM('variant', { source: experiment, target: treatment });
         });
       // send conversion event
-      const cvalue = typeof cvalueThunk === 'function' ? await cvalueThunk(element) : cvalueThunk;
-      if (cvalue || cevent) {
-        sampleRUM('convert', { source: cevent, target: cvalue, element: celement });      
-      }
+      const cvalue = typeof cvalueThunk === 'function' ? await cvalueThunk(element) : cvalueThunk;      
+      sampleRUM('convert', { source: cevent, target: cvalue, element: celement });            
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log('error reading experiments', e);
