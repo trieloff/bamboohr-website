@@ -25,13 +25,14 @@ function hideSearchInput(navSearchBtn, phoneNumElem, navButtons) {
   navSearchBtn.nextElementSibling.classList.remove('show-input');
   navSearchBtn.parentElement.classList.remove('search-open');
   navSearchBtn.parentElement.parentElement.parentElement.classList.remove('search-open');
+  // eslint-disable-next-line no-return-assign
   if (mediaQuerySearchOpen.matches) navButtons?.forEach(b => b.style.display = '');
   else if (mediaQueryDesktop.matches && phoneNumElem) phoneNumElem.style.display = '';
 }
 
 function addSearch(buttonsContainer) {
-  const search = buttonsContainer.querySelector('p:not(:has(*))');
-  if (search?.textContent?.toLowerCase() === '[search]') {
+  const search = [...buttonsContainer.children].find(b => b.textContent?.toLowerCase() === '[search]');
+  if (search) {
     buttonsContainer.parentElement.classList.add('has-search');
     // Build search.
     const div = document.createElement('div');
@@ -64,6 +65,7 @@ function addSearch(buttonsContainer) {
       navSearchBtn.parentElement.classList.add('search-open');
       navSearchBtn.parentElement.parentElement.parentElement.classList.add('search-open');
       navSearchBtn.classList.add('hide-btn');
+      // eslint-disable-next-line no-return-assign
       if (mediaQuerySearchOpen.matches) navButtons?.forEach(b => b.style.display = 'none');
       else if (mediaQueryDesktop.matches && phoneNumElem) phoneNumElem.style.display = 'none';
       navSearchBtn.nextElementSibling.classList.add('show-input');
@@ -187,7 +189,7 @@ export default async function decorate(block) {
               });
 
               if (!li.parentElement.getAttribute('data-listener')) {
-                li.parentElement.addEventListener('mouseleave', (evt) => {
+                li.parentElement.addEventListener('mouseleave', () => {
                   submenuAction(nav, null, false);
                 });
                 li.parentElement.setAttribute('data-listener', true);

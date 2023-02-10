@@ -191,7 +191,7 @@ export function getMetadata(name) {
   const template = toClassName(getMetadata('template'));
   if (template) {
     const templates = ['bhr-comparison', 'bhr-home', 'ee-solution', 'hr-glossary', 'hr-software-payroll', 'hr-unplugged',
-      'hrvs-listing', 'industry', 'industry-category', 'live-demo-webinars', 'payroll-roi', 'performance-reviews', 'pricing-quote', 'resources-landing-page'];
+      'hrvs-listing', 'industry', 'industry-category', 'live-demo-webinars', 'payroll-roi', 'performance-reviews', 'pricing-quote', 'content-library', 'webinar'];
     if (templates.includes(template)) {
       const cssBase = `${window.hlx.serverPath}${window.hlx.codeBasePath}`;
       loadCSS(`${cssBase}/styles/templates/${template}.css`);
@@ -363,6 +363,21 @@ export function readBlockConfig(block) {
  * @param {Element} $section The section element
  */
 export function decorateBackgrounds($section) {
+  const missingBgs = ['bg-bottom-cap-3-tint-laptop', 'bg-bottom-cap-3-tint-mobile', 'bg-bottom-cap-3-tint-tablet',
+    'bg-top-cap-3-laptop', 'bg-top-cap-3-mobile', 'bg-top-cap-3-tablet', 'bg-top-multi-7', 'bg-bottom-multi-3',
+    'bg-center-multi-3', 'bg-block-center-page-cta', 'bg-block-benefits-laptop', 'bg-block-benefits-tablet',
+    'bg-block-benefits-mobile', 'bg-block-center-left-single-1-laptop', 'bg-block-center-left-single-1-tablet',
+    'bg-block-center-left-single-1-mobile', 'bg-block-center-left-single-2-laptop', 'bg-block-center-left-single-2-tablet',
+    'bg-block-center-left-single-2-mobile', 'bg-block-center-right-double-1-laptop', 'bg-block-center-right-double-1-tablet',
+    'bg-block-center-right-single-3-laptop', 'bg-block-center-right-single-3-tablet', 'bg-block-center-right-single-3-mobile',
+    'bg-block-ee-solutions-quote-laptop', 'bg-block-ee-solutions-quote-tablet', 'bg-block-ee-solutions-quote-mobile',
+    'bg-bottom-cap-1-laptop', 'bg-bottom-cap-1-tablet', 'bg-bottom-cap-1-mobile', 'bg-bottom-cap-2-laptop', 'bg-bottom-cap-2-tablet',
+    'bg-bottom-cap-2-mobile', 'bg-bottom-cap-3-laptop', 'bg-bottom-cap-3-tablet', 'bg-bottom-cap-3-mobile',
+    'bg-cover-green-patterns-laptop', 'bg-cover-green-patterns-tablet', 'bg-cover-green-patterns-mobile', 'bg-left-single-1-laptop',
+    'bg-left-single-1-tablet', 'bg-left-single-1-mobile', 'bg-left-single-2-tablet', 'bg-left-single-2-mobile', 'bg-right-multi-2-mobile',
+    'bg-top-cap-1-laptop', 'bg-top-cap-1-tablet', 'bg-top-cap-1-mobile', 'bg-top-cap-2-laptop', 'bg-top-cap-2-tablet',
+    'bg-top-cap-2-mobile', 'bg-top-multi-7-tint-10', 'bg-top-multi-7-tint-15', 'bg-top-multi-11-laptop', 'bg-top-multi-11-tablet',
+    'bg-top-multi-11-mobile'];
   const sectionKey = [...$section.parentElement.children].indexOf($section);
   [...$section.classList]
     .filter((filter) => filter.match(/^bg-/g))
@@ -380,36 +395,38 @@ export function decorateBackgrounds($section) {
 
           if (size) name += `-${size}`;
 
-          fetch(`${fetchBase}${window.hlx.codeBasePath}/styles/backgrounds/${name}.svg`).then(
-            (resp) => {
-              // skip if not success
-              if (resp.status !== 200) return;
-
-              // put the svg in the span
-              resp.text().then((output) => {
-                const element = document.createElement('div');
-                let html = output;
-
-                // get IDs
-                const matches = html.matchAll(/id="([^"]+)"/g);
-                // replace IDs
-                [...matches].forEach(([, match], matchKey) => {
-                  html = html.replaceAll(
-                    match,
-                    `bg-id-${sectionKey}-${bgKey}-${sizeKey}-${matchKey}`
-                  );
+          if (!missingBgs.includes(name)) {
+            fetch(`${fetchBase}${window.hlx.codeBasePath}/styles/backgrounds/${name}.svg`).then(
+              (resp) => {
+                // skip if not success
+                if (resp.status !== 200) return;
+  
+                // put the svg in the span
+                resp.text().then((output) => {
+                  const element = document.createElement('div');
+                  let html = output;
+  
+                  // get IDs
+                  const matches = html.matchAll(/id="([^"]+)"/g);
+                  // replace IDs
+                  [...matches].forEach(([, match], matchKey) => {
+                    html = html.replaceAll(
+                      match,
+                      `${match}-id-${sectionKey}-${bgKey}-${sizeKey}-${matchKey}`
+                    );
+                  });
+  
+                  element.innerHTML = html;
+                  const svg = element.firstChild;
+  
+                  svg.classList.add(size || 'desktop');
+  
+                  background.append(svg);
+                  $section.classList.add('has-bg');
                 });
-
-                element.innerHTML = html;
-                const svg = element.firstChild;
-
-                svg.classList.add(size || 'desktop');
-
-                background.append(svg);
-                $section.classList.add('has-bg');
-              });
-            }
-          );
+              }
+            );
+          }
         });
       }
       if (style.startsWith('bg-gradient') || style.startsWith('bg-solid')) {
@@ -917,6 +934,7 @@ export async function lookupPages(pathnames, collection, sheet = '') {
     hrvs: '/resources/events/hr-virtual/2022/query-index.json',
     blockInventory: '/blocks/query-index.json',
     blockTracker: `/website-marketing-resources/block-inventory-tracker.json?sheet=${sheet}`,
+    resources: `/resources/query-index.json?sheet=resources`
   };
   const indexPath = indexPaths[collection];
   const collectionCache = `${collection}${sheet}`;
@@ -988,7 +1006,8 @@ async function buildAutoBlocks(main) {
   try {
     let template = toClassName(getMetadata('template'));
     if (window.location.pathname.startsWith('/blog/') && !template) template = 'blog';
-    const templates = ['blog', 'integrations-listing'];
+
+    const templates = ['blog', 'integrations-listing', 'content-library', 'webinar'];
     if (templates.includes(template)) {
       const mod = await import(`./${template}.js`);
       if (mod.default) {
@@ -1103,6 +1122,9 @@ async function loadEager(doc) {
  * loads everything that doesn't need to be delayed.
  */
 async function loadLazy(doc) {
+  // eslint-disable-next-line no-use-before-define
+  loadDelayedOnClick();
+
   const header = doc.querySelector('header');
   const queryParams = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
@@ -1129,13 +1151,39 @@ async function loadLazy(doc) {
   }
 }
 
+function loadDelayedOnClick() {
+  // eslint-disable-next-line no-use-before-define
+  document.body.addEventListener('click', handleLoadDelayed);
+}
+
+async function handleLoadDelayed() {
+  if (!window.hlx.delayedJSLoaded) {
+    window.hlx.delayedJSLoaded = true;
+    // eslint-disable-next-line import/no-cycle
+    await import('./delayed.js');
+
+    document.body.removeEventListener('click', handleLoadDelayed);
+  }
+}
+
 /**
  * loads everything that happens a lot later, without impacting
  * the user experience.
  */
 function loadDelayed() {
-  // eslint-disable-next-line import/no-cycle
-  if (!window.hlx.performance) window.setTimeout(() => import('./delayed.js'), 4000);
+  const testPaths = [
+    '/',
+    '/resources/hr-glossary/performance-review',
+    '/resources/hr-glossary/',
+    '/hr-solutions/industry/construction',
+    '/blog/key-hr-metrics'
+  ];	
+  const isOnTestPath = testPaths.includes(window.location.pathname);
+
+  if (isOnTestPath) handleLoadDelayed(); // import without delay (for testing page performance)
+  // else if (!window.hlx.performance) window.setTimeout(() => handleLoadDelayed(), 4000);
+  else if (!window.hlx.performance) handleLoadDelayed();
+  
   // load anything that can be postponed to the latest here
 }
 

@@ -57,6 +57,8 @@ body.appear {
 
 main {
   overflow: hidden;
+  margin: 0;
+  color: var(--color-gray-9);
 }
 
 /* buttons */
@@ -243,11 +245,6 @@ main ol li {
   font-weight: var(--body-font-weight);
 }
 
-main {
-  margin: 0;
-  color: var(--color-gray-9);
-}
-
 p,
 dl,
 ol,
@@ -405,9 +402,11 @@ main .title.hero-subhead :is(h1, h2, h3, h4, h5, h6, div) {
   line-height: 26px;
   margin: 20px 0 0;
 }
+
 .typ-subhead1 :is(h1, h2, h3, h4, h5, h6, div) {
   font-weight: 500;
 }
+
 .typ-section-subhead,
 main .title.section-subhead :is(h1, h2, h3, h4, h5, h6, div) {
   font-family: var(--body-font-family);
@@ -1318,11 +1317,11 @@ table td {
 }
 
 table thead {
-  background-color: var(--color-1);
+  background-color: var(--theme-tint5);
 }
 
 table thead th {
-  border-color: var(--color-1);
+  border-color: var(--theme-tint5);
 }
 
 table tbody th {
@@ -1529,7 +1528,7 @@ body.modal-open {
   background-color: var(--body-background-color);
   border-radius: 20px;
   position: absolute;
-  top: 70px;
+  top: 90px;
   margin: 0 auto;
   padding: 50px 30px;
 }

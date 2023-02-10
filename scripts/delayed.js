@@ -109,6 +109,15 @@ loadScript('header', adobeTagsSrc, async () => {
     }
   */
 
+  /* set experiment and variant information */
+  let experiment;
+  if (window.hlx.experiment) {
+    experiment = {
+      id: window.hlx.experiment.id,
+      variant: window.hlx.experiment.selectedVariant,
+    };
+  }
+
   window.digitalData.push({
     event: 'Page View',
     page: {
@@ -116,9 +125,12 @@ loadScript('header', adobeTagsSrc, async () => {
       language: 'en',
       platform: 'web',
       site: 'blog'
-    }
+    },
+    ...(experiment ? { experiment }: {})
   });
 });
+
+loadScript('header', 'https://www.googleoptimize.com/optimize.js?id=OPT-PXL7MPD', null);
 
 /* google tag manager */
 // eslint-disable-next-line

@@ -31,7 +31,7 @@
   background-image: unset;
 }
 
-.columns .column-small-icons-container.column-multi-element a:not(.column-svg-link):after {
+.columns .column-small-icons-container.column-multi-element a:not(.column-svg-link)::after {
   background-color: currentcolor;
   content: '';
   display: inline-block;
@@ -666,6 +666,16 @@ div .column-small-icons-container.column-multi-element {
 
 .columns.mb-minus-72-px {
   margin-bottom: -72px;
+}
+
+.columns[class*='background-card-color-'] {
+  padding: 10px 60px;
+  margin: 0 -60px;
+  border-radius: 15px;
+}
+
+.columns.background-card-color-tint-15 {
+  background-color: var(--theme-tint15);
 }
 
 @media (min-width: 900px) {

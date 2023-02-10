@@ -7,10 +7,4 @@
       fill="currentcolor" class="secondary-tint-10"/>
     <path d="M2112.94 -53.1288L1580.19 464.323C1494.81 547.246 1372.3 578.493 1258.79 546.302L550.467 345.41C436.952 313.219 349.701 222.467 321.56 107.362L145.992 -610.966C117.856 -726.081 153.119 -848.073 238.498 -930.996L771.249 -1448.45C856.628 -1531.37 979.133 -1562.62 1092.65 -1530.43L1800.97 -1329.54C1914.48 -1297.34 2001.74 -1206.59 2029.88 -1091.49L2205.43 -373.155C2233.56 -258.041 2198.3 -136.048 2112.94 -53.1288Z"
       fill="currentcolor" class="theme-tint-15"/>
-    <defs>
-        <linearGradient id="paint0_linear_628_447" x1="1859.5" y1="30" x2="-424.5" y2="764" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#E5FDFF"/>
-            <stop offset="1" stop-color="#E5FDFF" stop-opacity="0"/>
-        </linearGradient>
-    </defs>
 </svg>
