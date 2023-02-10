@@ -862,6 +862,7 @@ export async function lookupPages(pathnames, collection, sheet = '') {
     hrvs: '/resources/events/hr-virtual/2022/query-index.json',
     blockInventory: '/blocks/query-index.json',
     blockTracker: `/website-marketing-resources/block-inventory-tracker.json?sheet=${sheet}`,
+    resources: `/resources/query-index.json?sheet=resources`
   };
   const indexPath = indexPaths[collection];
   const collectionCache = `${collection}${sheet}`;
@@ -1186,24 +1187,20 @@ async function handleLoadDelayed() {
  * the user experience.
  */
 function loadDelayed() {
-
-	const testPaths = [
+  const testPaths = [
     '/',
-		'/resources/hr-glossary/performance-review',
-		'/resources/hr-glossary/',
-		'/hr-solutions/industry/construction',
-		'/blog/key-hr-metrics'
-	];
-	const isOnTestPath = testPaths.includes(window.location.pathname);
+    '/resources/hr-glossary/performance-review',
+    '/resources/hr-glossary/',
+    '/hr-solutions/industry/construction',
+    '/blog/key-hr-metrics'
+  ];	
+  const isOnTestPath = testPaths.includes(window.location.pathname);
 
-	if(isOnTestPath){
-		// import without delay (for testing page performance)
-		handleLoadDelayed();
-	}else{
-		// eslint-disable-next-line import/no-cycle, no-lonely-if
-		if (!window.hlx.performance) window.setTimeout(() => handleLoadDelayed(), 4000);
-		// load anything that can be postponed to the latest here
-	}
+  if (isOnTestPath) handleLoadDelayed(); // import without delay (for testing page performance)
+  // else if (!window.hlx.performance) window.setTimeout(() => handleLoadDelayed(), 4000);
+  else if (!window.hlx.performance) handleLoadDelayed();
+  
+  // load anything that can be postponed to the latest here
 }
 
 export async function loadFragment(path) {
