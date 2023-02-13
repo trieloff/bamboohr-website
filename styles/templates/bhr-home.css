@@ -44,6 +44,10 @@
     max-width: 165px;
 }
 
+.bhr-home .columns .column-small-icons-container.column-multi-element p.button-container.btn-ben-admin {
+	max-width: 146px;
+}
+
 .bhr-home .columns .column-small-icons-container.column-multi-element a {
     font-size: 12px;
     line-height: 12px;
