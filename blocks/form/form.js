@@ -545,9 +545,8 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
 
 export default async function decorate(block) {
   const config = readBlockConfig(block);
-  let chilipiper;
-  let formUrl;
-  let successUrl;
+  let chilipiper; let formUrl; let successUrl;
+  
   if (!block.classList.contains('has-content')) {
     const as = block.querySelectorAll('a');
     formUrl = as[0] ? as[0].href : '';
