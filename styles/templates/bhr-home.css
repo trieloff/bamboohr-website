@@ -105,6 +105,10 @@
     background-color: var(--theme-tint15);
 }
 
+.section.bg-bottom-cap-3-tint.section-3-reprise.columns-container.image-container.quote-container.has-bg > span.bg-bottom-cap-3-tint {
+    top: -100px;
+}
+
 .bhr-home main .section > div.multi-hero-wrapper {
     margin-left: 0;
     margin-right: 0;
@@ -113,7 +117,9 @@
 .bhr-home main .columns-wrapper,
 .bhr-home main .default-content-wrapper,
 .bhr-home main .quote-wrapper,
-.bhr-home main .title-wrapper {
+.bhr-home main .title-wrapper,
+.bhr-home main .reprise-wrapper,
+.bhr-home main .wistia-wrapper {
     position: relative;
     z-index: 1;
 }
@@ -389,3 +395,18 @@
     align-items: flex-start;
 }
   
+
+/* reprise homepage test */
+.section-2 {
+    background: #EDFFC8;
+}
+
+.reprise-copy {
+    display: none;
+}
+
+@media screen and (min-width: 1320px) {
+    .reprise-copy {
+        display: block;
+    }
+}
