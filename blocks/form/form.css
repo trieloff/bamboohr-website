@@ -366,6 +366,14 @@ main .form.white-container .form-col {
   height: fit-content;
 }
 
+
+.form .content-col a:not(.button) {
+  font-weight: var(--heading-font-weight);
+  color: var(--theme-shade10);
+  background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
+}
+
+
 @media (min-width: 1200px) {
   main .form.has-content > div {
     display: grid;
