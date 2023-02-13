@@ -367,7 +367,7 @@ main .form.white-container .form-col {
 }
 
 
-.form .content-col a:not(form) {
+.form .content-col a:not(.button):not(form) {
   font-weight: var(--heading-font-weight);
   color: var(--theme-shade10);
   background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
