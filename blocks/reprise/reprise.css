@@ -3,7 +3,7 @@
     justify-content: center;
 }
 
-.section.reprise-container {
+.reprise-wrapper {
     display: none;
 }
 
@@ -34,7 +34,7 @@
     }
 }
 @media screen and (min-width: 1320px) {
-    .section.reprise-container {
+    .reprise-wrapper {
         display: block;
     }
 }
