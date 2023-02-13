@@ -83,7 +83,8 @@
     transition: color .25s ease-in-out;
 }
 
-.cards .icon.icon-time svg {
+.cards .icon.icon-time svg,
+.cards .icon.icon-paid-time-off svg {
     max-height: 2rem;
     max-width: 2rem;
 }
