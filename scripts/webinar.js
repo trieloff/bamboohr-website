@@ -1,4 +1,4 @@
-import { buildBlock, getMetadata, toClassName } from './scripts.js';
+import { buildBlock, getMetadata, toClassName, createOptimizedPicture } from './scripts.js';
 
 function isUpcomingWebinar() {
   const eventDate = new Date(getMetadata('event-date'));
@@ -126,9 +126,10 @@ function upcomingSuccess(main, webinarTitle) {
   const imageSrc = getMetadata('og:image');
   const columnData = [];
   if (imageSrc) {
+    const webinarImg = createOptimizedPicture(imageSrc, webinarTitle.textContent, false, [{ width: '700' }]);
     columnData.push(`<p class="typ-hero-header color-1">See you at the webinar!</p><p>Thanks for registering for our webinar. You should receive an email with the details.
     </p>`);
-    columnData.push(`<img src="${imageSrc}" alt="${webinarTitle.textContent}" />`);
+    columnData.push(webinarImg.outerHTML);
   }
   if (columnData.length > 0) {
     const upcomingInfoBlock = buildBlock('columns', [columnData]);
