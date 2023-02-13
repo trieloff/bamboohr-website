@@ -36,7 +36,7 @@
 .industry main .quote.full .button {
   background-image: none;
   background-color: var(--theme-shade15);
-  color: var(--theme-tint5);
+  color: var(--theme-tint10);
 }
 
 main .quote.full.industry-footer h2 {
