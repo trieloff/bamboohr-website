@@ -822,7 +822,8 @@ main .section > div:empty {
     max-width: 1160px;
   }
 
-  .resources-guides main .section > div.image-wrapper.extra-wide {
+  .resources-guides main .section > div.image-wrapper.extra-wide,
+  main .section > div.multi-cta-cards-wrapper.extra-wide {
     max-width: 1200px;
   }
 
