@@ -1024,8 +1024,9 @@ export async function initConversionTracking(parent, path) {
           // ideally, this should not be an ID, but the case-insensitive name label of the element.
           sampleRUM.convert(undefined, (cvParent) => findConversionValue(cvParent, cvField), element, ['submit']);
         }
-        if (section.dataset.conversionName) {
-          sampleRUM.convert(section.dataset.conversionName, undefined, element, ['submit']);
+        const formConversionName = section.dataset.conversionName || getMetadata('conversion-name');
+        if (formConversionName) {                    
+          sampleRUM.convert(formConversionName, undefined, element, ['submit']);
         } else {
           // if no conversion name is specified, use the form path or id
           sampleRUM.convert(path ? toClassName(path) : element.id, undefined, element, ['submit']);
@@ -1402,7 +1403,7 @@ sampleRUM.always.on('convert', (data) => {
   const { element } = data;
   if (element && window.digitalData) {
     let evtDataLayer;
-    if (element.tagName === 'FORM') {
+    if (element.tagName === 'FORM') {      
       evtDataLayer = {
         event: "Form Complete",
         forms: {
