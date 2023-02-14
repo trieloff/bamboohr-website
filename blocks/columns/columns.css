@@ -467,6 +467,10 @@ div .column-flex-container.columns-align-start {
   align-items: flex-start;
 }
 
+div .tablet-center-image .column-flex-container.columns-align-start {
+  align-items: center;
+}
+
 div .column-small-icons-container {
   display: flex;
   flex-flow: row wrap;
