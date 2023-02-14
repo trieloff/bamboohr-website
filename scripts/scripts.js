@@ -1409,6 +1409,7 @@ sampleRUM.always.on('convert', (data) => {
         forms: {
           formsComplete: 1,
           formName: data.source, // this is the conversion event name
+          conversionValue: data.target,
           formId: element.id,
           formsType: ""
         }
