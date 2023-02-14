@@ -1398,8 +1398,7 @@ sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
 });
 
 // call upon conversion events, pushes them to the datalayer
-sampleRUM.always.on('convert', (data) => {
-  console.debug('push to datalayer - convert ', data);
+sampleRUM.always.on('convert', (data) => {  
   const { element } = data;
   if (element && window.digitalData) {
     let evtDataLayer;
