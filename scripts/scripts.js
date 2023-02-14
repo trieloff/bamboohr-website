@@ -1025,7 +1025,7 @@ export async function initConversionTracking(parent, path) {
           sampleRUM.convert(undefined, (cvParent) => findConversionValue(cvParent, cvField), element, ['submit']);
         }
         const formConversionName = section.dataset.conversionName || getMetadata('conversion-name');
-        if (formConversionName) {                    
+        if (formConversionName) {
           sampleRUM.convert(formConversionName, undefined, element, ['submit']);
         } else {
           // if no conversion name is specified, use the form path or id
@@ -1194,13 +1194,13 @@ function loadDelayed() {
     '/resources/hr-glossary/',
     '/hr-solutions/industry/construction',
     '/blog/key-hr-metrics'
-  ];	
+  ];
   const isOnTestPath = testPaths.includes(window.location.pathname);
 
   if (isOnTestPath) handleLoadDelayed(); // import without delay (for testing page performance)
   // else if (!window.hlx.performance) window.setTimeout(() => handleLoadDelayed(), 4000);
   else if (!window.hlx.performance) handleLoadDelayed();
-  
+
   // load anything that can be postponed to the latest here
 }
 
@@ -1399,11 +1399,11 @@ sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
 });
 
 // call upon conversion events, pushes them to the datalayer
-sampleRUM.always.on('convert', (data) => {  
+sampleRUM.always.on('convert', (data) => {
   const { element } = data;
   if (element && window.digitalData) {
     let evtDataLayer;
-    if (element.tagName === 'FORM') {      
+    if (element.tagName === 'FORM') {
       evtDataLayer = {
         event: "Form Complete",
         forms: {
