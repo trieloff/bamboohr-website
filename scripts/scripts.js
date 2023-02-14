@@ -1363,13 +1363,15 @@ sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
     try {
       // get all stored experiments from local storage (unified-decisioning-experiments)
       const experiments = JSON.parse(localStorage.getItem('unified-decisioning-experiments'));
-      Object.entries(experiments)
-        .map(([experiment, { treatment, date }]) => ({ experiment, treatment, date }))
-        .filter(({ date }) => Date.now() - new Date(date) < MAX_SESSION_LENGTH)
-        .forEach(({ experiment, treatment }) => {
-          // send conversion event for each experiment that has been seen by this visitor
-          sampleRUM('variant', { source: experiment, target: treatment });
-        });
+      if (experiments) {
+        Object.entries(experiments)
+          .map(([experiment, { treatment, date }]) => ({ experiment, treatment, date }))
+          .filter(({ date }) => Date.now() - new Date(date) < MAX_SESSION_LENGTH)
+          .forEach(({ experiment, treatment }) => {
+            // send conversion event for each experiment that has been seen by this visitor
+            sampleRUM('variant', { source: experiment, target: treatment });
+          });
+      }
       // send conversion event
       const cvalue = typeof cvalueThunk === 'function' ? await cvalueThunk(element) : cvalueThunk;
       sampleRUM('convert', { source: cevent, target: cvalue, element: celement });
