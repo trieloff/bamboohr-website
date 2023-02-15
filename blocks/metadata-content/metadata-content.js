@@ -11,7 +11,7 @@ function createContent() {
   const description = getMetadata('description');
   const category = getMetadata('category');
   let dateString = getMetadata('presentation-date');
-  if (dateString.includes(' ')) dateString = dateString.split(' ')[0];
+  if (dateString.includes(' ')) [dateString] = dateString.split(' ');
   const presentationDate = formatDate(dateString);
   const image = getMetadata('metadata-content-image');
   const picture = createOptimizedPicture(image, false, [{ width: '286' }]);
