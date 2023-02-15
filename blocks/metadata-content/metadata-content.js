@@ -1,5 +1,6 @@
 import {
   createOptimizedPicture,
+  formatDate,
   getMetadata,
 } from '../../scripts/scripts.js';
 
@@ -9,10 +10,9 @@ function createContent() {
   const { title } = document;
   const description = getMetadata('description');
   const category = getMetadata('category');
-  const dateString = getMetadata('presentation-date');
-  const date = new Date(dateString);
-  const presentationDate = date.toDateString();
-  const presentationTime = date.toLocaleTimeString();
+  let dateString = getMetadata('presentation-date');
+  if (dateString.includes(' ')) [dateString] = dateString.split(' ');
+  const presentationDate = formatDate(dateString);
   const image = getMetadata('metadata-content-image');
   const picture = createOptimizedPicture(image, false, [{ width: '286' }]);
 
@@ -24,7 +24,7 @@ function createContent() {
         <h1>${title}</h1>
         <p>${description}</p>
         <span class="content-category">${category}</span> 
-        <span class="content-date">${presentationDate} ${presentationTime}</span>
+        <span class="content-date">${presentationDate}</span>
       </div>
     </div>`;
   return (content);
