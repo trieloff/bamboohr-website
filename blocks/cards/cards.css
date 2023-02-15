@@ -506,3 +506,31 @@ div.has-text-only h4 {
   color: var(--color-gray-5);
   margin: 0;
 }
+
+.cards.icon-cards > .card .icon,
+.cards.icon-cards > .card .icon .shade {
+    color: var(--theme-shade5);
+}
+
+.cards.icon-cards > .card .icon .tint {
+    color: var(--theme-tint10);
+}
+
+.cards.icon-cards > .card > h4.title {
+    color: var(--color-gray-12);
+}
+
+@media (min-width: 600px) {
+    .cards.icon-cards {
+        grid-template-columns: none;
+        grid-auto-columns: minmax(0, 50%);
+        grid-auto-flow: column;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 900px) {
+    .cards.icon-cards {
+        grid-auto-columns: minmax(0, 16.67%);
+    }
+}
