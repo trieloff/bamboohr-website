@@ -55,7 +55,8 @@ loadScript('footer', 'https://consent.trustarc.com/v2/notice/qvlbs6', null, 'tex
  *   localStorage.removeItem('Adobe Tags Development Environment')
  * and reload the page.
  */
-let adobeTagsSrc = 'https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/launch-';
+const adobeTagsSrc = "https://assets.adobedtm.com/ae3ff78e29a2/fe385a93100e/launch-ef3ba4404169-development.min.js";
+/* 'https://assets.adobedtm.com/ae3ff78e29a2/7f43f668d8a7/launch-';
 const adobeTagsDevEnvNumber = (localStorage ? localStorage.getItem('Adobe Tags Development Environment') : undefined);
 const adobeTagsDevEnvURLList = {
   1: 'f8d48fe68c86-development.min.js',
@@ -72,7 +73,7 @@ if (adobeTagsDevEnv) {
   const isProdSite = /^(marketplace|partners|www)\.bamboohr\.com$/i.test(document.location.hostname);
   adobeTagsSrc += (isProdSite ? '58a206bf11f0.min.js' : '9e4820bf112c-staging.min.js');
 }
-
+*/
 loadScript('header', adobeTagsSrc, async () => {
   window.digitalData = {};
   window.digitalData.push = (obj) => {
