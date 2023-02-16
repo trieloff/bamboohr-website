@@ -55,7 +55,7 @@ export function sortOptions(sortBy) {
                       || a.title.localeCompare(b.title),
     // eslint-disable-next-line no-nested-ternary
     hrvsCategory: (a, b) => a.category === b.category 
-                              ? b.date.localeCompare(a.date)
+                              ? a.presenter.localeCompare(b.presenter)
                               // eslint-disable-next-line no-nested-ternary
                               : a.category.toLowerCase() === 'keynote' ? -1
                               : b.category.toLowerCase() === 'keynote' ? 1

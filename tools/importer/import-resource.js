@@ -32,13 +32,18 @@ const createMetadata = (main, document, url) => {
     meta.Image = el;
   }
 
-  meta.Template = 'Landing Page';
-  
   const s = url.split('/');
   if (s.length > 4) {
     // eslint-disable-next-line prefer-destructuring
     meta.Category = s[4];
   }
+
+  const publicationDate = document.querySelector('[property="publication-date"]');
+  if (publicationDate) {
+    meta['Publication Date'] = publicationDate.content;
+  }
+
+  meta.Template = 'Content Library';
 
   // partner
   const partners = [...document.querySelectorAll('.AssetTopLogo')];
@@ -113,6 +118,7 @@ export default {
       'NavbarMobile',
       'script',
       'noscript',
+      'footer',
       '.Footer',
     ]);
 

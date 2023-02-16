@@ -455,7 +455,7 @@ main .section p.button-container.left {
 }
 
 /* Column containers */
-div .column-flex-container {
+.columns .column-flex-container {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -463,7 +463,11 @@ div .column-flex-container {
   align-content: stretch;
 }
 
-div .column-flex-container.columns-align-start {
+.columns.grid .column-flex-container {
+  gap: 10px;
+}
+
+.columns .column-flex-container.columns-align-start {
   align-items: flex-start;
 }
 
@@ -471,7 +475,7 @@ div .tablet-center-image .column-flex-container.columns-align-start {
   align-items: center;
 }
 
-div .column-small-icons-container {
+.columns .column-small-icons-container {
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
@@ -479,7 +483,7 @@ div .column-small-icons-container {
   margin: 0 -20px;
 }
 
-div .column-small-icons-container.column-multi-element {
+.columns .column-small-icons-container.column-multi-element {
   justify-content: unset;
   align-items: center;
   margin: 0;
