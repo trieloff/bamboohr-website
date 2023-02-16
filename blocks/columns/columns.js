@@ -140,7 +140,7 @@ function findSplitSubType(val) {
 }
 
 function setupColumns(cols, splitVals, block, needToLoadWistiaCSS) {
-  const extraSplits = splitVals.length > 2 ? 1 : 0;
+  const extraSplits = splitVals?.length > 2 ? 1 : 0;
   const colParent = cols[0].parentElement;
   let loadWistiaCSS = needToLoadWistiaCSS;
   const colsToRemove = [];
@@ -149,7 +149,7 @@ function setupColumns(cols, splitVals, block, needToLoadWistiaCSS) {
   let hasImage = false;
   let hasWistia = false;
   cols.forEach((col, i) => {
-    col.classList.add(`column${splitVals[i + extraSplits]}`);
+    if (splitVals) col.classList.add(`column${splitVals[i + extraSplits]}`);
 
     if (col.innerText.toLowerCase() === 'title span') {
       if (colParent.nextElementSibling) {
@@ -164,6 +164,10 @@ function setupColumns(cols, splitVals, block, needToLoadWistiaCSS) {
       loadWistiaCSS = false;
       hasImage = true;
       hasWistia = true;
+
+      if (!col.parentElement.classList.contains('column-flex-container')) {
+        col.parentElement.classList.add('column-flex-container', 'columns-align-start');
+      }
     } else if (col.querySelector('img')) {
       col.classList.add('img-col');
       hasImage = true;
@@ -256,6 +260,13 @@ export default function decorate(block) {
         button.parentElement.classList.add('left');
       });
     }
+  } else if (block.classList.contains('grid')) {
+    const rows = [...block.children];
+    let allCols = [];
+    rows.forEach( r => {
+      allCols = [...allCols, ...r.children];
+    });
+    setupColumns(allCols, null, block, true);
   }
 
   if (hasClassStartsWith(block, 'margin-')) {
