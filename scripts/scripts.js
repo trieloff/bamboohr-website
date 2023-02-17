@@ -1024,8 +1024,9 @@ export async function initConversionTracking(parent, path) {
           // ideally, this should not be an ID, but the case-insensitive name label of the element.
           sampleRUM.convert(undefined, (cvParent) => findConversionValue(cvParent, cvField), element, ['submit']);
         }
-        if (section.dataset.conversionName) {
-          sampleRUM.convert(section.dataset.conversionName, undefined, element, ['submit']);
+        const formConversionName = section.dataset.conversionName || getMetadata('conversion-name');
+        if (formConversionName) {
+          sampleRUM.convert(formConversionName, undefined, element, ['submit']);
         } else {
           // if no conversion name is specified, use the form path or id
           sampleRUM.convert(path ? toClassName(path) : element.id, undefined, element, ['submit']);
@@ -1193,13 +1194,13 @@ function loadDelayed() {
     '/resources/hr-glossary/',
     '/hr-solutions/industry/construction',
     '/blog/key-hr-metrics'
-  ];	
+  ];
   const isOnTestPath = testPaths.includes(window.location.pathname);
 
   if (isOnTestPath) handleLoadDelayed(); // import without delay (for testing page performance)
   // else if (!window.hlx.performance) window.setTimeout(() => handleLoadDelayed(), 4000);
   else if (!window.hlx.performance) handleLoadDelayed();
-  
+
   // load anything that can be postponed to the latest here
 }
 
@@ -1363,13 +1364,15 @@ sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
     try {
       // get all stored experiments from local storage (unified-decisioning-experiments)
       const experiments = JSON.parse(localStorage.getItem('unified-decisioning-experiments'));
-      Object.entries(experiments)
-        .map(([experiment, { treatment, date }]) => ({ experiment, treatment, date }))
-        .filter(({ date }) => Date.now() - new Date(date) < MAX_SESSION_LENGTH)
-        .forEach(({ experiment, treatment }) => {
-          // send conversion event for each experiment that has been seen by this visitor
-          sampleRUM('variant', { source: experiment, target: treatment });
-        });
+      if (experiments) {
+        Object.entries(experiments)
+          .map(([experiment, { treatment, date }]) => ({ experiment, treatment, date }))
+          .filter(({ date }) => Date.now() - new Date(date) < MAX_SESSION_LENGTH)
+          .forEach(({ experiment, treatment }) => {
+            // send conversion event for each experiment that has been seen by this visitor
+            sampleRUM('variant', { source: experiment, target: treatment });
+          });
+      }
       // send conversion event
       const cvalue = typeof cvalueThunk === 'function' ? await cvalueThunk(element) : cvalueThunk;
       sampleRUM('convert', { source: cevent, target: cvalue, element: celement });
@@ -1397,7 +1400,6 @@ sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
 
 // call upon conversion events, pushes them to the datalayer
 sampleRUM.always.on('convert', (data) => {
-  console.debug('push to datalayer - convert ', data);
   const { element } = data;
   if (element && window.digitalData) {
     let evtDataLayer;
@@ -1407,6 +1409,7 @@ sampleRUM.always.on('convert', (data) => {
         forms: {
           formsComplete: 1,
           formName: data.source, // this is the conversion event name
+          conversionValue: data.target,
           formId: element.id,
           formsType: ""
         }
