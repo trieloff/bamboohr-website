@@ -600,7 +600,7 @@ div .tablet-center-image .column-flex-container.columns-align-start {
 }
 
 @media (max-width: 899px) {
-  div .column-flex-container {
+  .columns .column-flex-container {
     flex-flow: column;
   }
 
