@@ -437,7 +437,7 @@ main .section .hero p.button-container {
 }
 
 .hero.triple-hex>div:first-child h1 {
-  color: var(--color-white);
+  color: var(--theme-shade15);
   line-height: 1.2;
 }
 
@@ -456,14 +456,14 @@ main .section .hero p.button-container {
 }
 
 .hero.triple-hex>div:first-child h2 {
-  color: var(--theme-tint15);
+  color: var(--theme-shade10);
   font-size: 1.625rem;
   font-style: normal;
   line-height: 1.1538;
 }
 
 .hero.triple-hex>div:first-child p {
-  color: var(--color-white);
+  color: var(--color-gray-12);
   font-size: 1.3125rem;
   font-weight: normal;
   line-height: 1.4286;
