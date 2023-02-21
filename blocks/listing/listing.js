@@ -4,17 +4,19 @@ import {
   createOptimizedPicture,
   fetchPlaceholders,
   readBlockConfig,
+  readIndex,
   toCamelCase,
   toCategory,
   toClassName,
 } from '../../scripts/scripts.js';
 import { createAppCard, sortOptions } from '../app-cards/app-cards.js';
 
-function createHRVSCard(article, classPrefix, eager = false) {
+function createArticleCard(article, classPrefix, eager = false) {
   const title = article.title.split(' - ')[0];
   const card = document.createElement('div');
+  const articleFormat = article?.format || '';
   card.className = `${classPrefix}-card`;
-  card.setAttribute('am-region', `${article.category} . ${article.format}`.toUpperCase());
+  card.setAttribute('am-region', `${article.category} . ${articleFormat}`.toUpperCase());
   const image = article.cardImage || article.image;
   const pictureString = createOptimizedPicture(
     image,
@@ -23,14 +25,14 @@ function createHRVSCard(article, classPrefix, eager = false) {
     [{ width: 750 }],
   ).outerHTML;
   const category = toCategory(article.category);
-  const watchOrRead = article.format.toLowerCase() === 'video' ? 'Watch Now' : 'Read Now';
+  const watchOrRead = articleFormat?.toLowerCase() === 'video' ? 'Watch Now' : 'Read Now';
   card.innerHTML = `<div class="${classPrefix}-card-header category-color-${category}">
     <span class="${classPrefix}-card-category">${article.category}</span> 
-    <span class="${classPrefix}-card-format">${article.format || ''}</span>
+    <span class="${classPrefix}-card-format">${articleFormat || ''}</span>
     </div>
     <div class="${classPrefix}-card-picture"><a href="${article.path}">${pictureString}</a></div>
     <div class="${classPrefix}-card-body" am-region="${title}">
-    <h5>${article.presenter}</h5>
+    <h5>${article?.presenter || ''}</h5>
     <h3>${title}</h3>
     <p>${article.description}</p>
     <p><a href="${article.path}">${watchOrRead}</a></p>
@@ -83,12 +85,18 @@ function getFacetHTML(ph, horizFilters) {
   </div></div>`;
 }
 
-export async function filterResults(theme, config, facets = {}) {
+export async function filterResults(theme, config, facets = {}, indexConfig = {}) {
   /* load index */
   let collection = 'blog';
   if (theme === 'integrations') collection = 'integrations';
   else if (theme === 'hrvs') collection = 'hrvs';
-  await lookupPages([], collection);
+  if (indexConfig.indexPath && indexConfig.indexName) {
+    collection = indexConfig.indexName;
+    await readIndex(indexConfig.indexPath, collection);
+  } else {
+    await lookupPages([], collection);
+  }
+  
   const listings = window.pageIndex[collection];
 
   /* simple array lookup */
@@ -170,11 +178,13 @@ export async function filterResults(theme, config, facets = {}) {
 export default async function decorate(block, blockName) {
   const horizFilters = block.classList.contains('horizontal-filters');
   const middleCta = block.classList.contains('middle-cta');
+  const indexStyle = block.classList.contains('index-style');
   const themeOverrides = [...block.classList].filter((filter) => filter.startsWith('theme-'));
   const firstHyphenIdx = themeOverrides[0] ? themeOverrides[0].indexOf('-') + 1 : 0;
   const themeOverride = themeOverrides[0] ? themeOverrides[0].substring(firstHyphenIdx) : '';
   const theme = themeOverride || getMetadata('theme');
   const ph = await fetchPlaceholders('/integrations');
+  const indexConfig = {indexPath: '', indexName: '', cardStyle: ''};
 
   const addEventListeners = (elements, event, callback) => {
     elements.forEach((e) => {
@@ -186,9 +196,15 @@ export default async function decorate(block, blockName) {
 
   /* camelCase config */
   const config = {};
-  Object.keys(blockConfig).forEach((key) => {
-    config[toCamelCase(key)] = blockConfig[key];
-  });
+  if (indexStyle) {
+    indexConfig.indexPath = blockConfig['index-path'];
+    indexConfig.indexName = blockConfig['index-name'];
+    indexConfig.cardStyle = blockConfig['card-style'];
+  } else {
+    Object.keys(blockConfig).forEach((key) => {
+      config[toCamelCase(key)] = blockConfig[key];
+    });
+  }
 
   let ctaBlockInfo = null;
   if (middleCta) {
@@ -321,7 +337,7 @@ export default async function decorate(block, blockName) {
       if (!group.limit || group.visibleCnt < group.max) {
         // Add card
         group.visibleCnt += 1;
-        groupResultsElem.append(createHRVSCard(product, 'hrvs'));
+        groupResultsElem.append(createArticleCard(product, 'hrvs'));
       } else if (group.addShowMore) {
         // Add show more.
         group.addShowMore = false;
@@ -347,7 +363,7 @@ export default async function decorate(block, blockName) {
 
           for (let i = group.max; i < loadMoreGroupResults.length; i += 1) {
             group.visibleCnt += 1;
-            groupResultsElem.append(createHRVSCard(loadMoreGroupResults[i], 'hrvs'));
+            groupResultsElem.append(createArticleCard(loadMoreGroupResults[i], 'hrvs'));
           }
 
           // Update results count
@@ -365,7 +381,9 @@ export default async function decorate(block, blockName) {
     else {
       resultsElement.innerHTML = '';
       results.forEach((product) => {
-        resultsElement.append(createAppCard(product, blockName));
+        if (indexConfig.cardStyle === 'article') {
+          resultsElement.append(createArticleCard(product, theme.toLowerCase()));
+        } else resultsElement.append(createAppCard(product, blockName));
       });
     }
 
@@ -385,7 +403,7 @@ export default async function decorate(block, blockName) {
       industryServed: {},
       locationRestrictions: {},
     };
-    const results = await filterResults(theme, filterConfig, facets);
+    const results = await filterResults(theme, filterConfig, facets, indexConfig);
     // eslint-disable-next-line no-nested-ternary
     const sortBy = document.getElementById('listing-sortby')
       ? document.getElementById('listing-sortby').dataset.sort
