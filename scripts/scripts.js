@@ -926,6 +926,19 @@ export function buildFigure(blockEl) {
   return figEl;
 }
 
+export async function readIndex(indexPath, collectionCache) {
+  window.pageIndex = window.pageIndex || {};
+  if (!window.pageIndex[collectionCache]) {
+    const resp = await fetch(indexPath);
+    const json = await resp.json();
+    const lookup = {};
+    json.data.forEach((row) => {
+      lookup[row.path] = row;
+    });
+    window.pageIndex[collectionCache] = { data: json.data, lookup };
+  }
+}
+
 export async function lookupPages(pathnames, collection, sheet = '') {
   const indexPaths = {
     blog: '/blog/fixtures/blog-query-index.json',
@@ -938,16 +951,7 @@ export async function lookupPages(pathnames, collection, sheet = '') {
   };
   const indexPath = indexPaths[collection];
   const collectionCache = `${collection}${sheet}`;
-  window.pageIndex = window.pageIndex || {};
-  if (!window.pageIndex[collectionCache]) {
-    const resp = await fetch(indexPath);
-    const json = await resp.json();
-    const lookup = {};
-    json.data.forEach((row) => {
-      lookup[row.path] = row;
-    });
-    window.pageIndex[collectionCache] = { data: json.data, lookup };
-  }
+  await readIndex(indexPath, collectionCache);
 
   /* guard for legacy URLs */
   pathnames.forEach((path, i) => {

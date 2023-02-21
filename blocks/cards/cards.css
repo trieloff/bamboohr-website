@@ -503,6 +503,14 @@ div.has-text-only h4 {
   line-height: 24px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--color-gray-5);
+  color: var(--color-gray-10);
   margin: 0;
+}
+
+.cards.headshots > .card > .title > a {
+    color: var(--color-1-shade-10);
+}
+
+.cards.headshots > .card > .title > a::after {
+    content: none;
 }
