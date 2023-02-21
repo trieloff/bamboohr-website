@@ -464,7 +464,18 @@ main .section p.button-container.left {
 }
 
 .columns.grid .column-flex-container {
-  gap: 10px;
+  gap: 40px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.columns.grid .column-flex-container h4 {
+  margin-top: 27px;
+  margin-bottom: 0;
+}
+
+.columns.grid.columns-3-cols img {
+  margin-bottom: 0;
 }
 
 .columns .column-flex-container.columns-align-start {
