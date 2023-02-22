@@ -543,6 +543,9 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
   }
 }
 
+
+const getDefaultEmbed = (url) => `<iframe frameborder="0" src="${url}" allowfullscreen scrolling="no" loading="lazy"></iframe>`;
+
 export default async function decorate(block) {
   const config = readBlockConfig(block);
   let chilipiper; let formUrl; let successUrl;
@@ -594,6 +597,11 @@ export default async function decorate(block) {
             loadFormAndChilipiper(formId, successUrl, chilipiper);
           } else {
             col.classList.add('content-col');
+            const a = col.querySelector('a');
+            const url = new URL(a.href.replace(/\/$/, ''));
+            if (block.classList.contains('with-google-map')) {
+              a.outerHTML = getDefaultEmbed(url);
+            }
           }
         });
       } else {
