@@ -83,6 +83,10 @@
     transition: color .25s ease-in-out;
 }
 
+.cards.theme-icon > .card .icon {
+    color: var(--theme-base);
+}
+
 .cards .icon.icon-time svg,
 .cards .icon.icon-paid-time-off svg {
     max-height: 2rem;
@@ -514,3 +518,21 @@ div.has-text-only h4 {
 .cards.headshots > .card > .title > a::after {
     content: none;
 }
+
+.cards.with-social-icons > .card a {
+    display: inline-block;
+}
+
+.cards.with-social-icons > .card a::after{
+    content: none;
+}
+
+.cards.with-social-icons > .card a span.icon svg {
+    width: auto;
+    height: 22px;
+}
+
+.cards.with-social-icons > .card a span.icon {
+    margin-right: 10px;
+}
+
