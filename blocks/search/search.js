@@ -40,7 +40,7 @@ async function displaySearchResults(terms, results) {
   allPages.forEach((page) => {
     let searchTags = '';
     if (collection === 'integrations') {
-      searchTags = `${page.level}, ${page.tag}, ${page.category}`;
+      searchTags = `${page.level}, ${page.tag}, ${page.category}, ${page.partnerConnectionLibrary}`;
     }
     if (collection === 'blog') {
       searchTags = `${page.tags}`;
@@ -55,6 +55,19 @@ async function displaySearchResults(terms, results) {
   const filtered = allPages.filter((e) => e.title.toLowerCase().includes(terms.toLowerCase())
     || e.description.toLowerCase().includes(terms.toLowerCase())
     || e.searchTags.toLowerCase().includes(terms.toLowerCase()));
+  
+
+  if  (collection === 'integrations') {
+    const hasIndirectIntegrationOnly = filtered.every((listing) => listing.partnerConnectionLibrary.toLowerCase().includes(terms.toLowerCase()));
+    
+    if (hasIndirectIntegrationOnly === true) {
+      const msg = document.createElement('p');
+      msg.className = 'search-results-msg';
+      msg.textContent = 'We don’t offer a direct integration for the provider you’ve searched for, but don’t worry! You can access that integration through one of our integration platform partners below.';
+      ul.before(msg);
+    }
+  }
+  
   filtered.forEach((row) => {
     let card;
     if (collection === 'blog') card = createBlogCard(row, 'search-blog');
