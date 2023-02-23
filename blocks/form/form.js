@@ -598,8 +598,8 @@ export default async function decorate(block) {
           } else {
             col.classList.add('content-col');
             const a = col.querySelector('a');
-            const url = new URL(a.href.replace(/\/$/, ''));
-            if (block.classList.contains('with-google-map')) {
+            if (a && block.classList.contains('with-google-map')) {
+              const url = new URL(a.href.replace(/\/$/, ''));
               a.outerHTML = getDefaultEmbed(url);
             }
           }
