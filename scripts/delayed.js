@@ -46,6 +46,34 @@ function loadScript(location, url, callback, type, defer) {
   return $script;
 }
 
+function loadTrustArcFormScript() {
+  window.trustarc = window.trustarc || {};
+  const r = window.trustarc;
+  r.irm = [];
+  const n = ['init', 'shouldShowGPCBanner', 'setGPCSubmitted', 'destroy'];
+  n.forEach(o => {
+    r.irm[o] = r.irm[o] ||
+      (function (t) {
+        return function (...args) {
+          r.irm.push([t, args]);
+        };
+      })(o);
+  });
+  r.irm.init(
+    {
+      formId: '62f6991b-9d92-4ba0-8736-4b9e0b0df291',
+      gpcDetection: true
+    },
+    (error) => {
+      document.body.innerHTML = error;
+      document.body.style.color = 'red';
+    }
+  );
+
+  const trustArcFormSrc = 'https://form-renderer.trustarc.com/browser/client.js';
+  loadScript('header', trustArcFormSrc, null, 'text/javascript', true);
+}
+
 loadScript('footer', 'https://consent.trustarc.com/v2/notice/qvlbs6', null, 'text/javascript');
 
 /**
@@ -136,34 +164,7 @@ loadScript('header', adobeTagsSrc, async () => {
 
 loadScript('header', 'https://www.googleoptimize.com/optimize.js?id=OPT-PXL7MPD', null);
 
-const trustArcFormSrc = 'https://form-renderer.trustarc.com/browser/client.js';
-
-loadScript('header', trustArcFormSrc, async () => {
-  window.trustarc = window.trustarc || {};
-
-  const r = window.trustarc;
-  r.irm = [];
-  const n = ['init', 'shouldShowGPCBanner', 'setGPCSubmitted', 'destroy'];
-  n.forEach(o => {
-    r.irm[o] = r.irm[o] ||
-      (function (t) {
-        return function (...args) {
-          r.irm.push([t, args]);
-        };
-      })(o);
-  });
-  r.irm.init(
-    {
-      formId: '62f6991b-9d92-4ba0-8736-4b9e0b0df291',
-      gpcDetection: true
-    },
-    (error) => {
-      document.body.innerHTML = error;
-      document.body.style.color = 'red';
-    }
-  );
-
-}, 'text/javascript', true);
+loadTrustArcFormScript();
 
 /* google tag manager */
 // eslint-disable-next-line
