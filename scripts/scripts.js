@@ -113,14 +113,14 @@ export function getMetadata(name) {
  * @param {string} name The unsanitized name
  * @returns {string} The class name
  */
- export function toClassName(name) {
+export function toClassName(name) {
   return name && typeof name === 'string' ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-') : '';
 }
 
 /**
  * Loads a template specific CSS file.
  */
- function loadTemplateCSS() {
+function loadTemplateCSS() {
   const template = toClassName(getMetadata('template'));
   if (template) {
     const templates = ['bhr-comparison', 'bhr-home', 'ee-solution', 'hr-glossary', 'hr-software-payroll', 'hr-unplugged',
@@ -428,7 +428,7 @@ export function updateSectionsStatus(main) {
         break;
       } else {
         section.setAttribute('data-section-status', 'loaded');
-        const event = new CustomEvent('section-display', { detail: { section }});
+        const event = new CustomEvent('section-display', { detail: { section } });
         document.body.dispatchEvent(event);
         /* eslint-disable no-console */
         console.log('event dispatched')
@@ -1025,7 +1025,7 @@ export async function initConversionTracking(parent, path) {
           sampleRUM.convert(undefined, (cvParent) => findConversionValue(cvParent, cvField), element, ['submit']);
         }
         const formConversionName = section.dataset.conversionName || getMetadata('conversion-name');
-        if (formConversionName) {                    
+        if (formConversionName) {
           sampleRUM.convert(formConversionName, undefined, element, ['submit']);
         } else {
           // if no conversion name is specified, use the form path or id
@@ -1042,7 +1042,7 @@ export async function initConversionTracking(parent, path) {
         }))
         .forEach(({ element, cevent }) => {
           sampleRUM.convert(cevent, undefined, element, ['click'])
-      });
+        });
     },
     'labeled-link': () => {
       // track only the links configured in the metadata
@@ -1194,13 +1194,13 @@ function loadDelayed() {
     '/resources/hr-glossary/',
     '/hr-solutions/industry/construction',
     '/blog/key-hr-metrics'
-  ];	
+  ];
   const isOnTestPath = testPaths.includes(window.location.pathname);
 
   if (isOnTestPath) handleLoadDelayed(); // import without delay (for testing page performance)
   // else if (!window.hlx.performance) window.setTimeout(() => handleLoadDelayed(), 4000);
   else if (!window.hlx.performance) handleLoadDelayed();
-  
+
   // load anything that can be postponed to the latest here
 }
 
@@ -1398,12 +1398,18 @@ sampleRUM.drain('convert', (cevent, cvalueThunk, element, listenTo = []) => {
   }
 });
 
+
+//Declare evtDataLayer, bufferTimeoutId, & tempEvtDataLayer outside of the convert function for to persist them for buffering between subsequent convert calls
+let evtDataLayer;
+let bufferTimeoutId;
+let tempEvtDataLayer;
+
 // call upon conversion events, pushes them to the datalayer
-sampleRUM.always.on('convert', (data) => {  
+sampleRUM.always.on('convert', (data) => {
   const { element } = data;
   if (element && window.digitalData) {
-    let evtDataLayer;
-    if (element.tagName === 'FORM') {      
+    //let evtDataLayer;
+    if (element.tagName === 'FORM') {
       evtDataLayer = {
         event: "Form Complete",
         forms: {
@@ -1424,7 +1430,35 @@ sampleRUM.always.on('convert', (data) => {
         }
       };
     }
-    console.debug('push to datalayer', evtDataLayer);
-    window.digitalData.push(evtDataLayer);
+
+    //Check if a Form Complete event has fired - and if the conversion value (data.target) or form name (data.source) is defined
+    if (evtDataLayer.event === "Form Complete" && (data.target === undefined || data.source === undefined)) {
+      //if a buffer has already been set and tempEvtDataLayer exists, merge the two evt objects to send to the data layer
+      if (bufferTimeoutId !== undefined && tempEvtDataLayer !== undefined) {
+        evtDataLayer = { ...evtDataLayer, ...tempEvtDataLayer }
+      }
+      else {
+        //temporarily hold the evtDataLayer object until the timeout is complete
+        tempEvtDataLayer = evtDataLayer;
+
+        //if there is partial form data, set the timeout buffer to wait for additional data
+        bufferTimeoutId = setTimeout(() => {
+          console.debug('form push to datalayer', evtDataLayer);
+          window.digitalData.push(evtDataLayer);
+
+          //Clear the temporary data layer after an event has been pushed
+          console.debug('form clear data layer')
+          tempEvtDataLayer = undefined
+          evtDataLayer = undefined
+        }, "100")
+      }
+    }
+    else {
+      console.debug('non-form push to datalayer', evtDataLayer);
+      window.digitalData.push(evtDataLayer);
+      //Clear the temporary data layer after an event has been pushed
+      console.debug('clear data layer')
+      evtDataLayer = undefined
+    }
   }
 });
