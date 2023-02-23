@@ -141,14 +141,13 @@ const trustArcFormSrc = 'https://form-renderer.trustarc.com/browser/client.js';
 loadScript('header', trustArcFormSrc, async () => {
   window.trustarc = window.trustarc || {};
 
-  let r = window.trustarc;
+  const r = window.trustarc;
   r.irm = [];
   const n = ['init', 'shouldShowGPCBanner', 'setGPCSubmitted', 'destroy'];
   n.forEach(o => {
     r.irm[o] = r.irm[o] ||
       (function (t) {
-        return function () {
-          const args = [].slice.call(arguments);
+        return function (...args) {
           r.irm.push([t, args]);
         };
       })(o);
