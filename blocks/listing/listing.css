@@ -554,19 +554,19 @@ main .article-cards ul > div {
   width: 100%;
 }
 
-main .article-cards ul > div .base-card-picture img {
+main .article-cards ul > div div a img {
   box-shadow: var(--box-shadow-2);
   border-radius: 15px;
 }
 
-main .article-cards ul .base-card-body h3 {
+main .article-cards ul > div div h3 {
   font-size: 20px;
   line-height: 1.4;
   font-weight: 600;
   margin-top: -18px;
 }
 
-main .article-cards ul .base-card-body a {
+main .article-cards ul > div div p a {
   position: relative;
   font-size: 15px;
   font-weight: 700;
@@ -576,7 +576,7 @@ main .article-cards ul .base-card-body a {
   text-decoration: none;
 }
 
-main .article-cards ul .base-card-body a::after {
+main .article-cards ul > div div p a::after {
   content: "";
   border: solid var(--heading-color);
   border-width: 0 2px 2px 0;
