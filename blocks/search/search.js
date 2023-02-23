@@ -58,12 +58,14 @@ async function displaySearchResults(terms, results) {
   
 
   if  (collection === 'integrations') {
-    // const hasDirectIntegration = false;
-    const hasDirectIntegration = filtered.every((listing) => {
-      console.log(listing);
-      // page.partnerConnectionLibrary.toLowerCase().includes(terms.toLowerCase())
-    });
-    console.log(hasDirectIntegration);
+    const hasIndirectIntegrationOnly = filtered.every((listing) => listing.partnerConnectionLibrary.toLowerCase().includes(terms.toLowerCase()));
+    
+    if (hasIndirectIntegrationOnly === true) {
+      const msg = document.createElement('p');
+      msg.className = 'search-results-msg';
+      msg.textContent = 'We don’t offer a direct integration for the provider you’ve searched for, but don’t worry! You can access that integration through one of our integration platform partners below.';
+      ul.before(msg);
+    }
   }
   
   filtered.forEach((row) => {
