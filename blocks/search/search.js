@@ -40,7 +40,7 @@ async function displaySearchResults(terms, results) {
   allPages.forEach((page) => {
     let searchTags = '';
     if (collection === 'integrations') {
-      searchTags = `${page.level}, ${page.tag}, ${page.category}`;
+      searchTags = `${page.level}, ${page.tag}, ${page.category}, ${page.partnerConnectionLibrary}`;
     }
     if (collection === 'blog') {
       searchTags = `${page.tags}`;
@@ -55,6 +55,17 @@ async function displaySearchResults(terms, results) {
   const filtered = allPages.filter((e) => e.title.toLowerCase().includes(terms.toLowerCase())
     || e.description.toLowerCase().includes(terms.toLowerCase())
     || e.searchTags.toLowerCase().includes(terms.toLowerCase()));
+  
+
+  if  (collection === 'integrations') {
+    // const hasDirectIntegration = false;
+    const hasDirectIntegration = filtered.every((listing) => {
+      console.log(listing);
+      // page.partnerConnectionLibrary.toLowerCase().includes(terms.toLowerCase())
+    });
+    console.log(hasDirectIntegration);
+  }
+  
   filtered.forEach((row) => {
     let card;
     if (collection === 'blog') card = createBlogCard(row, 'search-blog');
