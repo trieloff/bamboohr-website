@@ -116,6 +116,10 @@ indices:
         select: head > meta[name="publication-date"]
         value: |
           attribute(el, 'content')
+      partnerConnectionLibrary:
+        select: head > meta[name="partner-connection-library"]
+        value: |
+          attribute(el, 'content')
 
   hr-glossary:
     include:
