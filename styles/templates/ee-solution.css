@@ -16,6 +16,11 @@
     margin: 0;
     padding: .625rem 1.875rem;
     white-space: normal;
+    transition: background-color .25s ease-in-out;
+}
+
+.ee-solution .default-content-wrapper a.button:any-link:hover {
+    background-color: var(--theme-shade15);
 }
 
 /* column overrides */

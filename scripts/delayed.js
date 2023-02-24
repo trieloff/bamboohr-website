@@ -23,15 +23,19 @@ sampleRUM('cwv');
  * @param {string} url URL of the js file
  * @param {Function} callback callback on load
  * @param {string} type type attribute of script tag
+ * @param {boolean} defer defer attribute of script tag
  * @returns {Element} script element
  */
-function loadScript(location, url, callback, type) {
+function loadScript(location, url, callback, type, defer) {
   const $head = document.querySelector('head');
   const $body = document.querySelector('body');
   const $script = document.createElement('script');
   $script.src = url;
   if (type) {
     $script.setAttribute('type', type);
+  }
+  if (defer && $script.src) {
+    $script.defer = defer;
   }
   if (location === 'header') {
     $head.append($script);
@@ -40,6 +44,34 @@ function loadScript(location, url, callback, type) {
   }
   $script.onload = callback;
   return $script;
+}
+
+function loadTrustArcFormScript() {
+  window.trustarc = window.trustarc || {};
+  const r = window.trustarc;
+  r.irm = [];
+  const n = ['init', 'shouldShowGPCBanner', 'setGPCSubmitted', 'destroy'];
+  n.forEach(o => {
+    r.irm[o] = r.irm[o] ||
+      (function (t) {
+        return function (...args) {
+          r.irm.push([t, args]);
+        };
+      })(o);
+  });
+  r.irm.init(
+    {
+      formId: '62f6991b-9d92-4ba0-8736-4b9e0b0df291',
+      gpcDetection: true
+    },
+    (error) => {
+      document.body.innerHTML = error;
+      document.body.style.color = 'red';
+    }
+  );
+
+  const trustArcFormSrc = 'https://form-renderer.trustarc.com/browser/client.js';
+  loadScript('header', trustArcFormSrc, null, 'text/javascript', true);
 }
 
 loadScript('footer', 'https://consent.trustarc.com/v2/notice/qvlbs6', null, 'text/javascript');
@@ -131,6 +163,8 @@ loadScript('header', adobeTagsSrc, async () => {
 });
 
 loadScript('header', 'https://www.googleoptimize.com/optimize.js?id=OPT-PXL7MPD', null);
+
+loadTrustArcFormScript();
 
 /* google tag manager */
 // eslint-disable-next-line
