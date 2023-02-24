@@ -32,11 +32,6 @@ div.pink .hero>div:first-child h1 {
   width: 66.66%;
 }
 
-.hero .cta-container {
-  display: flex;
-  flex-flow: column wrap;
-}
-
 .hero a.button:any-link {
   font-size: 14px;
 }
@@ -66,10 +61,6 @@ main .section .hero p.button-container {
 
   .hero>.image-group-container {
     width: 33.33%;
-  }
-
-  .hero .cta-container {
-    flex-direction: row;
   }
 
   .hero a.button:any-link {
