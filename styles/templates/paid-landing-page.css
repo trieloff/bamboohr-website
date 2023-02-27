@@ -42,3 +42,10 @@
     text-align: center;
   }
 }
+
+.paid-landing-page main .columns p,
+.paid-landing-page main .columns ul,
+.paid-landing-page main .app-download p,
+.paid-landing-page main .app-download ul {
+  color: var(--color-gray-12);
+}
