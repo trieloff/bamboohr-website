@@ -96,6 +96,10 @@ main .logos.partner-logos ul li picture {
 
 @media (min-width: 600px) {
   main .logos.partner-logos ul li picture {
-    padding: 12px 24px;
+    padding: 6px 24px;
   }
+}
+
+main .logos.partner-logos ul li picture img {
+  max-height: 100%;
 }
