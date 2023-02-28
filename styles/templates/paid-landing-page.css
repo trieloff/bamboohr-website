@@ -13,7 +13,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1800px) {
   .paid-landing-page main .form h1 {
     font-size: 70px;
     line-height: 80px;
@@ -35,4 +35,19 @@
     line-height: 28px;
     margin: 30px 0 0;
   }
+}
+
+@media (max-width: 1199px) {
+  .paid-landing-page main .form .content-col {
+    text-align: center;
+  }
+}
+
+.paid-landing-page main .columns p,
+.paid-landing-page main .columns ul,
+.paid-landing-page main .app-download p,
+.paid-landing-page main .app-download ul,
+.paid-landing-page main .form .content-col p,
+.paid-landing-page main .form .content-col ul {
+  color: var(--color-gray-12);
 }
