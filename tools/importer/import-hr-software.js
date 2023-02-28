@@ -52,6 +52,46 @@ const fixGeneralContent = (main) => {
   });
 };
 
+const createProductFeatureBlock = (main, document) => {
+	main.querySelectorAll('.ProductFeatureBlock').forEach((container) => {
+		const cells = [['Columns']];
+		const cellsBelow = [[],[]];
+
+		container.querySelectorAll('.ProductFeatureBlock__copy').forEach((screenshot) => {
+      const wrapper = document.createElement('div');
+
+      // const image = screenshot.querySelector('.ProductMoreRowBlock__image');
+      // if (image) {
+      //   wrapper.append(image);
+      // }
+
+      const heading = screenshot.querySelector('h2');
+      if (heading) {
+        const h = document.createElement('h2');
+        h.innerHTML = heading.innerHTML.replace(/[\r\n\t]/gm, '');
+        wrapper.append(h);
+      }
+
+      const description = screenshot.querySelector('p');
+      if (description) {
+        const p = document.createElement('p');
+        p.innerHTML = description.innerHTML.replace(/[\r\n\t]/gm, '');
+        wrapper.append(p);
+      }
+
+      const button = screenshot.querySelector('a');
+      if (button) {
+        wrapper.append(button);
+      }
+
+      cells.push([wrapper]);
+    });
+
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    container.replaceWith(table);
+	});
+};
+
 const createReferenceBlock = (main, document) => {
   main.querySelectorAll('.ProductMoreRow').forEach((container) => {
 
@@ -150,6 +190,7 @@ export default {
     const main = document.querySelector('.Product');
     // createCalloutBlock(main, document);
     createReferenceBlock(main, document);
+		createProductFeatureBlock(main, document);
     createMetadata(main, document);
     // fixGeneralContent(main);
 
