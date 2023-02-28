@@ -2,8 +2,12 @@
   row-gap: 15px;
 }
 
-.industry main .multi-element.hero .content p {
+.industry main .multi-element.hero .content:not(.extra) p {
   margin-bottom: 10px;
+}
+
+.industry main .multi-element.hero .content.extra p {
+  color: var(--color-white);
 }
 
 .industry main .center-page-cta h2 {
