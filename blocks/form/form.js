@@ -546,6 +546,14 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
 
 const getDefaultEmbed = (url) => `<iframe frameborder="0" src="${url}" allowfullscreen scrolling="no" loading="lazy"></iframe>`;
 
+export function scrollToForm() {
+  const formEl = document.querySelector('.form-wrapper');
+  formEl.scrollIntoView({
+    behavior: 'smooth',
+  });
+  formEl.querySelector('input:not([type=hidden])').focus();
+};
+
 export default async function decorate(block) {
   const config = readBlockConfig(block);
   let chilipiper; let formUrl; let successUrl;
