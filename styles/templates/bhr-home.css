@@ -183,6 +183,10 @@
     max-width: 1200px;
 }
 
+.bhr-home main .section.homepagev2 > div.columns-wrapper.extra-wide {
+    max-width: 1280px;
+}
+
 .bhr-home .columns .block.wistia {
     margin-bottom: 50px;
 }
