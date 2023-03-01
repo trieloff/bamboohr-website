@@ -511,7 +511,9 @@ div.has-text-only h4 {
     display: flex;
     gap: 20px;
     align-items: center;
+
     --padding: 1rem 2.5rem;
+    
     padding: var(--padding);
 }
 
