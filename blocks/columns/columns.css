@@ -632,6 +632,19 @@ div .tablet-center-image .column-flex-container.columns-align-start {
   color: var(--theme-shade5);
 }
 
+.columns.title2-heading h3 {
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  margin: 0;
+  color: var(--theme-shade5);
+}
+
+.columns.title2-heading .non-img-col p {
+  margin-top: 4px;
+}
+
 .columns.gray-heading h2,
 .columns.gray-heading p,
 .columns.gray-heading ul li {
