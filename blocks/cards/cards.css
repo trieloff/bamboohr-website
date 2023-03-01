@@ -83,10 +83,8 @@
 
 .cards > .card .icon,
 .cards.cta > .cta-container > .icon {
-    
     color: var(--color-gray-12);
     display: flex;
-    
     transition: color .25s ease-in-out;
 }
 
@@ -514,7 +512,6 @@ div.has-text-only h4 {
     gap: 20px;
     align-items: center;
     --padding: 1rem 2.5rem;
-
     padding: var(--padding);
 }
 
@@ -598,4 +595,3 @@ div.has-text-only h4 {
 .cards.with-social-icons > .card a span.icon {
     margin-right: 10px;
 }
-
