@@ -22,10 +22,18 @@
 @media (min-width: 600px) {
     /* no style-1-columns since default */
 
-    .cards.style-2-columns,
+    .cards.style-2-columns:not(.cta),
     .cards.style-3-columns,
     .cards.style-4-columns,
     .cards.style-5-columns {
+        --cols: 2;
+    }
+}
+
+@media (min-width: 900px) {
+    /* no style-1-columns since default */
+
+    .cards.style-2-columns {
         --cols: 2;
     }
 }
@@ -513,7 +521,7 @@ div.has-text-only h4 {
     align-items: center;
 
     --padding: 1rem 2.5rem;
-    
+
     padding: var(--padding);
 }
 
