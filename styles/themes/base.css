@@ -662,6 +662,7 @@
   color: var(--secondary-theme-tint10);
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 #base .copy-color-secondary-shade-5 :is(p, li, div:not(.mktoErrorMsg):not(.form-msg)) {
   color: var(--secondary-theme-shade5);
 }
