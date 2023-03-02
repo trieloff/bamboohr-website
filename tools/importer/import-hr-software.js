@@ -12,6 +12,63 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
+const createTitleBlock = (main, document) => {
+  main.querySelectorAll('h1').forEach((heading) => {
+    const cells = [['Title']];
+    const titleContainer = document.createElement('div');
+    const title = document.querySelector('h1');
+    if (title) {
+      const h = document.createElement('h1');
+      h.innerHTML = title.innerHTML;
+      titleContainer.append(h);
+    }
+    cells.push([titleContainer]);
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    heading.replaceWith(table);
+  });
+}
+
+const createSubtitleBlock = (main, document) => {
+  main.querySelectorAll('.ProductBanner__subTitle').forEach((heading) => {
+    const cells = [['Title']];
+    const titleContainer = document.createElement('div');
+    const title = document.querySelector('.ProductBanner__subTitle');
+    if (title) {
+      const h = document.createElement('h2');
+      h.innerHTML = title.innerHTML;
+      titleContainer.append(h);
+    }
+    cells.push([titleContainer]);
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    heading.replaceWith(table);
+  });
+}
+
+const createQuoteBlock = (main, document) => {
+  main.querySelectorAll('.ProductCustomerContainer').forEach((quote) => {
+    const cells = [['Quote']];
+    const container = document.createElement('div');
+
+    const quoteText = document.querySelector('.ProductCustomer__quote');
+    if (quoteText) {
+      const q = document.createElement('p');
+      q.innerHTML = quoteText.innerHTML;
+      container.append(q);
+    }
+
+    const quoteInfo = document.querySelector('.ProductCustomer__name');
+    if (quoteInfo) {
+      const i = document.createElement('p');
+      i.innerHTML = quoteInfo.innerHTML;
+      container.append(i);
+    }
+
+    cells.push([container]);
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    quote.replaceWith(table);
+  });
+}
+
 const createCalloutBlock = (main, document) => {
   main.querySelectorAll('.HrGlossaryTerm__contentCta').forEach((callout) => {
     const cells = [['Callout']];
@@ -44,46 +101,52 @@ const createCalloutBlock = (main, document) => {
 };
 
 const fixGeneralContent = (main) => {
-  const termContent = main.querySelector('.HrGlossaryTerm');
-  termContent.innerHTML = termContent.innerHTML.replaceAll(' href="/', ' href="https://www.bamboohr.com/');
+  // const pageContent = main.querySelector('.Product');
+  // pageContent.innerHTML = pageContent.innerHTML.replaceAll(' href="/', ' href="https://www.bamboohr.com/');
 
-  main.querySelectorAll('.typ-title2.term-content-heading4').forEach(heading => {
-    heading.outerHTML = `<h4>${ heading.innerHTML }</h4>`;
+  const buttons = main.querySelectorAll('.ProductFeatureBlock__button');
+	buttons.forEach(button => {
+    button.innerHTML = button.innerHTML.replaceAll(' href="/', ' href="https://www.bamboohr.com/');
   });
 };
 
 const createProductFeatureBlock = (main, document) => {
 	main.querySelectorAll('.ProductFeatureBlock').forEach((container) => {
-		const cells = [['Columns']];
-		const cellsBelow = [[],[]];
+		const cells = [
+			['Columns'],
+			[['col1'],['col2']]
+		];
+		console.log(cells);
+		// const cellsBelow = [];
 
-		container.querySelectorAll('.ProductFeatureBlock__copy').forEach((screenshot) => {
+		container.querySelectorAll('.ProductFeatureBlock__copy').forEach((copyBlock) => {
       const wrapper = document.createElement('div');
 
-      // const image = screenshot.querySelector('.ProductMoreRowBlock__image');
+      // const image = copyBlock.querySelector('.ProductMoreRowBlock__image');
       // if (image) {
       //   wrapper.append(image);
       // }
 
-      const heading = screenshot.querySelector('h2');
+      const heading = copyBlock.querySelector('h2');
       if (heading) {
         const h = document.createElement('h2');
         h.innerHTML = heading.innerHTML.replace(/[\r\n\t]/gm, '');
         wrapper.append(h);
       }
 
-      const description = screenshot.querySelector('p');
+      const description = copyBlock.querySelector('p');
       if (description) {
         const p = document.createElement('p');
         p.innerHTML = description.innerHTML.replace(/[\r\n\t]/gm, '');
         wrapper.append(p);
       }
 
-      const button = screenshot.querySelector('a');
+      const button = copyBlock.querySelector('a');
       if (button) {
         wrapper.append(button);
       }
 
+      // cells[1][0].push([wrapper.innerHTML]);
       cells.push([wrapper]);
     });
 
@@ -189,11 +252,13 @@ export default {
     ]);
     const main = document.querySelector('.Product');
     // createCalloutBlock(main, document);
+    createTitleBlock(main, document);
+    createSubtitleBlock(main, document);
+    createQuoteBlock(main, document);
     createReferenceBlock(main, document);
-		createProductFeatureBlock(main, document);
+		// createProductFeatureBlock(main, document);
     createMetadata(main, document);
     // fixGeneralContent(main);
-
     return main;
   },
 
