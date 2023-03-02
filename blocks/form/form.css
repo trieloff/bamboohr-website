@@ -352,7 +352,7 @@ main .form .form-col p strong {
   color: var(--theme-shade5);
 }
 
-@media (max-width: 1199px) {
+@media (min-width: 600px) and (max-width: 1199px) {
   main .form.has-content .form-col {
     max-width: 83.33%;
     margin: 0 auto;
@@ -380,6 +380,9 @@ main .form.white-container .form-col {
   background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
 }
 
+main .form.has-content .content-col {
+  margin-bottom: 30px;
+}
 
 @media (min-width: 1200px) {
   main .form.has-content > div {
@@ -390,6 +393,7 @@ main .form.white-container .form-col {
 
   main .form.has-content .content-col {
     grid-column: span 6;
+    margin-bottom: 0;
   }
 
   main .form.has-content .form-col {
