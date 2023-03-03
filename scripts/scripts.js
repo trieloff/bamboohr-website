@@ -947,7 +947,8 @@ export async function lookupPages(pathnames, collection, sheet = '') {
     hrvs: '/resources/events/hr-virtual/2022/query-index.json',
     blockInventory: '/blocks/query-index.json',
     blockTracker: `/website-marketing-resources/block-inventory-tracker.json?sheet=${sheet}`,
-    resources: `/resources/query-index.json?sheet=resources`
+    resources: `/resources/query-index.json?sheet=resources`,
+    speakers: `/speakers/query-index.json`
   };
   const indexPath = indexPaths[collection];
   const collectionCache = `${collection}${sheet}`;
