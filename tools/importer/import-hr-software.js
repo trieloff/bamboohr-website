@@ -12,6 +12,20 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
+const makeAbsoluteLinks = (main) => {
+  main.querySelectorAll('a').forEach((a) => {
+    if (a.href.startsWith('/')) {
+      const ori = a.href;
+      const u = new URL(a.href, 'https://www.bamboohr.com/');
+      a.href = u.toString();
+
+      if (a.textContent === ori) {
+        a.textContent = a.href;
+      }
+    }
+  });
+};
+
 const createTitleBlock = (main, document) => {
   main.querySelectorAll('h1').forEach((heading) => {
     const cells = [['Title (hero-header)']];
@@ -26,7 +40,7 @@ const createTitleBlock = (main, document) => {
     const table = WebImporter.DOMUtils.createTable(cells, document);
     heading.replaceWith(table);
   });
-}
+};
 
 const createSubtitleBlock = (main, document) => {
   main.querySelectorAll('.ProductBanner__subTitle').forEach((heading) => {
@@ -42,7 +56,7 @@ const createSubtitleBlock = (main, document) => {
     const table = WebImporter.DOMUtils.createTable(cells, document);
     heading.replaceWith(table);
   });
-}
+};
 
 const createProductFeatureBlock = (main, document) => {
 	main.querySelectorAll('.ProductFeature').forEach((featureBlock) => {
@@ -54,7 +68,7 @@ const createProductFeatureBlock = (main, document) => {
 		// const cellsBelow = [];
 
 		featureBlock.querySelectorAll('.ProductFeatureBlock').forEach((block) => {
-      block.innerHTML = block.innerHTML.replaceAll(' href="/', ' href="https://www.bamboohr.com/');
+      // block.innerHTML = block.innerHTML.replaceAll(' href="/', ' href="https://www.bamboohr.com/');
       const container = document.createElement('div');
 
       const image = block.querySelector('img');
@@ -113,7 +127,7 @@ const createQuoteBlock = (main, document) => {
     const table = WebImporter.DOMUtils.createTable(cells, document);
     quote.replaceWith(table);
   });
-}
+};
 
 const createCallToActionBlock = (main, document) => {
   main.querySelectorAll('.ProductFeature').forEach((block) => {
@@ -238,7 +252,6 @@ const createReferenceBlock = (main, document) => {
     const table = WebImporter.DOMUtils.createTable(cells, document);
     container.replaceWith(table);
   });
-
 };
 
 const fixGeneralContent = (main) => {
@@ -320,6 +333,7 @@ export default {
     createTestimonialHeaderBlock(main, document);
     createTestimonialBlock(main, document);
     createProductFeatureBlock(main, document);
+    makeAbsoluteLinks(main);
     createMetadata(main, document);
     // fixGeneralContent(main);
     return main;

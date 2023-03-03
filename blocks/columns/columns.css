@@ -370,6 +370,14 @@ main .section > .card-wrapper {
   margin-left: -50px;
 }
 
+.columns.image-round-corners img {
+  border-radius: 15px;
+}
+
+.columns.image-shadow img {
+  box-shadow: var(--box-shadow-2);
+}
+
 @media (min-width: 600px) {
   .icon-3-cols {
     width: 33.33%;
