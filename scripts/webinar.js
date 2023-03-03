@@ -35,21 +35,24 @@ function buildForm(main) {
   main.innerHTML = section.outerHTML;
 }
 
-async function buildSpeaker(main) {
-  const speakers = getMetadata('speaker');
+async function buildSpeakers(main) {
+  const speakers = getMetadata('speakers');
   if (speakers) {
-    const container = buildBlock('speaker-container', []);
+    const container = buildBlock('speakers-container', []);
     main.append(container);
 
     const title = 'About the speakers';
     const titleBlock = buildBlock('title', title);
     titleBlock?.classList.add('title1', 'color-gray-12');
     titleBlock?.querySelector('div').setAttribute('data-align', 'center');
-    main.querySelector('.speaker-container').append(titleBlock);
+    main.querySelector('.speakers-container').append(titleBlock);
 
-    const speakerBlock = buildBlock('speaker', []);
-    speakerBlock.classList.add('style-2-columns');
-    main.querySelector('.speaker-container').append(speakerBlock);
+    const blockContent = [];
+    blockContent.push('<p>Speakers</p>');
+    blockContent.push(`<p>${speakers}</p>`);
+    const speakersBlock = buildBlock('speakers', [blockContent]);
+    speakersBlock.classList.add('style-2-columns');
+    main.querySelector('.speakers-container').append(speakersBlock);
   }
 }
 
@@ -172,6 +175,6 @@ export default async function decorateTemplate(main) {
     }
   } else {
     buildForm(main);
-    buildSpeaker(main);
+    buildSpeakers(main);
   }
 }
