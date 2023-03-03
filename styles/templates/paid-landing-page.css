@@ -51,3 +51,9 @@
 .paid-landing-page main .form .content-col ul {
   color: var(--color-gray-12);
 }
+
+@media (max-width: 899px) {
+  .paid-landing-page .has-bg > span.bg-right-multi-3 {
+    display: none;
+  }
+}

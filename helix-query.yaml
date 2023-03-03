@@ -311,11 +311,11 @@ indices:
     target: /speakers/query-index
     properties:
       name:
-        select: head > meta[property="name"]
+        select: head > meta[name="name"]
         value: |
           attribute(el, 'content')
       position:
-        select: head > meta[property="position"]
+        select: head > meta[name="position"]
         value: |
           attribute(el, 'content')
       image:
