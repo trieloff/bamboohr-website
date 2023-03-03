@@ -471,6 +471,10 @@ main .section .columns.columns-2-cols p.button-container.left {
   text-align: center;
 }
 
+.columns.columns-2-cols:not(.hero-subhead) .column-flex-container .non-img-col p {
+  text-align: initial;
+}
+
 .columns.grid .column-flex-container {
   gap: 40px;
   text-align: center;
