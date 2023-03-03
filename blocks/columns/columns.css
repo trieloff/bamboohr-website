@@ -478,6 +478,10 @@ main .section p.button-container.left {
   margin-bottom: 0;
 }
 
+.columns.align-top .column-flex-container {
+  align-items: flex-start;
+}
+
 .columns .column-flex-container.columns-align-start {
   align-items: flex-start;
 }
@@ -630,6 +634,19 @@ div .tablet-center-image .column-flex-container.columns-align-start {
   line-height: 30px;
   font-style: normal;
   color: var(--theme-shade5);
+}
+
+.columns.title2-heading h3 {
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  margin: 0;
+  color: var(--theme-shade5);
+}
+
+.columns.title2-heading .non-img-col p {
+  margin-top: 4px;
 }
 
 .columns.gray-heading h2,
