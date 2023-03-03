@@ -55,6 +55,8 @@ async function displaySearchResults(terms, results) {
   const filtered = allPages.filter((e) => e.title.toLowerCase().includes(terms.toLowerCase())
     || e.description.toLowerCase().includes(terms.toLowerCase())
     || e.searchTags.toLowerCase().includes(terms.toLowerCase()));
+
+  console.log(filtered);
   
 
   if  (collection === 'integrations') {

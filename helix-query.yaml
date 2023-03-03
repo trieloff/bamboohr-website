@@ -288,12 +288,28 @@ indices:
         select: head > meta[property="og:image"]
         value: |
           match(attribute(el, 'content'), 'https:\/\/[^/]+(\/.*)')
-      category:
-        select: head > meta[name="category"]
+      topicPrimary:
+        select: head > meta[name="topic-primary"]
+        value: |
+          attribute(el, 'content')
+      topicSecondary:
+        select: head > meta[name="topic-secondary"]
         value: |
           attribute(el, 'content')
       eventDate:
         select: head > meta[name="event-date"]
+        value: |
+          attribute(el, 'content')
+      eventDateAndTime:
+        select: head > meta[name="event-date-and-time"]
+        value: |
+          attribute(el, 'content')
+      publishDate:
+        select: head > meta[name="publish-date"]
+        value: |
+          attribute(el, 'content')
+      hideFromLibrary:
+        select: head > meta[name="hide-from-library"]
         value: |
           attribute(el, 'content')
       robots:
