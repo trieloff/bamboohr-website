@@ -562,10 +562,6 @@ div .tablet-center-image .column-flex-container.columns-align-start {
   width: calc(16.67% - 20px);
 }
 
-.column2.flexible-spacer {
-  width: calc(8.33% - 20px);
-}
-
 .column3 {
   flex: 0 0 auto;
   width: calc(25% - 20px);
@@ -806,23 +802,5 @@ div .tablet-center-image .column-flex-container.columns-align-start {
   .columns.section-header :is(h1, h2, h3, h4, h5, h6, div) {
     font-size: 48px;
     line-height: 60px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .column2.flexible-spacer {
-    width: calc(16.67% - 20px);
-  }
-}
-
-@media (min-width: 1800px) {
-  .column2.flexible-spacer {
-    width: calc(8.33% - 20px);
-  }
-}
-
-@media (min-width: 1960px) {
-  .column2.flexible-spacer {
-    width: calc(16.67% - 20px);
   }
 }

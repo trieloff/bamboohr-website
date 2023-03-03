@@ -140,10 +140,9 @@ function addWistia(col, loadWistiaCSS) {
   col.classList.add('img-col');
 }
 
-function buildSplit(splitVal, addFlexibleSpacerClass) {
+function buildSplit(splitVal) {
   const newCol = document.createElement('div');
   newCol.classList.add(`column${splitVal}`);
-  if (addFlexibleSpacerClass) newCol.classList.add(`flexible-spacer`);
   return newCol;
 }
 
@@ -206,8 +205,8 @@ function setupColumns(cols, splitVals, block, needToLoadWistiaCSS) {
 
   if (extraSplits) {
     // Add extra column splits for cases like: 2/5/3/2 or 4/8/4
-    if (splitVals[0] !== '0') colParent.insertBefore(buildSplit(splitVals[0], true), cols[0]);
-    if (splitVals[3] && splitVals[3] !== '0') colParent.appendChild(buildSplit(splitVals[3], true));
+    if (splitVals[0] !== '0') colParent.insertBefore(buildSplit(splitVals[0]), cols[0]);
+    if (splitVals[3] && splitVals[3] !== '0') colParent.appendChild(buildSplit(splitVals[3]));
   }
 }
 
