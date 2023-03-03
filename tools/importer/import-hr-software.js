@@ -44,6 +44,52 @@ const createSubtitleBlock = (main, document) => {
   });
 }
 
+const createProductFeatureBlock = (main, document) => {
+	main.querySelectorAll('.ProductFeature').forEach((featureBlock) => {
+		const cells = [
+			['Columns'],
+			[[],[]]
+		];
+		console.log(cells);
+		// const cellsBelow = [];
+
+		featureBlock.querySelectorAll('.ProductFeatureBlock').forEach((block) => {
+      block.innerHTML = block.innerHTML.replaceAll(' href="/', ' href="https://www.bamboohr.com/');
+      const container = document.createElement('div');
+
+      const image = block.querySelector('img');
+      if (image) {
+        container.append(image);
+      }
+
+      const heading = block.querySelector('h2');
+      if (heading) {
+        const h = document.createElement('h2');
+        h.innerHTML = heading.innerHTML.replace(/[\r\n\t]/gm, '');
+        container.append(h);
+      }
+
+      const description = block.querySelector('p');
+      if (description) {
+        const p = document.createElement('p');
+        p.innerHTML = description.innerHTML.replace(/[\r\n\t]/gm, '');
+        container.append(p);
+      }
+
+      const button = block.querySelector('a');
+      if (button) {
+        container.append(button);
+      }
+
+      // cells[1][0].push([container.innerHTML]);
+      cells.push([container]);
+    });
+
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    featureBlock.replaceWith(table);
+	});
+};
+
 const createQuoteBlock = (main, document) => {
   main.querySelectorAll('.ProductCustomerContainer').forEach((quote) => {
     const cells = [['Quote']];
@@ -69,20 +115,53 @@ const createQuoteBlock = (main, document) => {
   });
 }
 
-const createCalloutBlock = (main, document) => {
-  main.querySelectorAll('.HrGlossaryTerm__contentCta').forEach((callout) => {
-    const cells = [['Callout']];
+const createCallToActionBlock = (main, document) => {
+  main.querySelectorAll('.ProductFeature').forEach((block) => {
+    block.querySelectorAll('.ProductReviewCta').forEach((cta) => {
 
+      const cells = [['Call to Action']];
+
+      const container = document.createElement('div');
+
+      const firstText = cta.querySelector('div.typ-section-header');
+      if (firstText) {
+        const h = document.createElement('h2');
+        h.innerHTML = firstText.textContent;
+        container.append(h);
+      }
+
+      const sub = cta.querySelector('.ProductReviewCta__desc');
+      if (sub) {
+        const p = document.createElement('p');
+        p.innerHTML = sub.innerHTML.replace(/[\r\n\t]/gm, '');
+        container.append(p);
+      }
+
+      cells.push([container]);
+
+      const button = cta.querySelector('.ProductFeatureBlock__button');
+      if (button) {
+        cells.push([button]);
+      }
+      const table = WebImporter.DOMUtils.createTable(cells, document);
+      cta.replaceWith(table);
+    });
+  });
+};
+
+const createTestimonialHeaderBlock = (main, document) => {
+  main.querySelectorAll('.ProductTestimonial__header').forEach((header) => {
+    const cells = [['Title']];
     const container = document.createElement('div');
+    const firstText = header.querySelector('h3.typ-section-header');
 
-    const firstText = callout.querySelector('.HrGlossaryTerm__contentCtaTitle');
     if (firstText) {
       const h = document.createElement('h3');
       h.innerHTML = firstText.textContent;
       container.append(h);
     }
 
-    const sub = callout.querySelector('.HrGlossaryTerm__contentCtaSubheading');
+    const sub = header.querySelector('div.typ-section-subhead');
     if (sub) {
       const p = document.createElement('p');
       p.innerHTML = sub.innerHTML.replace(/[\r\n\t]/gm, '');
@@ -90,69 +169,42 @@ const createCalloutBlock = (main, document) => {
     }
 
     cells.push([container]);
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    header.replaceWith(table);
+  });
+};
 
-    const cta = callout.querySelector('.HrGlossaryTerm__contentCtaBtn');
-    if (cta) {
-      cells.push([cta]);
+const createTestimonialBlock = (main, document) => {
+  main.querySelectorAll('.ProductTestimonial').forEach((testimonial) => {
+    const cells = [['Quote']];
+    const container = document.createElement('div');
+    const firstText = testimonial.querySelector('.ProductTestimonialVideo__quote');
+
+    // const wistiaLink = testimonial.querySelector('.ProductTestimonialVideo__left:first-child');
+    // console.log(wistiaLink, 'this is the wistia link');
+    // if (wistiaLink) {
+    //   const link = wistiaLink.getAttribute('src');
+    //   console.log(link, 'thisis the link');
+    //   container.append(link);
+    // }
+
+    if (firstText) {
+      const p = document.createElement('p');
+      p.innerHTML = firstText.textContent;
+      container.append(p);
     }
+
+    const secondText = testimonial.querySelector('.ProductTestimonialVideo__reference');
+    if (secondText) {
+      const p = document.createElement('p');
+      p.innerHTML = secondText.innerHTML.replace(/[\r\n\t]/gm, '');
+      container.append(p);
+    }
+
+    cells.push([container]);
     const table = WebImporter.DOMUtils.createTable(cells, document);
-    callout.replaceWith(table);
+    testimonial.replaceWith(table);
   });
-};
-
-const fixGeneralContent = (main) => {
-  // const pageContent = main.querySelector('.Product');
-  // pageContent.innerHTML = pageContent.innerHTML.replaceAll(' href="/', ' href="https://www.bamboohr.com/');
-
-  const buttons = main.querySelectorAll('.ProductFeatureBlock__button');
-	buttons.forEach(button => {
-    button.innerHTML = button.innerHTML.replaceAll(' href="/', ' href="https://www.bamboohr.com/');
-  });
-};
-
-const createProductFeatureBlock = (main, document) => {
-	main.querySelectorAll('.ProductFeatureBlock').forEach((container) => {
-		const cells = [
-			['Columns'],
-			[['col1'],['col2']]
-		];
-		console.log(cells);
-		// const cellsBelow = [];
-
-		container.querySelectorAll('.ProductFeatureBlock__copy').forEach((copyBlock) => {
-      const wrapper = document.createElement('div');
-
-      // const image = copyBlock.querySelector('.ProductMoreRowBlock__image');
-      // if (image) {
-      //   wrapper.append(image);
-      // }
-
-      const heading = copyBlock.querySelector('h2');
-      if (heading) {
-        const h = document.createElement('h2');
-        h.innerHTML = heading.innerHTML.replace(/[\r\n\t]/gm, '');
-        wrapper.append(h);
-      }
-
-      const description = copyBlock.querySelector('p');
-      if (description) {
-        const p = document.createElement('p');
-        p.innerHTML = description.innerHTML.replace(/[\r\n\t]/gm, '');
-        wrapper.append(p);
-      }
-
-      const button = copyBlock.querySelector('a');
-      if (button) {
-        wrapper.append(button);
-      }
-
-      // cells[1][0].push([wrapper.innerHTML]);
-      cells.push([wrapper]);
-    });
-
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-    container.replaceWith(table);
-	});
 };
 
 const createReferenceBlock = (main, document) => {
@@ -189,6 +241,15 @@ const createReferenceBlock = (main, document) => {
 
 };
 
+const fixGeneralContent = (main) => {
+  const pageContent = main.querySelector('.Product');
+  pageContent.innerHTML = pageContent.innerHTML.replaceAll(' href="/', ' href="https://www.bamboohr.com/');
+
+  const buttons = main.querySelectorAll('.ProductFeatureBlock__button');
+	buttons.forEach(button => {
+    button.innerHTML = button.innerHTML.replaceAll(' href="/', ' href="https://www.bamboohr.com/');
+  });
+};
 
 const createMetadata = (main, document) => {
   const meta = {};
@@ -251,12 +312,14 @@ export default {
       '.Footer',
     ]);
     const main = document.querySelector('.Product');
-    // createCalloutBlock(main, document);
+    // createCallToActionBlock(main, document);
     createTitleBlock(main, document);
     createSubtitleBlock(main, document);
     createQuoteBlock(main, document);
     createReferenceBlock(main, document);
-		// createProductFeatureBlock(main, document);
+    createTestimonialHeaderBlock(main, document);
+    createTestimonialBlock(main, document);
+    createProductFeatureBlock(main, document);
     createMetadata(main, document);
     // fixGeneralContent(main);
     return main;
