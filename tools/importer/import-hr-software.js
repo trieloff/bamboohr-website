@@ -14,7 +14,7 @@
 
 const createTitleBlock = (main, document) => {
   main.querySelectorAll('h1').forEach((heading) => {
-    const cells = [['Title']];
+    const cells = [['Title (hero-header)']];
     const titleContainer = document.createElement('div');
     const title = document.querySelector('h1');
     if (title) {
@@ -30,7 +30,7 @@ const createTitleBlock = (main, document) => {
 
 const createSubtitleBlock = (main, document) => {
   main.querySelectorAll('.ProductBanner__subTitle').forEach((heading) => {
-    const cells = [['Title']];
+    const cells = [['Title (hero-subhead)']];
     const titleContainer = document.createElement('div');
     const title = document.querySelector('.ProductBanner__subTitle');
     if (title) {
@@ -47,7 +47,7 @@ const createSubtitleBlock = (main, document) => {
 const createProductFeatureBlock = (main, document) => {
 	main.querySelectorAll('.ProductFeature').forEach((featureBlock) => {
 		const cells = [
-			['Columns'],
+			['Columns (7/5)'],
 			[[],[]]
 		];
 		console.log(cells);
@@ -64,7 +64,7 @@ const createProductFeatureBlock = (main, document) => {
 
       const heading = block.querySelector('h2');
       if (heading) {
-        const h = document.createElement('h2');
+        const h = document.createElement('h3');
         h.innerHTML = heading.innerHTML.replace(/[\r\n\t]/gm, '');
         container.append(h);
       }
