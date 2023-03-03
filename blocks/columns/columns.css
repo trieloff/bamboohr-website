@@ -454,10 +454,6 @@ main .section p.button-container.left {
   text-align: left;
 }
 
-main .section .columns.columns-2-cols p.button-container.left {
-  text-align: center;
-}
-
 /* Column containers */
 .columns .column-flex-container {
   display: flex;
@@ -465,14 +461,6 @@ main .section .columns.columns-2-cols p.button-container.left {
   justify-content: space-between;
   align-items: center;
   align-content: stretch;
-}
-
-.columns.columns-2-cols .column-flex-container {
-  text-align: center;
-}
-
-.columns.columns-2-cols:not(.hero-subhead) .column-flex-container .non-img-col p {
-  text-align: initial;
 }
 
 .columns.grid .column-flex-container {
@@ -782,15 +770,21 @@ div .tablet-center-image .column-flex-container.columns-align-start {
   }
 }
 
-@media (min-width: 1025px) {
-  .columns.columns-2-cols .column-flex-container {
-    text-align: unset;
+@media (max-width: 1024px) {
+  .columns.columns-2-cols:not(.title2-heading) .column-flex-container {
+    text-align: center;
   }
-
-  main .section .columns.columns-2-cols p.button-container.left {
+  
+  .columns.columns-2-cols:not(.hero-subhead) .column-flex-container .non-img-col:not(.columns-title-span) p {
     text-align: left;
   }
+  
+  .columns.columns-2-cols:not(.title2-heading) .column-flex-container .non-img-col p.button-container.left {
+    text-align: center;
+  }
+}
 
+@media (min-width: 1025px) {
   .columns.img-padding-left .img-col {
     padding-left: 40px;
   }
