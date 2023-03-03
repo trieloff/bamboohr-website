@@ -74,7 +74,7 @@
 
 .bhr-home .columns a.button:not(.link):any-link {
     color: var(--color-white);
-    background: linear-gradient(91.88deg, var(--theme-shade10), var(--theme-shade5) 99.25%);
+    background: linear-gradient(90deg, var(--theme-shade10) 0%, var(--theme-shade5) 100%);
 }
 
 .bhr-home .columns a.button:not(.link):any-link:hover {
@@ -418,7 +418,11 @@
     .bhr-home .img-col {
       order: 1;
       width: unset;
-      margin: 0 auto;
+      margin: 0 auto 20px;
+    }
+
+    .bhr-home .columns.img-stacked-80 .img-col {
+        width: 80%;
     }
   
     .bhr-home .non-img-col {
