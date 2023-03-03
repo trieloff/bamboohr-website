@@ -152,7 +152,7 @@ export default {
    * @param {HTMLDocument} document The document
    * @returns {HTMLElement} The root element
    */
-  transformDOM: ({ document, params }) => {
+  transformDOM: ({ document }) => {
     WebImporter.DOMUtils.remove(document, [
       'header',
       'NavbarMobile',
