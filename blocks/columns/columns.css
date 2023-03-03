@@ -486,6 +486,10 @@ main .section .columns.columns-2-cols p.button-container.left {
   margin-bottom: 0;
 }
 
+.columns.align-top .column-flex-container {
+  align-items: flex-start;
+}
+
 .columns .column-flex-container.columns-align-start {
   align-items: flex-start;
 }
