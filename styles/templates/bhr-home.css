@@ -327,6 +327,14 @@
     }
 }
 
+@media (max-width: 400px) {
+    .bhr-home .image.bg-home-middle-1,
+    .bhr-home .image.bg-home-middle-2,
+    .bhr-home .image.bg-home-middle-3 {
+        display: none;
+    }
+}
+
 @media (min-width: 497px) {
     .bhr-home .image.bg-home-bottom-pudgy picture {
         right: 21%;
