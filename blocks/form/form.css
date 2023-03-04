@@ -386,6 +386,10 @@ main .form.has-content .content-col {
   margin-bottom: 30px;
 }
 
+main .form.has-content .content-col h1 {
+  font-style: normal;
+}
+
 @media (min-width: 1200px) {
   main .form.has-content > div {
     display: grid;
