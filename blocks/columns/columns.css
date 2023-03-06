@@ -486,10 +486,6 @@ main .section p.button-container.left {
   margin-bottom: 0;
 }
 
-.columns.align-top .column-flex-container {
-  align-items: flex-start;
-}
-
 .columns .column-flex-container.columns-align-start {
   align-items: flex-start;
 }
@@ -504,6 +500,18 @@ div .tablet-center-image .column-flex-container.columns-align-start {
   align-items: flex-start;
   justify-content: center;
   margin: 0 -20px;
+}
+
+.columns.align-top .column-flex-container {
+  align-items: flex-start;
+}
+
+.columns.align-center .column-flex-container {
+  align-items: center;
+}
+
+.columns.align-bottom .column-flex-container {
+  align-items: flex-end;
 }
 
 .columns .column-small-icons-container.column-multi-element {
