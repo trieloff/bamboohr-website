@@ -437,6 +437,18 @@
       order: 2;
       width: unset;
     }
+
+    .bhr-home .columns.columns-2-cols:not(.title2-heading) .column-flex-container {
+        text-align: center;
+    }
+      
+    .bhr-home .columns.columns-2-cols:not(.hero-subhead) .column-flex-container .non-img-col:not(.columns-title-span) p {
+        text-align: left;
+    }
+      
+    .bhr-home .columns.columns-2-cols:not(.title2-heading) .column-flex-container .non-img-col p.button-container.left {
+        text-align: center;
+    }
 }
 
 @media (min-width: 1025px) {
