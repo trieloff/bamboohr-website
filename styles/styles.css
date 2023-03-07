@@ -791,12 +791,13 @@ main .section > div:empty {
     max-width: 450px;
   }
 
-  .resources-guides main .section > div.columns-wrapper.small-width,
+  main .section > div.columns-wrapper.small-width,
   main .section > div.title-wrapper.small-width {
     max-width: 640px;
   }
 
   .resources-guides main .section > div.quote-wrapper.normal-width,
+  main .section > div.columns-wrapper.normal-width,
   main .section > div.image-wrapper.normal-width,
   main .section > div.title-wrapper.normal-width,
   main .section > div.wistia-wrapper.normal-width {
@@ -804,7 +805,7 @@ main .section > div:empty {
   }
 
   main .section > div.cards-wrapper.med-width,
-  .resources-guides main .section > div.columns-wrapper.med-width,
+  main .section > div.columns-wrapper.med-width,
   .resources-guides main .section > div.toc-wrapper,
   .resources-guides main .section > div.quote-wrapper,
   .resources-guides main .section.negative-margin-section.med-width > div.default-content-wrapper,
@@ -815,18 +816,20 @@ main .section > div:empty {
   }
 
   .resources-guides main .section > div.cards-wrapper.full-width,
-  .resources-guides main .section > div.columns-wrapper.full-width,
+  main .section > div.columns-wrapper.full-width,
   main .section > div.image-wrapper.full-width,
   .resources-guides main .section > div.quote-wrapper.full-width,
   .resources-guides main .section > div.source-wrapper.full-width {
     max-width: 1160px;
   }
 
-  .resources-guides main .section > div.image-wrapper.extra-wide {
+  .resources-guides main .section > div.image-wrapper.extra-wide,
+  main .section > div.multi-cta-cards-wrapper.extra-wide {
     max-width: 1200px;
   }
 
-  .bhr-home main .section > div.quote-wrapper.extra-wide {
+  .bhr-home main .section > div.quote-wrapper.extra-wide,
+  main .section > div.columns-wrapper.extra-wide {
     max-width: 1280px;
   }
 

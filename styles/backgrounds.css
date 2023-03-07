@@ -635,10 +635,7 @@
   z-index: -2;
 }
 
-.has-bg > span.bg-gradient-industry {
-  background-image: linear-gradient(180deg, var(--color-white) 0%, var(--theme-tint15) 100%);
-}
-
+.has-bg > span.bg-gradient-industry,
 .has-bg > span.bg-gradient-tint-15 {
   background-image: linear-gradient(180deg, var(--color-white) 0%, var(--theme-tint15) 100%);
 }
@@ -649,4 +646,12 @@
 
 .has-bg > span.bg-gradient-tint-15-v-3 {
   background-image: linear-gradient(180deg, var(--color-white) 0%, var(--theme-tint15) 80%);
+}
+
+.has-bg > span.bg-gradient-tint-10 {
+  background-image: linear-gradient(var(--color-white) 0%, var(--theme-tint10) 100%);
+}
+
+.has-bg > span.bg-gradient-tint-15-reverse {
+  background-image: linear-gradient(var(--theme-tint15) 50%, var(--color-white) 100%);
 }

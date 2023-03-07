@@ -79,7 +79,7 @@
 
 @media (min-width: 600px) {
   #base .section > div {
-    max-width: calc(960px + var(--section-padding) * 2);
+    max-width: calc(1160px + var(--section-padding) * 2);
     padding-left: var(--section-padding);
     padding-right: var(--section-padding);
   }
@@ -295,6 +295,11 @@
   background-color: var(--theme-shade5);
 }
 
+#base .button-color-shade-5 a.button:any-link:hover,
+#base .button-color-shade-5.columns a.button:any-link:hover {
+  background-color: var(--theme-shade10);
+}
+
 #base .button-color-shade-10 a.button:any-link,
 #base .button-color-shade-10.columns a.button:any-link {
   background-color: var(--theme-shade10);
@@ -398,6 +403,15 @@
 #base .button-color-secondary-tint-15 a.button:any-link,
 #base .button-color-secondary-tint-15.columns a.button:any-link {
   background-color: var(--secondary-theme-tint15);
+}
+
+#base .button-color-shade-5:not(.button-style-link) .button-container ~ .button-container .button {
+  color: var(--theme-shade5);
+  border-color: var(--theme-shade5);
+}
+
+#base .button-color-shade-5:not(.button-style-link) .button-container ~ .button-container .button:hover {
+  background-color: var(--theme-tint10);
 }
 
 #base .button-text-color-secondary-base a.button:any-link,

@@ -124,7 +124,7 @@ export function getMetadata(name) {
   const template = toClassName(getMetadata('template'));
   if (template) {
     const templates = ['bhr-comparison', 'bhr-home', 'ee-solution', 'hr-glossary', 'hr-software-payroll', 'hr-unplugged',
-      'hrvs-listing', 'industry', 'industry-category', 'live-demo-webinars', 'payroll-roi', 'performance-reviews', 'pricing-quote', 'content-library', 'webinar'];
+      'hrvs-listing', 'industry', 'industry-category', 'live-demo-webinars', 'payroll-roi', 'performance-reviews', 'pricing-quote', 'content-library', 'webinar', 'paid-landing-page'];
     if (templates.includes(template)) {
       const cssBase = `${window.hlx.serverPath}${window.hlx.codeBasePath}`;
       loadCSS(`${cssBase}/styles/templates/${template}.css`);
@@ -854,18 +854,7 @@ export function buildFigure(blockEl) {
   return figEl;
 }
 
-export async function lookupPages(pathnames, collection, sheet = '') {
-  const indexPaths = {
-    blog: '/blog/fixtures/blog-query-index.json',
-    integrations: '/integrations/query-index.json?sheet=listings',
-    hrGlossary: '/resources/hr-glossary/query-index.json',
-    hrvs: '/resources/events/hr-virtual/2022/query-index.json',
-    blockInventory: '/blocks/query-index.json',
-    blockTracker: `/website-marketing-resources/block-inventory-tracker.json?sheet=${sheet}`,
-    resources: `/resources/query-index.json?sheet=resources`
-  };
-  const indexPath = indexPaths[collection];
-  const collectionCache = `${collection}${sheet}`;
+export async function readIndex(indexPath, collectionCache) {
   window.pageIndex = window.pageIndex || {};
   if (!window.pageIndex[collectionCache]) {
     const resp = await fetch(indexPath);
@@ -876,6 +865,22 @@ export async function lookupPages(pathnames, collection, sheet = '') {
     });
     window.pageIndex[collectionCache] = { data: json.data, lookup };
   }
+}
+
+export async function lookupPages(pathnames, collection, sheet = '') {
+  const indexPaths = {
+    blog: '/blog/fixtures/blog-query-index.json',
+    integrations: '/integrations/query-index.json?sheet=listings',
+    hrGlossary: '/resources/hr-glossary/query-index.json',
+    hrvs: '/resources/events/hr-virtual/2022/query-index.json',
+    blockInventory: '/blocks/query-index.json',
+    blockTracker: `/website-marketing-resources/block-inventory-tracker.json?sheet=${sheet}`,
+    resources: `/resources/query-index.json?sheet=resources`,
+    speakers: `/speakers/query-index.json`
+  };
+  const indexPath = indexPaths[collection];
+  const collectionCache = `${collection}${sheet}`;
+  await readIndex(indexPath, collectionCache);
 
   /* guard for legacy URLs */
   pathnames.forEach((path, i) => {

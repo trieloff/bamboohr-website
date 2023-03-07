@@ -8,9 +8,9 @@ function buildLandingPage(main) {
   let logos = '';
   if (partners) {
     partners = [...partners.split(', ')];
-    let partnerLogos = '<img src="/assets/partner-logos/bamboohr.svg" alt="BambooHR logo" />';
+    let partnerLogos = '<img src="/assets/partner-logos/color-250/bamboohr.svg" alt="BambooHR logo" />';
     partners.forEach((partner) => {
-      partnerLogos += `<img src="/assets/partner-logos/${toClassName(partner)}.svg" alt="${partner} logo" />`;
+      partnerLogos += `<img src="/assets/partner-logos/color-250/${toClassName(partner)}.svg" alt="${partner} logo" />`;
     });
     logos = `<p class="form-logos">${partnerLogos}</p>`;
   }
