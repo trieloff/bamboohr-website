@@ -1,0 +1,68 @@
+.product-updates main h1 {
+  font-family: var(--heading-font-family);
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 48px;
+  font-style: italic;
+  text-align: center;
+  color: var(--color-gray-11);
+  margin-bottom: 20px;
+}
+
+@media (min-width: 600px) {
+  .product-updates main h1 {
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 900px) {
+  .product-updates main h1 {
+    font-size: 54px;
+    line-height: 60px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .product-updates main h1 {
+    font-size: 70px;
+    line-height: 80px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .product-updates main h1 {
+    margin-bottom: 64px;
+  }
+}
+
+.product-updates main .intro-meta {
+  text-align: center;
+}
+
+.product-updates main .wistia picture {
+  border-radius: 15px;
+  box-shadow: var(--box-shadow-2);
+}
+
+.product-updates main .default-content-wrapper picture {
+  display: block;
+  text-align: center;
+}
+
+.product-updates main .default-content-wrapper picture img {
+  border-radius: 15px;
+  box-shadow: var(--box-shadow-2);
+  margin-bottom: 40px;
+}
+
+@media (min-width: 1200px) {
+  .product-updates main .default-content-wrapper picture img {
+    margin-bottom: 60px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .product-updates main .default-content-wrapper picture img {
+    margin-bottom: 80px;
+  }
+}

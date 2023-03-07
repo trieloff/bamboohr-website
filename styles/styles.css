@@ -891,6 +891,9 @@ main .section.app-cards-container {
 }
 
 main .default-content-wrapper a:any-link {
+  --category-color: var(--color-1-shade-5);
+  --category-bg-color: var(--color-1-tint-15);
+
   color: var(--category-color);
   background: linear-gradient(#f000 50%, var(--category-bg-color) 50.1%);
   text-decoration: none;
