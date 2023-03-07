@@ -370,12 +370,12 @@ main .section > .card-wrapper {
   margin-left: -50px;
 }
 
-.columns.image-round-corners img {
+.columns.image-round-corners img:first-of-type {
   border-radius: 15px;
 }
 
-.columns.image-shadow div:not(.wistia) img,
-.columns.image-shadow .wistia picture {
+.columns.image-shadow div:not(.wistia) img:first-of-type,
+.columns.image-shadow .wistia picture:first-of-type {
   box-shadow: var(--box-shadow-2);
 }
 
