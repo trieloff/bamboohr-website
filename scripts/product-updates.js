@@ -1,12 +1,24 @@
 import { buildBlock, getMetadata } from './scripts.js';
 
+function buildDisclaimer(main) {
+  const helpGuide = getMetadata('help-guide');
+  if (helpGuide) {
+    const disclaimerEl = document.createElement('p');
+    disclaimerEl.className = 'product-updates-disclaimer';
+    disclaimerEl.innerHTML = `Please note: The information included in this release note is accurate as of the date it was released. For the most up-to-date information on this product feature, please refer to the corresponding <a href="${helpGuide}" aria-label="Click here to see our help guides - opens in a new window" target="_blank">help guides</a>. Must be logged into BambooHR to access help guides.`;
+    main.prepend(disclaimerEl);
+  }
+}
+
 function buildIntroMeta() {
-  const releaseDate = getMetadata('release-date');
+  let releaseDate = getMetadata('publication-date');
+  releaseDate= releaseDate.split('-').join('/');
+
   const planType = getMetadata('plan-type');
   const topicPrimary = getMetadata('topic-primary');
   const h1 = document.querySelector('h1');
 
-  if (releaseDate) {
+  if (releaseDate && planType && topicPrimary) {
     const introMetaData = [];
     introMetaData.push(`<span class="intro-meta-cat">${planType} | ${topicPrimary}</span><span class="intro-meta-date">Date of release: ${releaseDate}</span>`);
     const introMetaBlock = buildBlock('title', [introMetaData]);
@@ -30,7 +42,21 @@ function buildWistiaEmbed(main) {
   }
 }
 
+function buildBottomCta(main) {
+  const bottomCta = [];
+  bottomCta.push('<a class="button accent" href="/product-updates/" aira-label="Click here to return to all release notes">Return to All Release Notes</a>');
+
+  const bottomCtaBlock = buildBlock('title', [bottomCta]);
+  bottomCtaBlock.classList.add('color-white', 'bottom-cta');
+  const ctaSection = document.createElement('div');
+  ctaSection.classList.add('bottom-cta-container');
+  ctaSection.prepend(bottomCtaBlock);
+  main.append(ctaSection);
+}
+
 export default async function decorateTemplate(main) {
+  buildDisclaimer(main);
   buildIntroMeta(main);
-  buildWistiaEmbed(main)
+  buildWistiaEmbed(main);
+  buildBottomCta(main)
 }
