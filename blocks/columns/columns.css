@@ -699,6 +699,18 @@ div .tablet-center-image .column-flex-container.columns-align-start {
   .resources-guides .img-col {
     max-width: 200px;
   }
+
+  .columns.columns-2-cols:not(.title2-heading) .column-flex-container {
+    text-align: center;
+  }
+  
+  .columns.columns-2-cols:not(.hero-subhead) .column-flex-container .non-img-col:not(.columns-title-span) p {
+    text-align: left;
+  }
+  
+  .columns.columns-2-cols:not(.title2-heading) .column-flex-container .non-img-col p.button-container.left {
+    text-align: center;
+  }
 }
 
 .column-flex-container > div > picture {
@@ -845,20 +857,6 @@ div .tablet-center-image .column-flex-container.columns-align-start {
 
   .columns.title1-heading h2 {
     margin: 0 0 30px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .columns.columns-2-cols:not(.title2-heading) .column-flex-container {
-    text-align: center;
-  }
-  
-  .columns.columns-2-cols:not(.hero-subhead) .column-flex-container .non-img-col:not(.columns-title-span) p {
-    text-align: left;
-  }
-  
-  .columns.columns-2-cols:not(.title2-heading) .column-flex-container .non-img-col p.button-container.left {
-    text-align: center;
   }
 }
 
