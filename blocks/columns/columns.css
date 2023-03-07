@@ -416,8 +416,10 @@ main .section > .card-wrapper {
   top: 0;
   left: 0;
   content: '';
-  -webkit-mask: url(http://www.bamboohr.com/icons/quotation-mark.svg) no-repeat 50% 50%;
-  mask: url(http://www.bamboohr.com/icons/quotation-mark.svg) no-repeat 50% 50%;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask: url('http://www.bamboohr.com/icons/quotation-mark.svg') no-repeat 50% 50%;
+  mask: url('http://www.bamboohr.com/icons/quotation-mark.svg') no-repeat 50% 50%;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-size: cover;
   mask-size: cover;
   background-color: var(--theme-base);
