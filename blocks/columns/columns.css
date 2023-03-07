@@ -882,8 +882,3 @@ div .tablet-center-image .column-flex-container.columns-align-start {
     line-height: 60px;
   }
 }
-
-.columns.image-box-shadow-3 .img-col img {
-  border-radius: 15px;
-  box-shadow: var(--box-shadow-3);
-}
