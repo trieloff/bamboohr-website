@@ -28,7 +28,7 @@ const makeAbsoluteLinks = (main) => {
 
 const createTitleBlock = (main, document) => {
   main.querySelectorAll('h1').forEach((heading) => {
-    const cells = [['Title (hero-header)']];
+    const cells = [['Title (hero-header, title color shade 10)']];
     const titleContainer = document.createElement('div');
     const title = document.querySelector('h1');
     if (title) {
@@ -59,16 +59,15 @@ const createSubtitleBlock = (main, document) => {
 };
 
 const createProductFeatureBlock = (main, document) => {
-	main.querySelectorAll('.ProductFeature').forEach((featureBlock) => {
-		const cells = [
-			['Columns (7/5)'],
-			[[],[]]
-		];
-		console.log(cells);
-		// const cellsBelow = [];
+  main.querySelectorAll('.ProductFeature').forEach((featureBlock) => {
+    const cells = [
+      ['Columns (7/5, button color shade 5, button text color white, image round corners, image shadow, spacing, copy color gray 12, align center)'],
+      [[],[]]
+    ];
+    console.log(cells);
+    // const cellsBelow = [];
 
-		featureBlock.querySelectorAll('.ProductFeatureBlock').forEach((block) => {
-      // block.innerHTML = block.innerHTML.replaceAll(' href="/', ' href="https://www.bamboohr.com/');
+    featureBlock.querySelectorAll('.ProductFeatureBlock').forEach((block) => {
       const container = document.createElement('div');
 
       const image = block.querySelector('img');
@@ -101,12 +100,12 @@ const createProductFeatureBlock = (main, document) => {
 
     const table = WebImporter.DOMUtils.createTable(cells, document);
     featureBlock.replaceWith(table);
-	});
+  });
 };
 
 const createQuoteBlock = (main, document) => {
   main.querySelectorAll('.ProductCustomerContainer').forEach((quote) => {
-    const cells = [['Quote']];
+    const cells = [['Quote (full, spacing)']];
     const container = document.createElement('div');
 
     const quoteText = document.querySelector('.ProductCustomer__quote');
@@ -133,7 +132,7 @@ const createCallToActionBlock = (main, document) => {
   main.querySelectorAll('.ProductFeature').forEach((block) => {
     block.querySelectorAll('.ProductReviewCta').forEach((cta) => {
 
-      const cells = [['Call to Action']];
+      const cells = [['Title (section-header, title color shade 10)']];
 
       const container = document.createElement('div');
 
@@ -190,17 +189,15 @@ const createTestimonialHeaderBlock = (main, document) => {
 
 const createTestimonialBlock = (main, document) => {
   main.querySelectorAll('.ProductTestimonial').forEach((testimonial) => {
-    const cells = [['Quote']];
+    const cells = [['Columns (7/5, testimonial, spacing, copy color gray 12)']];
     const container = document.createElement('div');
     const firstText = testimonial.querySelector('.ProductTestimonialVideo__quote');
 
-    // const wistiaLink = testimonial.querySelector('.ProductTestimonialVideo__left:first-child');
-    // console.log(wistiaLink, 'this is the wistia link');
-    // if (wistiaLink) {
-    //   const link = wistiaLink.getAttribute('src');
-    //   console.log(link, 'thisis the link');
-    //   container.append(link);
-    // }
+    const wistiaLink = testimonial.querySelector('.ProductTestimonialVideo__left:first-child');
+    if (wistiaLink) {
+      const link = wistiaLink.getAttribute('src');
+      container.append(link);
+    }
 
     if (firstText) {
       const p = document.createElement('p');
@@ -224,7 +221,7 @@ const createTestimonialBlock = (main, document) => {
 const createReferenceBlock = (main, document) => {
   main.querySelectorAll('.ProductMoreRow').forEach((container) => {
 
-    const cells = [['Cards (image top, 3 columns)']];
+    const cells = [['Cards (dual-tone, icon 60, 3 columns, copy color gray 12, spacing)']];
 
     container.querySelectorAll('.ProductMoreRowBlock').forEach((reference) => {
       const wrapper = document.createElement('div');
@@ -251,16 +248,6 @@ const createReferenceBlock = (main, document) => {
 
     const table = WebImporter.DOMUtils.createTable(cells, document);
     container.replaceWith(table);
-  });
-};
-
-const fixGeneralContent = (main) => {
-  const pageContent = main.querySelector('.Product');
-  pageContent.innerHTML = pageContent.innerHTML.replaceAll(' href="/', ' href="https://www.bamboohr.com/');
-
-  const buttons = main.querySelectorAll('.ProductFeatureBlock__button');
-	buttons.forEach(button => {
-    button.innerHTML = button.innerHTML.replaceAll(' href="/', ' href="https://www.bamboohr.com/');
   });
 };
 
@@ -325,7 +312,7 @@ export default {
       '.Footer',
     ]);
     const main = document.querySelector('.Product');
-    // createCallToActionBlock(main, document);
+    createCallToActionBlock(main, document);
     createTitleBlock(main, document);
     createSubtitleBlock(main, document);
     createQuoteBlock(main, document);
@@ -335,7 +322,6 @@ export default {
     createProductFeatureBlock(main, document);
     makeAbsoluteLinks(main);
     createMetadata(main, document);
-    // fixGeneralContent(main);
     return main;
   },
 
