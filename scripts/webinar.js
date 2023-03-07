@@ -1,6 +1,6 @@
 import { buildBlock, getMetadata, toClassName, createOptimizedPicture } from './scripts.js';
 
-export function isUpcomingWebinar() {
+export function isUpcomingEvent() {
   const eventDateStr = getMetadata('event-date');
   const [year, month, day] = eventDateStr.split('-');
   const eventDate = new Date(+year, +month - 1, +day);
@@ -14,7 +14,7 @@ function buildForm(main) {
   const blockContent = [];
   blockContent.push(main.querySelector(':scope > div').innerHTML);
 
-  const formTitle = isUpcomingWebinar() ? 'Register for the Webinar' : 'Watch Now';
+  const formTitle = isUpcomingEvent() ? 'Register for the Webinar' : 'Watch Now';
   const formSubheading = getMetadata('form-subheading') || 'All you need to do is complete the form below.';
 
   let partners = getMetadata('partner');
@@ -161,7 +161,7 @@ export default async function decorateTemplate(main) {
   const webinarTitle = main.querySelector('h1');
 
   if (formSubmit && formSubmit === 'success') {
-    if (isUpcomingWebinar()) {
+    if (isUpcomingEvent()) {
       main.innerHTML = '';
       document.body.classList.add('webinar-success-upcoming');
       upcomingSuccess(main, webinarTitle);
