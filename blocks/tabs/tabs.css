@@ -481,12 +481,19 @@ main .tabs.style-3 > .accordion .tabs-content {
 }
 
 main .tabs.style-3 > .accordion .tabs-content[aria-hidden="false"] {
-  display: flex;
+  display: block;
   row-gap: var(--padding);
 }
 
 main .tabs.style-3 > .accordion .tabs-content p {
   margin: 0;
+}
+
+main .tabs.style-3 > .accordion .tabs-content p a:any-link,
+main .tabs.style-3 > .accordion .tabs-content ul li a:any-link {
+  font-weight: var(--heading-font-weight);
+  color: var(--theme-shade10);
+  background-image: linear-gradient(rgb(0 0 0 / 0%) 50%, var(--secondary-theme-tint10) 0);
 }
 
 /* Dots */

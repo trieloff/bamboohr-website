@@ -370,6 +370,72 @@ main .section > .card-wrapper {
   margin-left: -50px;
 }
 
+.columns.image-round-corners img:first-of-type {
+  border-radius: 15px;
+}
+
+.columns.image-shadow div:not(.wistia) img:first-of-type,
+.columns.image-shadow .wistia picture:first-of-type {
+  box-shadow: var(--box-shadow-2);
+}
+
+.columns.app-links .img-col p:last-child {
+  display: flex;
+  justify-content: center;;
+}
+
+.columns.app-links .img-col p:last-child a {
+  max-width: 200px;
+  background: none;
+}
+
+.columns.app-links .img-col p:last-child a img {
+  border-radius: 0;
+}
+
+.columns.app-links .img-col p:last-child a:first-child {
+  margin-right: 40px;
+}
+
+.columns.testimonial .non-img-col > p:first-of-type {
+  font-family: var(--body-font-family);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 38px;
+  font-style: italic;
+  position: relative;
+}
+
+.columns.testimonial .non-img-col > p {
+  padding-left: 48px;
+}
+
+.columns.testimonial .non-img-col > p::before {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask: url('http://www.bamboohr.com/icons/quotation-mark.svg') no-repeat 50% 50%;
+  mask: url('http://www.bamboohr.com/icons/quotation-mark.svg') no-repeat 50% 50%;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  background-color: var(--theme-base);
+  height: 30px;
+  width: 41px;
+}
+
+.columns.testimonial .non-img-col p:last-of-type > em {
+  font-family: var(--body-font-family);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 30px 0 0;
+  font-style: normal;
+}
+
 @media (min-width: 600px) {
   .icon-3-cols {
     width: 33.33%;
@@ -444,6 +510,10 @@ main .section > .card-wrapper {
     margin-bottom: 20px;
     width: calc(33.33% - 50px);
   }
+
+  .columns.app-links .img-col p:last-child {
+    justify-content: flex-start;
+  }
 }
 
 .resources-guides .columns.small-icons {
@@ -478,10 +548,6 @@ main .section p.button-container.left {
   margin-bottom: 0;
 }
 
-.columns.align-top .column-flex-container {
-  align-items: flex-start;
-}
-
 .columns .column-flex-container.columns-align-start {
   align-items: flex-start;
 }
@@ -496,6 +562,18 @@ div .tablet-center-image .column-flex-container.columns-align-start {
   align-items: flex-start;
   justify-content: center;
   margin: 0 -20px;
+}
+
+.columns.align-top .column-flex-container {
+  align-items: flex-start;
+}
+
+.columns.align-center .column-flex-container {
+  align-items: center;
+}
+
+.columns.align-bottom .column-flex-container {
+  align-items: flex-end;
 }
 
 .columns .column-small-icons-container.column-multi-element {
