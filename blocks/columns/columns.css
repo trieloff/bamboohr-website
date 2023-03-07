@@ -374,7 +374,8 @@ main .section > .card-wrapper {
   border-radius: 15px;
 }
 
-.columns.image-shadow img {
+.columns.image-shadow div:not(.wistia) img,
+.columns.image-shadow .wistia picture {
   box-shadow: var(--box-shadow-2);
 }
 
