@@ -2,13 +2,16 @@ import { buildBlock, getMetadata } from './scripts.js';
 
 function buildIntroMeta() {
   const releaseDate = getMetadata('release-date');
+  const planType = getMetadata('plan-type');
+  const topicPrimary = getMetadata('topic-primary');
   const h1 = document.querySelector('h1');
 
   if (releaseDate) {
-    const introMetaEl = document.createElement('p');
-    introMetaEl.classList.add('intro-meta')
-    introMetaEl.innerHTML = `<p>Date of release: ${releaseDate}</p>`;
-    h1.after(introMetaEl);
+    const introMetaData = [];
+    introMetaData.push(`<span class="intro-meta-cat">${planType} | ${topicPrimary}</span><span class="intro-meta-date">Date of release: ${releaseDate}</span>`);
+    const introMetaBlock = buildBlock('title', [introMetaData]);
+    introMetaBlock?.classList?.add('medium-info', 'intro-meta');
+    h1.after(introMetaBlock);
   }
 }
 
