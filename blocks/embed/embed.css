@@ -10,7 +10,7 @@
 * governing permissions and limitations under the License.
 */
 
-main .embed {
+main .embed:not(.era-podcast) {
   max-height: 600px;
   width: unset;
   text-align: center;
