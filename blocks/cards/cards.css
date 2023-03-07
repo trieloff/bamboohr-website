@@ -317,8 +317,15 @@ div.has-text-only h4 {
 
 .cards.background > .card .button:any-link,
 .cards.background.cta > .cta-container > .card .button:any-link {
-    color: var(--color-gray-12);
     font-size: 1.125rem;
+}
+
+.cards.background > .card .button:any-link {
+    color: var(--color-gray-12);
+}
+
+.cards.background.cta > .cta-container > .card .button:any-link {
+    color: var(--theme-shade10);
 }
 
 /* "highlight" style */
