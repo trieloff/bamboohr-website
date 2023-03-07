@@ -1,11 +1,13 @@
 import { buildBlock, getMetadata, toClassName, createOptimizedPicture } from './scripts.js';
 
-function isUpcomingWebinar() {
-  const eventDate = new Date(getMetadata('event-date'));
+export function isUpcomingWebinar() {
+  const eventDateStr = getMetadata('event-date');
+  const [year, month, day] = eventDateStr.split('-');
+  const eventDate = new Date(+year, +month - 1, +day);
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  eventDate.setHours(0, 0, 0, 0);
-  return eventDate > today;
+  return eventDate >= today;
 }
 
 function buildForm(main) {
@@ -17,15 +19,14 @@ function buildForm(main) {
 
   let partners = getMetadata('partner');
   let logos = '';
+  let partnerLogos = '<img src="/assets/partner-logos/color-250/bamboohr.svg" alt="BambooHR logo" />';
   if (partners) {
     partners = [...partners.split(', ')];
-    let partnerLogos = '<img src="/assets/partner-logos/color-250/bamboohr.svg" alt="BambooHR logo" />';
     partners.forEach((partner) => {
       partnerLogos += `<img src="/assets/partner-logos/color-250/${toClassName(partner)}.svg" alt="${partner} logo" />`;
     });
-    logos = `<p class="form-logos">${partnerLogos}</p>`;
   }
-
+  logos = `<p class="form-logos">${partnerLogos}</p>`;
   blockContent.push(`<p><strong>${formTitle}</strong></p><p>${formSubheading}</p>${logos}<p>form</p>`);
   
   const section = document.createElement('div');
@@ -59,9 +60,9 @@ async function buildSpeakers(main) {
 function onDemandSuccess(main, webinarTitle) {
   let partners = getMetadata('partner');
   const successPartnerLogos = document.createElement('p');
+  let partnerLogos = '<img src="/assets/partner-logos/color-250/bamboohr.svg" alt="BambooHR logo" />';
   if (partners) {
     partners = [...partners.split(', ')];
-    let partnerLogos = '<img src="/assets/partner-logos/color-250/bamboohr.svg" alt="BambooHR logo" />';
     partners.forEach((partner) => {
       partnerLogos += `<img src="/assets/partner-logos/color-250/${toClassName(partner)}.svg" alt="${partner} logo" />`;
     });
