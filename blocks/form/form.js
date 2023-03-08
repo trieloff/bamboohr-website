@@ -584,7 +584,9 @@ export default async function decorate(block) {
         entry.URL === window.location.pathname || (entry.URL.endsWith('**') && window.location.pathname.startsWith(entry.URL.split('**')[0]))
       ) {
         formUrl = entry.Form;
-        successUrl = entry.Success === '' ? `${window.location.pathname}?formSubmit=success` : entry.Success;
+        let fbTracking = '';
+        if (entry.Success === '' && window.location.pathname.includes('/resources/')) fbTracking = '&fbTracking=success.php'
+        successUrl = entry.Success === '' ? `${window.location.pathname}?formSubmit=success${fbTracking}` : entry.Success;
         chilipiper = entry.Chilipiper;
       }
     });
