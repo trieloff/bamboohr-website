@@ -1,4 +1,5 @@
 import { readBlockConfig, getMetadata } from '../../scripts/scripts.js';
+import { isUpcomingEvent } from '../../scripts/webinar.js';
 
 const loadScript = (url, callback, type) => {
   const head = document.querySelector('head');
@@ -504,8 +505,12 @@ function loadFormAndChilipiper(formId, successUrl, chilipiper) {
         }
 
         const formSubmitText = getMetadata('form-submit-text');
+        const eventDateStr = getMetadata('event-date');
+        const formSubmitBtn = formEl.querySelector('.mktoButton');
         if (formSubmitText) {
-          formEl.querySelector('.mktoButton').textContent = formSubmitText;
+          formSubmitBtn.textContent = formSubmitText;
+        } else if (eventDateStr && window.location.pathname.includes('/webinars/')) {
+          formSubmitBtn.textContent = isUpcomingEvent() ? 'Register' : 'Watch Now';
         }
 
         form.onSuccess(() => {
