@@ -365,7 +365,7 @@ function mktoFormReset(form, moreStyles) {
       labelEl.htmlFor = newId;
       forEl.id = newId;
 
-      if (forEl.classList.contains('mktoField') && forEl.getAttribute('type') !== 'checkbox') {
+      if (forEl.classList.contains('mktoField') && forEl.getAttribute('type') === 'checkbox') {
         forEl.nextElementSibling.htmlFor = newId;
       }
     }
