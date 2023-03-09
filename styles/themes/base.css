@@ -237,6 +237,12 @@
   padding: 18px 40px;
 }
 
+#base .button-size-lg.block:not(.button-style-link) .button-container ~ .button-container .button {
+  font-size: 17px;
+  padding: 16px 38px;
+
+}
+
 #base .button-style-outline .button,
 #base .block:not(.button-style-link) .button-container ~ .button-container .button {
   background: none;
@@ -548,6 +554,14 @@
   line-height: 80px;
 }
 
+#base .title-size-hero-subhead :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 26px;
+  margin: 20px 0 0;
+}
+
 #base .title-size-section :is(h1, h2, h3, h4, h5, h6) {
   font-family: var(--heading-font-family);
   font-size: 48px;
@@ -832,6 +846,12 @@
 @media (min-width: 600px) {
   #base .section > .image-wrapper {
     max-width: calc(960px + var(--section-padding) * 2);
+  }
+
+  #base .title-size-hero-subhead :is(h1, h2, h3, h4, h5, h6) {
+    font-size: 21px;
+    line-height: 28px;
+    margin: 30px 0 0;
   }
 }
 
