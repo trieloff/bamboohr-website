@@ -410,15 +410,15 @@ main .section > .card-wrapper {
   padding-left: 48px;
 }
 
-.columns.testimonial .non-img-col > p::before {
+.columns.testimonial .non-img-col > p:first-of-type::before {
   display: block;
   position: absolute;
   top: 0;
   left: 0;
   content: '';
   /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask: url('http://www.bamboohr.com/icons/quotation-mark.svg') no-repeat 50% 50%;
-  mask: url('http://www.bamboohr.com/icons/quotation-mark.svg') no-repeat 50% 50%;
+  -webkit-mask: url('/icons/quotation-mark.svg') no-repeat 50% 50%;
+  mask: url('/icons/quotation-mark.svg') no-repeat 50% 50%;
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask-size: cover;
   mask-size: cover;
@@ -699,6 +699,18 @@ div .tablet-center-image .column-flex-container.columns-align-start {
   .resources-guides .img-col {
     max-width: 200px;
   }
+
+  .columns.columns-2-cols:not(.title2-heading) .column-flex-container {
+    text-align: center;
+  }
+  
+  .columns.columns-2-cols:not(.hero-subhead) .column-flex-container .non-img-col:not(.columns-title-span) p {
+    text-align: left;
+  }
+  
+  .columns.columns-2-cols:not(.title2-heading) .column-flex-container .non-img-col p.button-container.left {
+    text-align: center;
+  }
 }
 
 .column-flex-container > div > picture {
@@ -848,20 +860,6 @@ div .tablet-center-image .column-flex-container.columns-align-start {
   }
 }
 
-@media (max-width: 1024px) {
-  .columns.columns-2-cols:not(.title2-heading) .column-flex-container {
-    text-align: center;
-  }
-  
-  .columns.columns-2-cols:not(.hero-subhead) .column-flex-container .non-img-col:not(.columns-title-span) p {
-    text-align: left;
-  }
-  
-  .columns.columns-2-cols:not(.title2-heading) .column-flex-container .non-img-col p.button-container.left {
-    text-align: center;
-  }
-}
-
 @media (min-width: 1025px) {
   .columns.img-padding-left .img-col {
     padding-left: 40px;
@@ -883,9 +881,4 @@ div .tablet-center-image .column-flex-container.columns-align-start {
     font-size: 48px;
     line-height: 60px;
   }
-}
-
-.columns.image-box-shadow-3 .img-col img {
-  border-radius: 15px;
-  box-shadow: var(--box-shadow-3);
 }
