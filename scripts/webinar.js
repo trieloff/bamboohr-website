@@ -1,36 +1,37 @@
 import { buildBlock, getMetadata, toClassName, createOptimizedPicture } from './scripts.js';
 
-function isUpcomingWebinar() {
-  const eventDate = new Date(getMetadata('event-date'));
+export function isUpcomingEvent() {
+  const eventDateStr = getMetadata('event-date');
+  const [year, month, day] = eventDateStr.split('-');
+  const eventDate = new Date(+year, +month - 1, +day);
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  eventDate.setHours(0, 0, 0, 0);
-  return eventDate > today;
+  return eventDate >= today;
 }
 
 function buildForm(main) {
   const blockContent = [];
   blockContent.push(main.querySelector(':scope > div').innerHTML);
 
-  const formTitle = isUpcomingWebinar() ? 'Register for the Webinar' : 'Watch Now';
+  const formTitle = isUpcomingEvent() ? 'Register for the Webinar' : 'Watch Now';
   const formSubheading = getMetadata('form-subheading') || 'All you need to do is complete the form below.';
 
   let partners = getMetadata('partner');
   let logos = '';
+  let partnerLogos = '<img src="/assets/partner-logos/color-250/bamboohr.svg" alt="BambooHR logo" />';
   if (partners) {
     partners = [...partners.split(', ')];
-    let partnerLogos = '<img src="/assets/partner-logos/color-250/bamboohr.svg" alt="BambooHR logo" />';
     partners.forEach((partner) => {
       partnerLogos += `<img src="/assets/partner-logos/color-250/${toClassName(partner)}.svg" alt="${partner} logo" />`;
     });
-    logos = `<p class="form-logos">${partnerLogos}</p>`;
   }
-
+  logos = `<p class="form-logos">${partnerLogos}</p>`;
   blockContent.push(`<p><strong>${formTitle}</strong></p><p>${formSubheading}</p>${logos}<p>form</p>`);
   
   const section = document.createElement('div');
   const block = buildBlock('form', [blockContent]);
-  block?.classList?.add('grid-7-5', 'has-content', 'old-style');
+  block?.classList?.add('grid-7-5', 'has-content');
   section.prepend(block);
   main.innerHTML = section.outerHTML;
 }
@@ -59,9 +60,9 @@ async function buildSpeakers(main) {
 function onDemandSuccess(main, webinarTitle) {
   let partners = getMetadata('partner');
   const successPartnerLogos = document.createElement('p');
+  let partnerLogos = '<img src="/assets/partner-logos/color-250/bamboohr.svg" alt="BambooHR logo" />';
   if (partners) {
     partners = [...partners.split(', ')];
-    let partnerLogos = '<img src="/assets/partner-logos/color-250/bamboohr.svg" alt="BambooHR logo" />';
     partners.forEach((partner) => {
       partnerLogos += `<img src="/assets/partner-logos/color-250/${toClassName(partner)}.svg" alt="${partner} logo" />`;
     });
@@ -160,7 +161,7 @@ export default async function decorateTemplate(main) {
   const webinarTitle = main.querySelector('h1');
 
   if (formSubmit && formSubmit === 'success') {
-    if (isUpcomingWebinar()) {
+    if (isUpcomingEvent()) {
       main.innerHTML = '';
       document.body.classList.add('webinar-success-upcoming');
       upcomingSuccess(main, webinarTitle);
