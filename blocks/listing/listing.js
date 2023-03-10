@@ -26,6 +26,7 @@ function getLinkText(format, mediaType) {
         linkText = 'Listen Now';
         break;
       case 'tools':
+      default:
         linkText = 'View Now';
         break;
     }
