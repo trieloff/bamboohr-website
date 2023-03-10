@@ -73,11 +73,11 @@ main .tabs .tabs-content[aria-hidden="true"] {
     order: 1;
     margin: 0;
     border-bottom: 4px solid transparent;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
   }
 
   .integrations-listing main .tabs .tabs-title:not(:last-child) {
-    margin-right: 40px;
+    margin-right: 30px;
   }
 
   main .tabs .tabs-title[aria-selected="false"] {
