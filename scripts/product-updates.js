@@ -12,13 +12,12 @@ function buildDisclaimer(main) {
 
 function buildIntroMeta() {
   let releaseDate = getMetadata('publication-date');
-  releaseDate= releaseDate.split('-').join('/');
-
   const planType = getMetadata('plan-type');
-  const topicPrimary = getMetadata('topic-primary');
+  const topicPrimary = getMetadata('product-area');
   const h1 = document.querySelector('h1');
 
   if (releaseDate && planType && topicPrimary) {
+    releaseDate= releaseDate.split('-').join('/');
     const introMetaData = [];
     introMetaData.push(`<span class="intro-meta-cat">${planType} | ${topicPrimary}</span><span class="intro-meta-date">Date of release: ${releaseDate}</span>`);
     const introMetaBlock = buildBlock('title', [introMetaData]);
