@@ -304,8 +304,8 @@ indices:
         select: head > meta[name="event-date-and-time"]
         value: |
           attribute(el, 'content')
-      publishDate:
-        select: head > meta[name="publish-date"]
+      publicationDate:
+        select: head > meta[name="publication-date"]
         value: |
           attribute(el, 'content')
       hideFromLibrary:
