@@ -65,21 +65,28 @@ function createArticleCard(article, classPrefix, eager = false) {
 }
 
 function getBlockHTML(ph, theme, indexConfig = {}) {
-  const defaultSortText = (theme === 'hrvs') ? ph.category
-    : indexConfig.facetStyle === 'taxonomyV1' ? ph.newest : ph.default;
-  const defaultSortProp = (theme === 'hrvs') ? 'hrvsCategory'
-    : indexConfig.facetStyle === 'taxonomyV1' ? 'publicationDate' :'level';
-  const pageSortOptions = (theme === 'hrvs')
-    ? `<li data-sort="hrvsCategory">${ph.category}</li>
+  let defaultSortText = '';
+  let defaultSortProp = '';
+  let pageSortOptions = '';
+  if (theme === 'hrvs') {
+    defaultSortText = ph.category;
+    defaultSortProp = 'hrvsCategory';
+    pageSortOptions = `<li data-sort="hrvsCategory">${ph.category}</li>
       <li data-sort="startTime">${ph.startTime}</li>
       <li data-sort="presenter">${ph.presenter}</li>
-      <li data-sort="title">${ph.title}</li>`
-    : indexConfig.facetStyle === 'taxonomyV1' 
-    ? `<li data-sort="publicationDate">${ph.newest}</li>
-    <li data-sort="title">${ph.title}</li>` 
-    : `<li data-sort="level">${ph.default}</li>
+      <li data-sort="title">${ph.title}</li>`;
+  } else if (indexConfig.facetStyle === 'taxonomyV1') {
+    defaultSortText = ph.newest;
+    defaultSortProp = 'publicationDate';
+    pageSortOptions = `<li data-sort="publicationDate">${ph.newest}</li>
+      <li data-sort="title">${ph.title}</li>`;
+  } else {
+    defaultSortText = ph.default;
+    defaultSortProp = 'level';
+    pageSortOptions = `<li data-sort="level">${ph.default}</li>
       <li data-sort="name">${ph.name}</li>
       <li data-sort="publicationDate">${ph.newest}</li>`;
+  }
   return /* html */ `
   <p class="listing-results-count"><span id="listing-results-count"></span> ${ph.results}</p>
   <div class="listing-facets">
