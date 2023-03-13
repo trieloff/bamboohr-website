@@ -65,9 +65,11 @@ function createArticleCard(article, classPrefix, eager = false) {
 }
 
 function getBlockHTML(ph, theme, indexConfig = {}) {
-  let defaultSortText = '';
-  let defaultSortProp = '';
-  let pageSortOptions = '';
+  let defaultSortText = ph.default;
+  let defaultSortProp = 'level';
+  let pageSortOptions = `<li data-sort="level">${ph.default}</li>
+    <li data-sort="name">${ph.name}</li>
+    <li data-sort="publicationDate">${ph.newest}</li>`;
   if (theme === 'hrvs') {
     defaultSortText = ph.category;
     defaultSortProp = 'hrvsCategory';
@@ -80,12 +82,6 @@ function getBlockHTML(ph, theme, indexConfig = {}) {
     defaultSortProp = 'publicationDate';
     pageSortOptions = `<li data-sort="publicationDate">${ph.newest}</li>
       <li data-sort="title">${ph.title}</li>`;
-  } else {
-    defaultSortText = ph.default;
-    defaultSortProp = 'level';
-    pageSortOptions = `<li data-sort="level">${ph.default}</li>
-      <li data-sort="name">${ph.name}</li>
-      <li data-sort="publicationDate">${ph.newest}</li>`;
   }
   return /* html */ `
   <p class="listing-results-count"><span id="listing-results-count"></span> ${ph.results}</p>
