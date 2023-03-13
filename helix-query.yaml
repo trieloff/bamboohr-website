@@ -312,6 +312,10 @@ indices:
         select: head > meta[name="hide-from-library"]
         value: |
           attribute(el, 'content')
+      mediaType:
+        select: head > meta[name="media-type"]
+        value: |
+          attribute(el, 'content')
       robots:
         select: head > meta[name="robots"]
         value: |
