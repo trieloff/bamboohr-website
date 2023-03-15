@@ -50,7 +50,7 @@ async function filterResults(indexConfig = {}) {
   const results = listings.data.filter((row) => {
     const filterMatches = {};
     let matched = false;
-    let matchedAll = keys.every((key) => {
+    const matchedAll = keys.every((key) => {
       if (row[key]) {
         if (key === 'eventDateAndTime') {
           if (!row[key].toLowerCase().includes('demand')) matched = true;
@@ -96,7 +96,7 @@ export default async function decorate(block, blockName) {
 
   const runSearch = async () => {
     const results = await filterResults(indexConfig);
-    const sortBy = indexConfig.sortBy;
+    const { sortBy } = indexConfig;
 
     if (sortBy && sortOptions(sortBy)) results.sort(sortOptions(sortBy));
     displayResults(results, null);
