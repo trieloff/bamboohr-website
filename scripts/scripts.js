@@ -1108,16 +1108,27 @@ async function loadEager(doc) {
   const instantExperiment = getMetadata('instant-experiment');
   if (instantExperiment || experiment) {
     // eslint-disable-next-line import/no-cycle
-    const { runExperiment } = await import('./experimentation.js');
+    const {runExperiment} = await import('./experimentation.js');
     await runExperiment(experiment, instantExperiment);
   }
 
   if (!window.hlx.lighthouse) loadMartech();
 
-  const $head = document.querySelector('head');
-  const $script = document.createElement('script');
-  $script.src = 'https://cdn-4.convertexperiments.com/js/10004673-10005501.js';
-  $head.append($script);
+  /* This is temporary code to load our homepage convert test mid-test.
+     we are loading here to avoid the delay "long flicker" before the test page is loaded.
+     This type of test should be handled in Adobe Franklin experiments going forward.
+   */
+  const testPaths = [
+    '/resources/hr-glossary/performance-review'
+  ];
+  const isOnTestPath = testPaths.includes(window.location.pathname);
+  if (isOnTestPath) {
+    const $head = document.querySelector('head');
+    const $script = document.createElement('script');
+    $script.src = 'https://cdn-4.convertexperiments.com/js/10004673-10005501.js';
+    $head.append($script);
+  }
+  /* This is the end of the temporary convert test code */
 
   decorateTemplateAndTheme();
   document.documentElement.lang = 'en';
