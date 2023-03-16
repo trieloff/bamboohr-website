@@ -400,12 +400,12 @@ export function decorateBackgrounds($section) {
               (resp) => {
                 // skip if not success
                 if (resp.status !== 200) return;
-  
+
                 // put the svg in the span
                 resp.text().then((output) => {
                   const element = document.createElement('div');
                   let html = output;
-  
+
                   // get IDs
                   const matches = html.matchAll(/id="([^"]+)"/g);
                   // replace IDs
@@ -415,12 +415,12 @@ export function decorateBackgrounds($section) {
                       `${match}-id-${sectionKey}-${bgKey}-${sizeKey}-${matchKey}`
                     );
                   });
-  
+
                   element.innerHTML = html;
                   const svg = element.firstChild;
-  
+
                   svg.classList.add(size || 'desktop');
-  
+
                   background.append(svg);
                   $section.classList.add('has-bg');
                 });
@@ -1114,6 +1114,11 @@ async function loadEager(doc) {
 
   if (!window.hlx.lighthouse) loadMartech();
 
+  const $head = document.querySelector('head');
+  const $script = document.createElement('script');
+  $script.src = 'https://cdn-4.convertexperiments.com/js/10004673-10005501.js';
+  $head.append($script);
+
   decorateTemplateAndTheme();
   document.documentElement.lang = 'en';
   const main = doc.querySelector('main');
@@ -1182,13 +1187,13 @@ function loadDelayed() {
     '/resources/hr-glossary/',
     '/hr-solutions/industry/construction',
     '/blog/key-hr-metrics'
-  ];	
+  ];
   const isOnTestPath = testPaths.includes(window.location.pathname);
 
   if (isOnTestPath) handleLoadDelayed(); // import without delay (for testing page performance)
   // else if (!window.hlx.performance) window.setTimeout(() => handleLoadDelayed(), 4000);
   else if (!window.hlx.performance) handleLoadDelayed();
-  
+
   // load anything that can be postponed to the latest here
 }
 
