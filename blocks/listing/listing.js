@@ -11,12 +11,36 @@ import {
 } from '../../scripts/scripts.js';
 import { createAppCard, sortOptions } from '../app-cards/app-cards.js';
 
+function getLinkText(format, mediaType) {
+  let linkText = 'Read Now';
+  if (format) linkText = format.toLowerCase() === 'video' ? 'Watch Now' : 'Read Now';
+  else if (mediaType) {
+    switch (mediaType.toLowerCase()) {
+      case 'watch':
+        linkText = 'Watch Now';
+        break;
+      case 'listen':
+        linkText = 'Listen Now';
+        break;
+      case 'read':
+      case 'tools':
+      default:
+        linkText = 'Read Now';
+        break;
+    }
+  }
+
+  return linkText;
+}
+
 function createArticleCard(article, classPrefix, eager = false) {
   const title = article.title.split(' - ')[0];
   const card = document.createElement('div');
-  const articleFormat = article?.format || '';
+  const articleCategory = article.category || article.topicPrimary || article.topicSecondary
+    || article.contentType || article.brandedContent || '';
+  const articleFormat = article?.format || article?.mediaType || '';
   card.className = `${classPrefix}-card`;
-  card.setAttribute('am-region', `${article.category} . ${articleFormat}`.toUpperCase());
+  card.setAttribute('am-region', `${articleCategory} . ${articleFormat}`.toUpperCase());
   const image = article.cardImage || article.image;
   const pictureString = createOptimizedPicture(
     image,
@@ -24,33 +48,41 @@ function createArticleCard(article, classPrefix, eager = false) {
     eager,
     [{ width: 750 }],
   ).outerHTML;
-  const category = toCategory(article.category);
-  const watchOrRead = articleFormat?.toLowerCase() === 'video' ? 'Watch Now' : 'Read Now';
+  const category = toCategory(articleCategory);
+  const linkText = getLinkText(article?.format, article?.mediaType);
   card.innerHTML = `<div class="${classPrefix}-card-header category-color-${category}">
-    <span class="${classPrefix}-card-category">${article.category}</span> 
-    <span class="${classPrefix}-card-format">${articleFormat || ''}</span>
+    <span class="${classPrefix}-card-category">${articleCategory}</span> 
+    <span class="${classPrefix}-card-format">${articleFormat}</span>
     </div>
     <div class="${classPrefix}-card-picture"><a href="${article.path}">${pictureString}</a></div>
     <div class="${classPrefix}-card-body" am-region="${title}">
     <h5>${article?.presenter || ''}</h5>
     <h3>${title}</h3>
     <p>${article.description}</p>
-    <p><a href="${article.path}">${watchOrRead}</a></p>
+    <p><a href="${article.path}">${linkText}</a></p>
     </div>`;
   return (card);
 }
 
-function getBlockHTML(ph, theme) {
-  const defaultSortText = (theme === 'hrvs') ? ph.category : ph.default;
-  const defaultSortProp = (theme === 'hrvs') ? 'hrvsCategory' : 'level';
-  const pageSortOptions = (theme === 'hrvs')
-    ? `<li data-sort="hrvsCategory">${ph.category}</li>
+function getBlockHTML(ph, theme, indexConfig = {}) {
+  let defaultSortText = ph.default;
+  let defaultSortProp = 'level';
+  let pageSortOptions = `<li data-sort="level">${ph.default}</li>
+    <li data-sort="name">${ph.name}</li>
+    <li data-sort="publicationDate">${ph.newest}</li>`;
+  if (theme === 'hrvs') {
+    defaultSortText = ph.category;
+    defaultSortProp = 'hrvsCategory';
+    pageSortOptions = `<li data-sort="hrvsCategory">${ph.category}</li>
       <li data-sort="startTime">${ph.startTime}</li>
       <li data-sort="presenter">${ph.presenter}</li>
-      <li data-sort="title">${ph.title}</li>`
-    : `<li data-sort="level">${ph.default}</li>
-      <li data-sort="name">${ph.name}</li>
-      <li data-sort="publicationDate">${ph.newest}</li>`;
+      <li data-sort="title">${ph.title}</li>`;
+  } else if (indexConfig.facetStyle === 'taxonomyV1') {
+    defaultSortText = ph.newest;
+    defaultSortProp = 'publicationDate';
+    pageSortOptions = `<li data-sort="publicationDate">${ph.newest}</li>
+      <li data-sort="title">${ph.title}</li>`;
+  }
   return /* html */ `
   <p class="listing-results-count"><span id="listing-results-count"></span> ${ph.results}</p>
   <div class="listing-facets">
@@ -200,6 +232,7 @@ export default async function decorate(block, blockName) {
     indexConfig.indexPath = blockConfig['index-path'];
     indexConfig.indexName = blockConfig['index-name'];
     indexConfig.cardStyle = blockConfig['card-style'];
+    indexConfig.facetStyle = blockConfig['facet-style'];
   } else {
     Object.keys(blockConfig).forEach((key) => {
       config[toCamelCase(key)] = blockConfig[key];
@@ -211,7 +244,7 @@ export default async function decorate(block, blockName) {
     ctaBlockInfo = document.createElement('div');
     ctaBlockInfo.append(block.firstElementChild);
   }
-  block.innerHTML = getBlockHTML(ph, theme);
+  block.innerHTML = getBlockHTML(ph, theme, indexConfig);
 
   const resultsElement = block.querySelector('.listing-results');
   const facetsElement = block.querySelector('.listing-facets');
@@ -382,7 +415,7 @@ export default async function decorate(block, blockName) {
       resultsElement.innerHTML = '';
       results.forEach((product) => {
         if (indexConfig.cardStyle === 'article') {
-          resultsElement.append(createArticleCard(product, theme.toLowerCase()));
+          resultsElement.append(createArticleCard(product, 'listing-article'));
         } else resultsElement.append(createAppCard(product, blockName));
       });
     }
@@ -396,13 +429,31 @@ export default async function decorate(block, blockName) {
 
   const runSearch = async (filterConfig = config) => {
     let facets = {};
-    facets = {
-      category: {},
-      businessSize: {},
-      dataFlow: {},
-      industryServed: {},
-      locationRestrictions: {},
-    };
+    if (indexConfig.facetStyle === 'taxonomyV1') {
+      facets = {
+        topicPrimary: {},
+        topicSecondary: {},
+        planType: {},
+        contentType: {},
+        brandedContent: {},
+        mediaType: {},
+        authorSpeaker: {},
+        contentSize: {},
+        industry: {},
+        companySize: {},
+        companyGrowthStage: {},
+        userRole: {},
+      };
+    } else {
+      facets = {
+        category: {},
+        businessSize: {},
+        dataFlow: {},
+        industryServed: {},
+        locationRestrictions: {},
+      };
+    }
+    
     const results = await filterResults(theme, filterConfig, facets, indexConfig);
     // eslint-disable-next-line no-nested-ternary
     const sortBy = document.getElementById('listing-sortby')

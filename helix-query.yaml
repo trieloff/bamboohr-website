@@ -304,12 +304,16 @@ indices:
         select: head > meta[name="event-date-and-time"]
         value: |
           attribute(el, 'content')
-      publishDate:
-        select: head > meta[name="publish-date"]
+      publicationDate:
+        select: head > meta[name="publication-date"]
         value: |
           attribute(el, 'content')
       hideFromLibrary:
         select: head > meta[name="hide-from-library"]
+        value: |
+          attribute(el, 'content')
+      mediaType:
+        select: head > meta[name="media-type"]
         value: |
           attribute(el, 'content')
       robots:
@@ -340,5 +344,39 @@ indices:
           match(attribute(el, 'content'), 'https:\/\/[^/]+(\/.*)')
       bio:
         select: head > meta[name="bio"]
+        value: |
+          attribute(el, 'content')
+
+  product-updates:
+    include:
+      - '/product-updates/**'
+    target: /product-updates/query-index
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: |
+          attribute(el, 'content')
+      description:
+        select: head > meta[property="og:description"]
+        value: |
+          attribute(el, 'content')
+      image:
+        select: head > meta[property="og:image"]
+        value: |
+          match(attribute(el, 'content'), 'https:\/\/[^/]+(\/.*)')
+      planType:
+        select: head > meta[name="plan-type"]
+        value: |
+          attribute(el, 'content')
+      productArea:
+        select: head > meta[name="product-area"]
+        value: |
+          attribute(el, 'content')
+      publicationDate:
+        select: head > meta[name="publication-date"]
+        value: |
+          attribute(el, 'content')
+      wistiaVideoId:
+        select: head > meta[name="wistia-video-id"]
         value: |
           attribute(el, 'content')

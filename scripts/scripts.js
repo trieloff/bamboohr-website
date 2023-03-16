@@ -124,7 +124,7 @@ export function getMetadata(name) {
   const template = toClassName(getMetadata('template'));
   if (template) {
     const templates = ['bhr-comparison', 'bhr-home', 'ee-solution', 'hr-glossary', 'hr-software-payroll', 'hr-unplugged',
-      'hrvs-listing', 'industry', 'industry-category', 'live-demo-webinars', 'payroll-roi', 'performance-reviews', 'pricing-quote', 'content-library', 'webinar', 'paid-landing-page'];
+      'hrvs-listing', 'industry', 'industry-category', 'live-demo-webinars', 'payroll-roi', 'performance-reviews', 'pricing-quote', 'content-library', 'webinar', 'paid-landing-page', 'product-updates'];
     if (templates.includes(template)) {
       const cssBase = `${window.hlx.serverPath}${window.hlx.codeBasePath}`;
       loadCSS(`${cssBase}/styles/templates/${template}.css`);
@@ -940,7 +940,7 @@ async function buildAutoBlocks(main) {
     let template = toClassName(getMetadata('template'));
     if (window.location.pathname.startsWith('/blog/') && !template) template = 'blog';
 
-    const templates = ['blog', 'integrations-listing', 'content-library', 'webinar'];
+    const templates = ['blog', 'integrations-listing', 'content-library', 'webinar', 'product-updates'];
     if (templates.includes(template)) {
       const mod = await import(`./${template}.js`);
       if (mod.default) {
