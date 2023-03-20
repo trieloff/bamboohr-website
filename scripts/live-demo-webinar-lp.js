@@ -1,17 +1,12 @@
-import { buildBlock, getMetadata } from './scripts.js';
+import { buildBlock, getMetadata, createOptimizedPicture } from './scripts.js';
 
 function buildSuccessThanks(main) {
-  const thumbImgUrl = new URL(getMetadata('og:image'));
-  const thumbImgPath = thumbImgUrl.href.replace(thumbImgUrl.origin, '');
-
-  const thumbImg = document.createElement('img');
+  const imageSrc = getMetadata('og:image');
   const webinarTitle = getMetadata('og:title').split(' | ')[0];
+  const thumbImg = createOptimizedPicture(imageSrc, webinarTitle, false, [{ width: '700' }]);
   const columnData = [];
 
-  thumbImg.classList.add('resource-image');
-  thumbImg.alt = webinarTitle;
-  thumbImg.src = thumbImgPath;
-  
+
   columnData.push(`<h1>Thanks for registering!</h1><p>You should receive an email with the details.</p>`);
   columnData.push(thumbImg);
 
