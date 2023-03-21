@@ -124,7 +124,7 @@ export function getMetadata(name) {
   const template = toClassName(getMetadata('template'));
   if (template) {
     const templates = ['bhr-comparison', 'bhr-home', 'ee-solution', 'hr-glossary', 'hr-software-payroll', 'hr-unplugged',
-      'hrvs-listing', 'industry', 'industry-category', 'live-demo-webinars', 'payroll-roi', 'performance-reviews', 'pricing-quote', 'content-library', 'webinar', 'paid-landing-page', 'product-updates'];
+      'hrvs-listing', 'industry', 'industry-category', 'live-demo-webinars', 'payroll-roi', 'performance-reviews', 'pricing-quote', 'content-library', 'webinar', 'paid-landing-page', 'product-updates', 'live-demo-webinar-lp'];
     if (templates.includes(template)) {
       const cssBase = `${window.hlx.serverPath}${window.hlx.codeBasePath}`;
       loadCSS(`${cssBase}/styles/templates/${template}.css`);
@@ -940,7 +940,7 @@ async function buildAutoBlocks(main) {
     let template = toClassName(getMetadata('template'));
     if (window.location.pathname.startsWith('/blog/') && !template) template = 'blog';
 
-    const templates = ['blog', 'integrations-listing', 'content-library', 'webinar', 'product-updates'];
+    const templates = ['blog', 'integrations-listing', 'content-library', 'webinar', 'product-updates', 'live-demo-webinar-lp'];
     if (templates.includes(template)) {
       const mod = await import(`./${template}.js`);
       if (mod.default) {
@@ -1122,11 +1122,27 @@ async function loadEager(doc) {
   const instantExperiment = getMetadata('instant-experiment');
   if (instantExperiment || experiment) {
     // eslint-disable-next-line import/no-cycle
-    const { runExperiment } = await import('./experimentation.js');
+    const {runExperiment} = await import('./experimentation.js');
     await runExperiment(experiment, instantExperiment);
   }
 
   if (!window.hlx.lighthouse) loadMartech();
+
+  /* This is temporary code to load our homepage convert test mid-test.
+     we are loading here to avoid the delay "long flicker" before the test page is loaded.
+     This type of test should be handled in Adobe Franklin experiments going forward.
+   */
+  // const testPaths = [
+  //   '/resources/hr-glossary/performance-review'
+  // ];
+  // const isOnTestPath = testPaths.includes(window.location.pathname);
+  // if (isOnTestPath) {
+    const $head = document.querySelector('head');
+    const $script = document.createElement('script');
+    $script.src = 'https://cdn-4.convertexperiments.com/js/10004673-10005501.js';
+    $head.append($script);
+  // }
+  /* This is the end of the temporary convert test code */
 
   decorateTemplateAndTheme();
   document.documentElement.lang = 'en';
