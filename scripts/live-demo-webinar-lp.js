@@ -19,27 +19,27 @@ function buildSuccessThanks(main) {
   }
 }
 
-function buildSuccessMoreWays(main) {
-  const title = 'Want More Ways to Get Involved?';
+function buildSuccessJoinCommunity(main) {
+  const title = 'Join the HR Heroes Slack Community';
 
   const titleBlock = buildBlock('title', title);
-  titleBlock?.classList.add('section-header', 'color-gray-12', 'more-ways-title');
+  titleBlock?.classList.add('section-header', 'color-gray-12', 'join-community-title');
   titleBlock?.querySelector('div').setAttribute('data-align', 'center');
 
   main.querySelector('.live-demo-webinar-thanks')?.after(titleBlock);
 
-  const subheading = 'See all of our BambooHR Community programs, and find more ways to share your unique voice and experiences.';
+  const subheading = 'If you think chatting with your peers in a webinar is great you should try it in our Slack Community!';
   const subheadingBlock = buildBlock('title', subheading);
-  subheadingBlock?.classList.add('section-subhead', 'color-gray-12', 'more-ways-subheading');
+  subheadingBlock?.classList.add('section-subhead', 'color-gray-12', 'join-community-subheading');
   subheadingBlock?.querySelector('div').setAttribute('data-align', 'center');
 
-  main.querySelector('.more-ways-title')?.after(subheadingBlock);
+  main.querySelector('.join-community-title')?.after(subheadingBlock);
 
-  const wantMoreBtn = '<a href="/about-bamboohr/customers/hr-community/" title="Join the Dream Team" class="button accent">Join the Dream Team</a>';
-  const wantMoreBtnBlock = buildBlock('title', wantMoreBtn);
-  wantMoreBtnBlock?.classList.add('button-color-shade-5', 'more-ways-btn');
-  wantMoreBtnBlock?.querySelector('div').setAttribute('data-align', 'center');
-  main.querySelector('.more-ways-subheading')?.after(wantMoreBtnBlock);
+  const joinCommunityBtn = '<a href="/about-bamboohr/customers/hr-community/" title="Join the Community Now" alt="Join the Community Now" class="button accent">Join the Community Now</a>';
+  const joinCommunityBtnBlock = buildBlock('title', joinCommunityBtn);
+  joinCommunityBtnBlock?.classList.add('button-color-shade-5', 'join-community-btn');
+  joinCommunityBtnBlock?.querySelector('div').setAttribute('data-align', 'center');
+  main.querySelector('.join-community-subheading')?.after(joinCommunityBtnBlock);
 }
 
 function buildSuccessMore(main) {
@@ -49,7 +49,7 @@ function buildSuccessMore(main) {
   titleBlock?.classList.add('title1', 'color-gray-12', 'want-more-title');
   titleBlock?.querySelector('div').setAttribute('data-align', 'center');
 
-  main.querySelector('.more-ways-btn')?.after(titleBlock);
+  main.querySelector('.join-community-btn')?.after(titleBlock);
 
   const moreData = [];
   moreData.push(`<img src="/icons/rocketship.svg" alt="rocketship icon" /><h4>Performance Management</h4><p>Get real results with more frequent communication, meaningful feedback, and valuable insights.</p><p class="button-container"><a href="https://www.bamboohr.com/expansion/performance-management/" title="Learn more about Performance Management" class="button accent">Learn More</a></p>`);
@@ -73,7 +73,7 @@ export default async function decorateTemplate(main) {
     main.innerHTML = '';
     document.body.classList.add('live-demo-webinar-lp-success');
     buildSuccessThanks(main);
-    buildSuccessMoreWays(main);
+    buildSuccessJoinCommunity(main);
     buildSuccessMore(main);
   }
 }

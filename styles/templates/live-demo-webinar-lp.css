@@ -16,15 +16,15 @@
   color: var(--theme-base);
 }
 
-.live-demo-webinar-lp-success .more-ways-title {
+.live-demo-webinar-lp-success .join-community-title {
   font-style: italic;
 }
 
-.live-demo-webinar-lp-success .more-ways-subheading {
+.live-demo-webinar-lp-success .join-community-subheading {
   margin-bottom: 20px;
 }
 
-.live-demo-webinar-lp-success .more-ways-btn {
+.live-demo-webinar-lp-success .join-community-btn {
   margin-bottom: 80px;
 }
 
